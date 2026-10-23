@@ -1,32 +1,62 @@
-Act as a Senior UI/UX Designer and Lead Front-End Developer specializing in ultra-luxury real estate web applications.
+# ART HOUSE — Luxury Residence Tashkent
 
-Create a complete, fully functional, production-ready single-file HTML web application for a luxury real estate project called "ART HOUSE LUXURY RESIDENCE". 
+Premium ko'chmas mulk sayti va menejerlar uchun kabinet (dashboard).
+Emerald va champagne-tilla ranglardagi qorong'i dizayn. Sayt 4 tilda ishlaydi: o'zbek (lotin va kirill), rus va ingliz.
 
-LANGUAGES & STYLES:
-- Language: Uzbek (All text content on the site must be in high-end, professional Uzbek language).
-- Architecture: Pure HTML5, CSS3, and modern Vanilla JavaScript contained in a single index.html file.
-- Theme: Ultra-Dark Luxury aesthetic (Backgrounds: #0B0C10, #12141C; Accents: #D4AF37 (Gold), #8E9AAF (Slate/Steel); Effects: Glassmorphism, backdrop-blur, CSS keyframe animations, smooth scrolling, gold-glowing borders).
+## Tuzilma
 
-KEY SECTIONS TO INCLUDE:
-1. Hero Section: High-impact animated title, luxury subtitle, parallax-style dark background, and two CTA buttons ("Loyiha bilan tanishish" & "Bo'lib to'lashni hisoblash").
-2. Interactive 0% Installment Calculator (CRITICAL REQUIREMENT):
-   - IMPORTANT: Strictly DO NOT include mortgage, bank credit, or interest rates. This is direct developer financing with 0% interest!
-   - Inputs:
-     * Property Value slider/input ($50,000 to $500,000, default: $120,000).
-     * Initial Down Payment slider/input (MINIMUM 30%, range: 30% to 70%, default: 30%).
-     * Payment Duration buttons (12 oy, 18 oy, 24 oy, 36 oy).
-   - Live Dynamic JS Calculations:
-     * Boshlang'ich to'lov ($ va % da).
-     * Qoldiq summa ($ da).
-     * Ustama / Foiz: STRICTLY "0% (Foizsiz / Halol)".
-     * Oylik to'lov summasi ($ / oy).
-   - Action Button: "Ushbu to'lov grafigi bo'yicha band qilish" (Triggers a lead collection modal).
-3. Residence Advantages / Amenities: Interactive hover cards (24/7 videokuzatuv va xavfsizlik, yerosti avtoturargohi, aqlli xonadon tizimi, panoramali oyna va terasa).
-4. Interactive Lead Capture Modal: A sleek modal form for booking that collects Client Name, Phone Number, and displays their calculated monthly payment preview.
-5. Luxury Footer: Branding, contact details, social links, and copyright.
+```
+index.html        — sayt: 7 bo'lim + «Mijozlar izohlari»
+kabinet.html      — kabinet: arizalar, izohlar (javob berish), qo'ng'iroqlar, sozlamalar
+css/base.css      — umumiy uslublar, lyuks logotip animatsiyasi, qo'ng'iroq oynasi
+css/site.css      — sayt uslublari
+css/kabinet.css   — kabinet uslublari
+js/config.js      — BARCHA sozlamalar va kontent (telefonlar, havolalar, loyihalar, narxlar)
+js/i18n.js        — tarjimalar (uz, uz-kirill, ru, en)
+js/store.js       — ma'lumotlar: localStorage + BroadcastChannel yoki server (REST + SSE)
+js/media.js       — getUserMedia (mikrofon/kamera ruxsati) va WebRTC qo'ng'iroq
+js/site.js        — sayt mantiqi
+js/kabinet.js     — kabinet mantiqi
+server/server.js  — Node.js server (tashqi kutubxonalarsiz): API, jonli sinxronlash, video-signal
+assets/           — rasmlar, rejalar, dron videosi
+```
 
-DESIGN & CODE REQUIREMENTS:
-- 100% Mobile Responsive design using CSS Grid/Flexbox and @media queries.
-- Clean CSS keyframe animations (@keyframes en-wipe, fade-in, lift).
-- Flawless JavaScript calculator logic with immediate recalculation on slider movement.
-- Return ONLY the raw code block containing the complete HTML/CSS/JS file ready to be saved as `index.html`.
+## Ishga tushirish
+
+**Server bilan (tavsiya etiladi):** izohlar, arizalar va video-qo'ng'iroqlar barcha qurilmalar o'rtasida jonli sinxronlanadi.
+
+```bash
+# js/config.js ichida:  API_URL: 'auto',
+npm start               # yoki: PORT=8080 node server/server.js
+# sayt:    http://localhost:8080/
+# kabinet: http://localhost:8080/kabinet.html
+```
+
+Ma'lumotlar `data/db.json` faylida, video-sharhlar `data/media/` papkasida saqlanadi. Bu papka git'ga kirmaydi.
+Production'da serverni HTTPS ortida ishga tushiring (nginx yoki Caddy): kamera va mikrofon faqat `https://` orqali ishlaydi.
+
+**Serversiz (statik hosting):** `API_URL: ''` bo'lsa, ma'lumotlar brauzer xotirasida saqlanadi. Bu rejimda sayt va kabinet bir xil brauzerda ochilgan bo'lsa, menejer javobi saytda darhol ko'rinadi va video-qo'ng'iroq ham ishlaydi. Boshqa qurilma bilan video-qo'ng'iroqni «kod orqali ulanish» yo'li bilan qilish mumkin. Haqiqiy foydalanish uchun server rejimi kerak.
+
+## Kabinetga kirish
+
+Boshlang'ich loginlar (**darhol almashtiring!**):
+
+| Login     | Parol           | Huquq                                              |
+|-----------|-----------------|----------------------------------------------------|
+| `admin`   | `ArtHouse#2026` | direktor: narxlarni o'zgartirish, o'chirish        |
+| `manager` | `Manager#2026`  | menejer: javob berish, holatlarni yangilash        |
+
+Yangi parol xeshini olish:
+
+```bash
+node -e "const c=require('crypto');const u='admin',p='YANGI_PAROL';console.log(c.pbkdf2Sync(p,'arthouse.v3:'+u,150000,32,'sha256').toString('hex'))"
+```
+
+Olingan qiymatni `js/config.js` → `ADMINS.admin.hash` ga yozing. Server ham loginlarni shu fayldan o'qiydi.
+
+## Kontentni tahrirlash
+
+Hammasi `js/config.js` faylida: telefonlar, Telegram, Instagram, loyihalar, faktlar, qulayliklar, rejalar, taqdimot havolalari (`presentation`).
+Ko'kcha va Obod Maskan uchun rasm va rejalarni `assets/img/...` papkasiga qo'yib, `cover`, `gallery` va `plans` maydonlariga yozing.
+
+> ⚠️ `TEKSHIRING` deb belgilangan ma'lumotlar (manzillar, qavatlar soni, xonadonlar soni, tashkil topgan yil, koordinatalar) ochiq manbalar va @arthouse.tashkent postlaridan olingan. E'lon qilishdan oldin ularni rasmiy ma'lumot bilan solishtiring.
