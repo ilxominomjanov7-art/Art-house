@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ART HOUSE — Kabinet</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#04110d">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjE4IiBmaWxsPSIjMDQxMTBkIi8+PHBhdGggZD0iTTIyIDkyVjYycTAtNiA2LThNMzMgOTJWNDhxMC02IDYtOE00NCA5MlYzNHEwLTcgNi0xMCA2IDMgNiAxMHY1OE01MCAyNFYxMU02NyA5MlY0OHEwLTYtNi04TTc4IDkyVjYycTAtNi02LTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q4QkM3RSIgc3Ryb2tlLXdpZHRoPSI0LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPgo=" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   ART HOUSE — UMUMIY USLUBLAR (sayt va kabinet)
+   Emerald & Champagne Gold · premium qorong'i mavzu
+   ===================================================================== */
+:root {
+  --bg: #04110d;
+  --bg-2: #071a14;
+  --bg-3: #0b241c;
+  --panel: rgba(13, 42, 32, .55);
+  --emerald: #0f3d2e;
+  --emerald-2: #17573f;
+  --gold: #d8bc7e;
+  --gold-2: #b8913f;
+  --gold-hi: #f6e7b8;
+  --gold-grad: linear-gradient(115deg, #b8913f 0%, #f6e7b8 28%, #d8bc7e 50%, #a67c2e 72%, #f3dfa6 100%);
+  --ink: #efe8d8;
+  --mut: #9fb0a7;
+  --line: rgba(216, 188, 126, .16);
+  --line-2: rgba(216, 188, 126, .34);
+  --danger: #e8897a;
+  --ok: #7fd3a4;
+  --r: 18px;
+  --r-sm: 12px;
+  --shadow: 0 30px 80px -30px rgba(0, 0, 0, .7);
+  --f-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-logo: 'Cinzel', 'Cormorant Garamond', serif;
+  --f-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+body {
+  margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-wrap: break-word; word-break: normal;
+}
+body.lock { overflow: hidden; }
+img, video, iframe { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+::selection { background: rgba(216, 188, 126, .35); color: #fff; }
+
+.wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+.ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ic.lg { width: 28px; height: 28px; stroke: var(--gold); stroke-width: 1.4; }
+.ic.xl { width: 44px; height: 44px; stroke-width: 1.2; }
+.muted { color: var(--mut); }
+.hint { color: var(--mut); font-size: 13px; margin: 8px 0 0; }
+.eyebrow { margin: 0 0 10px; font-size: 11.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.gold-text { background: var(--gold-grad); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 7s linear infinite; }
+@keyframes shimmer { to { background-position: -220% 0; } }
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.15; }
+h2 { font-family: var(--f-display); font-size: clamp(30px, 4vw, 46px); letter-spacing: .01em; }
+h3 { font-family: var(--f-display); font-size: clamp(22px, 2.4vw, 28px); }
+h4 { font-size: 15px; letter-spacing: .02em; }
+
+/* ---------- tugmalar ---------- */
+.btn {
+  --h: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: var(--h); padding: 0 24px; border-radius: 999px; font-weight: 600; font-size: 14.5px; letter-spacing: .02em;
+  white-space: nowrap; transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s, color .3s, border-color .3s;
+  position: relative; isolation: isolate; overflow: hidden; text-align: center;
+}
+.btn.sm { --h: 42px; padding: 0 18px; font-size: 13.5px; }
+.btn.wide { width: 100%; }
+.btn-gold { color: #1b1406; background: var(--gold-grad); background-size: 200% 100%; box-shadow: 0 12px 30px -12px rgba(216, 188, 126, .55), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.btn-gold:hover { background-position: 100% 0; transform: translateY(-2px); box-shadow: 0 18px 40px -14px rgba(216, 188, 126, .7); }
+.btn-gold::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%); transform: translateX(-120%); transition: transform .9s var(--ease); }
+.btn-gold:hover::after { transform: translateX(120%); }
+.btn-ghost { color: var(--ink); border: 1px solid var(--line-2); background: rgba(255, 255, 255, .02); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-hi); transform: translateY(-2px); }
+.btn-danger { color: #fff; background: #b4483a; }
+.btn:disabled { opacity: .55; pointer-events: none; }
+.link-btn { color: var(--gold); font-weight: 600; font-size: 14px; border-bottom: 1px dashed var(--line-2); padding-bottom: 2px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-2); font-size: 13px; cursor: pointer; white-space: nowrap; transition: .25s; }
+.chip:hover, .chip[aria-pressed="true"] { border-color: var(--gold); color: var(--gold-hi); background: rgba(216, 188, 126, .08); }
+
+/* ---------- kartalar ---------- */
+.card {
+  position: relative; background: linear-gradient(160deg, rgba(23, 87, 63, .22), rgba(7, 26, 20, .7) 60%);
+  border: 1px solid var(--line); border-radius: var(--r); padding: clamp(20px, 3vw, 32px);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: var(--shadow); min-width: 0;
+}
+
+/* ---------- formalar ---------- */
+.form { display: grid; gap: 14px; }
+.field { display: grid; gap: 7px; min-width: 0; }
+.field > label, .field-top label { font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+.field-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.field-top output { font-family: var(--f-display); font-size: 24px; color: var(--gold-hi); font-weight: 600; white-space: nowrap; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+input:not([type=range]):not([type=checkbox]):not([type=radio]), select, textarea {
+  width: 100%; min-height: 48px; padding: 12px 16px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: rgba(4, 17, 13, .65); color: var(--ink); outline: none; transition: border-color .25s, box-shadow .25s;
+}
+textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+select { appearance: none; -webkit-appearance: none; padding-right: 40px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d8bc7e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+select option { background: #0b241c; color: var(--ink); }
+input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(216, 188, 126, .12); }
+input::placeholder, textarea::placeholder { color: rgba(159, 176, 167, .6); }
+.field .err { display: none; color: var(--danger); font-size: 12.5px; }
+.field.bad .err { display: block; }
+.field.bad input, .field.bad textarea, .field.bad select { border-color: var(--danger); }
+.form-ok { margin: 0; padding: 12px 14px; border-radius: var(--r-sm); background: rgba(127, 211, 164, .1); border: 1px solid rgba(127, 211, 164, .35); color: var(--ok); font-size: 14px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 6px; outline: none; cursor: pointer;
+  background: linear-gradient(90deg, var(--gold) var(--p, 0%), rgba(255, 255, 255, .1) var(--p, 0%)); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff6d8, #d8bc7e 55%, #a67c2e); border: 3px solid #04110d; box-shadow: 0 0 0 1px var(--gold), 0 6px 18px rgba(216, 188, 126, .45); }
+input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #d8bc7e; border: 3px solid #04110d; box-shadow: 0 0 0 1px var(--gold); }
+
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg button { flex: 1 1 auto; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-2); font-weight: 600; font-size: 14px; white-space: nowrap; transition: .25s; }
+.seg button[aria-pressed="true"] { background: var(--gold-grad); color: #1b1406; border-color: transparent; }
+.seg button:not([aria-pressed="true"]):hover { border-color: var(--gold); color: var(--gold-hi); }
+
+/* ---------- modal ---------- */
+.modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; background: rgba(2, 8, 6, .78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fade .3s ease; }
+.modal-box { width: min(520px, 100%); max-height: calc(100dvh - 32px); overflow: auto; background: linear-gradient(170deg, #0d2c22, #061510); border: 1px solid var(--line-2); border-radius: 24px; padding: 32px 28px 28px; position: relative; box-shadow: var(--shadow); animation: rise .45s var(--ease); }
+.modal-box h3 { padding-right: 40px; margin-bottom: 8px; }
+.modal-x { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); color: var(--ink); z-index: 3; background: rgba(4, 17, 13, .6); transition: .25s; }
+.modal-x:hover { border-color: var(--gold); color: var(--gold); transform: rotate(90deg); }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(24px) scale(.98); } }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 140%); z-index: 120; max-width: min(92vw, 460px); padding: 14px 20px; border-radius: 14px; background: #0f2f25; border: 1px solid var(--line-2); color: var(--ink); font-size: 14px; box-shadow: var(--shadow); transition: transform .45s var(--ease), visibility .45s; text-align: center; visibility: hidden; }
+.toast.show { transform: translate(-50%, 0); visibility: visible; }
+
+/* ---------- yulduzchalar ---------- */
+.stars { display: inline-flex; gap: 2px; color: var(--gold); }
+.stars .ic { width: 15px; height: 15px; }
+.stars .on { fill: var(--gold); }
+.stars .off { opacity: .35; }
+
+/* =====================================================================
+   LYUKS LOGOTIP ANIMATSIYASI (splash)
+   ===================================================================== */
+.splash { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 45%, #0e3527 0%, #04110d 62%, #020806 100%); transition: opacity .8s var(--ease), visibility .8s; }
+.splash.done { opacity: 0; visibility: hidden; }
+.splash-glow { position: absolute; width: 60vmin; height: 60vmin; border-radius: 50%; background: radial-gradient(circle, rgba(216, 188, 126, .22), transparent 65%); filter: blur(20px); animation: glow 3.2s ease-in-out infinite alternate; }
+@keyframes glow { from { transform: scale(.85); opacity: .6; } to { transform: scale(1.1); opacity: 1; } }
+.lux-logo { position: relative; display: grid; justify-items: center; gap: 18px; text-align: center; }
+.lux-mark { width: clamp(84px, 16vmin, 128px); height: auto; fill: none; stroke: url(#gGold); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 14px rgba(216, 188, 126, .45)); }
+.lux-mark use { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s var(--ease) .15s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.lux-word { position: relative; overflow: hidden; padding: 4px 6px; }
+.lux-word span { display: block; font-family: var(--f-logo); font-weight: 600; font-size: clamp(30px, 6.4vmin, 56px); letter-spacing: .34em; margin-right: -.34em; white-space: nowrap;
+  background: linear-gradient(100deg, #8a6a2a 0%, #d8bc7e 20%, #fff7dc 32%, #d8bc7e 44%, #a67c2e 60%, #f6e7b8 78%, #b8913f 100%); background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: translateY(30px); filter: blur(6px);
+  animation: wordIn 1.1s var(--ease) .7s forwards, goldSweep 2.6s linear 1.2s infinite; }
+@keyframes wordIn { to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes goldSweep { from { background-position: 120% 0; } to { background-position: -130% 0; } }
+.lux-word::after { content: ''; position: absolute; inset: -20% auto -20% -40%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 248, 220, .75), transparent); transform: skewX(-20deg); animation: flare 1.4s ease-in-out 1.6s 2; opacity: 0; }
+@keyframes flare { 0% { left: -40%; opacity: 0; } 20% { opacity: 1; } 100% { left: 130%; opacity: 0; } }
+.lux-line { width: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: line 1.2s var(--ease) 1.3s forwards; }
+@keyframes line { to { width: min(320px, 60vw); } }
+.lux-sub { font-size: 11px; letter-spacing: .5em; margin-right: -.5em; text-transform: uppercase; color: var(--gold); opacity: 0; animation: fadeUp .9s var(--ease) 1.7s forwards; white-space: nowrap; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: .9; transform: none; } }
+.spark { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff3c9; box-shadow: 0 0 8px 2px rgba(246, 231, 184, .8); opacity: 0; animation: spark 2.6s ease-in-out infinite; }
+@keyframes spark { 0% { opacity: 0; transform: translateY(0) scale(.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-60px) scale(1.1); } }
+
+/* =====================================================================
+   QO'NG'IROQ OYNASI — matnlar har doim gorizontal, bir qatorda
+   (eski xato: tor flex elementlar ichida harflar ustun bo'lib tushardi)
+   ===================================================================== */
+.call-modal { padding: 0; }
+.call-box { width: min(980px, 100%); height: min(720px, 100dvh); display: flex; flex-direction: column; background: #051510; border: 1px solid var(--line-2); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); animation: rise .45s var(--ease); }
+@media (max-width: 720px) { .call-box { height: 100dvh; border-radius: 0; border: 0; } }
+.call-box, .call-box * { writing-mode: horizontal-tb; text-orientation: mixed; }
+.call-head { display: flex; align-items: center; gap: 14px; padding: 14px 70px 14px 18px; border-bottom: 1px solid var(--line); position: relative; min-height: 70px; }
+.call-head .modal-x { top: 50%; transform: translateY(-50%); }
+.call-head .modal-x:hover { transform: translateY(-50%) rotate(90deg); }
+.call-who { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 0; }
+.call-meta { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
+.call-meta b, .call-meta span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: normal; overflow-wrap: normal; }
+.call-meta b { font-size: 15px; }
+.call-status { font-size: 12.5px; color: var(--mut); }
+.call-status.ok { color: var(--ok); }
+.call-avatar { flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-logo); font-size: 14px; letter-spacing: .08em; color: #1b1406; background: var(--gold-grad); }
+.call-avatar.lg { width: 88px; height: 88px; font-size: 26px; }
+.call-timer { flex: none; font-variant-numeric: tabular-nums; font-size: 14px; color: var(--gold); white-space: nowrap; }
+.call-step { flex: 1 1 auto; min-height: 0; overflow: auto; }
+#callIntro { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 22px; padding: 22px; }
+@media (max-width: 760px) { #callIntro { grid-template-columns: minmax(0, 1fr); } }
+.call-pre { position: relative; border-radius: 18px; overflow: hidden; background: radial-gradient(circle at 50% 40%, #0f3326, #030c09); aspect-ratio: 4 / 3; border: 1px solid var(--line); min-width: 0; }
+.call-pre video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.call-pre-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; color: var(--mut); font-size: 14px; text-align: center; }
+.call-pre-ph span { max-width: 28ch; }
+.mic-meter { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.mic-meter i { display: block; height: 100%; width: 0; background: var(--gold-grad); transition: width .08s linear; }
+.call-form { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.perm-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.perm { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; white-space: nowrap; }
+.perm em { font-style: normal; color: var(--mut); }
+.perm.granted { border-color: rgba(127, 211, 164, .5); } .perm.granted em { color: var(--ok); }
+.perm.denied { border-color: rgba(232, 137, 122, .5); } .perm.denied em { color: var(--danger); }
+.call-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.call-actions .btn { flex: 1 1 200px; white-space: normal; line-height: 1.25; padding-block: 8px; }
+.call-err { margin: 0; padding: 12px 14px; border-radius: 12px; background: rgba(232, 137, 122, .1); border: 1px solid rgba(232, 137, 122, .35); color: #f3b3a8; font-size: 13.5px; line-height: 1.5; }
+.call-manual { border: 1px dashed var(--line-2); border-radius: 14px; padding: 12px 14px; }
+.call-manual summary { cursor: pointer; font-size: 13.5px; color: var(--gold); font-weight: 600; }
+.call-manual > * + * { margin-top: 10px; }
+.call-manual textarea { font: 12px/1.4 ui-monospace, Menlo, monospace; min-height: 70px; word-break: break-all; }
+.call-live { display: flex; flex-direction: column; }
+.call-stage { position: relative; flex: 1 1 auto; min-height: 260px; background: radial-gradient(circle at 50% 40%, #0f3326, #020806); }
+.call-stage > video:not(.call-self) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.call-wait { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 20px; text-align: center; }
+.call-wait b { font-weight: 500; font-size: 15px; color: var(--ink); max-width: 36ch; }
+.call-avatar { position: relative; }
+.pulse-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--gold); animation: ring 1.8s ease-out infinite; pointer-events: none; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(2.2); opacity: 0; } }
+.call-self { position: absolute; right: 14px; bottom: 14px; width: clamp(96px, 22%, 200px); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; border: 1px solid var(--line-2); transform: scaleX(-1); background: #020806; z-index: 2; }
+.call-ctrl { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 14px; border-top: 1px solid var(--line); padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
+.ctrl { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-width: 84px; padding: 10px 12px; border-radius: 16px; border: 1px solid var(--line); font-size: 12px; white-space: nowrap; transition: .25s; }
+.ctrl .ic { width: 22px; height: 22px; }
+.ctrl:hover { border-color: var(--gold); color: var(--gold-hi); }
+.ctrl[aria-pressed="true"] { background: rgba(232, 137, 122, .14); border-color: rgba(232, 137, 122, .5); color: #f3b3a8; }
+.ctrl.end { background: #b4483a; border-color: #b4483a; color: #fff; }
+.ctrl.end:hover { background: #c95443; color: #fff; }
+@media (max-width: 400px) { .ctrl { min-width: 68px; padding: 10px 8px; font-size: 11px; } }
+
+</style>
+<style>
+/* =====================================================================
+   ART HOUSE — KABINET (DASHBOARD) USLUBLARI
+   ===================================================================== */
+body { background: radial-gradient(1000px 600px at 100% 0%, rgba(23, 87, 63, .3), transparent 60%), var(--bg); }
+
+/* ---------- kirish ---------- */
+.auth { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; overflow: auto; animation: fade .6s ease; }
+.auth-bg i { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .5; animation: float 14s ease-in-out infinite alternate; }
+.auth-bg i:nth-child(1) { width: 420px; height: 420px; background: #17573f; top: -120px; left: -100px; }
+.auth-bg i:nth-child(2) { width: 360px; height: 360px; background: rgba(216, 188, 126, .35); bottom: -140px; right: -80px; animation-delay: -5s; }
+.auth-bg i:nth-child(3) { width: 260px; height: 260px; background: #0f3d2e; top: 40%; left: 55%; animation-delay: -9s; }
+@keyframes float { to { transform: translate(40px, -30px) scale(1.1); } }
+.lang.k-lang { position: absolute; top: 18px; right: 18px; }
+.k-lang .lang-list { left: auto; right: 0; }
+.auth-card { position: relative; width: min(420px, 100%); padding: 40px 32px 28px; border-radius: 28px; background: linear-gradient(170deg, rgba(15, 61, 46, .75), rgba(4, 17, 13, .92)); border: 1px solid var(--line-2); box-shadow: var(--shadow), 0 0 0 1px rgba(216, 188, 126, .06) inset; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); text-align: center; display: grid; gap: 14px; animation: rise .7s var(--ease); }
+.auth-mark { width: 64px; height: 64px; margin: 0 auto; fill: none; stroke: url(#gGold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 12px rgba(216, 188, 126, .4)); }
+.auth-brand { font-family: var(--f-logo); font-size: 26px; letter-spacing: .3em; margin-right: -.3em; background: var(--gold-grad); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }
+.auth-sub { margin: -8px 0 6px; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--mut); }
+.auth-card h1 { font-family: var(--f-display); font-size: 28px; margin-bottom: 4px; }
+.auth-card .form { text-align: left; }
+.iw { position: relative; }
+.iw .ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
+.iw input { padding-left: 44px !important; }
+.auth-err { margin: 0; color: var(--danger); font-size: 13.5px; text-align: center; }
+.auth-foot { display: inline-flex; gap: 8px; align-items: center; justify-content: center; font-size: 12.5px; color: var(--mut); margin: 4px 0 0; }
+.auth-foot .ic { color: var(--ok); width: 15px; height: 15px; }
+.shake { animation: shake .45s; }
+@keyframes shake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+
+/* ---------- qobiq ---------- */
+.shell { display: grid; grid-template-columns: 268px minmax(0, 1fr); min-height: 100vh; animation: fade .5s ease; }
+body:has(.shell:not([hidden])) { overflow: auto; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 10px; padding: 20px 14px; border-right: 1px solid var(--line); background: linear-gradient(180deg, #071a14, #04110d); z-index: 30; }
+.side-brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px 18px; border-bottom: 1px solid var(--line); }
+.brand-mark { width: 38px; height: 38px; fill: none; stroke: url(#gGold); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.side-brand b { display: block; font-family: var(--f-logo); letter-spacing: .22em; font-size: 16px; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
+.side-brand small { display: block; font-size: 10px; letter-spacing: .2em; color: var(--mut); text-transform: uppercase; white-space: nowrap; }
+.side-nav { flex: 1; overflow: auto; display: grid; align-content: start; gap: 2px; }
+.side-nav .grp { margin: 16px 10px 6px; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(159, 176, 167, .7); }
+.side-nav button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border-radius: 12px; font-size: 14.5px; color: rgba(239, 232, 216, .82); text-align: left; transition: background .2s, color .2s; white-space: nowrap; }
+.side-nav button .ic { color: var(--gold); opacity: .85; }
+.side-nav button:hover { background: rgba(216, 188, 126, .07); color: var(--ink); }
+.side-nav button.on { background: linear-gradient(90deg, rgba(216, 188, 126, .18), rgba(216, 188, 126, .03)); color: var(--gold-hi); box-shadow: inset 2px 0 0 var(--gold); }
+.side-nav em { margin-left: auto; font-style: normal; font-size: 11.5px; font-weight: 700; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px; display: grid; place-items: center; background: var(--gold-grad); color: #1b1406; }
+.side-foot { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 8px; }
+.me { display: flex; align-items: center; gap: 10px; padding: 6px 8px; }
+.me i { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 700; background: var(--gold-grad); color: #1b1406; flex: none; }
+.me b { display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.me small { color: var(--mut); font-size: 12px; }
+.mode { display: flex; align-items: center; gap: 8px; padding: 0 8px; font-size: 11.5px; color: var(--mut); }
+.mode::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex: none; }
+.mode.srv::before { background: var(--ok); }
+.side-ov { display: none; }
+.main { min-width: 0; display: flex; flex-direction: column; }
+.bar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 12px; padding: 14px clamp(16px, 3vw, 32px); background: rgba(4, 17, 13, .82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.bar h2 { font-size: clamp(22px, 3vw, 30px); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-act { display: flex; align-items: center; gap: 8px; }
+.bar .lang-list { left: auto; right: 0; }
+.icon-btn { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; border: 1px solid var(--line); color: var(--ink); transition: .2s; flex: none; }
+.icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(127, 211, 164, .6); animation: livek 2s infinite; }
+@keyframes livek { 70% { box-shadow: 0 0 0 8px rgba(127, 211, 164, 0); } 100% { box-shadow: 0 0 0 0 rgba(127, 211, 164, 0); } }
+.only-m { display: none; }
+.view { padding: clamp(16px, 3vw, 32px); display: grid; gap: 20px; align-content: start; animation: fade .35s ease; }
+@media (max-width: 960px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .side { position: fixed; inset: 0 auto 0 0; width: 280px; transform: translateX(-102%); transition: transform .4s var(--ease); }
+  .side.open { transform: none; box-shadow: var(--shadow); }
+  .side-ov { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(0, 0, 0, .55); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .side.open + .side-ov { opacity: 1; pointer-events: auto; }
+  .only-m { display: grid; }
+}
+
+/* ---------- elementlar ---------- */
+.lang { position: relative; }
+.lang-btn { display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line); font-size: 12.5px; }
+.lang-btn .ic { color: var(--gold); width: 16px; height: 16px; }
+.lang-list { position: absolute; top: calc(100% + 8px); left: 0; z-index: 60; list-style: none; margin: 0; padding: 6px; min-width: 168px; background: #0b241c; border: 1px solid var(--line-2); border-radius: 14px; box-shadow: var(--shadow); }
+.lang-list button { display: flex; width: 100%; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; font-size: 14px; text-align: left; }
+.lang-list button:hover, .lang-list button[aria-selected="true"] { background: rgba(216, 188, 126, .1); color: var(--gold-hi); }
+.lang-list small { color: var(--mut); }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.kpi { padding: 20px; }
+.kpi span { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--mut); text-transform: uppercase; letter-spacing: .08em; }
+.kpi span .ic { color: var(--gold); width: 16px; height: 16px; }
+.kpi b { display: block; font-family: var(--f-display); font-size: 40px; line-height: 1.1; margin-top: 8px; color: var(--gold-hi); }
+.kpi small { color: var(--mut); font-size: 12.5px; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 1100px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.card-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.card-h h3 { font-size: 22px; }
+.card-h .link { color: var(--gold); font-size: 13.5px; font-weight: 600; }
+.chart { display: flex; align-items: flex-end; gap: 6px; height: 140px; padding-top: 10px; }
+.chart div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; min-width: 0; }
+.chart i { width: 100%; max-width: 26px; border-radius: 6px 6px 2px 2px; background: var(--gold-grad); min-height: 3px; transition: height .6s var(--ease); }
+.chart small { font-size: 10px; color: var(--mut); white-space: nowrap; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.toolbar input[type=search] { flex: 1 1 220px; min-height: 42px; }
+.toolbar .seg { flex: 0 1 auto; }
+.toolbar .seg button { flex: 0 0 auto; min-height: 40px; font-size: 13px; padding: 0 14px; }
+.toolbar .seg em { font-style: normal; opacity: .7; margin-left: 4px; }
+
+.tbl-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line); background: rgba(7, 26, 20, .7); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 760px; }
+th { text-align: left; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); font-weight: 600; padding: 14px 16px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 14px 16px; border-bottom: 1px solid rgba(216, 188, 126, .07); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+tr.new td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+td b { display: block; }
+td small { color: var(--mut); font-size: 12.5px; display: block; }
+td a { color: var(--gold-hi); white-space: nowrap; }
+td select { min-height: 36px !important; padding: 6px 34px 6px 12px !important; font-size: 13px; border-radius: 10px !important; width: auto !important; }
+.pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line-2); white-space: nowrap; }
+.pill.gold { background: rgba(216, 188, 126, .12); color: var(--gold-hi); }
+.pill.ok { border-color: rgba(127, 211, 164, .4); color: var(--ok); }
+.pill.bad { border-color: rgba(232, 137, 122, .4); color: var(--danger); }
+.mini-btn { width: 34px; height: 34px; border-radius: 10px; display: inline-grid; place-items: center; border: 1px solid var(--line); color: var(--mut); transition: .2s; }
+.mini-btn:hover { color: var(--danger); border-color: var(--danger); }
+.mini-btn .ic { width: 16px; height: 16px; }
+.empty { padding: 36px 20px; text-align: center; color: var(--mut); border: 1px dashed var(--line-2); border-radius: var(--r); }
+
+/* ---------- izohlar ---------- */
+.k-revs { display: grid; gap: 14px; }
+.k-rev { padding: 22px; }
+.k-rev.hidden-rev { opacity: .6; }
+.k-rev-h { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.k-rev-h .av { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(216, 188, 126, .12); color: var(--gold); font-weight: 700; flex: none; }
+.k-rev-h b { display: block; }
+.k-rev-h small { color: var(--mut); font-size: 12.5px; }
+.k-rev-h .stars { margin-left: auto; }
+.k-rev p { margin: 12px 0 0; white-space: pre-line; }
+.k-rev video, .k-rev iframe { margin-top: 12px; width: 100%; max-width: 420px; aspect-ratio: 16 / 9; border-radius: 12px; border: 1px solid var(--line); background: #000; }
+.k-reply { margin-top: 14px; padding: 14px 16px; border-left: 2px solid var(--gold); border-radius: 0 12px 12px 0; background: rgba(216, 188, 126, .07); }
+.k-reply b { font-size: 13px; color: var(--gold); }
+.k-reply p { margin-top: 6px; }
+.k-rev-act { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.reply-box { margin-top: 14px; display: grid; gap: 10px; }
+.tpls { display: flex; flex-wrap: wrap; gap: 6px; }
+.tpls .chip { font-size: 12px; white-space: normal; text-align: left; }
+
+/* ---------- qo'ng'iroqlar ---------- */
+.ring { position: fixed; z-index: 110; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); width: min(400px, calc(100vw - 40px)); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px 16px; align-items: center; padding: 18px; border-radius: 22px; background: linear-gradient(160deg, #0f3d2e, #061510); border: 1px solid var(--gold); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .9), 0 0 40px -10px rgba(216, 188, 126, .4); animation: rise .5s var(--ease); }
+.ring-av { position: relative; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-grad); color: #1b1406; }
+.ring-av .pulse-ring { top: 0; left: 0; width: 56px; height: 56px; }
+.ring-av .ic { width: 24px; height: 24px; animation: wiggle 1s ease-in-out infinite; }
+@keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+.ring-txt { min-width: 0; }
+.ring-txt small { color: var(--gold); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.ring-txt b, .ring-txt span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ring-txt b { font-size: 17px; }
+.ring-txt span { color: var(--mut); font-size: 13px; }
+.ring-act { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.call-head { padding-right: 18px; }
+.manual-out { padding: 14px 18px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.manual-out textarea { font: 12px/1.4 ui-monospace, Menlo, monospace; min-height: 64px; word-break: break-all; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.set-grid .form { margin-top: 12px; }
+.kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; font-size: 14px; margin: 12px 0 0; }
+.kv dt { color: var(--mut); }
+.kv dd { margin: 0; overflow-wrap: anywhere; }
+
+</style>
+</head>
+<body class="lock">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E7B8"/><stop offset=".45" stop-color="#D8BC7E"/><stop offset=".7" stop-color="#B8913F"/><stop offset="1" stop-color="#F3DFA6"/></linearGradient></defs>
+ <symbol id="logo" viewBox="0 0 100 100"><rect x="8" y="8" width="84" height="84"/><path d="M22 92V62q0-6 6-8M33 92V48q0-6 6-8M44 92V34q0-7 6-10 6 3 6 10v58M50 24V11M67 92V48q0-6-6-8M78 92V62q0-6-6-8"/></symbol>
+ <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></symbol>
+ <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
+ <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.13a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .29-.9l5.17-.76a2.12 2.12 0 0 0 1.6-1.16z"/></symbol>
+ <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+ <symbol id="i-cog" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+ <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.22 3.48a.5.5 0 0 0 .78-.42V7.94a.5.5 0 0 0-.76-.43L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+ <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+ <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M18.89 13.23A7 7 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><path d="M12 19v3"/></symbol>
+ <symbol id="i-cam-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M10.66 6H14a2 2 0 0 1 2 2v2.5l5.25-3.06a.5.5 0 0 1 .75.43v8.26"/><path d="M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2"/></symbol>
+ <symbol id="i-end" viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-3.33-2.67m-2.67-3.34a19.8 19.8 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/><path d="M22 2 2 22"/></symbol>
+ <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+ <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+ <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+ <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+ <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+ <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+ <symbol id="i-back" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+ <symbol id="i-down" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+ <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+ <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></symbol>
+ <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m2 2 20 20"/></symbol>
+ <symbol id="i-reply" viewBox="0 0 24 24"><path d="m9 17-5-5 5-5"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+ <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+ <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3v18l15-9z"/></symbol>
+</svg>
+
+<!-- ===== LYUKS KIRISH ANIMATSIYASI ===== -->
+<div id="splash" class="splash" aria-hidden="true">
+ <div class="splash-glow"></div>
+ <div class="lux-logo">
+  <svg class="lux-mark" viewBox="0 0 100 100"><use href="#logo"/></svg>
+  <div class="lux-word"><span>ART HOUSE</span></div>
+  <div class="lux-line"></div>
+  <div class="lux-sub" data-i="k.title">Boshqaruv paneli</div>
+ </div>
+</div>
+
+<!-- ===== KIRISH ===== -->
+<div class="auth" id="auth" hidden>
+ <div class="auth-bg" aria-hidden="true"><i></i><i></i><i></i></div>
+ <div class="lang k-lang" id="langAuth">
+  <button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false"><svg class="ic"><use href="#i-globe"/></svg><b>UZ</b></button>
+  <ul class="lang-list" role="listbox" hidden></ul>
+ </div>
+ <div class="auth-card">
+  <svg class="auth-mark" viewBox="0 0 100 100"><use href="#logo"/></svg>
+  <b class="auth-brand">ART HOUSE</b>
+  <p class="auth-sub" data-i="k.title">Boshqaruv paneli</p>
+  <h1 data-i="k.login">Kabinetga kirish</h1>
+  <form id="loginForm" class="form" novalidate>
+   <div class="field"><label for="lgUser" data-i="k.user">Login</label><div class="iw"><svg class="ic"><use href="#i-user"/></svg><input id="lgUser" autocomplete="username" autocapitalize="off" spellcheck="false"></div></div>
+   <div class="field"><label for="lgPass" data-i="k.pass">Parol</label><div class="iw"><svg class="ic"><use href="#i-lock"/></svg><input id="lgPass" type="password" autocomplete="current-password"></div></div>
+   <p class="auth-err" id="lgErr" role="alert" hidden></p>
+   <button class="btn btn-gold wide" type="submit"><span data-i="k.enter">Kirish</span><svg class="ic"><use href="#i-arrow"/></svg></button>
+  </form>
+  <a class="btn btn-ghost wide sm" href="index.html"><svg class="ic"><use href="#i-back"/></svg><span data-i="k.back">Saytga qaytish</span></a>
+  <p class="auth-foot"><svg class="ic"><use href="#i-shield"/></svg><span data-i="k.secure">Himoyalangan ulanish</span></p>
+ </div>
+</div>
+
+<!-- ===== PANEL ===== -->
+<div class="shell" id="shell" hidden>
+ <aside class="side" id="side">
+  <div class="side-brand"><svg class="brand-mark" viewBox="0 0 100 100"><use href="#logo"/></svg><span><b>ART HOUSE</b><small data-i="k.title">Boshqaruv paneli</small></span></div>
+  <nav class="side-nav" id="sideNav"></nav>
+  <div class="side-foot">
+   <div class="me" id="me"></div>
+   <small class="mode" id="mode"></small>
+  </div>
+ </aside>
+ <div class="side-ov" id="sideOv"></div>
+ <div class="main">
+  <header class="bar">
+   <button class="icon-btn only-m" type="button" id="menuBtn" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+   <h2 id="viewTitle"></h2>
+   <div class="bar-act">
+    <span class="live-dot" id="liveDot" title=""></span>
+    <div class="lang" id="langCab">
+     <button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false"><svg class="ic"><use href="#i-globe"/></svg><b>UZ</b></button>
+     <ul class="lang-list" role="listbox" hidden></ul>
+    </div>
+    <a class="icon-btn" href="index.html" target="_blank" rel="noopener" data-i-al="k.back" aria-label="Saytga qaytish"><svg class="ic"><use href="#i-eye"/></svg></a>
+    <button class="icon-btn" type="button" id="logoutBtn" data-i-al="k.logout" aria-label="Chiqish"><svg class="ic"><use href="#i-out"/></svg></button>
+   </div>
+  </header>
+  <main class="view" id="view"></main>
+ </div>
+</div>
+
+<!-- ===== KIRUVCHI QO'NG'IROQ ===== -->
+<div class="ring" id="ring" hidden role="alertdialog" aria-live="assertive">
+ <div class="ring-av"><span class="pulse-ring"></span><svg class="ic"><use href="#i-phone"/></svg></div>
+ <div class="ring-txt"><small data-i="k.calls.incoming">Kiruvchi qo'ng'iroq</small><b id="ringName"></b><span id="ringMeta"></span></div>
+ <div class="ring-act">
+  <button class="btn btn-danger sm" type="button" id="ringNo"><svg class="ic"><use href="#i-end"/></svg><span data-i="k.calls.decline">Rad etish</span></button>
+  <button class="btn btn-gold sm" type="button" id="ringYes"><svg class="ic"><use href="#i-phone"/></svg><span data-i="k.calls.accept">Qabul qilish</span></button>
+ </div>
+</div>
+
+<!-- ===== QO'NG'IROQ OYNASI (menejer) ===== -->
+<div class="modal call-modal" id="kCall" role="dialog" aria-modal="true" hidden>
+ <div class="call-box">
+  <header class="call-head">
+   <div class="call-who"><span class="call-avatar" id="kCallAv">?</span><div class="call-meta"><b id="kCallName"></b><span id="kCallStatus" class="call-status"></span></div></div>
+   <span class="call-timer" id="kCallTimer">00:00</span>
+  </header>
+  <div class="call-step call-live">
+   <div class="call-stage">
+    <video id="kRemote" playsinline autoplay></video>
+    <div class="call-wait" id="kWait"><span class="call-avatar lg"><span id="kWaitAv">?</span><span class="pulse-ring"></span></span><b id="kWaitText"></b></div>
+    <video id="kLocal" class="call-self" playsinline muted autoplay></video>
+   </div>
+   <div class="manual-out" id="kManualOut" hidden>
+    <p class="hint" data-i="k.calls.manualHint">Mijoz yuborgan kodni qo'ying — javob kodi hosil bo'ladi. Uni mijozga qaytaring.</p>
+    <textarea id="kAnswerCode" rows="3" readonly></textarea>
+    <button class="btn btn-ghost sm" type="button" id="kCopy"><svg class="ic"><use href="#i-copy"/></svg><span data-i="call.copy">Nusxalash</span></button>
+   </div>
+   <div class="call-ctrl">
+    <button type="button" class="ctrl" id="kMic" aria-pressed="false"><svg class="ic"><use href="#i-mic"/></svg><span data-i="call.ctlMic">Mikrofon</span></button>
+    <button type="button" class="ctrl" id="kCam" aria-pressed="false"><svg class="ic"><use href="#i-video"/></svg><span data-i="call.ctlCam">Kamera</span></button>
+    <button type="button" class="ctrl end" id="kEnd"><svg class="ic"><use href="#i-end"/></svg><span data-i="call.end">Tugatish</span></button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   ART HOUSE — SOZLAMALAR VA KONTENT
+   Barcha haqiqiy ma'lumotlar (telefon, havolalar, loyihalar) shu faylda.
+   "TEKSHIRING" belgisi qo'yilgan qatorlar ochiq manbalardan olingan —
+   e'lon qilishdan oldin rasmiy ma'lumot bilan solishtiring.
+   ===================================================================== */
+window.CFG = {
+  BRAND: 'ART HOUSE',
+  FOUNDED: 2021,                         // TEKSHIRING: ochiq manbalarda 2021-yil ko'rsatilgan
+  PHONES: ['+998712307447', '+998781136350'],
+  TELEGRAM_CHANNEL: 'https://t.me/art_house_city',
+  TELEGRAM_MANAGER: '',                  // masalan: 'https://t.me/arthouse_manager'
+  INSTAGRAM: 'https://www.instagram.com/arthouse.tashkent',
+  INSTAGRAM_HANDLE: '@arthouse.tashkent',
+  YOUTUBE: '',                           // bo'sh qolsa — ko'rsatilmaydi
+  FACEBOOK: '',
+  OFFICE: { lat: 41.312851, lng: 69.187460 },
+  USD_UZS: 12700,                        // so'mdagi taxminiy ko'rsatkich uchun kurs (kabinetdan o'zgartiriladi)
+  DOWN_MIN: 30, DOWN_MAX: 70,
+  MONTHS: [12, 18, 24, 36],
+  // Server (server/server.js) ishga tushirilsa — izohlar, arizalar va qo'ng'iroqlar
+  // barcha qurilmalar o'rtasida sinxronlanadi. Bo'sh bo'lsa — shu brauzer ichida ishlaydi.
+  // 'auto' — sayt server/server.js orqali ochilsa o'sha serverdan foydalanadi; boshqa domen bo'lsa: 'https://api.arthouse.uz'
+  API_URL: '',
+  ICE_SERVERS: [{ urls: 'stun:stun.l.google.com:19302' }, { urls: 'stun:stun1.l.google.com:19302' }],
+  // Kabinet kirish ma'lumotlari: login → PBKDF2-SHA256 xeshi (README'da yangi parol xeshini olish tartibi bor)
+  ADMINS: {
+    // DIQQAT: bu boshlang'ich parollar (admin / ArtHouse#2026, manager / Manager#2026) — darhol almashtiring!
+    admin: { role: 'owner', hash: 'e64f2d2f73f554481637665d9bd09877a5ac6b31653757e74004aaadb3ad3730' },
+    manager: { role: 'manager', hash: 'ff91819a0e3a22f6389458116fc08fbab9f6ec38d3f4b7d54843f88c5cbb75b3' }
+  }
+};
+
+/* Ko'p tilli matn: { uz, ru, en } */
+window.PROJECTS = [
+  {
+    id: 'musaffo',
+    name: 'Musaffo',
+    badge: { uz: 'Biznes-klass', ru: 'Бизнес-класс', en: 'Business class' },
+    district: { uz: 'Yunusobod tumani', ru: 'Юнусабадский район', en: 'Yunusabad district' },
+    address: { uz: 'Chinobod ko\'chasi, 120A', ru: 'ул. Чинабад, 120А', en: '120A Chinobod Street' }, // TEKSHIRING
+    geo: { lat: 41.360158, lng: 69.315909 },
+    priceM2: 1100,                       // $ / m² — kabinetdan o'zgartiriladi
+    cover: 'assets/img/musaffo/musaffo-cover.webp',
+    video: { src: 'assets/video/musaffo-drone.mp4', poster: 'assets/video/musaffo-drone-poster.jpg' },
+    presentation: '',                    // masalan: 'docs/musaffo-taqdimot.pdf'
+    lead: {
+      uz: 'Yunusobodning sokin, yashil hududida joylashgan biznes-klass turar-joy majmuasi. Yopiq hovli, yerosti avtoturargohi, bolalar va sport maydonlari — oila uchun to\'liq o\'ylangan muhit.',
+      ru: 'Жилой комплекс бизнес-класса в тихом зелёном районе Юнусабада. Закрытый двор, подземный паркинг, детские и спортивные площадки — среда, продуманная для всей семьи.',
+      en: 'A business-class residential complex in a quiet, green part of Yunusabad. A private courtyard, underground parking, play and sports areas — an environment designed around family life.'
+    },
+    facts: [ // TEKSHIRING: ochiq manbalar va @arthouse.tashkent postlari asosida
+      { v: '9', k: { uz: 'turar-joy bloki', ru: 'жилых корпусов', en: 'residential blocks' } },
+      { v: '16', k: { uz: 'qavatgacha', ru: 'этажей', en: 'floors' } },
+      { v: '1293', k: { uz: 'avtoturargoh joyi', ru: 'машино-места', en: 'parking spaces' } },
+      { v: '2', k: { uz: 'lift har podyezdda', ru: 'лифта в каждом подъезде', en: 'lifts per entrance' } }
+    ],
+    amenities: [
+      { img: 'assets/img/musaffo/bolalar-oyingohi.webp',
+        t: { uz: 'Bolalar o\'yingohi', ru: 'Детская площадка', en: 'Children\'s playground' },
+        d: { uz: 'Zamonaviy o\'yin jihozlari, yumshoq qoplamali maydon va yashil hudud bolajonlarning quvnoq va xavfsiz vaqt o\'tkazishini ta\'minlaydi.',
+             ru: 'Современное игровое оборудование, мягкое покрытие и зелёная зона — для весёлого и безопасного отдыха детей.',
+             en: 'Modern play equipment, soft safety surfacing and green space keep children\'s play joyful and safe.' } },
+      { img: 'assets/img/musaffo/avtoturargoh.webp',
+        t: { uz: 'Avtoturargohlar', ru: 'Паркинг', en: 'Parking' },
+        d: { uz: 'Avtomobilingizni har qanday ob-havoda himoya qiladi va harakatlanishni qulay qiladi. Loyiha hududida jami 1293 ta avtoturargoh barpo etiladi.',
+             ru: 'Защищает автомобиль в любую погоду и делает передвижение удобным. На территории проекта будет построено 1293 машино-места.',
+             en: 'Protects your car in any weather and makes getting around effortless. A total of 1,293 parking spaces are being built on site.' } },
+      { img: 'assets/img/musaffo/fitness-zona.webp',
+        t: { uz: 'Fitness zona', ru: 'Фитнес-зона', en: 'Fitness zone' },
+        d: { uz: 'Kunning istalgan vaqtida sport bilan shug\'ullanish imkoniyati. Zamonaviy sharoit va qulay muhit — sog\'lom turmush tarzi uchun.',
+             ru: 'Возможность заниматься спортом в любое время дня. Современные условия и комфортная среда для здорового образа жизни.',
+             en: 'Work out at any time of day. Modern equipment and a comfortable setting for a healthy lifestyle.' } },
+      { img: 'assets/img/musaffo/zamonaviy-lift.webp',
+        t: { uz: 'Zamonaviy lift', ru: 'Современные лифты', en: 'Modern lifts' },
+        d: { uz: 'Har bir podyezdda 2 tadan lift. Sokin va ravon ishlash, ventilyatsiya tizimi hamda o\'ziga xos dizayn.',
+             ru: 'По 2 лифта в каждом подъезде. Тихая и плавная работа, система вентиляции и фирменный дизайн.',
+             en: 'Two lifts in every entrance — quiet, smooth operation, built-in ventilation and a signature design.' } },
+      { img: 'assets/img/musaffo/kolyaska-velosiped.webp',
+        t: { uz: 'Kolyaska va velosiped zonasi', ru: 'Колясочная и велопарковка', en: 'Stroller & bicycle room' },
+        d: { uz: 'Podyezd ichida maxsus ajratilgan hudud tartibni saqlaydi va rezidentlarga qulay hamda xavfsiz foydalanish imkonini beradi.',
+             ru: 'Отдельное помещение в подъезде поддерживает порядок и даёт жильцам удобное и безопасное хранение.',
+             en: 'A dedicated room inside the entrance keeps hallways tidy and gives residents convenient, secure storage.' } }
+    ],
+    gallery: [
+      { src: 'assets/img/musaffo/fasad-kunduzi.webp', t: { uz: 'Tashqi fasad — kunduzi', ru: 'Фасад днём', en: 'Façade by day' } },
+      { src: 'assets/img/musaffo/majmua-kechki.webp', t: { uz: 'Kechki yoritilgan majmua', ru: 'Комплекс в вечерней подсветке', en: 'The complex at dusk' } },
+      { src: 'assets/img/musaffo/dupleks-interyer.webp', t: { uz: 'Dupleks — ikki qavatli makon', ru: 'Дуплекс — два уровня', en: 'Duplex — two levels' } },
+      { src: 'assets/img/musaffo/mehmonxona.webp', t: { uz: 'Mehmonxona', ru: 'Гостиная', en: 'Living room' } },
+      { src: 'assets/img/musaffo/oshxona.webp', t: { uz: 'Oshxona', ru: 'Кухня', en: 'Kitchen' } },
+      { src: 'assets/img/musaffo/yotoqxona.webp', t: { uz: 'Yotoqxona', ru: 'Спальня', en: 'Bedroom' } }
+    ],
+    plans: [
+      { rooms: 1, area: 53, img: 'assets/img/plans/1x-53.webp' },
+      { rooms: 1, area: 45.6, img: 'assets/img/plans/1x-45-6.webp' },
+      { rooms: 2, area: 66.6, img: 'assets/img/plans/2x-66-6.webp' },
+      { rooms: 3, area: 68.11, img: 'assets/img/plans/3x-68-11.webp' },
+      { rooms: 3, area: 71.51, img: 'assets/img/plans/3x-71-51.webp', balcony: true },
+      { rooms: 4, area: 112.82, img: 'assets/img/plans/4x-112-82.webp' },
+      { rooms: 4, area: 116.03, img: 'assets/img/plans/4x-116-03.webp' },
+      { rooms: 4, area: 119.2, img: 'assets/img/plans/4x-119-20.webp' },
+      { rooms: 2, area: 53.1, img: 'assets/img/plans/dupleks-2x-53-1.webp', duplex: 1 },
+      { rooms: 2, area: 54.3, img: 'assets/img/plans/dupleks-2x-54-3.webp', duplex: 2 },
+      { rooms: 3, area: 66.3, img: 'assets/img/plans/dupleks-3x-66-3.webp', duplex: 1 },
+      { rooms: 3, area: 62.7, img: 'assets/img/plans/dupleks-3x-62-7.webp', duplex: 2 }
+    ]
+  },
+  {
+    id: 'kokcha',
+    name: 'Ko\'kcha',
+    badge: { uz: 'Komfort-klass', ru: 'Комфорт-класс', en: 'Comfort class' },
+    district: { uz: 'Uchtepa tumani', ru: 'Учтепинский район', en: 'Uchtepa district' },
+    address: { uz: 'Ko\'kcha-Oqtepa mahallasi', ru: 'махалля Кукча-Актепа', en: 'Kukcha-Oqtepa neighbourhood' }, // TEKSHIRING
+    geo: { lat: 41.3145, lng: 69.1905 },   // TEKSHIRING: taxminiy nuqta
+    priceM2: null,                         // narx menejer orqali — kalkulyatorda qo'lda kiritiladi
+    cover: '', video: null, presentation: '',
+    lead: {
+      uz: 'Ko\'kcha dahasidagi g\'ishtli turar-joy majmuasi: keng hovli, oilaviy rejalar va shaharning tarixiy qismiga yaqinlik. Xonadonlar qora suvoq holatida topshiriladi.',
+      ru: 'Кирпичный жилой комплекс в районе Кукча: просторный двор, семейные планировки и близость к исторической части города. Квартиры сдаются в черновой отделке.',
+      en: 'A brick-built residential complex in the Kukcha area: a spacious courtyard, family-sized layouts and easy reach of the historic city. Apartments are handed over in shell condition.'
+    },
+    facts: [ // TEKSHIRING
+      { v: '12', k: { uz: 'g\'ishtli bino', ru: 'кирпичных домов', en: 'brick buildings' } },
+      { v: '11', k: { uz: 'qavatli', ru: 'этажей', en: 'floors' } },
+      { v: '1000+', k: { uz: 'xonadon', ru: 'квартир', en: 'apartments' } }
+    ],
+    amenities: [], gallery: [], plans: []
+  },
+  {
+    id: 'obod',
+    name: 'Obod Maskan',
+    badge: { uz: 'Yangi loyiha', ru: 'Новый проект', en: 'New project' },
+    district: { uz: 'Uchtepa tumani', ru: 'Учтепинский район', en: 'Uchtepa district' },
+    address: { uz: 'Ko\'kcha Darvoza ko\'chasi, 487D', ru: 'ул. Кукча Дарвоза, 487D', en: '487D Kukcha Darvoza Street' }, // TEKSHIRING
+    geo: { lat: 41.3109, lng: 69.1852 },   // TEKSHIRING: taxminiy nuqta
+    priceM2: null,
+    cover: '', video: null, presentation: '',
+    lead: {
+      uz: 'Ko\'kcha Darvoza ko\'chasidagi yangi turar-joy majmuasi. Boshlang\'ich to\'lov 30% dan, qolgan summa quruvchining o\'zi bilan foizsiz bo\'lib to\'lanadi.',
+      ru: 'Новый жилой комплекс на улице Кукча Дарвоза. Первоначальный взнос от 30%, остаток — беспроцентная рассрочка напрямую от застройщика.',
+      en: 'A new residential complex on Kukcha Darvoza Street. Down payment from 30%, with the balance paid in interest-free instalments directly to the developer.'
+    },
+    facts: [
+      { v: '30%', k: { uz: 'dan boshlang\'ich to\'lov', ru: 'первый взнос от', en: 'down payment from' } },
+      { v: '0%', k: { uz: 'ustama va foiz', ru: 'переплата и процент', en: 'markup and interest' } }
+    ],
+    amenities: [], gallery: [], plans: []
+  }
+];
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — TARJIMA TIZIMI
+   Tillar: O'zbekcha (lotin), Ўзбекча (kirill — avtomatik transliteratsiya),
+           Русский, English.
+   • HTML'dagi [data-i="kalit"] matni, [data-i-ph] placeholder, [data-i-al] aria-label
+   • JS ichida: I18N.t('kalit', {o'zgaruvchi}) ; I18N.pick({uz, ru, en})
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var LANGS = [
+    { code: 'uz', label: "O'zbekcha", short: 'UZ', html: 'uz', locale: 'uz-Latn-UZ' },
+    { code: 'cy', label: 'Ўзбекча', short: 'ЎЗ', html: 'uz-Cyrl', locale: 'uz-Cyrl-UZ' },
+    { code: 'ru', label: 'Русский', short: 'RU', html: 'ru', locale: 'ru-RU' },
+    { code: 'en', label: 'English', short: 'EN', html: 'en', locale: 'en-GB' }
+  ];
+
+  /* ---------------- O'ZBEKCHA (faqat JS ichidagi matnlar; HTML matnlari sahifadan olinadi) ---------------- */
+  var uz = {
+    'lang.title': 'Tilni tanlang',
+    'unit.month': 'oy', 'unit.perMonth': '/ oy', 'unit.sum': "so'm",
+    'rooms.n': '{n} xonali', 'rooms.duplex': 'Dupleks', 'rooms.floor': '{n}-qavat', 'rooms.balcony': 'balkon bilan', 'rooms.all': 'Hammasi',
+    'plan.label': '{rooms} xonali{duplex} · {area} m²', 'plan.duplex': ' dupleks', 'plan.manual': "O'zim kiritaman",
+    'calc.hideSched': 'Jadvalni yopish', 'calc.nth': '{n}-oy', 'calc.uzs': "≈ {v} so'm / oy",
+    'calc.prev': '{V} · {P}% boshlang\'ich · {M} oy',
+    'proj.gallery': 'Galereya', 'proj.amenities': 'Qulayliklar', 'proj.plans': 'Xonadon rejalari', 'proj.video': 'Video',
+    'proj.presentation': "Taqdimotni ko'rish", 'proj.askPresentation': "Taqdimotni so'rash", 'proj.instagram': "Instagram'da ko'rish",
+    'proj.calc': 'Kalkulyatorda hisoblash', 'proj.book': 'Band qilish', 'proj.open': 'Batafsil', 'proj.map': 'Xaritada',
+    'proj.soon': "Bu loyihaning rasmlari, rejalari va taqdimoti tez orada qo'shiladi. Hozir esa to'liq ma'lumotni menejerdan oling.",
+    'proj.askManager': "Menejerdan ma'lumot olish",
+    'loc.office': 'Savdo ofisi', 'loc.officeAddr': "Uchtepa tumani, Ko'kcha Darvoza ko'chasi, 69",
+    'infra.school': 'Maktablar', 'infra.kinder': "Bog'chalar", 'infra.hospital': 'Shifoxonalar', 'infra.market': 'Supermarketlar',
+    'infra.metro': 'Metro', 'infra.park': "Bog' va parklar", 'infra.pharmacy': 'Dorixonalar', 'infra.gym': 'Sport zallar',
+    'rev.count': '{n} ta izoh', 'rev.empty': "Hozircha izohlar yo'q. Birinchi bo'lib fikr bildiring!", 'rev.emptyFilter': "Bu bo'limda hozircha izoh yo'q.",
+    'rev.reply': 'ART HOUSE javobi', 'rev.openVideo': 'Video-sharhni ochish', 'rev.stop': "Yozishni to'xtatish",
+    'rev.tooBig': "Fayl hajmi {n} MB dan oshmasligi kerak.", 'rev.noRec': "Bu brauzerda video yozish qo'llab-quvvatlanmaydi — fayl yuklang.",
+    'rev.badLink': "Havola noto'g'ri. https:// bilan boshlanadigan to'liq manzilni kiriting.", 'rev.uploading': 'Yuklanmoqda…',
+    'rev.saveErr': "Izohni saqlab bo'lmadi. Qayta urinib ko'ring.", 'rev.of5': '5 dan',
+    'social.ig': "Rasmlar, videolar va qurilish jarayoni", 'social.tg': "Rasmiy kanal: yangiliklar va maxsus takliflar",
+    'social.tgm': "Menejerga to'g'ridan-to'g'ri yozing", 'social.yt': 'Video-obzorlar va reportajlar', 'social.fb': 'Rasmiy sahifa',
+    'social.phone': "Savdo bo'limi", 'social.open': 'Sahifani ochish', 'social.call': "Qo'ng'iroq qilish",
+    'phone.empty': 'Telefon raqamni kiriting.', 'phone.short': "Raqam to'liq emas: +998 XX XXX XX XX ko'rinishida kiriting.", 'phone.op': "Operator kodi noto'g'ri.",
+    'book.okText': "Rahmat, {name}! Menejer {phone} raqamiga tez orada qo'ng'iroq qiladi.", 'book.general': 'Umumiy maslahat',
+    'book.topic': 'Mavzu', 'book.when.asap': 'Imkon qadar tez', 'book.when.day': 'Kunduzi', 'book.when.eve': 'Kechqurun',
+    'call.titleVideo': "Video-qo'ng'iroq", 'call.titleAudio': "Ovozli qo'ng'iroq",
+    'call.st.idle': 'Tayyor', 'call.st.permission': "Kamera va mikrofonga ruxsat so'ralmoqda…", 'call.st.calling': 'Menejerga ulanmoqda…',
+    'call.st.connecting': 'Ulanmoqda…', 'call.st.connected': 'Ulandi', 'call.st.reconnecting': 'Aloqa tiklanmoqda…', 'call.st.failed': "Ulanib bo'lmadi",
+    'call.st.declined': "Menejer hozir band", 'call.st.noanswer': 'Javob berilmadi', 'call.st.ended': "Qo'ng'iroq yakunlandi", 'call.st.error': 'Xatolik',
+    'call.wait': "Menejer javobini kuting… Odatda bu bir daqiqadan kam vaqt oladi.",
+    'call.declinedText': "Menejer hozir boshqa mijoz bilan gaplashmoqda. So'rovingiz saqlandi — tez orada o'zimiz qo'ng'iroq qilamiz.",
+    'call.noanswerText': "Menejer hozir javob bera olmadi. So'rovingiz saqlandi — ish vaqtida sizga qayta qo'ng'iroq qilamiz.",
+    'call.failedText': "Internet aloqasi orqali ulanib bo'lmadi. Telefon orqali qo'ng'iroq qiling yoki keyinroq urinib ko'ring.",
+    'call.endedText': "Suhbat uchun rahmat! Savollaringiz bo'lsa, istalgan vaqtda qayta bog'laning.",
+    'call.perm.granted': 'ruxsat berilgan', 'call.perm.denied': 'rad etilgan', 'call.perm.prompt': "so'raladi", 'call.perm.unknown': "so'raladi",
+    'call.testOk': 'Kamera va mikrofon ishlayapti', 'call.audioOnly': "Kamera topilmadi — ovozli rejimda davom etamiz.",
+    'call.nameReq': 'Menejer sizga murojaat qilishi uchun ismingizni kiriting.', 'call.copied': 'Kod nusxalandi', 'call.badCode': "Kod noto'g'ri yoki to'liq emas.",
+    'media.err.insecure': "Kamera va mikrofon faqat xavfsiz (https://) ulanishda ishlaydi. Saytni https:// orqali oching.",
+    'media.err.unsupported': "Brauzeringiz video-qo'ng'iroqni qo'llab-quvvatlamaydi. Chrome, Safari yoki Edge'ning so'nggi versiyasidan foydalaning.",
+    'media.err.denied': "Kamera yoki mikrofonga ruxsat berilmadi. Manzil satridagi qulf belgisini bosing, «Kamera» va «Mikrofon» uchun «Ruxsat berish»ni tanlang, so'ng qayta urinib ko'ring.",
+    'media.err.notfound': "Kamera yoki mikrofon topilmadi. Qurilma ulanganini tekshiring.",
+    'media.err.busy': "Kamera yoki mikrofon boshqa ilova tomonidan band. Uni yoping va qayta urinib ko'ring.",
+    'media.err.constraint': "Kamera so'ralgan sifatni qo'llab-quvvatlamaydi.",
+    'media.err.generic': "Qurilmaga ulanishda xatolik yuz berdi. Qayta urinib ko'ring.",
+    'toast.err': "Xatolik yuz berdi. Qayta urinib ko'ring.", 'toast.offline': "Internet aloqasi yo'q — ma'lumot saqlandi va keyinroq yuboriladi.",
+    'aria.close': 'Yopish', 'aria.prev': 'Oldingi', 'aria.next': 'Keyingi', 'aria.call': "Qo'ng'iroq", 'aria.menu': 'Asosiy menyu',
+    'marquee': "0% foizsiz|Halol bo'lib to'lash|30% dan boshlang'ich to'lov|36 oygacha muddat|Quruvchidan to'g'ridan-to'g'ri",
+    'home.locLine': '{district}',
+
+    /* ---- KABINET ---- */
+    'k.title': 'Boshqaruv paneli', 'k.login': 'Kabinetga kirish', 'k.user': 'Login', 'k.pass': 'Parol', 'k.enter': 'Kirish', 'k.back': 'Saytga qaytish',
+    'k.secure': 'Himoyalangan ulanish', 'k.badAuth': "Login yoki parol noto'g'ri.", 'k.insecure': "Kabinet faqat https:// yoki localhost orqali ishlaydi.", 'k.netErr': "Serverga ulanib bo'lmadi.",
+    'k.nav.overview': "Umumiy ko'rinish", 'k.nav.leads': 'Arizalar', 'k.nav.reviews': 'Mijozlar izohlari', 'k.nav.calls': "Qo'ng'iroqlar", 'k.nav.settings': 'Sozlamalar',
+    'k.group.main': 'Asosiy', 'k.group.clients': 'Mijozlar', 'k.group.system': 'Tizim',
+    'k.logout': 'Chiqish', 'k.owner': 'Direktor', 'k.manager': 'Menejer', 'k.modeLocal': "Lokal rejim — ma'lumotlar shu brauzerda", 'k.modeServer': 'Server bilan sinxron',
+    'k.hello': 'Xush kelibsiz', 'k.today': 'Bugun',
+    'k.st.leads': 'Jami arizalar', 'k.st.newLeads': 'Yangi arizalar', 'k.st.reviews': 'Izohlar', 'k.st.avg': "O'rtacha baho", 'k.st.pending': 'Javob kutayotgan izohlar', 'k.st.calls': "Qo'ng'iroqlar",
+    'k.recentLeads': "So'nggi arizalar", 'k.recentReviews': 'Javob kutayotgan izohlar', 'k.viewAll': "Barchasini ko'rish",
+    'k.empty.leads': "Hozircha arizalar yo'q.", 'k.empty.reviews': "Hozircha izohlar yo'q.", 'k.empty.calls': "Hozircha qo'ng'iroqlar yo'q.", 'k.empty.pending': "Barcha izohlarga javob berilgan.",
+    'k.search': 'Qidirish…', 'k.all': 'Barchasi', 'k.export': 'CSV yuklab olish',
+    'k.col.date': 'Sana', 'k.col.client': 'Mijoz', 'k.col.phone': 'Telefon', 'k.col.object': 'Obyekt', 'k.col.payment': "To'lov", 'k.col.status': 'Holat', 'k.col.actions': 'Amallar',
+    'k.lead.new': 'Yangi', 'k.lead.called': "Bog'lanildi", 'k.lead.booked': 'Bron qilindi', 'k.lead.sold': 'Sotildi', 'k.lead.lost': 'Rad etildi',
+    'k.lead.src.book': 'Band qilish', 'k.lead.src.callback': "Qayta qo'ng'iroq", 'k.lead.src.call': "Video-qo'ng'iroq",
+    'k.lead.monthly': '{m} / oy · {M} oy', 'k.delete': "O'chirish", 'k.confirmDelete': "Haqiqatan ham o'chirilsinmi?",
+    'k.rev.filter.pending': 'Javobsiz', 'k.rev.filter.answered': 'Javob berilgan', 'k.rev.filter.hidden': 'Yashirilgan', 'k.rev.filter.video': 'Video',
+    'k.rev.reply': 'Javob yozish', 'k.rev.editReply': 'Javobni tahrirlash', 'k.rev.replyPh': "Mijozga javobingiz — saytda darhol ko'rinadi", 'k.rev.send': 'Javobni yuborish',
+    'k.rev.sent': "Javob saytda e'lon qilindi", 'k.rev.hide': 'Saytdan yashirish', 'k.rev.show': "Saytda ko'rsatish", 'k.rev.hiddenBadge': 'Yashirilgan',
+    'k.rev.removeReply': "Javobni o'chirish", 'k.rev.templates': 'Tayyor javoblar',
+    'k.tpl.1': "Iliq fikringiz uchun katta rahmat! Sizni ART HOUSE oilasida ko'rganimizdan xursandmiz.",
+    'k.tpl.2': "Fikringiz uchun rahmat. Murojaatingizni ko'rib chiqdik — menejerimiz siz bilan bog'lanadi.",
+    'k.tpl.3': "Kechirasiz, noqulaylik uchun uzr so'raymiz. Iltimos, savdo bo'limiga qo'ng'iroq qiling — masalani tezda hal qilamiz.",
+    'k.calls.incoming': "Kiruvchi qo'ng'iroq", 'k.calls.accept': 'Qabul qilish', 'k.calls.decline': 'Rad etish', 'k.calls.video': "Video-qo'ng'iroq", 'k.calls.audio': "Ovozli qo'ng'iroq",
+    'k.calls.st.ringing': "Jiringlamoqda", 'k.calls.st.answered': 'Javob berildi', 'k.calls.st.missed': "O'tkazib yuborildi", 'k.calls.st.declined': 'Rad etildi',
+    'k.calls.callback': "Qayta qo'ng'iroq qilish", 'k.calls.duration': 'Davomiyligi', 'k.calls.manual': "Kod orqali ulanish",
+    'k.calls.manualHint': "Mijoz yuborgan kodni qo'ying — javob kodi hosil bo'ladi. Uni mijozga qaytaring.", 'k.calls.offerPh': 'Mijoz kodi', 'k.calls.makeAnswer': 'Javob kodini yaratish',
+    'k.calls.ready': "Qo'ng'iroqlarni qabul qilishga tayyor", 'k.calls.enableSound': 'Ovozli signalni yoqish', 'k.calls.permTest': 'Kamera va mikrofonni tekshirish',
+    'k.set.prices': 'Narxlar ($ / m²)', 'k.set.pricesHint': "Bo'sh qoldirilsa — kalkulyatorda narx qo'lda kiritiladi.", 'k.set.rate': "Dollar kursi (so'm)", 'k.set.save': 'Saqlash', 'k.set.saved': 'Sozlamalar saqlandi',
+    'k.set.lang': 'Interfeys tili', 'k.set.data': "Ma'lumotlar", 'k.set.dataHint': "Server ulanmagan bo'lsa, barcha ma'lumotlar shu brauzer xotirasida saqlanadi. Muntazam CSV ko'rinishida yuklab oling.",
+    'k.set.about': 'Tizim haqida', 'k.set.server': 'Server (API_URL)', 'k.set.notSet': "ulanmagan", 'k.set.ownerOnly': "Bu bo'lim faqat direktor uchun.",
+    'k.newLead': 'Yangi ariza: {name}', 'k.newReview': 'Yangi izoh: {name} ({r}★)', 'k.idle': 'Faollik bo\'lmagani uchun tizimdan chiqildi.'
+  };
+
+  /* ---------------- РУССКИЙ ---------------- */
+  var ru = {
+    'brand.sub': 'Luxury Residence · Ташкент',
+    'nav.cabinet': 'Кабинет', 'nav.home': 'Главная', 'nav.calc': 'Калькулятор', 'nav.projects': 'Проекты', 'nav.location': 'Расположение',
+    'nav.about': 'О компании', 'nav.social': 'Мы в соцсетях', 'nav.contact': 'Контакты', 'nav.reviews': 'Отзывы клиентов',
+    'home.eyebrow': 'Напрямую от застройщика · 0% без процентов', 'home.h1em': 'Luxury Residence',
+    'home.lead': 'Премиальное жильё, где искусство встречается с комфортом. Без банковского кредита и переплат — честная и прозрачная рассрочка.',
+    'home.cta1': 'Смотреть проекты', 'home.cta2': 'Рассчитать платёж',
+    'home.stat1': 'лет на рынке', 'home.stat2': 'жилых комплекса', 'home.stat3': 'переплата и процент', 'home.stat4': 'месяцев рассрочки',
+    'home.videoCap': 'Musaffo — ход строительства, съёмка с дрона', 'home.projTitle': 'Три адреса — одно качество', 'common.all': 'Все проекты',
+    'home.calcTitle': 'Узнайте ежемесячный платёж за секунду', 'home.calcText': 'Выберите стоимость, первый взнос и срок — результат рассчитается мгновенно. Без переплаты.',
+    'home.calcBtn': 'Подробный расчёт', 'home.locTitle': 'В самых удобных точках города', 'home.locBtn': 'Показать на карте',
+    'home.aboutTitle': 'Доверие — в каждом кирпиче',
+    'home.aboutText': 'С 2021 года ART HOUSE строит современные жилые комплексы в Ташкенте. Мы продаём квартиры напрямую от застройщика — без банков и посредников, в беспроцентную рассрочку.',
+    'common.more': 'Подробнее', 'home.revBtn': 'Все отзывы', 'home.ctaTitle': 'Свяжитесь с менеджером прямо сейчас',
+    'home.ctaText': 'Звонок, видеозвонок или Telegram — выберите удобный для вас способ.',
+    'call.video': 'Видеозвонок', 'call.phone': 'Позвонить',
+    'calc.eyebrow': '0% · Без процентов · Халяль', 'calc.title': 'Калькулятор рассрочки',
+    'calc.lead': 'Это не банковский кредит — договор заключается напрямую с застройщиком. Никаких наценок и процентов: вы платите ровно стоимость квартиры.',
+    'calc.project': 'Проект', 'calc.plan': 'Планировка', 'calc.area': 'Площадь, м²', 'calc.priceM2': 'Цена за 1 м², $',
+    'calc.priceHint': 'Цена по этому проекту уточняется у менеджера — укажите ориентировочную стоимость.',
+    'calc.total': 'Стоимость квартиры', 'calc.down': 'Первоначальный взнос', 'calc.minDown': '30% (минимум)', 'calc.term': 'Срок рассрочки',
+    'calc.rDown': 'Первоначальный взнос', 'calc.rRest': 'Остаток', 'calc.rRate': 'Наценка / процент', 'calc.zero': '0% — без процентов, халяль',
+    'calc.rLast': 'Последний платёж', 'calc.rMonthly': 'Ежемесячный платёж', 'calc.showSched': 'Показать график платежей',
+    'calc.book': 'Забронировать по этому графику', 'calc.note': 'Расчёт носит информационный характер. Точную цену и условия договора подтверждает менеджер.',
+    'proj.eyebrow': 'Жилые комплексы', 'proj.title': 'Наши проекты', 'proj.lead': 'Каждый комплекс — продуманные планировки, безопасный двор и современная инженерия. Выберите проект.',
+    'loc.eyebrow': 'Карта и инфраструктура', 'loc.title': 'Расположение',
+    'loc.lead': 'Найдите офис продаж и наши объекты на карте и постройте маршрут в Google Maps, Яндекс Картах или Яндекс Go.',
+    'loc.google': 'Открыть в Google Maps', 'loc.yandex': 'Открыть в Яндекс Картах', 'loc.taxi': 'Яндекс Go — вызвать такси',
+    'loc.infra': 'Инфраструктура рядом', 'loc.infraHint': 'Выберите категорию — на карте откроются ближайшие места.',
+    'about.eyebrow': 'Компания', 'about.title': 'О компании',
+    'about.lead': 'ART HOUSE — строительная компания, возводящая современные жилые комплексы в Ташкенте. Наша цель — создавать для семей безопасные, удобные и красивые дома и предлагать их каждому на честных условиях.',
+    'about.n1': 'лет работы (с 2021 года)', 'about.n2': 'жилых комплекса в Ташкенте', 'about.n3': 'наценка в рассрочке', 'about.n4': 'первоначальный взнос от',
+    'about.whyTitle': 'Почему ART HOUSE?',
+    'about.w1t': 'Напрямую от застройщика', 'about.w1': 'Без посредников и дополнительных комиссий — договор заключается непосредственно с застройщиком.',
+    'about.w2t': 'Рассрочка 0%', 'about.w2': 'Без банковского кредита и наценки. Остаток вы выплачиваете равными частями до 36 месяцев.',
+    'about.w3t': 'Прозрачные документы', 'about.w3': 'Цена, график платежей и условия сдачи чётко прописаны в договоре — никаких неожиданных платежей.',
+    'about.w4t': 'Безопасная продуманная среда', 'about.w4': 'Закрытый двор, паркинг, детские и спортивные площадки — всё для семейной жизни.',
+    'about.w5t': 'Планировка для каждой семьи', 'about.w5': 'От однокомнатных до четырёхкомнатных квартир и дуплексов — вы выбираете подходящую.',
+    'about.w6t': 'Персональный менеджер', 'about.w6': 'Один ответственный менеджер сопровождает вас от выбора квартиры до передачи ключей.',
+    'about.rulesTitle': 'Наши принципы',
+    'about.r1t': 'Честность', 'about.r1': 'Мы предлагаем только беспроцентную рассрочку — без наценок, скрытых платежей и штрафных процентов.',
+    'about.r2t': 'Официальный договор', 'about.r2': 'Каждая квартира оформляется официальным договором; платежи принимаются только на счёт компании.',
+    'about.r3t': 'Чёткий график', 'about.r3': 'Даты и суммы платежей согласовываются заранее и прилагаются к договору.',
+    'about.r4t': 'Открытость', 'about.r4': 'Мы регулярно публикуем новости о ходе строительства в Instagram и Telegram.',
+    'social.eyebrow': 'Официальные страницы', 'social.title': 'Мы в соцсетях',
+    'social.lead': 'Ход строительства, новые планировки и специальные предложения — подписывайтесь. Официальными считаются только страницы, указанные здесь.',
+    'contact.eyebrow': 'Поддержка', 'contact.title': 'Контакты',
+    'contact.lead': 'Свяжитесь с менеджером напрямую: по телефону, видеозвонком или в Telegram. В рабочее время мы отвечаем в течение нескольких минут.',
+    'contact.phones': 'Телефоны', 'contact.office': 'Офис продаж', 'contact.officeAddr': 'г. Ташкент, Учтепинский район, ул. Кукча Дарвоза, 69',
+    'contact.liveTitle': 'Живая связь с менеджером', 'contact.liveText': 'Обсудите квартиру, планировку и условия оплаты с менеджером лицом к лицу — не выходя из дома.',
+    'call.audio': 'Аудиозвонок (через интернет)', 'contact.tg': 'Написать в Telegram',
+    'contact.permHint': 'Для видеозвонка браузер запросит доступ к камере и микрофону. Нажмите «Разрешить».',
+    'contact.cbTitle': 'Заказать обратный звонок',
+    'form.name': 'Ваше имя', 'form.namePh': 'Например, Азиз Каримов', 'form.nameErr': 'Введите ваше имя.', 'form.phone': 'Номер телефона', 'form.topic': 'Тема обращения',
+    'form.t1': 'Покупка квартиры', 'form.t2': 'Оплата и договор', 'form.t3': 'Осмотр объекта', 'form.t4': 'Другой вопрос', 'form.send': 'Отправить',
+    'form.ok': 'Спасибо! Заявка принята — менеджер скоро вам перезвонит.',
+    'contact.rulesTitle': 'Памятка для клиентов',
+    'contact.s1t': 'Заявка или звонок', 'contact.s1': 'Оставьте заявку на сайте или позвоните — менеджер подберёт подходящий проект и планировку.',
+    'contact.s2t': 'Визит в офис и на объект', 'contact.s2': 'Заранее согласуйте время визита. Возьмите с собой документ, удостоверяющий личность (паспорт или ID-карту).',
+    'contact.s3t': 'Бронь и договор', 'contact.s3': 'Выбранная квартира бронируется первоначальным взносом, после чего подписывается официальный договор.',
+    'contact.s4t': 'Платежи без процентов', 'contact.s4': 'Остаток вносится равными частями по графику. Берите официальную квитанцию за каждый платёж.',
+    'contact.safety': 'Правило безопасности: вносите платежи только на счёт компании, указанный в договоре. Наши сотрудники никогда не просят переводить деньги на личную карту.',
+    'rev.eyebrow': 'Обратная связь', 'rev.title': 'Отзывы клиентов', 'rev.lead': 'Каждый отзыв читают наши менеджеры и отвечают на него. Ваше мнение важно для нас.',
+    'rev.fAll': 'Все', 'rev.fVideo': 'Видеоотзывы', 'rev.fAnswered': 'С ответом', 'rev.formTitle': 'Оставить отзыв',
+    'rev.rating': 'Оценка', 'rev.ratingErr': 'Поставьте оценку.', 'rev.text': 'Ваш отзыв', 'rev.textPh': 'Поделитесь впечатлениями…', 'rev.textErr': 'Напишите не менее 10 символов.',
+    'rev.video': 'Видеоотзыв (необязательно)', 'rev.record': 'Записать на камеру', 'rev.upload': 'Загрузить файл', 'rev.linkPh': 'или ссылка на YouTube / Instagram',
+    'rev.remove': 'Удалить', 'rev.submit': 'Отправить отзыв', 'rev.ok': 'Спасибо! Ваш отзыв опубликован.',
+    'foot.text': 'Премиальные квартиры напрямую от застройщика — в честную беспроцентную рассрочку.', 'foot.menu': 'Разделы', 'foot.contact': 'Контакты', 'foot.slogan': 'Без процентов · Честно · Прозрачно',
+    'dock.call': 'Звонок', 'dock.video': 'Видео', 'dock.book': 'Забронировать',
+    'book.title': 'Бронирование квартиры', 'book.text': 'Оставьте свои данные — менеджер свяжется с вами и подтвердит выбор.',
+    'book.when': 'Когда вам позвонить?', 'book.asap': 'Как можно скорее', 'book.day': 'Днём', 'book.eve': 'Вечером', 'book.send': 'Отправить заявку',
+    'book.okTitle': 'Заявка принята', 'common.close': 'Закрыть',
+    'call.manager': 'Менеджер отдела продаж', 'call.previewPh': 'Здесь появится изображение с камеры', 'call.cam': 'Камера', 'call.mic': 'Микрофон',
+    'call.test': 'Проверить камеру и микрофон', 'call.start': 'Начать звонок', 'call.manualTitle': 'Подключение с другого устройства (по коду)',
+    'call.manualHint': 'Если сервер не подключён: создайте код, отправьте его менеджеру и вставьте сюда ответный код.',
+    'call.makeCode': 'Создать код', 'call.copy': 'Копировать', 'call.answerPh': 'Вставьте ответный код менеджера', 'call.connect': 'Подключиться',
+    'call.ctlMic': 'Микрофон', 'call.ctlCam': 'Камера', 'call.ctlFlip': 'Сменить', 'call.end': 'Завершить',
+
+    'lang.title': 'Выберите язык',
+    'unit.month': 'мес.', 'unit.perMonth': '/ мес.', 'unit.sum': 'сум',
+    'rooms.n': '{n}-комнатная', 'rooms.duplex': 'Дуплекс', 'rooms.floor': '{n}-й уровень', 'rooms.balcony': 'с балконом', 'rooms.all': 'Все',
+    'plan.label': '{rooms}-комн.{duplex} · {area} м²', 'plan.duplex': ' дуплекс', 'plan.manual': 'Ввести вручную',
+    'calc.hideSched': 'Скрыть график', 'calc.nth': '{n}-й мес.', 'calc.uzs': '≈ {v} сум / мес.',
+    'calc.prev': '{V} · взнос {P}% · {M} мес.',
+    'proj.gallery': 'Галерея', 'proj.amenities': 'Удобства', 'proj.plans': 'Планировки', 'proj.video': 'Видео',
+    'proj.presentation': 'Смотреть презентацию', 'proj.askPresentation': 'Запросить презентацию', 'proj.instagram': 'Смотреть в Instagram',
+    'proj.calc': 'Рассчитать в калькуляторе', 'proj.book': 'Забронировать', 'proj.open': 'Подробнее', 'proj.map': 'На карте',
+    'proj.soon': 'Фотографии, планировки и презентация этого проекта скоро появятся. А пока подробную информацию можно получить у менеджера.',
+    'proj.askManager': 'Узнать у менеджера',
+    'loc.office': 'Офис продаж', 'loc.officeAddr': 'Учтепинский район, ул. Кукча Дарвоза, 69',
+    'infra.school': 'Школы', 'infra.kinder': 'Детские сады', 'infra.hospital': 'Больницы', 'infra.market': 'Супермаркеты',
+    'infra.metro': 'Метро', 'infra.park': 'Парки и скверы', 'infra.pharmacy': 'Аптеки', 'infra.gym': 'Спортзалы',
+    'rev.count': '{n} отзывов', 'rev.empty': 'Пока отзывов нет. Будьте первым!', 'rev.emptyFilter': 'В этом разделе пока нет отзывов.',
+    'rev.reply': 'Ответ ART HOUSE', 'rev.openVideo': 'Открыть видеоотзыв', 'rev.stop': 'Остановить запись',
+    'rev.tooBig': 'Размер файла не должен превышать {n} МБ.', 'rev.noRec': 'Этот браузер не поддерживает запись видео — загрузите файл.',
+    'rev.badLink': 'Неверная ссылка. Укажите полный адрес, начинающийся с https://.', 'rev.uploading': 'Загрузка…',
+    'rev.saveErr': 'Не удалось сохранить отзыв. Попробуйте ещё раз.', 'rev.of5': 'из 5',
+    'social.ig': 'Фото, видео и ход строительства', 'social.tg': 'Официальный канал: новости и спецпредложения',
+    'social.tgm': 'Напишите менеджеру напрямую', 'social.yt': 'Видеообзоры и репортажи', 'social.fb': 'Официальная страница',
+    'social.phone': 'Отдел продаж', 'social.open': 'Открыть страницу', 'social.call': 'Позвонить',
+    'phone.empty': 'Введите номер телефона.', 'phone.short': 'Номер неполный: укажите в формате +998 XX XXX XX XX.', 'phone.op': 'Неверный код оператора.',
+    'book.okText': 'Спасибо, {name}! Менеджер скоро позвонит вам на номер {phone}.', 'book.general': 'Общая консультация',
+    'book.topic': 'Тема', 'book.when.asap': 'Как можно скорее', 'book.when.day': 'Днём', 'book.when.eve': 'Вечером',
+    'call.titleVideo': 'Видеозвонок', 'call.titleAudio': 'Аудиозвонок',
+    'call.st.idle': 'Готово', 'call.st.permission': 'Запрашиваем доступ к камере и микрофону…', 'call.st.calling': 'Соединяем с менеджером…',
+    'call.st.connecting': 'Подключение…', 'call.st.connected': 'На связи', 'call.st.reconnecting': 'Восстанавливаем связь…', 'call.st.failed': 'Не удалось подключиться',
+    'call.st.declined': 'Менеджер сейчас занят', 'call.st.noanswer': 'Нет ответа', 'call.st.ended': 'Звонок завершён', 'call.st.error': 'Ошибка',
+    'call.wait': 'Ожидайте ответа менеджера… Обычно это занимает меньше минуты.',
+    'call.declinedText': 'Менеджер сейчас разговаривает с другим клиентом. Ваш запрос сохранён — мы скоро перезвоним сами.',
+    'call.noanswerText': 'Менеджер не смог ответить. Ваш запрос сохранён — мы перезвоним вам в рабочее время.',
+    'call.failedText': 'Не удалось установить соединение через интернет. Позвоните по телефону или попробуйте позже.',
+    'call.endedText': 'Спасибо за разговор! Если появятся вопросы — свяжитесь с нами в любое время.',
+    'call.perm.granted': 'разрешено', 'call.perm.denied': 'запрещено', 'call.perm.prompt': 'будет запрошено', 'call.perm.unknown': 'будет запрошено',
+    'call.testOk': 'Камера и микрофон работают', 'call.audioOnly': 'Камера не найдена — продолжаем в режиме аудио.',
+    'call.nameReq': 'Укажите имя, чтобы менеджер знал, как к вам обращаться.', 'call.copied': 'Код скопирован', 'call.badCode': 'Код неверный или неполный.',
+    'media.err.insecure': 'Камера и микрофон работают только при защищённом соединении (https://). Откройте сайт по https://.',
+    'media.err.unsupported': 'Ваш браузер не поддерживает видеозвонки. Используйте последнюю версию Chrome, Safari или Edge.',
+    'media.err.denied': 'Доступ к камере или микрофону запрещён. Нажмите на значок замка в адресной строке, разрешите «Камеру» и «Микрофон» и попробуйте снова.',
+    'media.err.notfound': 'Камера или микрофон не найдены. Проверьте подключение устройства.',
+    'media.err.busy': 'Камера или микрофон заняты другим приложением. Закройте его и попробуйте снова.',
+    'media.err.constraint': 'Камера не поддерживает запрошенное качество.',
+    'media.err.generic': 'Ошибка при подключении к устройству. Попробуйте ещё раз.',
+    'toast.err': 'Произошла ошибка. Попробуйте ещё раз.', 'toast.offline': 'Нет подключения к интернету — данные сохранены и будут отправлены позже.',
+    'aria.close': 'Закрыть', 'aria.prev': 'Назад', 'aria.next': 'Вперёд', 'aria.call': 'Позвонить', 'aria.menu': 'Главное меню',
+    'marquee': '0% без процентов|Честная рассрочка|Первый взнос от 30%|Срок до 36 месяцев|Напрямую от застройщика',
+
+    'k.title': 'Панель управления', 'k.login': 'Вход в кабинет', 'k.user': 'Логин', 'k.pass': 'Пароль', 'k.enter': 'Войти', 'k.back': 'Вернуться на сайт',
+    'k.secure': 'Защищённое соединение', 'k.badAuth': 'Неверный логин или пароль.', 'k.insecure': 'Кабинет работает только по https:// или на localhost.', 'k.netErr': 'Не удалось подключиться к серверу.',
+    'k.nav.overview': 'Обзор', 'k.nav.leads': 'Заявки', 'k.nav.reviews': 'Отзывы клиентов', 'k.nav.calls': 'Звонки', 'k.nav.settings': 'Настройки',
+    'k.group.main': 'Основное', 'k.group.clients': 'Клиенты', 'k.group.system': 'Система',
+    'k.logout': 'Выйти', 'k.owner': 'Директор', 'k.manager': 'Менеджер', 'k.modeLocal': 'Локальный режим — данные в этом браузере', 'k.modeServer': 'Синхронизация с сервером',
+    'k.hello': 'Добро пожаловать', 'k.today': 'Сегодня',
+    'k.st.leads': 'Всего заявок', 'k.st.newLeads': 'Новые заявки', 'k.st.reviews': 'Отзывы', 'k.st.avg': 'Средняя оценка', 'k.st.pending': 'Отзывы без ответа', 'k.st.calls': 'Звонки',
+    'k.recentLeads': 'Последние заявки', 'k.recentReviews': 'Отзывы, ожидающие ответа', 'k.viewAll': 'Смотреть все',
+    'k.empty.leads': 'Заявок пока нет.', 'k.empty.reviews': 'Отзывов пока нет.', 'k.empty.calls': 'Звонков пока нет.', 'k.empty.pending': 'На все отзывы даны ответы.',
+    'k.search': 'Поиск…', 'k.all': 'Все', 'k.export': 'Скачать CSV',
+    'k.col.date': 'Дата', 'k.col.client': 'Клиент', 'k.col.phone': 'Телефон', 'k.col.object': 'Объект', 'k.col.payment': 'Оплата', 'k.col.status': 'Статус', 'k.col.actions': 'Действия',
+    'k.lead.new': 'Новая', 'k.lead.called': 'Связались', 'k.lead.booked': 'Бронь', 'k.lead.sold': 'Продано', 'k.lead.lost': 'Отказ',
+    'k.lead.src.book': 'Бронирование', 'k.lead.src.callback': 'Обратный звонок', 'k.lead.src.call': 'Видеозвонок',
+    'k.lead.monthly': '{m} / мес. · {M} мес.', 'k.delete': 'Удалить', 'k.confirmDelete': 'Действительно удалить?',
+    'k.rev.filter.pending': 'Без ответа', 'k.rev.filter.answered': 'С ответом', 'k.rev.filter.hidden': 'Скрытые', 'k.rev.filter.video': 'Видео',
+    'k.rev.reply': 'Ответить', 'k.rev.editReply': 'Изменить ответ', 'k.rev.replyPh': 'Ваш ответ клиенту — сразу появится на сайте', 'k.rev.send': 'Отправить ответ',
+    'k.rev.sent': 'Ответ опубликован на сайте', 'k.rev.hide': 'Скрыть с сайта', 'k.rev.show': 'Показать на сайте', 'k.rev.hiddenBadge': 'Скрыт',
+    'k.rev.removeReply': 'Удалить ответ', 'k.rev.templates': 'Шаблоны ответов',
+    'k.tpl.1': 'Большое спасибо за тёплый отзыв! Мы рады видеть вас в семье ART HOUSE.',
+    'k.tpl.2': 'Спасибо за отзыв. Мы рассмотрели ваше обращение — менеджер свяжется с вами.',
+    'k.tpl.3': 'Приносим извинения за неудобства. Пожалуйста, позвоните в отдел продаж — мы быстро решим вопрос.',
+    'k.calls.incoming': 'Входящий звонок', 'k.calls.accept': 'Принять', 'k.calls.decline': 'Отклонить', 'k.calls.video': 'Видеозвонок', 'k.calls.audio': 'Аудиозвонок',
+    'k.calls.st.ringing': 'Звонит', 'k.calls.st.answered': 'Отвечен', 'k.calls.st.missed': 'Пропущен', 'k.calls.st.declined': 'Отклонён',
+    'k.calls.callback': 'Перезвонить', 'k.calls.duration': 'Длительность', 'k.calls.manual': 'Подключение по коду',
+    'k.calls.manualHint': 'Вставьте код клиента — будет создан ответный код. Отправьте его клиенту.', 'k.calls.offerPh': 'Код клиента', 'k.calls.makeAnswer': 'Создать ответный код',
+    'k.calls.ready': 'Готов принимать звонки', 'k.calls.enableSound': 'Включить звуковой сигнал', 'k.calls.permTest': 'Проверить камеру и микрофон',
+    'k.set.prices': 'Цены ($ / м²)', 'k.set.pricesHint': 'Если оставить пустым — цена вводится в калькуляторе вручную.', 'k.set.rate': 'Курс доллара (сум)', 'k.set.save': 'Сохранить', 'k.set.saved': 'Настройки сохранены',
+    'k.set.lang': 'Язык интерфейса', 'k.set.data': 'Данные', 'k.set.dataHint': 'Без сервера все данные хранятся в памяти этого браузера. Регулярно скачивайте их в формате CSV.',
+    'k.set.about': 'О системе', 'k.set.server': 'Сервер (API_URL)', 'k.set.notSet': 'не подключён', 'k.set.ownerOnly': 'Этот раздел доступен только директору.',
+    'k.newLead': 'Новая заявка: {name}', 'k.newReview': 'Новый отзыв: {name} ({r}★)', 'k.idle': 'Выход из системы из-за бездействия.'
+  };
+
+  /* ---------------- ENGLISH ---------------- */
+  var en = {
+    'brand.sub': 'Luxury Residence · Tashkent',
+    'nav.cabinet': 'Dashboard', 'nav.home': 'Home', 'nav.calc': 'Calculator', 'nav.projects': 'Projects', 'nav.location': 'Location',
+    'nav.about': 'About us', 'nav.social': 'Social media', 'nav.contact': 'Contact', 'nav.reviews': 'Client reviews',
+    'home.eyebrow': 'Direct from the developer · 0% interest', 'home.h1em': 'Luxury Residence',
+    'home.lead': 'Premium homes where art meets comfort. No bank loan, no markup — honest and transparent instalments.',
+    'home.cta1': 'Explore the projects', 'home.cta2': 'Calculate payments',
+    'home.stat1': 'years on the market', 'home.stat2': 'residential complexes', 'home.stat3': 'markup and interest', 'home.stat4': 'months to pay',
+    'home.videoCap': 'Musaffo — construction progress, drone footage', 'home.projTitle': 'Three addresses — one standard', 'common.all': 'All projects',
+    'home.calcTitle': 'See your monthly payment in seconds', 'home.calcText': 'Choose the price, down payment and term — the result updates instantly. No markup.',
+    'home.calcBtn': 'Detailed calculation', 'home.locTitle': "In the city's most convenient spots", 'home.locBtn': 'View on the map',
+    'home.aboutTitle': 'Trust, built into every brick',
+    'home.aboutText': 'Since 2021, ART HOUSE has been building modern residential complexes in Tashkent. We sell homes directly from the developer — no banks, no intermediaries, with interest-free instalments.',
+    'common.more': 'Learn more', 'home.revBtn': 'All reviews', 'home.ctaTitle': 'Talk to a sales manager now',
+    'home.ctaText': 'Phone, video call or Telegram — choose whatever suits you best.',
+    'call.video': 'Video call', 'call.phone': 'Call us',
+    'calc.eyebrow': '0% · Interest-free · Halal', 'calc.title': 'Instalment calculator',
+    'calc.lead': 'This is not a bank loan — the contract is signed directly with the developer. No markup, no interest: you pay exactly the price of the home.',
+    'calc.project': 'Project', 'calc.plan': 'Floor plan', 'calc.area': 'Area, m²', 'calc.priceM2': 'Price per m², $',
+    'calc.priceHint': 'Pricing for this project is confirmed by a manager — enter an estimated price.',
+    'calc.total': 'Property price', 'calc.down': 'Down payment', 'calc.minDown': '30% (minimum)', 'calc.term': 'Instalment term',
+    'calc.rDown': 'Down payment', 'calc.rRest': 'Remaining balance', 'calc.rRate': 'Markup / interest', 'calc.zero': '0% — interest-free, halal',
+    'calc.rLast': 'Final payment', 'calc.rMonthly': 'Monthly payment', 'calc.showSched': 'Show payment schedule',
+    'calc.book': 'Reserve on this schedule', 'calc.note': 'This calculation is for reference only. The exact price and contract terms are confirmed by a manager.',
+    'proj.eyebrow': 'Residential complexes', 'proj.title': 'Our projects', 'proj.lead': 'Every complex offers thoughtful layouts, a safe courtyard and modern engineering. Choose a project.',
+    'loc.eyebrow': 'Map & neighbourhood', 'loc.title': 'Location',
+    'loc.lead': 'Find our sales office and sites on the map and get directions in Google Maps, Yandex Maps or Yandex Go.',
+    'loc.google': 'Open in Google Maps', 'loc.yandex': 'Open in Yandex Maps', 'loc.taxi': 'Yandex Go — book a taxi',
+    'loc.infra': 'Nearby amenities', 'loc.infraHint': 'Pick a category to see the closest places on the map.',
+    'about.eyebrow': 'The company', 'about.title': 'About us',
+    'about.lead': 'ART HOUSE is a developer building modern residential complexes in Tashkent. Our goal is to create safe, comfortable and beautiful homes for families — and to offer them to everyone on honest terms.',
+    'about.n1': 'years in business (since 2021)', 'about.n2': 'residential complexes in Tashkent', 'about.n3': 'markup on instalments', 'about.n4': 'minimum down payment',
+    'about.whyTitle': 'Why ART HOUSE?',
+    'about.w1t': 'Direct from the developer', 'about.w1': 'No intermediaries or extra commissions — your contract is signed directly with the developer.',
+    'about.w2t': '0% instalments', 'about.w2': 'No bank loan and no markup. Pay the balance in equal parts over up to 36 months.',
+    'about.w3t': 'Transparent paperwork', 'about.w3': 'Price, payment schedule and handover terms are clearly set out in the contract — no surprise charges later.',
+    'about.w4t': 'A safe, well-designed setting', 'about.w4': 'A private courtyard, parking, play and sports areas — everything family life needs.',
+    'about.w5t': 'A layout for every family', 'about.w5': 'From one- to four-bedroom apartments and duplexes — choose the one that fits.',
+    'about.w6t': 'A personal manager', 'about.w6': 'One dedicated manager guides you from choosing a home to receiving the keys.',
+    'about.rulesTitle': 'Our principles',
+    'about.r1t': 'Honesty', 'about.r1': 'We only offer interest-free instalments — no markup, hidden fees or penalty interest.',
+    'about.r2t': 'An official contract', 'about.r2': 'Every home is formalised with an official contract; payments are accepted only into the company account.',
+    'about.r3t': 'A clear schedule', 'about.r3': 'Payment dates and amounts are agreed in advance and attached to the contract.',
+    'about.r4t': 'Open communication', 'about.r4': 'We regularly post construction updates on our Instagram and Telegram pages.',
+    'social.eyebrow': 'Official pages', 'social.title': 'Social media',
+    'social.lead': 'Construction progress, new layouts and special offers — follow us. Only the pages listed here are official.',
+    'contact.eyebrow': 'Support', 'contact.title': 'Contact',
+    'contact.lead': 'Reach a manager directly by phone, video call or Telegram. During working hours we reply within minutes.',
+    'contact.phones': 'Phone numbers', 'contact.office': 'Sales office', 'contact.officeAddr': '69 Kukcha Darvoza Street, Uchtepa district, Tashkent',
+    'contact.liveTitle': 'Talk to a manager live', 'contact.liveText': 'Discuss the apartment, floor plan and payment terms face to face with a manager — without leaving home.',
+    'call.audio': 'Voice call (over the internet)', 'contact.tg': 'Message us on Telegram',
+    'contact.permHint': 'For a video call, your browser will ask for camera and microphone access. Tap “Allow”.',
+    'contact.cbTitle': 'Request a call back',
+    'form.name': 'Your name', 'form.namePh': 'e.g. Aziz Karimov', 'form.nameErr': 'Please enter your name.', 'form.phone': 'Phone number', 'form.topic': 'Topic',
+    'form.t1': 'Buying an apartment', 'form.t2': 'Payment and contract', 'form.t3': 'Visiting the site', 'form.t4': 'Something else', 'form.send': 'Send',
+    'form.ok': 'Thank you! Your request has been received — a manager will call you shortly.',
+    'contact.rulesTitle': 'Guidelines for clients',
+    'contact.s1t': 'Request or call', 'contact.s1': 'Leave a request on the website or call us — a manager will suggest the right project and layout.',
+    'contact.s2t': 'Visit the office and site', 'contact.s2': 'Agree on a visit time in advance. Bring an identity document (passport or ID card).',
+    'contact.s3t': 'Reservation and contract', 'contact.s3': 'Your chosen home is reserved with the down payment, then an official contract is signed.',
+    'contact.s4t': 'Interest-free payments', 'contact.s4': 'The balance is paid in equal instalments on schedule. Get an official receipt for every payment.',
+    'contact.safety': 'Safety rule: make payments only to the company account stated in your contract. Our staff will never ask you to transfer money to a personal card.',
+    'rev.eyebrow': 'Feedback', 'rev.title': 'Client reviews', 'rev.lead': 'Our managers read and reply to every review. Your opinion matters to us.',
+    'rev.fAll': 'All', 'rev.fVideo': 'Video reviews', 'rev.fAnswered': 'Answered', 'rev.formTitle': 'Leave a review',
+    'rev.rating': 'Rating', 'rev.ratingErr': 'Please choose a rating.', 'rev.text': 'Your review', 'rev.textPh': 'Share your impressions…', 'rev.textErr': 'Please write at least 10 characters.',
+    'rev.video': 'Video review (optional)', 'rev.record': 'Record with camera', 'rev.upload': 'Upload a file', 'rev.linkPh': 'or a YouTube / Instagram link',
+    'rev.remove': 'Remove', 'rev.submit': 'Submit review', 'rev.ok': 'Thank you! Your review has been published.',
+    'foot.text': 'Premium homes direct from the developer, with honest interest-free instalments.', 'foot.menu': 'Sections', 'foot.contact': 'Contact', 'foot.slogan': 'Interest-free · Honest · Transparent',
+    'dock.call': 'Call', 'dock.video': 'Video', 'dock.book': 'Reserve',
+    'book.title': 'Reserve an apartment', 'book.text': 'Leave your details — a manager will contact you to confirm your choice.',
+    'book.when': 'When should we call you?', 'book.asap': 'As soon as possible', 'book.day': 'Daytime', 'book.eve': 'Evening', 'book.send': 'Send request',
+    'book.okTitle': 'Request received', 'common.close': 'Close',
+    'call.manager': 'Sales manager', 'call.previewPh': 'Your camera preview will appear here', 'call.cam': 'Camera', 'call.mic': 'Microphone',
+    'call.test': 'Test camera and microphone', 'call.start': 'Start call', 'call.manualTitle': 'Connect from another device (with a code)',
+    'call.manualHint': 'If no server is connected: create a code, send it to the manager and paste the reply code here.',
+    'call.makeCode': 'Create code', 'call.copy': 'Copy', 'call.answerPh': "Paste the manager's reply code here", 'call.connect': 'Connect',
+    'call.ctlMic': 'Microphone', 'call.ctlCam': 'Camera', 'call.ctlFlip': 'Switch', 'call.end': 'End call',
+
+    'lang.title': 'Choose a language',
+    'unit.month': 'mo', 'unit.perMonth': '/ month', 'unit.sum': 'UZS',
+    'rooms.n': '{n}-room', 'rooms.duplex': 'Duplex', 'rooms.floor': 'level {n}', 'rooms.balcony': 'with balcony', 'rooms.all': 'All',
+    'plan.label': '{rooms}-room{duplex} · {area} m²', 'plan.duplex': ' duplex', 'plan.manual': 'Enter manually',
+    'calc.hideSched': 'Hide schedule', 'calc.nth': 'Month {n}', 'calc.uzs': '≈ {v} UZS / month',
+    'calc.prev': '{V} · {P}% down · {M} months',
+    'proj.gallery': 'Gallery', 'proj.amenities': 'Amenities', 'proj.plans': 'Floor plans', 'proj.video': 'Video',
+    'proj.presentation': 'View presentation', 'proj.askPresentation': 'Request the presentation', 'proj.instagram': 'View on Instagram',
+    'proj.calc': 'Calculate payments', 'proj.book': 'Reserve', 'proj.open': 'Learn more', 'proj.map': 'On the map',
+    'proj.soon': 'Photos, floor plans and the presentation for this project are coming soon. In the meantime, a manager can give you full details.',
+    'proj.askManager': 'Ask a manager',
+    'loc.office': 'Sales office', 'loc.officeAddr': '69 Kukcha Darvoza Street, Uchtepa district',
+    'infra.school': 'Schools', 'infra.kinder': 'Kindergartens', 'infra.hospital': 'Hospitals', 'infra.market': 'Supermarkets',
+    'infra.metro': 'Metro', 'infra.park': 'Parks', 'infra.pharmacy': 'Pharmacies', 'infra.gym': 'Gyms',
+    'rev.count': '{n} reviews', 'rev.empty': 'No reviews yet. Be the first to share your thoughts!', 'rev.emptyFilter': 'Nothing in this section yet.',
+    'rev.reply': 'Reply from ART HOUSE', 'rev.openVideo': 'Open video review', 'rev.stop': 'Stop recording',
+    'rev.tooBig': 'The file must not exceed {n} MB.', 'rev.noRec': "This browser can't record video — please upload a file.",
+    'rev.badLink': 'Invalid link. Enter a full address starting with https://.', 'rev.uploading': 'Uploading…',
+    'rev.saveErr': "Couldn't save your review. Please try again.", 'rev.of5': 'out of 5',
+    'social.ig': 'Photos, videos and construction progress', 'social.tg': 'Official channel: news and special offers',
+    'social.tgm': 'Message a manager directly', 'social.yt': 'Video tours and reports', 'social.fb': 'Official page',
+    'social.phone': 'Sales department', 'social.open': 'Open page', 'social.call': 'Call',
+    'phone.empty': 'Please enter your phone number.', 'phone.short': 'Incomplete number: use the format +998 XX XXX XX XX.', 'phone.op': 'Invalid operator code.',
+    'book.okText': 'Thank you, {name}! A manager will call you at {phone} shortly.', 'book.general': 'General consultation',
+    'book.topic': 'Topic', 'book.when.asap': 'As soon as possible', 'book.when.day': 'Daytime', 'book.when.eve': 'Evening',
+    'call.titleVideo': 'Video call', 'call.titleAudio': 'Voice call',
+    'call.st.idle': 'Ready', 'call.st.permission': 'Requesting camera and microphone access…', 'call.st.calling': 'Connecting you to a manager…',
+    'call.st.connecting': 'Connecting…', 'call.st.connected': 'Connected', 'call.st.reconnecting': 'Reconnecting…', 'call.st.failed': 'Could not connect',
+    'call.st.declined': 'The manager is busy', 'call.st.noanswer': 'No answer', 'call.st.ended': 'Call ended', 'call.st.error': 'Error',
+    'call.wait': 'Please wait for the manager to answer… This usually takes less than a minute.',
+    'call.declinedText': "The manager is speaking with another client right now. Your request has been saved — we'll call you back shortly.",
+    'call.noanswerText': "The manager couldn't answer right now. Your request has been saved — we'll call you back during working hours.",
+    'call.failedText': "We couldn't connect over the internet. Please call us by phone or try again later.",
+    'call.endedText': 'Thank you for the conversation! If you have any questions, get in touch any time.',
+    'call.perm.granted': 'allowed', 'call.perm.denied': 'blocked', 'call.perm.prompt': 'will be requested', 'call.perm.unknown': 'will be requested',
+    'call.testOk': 'Camera and microphone are working', 'call.audioOnly': 'No camera found — continuing with audio only.',
+    'call.nameReq': 'Please enter your name so the manager knows how to address you.', 'call.copied': 'Code copied', 'call.badCode': 'The code is invalid or incomplete.',
+    'media.err.insecure': 'Camera and microphone only work over a secure (https://) connection. Please open the site via https://.',
+    'media.err.unsupported': "Your browser doesn't support video calls. Please use the latest Chrome, Safari or Edge.",
+    'media.err.denied': 'Camera or microphone access was blocked. Click the lock icon in the address bar, allow “Camera” and “Microphone”, then try again.',
+    'media.err.notfound': 'No camera or microphone was found. Check that the device is connected.',
+    'media.err.busy': 'The camera or microphone is being used by another app. Close it and try again.',
+    'media.err.constraint': "The camera doesn't support the requested quality.",
+    'media.err.generic': 'Something went wrong while accessing the device. Please try again.',
+    'toast.err': 'Something went wrong. Please try again.', 'toast.offline': "You're offline — your data has been saved and will be sent later.",
+    'aria.close': 'Close', 'aria.prev': 'Previous', 'aria.next': 'Next', 'aria.call': 'Call', 'aria.menu': 'Main menu',
+    'marquee': '0% interest|Honest instalments|From 30% down|Up to 36 months|Direct from the developer',
+
+    'k.title': 'Control panel', 'k.login': 'Sign in to the dashboard', 'k.user': 'Login', 'k.pass': 'Password', 'k.enter': 'Sign in', 'k.back': 'Back to the website',
+    'k.secure': 'Secure connection', 'k.badAuth': 'Incorrect login or password.', 'k.insecure': 'The dashboard only works over https:// or on localhost.', 'k.netErr': "Couldn't reach the server.",
+    'k.nav.overview': 'Overview', 'k.nav.leads': 'Leads', 'k.nav.reviews': 'Client reviews', 'k.nav.calls': 'Calls', 'k.nav.settings': 'Settings',
+    'k.group.main': 'Main', 'k.group.clients': 'Clients', 'k.group.system': 'System',
+    'k.logout': 'Sign out', 'k.owner': 'Director', 'k.manager': 'Manager', 'k.modeLocal': 'Local mode — data stays in this browser', 'k.modeServer': 'Synced with server',
+    'k.hello': 'Welcome', 'k.today': 'Today',
+    'k.st.leads': 'Total leads', 'k.st.newLeads': 'New leads', 'k.st.reviews': 'Reviews', 'k.st.avg': 'Average rating', 'k.st.pending': 'Reviews awaiting reply', 'k.st.calls': 'Calls',
+    'k.recentLeads': 'Latest leads', 'k.recentReviews': 'Reviews awaiting reply', 'k.viewAll': 'View all',
+    'k.empty.leads': 'No leads yet.', 'k.empty.reviews': 'No reviews yet.', 'k.empty.calls': 'No calls yet.', 'k.empty.pending': 'Every review has been answered.',
+    'k.search': 'Search…', 'k.all': 'All', 'k.export': 'Download CSV',
+    'k.col.date': 'Date', 'k.col.client': 'Client', 'k.col.phone': 'Phone', 'k.col.object': 'Property', 'k.col.payment': 'Payment', 'k.col.status': 'Status', 'k.col.actions': 'Actions',
+    'k.lead.new': 'New', 'k.lead.called': 'Contacted', 'k.lead.booked': 'Reserved', 'k.lead.sold': 'Sold', 'k.lead.lost': 'Lost',
+    'k.lead.src.book': 'Reservation', 'k.lead.src.callback': 'Call-back', 'k.lead.src.call': 'Video call',
+    'k.lead.monthly': '{m} / mo · {M} mo', 'k.delete': 'Delete', 'k.confirmDelete': 'Delete this item?',
+    'k.rev.filter.pending': 'Unanswered', 'k.rev.filter.answered': 'Answered', 'k.rev.filter.hidden': 'Hidden', 'k.rev.filter.video': 'Video',
+    'k.rev.reply': 'Reply', 'k.rev.editReply': 'Edit reply', 'k.rev.replyPh': 'Your reply to the client — it appears on the website instantly', 'k.rev.send': 'Send reply',
+    'k.rev.sent': 'Reply published on the website', 'k.rev.hide': 'Hide from website', 'k.rev.show': 'Show on website', 'k.rev.hiddenBadge': 'Hidden',
+    'k.rev.removeReply': 'Delete reply', 'k.rev.templates': 'Reply templates',
+    'k.tpl.1': "Thank you so much for your kind words! We're delighted to welcome you to the ART HOUSE family.",
+    'k.tpl.2': 'Thank you for your feedback. We have reviewed your request — a manager will contact you.',
+    'k.tpl.3': 'We apologise for the inconvenience. Please call our sales department — we will resolve this quickly.',
+    'k.calls.incoming': 'Incoming call', 'k.calls.accept': 'Accept', 'k.calls.decline': 'Decline', 'k.calls.video': 'Video call', 'k.calls.audio': 'Voice call',
+    'k.calls.st.ringing': 'Ringing', 'k.calls.st.answered': 'Answered', 'k.calls.st.missed': 'Missed', 'k.calls.st.declined': 'Declined',
+    'k.calls.callback': 'Call back', 'k.calls.duration': 'Duration', 'k.calls.manual': 'Connect with a code',
+    'k.calls.manualHint': "Paste the client's code to generate a reply code, then send it back to the client.", 'k.calls.offerPh': "Client's code", 'k.calls.makeAnswer': 'Create reply code',
+    'k.calls.ready': 'Ready to receive calls', 'k.calls.enableSound': 'Turn on ringtone', 'k.calls.permTest': 'Test camera and microphone',
+    'k.set.prices': 'Prices ($ / m²)', 'k.set.pricesHint': 'Leave empty to let clients enter the price manually in the calculator.', 'k.set.rate': 'USD rate (UZS)', 'k.set.save': 'Save', 'k.set.saved': 'Settings saved',
+    'k.set.lang': 'Interface language', 'k.set.data': 'Data', 'k.set.dataHint': 'Without a server, all data is stored in this browser. Download a CSV backup regularly.',
+    'k.set.about': 'System', 'k.set.server': 'Server (API_URL)', 'k.set.notSet': 'not connected', 'k.set.ownerOnly': 'This section is available to the director only.',
+    'k.newLead': 'New lead: {name}', 'k.newReview': 'New review: {name} ({r}★)', 'k.idle': 'You were signed out due to inactivity.'
+  };
+
+  var DICT = { uz: uz, ru: ru, en: en };
+  var CAPT = {}; // HTML'dan olingan o'zbekcha matnlar
+
+  /* ---------------- O'zbek lotin → kirill ---------------- */
+  var KEEP = /(ART HOUSE|Art House|Luxury Residence|Google Maps|Google|Yandex Maps|Yandex Go|Yandex|Telegram|Instagram|YouTube|Facebook|Chrome|Safari|Edge|WebRTC|CSV|API_URL|https?:\/\/\S+|localhost|@[\w.]+|\{\w+\}|[A-Z]{2,}\b)/g;
+  var MAP = [
+    ["O'", 'Ў'], ["o'", 'ў'], ["G'", 'Ғ'], ["g'", 'ғ'], ["Oʻ", 'Ў'], ["oʻ", 'ў'], ["Gʻ", 'Ғ'], ["gʻ", 'ғ'],
+    ['Sh', 'Ш'], ['SH', 'Ш'], ['sh', 'ш'], ['Ch', 'Ч'], ['CH', 'Ч'], ['ch', 'ч'],
+    ['Yo', 'Ё'], ['yo', 'ё'], ['Yu', 'Ю'], ['yu', 'ю'], ['Ya', 'Я'], ['ya', 'я'], ['Ye', 'Е'], ['ye', 'е']
+  ];
+  var ONE = { a: 'а', b: 'б', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'ҳ', i: 'и', j: 'ж', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о', p: 'п', q: 'қ', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', x: 'х', y: 'й', z: 'з', c: 'с', w: 'в' };
+  function cyrWord(w) {
+    var out = '', i = 0;
+    while (i < w.length) {
+      var two = w.substr(i, 2), hit = null;
+      for (var k = 0; k < MAP.length; k++) if (MAP[k][0] === two) { hit = MAP[k][1]; break; }
+      if (hit) { out += hit; i += 2; continue; }
+      var ch = w[i], lo = ch.toLowerCase();
+      if (lo === 'e' && (i === 0 || /[aeiouаеиоу'ʼ]/i.test(w[i - 1]))) { out += ch === lo ? 'э' : 'Э'; i++; continue; }
+      if ((ch === "'" || ch === 'ʼ' || ch === '’') && i > 0 && /[a-z]/i.test(w[i - 1])) { out += 'ъ'; i++; continue; }
+      if (ONE[lo]) out += ch === lo ? ONE[lo] : ONE[lo].toUpperCase(); else out += ch;
+      i++;
+    }
+    return out;
+  }
+  function toCyr(s) {
+    if (!s) return s;
+    return String(s).split(KEEP).map(function (part, idx) { return idx % 2 ? part : part.replace(/[A-Za-z'ʻʼ’]+/g, cyrWord); }).join('');
+  }
+
+  /* ---------------- API ---------------- */
+  var lang = 'uz';
+  try { lang = localStorage.getItem('ah3_lang') || ''; } catch (e) {}
+  if (!lang || !LANGS.some(function (l) { return l.code === lang; })) {
+    var nav = (navigator.language || 'uz').toLowerCase();
+    lang = nav.indexOf('ru') === 0 ? 'ru' : nav.indexOf('en') === 0 ? 'en' : 'uz';
+  }
+  var subs = [];
+
+  function fill(s, vars) { return vars ? String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }) : s; }
+  function base(key) { return uz[key] != null ? uz[key] : CAPT[key] != null ? CAPT[key] : key; }
+  function t(key, vars) {
+    var s;
+    if (lang === 'cy') s = toCyr(base(key));
+    else if (lang === 'uz') s = base(key);
+    else s = DICT[lang][key] != null ? DICT[lang][key] : base(key);
+    return fill(s, vars);
+  }
+  /* {uz, ru, en} ko'rinishidagi kontent */
+  function pick(o) {
+    if (o == null) return '';
+    if (typeof o === 'string') return lang === 'cy' ? toCyr(o) : o;
+    if (lang === 'cy') return toCyr(o.uz || '');
+    return o[lang] || o.uz || o.en || '';
+  }
+
+  function capture(root) {
+    (root || document).querySelectorAll('[data-i]').forEach(function (el) { var k = el.getAttribute('data-i'); if (CAPT[k] == null) CAPT[k] = el.textContent.trim(); });
+    (root || document).querySelectorAll('[data-i-ph]').forEach(function (el) { var k = el.getAttribute('data-i-ph'); if (CAPT[k] == null) CAPT[k] = el.getAttribute('placeholder') || ''; });
+  }
+  function apply(root) {
+    root = root || document;
+    capture(root);
+    root.querySelectorAll('[data-i]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i')); });
+    root.querySelectorAll('[data-i-ph]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-i-ph'))); });
+    root.querySelectorAll('[data-i-al]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i-al'))); });
+    var L = info();
+    document.documentElement.lang = L.html;
+  }
+  function info(code) { code = code || lang; return LANGS.filter(function (l) { return l.code === code; })[0] || LANGS[0]; }
+  function set(code) {
+    if (!LANGS.some(function (l) { return l.code === code; })) return;
+    lang = code; try { localStorage.setItem('ah3_lang', code); } catch (e) {}
+    apply(); subs.forEach(function (cb) { try { cb(code); } catch (e) { console.error(e); } });
+  }
+
+  /* Formatlash */
+  function num(n) { return Math.round(n).toLocaleString('en-US').replace(/,/g, ' '); }
+  function usd(n) { return '$' + num(n); }
+  function date(ts, opts) {
+    var L = info(), loc = lang === 'uz' || lang === 'cy' ? 'uz-Latn-UZ' : L.locale;
+    var s;
+    try { s = new Intl.DateTimeFormat(loc, Object.assign({ timeZone: 'Asia/Tashkent' }, opts || { day: 'numeric', month: 'long', year: 'numeric' })).format(ts); }
+    catch (e) { s = new Date(ts).toLocaleDateString(); }
+    return lang === 'cy' ? toCyr(s) : s;
+  }
+  function ago(ts) {
+    var d = (ts - Date.now()) / 1000, a = Math.abs(d), loc = lang === 'uz' || lang === 'cy' ? 'uz' : info().locale;
+    var u = a < 60 ? ['second', d] : a < 3600 ? ['minute', d / 60] : a < 86400 ? ['hour', d / 3600] : a < 2592000 ? ['day', d / 86400] : null;
+    if (!u) return date(ts);
+    try { var s = new Intl.RelativeTimeFormat(loc, { numeric: 'auto' }).format(Math.round(u[1]), u[0]); return lang === 'cy' ? toCyr(s) : s; }
+    catch (e) { return date(ts); }
+  }
+
+  /* Til tanlash menyusi (globus) */
+  function mountSwitcher(box) {
+    if (!box) return;
+    var btn = box.querySelector('.lang-btn'), list = box.querySelector('.lang-list');
+    function render() {
+      btn.querySelector('b').textContent = info().short;
+      btn.setAttribute('aria-label', t('lang.title'));
+      list.innerHTML = LANGS.map(function (l) { return '<li><button type="button" role="option" data-l="' + l.code + '" aria-selected="' + (l.code === lang) + '"><span>' + l.label + '</span><small>' + l.short + '</small></button></li>'; }).join('');
+    }
+    function close() { list.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); var o = list.hidden; list.hidden = !o; btn.setAttribute('aria-expanded', String(o)); });
+    list.addEventListener('click', function (e) { var b = e.target.closest('[data-l]'); if (!b) return; set(b.dataset.l); close(); });
+    document.addEventListener('click', function (e) { if (!box.contains(e.target)) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    subs.push(render); render();
+  }
+
+  window.I18N = {
+    t: t, pick: pick, apply: apply, set: set, info: info, langs: LANGS, toCyr: toCyr,
+    get lang() { return lang; },
+    on: function (cb) { subs.push(cb); },
+    num: num, usd: usd, date: date, ago: ago, mountSwitcher: mountSwitcher
+  };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — MA'LUMOTLAR QATLAMI (sayt ↔ kabinet)
+   • Server bo'lmasa: localStorage + BroadcastChannel — sayt va kabinet bitta
+     brauzerda ochiq bo'lsa, o'zgarishlar darhol (sahifani yangilamasdan) ko'rinadi.
+   • CFG.API_URL berilsa: server/server.js REST + SSE orqali barcha qurilmalar
+     o'rtasida jonli sinxronlash.
+   ===================================================================== */
+(function () {
+  'use strict';
+  var API = (window.CFG && CFG.API_URL || '').replace(/\/$/, '');
+  if (API === 'auto') API = location.protocol.indexOf('http') === 0 ? location.origin : ''; // sayt server/server.js orqali ochilganda
+  var KINDS = ['reviews', 'leads', 'calls'];
+  var PREFIX = 'ah3_';
+  var bc = 'BroadcastChannel' in window ? new BroadcastChannel('arthouse') : null;
+  var listeners = {};
+  var cache = {};
+  var token = null;
+  try { token = sessionStorage.getItem(PREFIX + 'token'); } catch (e) {}
+
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  function readLS(k, d) { try { var v = JSON.parse(localStorage.getItem(PREFIX + k)); return v == null ? d : v; } catch (e) { return d; } }
+  function writeLS(k, v) { try { localStorage.setItem(PREFIX + k, JSON.stringify(v)); } catch (e) {} }
+
+  function emit(kind, info) {
+    (listeners[kind] || []).forEach(function (cb) { try { cb(cache[kind] || [], info || {}); } catch (e) { console.error(e); } });
+    (listeners['*'] || []).forEach(function (cb) { try { cb(kind, info || {}); } catch (e) { console.error(e); } });
+  }
+  function broadcast(kind, info) { if (bc) bc.postMessage({ t: 'change', kind: kind, info: info || {} }); }
+
+  function headers(json) {
+    var h = {};
+    if (json) h['Content-Type'] = 'application/json';
+    if (token) h.Authorization = 'Bearer ' + token;
+    return h;
+  }
+  function req(method, path, body) {
+    return fetch(API + path, { method: method, headers: headers(body !== undefined), body: body !== undefined ? JSON.stringify(body) : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.status === 204 ? null : r.json(); });
+  }
+
+  /* ---------- asosiy CRUD ---------- */
+  function load(kind) {
+    if (!API) { cache[kind] = readLS(kind, []); return Promise.resolve(cache[kind]); }
+    return req('GET', '/api/' + kind).then(function (rows) { cache[kind] = rows || []; return cache[kind]; })
+      .catch(function () { cache[kind] = cache[kind] || []; return cache[kind]; });
+  }
+  function list(kind) { return cache[kind] || (cache[kind] = API ? [] : readLS(kind, [])); }
+
+  function add(kind, obj) {
+    obj = Object.assign({ id: uid(), at: Date.now() }, obj);
+    if (!API) {
+      var rows = readLS(kind, []); rows.unshift(obj); writeLS(kind, rows.slice(0, 500));
+      cache[kind] = readLS(kind, []); emit(kind, { op: 'add', id: obj.id }); broadcast(kind, { op: 'add', id: obj.id });
+      return Promise.resolve(obj);
+    }
+    return req('POST', '/api/' + kind, obj).then(function (saved) {
+      var rows = list(kind).filter(function (x) { return x.id !== saved.id; }); rows.unshift(saved); cache[kind] = rows; emit(kind, { op: 'add', id: saved.id }); return saved;
+    });
+  }
+  function update(kind, id, patch) {
+    if (!API) {
+      var rows = readLS(kind, []).map(function (x) { return x.id === id ? Object.assign({}, x, patch) : x; });
+      writeLS(kind, rows); cache[kind] = rows; emit(kind, { op: 'update', id: id }); broadcast(kind, { op: 'update', id: id });
+      return Promise.resolve();
+    }
+    return req('PATCH', '/api/' + kind + '/' + encodeURIComponent(id), patch).then(function () {
+      cache[kind] = list(kind).map(function (x) { return x.id === id ? Object.assign({}, x, patch) : x; }); emit(kind, { op: 'update', id: id });
+    });
+  }
+  function remove(kind, id) {
+    if (!API) {
+      writeLS(kind, readLS(kind, []).filter(function (x) { return x.id !== id; }));
+      cache[kind] = readLS(kind, []); emit(kind, { op: 'remove', id: id }); broadcast(kind, { op: 'remove', id: id });
+      return Promise.resolve();
+    }
+    return req('DELETE', '/api/' + kind + '/' + encodeURIComponent(id)).then(function () {
+      cache[kind] = list(kind).filter(function (x) { return x.id !== id; }); emit(kind, { op: 'remove', id: id });
+    });
+  }
+  function on(kind, cb) { (listeners[kind] = listeners[kind] || []).push(cb); }
+
+  /* ---------- sozlamalar (narxlar, kurs) ---------- */
+  function settings() { return readLS('settings', {}); }
+  function saveSettings(s) {
+    writeLS('settings', s); broadcast('settings');
+    if (API && token) req('PUT', '/api/settings', s).catch(function () {});
+    emit('settings');
+  }
+  function applySettings(s) {
+    s = s || settings();
+    if (s.usd) CFG.USD_UZS = +s.usd;
+    if (s.prices) (window.PROJECTS || []).forEach(function (p) { if (s.prices[p.id] != null && s.prices[p.id] !== '') p.priceM2 = +s.prices[p.id]; });
+  }
+
+  /* ---------- video-sharhlar uchun fayllar (IndexedDB yoki server) ---------- */
+  var dbp = null;
+  function idb() {
+    if (dbp) return dbp;
+    dbp = new Promise(function (res, rej) {
+      if (!('indexedDB' in window)) return rej(new Error('no-idb'));
+      var r = indexedDB.open('arthouse-media', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('blobs'); };
+      r.onsuccess = function () { res(r.result); };
+      r.onerror = function () { rej(r.error); };
+    });
+    return dbp;
+  }
+  function putBlob(blob) {
+    if (API) {
+      return fetch(API + '/api/media', { method: 'POST', headers: { 'Content-Type': blob.type || 'application/octet-stream' }, body: blob })
+        .then(function (r) { if (!r.ok) throw new Error('upload'); return r.json(); }).then(function (j) { return j.url; });
+    }
+    var key = 'idb:' + uid();
+    return idb().then(function (db) {
+      return new Promise(function (res, rej) {
+        var tx = db.transaction('blobs', 'readwrite'); tx.objectStore('blobs').put(blob, key);
+        tx.oncomplete = function () { res(key); }; tx.onerror = function () { rej(tx.error); };
+      });
+    });
+  }
+  /* "idb:..." kalitini yoki oddiy URLni <video> uchun manzilga aylantiradi */
+  function mediaURL(ref) {
+    if (!ref) return Promise.resolve('');
+    if (ref.indexOf('idb:') !== 0) return Promise.resolve(ref.charAt(0) === '/' ? API + ref : ref);
+    return idb().then(function (db) {
+      return new Promise(function (res) {
+        var g = db.transaction('blobs').objectStore('blobs').get(ref);
+        g.onsuccess = function () { res(g.result ? URL.createObjectURL(g.result) : ''); };
+        g.onerror = function () { res(''); };
+      });
+    }).catch(function () { return ''; });
+  }
+  function dropBlob(ref) {
+    if (!ref || ref.indexOf('idb:') !== 0) return;
+    idb().then(function (db) { db.transaction('blobs', 'readwrite').objectStore('blobs').delete(ref); }).catch(function () {});
+  }
+
+  /* ---------- signal kanali (WebRTC qo'ng'iroqlar uchun) ---------- */
+  var sigHandlers = [];
+  function signal(msg) {
+    msg = JSON.parse(JSON.stringify(msg)); // faqat oddiy ma'lumot uzatiladi
+    msg.from = msg.from || Store.peerId;
+    if (bc) bc.postMessage({ t: 'signal', msg: msg });
+    if (API) req('POST', '/api/signal', msg).catch(function () {});
+  }
+  function onSignal(cb) { sigHandlers.push(cb); }
+  function gotSignal(msg) { if (msg.from === Store.peerId) return; sigHandlers.forEach(function (cb) { try { cb(msg); } catch (e) { console.error(e); } }); }
+
+  /* ---------- tashqi o'zgarishlarni tinglash ---------- */
+  if (bc) bc.onmessage = function (e) {
+    var d = e.data || {};
+    if (d.t === 'signal') return gotSignal(d.msg);
+    if (d.t === 'change') {
+      if (d.kind === 'settings') { applySettings(); emit('settings'); return; }
+      if (!API) cache[d.kind] = readLS(d.kind, []);
+      emit(d.kind, d.info);
+    }
+  };
+  /* BroadcastChannel bo'lmagan eski brauzerlar uchun zaxira */
+  window.addEventListener('storage', function (e) {
+    if (!e.key || e.key.indexOf(PREFIX) !== 0 || bc) return;
+    var kind = e.key.slice(PREFIX.length);
+    if (kind === 'settings') { applySettings(); emit('settings'); return; }
+    if (KINDS.indexOf(kind) > -1 && !API) { cache[kind] = readLS(kind, []); emit(kind, {}); }
+  });
+  if (API && 'EventSource' in window) {
+    var es, retry = 1000;
+    (function connect() {
+      es = new EventSource(API + '/api/events');
+      es.onopen = function () { retry = 1000; };
+      es.onmessage = function (e) {
+        var d; try { d = JSON.parse(e.data); } catch (x) { return; }
+        if (d.t === 'signal') return gotSignal(d.msg);
+        if (d.t === 'change') {
+          if (d.kind === 'settings') return req('GET', '/api/settings').then(function (s) { writeLS('settings', s || {}); applySettings(s); emit('settings'); }).catch(function () {});
+          if ((d.kind === 'leads' || d.kind === 'calls') && !token) return; // bular faqat kabinet uchun
+          load(d.kind).then(function () { emit(d.kind, d.info); });
+        }
+      };
+      es.onerror = function () { es.close(); setTimeout(connect, retry = Math.min(retry * 2, 30000)); };
+    })();
+    req('GET', '/api/settings').then(function (s) { if (s) { writeLS('settings', s); applySettings(s); emit('settings'); } }).catch(function () {});
+  }
+
+  /* ---------- kabinet kirish (PBKDF2) ---------- */
+  function hashPassword(login, password) {
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits'])
+      .then(function (k) { return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode('arthouse.v3:' + login.toLowerCase()), iterations: 150000 }, k, 256); })
+      .then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); });
+  }
+  function login(user, password) {
+    user = String(user || '').trim().toLowerCase();
+    if (API) {
+      return req('POST', '/api/login', { login: user, password: password }).then(function (j) {
+        token = j.token; try { sessionStorage.setItem(PREFIX + 'token', token); sessionStorage.setItem(PREFIX + 'role', j.role); } catch (e) {}
+        return j.role;
+      });
+    }
+    if (!window.isSecureContext || !crypto.subtle) return Promise.reject(new Error('insecure'));
+    var acc = CFG.ADMINS[user];
+    return hashPassword(user, password).then(function (h) {
+      if (!acc || acc.hash !== h) throw new Error('auth');
+      token = 'local:' + user; try { sessionStorage.setItem(PREFIX + 'token', token); sessionStorage.setItem(PREFIX + 'role', acc.role); } catch (e) {}
+      return acc.role;
+    });
+  }
+  function logout() { token = null; try { sessionStorage.removeItem(PREFIX + 'token'); sessionStorage.removeItem(PREFIX + 'role'); } catch (e) {} }
+  function session() { try { return token ? { token: token, role: sessionStorage.getItem(PREFIX + 'role') } : null; } catch (e) { return null; } }
+
+  applySettings();
+
+  window.Store = {
+    peerId: uid(), uid: uid, api: !!API,
+    load: load, list: list, add: add, update: update, remove: remove, on: on,
+    settings: settings, saveSettings: saveSettings, applySettings: applySettings,
+    putBlob: putBlob, mediaURL: mediaURL, dropBlob: dropBlob,
+    signal: signal, onSignal: onSignal,
+    login: login, logout: logout, session: session, hashPassword: hashPassword
+  };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — MIKROFON, KAMERA VA WebRTC VIDEO-QO'NG'IROQ
+   • Media.request()  — navigator.mediaDevices.getUserMedia orqali ruxsat so'raydi,
+     xatolarni tushunarli kalitlarga aylantiradi (i18n orqali tarjima qilinadi).
+   • Call             — RTCPeerConnection: mijoz (sayt) ↔ menejer (kabinet).
+     Signal: Store.signal (BroadcastChannel / server SSE) yoki qo'lda "kod" almashish.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var Media = {
+    support: function () {
+      return {
+        secure: !!window.isSecureContext,
+        gum: !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+        rtc: 'RTCPeerConnection' in window,
+        recorder: 'MediaRecorder' in window
+      };
+    },
+
+    /* 'granted' | 'denied' | 'prompt' | 'unknown' */
+    permission: function (name) {
+      if (!navigator.permissions || !navigator.permissions.query) return Promise.resolve('unknown');
+      return navigator.permissions.query({ name: name }).then(function (s) { return s.state; }).catch(function () { return 'unknown'; });
+    },
+
+    /* Xatoni i18n kalitiga aylantirish */
+    errorKey: function (e) {
+      var n = e && (e.name || e.message) || '';
+      if (n === 'insecure') return 'media.err.insecure';
+      if (n === 'unsupported') return 'media.err.unsupported';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError' || n === 'SecurityError') return 'media.err.denied';
+      if (n === 'NotFoundError' || n === 'DevicesNotFoundError') return 'media.err.notfound';
+      if (n === 'NotReadableError' || n === 'TrackStartError' || n === 'AbortError') return 'media.err.busy';
+      if (n === 'OverconstrainedError') return 'media.err.constraint';
+      return 'media.err.generic';
+    },
+
+    /* Ruxsat so'rash. Kamera topilmasa — avtomatik faqat ovozga o'tadi. */
+    request: function (opts) {
+      opts = opts || {};
+      var s = Media.support();
+      if (!s.secure) return Promise.reject({ name: 'insecure' });
+      if (!s.gum) return Promise.reject({ name: 'unsupported' });
+      var audio = { echoCancellation: true, noiseSuppression: true, autoGainControl: true };
+      var video = opts.video ? { facingMode: opts.facing || 'user', width: { ideal: 1280 }, height: { ideal: 720 } } : false;
+      return navigator.mediaDevices.getUserMedia({ audio: opts.audio === false ? false : audio, video: video })
+        .catch(function (e) {
+          if (opts.video && (e.name === 'NotFoundError' || e.name === 'OverconstrainedError' || e.name === 'NotReadableError')) {
+            return navigator.mediaDevices.getUserMedia({ audio: audio, video: false }).then(function (st) { st._videoFallback = true; return st; });
+          }
+          throw e;
+        });
+    },
+
+    stop: function (stream) { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); },
+
+    /* Mikrofon darajasi (0..1) — vizual indikator uchun. stop funksiyasini qaytaradi. */
+    meter: function (stream, cb) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC || !stream.getAudioTracks().length) return function () {};
+      var ctx = new AC(), src = ctx.createMediaStreamSource(stream), an = ctx.createAnalyser(), buf = new Uint8Array(256), raf;
+      an.fftSize = 512; src.connect(an);
+      (function loop() { an.getByteTimeDomainData(buf); var m = 0; for (var i = 0; i < buf.length; i++) m = Math.max(m, Math.abs(buf[i] - 128)); cb(Math.min(1, m / 64)); raf = requestAnimationFrame(loop); })();
+      return function () { cancelAnimationFrame(raf); try { ctx.close(); } catch (e) {} };
+    },
+
+    /* Video-sharh yozish uchun eng mos format */
+    recorderMime: function () {
+      if (!window.MediaRecorder) return '';
+      var list = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm', 'video/mp4'];
+      for (var i = 0; i < list.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(list[i])) return list[i];
+      return '';
+    }
+  };
+
+  /* ------------------------------------------------------------------
+     Call — bitta qo'ng'iroq sessiyasi
+     role: 'client' (saytdagi mijoz) yoki 'manager' (kabinet)
+     ------------------------------------------------------------------ */
+  function Call(o) {
+    this.role = o.role;
+    this.room = o.room || Store.uid();
+    this.video = !!o.video;
+    this.meta = o.meta || {};
+    this.cb = o; // onState, onLocal, onRemote, onError
+    this.pc = null; this.local = null; this.state = 'idle';
+    this.pending = []; this.manual = !!o.manual;
+    var self = this;
+    this._sig = function (m) { self._onSignal(m); };
+    if (!this.manual) Store.onSignal(this._sig);
+  }
+
+  Call.prototype._set = function (s, extra) { this.state = s; if (this.cb.onState) this.cb.onState(s, extra); };
+  Call.prototype._send = function (type, data) { if (!this.manual && this.state !== 'ended') Store.signal({ room: this.room, type: type, data: data, role: this.role }); };
+
+  Call.prototype._media = function () {
+    var self = this;
+    return Media.request({ video: this.video }).then(function (st) {
+      self.local = st; if (st._videoFallback) self.video = false;
+      if (self.cb.onLocal) self.cb.onLocal(st);
+      return st;
+    });
+  };
+
+  Call.prototype._peer = function () {
+    var self = this;
+    var pc = this.pc = new RTCPeerConnection({ iceServers: CFG.ICE_SERVERS || [] });
+    this.local.getTracks().forEach(function (t) { pc.addTrack(t, self.local); });
+    if (this.role === 'client' && !this.video) pc.addTransceiver('video', { direction: 'recvonly' }); // ovozli qo'ng'iroqda ham menejer kamerasini ko'rish imkoniyati
+    pc.onicecandidate = function (e) { if (e.candidate && !self.manual) self._send('ice', e.candidate.toJSON ? e.candidate.toJSON() : e.candidate); };
+    pc.ontrack = function (e) { if (self.cb.onRemote) self.cb.onRemote(e.streams[0] || new MediaStream([e.track])); };
+    pc.onconnectionstatechange = function () {
+      var s = pc.connectionState;
+      if (s === 'connected') { self.startedAt = self.startedAt || Date.now(); self._set('connected'); }
+      else if (s === 'failed') self._set('failed');
+      else if (s === 'disconnected') self._set('reconnecting');
+    };
+    return pc;
+  };
+
+  /* Mijoz: qo'ng'iroqni boshlaydi */
+  Call.prototype.start = function () {
+    var self = this;
+    this._set('permission');
+    return this._media().then(function () {
+      self._peer();
+      self._set('calling');
+      return self.pc.createOffer();
+    }).then(function (offer) { return self.pc.setLocalDescription(offer); })
+      .then(function () {
+        if (self.manual) return self._gathered().then(function () { return Call.encode(self.pc.localDescription); });
+        self._send('offer', { sdp: plain(self.pc.localDescription), meta: self.meta, video: self.video });
+        self._ringTimer = setTimeout(function () { if (self.state === 'calling') { self._send('cancel'); self._set('noanswer'); self._cleanup(); } }, 60000);
+      })
+      .catch(function (e) { self._fail(e); throw e; });
+  };
+
+  /* Menejer: kelgan qo'ng'iroqni qabul qiladi */
+  Call.prototype.accept = function (offerSdp) {
+    var self = this;
+    this._set('permission');
+    return this._media().then(function () {
+      self._peer();
+      return self.pc.setRemoteDescription(offerSdp);
+    }).then(function () { return self._flush(); })
+      .then(function () { return self.pc.createAnswer(); })
+      .then(function (ans) { return self.pc.setLocalDescription(ans); })
+      .then(function () {
+        self._set('connecting');
+        if (self.manual) return self._gathered().then(function () { return Call.encode(self.pc.localDescription); });
+        self._send('answer', { sdp: plain(self.pc.localDescription) });
+      })
+      .catch(function (e) { self._fail(e); throw e; });
+  };
+
+  /* Qo'lda (kod orqali) ulanishda mijoz javob kodini kiritadi */
+  Call.prototype.finishManual = function (code) {
+    var self = this;
+    return this.pc.setRemoteDescription(Call.decode(code)).then(function () { self._set('connecting'); });
+  };
+
+  Call.prototype._gathered = function () {
+    var pc = this.pc;
+    return new Promise(function (res) {
+      if (pc.iceGatheringState === 'complete') return res();
+      var t = setTimeout(res, 4000);
+      pc.addEventListener('icegatheringstatechange', function () { if (pc.iceGatheringState === 'complete') { clearTimeout(t); res(); } });
+    });
+  };
+
+  Call.prototype._flush = function () {
+    var pc = this.pc, q = this.pending; this.pending = [];
+    return Promise.all(q.map(function (c) { return pc.addIceCandidate(c).catch(function () {}); }));
+  };
+
+  Call.prototype._onSignal = function (m) {
+    if (!m || m.room !== this.room || m.role === this.role) return;
+    var self = this;
+    if (m.type === 'answer' && this.pc && this.role === 'client') {
+      clearTimeout(this._ringTimer);
+      this._set('connecting');
+      this.pc.setRemoteDescription(m.data.sdp).then(function () { return self._flush(); }).catch(function (e) { self._fail(e); });
+    } else if (m.type === 'ice') {
+      if (this.pc && this.pc.remoteDescription) this.pc.addIceCandidate(m.data).catch(function () {});
+      else this.pending.push(m.data);
+    } else if (m.type === 'decline') { clearTimeout(this._ringTimer); this._set('declined'); this._cleanup(); }
+    else if (m.type === 'bye' || m.type === 'cancel') { this._set('ended', { remote: true }); this._cleanup(); }
+  };
+
+  Call.prototype.toggleMic = function () { var t = this.local && this.local.getAudioTracks()[0]; if (t) t.enabled = !t.enabled; return t ? t.enabled : false; };
+  Call.prototype.toggleCam = function () { var t = this.local && this.local.getVideoTracks()[0]; if (t) t.enabled = !t.enabled; return t ? t.enabled : false; };
+  Call.prototype.flip = function () {
+    var self = this, cur = this.local && this.local.getVideoTracks()[0]; if (!cur) return Promise.resolve();
+    var facing = (cur.getSettings().facingMode === 'environment') ? 'user' : 'environment';
+    return navigator.mediaDevices.getUserMedia({ video: { facingMode: facing } }).then(function (st) {
+      var nt = st.getVideoTracks()[0], sender = self.pc && self.pc.getSenders().filter(function (s) { return s.track && s.track.kind === 'video'; })[0];
+      if (sender) sender.replaceTrack(nt);
+      self.local.removeTrack(cur); cur.stop(); self.local.addTrack(nt);
+      if (self.cb.onLocal) self.cb.onLocal(self.local);
+    });
+  };
+
+  Call.prototype.hangup = function () {
+    clearTimeout(this._ringTimer);
+    this._send(this.state === 'calling' ? 'cancel' : 'bye');
+    this._set('ended'); this._cleanup();
+  };
+  Call.prototype._fail = function (e) { if (this.cb.onError) this.cb.onError(Media.errorKey(e), e); this._set('error'); this._cleanup(); };
+  Call.prototype._cleanup = function () {
+    clearTimeout(this._ringTimer);
+    Media.stop(this.local); this.local = null;
+    if (this.pc) { try { this.pc.close(); } catch (e) {} this.pc = null; }
+    this.state = 'ended';
+  };
+
+  /* RTCSessionDescription → oddiy obyekt (BroadcastChannel/JSON orqali uzatish uchun) */
+  function plain(d) { return { type: d.type, sdp: d.sdp }; }
+
+  /* SDP ↔ nusxalash mumkin bo'lgan kod */
+  Call.encode = function (desc) { return btoa(unescape(encodeURIComponent(JSON.stringify({ type: desc.type, sdp: desc.sdp })))); };
+  Call.decode = function (code) { return JSON.parse(decodeURIComponent(escape(atob(String(code).trim())))); };
+
+  window.Media = Media;
+  window.Call = Call;
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — KABINET (DASHBOARD) MANTIQI
+   ===================================================================== */
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var t = I18N.t, pick = I18N.pick;
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var icon = function (id) { return '<svg class="ic"><use href="#' + id + '"/></svg>'; };
+  var P = window.PROJECTS, pName = function (id) { var p = P.filter(function (x) { return x.id === id; })[0]; return p ? pick(p.name) : (id || '—'); };
+  var ROLE = null, USER = '', VIEW = 'overview', state = { q: '', lst: 'all', rf: 'pending', openReply: null };
+
+  function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('show'); }, 3600); }
+  function starsHTML(n) { var h = '<span class="stars">'; for (var i = 1; i <= 5; i++) h += '<svg class="ic ' + (i <= Math.round(n) ? 'on' : 'off') + '"><use href="#i-star"/></svg>'; return h + '</span>'; }
+  function fdt(ts) { return I18N.date(ts, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+  var owner = function () { return ROLE === 'owner'; };
+
+  I18N.apply();
+  I18N.mountSwitcher($('#langAuth'));
+  I18N.mountSwitcher($('#langCab'));
+
+  /* ---------------- lyuks splash ---------------- */
+  (function () {
+    var logo = $('.lux-logo');
+    for (var i = 0; i < 18; i++) { var s = document.createElement('i'); s.className = 'spark'; s.style.cssText = 'left:' + (8 + Math.random() * 84) + '%;top:' + (15 + Math.random() * 70) + '%;animation-delay:' + (0.8 + Math.random() * 2.2) + 's'; logo.appendChild(s); }
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, sp = $('#splash');
+    function done() { if (sp.classList.contains('done')) return; sp.classList.add('done'); setTimeout(function () { sp.remove(); }, 900); boot(); }
+    sp.addEventListener('click', done);
+    setTimeout(done, reduce ? 0 : 3200);
+  })();
+
+  function boot() {
+    var s = Store.session();
+    if (s && (Store.api || (s.token.indexOf('local:') === 0 && CFG.ADMINS[s.token.slice(6)]))) { ROLE = s.role; USER = Store.api ? '' : s.token.slice(6); enter(); }
+    else showAuth();
+  }
+  function showAuth() { $('#shell').hidden = true; $('#auth').hidden = false; document.body.classList.add('lock'); setTimeout(function () { $('#lgUser').focus(); }, 100); }
+
+  /* ---------------- kirish ---------------- */
+  $('#loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var u = $('#lgUser').value, p = $('#lgPass').value, err = $('#lgErr'), card = $('.auth-card'), btn = $('button[type=submit]', this);
+    err.hidden = true; btn.disabled = true;
+    Store.login(u, p).then(function (role) { ROLE = role; USER = u.trim().toLowerCase(); $('#lgPass').value = ''; enter(); })
+      .catch(function (x) {
+        err.textContent = t(x && x.message === 'insecure' ? 'k.insecure' : x && /HTTP|fetch|Failed/i.test(x.message) && !/401|403/.test(x.message) ? 'k.netErr' : 'k.badAuth');
+        err.hidden = false; card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      }).then(function () { btn.disabled = false; });
+  });
+
+  function enter() {
+    $('#auth').hidden = true; $('#shell').hidden = false; document.body.classList.remove('lock');
+    Promise.all(['leads', 'reviews', 'calls'].map(Store.load)).then(function () { renderShell(); go(location.hash.slice(1) || 'overview'); });
+    idle(); ringArm();
+  }
+  function logout(msg) { Store.logout(); ROLE = null; location.hash = ''; showAuth(); if (msg) toast(msg); }
+  $('#logoutBtn').addEventListener('click', function () { logout(); });
+  var it; function idle() { clearTimeout(it); it = setTimeout(function () { if (ROLE) logout(t('k.idle')); }, 30 * 60000); }
+  ['click', 'keydown', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, function () { if (ROLE) idle(); }, { passive: true }); });
+
+  /* ---------------- menyu ---------------- */
+  var NAV = [
+    ['k.group.main', [['overview', 'i-grid', 'k.nav.overview']]],
+    ['k.group.clients', [['leads', 'i-inbox', 'k.nav.leads'], ['reviews', 'i-star', 'k.nav.reviews'], ['calls', 'i-phone', 'k.nav.calls']]],
+    ['k.group.system', [['settings', 'i-cog', 'k.nav.settings']]]
+  ];
+  function badge(v) {
+    if (v === 'leads') return Store.list('leads').filter(function (l) { return l.st === 'new'; }).length;
+    if (v === 'reviews') return Store.list('reviews').filter(function (r) { return !r.hidden && !(r.reply && r.reply.text); }).length;
+    if (v === 'calls') return Store.list('calls').filter(function (c) { return c.st === 'missed' || c.st === 'ringing'; }).length;
+    return 0;
+  }
+  function renderShell() {
+    $('#sideNav').innerHTML = NAV.map(function (g) {
+      return '<div class="grp">' + esc(t(g[0])) + '</div>' + g[1].map(function (x) { var n = badge(x[0]); return '<button type="button" data-v="' + x[0] + '" class="' + (VIEW === x[0] ? 'on' : '') + '">' + icon(x[1]) + '<span>' + esc(t(x[2])) + '</span>' + (n ? '<em>' + (n > 99 ? '99+' : n) + '</em>' : '') + '</button>'; }).join('');
+    }).join('');
+    var nm = owner() ? t('k.owner') : (USER || t('k.manager'));
+    $('#me').innerHTML = '<i>' + esc(nm.charAt(0).toUpperCase()) + '</i><div style="min-width:0"><b>' + esc(nm) + '</b><small>' + esc(owner() ? t('k.owner') : t('k.manager')) + (USER ? ' · ' + esc(USER) : '') + '</small></div>';
+    var m = $('#mode'); m.textContent = t(Store.api ? 'k.modeServer' : 'k.modeLocal'); m.classList.toggle('srv', Store.api);
+    $('#liveDot').title = m.textContent;
+  }
+  $('#sideNav').addEventListener('click', function (e) { var b = e.target.closest('[data-v]'); if (b) { location.hash = b.dataset.v; closeSide(); } });
+  window.addEventListener('hashchange', function () { if (ROLE) go(location.hash.slice(1)); });
+  $('#menuBtn').addEventListener('click', function () { $('#side').classList.add('open'); });
+  function closeSide() { $('#side').classList.remove('open'); }
+  $('#sideOv').addEventListener('click', closeSide);
+
+  function go(v) {
+    if (['overview', 'leads', 'reviews', 'calls', 'settings'].indexOf(v) < 0) v = 'overview';
+    VIEW = v; renderShell();
+    $('#viewTitle').textContent = t('k.nav.' + v);
+    document.title = t('k.nav.' + v) + ' — ART HOUSE';
+    ({ overview: vOverview, leads: vLeads, reviews: vReviews, calls: vCalls, settings: vSettings })[v]();
+  }
+  function rerender() { if (ROLE) go(VIEW); }
+
+  /* ================= UMUMIY KO'RINISH ================= */
+  function vOverview() {
+    var L = Store.list('leads'), R = Store.list('reviews'), C = Store.list('calls');
+    var vis = R.filter(function (r) { return !r.hidden; }), avg = vis.length ? vis.reduce(function (s, r) { return s + +r.rating; }, 0) / vis.length : 0;
+    var pend = R.filter(function (r) { return !r.hidden && !(r.reply && r.reply.text); });
+    var days = [], now = new Date(); now.setHours(0, 0, 0, 0);
+    for (var i = 13; i >= 0; i--) { var d0 = now.getTime() - i * 864e5; days.push([d0, L.filter(function (l) { return l.at >= d0 && l.at < d0 + 864e5; }).length]); }
+    var mx = Math.max.apply(null, days.map(function (d) { return d[1]; }).concat([1]));
+    var h = '<div class="kpis">' +
+      kpi('i-inbox', 'k.st.leads', L.length, t('k.today') + ': ' + days[13][1]) +
+      kpi('i-bell', 'k.st.newLeads', L.filter(function (l) { return l.st === 'new'; }).length) +
+      kpi('i-star', 'k.st.avg', vis.length ? avg.toFixed(1) : '—', t('rev.count', { n: vis.length })) +
+      kpi('i-reply', 'k.st.pending', pend.length) +
+      kpi('i-phone', 'k.st.calls', C.length) + '</div>';
+    h += '<div class="card"><div class="card-h"><h3>' + esc(t('k.st.leads')) + ' · 14</h3></div><div class="chart">' + days.map(function (d) { return '<div title="' + d[1] + '"><i style="height:' + (d[1] / mx * 100) + '%"></i><small>' + esc(I18N.date(d[0], { day: 'numeric', month: 'numeric' })) + '</small></div>'; }).join('') + '</div></div>';
+    h += '<div class="cols"><div class="card"><div class="card-h"><h3>' + esc(t('k.recentLeads')) + '</h3><a class="link" href="#leads">' + esc(t('k.viewAll')) + '</a></div>' +
+      (L.length ? '<div class="tbl-wrap"><table style="min-width:0"><tbody>' + L.slice(0, 6).map(function (l) { return '<tr' + (l.st === 'new' ? ' class="new"' : '') + '><td><b>' + esc(l.name) + '</b><small>' + esc(fdt(l.at)) + '</small></td><td><a href="tel:' + esc(l.phone.replace(/\s/g, '')) + '">' + esc(l.phone) + '</a><small>' + esc(pName(l.project)) + '</small></td><td><span class="pill ' + (l.st === 'new' ? 'gold' : '') + '">' + esc(t('k.lead.' + l.st)) + '</span></td></tr>'; }).join('') + '</tbody></table></div>' : '<div class="empty">' + esc(t('k.empty.leads')) + '</div>') +
+      '</div><div class="card"><div class="card-h"><h3>' + esc(t('k.recentReviews')) + '</h3><a class="link" href="#reviews">' + esc(t('k.viewAll')) + '</a></div>' +
+      (pend.length ? '<div class="k-revs">' + pend.slice(0, 4).map(function (r) { return '<div><div class="k-rev-h"><b>' + esc(r.name) + '</b>' + starsHTML(+r.rating) + '</div><p class="muted" style="margin:4px 0 0;font-size:14px">' + esc(r.text.slice(0, 160)) + '</p></div>'; }).join('') + '</div>' : '<div class="empty">' + esc(t(R.length ? 'k.empty.pending' : 'k.empty.reviews')) + '</div>') + '</div></div>';
+    $('#view').innerHTML = h;
+  }
+  function kpi(ic, key, v, sub) { return '<div class="card kpi"><span>' + icon(ic) + esc(t(key)) + '</span><b>' + esc(v) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</div>'; }
+
+  /* ================= ARIZALAR ================= */
+  var STS = ['new', 'called', 'booked', 'sold', 'lost'];
+  function vLeads() {
+    var L = Store.list('leads'), q = state.q.toLowerCase();
+    var rows = L.filter(function (l) { return (state.lst === 'all' || l.st === state.lst) && (!q || (l.name + ' ' + l.phone + ' ' + pName(l.project) + ' ' + (l.plan || '')).toLowerCase().indexOf(q) > -1); });
+    var h = '<div class="toolbar"><input type="search" id="lq" placeholder="' + esc(t('k.search')) + '" value="' + esc(state.q) + '"><div class="seg" id="lst">' +
+      ['all'].concat(STS).map(function (s) { var n = s === 'all' ? L.length : L.filter(function (l) { return l.st === s; }).length; return '<button type="button" data-s="' + s + '" aria-pressed="' + (state.lst === s) + '">' + esc(s === 'all' ? t('k.all') : t('k.lead.' + s)) + '<em>' + n + '</em></button>'; }).join('') +
+      '</div><button class="btn btn-ghost sm" type="button" id="csv">' + icon('i-down') + esc(t('k.export')) + '</button></div>';
+    if (!rows.length) h += '<div class="empty">' + esc(t('k.empty.leads')) + '</div>';
+    else h += '<div class="tbl-wrap"><table><thead><tr><th>' + [t('k.col.date'), t('k.col.client'), t('k.col.object'), t('k.col.payment'), t('k.col.status'), ''].map(esc).join('</th><th>') + '</th></tr></thead><tbody>' + rows.map(function (l) {
+      var pay = l.monthly ? '<b>' + esc(I18N.usd(l.price)) + '</b><small>' + esc(t('k.lead.monthly', { m: I18N.usd(l.monthly), M: l.months })) + ' · ' + l.pct + '%</small>' : '<small>' + esc(l.topic || '—') + '</small>';
+      return '<tr' + (l.st === 'new' ? ' class="new"' : '') + '><td><b>' + esc(fdt(l.at)) + '</b><small>' + esc(t('k.lead.src.' + (l.src || 'book'))) + (l.when ? ' · ' + esc(t('book.when.' + l.when)) : '') + '</small></td>' +
+        '<td><b>' + esc(l.name) + '</b><a href="tel:' + esc(String(l.phone).replace(/\s/g, '')) + '">' + esc(l.phone) + '</a></td>' +
+        '<td><b>' + esc(pName(l.project)) + '</b><small>' + esc(l.plan || (l.area ? l.area + ' m²' : '')) + '</small></td><td>' + pay + '</td>' +
+        '<td><select data-st="' + esc(l.id) + '">' + STS.map(function (s) { return '<option value="' + s + '"' + (s === l.st ? ' selected' : '') + '>' + esc(t('k.lead.' + s)) + '</option>'; }).join('') + '</select></td>' +
+        '<td>' + (owner() ? '<button class="mini-btn" type="button" data-del="' + esc(l.id) + '" aria-label="' + esc(t('k.delete')) + '">' + icon('i-trash') + '</button>' : '') + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+    $('#view').innerHTML = h;
+    var lq = $('#lq'); lq.addEventListener('input', function () { state.q = lq.value; var pos = lq.selectionStart; vLeads(); var n = $('#lq'); n.focus(); n.setSelectionRange(pos, pos); });
+  }
+  $('#view').addEventListener('click', function (e) {
+    var b;
+    if ((b = e.target.closest('#lst [data-s]'))) { state.lst = b.dataset.s; vLeads(); }
+    else if ((b = e.target.closest('[data-del]')) && confirm(t('k.confirmDelete'))) { Store.remove('leads', b.dataset.del).then(rerender); }
+    else if (e.target.closest('#csv')) csv();
+  });
+  $('#view').addEventListener('change', function (e) { var s = e.target.closest('[data-st]'); if (s) Store.update('leads', s.dataset.st, { st: s.value }).then(function () { renderShell(); }); });
+  function csv() {
+    var cols = ['at', 'src', 'name', 'phone', 'project', 'plan', 'area', 'price', 'pct', 'down', 'months', 'monthly', 'topic', 'when', 'st'];
+    var lines = [cols.join(';')].concat(Store.list('leads').map(function (l) { return cols.map(function (c) { var v = c === 'at' ? new Date(l.at).toISOString() : c === 'project' ? pName(l.project) : (l[c] == null ? '' : l[c]); return '"' + String(v).replace(/"/g, '""') + '"'; }).join(';'); }));
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'arthouse-arizalar-' + new Date().toISOString().slice(0, 10) + '.csv'; a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  /* ================= MIJOZLAR IZOHLARI ================= */
+  function ytId(u) { var m = String(u).match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/); return m ? m[1] : ''; }
+  function vReviews() {
+    var R = Store.list('reviews'), F = {
+      pending: function (r) { return !r.hidden && !(r.reply && r.reply.text); }, answered: function (r) { return r.reply && r.reply.text; },
+      video: function (r) { return r.video || r.link; }, hidden: function (r) { return r.hidden; }, all: function () { return true; }
+    };
+    var rows = R.filter(F[state.rf]);
+    var h = '<div class="toolbar"><div class="seg" id="rf">' + ['pending', 'answered', 'video', 'hidden', 'all'].map(function (k) {
+      return '<button type="button" data-f="' + k + '" aria-pressed="' + (state.rf === k) + '">' + esc(k === 'all' ? t('k.all') : t('k.rev.filter.' + k)) + '<em>' + R.filter(F[k]).length + '</em></button>';
+    }).join('') + '</div></div>';
+    if (!rows.length) h += '<div class="empty">' + esc(t(state.rf === 'pending' && R.length ? 'k.empty.pending' : 'k.empty.reviews')) + '</div>';
+    else h += '<div class="k-revs">' + rows.map(function (r) {
+      var y = r.link && ytId(r.link), vid = r.video ? '<video controls playsinline preload="metadata" data-ref="' + esc(r.video) + '"></video>' : y ? '<iframe src="https://www.youtube-nocookie.com/embed/' + y + '" title="YouTube" loading="lazy" allowfullscreen></iframe>' : r.link ? '<p><a class="link" style="color:var(--gold)" href="' + esc(r.link) + '" target="_blank" rel="noopener nofollow">' + icon('i-play') + ' ' + esc(r.link) + '</a></p>' : '';
+      var has = r.reply && r.reply.text, open = state.openReply === r.id;
+      return '<article class="card k-rev' + (r.hidden ? ' hidden-rev' : '') + '"><div class="k-rev-h"><span class="av">' + esc(r.name.charAt(0).toUpperCase()) + '</span><div><b>' + esc(r.name) + (r.hidden ? ' <span class="pill bad">' + esc(t('k.rev.hiddenBadge')) + '</span>' : '') + '</b><small>' + esc(fdt(r.at)) + ' · ' + esc(pName(r.project)) + (r.lang ? ' · ' + esc(String(r.lang).toUpperCase()) : '') + '</small></div>' + starsHTML(+r.rating) + '</div>' +
+        '<p>' + esc(r.text) + '</p>' + vid +
+        (has && !open ? '<div class="k-reply"><b>' + esc(t('rev.reply')) + ' · ' + esc(fdt(r.reply.at)) + (r.reply.by ? ' · ' + esc(r.reply.by) : '') + '</b><p>' + esc(r.reply.text) + '</p></div>' : '') +
+        (open ? '<div class="reply-box"><div class="tpls"><small class="muted" style="width:100%">' + esc(t('k.rev.templates')) + ':</small>' + [1, 2, 3].map(function (i) { return '<button class="chip" type="button" data-tpl="' + i + '">' + esc(t('k.tpl.' + i)) + '</button>'; }).join('') + '</div>' +
+          '<textarea id="rp-' + esc(r.id) + '" rows="3" maxlength="1200" placeholder="' + esc(t('k.rev.replyPh')) + '">' + esc(has ? r.reply.text : '') + '</textarea>' +
+          '<div class="k-rev-act"><button class="btn btn-gold sm" type="button" data-send="' + esc(r.id) + '">' + icon('i-check') + esc(t('k.rev.send')) + '</button><button class="btn btn-ghost sm" type="button" data-cancel>' + esc(t('common.close')) + '</button></div></div>'
+          : '<div class="k-rev-act"><button class="btn btn-gold sm" type="button" data-reply="' + esc(r.id) + '">' + icon('i-reply') + esc(t(has ? 'k.rev.editReply' : 'k.rev.reply')) + '</button>' +
+          '<button class="btn btn-ghost sm" type="button" data-vis="' + esc(r.id) + '">' + icon(r.hidden ? 'i-eye' : 'i-eye-off') + esc(t(r.hidden ? 'k.rev.show' : 'k.rev.hide')) + '</button>' +
+          (has ? '<button class="btn btn-ghost sm" type="button" data-unreply="' + esc(r.id) + '">' + esc(t('k.rev.removeReply')) + '</button>' : '') +
+          (owner() ? '<button class="btn btn-ghost sm" type="button" data-rdel="' + esc(r.id) + '">' + icon('i-trash') + esc(t('k.delete')) + '</button>' : '') + '</div>') +
+        '</article>';
+    }).join('') + '</div>';
+    $('#view').innerHTML = h;
+    $$('#view video[data-ref]').forEach(function (v) { Store.mediaURL(v.dataset.ref).then(function (u) { if (u) v.src = u; else v.remove(); }); });
+    if (state.openReply) { var ta = $('#rp-' + CSS.escape(state.openReply)); if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } }
+  }
+  $('#view').addEventListener('click', function (e) {
+    if (VIEW !== 'reviews') return;
+    var b;
+    if ((b = e.target.closest('#rf [data-f]'))) { state.rf = b.dataset.f; state.openReply = null; vReviews(); }
+    else if ((b = e.target.closest('[data-reply]'))) { state.openReply = b.dataset.reply; vReviews(); }
+    else if (e.target.closest('[data-cancel]')) { state.openReply = null; vReviews(); }
+    else if ((b = e.target.closest('[data-tpl]'))) { var ta = $('#rp-' + CSS.escape(state.openReply)); if (ta) { ta.value = t('k.tpl.' + b.dataset.tpl); ta.focus(); } }
+    else if ((b = e.target.closest('[data-send]'))) {
+      var id = b.dataset.send, txt = $('#rp-' + CSS.escape(id)).value.trim(); if (!txt) return;
+      b.disabled = true;
+      Store.update('reviews', id, { reply: { text: txt, at: Date.now(), by: owner() ? t('k.owner') : (USER || t('k.manager')) } })
+        .then(function () { state.openReply = null; toast(t('k.rev.sent')); rerender(); }).catch(function () { b.disabled = false; toast(t('toast.err')); });
+    }
+    else if ((b = e.target.closest('[data-vis]'))) { var r = Store.list('reviews').filter(function (x) { return x.id === b.dataset.vis; })[0]; if (r) Store.update('reviews', r.id, { hidden: !r.hidden }).then(rerender); }
+    else if ((b = e.target.closest('[data-unreply]'))) { Store.update('reviews', b.dataset.unreply, { reply: null }).then(rerender); }
+    else if ((b = e.target.closest('[data-rdel]')) && confirm(t('k.confirmDelete'))) {
+      var rv = Store.list('reviews').filter(function (x) { return x.id === b.dataset.rdel; })[0];
+      Store.remove('reviews', b.dataset.rdel).then(function () { if (rv) Store.dropBlob(rv.video); rerender(); });
+    }
+  });
+
+  /* ================= QO'NG'IROQLAR ================= */
+  var incoming = {}, ringRoom = null, active = null, timerInt = null, ringCtx = null, ringOsc = null;
+  function vCalls() {
+    var C = Store.list('calls'), sup = Media.support();
+    var h = '<div class="cols"><div class="card"><div class="card-h"><h3>' + esc(t('k.calls.ready')) + '</h3><span class="pill ' + (sup.secure && sup.rtc ? 'ok' : 'bad') + '">' + (sup.secure && sup.rtc ? 'WebRTC ✓' : esc(t('media.err.unsupported'))) + '</span></div>' +
+      '<p class="muted" style="margin:0 0 14px">' + esc(Store.api ? t('k.modeServer') : t('k.modeLocal')) + '</p>' +
+      '<div class="k-rev-act"><button class="btn btn-ghost sm" type="button" id="permTest">' + icon('i-video') + esc(t('k.calls.permTest')) + '</button><button class="btn btn-ghost sm" type="button" id="sndOn">' + icon('i-bell') + esc(t('k.calls.enableSound')) + '</button></div>' +
+      '<video id="permPrev" playsinline muted autoplay style="display:none;margin-top:14px;width:100%;max-width:320px;border-radius:12px;transform:scaleX(-1)"></video><p class="hint" id="permMsg"></p></div>' +
+      '<div class="card"><div class="card-h"><h3>' + esc(t('k.calls.manual')) + '</h3></div><p class="hint" style="margin:0 0 10px">' + esc(t('k.calls.manualHint')) + '</p>' +
+      '<textarea id="offerCode" rows="3" placeholder="' + esc(t('k.calls.offerPh')) + '" style="font:12px/1.4 ui-monospace,Menlo,monospace"></textarea><div class="k-rev-act"><button class="btn btn-gold sm" type="button" id="mkAnswer">' + esc(t('k.calls.makeAnswer')) + '</button></div></div></div>';
+    if (!C.length) h += '<div class="empty">' + esc(t('k.empty.calls')) + '</div>';
+    else h += '<div class="tbl-wrap"><table><thead><tr><th>' + [t('k.col.date'), t('k.col.client'), t('k.col.object'), t('k.col.status'), t('k.calls.duration'), ''].map(esc).join('</th><th>') + '</th></tr></thead><tbody>' + C.map(function (c) {
+      var cls = c.st === 'answered' ? 'ok' : c.st === 'missed' || c.st === 'declined' ? 'bad' : 'gold';
+      var dur = c.dur ? Math.floor(c.dur / 60) + ':' + String(c.dur % 60).padStart(2, '0') : '—';
+      return '<tr><td><b>' + esc(fdt(c.at)) + '</b></td><td><b>' + esc(c.name || '—') + '</b>' + (c.phone ? '<a href="tel:' + esc(c.phone.replace(/\s/g, '')) + '">' + esc(c.phone) + '</a>' : '') + '</td>' +
+        '<td>' + esc(t(c.video ? 'k.calls.video' : 'k.calls.audio')) + '</td><td><span class="pill ' + cls + '">' + esc(t('k.calls.st.' + (c.st || 'missed'))) + '</span></td><td>' + dur + '</td>' +
+        '<td>' + (c.phone && c.st !== 'answered' ? '<a class="btn btn-ghost sm" href="tel:' + esc(c.phone.replace(/\s/g, '')) + '">' + icon('i-phone') + esc(t('k.calls.callback')) + '</a> ' : '') + (owner() ? '<button class="mini-btn" type="button" data-cdel="' + esc(c.id) + '">' + icon('i-trash') + '</button>' : '') + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+    $('#view').innerHTML = h;
+  }
+  $('#view').addEventListener('click', function (e) {
+    if (VIEW !== 'calls') return;
+    var b;
+    if (e.target.closest('#permTest')) {
+      Media.request({ video: true }).then(function (st) { var v = $('#permPrev'); v.style.display = 'block'; v.srcObject = st; $('#permMsg').textContent = t('call.testOk'); setTimeout(function () { Media.stop(st); v.style.display = 'none'; }, 6000); })
+        .catch(function (x) { $('#permMsg').textContent = t(Media.errorKey(x)); });
+    } else if (e.target.closest('#sndOn')) { ringArm(true); beep(); }
+    else if (e.target.closest('#mkAnswer')) {
+      var code = $('#offerCode').value.trim(); if (!code) return;
+      var offer; try { offer = Call.decode(code); } catch (x) { return toast(t('call.badCode')); }
+      startManager({ room: Store.uid(), manual: true, video: true, name: '—' }, offer);
+    } else if ((b = e.target.closest('[data-cdel]'))) { Store.remove('calls', b.dataset.cdel).then(rerender); }
+  });
+
+  /* Jiringlash ovozi (WebAudio — fayl shart emas) */
+  function ringArm(force) { if (ringCtx && !force) return; var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; try { ringCtx = ringCtx || new AC(); if (ringCtx.state === 'suspended') ringCtx.resume(); } catch (e) {} }
+  function beep() {
+    if (!ringCtx) return; var o = ringCtx.createOscillator(), g = ringCtx.createGain(); o.type = 'sine'; o.frequency.value = 880; o.connect(g); g.connect(ringCtx.destination);
+    var n = ringCtx.currentTime; g.gain.setValueAtTime(0, n); g.gain.linearRampToValueAtTime(.18, n + .03); g.gain.setValueAtTime(.18, n + .35); g.gain.linearRampToValueAtTime(0, n + .4);
+    g.gain.linearRampToValueAtTime(.18, n + .55); g.gain.setValueAtTime(.18, n + .9); g.gain.linearRampToValueAtTime(0, n + .95); o.start(n); o.stop(n + 1);
+  }
+  function ringStart() { ringStop(); beep(); ringOsc = setInterval(beep, 2400); if (navigator.vibrate) navigator.vibrate([300, 200, 300]); }
+  function ringStop() { clearInterval(ringOsc); ringOsc = null; }
+
+  Store.onSignal(function (m) {
+    if (!ROLE || !m || !m.room) return;
+    if (m.role === 'client' && m.type === 'offer') {
+      incoming[m.room] = { offer: m.data, ice: [] };
+      if (!active) showRing(m.room);
+    } else if (m.role === 'client' && m.type === 'ice') {
+      if (incoming[m.room]) incoming[m.room].ice.push(m.data);
+    } else if (m.role === 'client' && m.type === 'cancel') {
+      delete incoming[m.room]; if (ringRoom === m.room) hideRing();
+      Store.update('calls', m.room, { st: 'missed' }).catch(function () {});
+    } else if (m.role === 'manager' && (m.type === 'answer' || m.type === 'decline')) {
+      delete incoming[m.room]; if (ringRoom === m.room) hideRing(); // boshqa oynada qabul qilindi
+    }
+  });
+  function showRing(room) {
+    var inc = incoming[room]; if (!inc) return; ringRoom = room;
+    var meta = inc.offer.meta || {};
+    $('#ringName').textContent = meta.name || '—';
+    $('#ringMeta').textContent = t(inc.offer.video ? 'k.calls.video' : 'k.calls.audio') + (meta.phone ? ' · ' + meta.phone : '');
+    $('#ring').hidden = false; ringStart();
+    if (document.hidden && 'Notification' in window && Notification.permission === 'granted') { try { new Notification(t('k.calls.incoming'), { body: meta.name || '' }); } catch (e) {} }
+  }
+  function hideRing() { $('#ring').hidden = true; ringStop(); ringRoom = null; var next = Object.keys(incoming)[0]; if (next && !active) showRing(next); }
+  $('#ringNo').addEventListener('click', function () {
+    var room = ringRoom; if (!room) return;
+    Store.signal({ room: room, type: 'decline', role: 'manager' });
+    Store.update('calls', room, { st: 'declined' }).catch(function () {});
+    delete incoming[room]; hideRing();
+  });
+  $('#ringYes').addEventListener('click', function () {
+    var room = ringRoom, inc = incoming[room]; if (!inc) return;
+    delete incoming[room]; hideRing();
+    var meta = inc.offer.meta || {};
+    startManager({ room: room, video: !!inc.offer.video, name: meta.name, phone: meta.phone, ice: inc.ice }, inc.offer.sdp);
+  });
+
+  function startManager(o, offerSdp) {
+    var K = $('#kCall'), init = (o.name || '?').trim().charAt(0).toUpperCase();
+    $('#kCallName').textContent = o.name || '—'; $('#kCallAv').textContent = init; $('#kWaitAv').textContent = init;
+    $('#kWait').hidden = false; $('#kWaitText').textContent = t('call.st.connecting'); $('#kCallTimer').textContent = '00:00';
+    $('#kManualOut').hidden = true; $('#kEnd span').textContent = t('call.end');
+    $('#kCam').hidden = !o.video;
+    K.hidden = false; document.body.classList.add('lock');
+    active = new Call({
+      role: 'manager', room: o.room, video: o.video, manual: !!o.manual,
+      onState: function (s) {
+        var key = 'call.st.' + s; $('#kCallStatus').textContent = t(key); $('#kCallStatus').classList.toggle('ok', s === 'connected');
+        if (s === 'connected') {
+          $('#kWait').hidden = true; $('#kManualOut').hidden = true; var t0 = Date.now(); clearInterval(timerInt);
+          timerInt = setInterval(function () { var d = Math.floor((Date.now() - t0) / 1000); $('#kCallTimer').textContent = String(Math.floor(d / 60)).padStart(2, '0') + ':' + String(d % 60).padStart(2, '0'); }, 1000);
+          if (!o.manual) Store.update('calls', o.room, { st: 'answered' }).catch(function () {});
+        }
+        if (s === 'ended' || s === 'failed' || s === 'error') {
+          clearInterval(timerInt); $('#kWait').hidden = false; $('#kWaitText').textContent = t(s === 'ended' ? 'call.st.ended' : 'call.failedText');
+          $('#kEnd span').textContent = t('common.close');
+          if (!o.manual && active && active.startedAt) Store.update('calls', o.room, { dur: Math.round((Date.now() - active.startedAt) / 1000) }).catch(function () {});
+        }
+      },
+      onLocal: function (st) { $('#kLocal').srcObject = st; $('#kLocal').hidden = !st.getVideoTracks().length; },
+      onRemote: function (st) { var v = $('#kRemote'); v.srcObject = st; v.play().catch(function () {}); },
+      onError: function (key) { toast(t(key)); }
+    });
+    active.pending = (o.ice || []).slice();
+    active.accept(offerSdp).then(function (code) {
+      if (o.manual && code) { $('#kAnswerCode').value = code; $('#kManualOut').hidden = false; }
+    }).catch(function () {});
+  }
+  function closeCallUI() { clearInterval(timerInt); $('#kCall').hidden = true; document.body.classList.remove('lock'); $('#kRemote').srcObject = null; $('#kLocal').srcObject = null; active = null; var next = Object.keys(incoming)[0]; if (next) showRing(next); if (VIEW === 'calls') vCalls(); }
+  $('#kEnd').addEventListener('click', function () { if (active && active.state !== 'ended') active.hangup(); else closeCallUI(); });
+  $('#kMic').addEventListener('click', function () { if (!active) return; var on = active.toggleMic(); this.setAttribute('aria-pressed', String(!on)); $('use', this).setAttribute('href', on ? '#i-mic' : '#i-mic-off'); });
+  $('#kCam').addEventListener('click', function () { if (!active) return; var on = active.toggleCam(); this.setAttribute('aria-pressed', String(!on)); $('use', this).setAttribute('href', on ? '#i-video' : '#i-cam-off'); });
+  $('#kCopy').addEventListener('click', function () { var v = $('#kAnswerCode').value; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function () { toast(t('call.copied')); }, function () { $('#kAnswerCode').select(); document.execCommand('copy'); toast(t('call.copied')); }); });
+
+  /* ================= SOZLAMALAR ================= */
+  function vSettings() {
+    var s = Store.settings(), dis = owner() ? '' : ' disabled';
+    var h = '<div class="set-grid"><div class="card"><h3>' + esc(t('k.set.prices')) + '</h3><p class="hint">' + esc(t('k.set.pricesHint')) + '</p>' + (owner() ? '' : '<p class="hint" style="color:var(--danger)">' + esc(t('k.set.ownerOnly')) + '</p>') +
+      '<form class="form" id="setForm">' + P.map(function (p) { var v = s.prices && s.prices[p.id] != null ? s.prices[p.id] : (p.priceM2 || ''); return '<div class="field"><label for="pr-' + p.id + '">' + esc(pick(p.name)) + '</label><input id="pr-' + p.id + '" type="number" min="0" step="10" inputmode="numeric" value="' + esc(v) + '"' + dis + '></div>'; }).join('') +
+      '<div class="field"><label for="usd">' + esc(t('k.set.rate')) + '</label><input id="usd" type="number" min="1000" step="10" inputmode="numeric" value="' + esc(s.usd || CFG.USD_UZS) + '"' + dis + '></div>' +
+      (owner() ? '<button class="btn btn-gold" type="submit">' + esc(t('k.set.save')) + '</button>' : '') + '</form></div>' +
+      '<div class="card"><h3>' + esc(t('k.set.lang')) + '</h3><div class="seg" id="setLang" style="margin-top:12px">' + I18N.langs.map(function (l) { return '<button type="button" data-l="' + l.code + '" aria-pressed="' + (I18N.lang === l.code) + '">' + esc(l.label) + '</button>'; }).join('') + '</div>' +
+      '<h3 style="margin-top:28px">' + esc(t('k.set.data')) + '</h3><p class="hint">' + esc(t('k.set.dataHint')) + '</p><div class="k-rev-act"><button class="btn btn-ghost sm" type="button" id="csv">' + icon('i-down') + esc(t('k.export')) + '</button></div>' +
+      '<h3 style="margin-top:28px">' + esc(t('k.set.about')) + '</h3><dl class="kv"><dt>' + esc(t('k.set.server')) + '</dt><dd>' + esc(CFG.API_URL || t('k.set.notSet')) + '</dd><dt>WebRTC</dt><dd>' + (Media.support().rtc ? '✓' : '✗') + '</dd><dt>HTTPS</dt><dd>' + (window.isSecureContext ? '✓' : '✗') + '</dd></dl></div></div>';
+    $('#view').innerHTML = h;
+    var f = $('#setForm');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault(); if (!owner()) return;
+      var prices = {}; P.forEach(function (p) { var v = $('#pr-' + p.id).value; prices[p.id] = v === '' ? null : +v; });
+      var ns = { prices: prices, usd: +$('#usd').value || CFG.USD_UZS }; Store.saveSettings(ns); Store.applySettings(ns); toast(t('k.set.saved'));
+    });
+    $('#setLang').addEventListener('click', function (e) { var b = e.target.closest('[data-l]'); if (b) I18N.set(b.dataset.l); });
+  }
+
+  /* ================= JONLI YANGILANISHLAR ================= */
+  Store.on('leads', function (rows, info) {
+    if (!ROLE) return; renderShell();
+    if (info.op === 'add') { var l = rows.filter(function (x) { return x.id === info.id; })[0]; if (l) { toast(t('k.newLead', { name: l.name })); beep(); } }
+    if (VIEW === 'leads' || VIEW === 'overview') rerender();
+  });
+  Store.on('reviews', function (rows, info) {
+    if (!ROLE) return; renderShell();
+    if (info.op === 'add') { var r = rows.filter(function (x) { return x.id === info.id; })[0]; if (r) toast(t('k.newReview', { name: r.name, r: r.rating })); }
+    if ((VIEW === 'reviews' && !state.openReply) || VIEW === 'overview') rerender();
+  });
+  Store.on('calls', function () { if (!ROLE) return; renderShell(); if (VIEW === 'calls') vCalls(); });
+  I18N.on(function () { if (ROLE) { renderShell(); go(VIEW); } });
+  if ('Notification' in window && Notification.permission === 'default') document.addEventListener('click', function ask() { document.removeEventListener('click', ask); try { Notification.requestPermission(); } catch (e) {} });
+})();
+
+</script>
+</body>
+</html>
