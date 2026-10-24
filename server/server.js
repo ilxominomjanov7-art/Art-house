@@ -28,14 +28,15 @@ fs.mkdirSync(MEDIA, { recursive: true });
 function loadAdmins() {
   const sandbox = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'js/config.js'), 'utf8'), sandbox, { timeout: 1000 });
-  return sandbox.window.CFG.ADMINS || {};
+  return sandbox.window.CFG.ADMINS || {}; // { 'pbkdf2(login:parol)': 'owner' | 'manager' }
 }
 const ADMINS = loadAdmins();
 const sessions = new Map(); // token → { role, user, exp }
 
 /* ---------- ma'lumotlar bazasi (JSON fayl) ---------- */
-let db = { reviews: [], leads: [], calls: [], settings: {} };
+let db = { reviews: [], leads: [], calls: [], settings: {}, crm: { days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} } };
 try { db = Object.assign(db, JSON.parse(fs.readFileSync(DB_FILE, 'utf8'))); } catch (e) { /* birinchi ishga tushirish */ }
+db.crm = Object.assign({ days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} }, db.crm || {});
 let saveT = null;
 function save() {
   clearTimeout(saveT);
@@ -97,7 +98,7 @@ const clean = {
   },
   calls(b) { return { name: str(b.name, 60), phone: str(b.phone, 20), video: !!b.video, st: 'ringing', lang: str(b.lang, 4) }; }
 };
-const ADMIN_PATCH = { reviews: ['hidden', 'reply'], leads: ['st'], calls: ['st', 'dur'] };
+const ADMIN_PATCH = { reviews: ['hidden', 'reply'], calls: ['st', 'dur'] };
 const PUBLIC_PATCH = { calls: ['st', 'dur'] }; // mijoz o'z qo'ng'irog'i holatini yangilaydi
 
 /* ---------- API ---------- */
@@ -111,23 +112,12 @@ async function api(req, res, url) {
     res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive', 'X-Accel-Buffering': 'no' });
     res.write('retry: 3000\n\n'); clients.add(res); req.on('close', () => clients.delete(res)); return;
   }
-  if (kind === 'login' && req.method === 'POST') {
-    const b = await json(req), user = str(b.login, 40).toLowerCase(), acc = ADMINS[user];
-    const hash = crypto.pbkdf2Sync(String(b.password || ''), 'arthouse.v3:' + user, 150000, 32, 'sha256').toString('hex');
-    if (!acc || !crypto.timingSafeEqual(Buffer.from(hash), Buffer.from(String(acc.hash).padEnd(64, '0').slice(0, 64)))) { await new Promise(r => setTimeout(r, 600)); return send(res, 401, { error: 'auth' }); }
-    const token = crypto.randomBytes(24).toString('hex'); sessions.set(token, { role: acc.role, user, exp: Date.now() + 12 * 3600e3 });
-    return send(res, 200, { token, role: acc.role });
-  }
   if (kind === 'signal' && req.method === 'POST') {
     const b = await json(req);
     if (!b || typeof b.room !== 'string' || !['offer', 'answer', 'ice', 'bye', 'cancel', 'decline'].includes(b.type)) return send(res, 400, { error: 'bad' });
     if (b.role === 'manager' && !me) return send(res, 401, { error: 'auth' });
     broadcast({ t: 'signal', msg: { room: str(b.room, 40), type: b.type, data: b.data, role: b.role === 'manager' ? 'manager' : 'client', from: str(b.from, 40) } });
     return send(res, 204);
-  }
-  if (kind === 'settings') {
-    if (req.method === 'GET') return send(res, 200, db.settings || {});
-    if (req.method === 'PUT') { if (!me || me.role !== 'owner') return send(res, 403, { error: 'owner' }); db.settings = await json(req); save(); broadcast({ t: 'change', kind: 'settings' }); return send(res, 204); }
   }
   if (kind === 'media' && req.method === 'POST') {
     const type = String(req.headers['content-type'] || '').split(';')[0];
@@ -137,7 +127,7 @@ async function api(req, res, url) {
     fs.writeFileSync(path.join(MEDIA, name), buf);
     return send(res, 200, { url: '/media/' + name });
   }
-  if (!['reviews', 'leads', 'calls'].includes(kind)) return send(res, 404, { error: 'not found' });
+  if (!['reviews', 'calls'].includes(kind)) return send(res, 404, { error: 'not found' });
 
   const rows = db[kind];
   if (req.method === 'GET' && !id) {
@@ -197,6 +187,110 @@ function serveFile(req, res, file) {
   });
 }
 
+/* ---------- kabinet (CRM) API — eski kabinet bilan bir xil protokol ---------- */
+const dk = t => new Date(t + 5 * 36e5).toISOString().slice(0, 10);
+async function tgSend(text) {
+  const token = process.env.TG_BOT_TOKEN, chat = process.env.TG_CHAT_ID || '-1004375647097';
+  if (!token) return false;
+  try { const r = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: chat, text: String(text).slice(0, 4000) }) }); return r.ok; } catch (e) { return false; }
+}
+const mergeById = (arr, items) => { (items || []).forEach(x => { if (!x || !x.id) return; const i = arr.findIndex(y => y.id === x.id); if (i > -1) arr[i] = Object.assign(arr[i], x); else arr.unshift(x); }); return arr; };
+async function crm(req, res, p) {
+  const me = auth(req), C = db.crm;
+  if (req.method !== 'GET' && limited(req)) return send(res, 429, { error: 'rate' });
+  if (p === '/login' && req.method === 'POST') {
+    const h = (await readBody(req, 256)).toString('utf8').trim(), role = ADMINS[h];
+    await new Promise(r => setTimeout(r, 400));
+    if (!/^[0-9a-f]{64}$/.test(h) || !role) return send(res, 401, { error: 'auth' });
+    const token = crypto.randomBytes(24).toString('hex'); sessions.set(token, { role, user: '', exp: Date.now() + 12 * 3600e3 });
+    return send(res, 200, { t: token, r: role });
+  }
+  if (p === '/settings' && req.method === 'GET') return send(res, 200, db.settings || {});
+  if (p === '/patches' && req.method === 'GET') return send(res, 200, []);
+  if (p === '/track' && req.method === 'POST') {
+    let b = {}; try { b = JSON.parse((await readBody(req, 2048)).toString('utf8')); } catch (e) {}
+    const e = ['v', 'pv', 'c', 'l'].includes(b.e) ? b.e : null; if (!e) return send(res, 204);
+    const d = C.days[dk(Date.now())] || (C.days[dk(Date.now())] = { v: 0, pv: 0, c: 0, l: 0 }); d[e] = (d[e] || 0) + 1; save(); return send(res, 204);
+  }
+  if (p === '/lead' && req.method === 'POST') {
+    const b = await json(req), l = b.lead || {};
+    if (str(l.name, 80).length < 2 || str(l.phone, 25).replace(/\D/g, '').length < 9) return send(res, 400, { error: 'invalid' });
+    const o = { id: /^[\w-]{4,40}$/.test(l.id || '') ? l.id : uid(), name: str(l.name, 80), phone: str(l.phone, 25), unit: str(l.unit, 120), area: +l.area || 0, slot: str(l.slot, 60),
+      price: +l.price || 0, down: +l.down || 0, pct: +l.pct || 0, months: +l.months || 0, monthly: +l.monthly || 0, st: 'new', at: Date.now(), src: str(l.src, 12), project: str(l.project, 20), lang: str(l.lang, 4) };
+    mergeById(C.leads, [o]); C.leads = C.leads.slice(0, 5000);
+    const d = C.days[dk(Date.now())] || (C.days[dk(Date.now())] = { v: 0, pv: 0, c: 0, l: 0 }); d.l = (d.l || 0) + 1;
+    save(); broadcast({ t: 'change', kind: 'crm', info: { op: 'lead', id: o.id } }); tgSend(b.text || ('Yangi ariza: ' + o.name + ' ' + o.phone));
+    return send(res, 200, { ok: 1 });
+  }
+  if (p === '/chat' && req.method === 'POST') {
+    const c = await json(req); if (!c || !/^[\w-]{3,60}$/.test(c.id || '')) return send(res, 400, { error: 'bad' });
+    c.msgs = (Array.isArray(c.msgs) ? c.msgs : []).slice(-60).map(m => ({ r: m.r === 'u' ? 'u' : 'a', t: str(m.t, 700), at: +m.at || Date.now(), v: m.v ? 1 : undefined, vk: m.vk ? str(m.vk, 40) : undefined, dur: +m.dur || undefined }));
+    ['name', 'phone', 'unit', 'lang'].forEach(k => { if (c[k] != null) c[k] = str(c[k], 120); });
+    const i = C.chats.findIndex(x => x.id === c.id); if (i > -1) C.chats[i] = c; else C.chats.unshift(c); C.chats = C.chats.slice(0, 2000);
+    save(); broadcast({ t: 'change', kind: 'crm', info: { op: 'chat', id: c.id } }); return send(res, 204);
+  }
+  if (p === '/stats' && req.method === 'GET') { if (!me) return send(res, 401, { error: 'auth' }); return send(res, 200, C); }
+  if (p === '/save' && req.method === 'POST') {
+    if (!me) return send(res, 401, { error: 'auth' });
+    const b = await json(req), owner = me.role === 'owner';
+    if (b.leads) mergeById(C.leads, b.leads);
+    if (b.delLeads && owner) C.leads = C.leads.filter(x => !b.delLeads.includes(x.id));
+    if (b.exp && owner) mergeById(C.exp, b.exp);
+    if (b.delExp && owner) C.exp = C.exp.filter(x => !b.delExp.includes(x.id));
+    if (b.inv && owner) C.inv = b.inv;
+    if (b.delChats && owner) C.chats = C.chats.filter(x => !b.delChats.includes(x.id));
+    if (b.delCalls && owner) C.calls = C.calls.filter(x => !b.delCalls.includes(x.id));
+    if (b.settings && owner) { db.settings = { p: +b.settings.p || 1100, d: +b.settings.d || 0, m: (b.settings.m || []).map(Number).filter(n => n > 0 && n <= 120).slice(0, 10) }; broadcast({ t: 'change', kind: 'settings' }); }
+    save(); return send(res, 204);
+  }
+  if (p === '/ai' && req.method === 'POST') return ai(req, res, me);
+  if (['/sms', '/stt', '/voice'].includes(p)) return send(res, 501, { error: 'not configured' });
+  return send(res, 404, { error: 'not found' });
+}
+
+/* ---------- AI maslahatchi: Claude (ANTHROPIC_API_KEY bo'lsa) ---------- */
+const SYS_PUBLIC = `Siz — "Art House" quruvchi kompaniyasining (Toshkent) saytidagi shaxsiy sotuv maslahatchisiz. Tajribali, iliq va muloyim menejer kabi yozing — robot kabi emas.
+FAKTLAR (faqat shulardan foydalaning): Art House Qurilish Kompaniyasi — 14 yillik tajriba, 30+ loyiha, biznes-klass turar-joy majmualari; Instagram @arthouse.tashkent (114K obunachi); tel +998712307447; Telegram t.me/arthouse_toshkent; savdo ofisi: Uchtepa tumani, Ko'kcha Darvoza ko'chasi 69.
+Loyihalar: Musaffo (Yunusobod, biznes-klass, 1293 avtoturargoh, har podyezdda 2 lift, ta'mirlangan xonadonlar ham bor), Obod Maskan (Ko'kcha Oqtepa hududi, shahar markaziga yaqin), Ko'kcha Oqtepa (Uchtepa).
+To'lov: quruvchidan to'g'ridan-to'g'ri, 0% foizsiz bo'lib to'lash; boshlang'ich to'lov kamida {d}%; muddatlar: {m} oy; Musaffo 1 m² ≈ {p}$. Oylik = (narx − boshlang'ich) / oylar. Rasmiy shartnoma, to'lovlar faqat kompaniya hisobiga.
+USLUB: mijoz tilida javob bering (til kodi: {lang}). Qisqa (2–5 jumla), aniq raqamlar bilan. Bir gapni takrorlamang — mijozning so'zi o'zgarsa, javobingiz ham o'zgarsin. "Ishonchlimi?" desa — "Ha" deb faktlar bilan javob bering va obyektga tashrif taklif qiling. Jahli chiqsa — avval chin dildan uzr so'rang, tushunganingizni bildiring, keyin yechim taklif qiling. Ikkilansa — oddiy qadamlar bilan yo'naltiring. Emoji ishlatmang.
+MAQSAD: suhbat tabiiy kechganda mijozning ismini, keyin telefon raqamini so'rang (ikkalasini bir xabarda emas, majburlamang) va nimaga qiziqayotganini (loyiha, xonalar, byudjet, muddat) aniqlang — bu menejerga topshiriladi.
+CHEGARALAR: bilmagan narsani o'ylab topmang ("buni menejerimiz aniqlab beradi" deng), chegirma yoki kafolat va'da qilmang, mavzudan tashqari savollarni muloyimlik bilan xonadon mavzusiga qaytaring. AI ekanligingiz so'ralsa — rostini ayting.`;
+let Anthropic = null;
+async function ai(req, res, me) {
+  const b = await json(req);
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) return send(res, 200, { text: '' }); // sayt o'z qoidalari bilan javob beradi
+  try {
+    if (!Anthropic) Anthropic = (await import('@anthropic-ai/sdk')).default;
+  } catch (e) { return send(res, 200, { text: '' }); }
+  const client = new Anthropic(), s = db.settings || {}, cfg = b.cfg || {};
+  const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-14).map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: str(m.content, 1200) || '…' }));
+  while (msgs.length && msgs[0].role !== 'user') msgs.shift();
+  if (!msgs.length) return send(res, 400, { error: 'empty' });
+  const system = b.mode === 'public'
+    ? SYS_PUBLIC.replace('{d}', s.d || cfg.d || 30).replace('{m}', (s.m || cfg.m || [12, 18, 24, 36]).join(', ')).replace('{p}', s.p || cfg.p || 1100).replace('{lang}', str(b.lang, 4) || 'uz')
+      + (b.ctx ? '\nKONTEKST: ' + JSON.stringify(b.ctx).slice(0, 3000) : '')
+    : (me ? str(b.system, 8000) + (b.ctx ? '\nKONTEKST: ' + JSON.stringify(b.ctx).slice(0, 30000) : '') : null);
+  if (!system) return send(res, 401, { error: 'auth' });
+  try {
+    const r = await client.beta.messages.create({
+      model: process.env.AI_MODEL || 'claude-opus-5-5',
+      max_tokens: 1500,
+      output_config: { effort: 'low' },               // suhbat uchun tez va qisqa javob
+      betas: ['server-side-fallback-2026-07-01'],
+      fallbacks: 'default',                           // xavfsizlik rad etsa — server o'zi zaxira modelga o'tadi
+      system,
+      messages: msgs
+    });
+    if (r.stop_reason === 'refusal') return send(res, 200, { text: '' });
+    const text = r.content.filter(x => x.type === 'text').map(x => x.text).join('\n').trim();
+    return send(res, 200, { text });
+  } catch (e) {
+    console.error('AI xatosi:', e && (e.status || '') + ' ' + (e.message || e));
+    return send(res, 200, { text: '' });
+  }
+}
+
 http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://x');
   if (ALLOW_ORIGIN) {
@@ -207,6 +301,7 @@ http.createServer(async (req, res) => {
   }
   try {
     if (url.pathname.startsWith('/api/')) return await api(req, res, url);
+    if (/^\/(login|stats|save|lead|chat|track|settings|patches|ai|sms|stt|voice)$/.test(url.pathname)) return await crm(req, res, url.pathname);
     if (url.pathname.startsWith('/media/')) return serveFile(req, res, path.join(MEDIA, path.basename(url.pathname)));
     let p = decodeURIComponent(url.pathname); if (p === '/') p = '/index.html';
     const file = path.resolve(ROOT, '.' + p);

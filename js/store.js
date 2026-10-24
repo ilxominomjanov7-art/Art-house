@@ -15,7 +15,7 @@
   var listeners = {};
   var cache = {};
   var token = null;
-  try { token = sessionStorage.getItem(PREFIX + 'token'); } catch (e) {}
+  try { var _ks = JSON.parse(sessionStorage.getItem('ah_s')); if (_ks && _ks.t) token = _ks.t; } catch (e) {} // kabinet sessiyasi
 
   function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
   function readLS(k, d) { try { var v = JSON.parse(localStorage.getItem(PREFIX + k)); return v == null ? d : v; } catch (e) { return d; } }
@@ -79,18 +79,16 @@
   }
   function on(kind, cb) { (listeners[kind] = listeners[kind] || []).push(cb); }
 
-  /* ---------- sozlamalar (narxlar, kurs) ---------- */
-  function settings() { return readLS('settings', {}); }
-  function saveSettings(s) {
-    writeLS('settings', s); broadcast('settings');
-    if (API && token) req('PUT', '/api/settings', s).catch(function () {});
-    emit('settings');
-  }
+  /* ---------- sozlamalar: kabinet → Sozlamalar ('ah_set': 1 m² narxi, minimal %, oylar, kurs) ---------- */
+  function settings() { try { return JSON.parse(localStorage.getItem('ah_set')) || {}; } catch (e) { return {}; } }
   function applySettings(s) {
     s = s || settings();
+    if (s.p) CFG.PRICE_M2 = +s.p;
+    if (s.d != null) CFG.DOWN_MIN = +s.d;
+    if (s.m && s.m.length) CFG.MONTHS = s.m.map(Number);
     if (s.usd) CFG.USD_UZS = +s.usd;
-    if (s.prices) (window.PROJECTS || []).forEach(function (p) { if (s.prices[p.id] != null && s.prices[p.id] !== '') p.priceM2 = +s.prices[p.id]; });
   }
+  function setToken(t) { token = t || null; }
 
   /* ---------- video-sharhlar uchun fayllar (IndexedDB yoki server) ---------- */
   var dbp = null;
@@ -151,16 +149,15 @@
     var d = e.data || {};
     if (d.t === 'signal') return gotSignal(d.msg);
     if (d.t === 'change') {
-      if (d.kind === 'settings') { applySettings(); emit('settings'); return; }
       if (!API) cache[d.kind] = readLS(d.kind, []);
       emit(d.kind, d.info);
     }
   };
   /* BroadcastChannel bo'lmagan eski brauzerlar uchun zaxira */
   window.addEventListener('storage', function (e) {
+    if (e.key === 'ah_set') { applySettings(); emit('settings'); return; }
     if (!e.key || e.key.indexOf(PREFIX) !== 0 || bc) return;
     var kind = e.key.slice(PREFIX.length);
-    if (kind === 'settings') { applySettings(); emit('settings'); return; }
     if (KINDS.indexOf(kind) > -1 && !API) { cache[kind] = readLS(kind, []); emit(kind, {}); }
   });
   if (API && 'EventSource' in window) {
@@ -172,50 +169,24 @@
         var d; try { d = JSON.parse(e.data); } catch (x) { return; }
         if (d.t === 'signal') return gotSignal(d.msg);
         if (d.t === 'change') {
-          if (d.kind === 'settings') return req('GET', '/api/settings').then(function (s) { writeLS('settings', s || {}); applySettings(s); emit('settings'); }).catch(function () {});
+          if (d.kind === 'crm') return emit('crm', d.info || {}); // kabinet: arizalar / suhbatlar yangilandi
+          if (d.kind === 'settings') return req('GET', '/settings').then(function (s) { if (s && s.p) { try { localStorage.setItem('ah_set', JSON.stringify(s)); } catch (x) {} applySettings(s); emit('settings'); } }).catch(function () {});
           if ((d.kind === 'leads' || d.kind === 'calls') && !token) return; // bular faqat kabinet uchun
           load(d.kind).then(function () { emit(d.kind, d.info); });
         }
       };
       es.onerror = function () { es.close(); setTimeout(connect, retry = Math.min(retry * 2, 30000)); };
     })();
-    req('GET', '/api/settings').then(function (s) { if (s) { writeLS('settings', s); applySettings(s); emit('settings'); } }).catch(function () {});
+    req('GET', '/settings').then(function (s) { if (s && s.p) { try { localStorage.setItem('ah_set', JSON.stringify(s)); } catch (x) {} applySettings(s); emit('settings'); } }).catch(function () {});
   }
-
-  /* ---------- kabinet kirish (PBKDF2) ---------- */
-  function hashPassword(login, password) {
-    var enc = new TextEncoder();
-    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits'])
-      .then(function (k) { return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode('arthouse.v3:' + login.toLowerCase()), iterations: 150000 }, k, 256); })
-      .then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); });
-  }
-  function login(user, password) {
-    user = String(user || '').trim().toLowerCase();
-    if (API) {
-      return req('POST', '/api/login', { login: user, password: password }).then(function (j) {
-        token = j.token; try { sessionStorage.setItem(PREFIX + 'token', token); sessionStorage.setItem(PREFIX + 'role', j.role); } catch (e) {}
-        return j.role;
-      });
-    }
-    if (!window.isSecureContext || !crypto.subtle) return Promise.reject(new Error('insecure'));
-    var acc = CFG.ADMINS[user];
-    return hashPassword(user, password).then(function (h) {
-      if (!acc || acc.hash !== h) throw new Error('auth');
-      token = 'local:' + user; try { sessionStorage.setItem(PREFIX + 'token', token); sessionStorage.setItem(PREFIX + 'role', acc.role); } catch (e) {}
-      return acc.role;
-    });
-  }
-  function logout() { token = null; try { sessionStorage.removeItem(PREFIX + 'token'); sessionStorage.removeItem(PREFIX + 'role'); } catch (e) {} }
-  function session() { try { return token ? { token: token, role: sessionStorage.getItem(PREFIX + 'role') } : null; } catch (e) { return null; } }
 
   applySettings();
 
   window.Store = {
     peerId: uid(), uid: uid, api: !!API,
     load: load, list: list, add: add, update: update, remove: remove, on: on,
-    settings: settings, saveSettings: saveSettings, applySettings: applySettings,
+    settings: settings, applySettings: applySettings, setToken: setToken,
     putBlob: putBlob, mediaURL: mediaURL, dropBlob: dropBlob,
-    signal: signal, onSignal: onSignal,
-    login: login, logout: logout, session: session, hashPassword: hashPassword
+    signal: signal, onSignal: onSignal
   };
 })();

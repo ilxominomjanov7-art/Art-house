@@ -12,7 +12,12 @@
     { code: 'uz', label: "O'zbekcha", short: 'UZ', html: 'uz', locale: 'uz-Latn-UZ' },
     { code: 'cy', label: 'Ўзбекча', short: 'ЎЗ', html: 'uz-Cyrl', locale: 'uz-Cyrl-UZ' },
     { code: 'ru', label: 'Русский', short: 'RU', html: 'ru', locale: 'ru-RU' },
-    { code: 'en', label: 'English', short: 'EN', html: 'en', locale: 'en-GB' }
+    { code: 'en', label: 'English', short: 'EN', html: 'en', locale: 'en-GB' },
+    { code: 'fr', label: 'Français', short: 'FR', html: 'fr', locale: 'fr-FR' },
+    { code: 'it', label: 'Italiano', short: 'IT', html: 'it', locale: 'it-IT' },
+    { code: 'es', label: 'Español', short: 'ES', html: 'es', locale: 'es-ES' },
+    { code: 'de', label: 'Deutsch', short: 'DE', html: 'de', locale: 'de-DE' },
+    { code: 'tr', label: 'Türkçe', short: 'TR', html: 'tr', locale: 'tr-TR' }
   ];
 
   /* ---------------- O'ZBEKCHA (faqat JS ichidagi matnlar; HTML matnlari sahifadan olinadi) ---------------- */
@@ -65,38 +70,6 @@
     'aria.close': 'Yopish', 'aria.prev': 'Oldingi', 'aria.next': 'Keyingi', 'aria.call': "Qo'ng'iroq", 'aria.menu': 'Asosiy menyu',
     'marquee': "0% foizsiz|Halol bo'lib to'lash|30% dan boshlang'ich to'lov|36 oygacha muddat|Quruvchidan to'g'ridan-to'g'ri",
     'home.locLine': '{district}',
-
-    /* ---- KABINET ---- */
-    'k.title': 'Boshqaruv paneli', 'k.login': 'Kabinetga kirish', 'k.user': 'Login', 'k.pass': 'Parol', 'k.enter': 'Kirish', 'k.back': 'Saytga qaytish',
-    'k.secure': 'Himoyalangan ulanish', 'k.badAuth': "Login yoki parol noto'g'ri.", 'k.insecure': "Kabinet faqat https:// yoki localhost orqali ishlaydi.", 'k.netErr': "Serverga ulanib bo'lmadi.",
-    'k.nav.overview': "Umumiy ko'rinish", 'k.nav.leads': 'Arizalar', 'k.nav.reviews': 'Mijozlar izohlari', 'k.nav.calls': "Qo'ng'iroqlar", 'k.nav.settings': 'Sozlamalar',
-    'k.group.main': 'Asosiy', 'k.group.clients': 'Mijozlar', 'k.group.system': 'Tizim',
-    'k.logout': 'Chiqish', 'k.owner': 'Direktor', 'k.manager': 'Menejer', 'k.modeLocal': "Lokal rejim — ma'lumotlar shu brauzerda", 'k.modeServer': 'Server bilan sinxron',
-    'k.hello': 'Xush kelibsiz', 'k.today': 'Bugun',
-    'k.st.leads': 'Jami arizalar', 'k.st.newLeads': 'Yangi arizalar', 'k.st.reviews': 'Izohlar', 'k.st.avg': "O'rtacha baho", 'k.st.pending': 'Javob kutayotgan izohlar', 'k.st.calls': "Qo'ng'iroqlar",
-    'k.recentLeads': "So'nggi arizalar", 'k.recentReviews': 'Javob kutayotgan izohlar', 'k.viewAll': "Barchasini ko'rish",
-    'k.empty.leads': "Hozircha arizalar yo'q.", 'k.empty.reviews': "Hozircha izohlar yo'q.", 'k.empty.calls': "Hozircha qo'ng'iroqlar yo'q.", 'k.empty.pending': "Barcha izohlarga javob berilgan.",
-    'k.search': 'Qidirish…', 'k.all': 'Barchasi', 'k.export': 'CSV yuklab olish',
-    'k.col.date': 'Sana', 'k.col.client': 'Mijoz', 'k.col.phone': 'Telefon', 'k.col.object': 'Obyekt', 'k.col.payment': "To'lov", 'k.col.status': 'Holat', 'k.col.actions': 'Amallar',
-    'k.lead.new': 'Yangi', 'k.lead.called': "Bog'lanildi", 'k.lead.booked': 'Bron qilindi', 'k.lead.sold': 'Sotildi', 'k.lead.lost': 'Rad etildi',
-    'k.lead.src.book': 'Band qilish', 'k.lead.src.callback': "Qayta qo'ng'iroq", 'k.lead.src.call': "Video-qo'ng'iroq",
-    'k.lead.monthly': '{m} / oy · {M} oy', 'k.delete': "O'chirish", 'k.confirmDelete': "Haqiqatan ham o'chirilsinmi?",
-    'k.rev.filter.pending': 'Javobsiz', 'k.rev.filter.answered': 'Javob berilgan', 'k.rev.filter.hidden': 'Yashirilgan', 'k.rev.filter.video': 'Video',
-    'k.rev.reply': 'Javob yozish', 'k.rev.editReply': 'Javobni tahrirlash', 'k.rev.replyPh': "Mijozga javobingiz — saytda darhol ko'rinadi", 'k.rev.send': 'Javobni yuborish',
-    'k.rev.sent': "Javob saytda e'lon qilindi", 'k.rev.hide': 'Saytdan yashirish', 'k.rev.show': "Saytda ko'rsatish", 'k.rev.hiddenBadge': 'Yashirilgan',
-    'k.rev.removeReply': "Javobni o'chirish", 'k.rev.templates': 'Tayyor javoblar',
-    'k.tpl.1': "Iliq fikringiz uchun katta rahmat! Sizni ART HOUSE oilasida ko'rganimizdan xursandmiz.",
-    'k.tpl.2': "Fikringiz uchun rahmat. Murojaatingizni ko'rib chiqdik — menejerimiz siz bilan bog'lanadi.",
-    'k.tpl.3': "Kechirasiz, noqulaylik uchun uzr so'raymiz. Iltimos, savdo bo'limiga qo'ng'iroq qiling — masalani tezda hal qilamiz.",
-    'k.calls.incoming': "Kiruvchi qo'ng'iroq", 'k.calls.accept': 'Qabul qilish', 'k.calls.decline': 'Rad etish', 'k.calls.video': "Video-qo'ng'iroq", 'k.calls.audio': "Ovozli qo'ng'iroq",
-    'k.calls.st.ringing': "Jiringlamoqda", 'k.calls.st.answered': 'Javob berildi', 'k.calls.st.missed': "O'tkazib yuborildi", 'k.calls.st.declined': 'Rad etildi',
-    'k.calls.callback': "Qayta qo'ng'iroq qilish", 'k.calls.duration': 'Davomiyligi', 'k.calls.manual': "Kod orqali ulanish",
-    'k.calls.manualHint': "Mijoz yuborgan kodni qo'ying — javob kodi hosil bo'ladi. Uni mijozga qaytaring.", 'k.calls.offerPh': 'Mijoz kodi', 'k.calls.makeAnswer': 'Javob kodini yaratish',
-    'k.calls.ready': "Qo'ng'iroqlarni qabul qilishga tayyor", 'k.calls.enableSound': 'Ovozli signalni yoqish', 'k.calls.permTest': 'Kamera va mikrofonni tekshirish',
-    'k.set.prices': 'Narxlar ($ / m²)', 'k.set.pricesHint': "Bo'sh qoldirilsa — kalkulyatorda narx qo'lda kiritiladi.", 'k.set.rate': "Dollar kursi (so'm)", 'k.set.save': 'Saqlash', 'k.set.saved': 'Sozlamalar saqlandi',
-    'k.set.lang': 'Interfeys tili', 'k.set.data': "Ma'lumotlar", 'k.set.dataHint': "Server ulanmagan bo'lsa, barcha ma'lumotlar shu brauzer xotirasida saqlanadi. Muntazam CSV ko'rinishida yuklab oling.",
-    'k.set.about': 'Tizim haqida', 'k.set.server': 'Server (API_URL)', 'k.set.notSet': "ulanmagan", 'k.set.ownerOnly': "Bu bo'lim faqat direktor uchun.",
-    'k.newLead': 'Yangi ariza: {name}', 'k.newReview': 'Yangi izoh: {name} ({r}★)', 'k.idle': 'Faollik bo\'lmagani uchun tizimdan chiqildi.'
   };
 
   /* ---------------- РУССКИЙ ---------------- */
@@ -224,38 +197,7 @@
     'media.err.generic': 'Ошибка при подключении к устройству. Попробуйте ещё раз.',
     'toast.err': 'Произошла ошибка. Попробуйте ещё раз.', 'toast.offline': 'Нет подключения к интернету — данные сохранены и будут отправлены позже.',
     'aria.close': 'Закрыть', 'aria.prev': 'Назад', 'aria.next': 'Вперёд', 'aria.call': 'Позвонить', 'aria.menu': 'Главное меню',
-    'marquee': '0% без процентов|Честная рассрочка|Первый взнос от 30%|Срок до 36 месяцев|Напрямую от застройщика',
-
-    'k.title': 'Панель управления', 'k.login': 'Вход в кабинет', 'k.user': 'Логин', 'k.pass': 'Пароль', 'k.enter': 'Войти', 'k.back': 'Вернуться на сайт',
-    'k.secure': 'Защищённое соединение', 'k.badAuth': 'Неверный логин или пароль.', 'k.insecure': 'Кабинет работает только по https:// или на localhost.', 'k.netErr': 'Не удалось подключиться к серверу.',
-    'k.nav.overview': 'Обзор', 'k.nav.leads': 'Заявки', 'k.nav.reviews': 'Отзывы клиентов', 'k.nav.calls': 'Звонки', 'k.nav.settings': 'Настройки',
-    'k.group.main': 'Основное', 'k.group.clients': 'Клиенты', 'k.group.system': 'Система',
-    'k.logout': 'Выйти', 'k.owner': 'Директор', 'k.manager': 'Менеджер', 'k.modeLocal': 'Локальный режим — данные в этом браузере', 'k.modeServer': 'Синхронизация с сервером',
-    'k.hello': 'Добро пожаловать', 'k.today': 'Сегодня',
-    'k.st.leads': 'Всего заявок', 'k.st.newLeads': 'Новые заявки', 'k.st.reviews': 'Отзывы', 'k.st.avg': 'Средняя оценка', 'k.st.pending': 'Отзывы без ответа', 'k.st.calls': 'Звонки',
-    'k.recentLeads': 'Последние заявки', 'k.recentReviews': 'Отзывы, ожидающие ответа', 'k.viewAll': 'Смотреть все',
-    'k.empty.leads': 'Заявок пока нет.', 'k.empty.reviews': 'Отзывов пока нет.', 'k.empty.calls': 'Звонков пока нет.', 'k.empty.pending': 'На все отзывы даны ответы.',
-    'k.search': 'Поиск…', 'k.all': 'Все', 'k.export': 'Скачать CSV',
-    'k.col.date': 'Дата', 'k.col.client': 'Клиент', 'k.col.phone': 'Телефон', 'k.col.object': 'Объект', 'k.col.payment': 'Оплата', 'k.col.status': 'Статус', 'k.col.actions': 'Действия',
-    'k.lead.new': 'Новая', 'k.lead.called': 'Связались', 'k.lead.booked': 'Бронь', 'k.lead.sold': 'Продано', 'k.lead.lost': 'Отказ',
-    'k.lead.src.book': 'Бронирование', 'k.lead.src.callback': 'Обратный звонок', 'k.lead.src.call': 'Видеозвонок',
-    'k.lead.monthly': '{m} / мес. · {M} мес.', 'k.delete': 'Удалить', 'k.confirmDelete': 'Действительно удалить?',
-    'k.rev.filter.pending': 'Без ответа', 'k.rev.filter.answered': 'С ответом', 'k.rev.filter.hidden': 'Скрытые', 'k.rev.filter.video': 'Видео',
-    'k.rev.reply': 'Ответить', 'k.rev.editReply': 'Изменить ответ', 'k.rev.replyPh': 'Ваш ответ клиенту — сразу появится на сайте', 'k.rev.send': 'Отправить ответ',
-    'k.rev.sent': 'Ответ опубликован на сайте', 'k.rev.hide': 'Скрыть с сайта', 'k.rev.show': 'Показать на сайте', 'k.rev.hiddenBadge': 'Скрыт',
-    'k.rev.removeReply': 'Удалить ответ', 'k.rev.templates': 'Шаблоны ответов',
-    'k.tpl.1': 'Большое спасибо за тёплый отзыв! Мы рады видеть вас в семье ART HOUSE.',
-    'k.tpl.2': 'Спасибо за отзыв. Мы рассмотрели ваше обращение — менеджер свяжется с вами.',
-    'k.tpl.3': 'Приносим извинения за неудобства. Пожалуйста, позвоните в отдел продаж — мы быстро решим вопрос.',
-    'k.calls.incoming': 'Входящий звонок', 'k.calls.accept': 'Принять', 'k.calls.decline': 'Отклонить', 'k.calls.video': 'Видеозвонок', 'k.calls.audio': 'Аудиозвонок',
-    'k.calls.st.ringing': 'Звонит', 'k.calls.st.answered': 'Отвечен', 'k.calls.st.missed': 'Пропущен', 'k.calls.st.declined': 'Отклонён',
-    'k.calls.callback': 'Перезвонить', 'k.calls.duration': 'Длительность', 'k.calls.manual': 'Подключение по коду',
-    'k.calls.manualHint': 'Вставьте код клиента — будет создан ответный код. Отправьте его клиенту.', 'k.calls.offerPh': 'Код клиента', 'k.calls.makeAnswer': 'Создать ответный код',
-    'k.calls.ready': 'Готов принимать звонки', 'k.calls.enableSound': 'Включить звуковой сигнал', 'k.calls.permTest': 'Проверить камеру и микрофон',
-    'k.set.prices': 'Цены ($ / м²)', 'k.set.pricesHint': 'Если оставить пустым — цена вводится в калькуляторе вручную.', 'k.set.rate': 'Курс доллара (сум)', 'k.set.save': 'Сохранить', 'k.set.saved': 'Настройки сохранены',
-    'k.set.lang': 'Язык интерфейса', 'k.set.data': 'Данные', 'k.set.dataHint': 'Без сервера все данные хранятся в памяти этого браузера. Регулярно скачивайте их в формате CSV.',
-    'k.set.about': 'О системе', 'k.set.server': 'Сервер (API_URL)', 'k.set.notSet': 'не подключён', 'k.set.ownerOnly': 'Этот раздел доступен только директору.',
-    'k.newLead': 'Новая заявка: {name}', 'k.newReview': 'Новый отзыв: {name} ({r}★)', 'k.idle': 'Выход из системы из-за бездействия.'
+    'marquee': '0% без процентов|Честная рассрочка|Первый взнос от 30%|Срок до 36 месяцев|Напрямую от застройщика'
   };
 
   /* ---------------- ENGLISH ---------------- */
@@ -383,45 +325,14 @@
     'media.err.generic': 'Something went wrong while accessing the device. Please try again.',
     'toast.err': 'Something went wrong. Please try again.', 'toast.offline': "You're offline — your data has been saved and will be sent later.",
     'aria.close': 'Close', 'aria.prev': 'Previous', 'aria.next': 'Next', 'aria.call': 'Call', 'aria.menu': 'Main menu',
-    'marquee': '0% interest|Honest instalments|From 30% down|Up to 36 months|Direct from the developer',
-
-    'k.title': 'Control panel', 'k.login': 'Sign in to the dashboard', 'k.user': 'Login', 'k.pass': 'Password', 'k.enter': 'Sign in', 'k.back': 'Back to the website',
-    'k.secure': 'Secure connection', 'k.badAuth': 'Incorrect login or password.', 'k.insecure': 'The dashboard only works over https:// or on localhost.', 'k.netErr': "Couldn't reach the server.",
-    'k.nav.overview': 'Overview', 'k.nav.leads': 'Leads', 'k.nav.reviews': 'Client reviews', 'k.nav.calls': 'Calls', 'k.nav.settings': 'Settings',
-    'k.group.main': 'Main', 'k.group.clients': 'Clients', 'k.group.system': 'System',
-    'k.logout': 'Sign out', 'k.owner': 'Director', 'k.manager': 'Manager', 'k.modeLocal': 'Local mode — data stays in this browser', 'k.modeServer': 'Synced with server',
-    'k.hello': 'Welcome', 'k.today': 'Today',
-    'k.st.leads': 'Total leads', 'k.st.newLeads': 'New leads', 'k.st.reviews': 'Reviews', 'k.st.avg': 'Average rating', 'k.st.pending': 'Reviews awaiting reply', 'k.st.calls': 'Calls',
-    'k.recentLeads': 'Latest leads', 'k.recentReviews': 'Reviews awaiting reply', 'k.viewAll': 'View all',
-    'k.empty.leads': 'No leads yet.', 'k.empty.reviews': 'No reviews yet.', 'k.empty.calls': 'No calls yet.', 'k.empty.pending': 'Every review has been answered.',
-    'k.search': 'Search…', 'k.all': 'All', 'k.export': 'Download CSV',
-    'k.col.date': 'Date', 'k.col.client': 'Client', 'k.col.phone': 'Phone', 'k.col.object': 'Property', 'k.col.payment': 'Payment', 'k.col.status': 'Status', 'k.col.actions': 'Actions',
-    'k.lead.new': 'New', 'k.lead.called': 'Contacted', 'k.lead.booked': 'Reserved', 'k.lead.sold': 'Sold', 'k.lead.lost': 'Lost',
-    'k.lead.src.book': 'Reservation', 'k.lead.src.callback': 'Call-back', 'k.lead.src.call': 'Video call',
-    'k.lead.monthly': '{m} / mo · {M} mo', 'k.delete': 'Delete', 'k.confirmDelete': 'Delete this item?',
-    'k.rev.filter.pending': 'Unanswered', 'k.rev.filter.answered': 'Answered', 'k.rev.filter.hidden': 'Hidden', 'k.rev.filter.video': 'Video',
-    'k.rev.reply': 'Reply', 'k.rev.editReply': 'Edit reply', 'k.rev.replyPh': 'Your reply to the client — it appears on the website instantly', 'k.rev.send': 'Send reply',
-    'k.rev.sent': 'Reply published on the website', 'k.rev.hide': 'Hide from website', 'k.rev.show': 'Show on website', 'k.rev.hiddenBadge': 'Hidden',
-    'k.rev.removeReply': 'Delete reply', 'k.rev.templates': 'Reply templates',
-    'k.tpl.1': "Thank you so much for your kind words! We're delighted to welcome you to the ART HOUSE family.",
-    'k.tpl.2': 'Thank you for your feedback. We have reviewed your request — a manager will contact you.',
-    'k.tpl.3': 'We apologise for the inconvenience. Please call our sales department — we will resolve this quickly.',
-    'k.calls.incoming': 'Incoming call', 'k.calls.accept': 'Accept', 'k.calls.decline': 'Decline', 'k.calls.video': 'Video call', 'k.calls.audio': 'Voice call',
-    'k.calls.st.ringing': 'Ringing', 'k.calls.st.answered': 'Answered', 'k.calls.st.missed': 'Missed', 'k.calls.st.declined': 'Declined',
-    'k.calls.callback': 'Call back', 'k.calls.duration': 'Duration', 'k.calls.manual': 'Connect with a code',
-    'k.calls.manualHint': "Paste the client's code to generate a reply code, then send it back to the client.", 'k.calls.offerPh': "Client's code", 'k.calls.makeAnswer': 'Create reply code',
-    'k.calls.ready': 'Ready to receive calls', 'k.calls.enableSound': 'Turn on ringtone', 'k.calls.permTest': 'Test camera and microphone',
-    'k.set.prices': 'Prices ($ / m²)', 'k.set.pricesHint': 'Leave empty to let clients enter the price manually in the calculator.', 'k.set.rate': 'USD rate (UZS)', 'k.set.save': 'Save', 'k.set.saved': 'Settings saved',
-    'k.set.lang': 'Interface language', 'k.set.data': 'Data', 'k.set.dataHint': 'Without a server, all data is stored in this browser. Download a CSV backup regularly.',
-    'k.set.about': 'System', 'k.set.server': 'Server (API_URL)', 'k.set.notSet': 'not connected', 'k.set.ownerOnly': 'This section is available to the director only.',
-    'k.newLead': 'New lead: {name}', 'k.newReview': 'New review: {name} ({r}★)', 'k.idle': 'You were signed out due to inactivity.'
+    'marquee': '0% interest|Honest instalments|From 30% down|Up to 36 months|Direct from the developer'
   };
 
   var DICT = { uz: uz, ru: ru, en: en };
   var CAPT = {}; // HTML'dan olingan o'zbekcha matnlar
 
   /* ---------------- O'zbek lotin → kirill ---------------- */
-  var KEEP = /(ART HOUSE|Art House|Luxury Residence|Google Maps|Google|Yandex Maps|Yandex Go|Yandex|Telegram|Instagram|YouTube|Facebook|Chrome|Safari|Edge|WebRTC|CSV|API_URL|https?:\/\/\S+|localhost|@[\w.]+|\{\w+\}|[A-Z]{2,}\b)/g;
+  var KEEP = /(<[^>]+>|&[#\w]+;|ART HOUSE|Art House|Luxury Residence|Google Maps|Google|Yandex Maps|Yandex Go|Yandex|Telegram|Instagram|YouTube|Facebook|Chrome|Safari|Edge|WebRTC|CSV|API_URL|https?:\/\/\S+|localhost|@[\w.]+|\{\w+\}|[A-Z]{2,}\b)/g;
   var MAP = [
     ["O'", 'Ў'], ["o'", 'ў'], ["G'", 'Ғ'], ["g'", 'ғ'], ["Oʻ", 'Ў'], ["oʻ", 'ў'], ["Gʻ", 'Ғ'], ["gʻ", 'ғ'],
     ['Sh', 'Ш'], ['SH', 'Ш'], ['sh', 'ш'], ['Ch', 'Ч'], ['CH', 'Ч'], ['ch', 'ч'],
@@ -449,20 +360,25 @@
 
   /* ---------------- API ---------------- */
   var lang = 'uz';
-  try { lang = localStorage.getItem('ah3_lang') || ''; } catch (e) {}
+  try { lang = localStorage.getItem('ah_lang') || ''; } catch (e) {}
   if (!lang || !LANGS.some(function (l) { return l.code === lang; })) {
     var nav = (navigator.language || 'uz').toLowerCase();
-    lang = nav.indexOf('ru') === 0 ? 'ru' : nav.indexOf('en') === 0 ? 'en' : 'uz';
+    var two = nav.slice(0, 2);
+    lang = ['ru', 'en', 'fr', 'it', 'es', 'de', 'tr'].indexOf(two) > -1 ? two : ['kk', 'ky', 'tg', 'be', 'uk'].indexOf(two) > -1 ? 'ru' : two === 'az' ? 'tr' : 'uz';
   }
   var subs = [];
 
   function fill(s, vars) { return vars ? String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }) : s; }
   function base(key) { return uz[key] != null ? uz[key] : CAPT[key] != null ? CAPT[key] : key; }
-  function t(key, vars) {
+  function t(key, vars, lng) {
+    var s, lang0 = lang; if (lng) lang = lng;
+    try { return t0(key, vars); } finally { lang = lang0; }
+  }
+  function t0(key, vars) {
     var s;
     if (lang === 'cy') s = toCyr(base(key));
     else if (lang === 'uz') s = base(key);
-    else s = DICT[lang][key] != null ? DICT[lang][key] : base(key);
+    else s = DICT[lang] && DICT[lang][key] != null ? DICT[lang][key] : (DICT.en[key] != null && lang !== 'uz' && !DICT[lang] ? DICT.en[key] : base(key));
     return fill(s, vars);
   }
   /* {uz, ru, en} ko'rinishidagi kontent */
@@ -489,7 +405,8 @@
   function info(code) { code = code || lang; return LANGS.filter(function (l) { return l.code === code; })[0] || LANGS[0]; }
   function set(code) {
     if (!LANGS.some(function (l) { return l.code === code; })) return;
-    lang = code; try { localStorage.setItem('ah3_lang', code); } catch (e) {}
+    lang = code; try { localStorage.setItem('ah_lang', code); } catch (e) {}
+    if (typeof window.LANG === 'string' && window.LANG !== code && window.setLang) { window.setLang(code, true); }
     apply(); subs.forEach(function (cb) { try { cb(code); } catch (e) { console.error(e); } });
   }
 
@@ -528,8 +445,11 @@
     subs.push(render); render();
   }
 
+  /* qo'shimcha tillar va yangilangan matnlar (i18n-extra.js) */
+  function extend(code, dict) { DICT[code] = Object.assign(DICT[code] || {}, dict); }
+
   window.I18N = {
-    t: t, pick: pick, apply: apply, set: set, info: info, langs: LANGS, toCyr: toCyr,
+    t: t, pick: pick, extend: extend, dict: DICT, apply: apply, set: set, info: info, langs: LANGS, toCyr: toCyr,
     get lang() { return lang; },
     on: function (cb) { subs.push(cb); },
     num: num, usd: usd, date: date, ago: ago, mountSwitcher: mountSwitcher

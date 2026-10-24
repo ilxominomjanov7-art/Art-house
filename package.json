@@ -2,9 +2,14 @@
   "name": "art-house",
   "version": "3.0.0",
   "private": true,
-  "description": "ART HOUSE — Luxury Residence Tashkent: sayt, kabinet va sinxronlash serveri",
+  "description": "ART HOUSE — Luxury Residence Tashkent: sayt, kabinet (CRM), AI maslahatchi va sinxronlash serveri",
   "scripts": {
     "start": "node server/server.js"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0"
+  }
 }

@@ -10,7 +10,7 @@
   var icon = function (id, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '"><use href="#' + id + '"/></svg>'; };
   var P = window.PROJECTS, byId = function (id) { return P.filter(function (p) { return p.id === id; })[0] || P[0]; };
   var LS = function (k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('ah3_' + k)); localStorage.setItem('ah3_' + k, JSON.stringify(v)); } catch (e) { return null; } };
-  var YEARS = Math.max(1, new Date().getFullYear() - (CFG.FOUNDED || 2021));
+  var YEARS = CFG.EXPERIENCE_YEARS || 14;
   var MB = 50;
 
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('show'); }, 3600); }
@@ -48,6 +48,8 @@
   $$('[data-phone]').forEach(function (a) { a.href = 'tel:' + PHONE; });
   $$('[data-phone-text]').forEach(function (s) { s.textContent = fmtPhone(PHONE); });
   $('#tgManager').href = CFG.TELEGRAM_MANAGER || CFG.TELEGRAM_CHANNEL;
+  $$('[data-ig]').forEach(function (a) { a.href = CFG.INSTAGRAM; });
+  $('#projChips').innerHTML = (window.ALL_PROJECT_NAMES || []).map(function (n) { var p = P.filter(function (x) { return x.name === n; })[0]; return p ? '<a class="chip" href="#projects/' + p.id + '">' + esc(n) + '</a>' : '<span class="chip">' + esc(n) + '</span>'; }).join('');
   $('#phoneList').innerHTML = CFG.PHONES.map(function (p) { return '<li><a href="tel:' + p + '">' + icon('i-phone') + fmtPhone(p) + '</a></li>'; }).join('');
 
   /* ---------------- marshrutlash (sahifalar) ---------------- */
@@ -91,6 +93,7 @@
 
   /* ---------------- rasm/obyekt yordamchilari ---------------- */
   function cover(p) {
+    if (p.cover && p.poster) return '<div class="poster"><img class="poster-bg" src="' + p.cover + '" alt="" aria-hidden="true" loading="lazy"><img class="poster-fg" src="' + p.cover + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async"></div>';
     if (p.cover) return '<img src="' + p.cover + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async">';
     return '<div class="art-cover"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><b>' + esc(p.name.toUpperCase()) + '</b></div>';
   }
@@ -168,6 +171,7 @@
   $('#cMonths').addEventListener('click', function (e) { var b = e.target.closest('[data-m]'); if (!b) return; calc.months = +b.dataset.m; $$('#cMonths button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); renderCalc(); });
   $('#cSchedBtn').addEventListener('click', function () { var s = $('#cSched'), o = s.hidden; s.hidden = !o; this.setAttribute('aria-expanded', String(o)); this.textContent = t(o ? 'calc.hideSched' : 'calc.showSched'); if (o) schedule(); });
   $('#cBook').addEventListener('click', function () { openBook({ fromCalc: true }); });
+  (function () { var once = 0, f = function () { if (!once) { once = 1; CRM.track('c'); } }; $('.calc').addEventListener('input', f); $('.calc').addEventListener('click', f); })();
 
   /* ================= LOYIHALAR ================= */
   var projState = { id: 'musaffo', rooms: 'all' };
@@ -326,27 +330,27 @@
     if (!ok || $('#hp').value) return;
     var last = LS('lastLead') || 0; if (Date.now() - last < 15000) return;
     var plan = bookCtx.fromCalc && calc.plan > -1 ? byId(calc.project).plans[calc.plan] : null;
-    var lead = { src: 'book', name: n.value.trim(), phone: ph.value.trim(), when: when, st: 'new', lang: I18N.lang,
-      project: bookCtx.fromCalc ? calc.project : (bookCtx.project || projState.id), topic: bookCtx.topic || '' };
-    if (bookCtx.fromCalc) Object.assign(lead, { plan: plan ? planName(plan) : '', area: calc.area, price: calc.total, pct: calc.pct, down: Math.round(calc.down), months: calc.months, monthly: Math.round(calc.monthly) });
+    var pid = bookCtx.fromCalc ? calc.project : (bookCtx.project || projState.id), pj = byId(pid);
+    var lead = { src: 'site', name: n.value.trim(), phone: ph.value.trim(), slot: WHEN_UZ[when], lang: I18N.lang, project: pid,
+      unit: plan ? unitLabel(plan) : pj.name + (bookCtx.fromCalc ? ' · ' + String(calc.area).replace('.', ',') + ' m²' : bookCtx.topic ? ' · ' + bookCtx.topic : ''), area: bookCtx.fromCalc ? calc.area : 0 };
+    if (bookCtx.fromCalc) Object.assign(lead, { price: calc.total, pct: calc.pct, down: Math.round(calc.down), months: calc.months, monthly: Math.round(calc.monthly) });
     remember(lead.name, lead.phone); LS('lastLead', Date.now());
-    Store.add('leads', lead).catch(function () { queue('leads', lead); });
+    CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
     $('#bookOkText').textContent = t('book.okText', { name: lead.name, phone: lead.phone });
     $('#bookForm').hidden = true; $('#bookOk').hidden = false;
   });
 
-  /* Server ishlamay qolsa — navbatga qo'yib, keyinroq yuborish */
-  function queue(kind, obj) { var q = LS('queue') || []; q.push({ kind: kind, obj: obj }); LS('queue', q.slice(-30)); toast(t('toast.offline')); }
-  function flush() { var q = LS('queue') || []; if (!q.length) return; LS('queue', []); q.forEach(function (x) { Store.add(x.kind, x.obj).catch(function () { var r = LS('queue') || []; r.push(x); LS('queue', r); }); }); }
-  window.addEventListener('online', flush); flush();
+  /* kabinetdagi bazaga o'zbekcha yoziladi (kabinet o'zi tarjima qiladi) */
+  var WHEN_UZ = { asap: 'Imkon qadar tez', day: 'Kunduzi', eve: 'Kechqurun' };
+  var TOPIC_UZ = { buy: 'Xonadon sotib olish', pay: "To'lov va shartnoma", visit: "Obyektni ko'rish", other: 'Boshqa savol' };
 
   /* ================= QAYTA QO'NG'IROQ ================= */
   $('#cbForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var n = $('#cbName'), ph = $('#cbPhone'), ok = checkName(n) & checkPhone(ph); if (!ok) return;
-    var tp = $('#cbTopic'), lead = { src: 'callback', name: n.value.trim(), phone: ph.value.trim(), topic: tp.options[tp.selectedIndex].text, st: 'new', lang: I18N.lang };
+    var lead = { src: 'callback', name: n.value.trim(), phone: ph.value.trim(), unit: TOPIC_UZ[$('#cbTopic').value], slot: "Qayta qo'ng'iroq", lang: I18N.lang, area: 0 };
     remember(lead.name, lead.phone);
-    Store.add('leads', lead).catch(function () { queue('leads', lead); });
+    CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
     $('.form-ok', this).hidden = false; this.reset(); prefill();
     setTimeout(function () { $('#cbForm .form-ok').hidden = true; }, 6000);
   });
