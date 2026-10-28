@@ -115,7 +115,11 @@
       mnav = document.createElement('div'); mnav.className = 'mnav'; mnav.hidden = true; mnav.setAttribute('role', 'dialog'); mnav.setAttribute('aria-modal', 'true');
       document.body.appendChild(mnav);
       b.addEventListener('click', function () { openMnav(); });
-      mnav.addEventListener('click', function (e) { if (e.target.closest('[data-mclose]') || e.target.closest('a')) closeMnav(); });
+      mnav.addEventListener('click', function (e) {
+        var pj = e.target.closest('[data-proj]');
+        if (pj) setTimeout(function () { var tb = $('#projTabs [data-p="' + pj.dataset.proj + '"]'); if (tb) tb.click(); }, 120);
+        if (e.target.closest('[data-mclose]') || e.target.closest('a')) closeMnav();
+      });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMnav(); });
       I18N.apply(b);
     }
@@ -126,8 +130,17 @@
       var r = a.dataset.route;
       return '<a href="' + a.getAttribute('href') + '" data-route="' + r + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '>' + em(r) + '<span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-right"/></svg></a>';
     }).join('');
+    /* tepada ikki loyihaning eng chiroyli rasmi (ICON uslubida), keyin guruhlangan ro'yxat */
+    var CARDS = [{ id: 'musaffo', img: 'assets/img/musaffo/majmua-kechki.webp' }, { id: 'obod', img: 'assets/img/obod/obod-joylashuv.webp' }];
+    var cards = CARDS.map(function (c) {
+      var pr = P.filter(function (x) { return x.id === c.id; })[0]; if (!pr) return '';
+      return '<a class="mnav-card" href="#projects" data-proj="' + c.id + '"><img src="' + c.img + '" alt="" loading="lazy"><span>' + esc(pick(pr.name)) + '</span></a>';
+    }).join('');
+    var projs = P.map(function (pr, i) { return '<a href="#projects" data-proj="' + pr.id + '" style="--d:' + i + '"><span class="gt sm" aria-hidden="true"><svg><use href="#f-build"/></svg></span><span>' + esc(pick(pr.name)) + '</span><svg class="ic"><use href="#i-right"/></svg></a>'; }).join('');
     mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside class="mnav-in"><div class="mnav-top"><span class="mnav-brand"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><span><b>ART HOUSE</b><small>' + esc(t('brand.sub')) + '</small></span></span><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button></div>' +
+      (cards ? '<div class="mnav-cards">' + cards + '</div>' : '') +
       '<p class="mnav-sub">' + esc(t('nav.menuSub')) + '</p><nav class="mnav-list">' + items + '</nav>' +
+      '<p class="mnav-sub">' + esc(t('nav.projects')) + '</p><nav class="mnav-list mnav-proj">' + projs + '</nav>' +
       '<div class="mnav-foot"><a class="btn btn-gold" data-phone href="tel:' + esc(CFG.PHONE) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>' +
       '<div class="mnav-row">' + (CFG.TELEGRAM_CHANNEL ? '<a class="mnav-mini" href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">' + em('tg') + '<span>Telegram</span></a>' : '') +
       '<a class="mnav-mini" href="kabinet.html">' + em('cabinet') + '<span>' + esc(t('nav.cabinet')) + '</span></a></div></div></aside>';

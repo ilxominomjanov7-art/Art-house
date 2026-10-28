@@ -18,6 +18,17 @@ window.CFG = {
   TG_MANAGER: '',
   INSTAGRAM: 'https://www.instagram.com/arthouse.tashkent',
   INSTAGRAM_HANDLE: '@arthouse.tashkent',
+  /* «Bizni tanlaganlar» bo'limi. Faqat inson roziligi va rasmiy rasmi bo'lsa qo'shing:
+     rasmini assets/img/amb/ ga qo'yib, photo maydoniga yozing va on: true qiling.
+     Rasm yoki ruxsat bo'lmasa — yozuv saytda chiqmaydi. */
+  AMBASSADORS: [
+    { on: false, photo: '', name: 'Xayrullo Hamidov', ig: '', verified: true,
+      role: { uz: 'Futbol sharhlovchisi', ru: 'Футбольный комментатор', en: 'Football commentator', fr: 'Commentateur sportif', it: 'Telecronista di calcio', es: 'Comentarista de fútbol', de: 'Fußballkommentator', tr: 'Futbol yorumcusu' } },
+    { on: false, photo: '', name: 'Madina', ig: 'madina_newyork', verified: true,
+      role: { uz: 'Bloger, Nyu-York', ru: 'Блогер, Нью-Йорк', en: 'Blogger, New York', fr: 'Blogueuse, New York', it: 'Blogger, New York', es: 'Bloguera, Nueva York', de: 'Bloggerin, New York', tr: 'Blogger, New York' } },
+    { on: false, photo: '', name: 'Dilafruz Sharipova', ig: '', verified: true,
+      role: { uz: 'Dietolog', ru: 'Диетолог', en: 'Dietitian', fr: 'Diététicienne', it: 'Dietologa', es: 'Dietista', de: 'Ernährungsberaterin', tr: 'Diyetisyen' } }
+  ],
   YOUTUBE: '',                           // bo'sh qolsa — ko'rsatilmaydi
   FACEBOOK: '',
   WHATSAPP: '',

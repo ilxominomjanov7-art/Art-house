@@ -193,3 +193,53 @@ body { font-variant-numeric: lining-nums; }
 .soc-card .ico .gt { --s: 46px; }
 .why article > .gt { margin-bottom: 14px; }
 .btn-ghost > .gt { margin-right: 2px; }
+
+/* =====================================================================
+   ICON uslubidagi bloklar: e'lon qatori, menyu kartalari, Instagram lentasi,
+   taniqli insonlar, pastki ijtimoiy ikonkalar (js/lux-sections.js)
+   ===================================================================== */
+.ann { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; min-height: 36px; background: linear-gradient(90deg, #C9A660, #EBD49C 50%, #C9A660); color: #0B3B2D; }
+.ann button { height: 36px; border: 0; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; }
+.ann .ic { width: 16px; height: 16px; }
+.ann p { margin: 0; text-align: center; font-size: 12.5px; font-weight: 600; letter-spacing: .02em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ann p span { display: inline-block; animation: annIn .45s ease both; }
+.ann p span.out { animation: annOut .26s ease both; }
+@keyframes annIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes annOut { to { opacity: 0; transform: translateY(-8px); } }
+
+.mnav-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 4px; }
+.mnav-card { position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; border: 1px solid rgba(235, 212, 156, .2); }
+.mnav-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.mnav-card:hover img { transform: scale(1.05); }
+.mnav-card::after { content: ''; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(3, 20, 15, .85)); }
+.mnav-card span { position: absolute; left: 10px; right: 10px; bottom: 9px; z-index: 1; font-family: var(--f-logo); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: #FFF6DC; }
+.mnav-proj a { min-height: 44px !important; font-size: 15px !important; }
+
+.igs { padding: 56px 0 8px; }
+.igs-head { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 16px 22px; text-align: center; }
+.igs-head h2 { margin: 0; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: .02em; }
+.igs-head .gt { --s: 38px; }
+.igs-row { display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.igs-row::-webkit-scrollbar { display: none; }
+.igs-row a { flex: 0 0 min(42vw, 300px); aspect-ratio: 3 / 4; scroll-snap-align: start; overflow: hidden; }
+.igs-row img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
+.igs-row a:hover img { transform: scale(1.05); }
+
+.amb .sec-head.center { text-align: center; justify-items: center; }
+.amb-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
+.amb-track::-webkit-scrollbar { display: none; }
+.amb-card { flex: 0 0 min(78vw, 320px); margin: 0; scroll-snap-align: start; }
+.amb-ph { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #0B3B2D; }
+.amb-ph img { width: 100%; height: 100%; object-fit: cover; }
+.amb-badge { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: rgba(3, 20, 15, .7); color: #F8EBC6; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; backdrop-filter: blur(6px); }
+.amb-card figcaption { display: grid; gap: 3px; padding: 14px 2px 0; }
+.amb-card figcaption b { display: flex; align-items: center; gap: 8px; font-family: var(--f-display); font-size: 24px; font-weight: 600; color: var(--gold-hi); }
+.amb-v { width: 20px; height: 20px; fill: #D9B672; flex: none; }
+.amb-card figcaption span { color: var(--mut); font-size: 14px; }
+.amb-card figcaption a { color: var(--gold); font-size: 13px; }
+.amb-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.amb-dots i { width: 8px; height: 4px; border-radius: 4px; background: rgba(235, 212, 156, .3); transition: width .3s, background .3s; }
+.amb-dots i.on { width: 28px; background: var(--gold); }
+
+.foot-soc { display: flex; gap: 12px; margin-top: 18px; }
+.foot-soc .gt { --s: 40px; }
