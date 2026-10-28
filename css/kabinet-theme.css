@@ -366,8 +366,6 @@ html,body{background:var(--em-900)}
 #adm .zh .zic.has-emo{width:30px;height:30px}
 #adm .zh .zic.has-emo .emo-t{font-size:25px}
 #adm #sd #nv button:hover .nt.has-emo .emo{transform:scale(1.08);transition:transform .25s var(--ease)}
-/* «Mening profilim» — emojisiz, matn boshqa bandlar bilan bir chiziqda */
-#adm #sd #nv .nt.no-emo{visibility:hidden}
 
 /* =====================================================================
    PROFIL RASMI (Instagram uslubi) va iPhone pastki menyusi
