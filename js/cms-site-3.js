@@ -144,14 +144,16 @@
     var h = '<div class="sec-head reveal in"><h2>' + esc(t('proj.video')) + '</h2></div><div class="pvids">' + p.videos.map(function (v) {
       var y = ytId(v.src);
       return '<figure class="pvid' + (v.vert ? ' vert' : '') + '">' + (y ? '<iframe src="https://www.youtube-nocookie.com/embed/' + y + '" title="' + esc(pick(v.t)) + '" loading="lazy" allowfullscreen></iframe>'
-        : '<video src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') + ' controls playsinline preload="none"></video>') + (pick(v.t) ? '<figcaption>' + esc(pick(v.t)) + '</figcaption>' : '') + '</figure>';
+        : '<video src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') + ' controls playsinline preload="metadata"></video>') + (pick(v.t) ? '<figcaption>' + esc(pick(v.t)) + '</figcaption>' : '') + '</figure>';
     }).join('') + '</div>';
     var hero = box.querySelector('.pd-hero');
     if (hero) hero.insertAdjacentHTML('afterend', h); else box.insertAdjacentHTML('beforeend', h);
     $$('.pvid video', box).forEach(function (v) { v.addEventListener('error', function () { var f = v.closest('.pvid'); if (f) f.remove(); }); });
   }
   var pd = $('#projDetail'); if (pd) new MutationObserver(function () { projVideos(); }).observe(pd, { childList: true });
-  var fv = $('#festVideo'); if (fv) fv.addEventListener('error', function () { var c = fv.closest('.fest'); if (c) c.hidden = true; });
+  var fv = $('#festVideo'); if (fv) { fv.setAttribute('preload', 'metadata'); fv.addEventListener('error', function () { var c = fv.closest('.fest'); if (c) c.hidden = true; }); try { fv.load(); } catch (e) {} }
+  /* video fayli topilmasa — bo'sh qora oyna ko'rsatilmaydi (manba xatosi <source> da ham ushlanadi) */
+  document.addEventListener('error', function (e) { var el = e.target; if (!el || (el.tagName !== 'VIDEO' && el.tagName !== 'SOURCE')) return; var v = el.tagName === 'SOURCE' ? el.parentNode : el; if (v.id === 'heroVideo') return; var box = v.closest('.pvid,.fest,.cms-gi'); if (box) box.hidden = true; }, true);
 
   /* ---------- kabinetdan qo'shilgan foto va video galereya ---------- */
   var MD = C.media || {}, GI = (MD.items || []).filter(function (x) { return x && x.src && x.on !== false; });

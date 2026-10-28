@@ -233,7 +233,7 @@
     }).join('') + '</div>';
 
     if (p.gallery.length) h += '<div class="sec-head"><h2>' + esc(t('proj.gallery')) + '</h2></div><div class="gallery">' + p.gallery.map(function (g, i) {
-      return '<button type="button" data-lb="gal" data-idx="' + i + '"><img src="' + g.src + '" alt="' + esc(pick(g.t)) + '" loading="lazy" decoding="async"><span>' + esc(pick(g.t)) + '</span></button>';
+      return '<button type="button" data-lb="gal" data-idx="' + i + '"' + (g.ov ? ' class="has-ov"' : '') + '><img src="' + g.src + '" alt="' + esc(pick(g.t)) + '" loading="lazy" decoding="async">' + ovHtml(g.ov) + '<span>' + esc(pick(g.t)) + '</span></button>';
     }).join('') + '</div>';
 
     if (p.plans.length) {
@@ -258,8 +258,8 @@
       $$('#planFilter button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
       $$('.plan').forEach(function (f) { f.hidden = projState.rooms !== 'all' && f.dataset.r !== projState.rooms; });
     } else if ((b = e.target.closest('[data-lb]'))) {
-      var kind = b.dataset.lb, items = kind === 'gal' ? p.gallery.map(function (g) { return { src: g.src, cap: pick(g.t) }; })
-        : kind === 'amen' ? p.amenities.map(function (a) { return { src: a.img, cap: pick(a.t) }; })
+      var kind = b.dataset.lb, items = kind === 'gal' ? p.gallery.map(function (g) { return { src: g.src, cap: pick(g.t), ov: g.ov }; })
+        : kind === 'amen' ? p.amenities.map(function (a) { return { src: a.img, cap: pick(a.t), ov: { h: a.t, s: a.d } }; })
           : p.plans.map(function (pl) { return { src: pl.img, cap: planName(pl) }; });
       openLightbox(items, +b.dataset.idx);
     } else if ((b = e.target.closest('[data-book-plan]'))) {
@@ -477,7 +477,13 @@
 
   /* ================= LIGHTBOX ================= */
   var lb = { items: [], i: 0 };
-  function lbShow(i) { lb.i = (i + lb.items.length) % lb.items.length; var it = lb.items[lb.i]; $('#lbImg').src = it.src; $('#lbImg').alt = it.cap; $('#lbCap').textContent = it.cap + ' · ' + (lb.i + 1) + '/' + lb.items.length; }
+  function lbShow(i) { lb.i = (i + lb.items.length) % lb.items.length; var it = lb.items[lb.i]; $('#lbImg').src = it.src; var im = $('#lbImg'), wr = im.parentNode; if (!wr.classList.contains('lb-wrap')) { wr = document.createElement('div'); wr.className = 'lb-wrap'; im.before(wr); wr.appendChild(im); } var ov = $('.img-ov', wr); if (ov) ov.remove(); if (it.ov) im.insertAdjacentHTML('afterend', ovHtml(it.ov)); var fit = function () { wr.classList.remove('sized'); wr.style.width = ''; var w = im.getBoundingClientRect().width; if (w) { wr.style.width = w + 'px'; wr.classList.add('sized'); } }; im.onload = fit; if (im.complete) fit(); $('#lbImg').alt = it.cap; $('#lbCap').textContent = it.cap + ' · ' + (lb.i + 1) + '/' + lb.items.length; }
+  /* rasm ustidagi yozuv (har bir tilda): h — sarlavha, a — oltin urg'u, t — yorliq, s — kichik matn */
+  function ovHtml(o) {
+    if (!o) return '';
+    var h = pick(o.h), a = pick(o.a), tg = pick(o.t), sm = pick(o.s);
+    return '<div class="img-ov">' + (h ? '<b>' + esc(h) + '</b>' : '') + (a ? '<em>' + esc(a) + '</em>' : '') + (tg ? '<i>' + esc(tg) + '</i>' : '') + (sm ? '<small>' + esc(sm) + '</small>' : '') + '</div>';
+  }
   function openLightbox(items, i) { lb.items = items; lbShow(i); openModal($('#lightbox')); }
   $('#lightbox').addEventListener('click', function (e) { var d = e.target.closest('[data-dir]'); if (d) return lbShow(lb.i + +d.dataset.dir); if (e.target.closest('[data-close]') || e.target === this) closeModal(this); });
   (function swipe() { var x0 = null; $('#lightbox').addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true }); $('#lightbox').addEventListener('touchend', function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) lbShow(lb.i + (dx < 0 ? 1 : -1)); x0 = null; }); })();
