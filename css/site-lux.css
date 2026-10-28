@@ -142,3 +142,39 @@ body { font-variant-numeric: lining-nums; }
 .img-ov b:has(~ small) { font-size: 6.2cqw; }
 .img-ov small { font-size: 3.6cqw; line-height: 1.35; color: rgba(248, 240, 216, .88); max-width: 88%; text-wrap: balance; }
 .gallery button.has-ov > span { display: none; }
+
+/* =====================================================================
+   INTERAKTIV BOSH REJA — blokni tanlash (js/masterplan.js)
+   ===================================================================== */
+.mplan { margin: 34px 0 10px; }
+.mp-stage { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.mp-stage img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: cover; object-position: 50% 30%; }
+.mp-pin { position: absolute; transform: translate(-50%, -50%); width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: rgba(8, 30, 22, .82); color: #F8EBC6; font: 600 15px var(--f-body); box-shadow: 0 0 0 1.5px rgba(235, 212, 156, .9), 0 6px 18px -4px rgba(0, 0, 0, .6);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), background .2s, color .2s; }
+.mp-pin::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(235, 212, 156, .55); animation: mpPulse 2.6s ease-out infinite; }
+.mp-pin:hover, .mp-pin.on { transform: translate(-50%, -50%) scale(1.12); background: linear-gradient(180deg, #F3E2B2, #D2AE6A); color: #0B3B2D; }
+.mp-pin.on::after { animation: none; opacity: 0; }
+@keyframes mpPulse { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+.mp-hint { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); margin: 0; padding: 8px 14px; border-radius: 999px; background: rgba(4, 22, 16, .72); color: #F1E3BC; font-size: 12.5px; white-space: nowrap; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.mp-actions { display: grid; gap: 10px; margin-top: 14px; }
+.mp-actions .btn { width: 100%; justify-content: center; min-height: 52px; border-radius: 999px; }
+.mp-dark { background: #0B1F18; color: #F1E3BC; border: 1px solid rgba(235, 212, 156, .28); }
+@media (min-width: 761px) { .mp-actions { grid-template-columns: 1fr 1fr; } }
+.mp-sheet { position: fixed; inset: 0; z-index: 160; display: flex; align-items: flex-end; justify-content: center; background: rgba(2, 18, 13, 0); transition: background .3s; }
+.mp-sheet.on { background: rgba(2, 18, 13, .5); }
+.mp-card { width: min(520px, 100%); padding: 10px 20px calc(22px + env(safe-area-inset-bottom)); border-radius: 26px 26px 0 0; background: linear-gradient(180deg, #0F4A38, #0A3A2C); border: 1px solid rgba(235, 212, 156, .22); border-bottom: 0;
+  transform: translateY(105%); transition: transform .38s cubic-bezier(.32, .72, 0, 1); display: grid; gap: 16px; }
+.mp-sheet.on .mp-card { transform: none; }
+.mp-grab { justify-self: center; width: 40px; height: 4px; border-radius: 4px; background: rgba(235, 212, 156, .35); }
+.mp-head { display: flex; align-items: center; justify-content: space-between; }
+.mp-head b { font-family: var(--f-display); font-size: 30px; font-weight: 600; color: #F8EBC6; }
+.mp-tag { padding: 6px 12px; border-radius: 999px; background: rgba(127, 211, 164, .14); color: #9BE3BC; font-size: 12.5px; font-weight: 600; }
+.mp-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mp-facts > div { padding: 14px; border-radius: 16px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(235, 212, 156, .16); display: grid; gap: 4px; }
+.mp-facts b { font-family: var(--f-display); font-size: 30px; line-height: 1; background: linear-gradient(180deg, #FFF6DC, #C9A660); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mp-facts span { font-size: 12.5px; color: var(--mut); }
+.mp-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mp-btns .btn:only-child { grid-column: 1 / -1; }
+.mp-btns .btn { justify-content: center; min-height: 50px; }
+.mp-help { justify-self: center; border: 0; background: none; color: var(--gold-hi); font-size: 14.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
