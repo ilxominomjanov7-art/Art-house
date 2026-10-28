@@ -20,16 +20,48 @@
 
   /* ---------------- kirish animatsiyasi ---------------- */
   (function splash() {
-    var el = $('#splash'), seen = false;
+    var el = $('#splash'), seen = false, go = false;
     try { seen = sessionStorage.getItem('ah3_intro') === '1'; } catch (e) {}
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function done() { el.classList.add('done'); document.body.classList.remove('is-loading'); setTimeout(function () { el.remove(); }, 900); try { sessionStorage.setItem('ah3_intro', '1'); } catch (e) {} }
-    if (seen || reduce) { el.remove(); document.body.classList.remove('is-loading'); return; }
-    var logo = $('.lux-logo', el);
-    for (var i = 0; i < 14; i++) { var s = document.createElement('i'); s.className = 'spark'; s.style.cssText = 'left:' + (10 + Math.random() * 80) + '%;top:' + (20 + Math.random() * 60) + '%;animation-delay:' + (1 + Math.random() * 2) + 's'; logo.appendChild(s); }
+    /* splash tugagach — bosh sahifa bosqichma-bosqich ochiladi, raqamlar sanaladi */
+    function hero() {
+      if (go) return; go = true;
+      document.body.classList.remove('intro-pre'); document.body.classList.add('intro-go');
+      setTimeout(function () { countUp($$('.hero .stats b')); }, 900);
+    }
+    document.body.classList.add('intro-pre');
+    function done() {
+      if (!el.parentNode) return;
+      el.classList.add('done'); document.body.classList.remove('is-loading'); setTimeout(hero, 250);
+      setTimeout(function () { el.remove(); }, 1100);
+      try { sessionStorage.setItem('ah3_intro', '1'); } catch (e) {}
+    }
+    if (seen || reduce) { el.remove(); document.body.classList.remove('is-loading'); hero(); return; }
     el.addEventListener('click', done);
-    setTimeout(done, 3000);
+    setTimeout(done, 3800);
   })();
+
+  /* raqamlarni 0 dan sanab chiqarish: «30+», «36», «1 010», «114K» — qo'shimchalar saqlanadi */
+  function countUp(list) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    list.forEach(function (b) {
+      if (b.dataset.counted) return;
+      var t = b.textContent.trim(), m = t.match(/^([^\d]*)([\d\s.,]*\d)(.*)$/); if (!m) return;
+      var sep = /\d\s\d/.test(m[2]) ? ' ' : '', n = parseFloat(m[2].replace(/[\s,]/g, '')); if (!isFinite(n) || n === 0) return;
+      b.dataset.counted = '1';
+      var dec = (m[2].split('.')[1] || '').length, t0 = performance.now(), D = 1600;
+      (function f(now) {
+        var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3), v = (n * e).toFixed(dec);
+        if (sep) v = v.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        b.textContent = m[1] + v + m[3];
+        if (k < 1) requestAnimationFrame(f); else b.textContent = t;
+      })(t0);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { countUp($$('b', e.target)); cio.unobserve(e.target); } }); }, { threshold: .4 });
+    $$('.about-nums, .ig-stats').forEach(function (x) { cio.observe(x); });
+  }
 
   /* ---------------- aria-label tarjimalari ---------------- */
   $$('[aria-label="Yopish"]').forEach(function (b) { b.setAttribute('data-i-al', 'aria.close'); });
