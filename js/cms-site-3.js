@@ -111,7 +111,7 @@
     if (!mnav) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'mnav-btn'; b.setAttribute('aria-haspopup', 'dialog');
       b.innerHTML = '<span class="mnav-ico"><i></i><i></i><i></i></span><span data-i="nav.menu">Menyu</span>';
-      $('.top-act').appendChild(b);
+      var tr = $('.top-row'); tr.insertBefore(b, tr.firstChild);
       mnav = document.createElement('div'); mnav.className = 'mnav'; mnav.hidden = true; mnav.setAttribute('role', 'dialog'); mnav.setAttribute('aria-modal', 'true');
       document.body.appendChild(mnav);
       b.addEventListener('click', function () { openMnav(); });
@@ -119,15 +119,18 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMnav(); });
       I18N.apply(b);
     }
+    /* chap tomondan chiqadigan menyu (kabinetdagidek): iPhone emojili bo'limlar */
+    var EMO = window.AH_EMO || {};
+    var em = function (k) { return EMO[k] ? '<img class="mnav-emo" src="' + EMO[k] + '" alt="" aria-hidden="true">' : '<span class="mnav-emo"></span>'; };
     var items = $$('.menu-track > a').filter(function (a) { return !a.hidden; }).map(function (a, i) {
-      var rev = a.classList.contains('menu-rev');
-      return '<a href="' + a.getAttribute('href') + '" data-route="' + a.dataset.route + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '><i>' + (rev ? '★' : esc((a.querySelector('i') || {}).textContent || '')) + '</i><span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-arrow"/></svg></a>';
+      var r = a.dataset.route;
+      return '<a href="' + a.getAttribute('href') + '" data-route="' + r + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '>' + em(r) + '<span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-right"/></svg></a>';
     }).join('');
-    mnav.innerHTML = '<div class="mnav-in"><div class="mnav-top"><span class="mnav-brand"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><b>ART HOUSE</b></span><button type="button" class="modal-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button></div>' +
+    mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside class="mnav-in"><div class="mnav-top"><span class="mnav-brand"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><span><b>ART HOUSE</b><small>' + esc(t('brand.sub')) + '</small></span></span><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button></div>' +
       '<p class="mnav-sub">' + esc(t('nav.menuSub')) + '</p><nav class="mnav-list">' + items + '</nav>' +
       '<div class="mnav-foot"><a class="btn btn-gold" data-phone href="tel:' + esc(CFG.PHONE) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>' +
-      (CFG.TELEGRAM_CHANNEL ? '<a class="btn btn-ghost" href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener"><svg class="ic"><use href="#i-tg"/></svg><span>Telegram</span></a>' : '') +
-      '<a class="btn btn-ghost" href="kabinet.html"><span>' + esc(t('nav.cabinet')) + '</span></a></div></div>';
+      '<div class="mnav-row">' + (CFG.TELEGRAM_CHANNEL ? '<a class="mnav-mini" href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">' + em('tg') + '<span>Telegram</span></a>' : '') +
+      '<a class="mnav-mini" href="kabinet.html">' + em('cabinet') + '<span>' + esc(t('nav.cabinet')) + '</span></a></div></div></aside>';
   }
   function openMnav() { buildMnav(); mnav.hidden = false; requestAnimationFrame(function () { mnav.classList.add('open'); }); document.body.classList.add('lock'); }
   function closeMnav() { if (!mnav || mnav.hidden) return; mnav.classList.remove('open'); document.body.classList.remove('lock'); setTimeout(function () { mnav.hidden = true; }, 380); }

@@ -84,3 +84,46 @@ body { font-variant-numeric: lining-nums; }
 /* logotip A: nom ostida olmosli ajratgich */
 .lux-line { position: relative; overflow: visible; }
 .lux-line::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; transform: rotate(45deg); background: #EBD49C; opacity: 0; animation: lxSub 1s ease 2.2s forwards; }
+
+/* =====================================================================
+   MENYU — chap tomondan chiqadigan panel (kabinetdagidek), iPhone emojilari
+   ===================================================================== */
+.top-row { position: relative; }
+.mnav-btn { display: inline-flex !important; order: -1; width: 44px; height: 44px; padding: 0 !important; justify-content: center; border-radius: 14px; }
+.mnav-btn span[data-i] { display: none !important; }
+.mnav-ico { width: 18px; gap: 4px; }
+.mnav-ico i:nth-child(2) { width: 100%; }
+.mnav-ico i:nth-child(3) { width: 60%; }
+.mnav { position: fixed; inset: 0; z-index: 140; background: none !important; opacity: 1 !important; overflow: hidden; pointer-events: none; }
+.mnav.open { pointer-events: auto; }
+.mnav-scrim { position: absolute; inset: 0; background: rgba(2, 18, 13, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity .35s ease; }
+.mnav.open .mnav-scrim { opacity: 1; }
+.mnav .mnav-in { position: absolute; top: 0; bottom: 0; left: 0; width: min(320px, 86vw); max-width: none; margin: 0; min-height: 0; display: flex; flex-direction: column;
+  padding: max(16px, env(safe-area-inset-top)) 14px calc(16px + env(safe-area-inset-bottom)); overflow-y: auto;
+  background: linear-gradient(180deg, #0C3E2F 0%, #082F23 100%); border-right: 1px solid rgba(235, 212, 156, .2); box-shadow: 30px 0 60px -30px rgba(0, 0, 0, .6);
+  transform: translateX(-102%); transition: transform .42s cubic-bezier(.32, .72, 0, 1); }
+.mnav.open .mnav-in { transform: none; }
+.mnav-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 2px 4px 14px; border-bottom: 1px solid rgba(235, 212, 156, .16); }
+.mnav-brand { display: flex; align-items: center; gap: 10px; }
+.mnav-brand svg { width: 34px; height: 34px; fill: none; stroke: url(#gGold); stroke-width: 2.6; }
+.mnav-brand > span { display: grid; gap: 2px; }
+.mnav-brand b { font-family: var(--f-logo); font-weight: 500; letter-spacing: .24em; font-size: 15px; color: var(--gold-hi); }
+.mnav-brand small { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); opacity: .8; }
+.mnav-x { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(235, 212, 156, .2); background: none; color: var(--gold-hi); display: grid; place-items: center; cursor: pointer; }
+.mnav-x .ic { width: 18px; height: 18px; }
+.mnav-sub { margin: 16px 8px 8px !important; font-size: 10.5px !important; letter-spacing: .18em !important; color: rgba(235, 212, 156, .7) !important; opacity: 1 !important; }
+.mnav-list { display: grid; gap: 2px !important; }
+.mnav-list a { display: flex !important; align-items: center; gap: 12px; min-height: 48px !important; padding: 0 12px !important; border: 0 !important; border-radius: 12px !important; background: none !important;
+  color: rgba(248, 240, 216, .9) !important; font-size: 15.5px !important; font-weight: 500; opacity: 0; transform: translateX(-10px); transition: background .2s, opacity .4s ease calc(var(--d) * 35ms + 120ms), transform .45s cubic-bezier(.22, 1, .36, 1) calc(var(--d) * 35ms + 120ms) !important; position: relative; }
+.mnav.open .mnav-list a { opacity: 1; transform: none; }
+.mnav-list a span { flex: 1; }
+.mnav-list a .ic { width: 16px !important; height: 16px !important; color: var(--gold) !important; opacity: .55 !important; }
+.mnav-list a:active, .mnav-list a:hover { background: rgba(255, 255, 255, .05) !important; }
+.mnav-list a.active { background: rgba(235, 212, 156, .12) !important; color: var(--gold-hi) !important; }
+.mnav-list a.active::before { content: ''; position: absolute; left: -14px; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0; background: var(--gold); }
+.mnav-emo { width: 26px; height: 26px; flex: none; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .35)); }
+.mnav-foot { margin-top: auto; padding-top: 18px; display: grid; gap: 10px; }
+.mnav-foot .btn { width: 100%; justify-content: center; min-height: 50px; }
+.mnav-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mnav-mini { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; border: 1px solid rgba(235, 212, 156, .22); color: var(--ink); font-size: 14px; font-weight: 500; }
+.mnav-mini .mnav-emo { width: 22px; height: 22px; }
