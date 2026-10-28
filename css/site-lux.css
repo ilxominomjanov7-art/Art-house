@@ -80,3 +80,7 @@ body { font-variant-numeric: lining-nums; }
 .ig-head b { white-space: nowrap; font-size: clamp(15px, 4.4vw, 18px); letter-spacing: .01em; }
 .ig-head span { display: block; line-height: 1.4; margin-top: 2px; }
 @media (max-width: 520px) { .ig-head { display: grid; grid-template-columns: auto 1fr; } .ig-head .btn { grid-column: 1 / -1; justify-self: start; } }
+
+/* logotip A: nom ostida olmosli ajratgich */
+.lux-line { position: relative; overflow: visible; }
+.lux-line::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; transform: rotate(45deg); background: #EBD49C; opacity: 0; animation: lxSub 1s ease 2.2s forwards; }

@@ -408,3 +408,11 @@ html,body{background:var(--em-900)}
 #adm .ios-seg{display:inline-flex;gap:2px;margin-top:8px;padding:2px;border-radius:9px;background:var(--sf-in);border:1px solid var(--bd)}
 #adm .ios-seg button{height:26px;padding:0 10px;border:0;border-radius:7px;background:none;color:var(--tx-2);font:500 12px var(--ui);cursor:pointer}
 #adm .ios-seg button.on{background:var(--em-600);color:var(--ch-100);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+
+/* logotip A: nom ostida olmosli ajratgich */
+.lux-line{position:relative;overflow:visible}
+.lux-line::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;transform:rotate(45deg);background:#E8D5A3;opacity:0;animation:lxSub 1s ease 2.1s forwards}
+/* logotip A o'zining qo'sh ramkasiga ega — tashqi qutini olib tashlaymiz */
+#adm .sbh .sbm,#adm .tbb .sbm,#adm .lgc .sbm{border:0!important;background:none!important;border-radius:0!important}
+#adm .sbh .sbm svg,#adm .tbb .sbm svg{width:30px;height:30px;stroke:url(#gGold);stroke-width:2.6}
+#adm .lgc .sbm svg{width:46px;height:46px;stroke:url(#gGold);stroke-width:2.4}
