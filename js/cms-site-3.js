@@ -123,27 +123,25 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMnav(); });
       I18N.apply(b);
     }
-    /* chap tomondan chiqadigan menyu (kabinetdagidek): och oltin plitkali bo'limlar */
-    var RG = { home: 'home', calculator: 'calc', projects: 'build', location: 'pin', about: 'about', social: 'ig', contact: 'phone', reviews: 'star', tg: 'tg', cabinet: 'key' };
-    var em = function (k) { return '<span class="gt" aria-hidden="true"><svg><use href="#f-' + (RG[k] || 'star') + '"/></svg></span>'; };
-    var items = $$('.menu-track > a').filter(function (a) { return !a.hidden; }).map(function (a, i) {
-      var r = a.dataset.route;
-      return '<a href="' + a.getAttribute('href') + '" data-route="' + r + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '>' + em(r) + '<span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-right"/></svg></a>';
-    }).join('');
-    /* tepada ikki loyihaning eng chiroyli rasmi (ICON uslubida), keyin guruhlangan ro'yxat */
+    /* ICON uslubidagi menyu: tepada ikki rasmli karta, keyin ikonkasiz, toza guruhlangan ro'yxat */
     var CARDS = [{ id: 'musaffo', img: 'assets/img/musaffo/majmua-kechki.webp' }, { id: 'obod', img: 'assets/img/obod/obod-joylashuv.webp' }];
-    var cards = CARDS.map(function (c) {
-      var pr = P.filter(function (x) { return x.id === c.id; })[0]; if (!pr) return '';
-      return '<a class="mnav-card" href="#projects" data-proj="' + c.id + '"><img src="' + c.img + '" alt="" loading="lazy"><span>' + esc(pick(pr.name)) + '</span></a>';
-    }).join('');
-    var projs = P.map(function (pr, i) { return '<a href="#projects" data-proj="' + pr.id + '" style="--d:' + i + '"><span class="gt sm" aria-hidden="true"><svg><use href="#f-build"/></svg></span><span>' + esc(pick(pr.name)) + '</span><svg class="ic"><use href="#i-right"/></svg></a>'; }).join('');
-    mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside class="mnav-in"><div class="mnav-top"><span class="mnav-brand"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><span><b>ART HOUSE</b><small>' + esc(t('brand.sub')) + '</small></span></span><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button></div>' +
+    var name = function (id) { var pr = P.filter(function (x) { return x.id === id; })[0]; return pr ? pick(pr.name) : ''; };
+    var lbl = function (r) { var a = $('.menu-track > a[data-route="' + r + '"] span'); return a ? a.textContent : r; };
+    var cards = CARDS.map(function (c) { return name(c.id) ? '<a class="mnav-card" href="#projects" data-proj="' + c.id + '"><img src="' + c.img + '" alt="" loading="lazy"><span>' + esc(name(c.id)) + '</span></a>' : ''; }).join('');
+    var row = function (href, text, extra, d) { return '<a href="' + href + '"' + (extra || '') + ' style="--d:' + d + '"><span>' + esc(text) + '</span><svg class="ic"><use href="#i-right"/></svg></a>'; };
+    var cur = (location.hash || '#home').slice(1).split('/')[0];
+    var main = '<a class="mnav-hl" href="#calculator" style="--d:0">' + esc(t('mn.promo')) + '</a>' +
+      ['home', 'projects', 'calculator'].map(function (r, i) { return '<a class="mnav-big' + (cur === r ? ' active' : '') + '" href="#' + r + '" data-route="' + r + '" style="--d:' + (i + 1) + '">' + esc(lbl(r)) + '</a>'; }).join('');
+    var projs = P.map(function (pr, i) { return row('#projects', pick(pr.name), ' data-proj="' + pr.id + '"', i + 4); }).join('');
+    var secs = ['location', 'about', 'social', 'reviews', 'contact'].map(function (r, i) { return row('#' + r, lbl(r), ' data-route="' + r + '"' + (cur === r ? ' class="active"' : ''), i + 7); }).join('');
+    var serv = '<a href="tel:' + esc(CFG.PHONE) + '" data-phone>' + esc(t('call.phone')) + '</a>' + (CFG.TELEGRAM_CHANNEL ? '<a href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">Telegram</a>' : '') +
+      (CFG.INSTAGRAM ? '<a href="' + esc(CFG.INSTAGRAM) + '" target="_blank" rel="noopener">Instagram</a>' : '') + '<a href="kabinet.html">' + esc(t('nav.cabinet')) + '</a>';
+    mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside class="mnav-in"><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button>' +
       (cards ? '<div class="mnav-cards">' + cards + '</div>' : '') +
-      '<p class="mnav-sub">' + esc(t('nav.menuSub')) + '</p><nav class="mnav-list">' + items + '</nav>' +
-      '<p class="mnav-sub">' + esc(t('nav.projects')) + '</p><nav class="mnav-list mnav-proj">' + projs + '</nav>' +
-      '<div class="mnav-foot"><a class="btn btn-gold" data-phone href="tel:' + esc(CFG.PHONE) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>' +
-      '<div class="mnav-row">' + (CFG.TELEGRAM_CHANNEL ? '<a class="mnav-mini" href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">' + em('tg') + '<span>Telegram</span></a>' : '') +
-      '<a class="mnav-mini" href="kabinet.html">' + em('cabinet') + '<span>' + esc(t('nav.cabinet')) + '</span></a></div></div></aside>';
+      '<nav class="mnav-main">' + main + '</nav>' +
+      '<p class="mnav-sub">' + esc(t('nav.projects')) + '</p><nav class="mnav-list">' + projs + '</nav>' +
+      '<p class="mnav-sub">' + esc(t('nav.menuSub')) + '</p><nav class="mnav-list">' + secs + '</nav>' +
+      '<p class="mnav-sub">' + esc(t('mn.service')) + '</p><nav class="mnav-serv">' + serv + '</nav></aside>';
   }
   function openMnav() { buildMnav(); mnav.hidden = false; requestAnimationFrame(function () { mnav.classList.add('open'); }); document.body.classList.add('lock'); }
   function closeMnav() { if (!mnav || mnav.hidden) return; mnav.classList.remove('open'); document.body.classList.remove('lock'); setTimeout(function () { mnav.hidden = true; }, 380); }

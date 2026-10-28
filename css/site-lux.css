@@ -243,3 +243,30 @@ body { font-variant-numeric: lining-nums; }
 
 .foot-soc { display: flex; gap: 12px; margin-top: 18px; }
 .foot-soc .gt { --s: 40px; }
+
+/* =====================================================================
+   MENYU v3 — ICON uslubi: och shampan fon, ikonkasiz, toza katta harflar
+   ===================================================================== */
+.mnav .mnav-in { background: #F7EFDC !important; color: #0B3B2D; border-right: 0 !important; padding: max(14px, env(safe-area-inset-top)) 22px calc(22px + env(safe-area-inset-bottom)) !important; width: min(380px, 92vw) !important; }
+.mnav .mnav-x { position: sticky; top: 0; z-index: 2; margin: 0 0 6px auto; width: 44px; height: 44px; border-radius: 0; border: 0; background: #F7EFDC; color: #0B3B2D; display: grid; place-items: center; }
+.mnav .mnav-x .ic { width: 22px; height: 22px; stroke-width: 1.6; }
+.mnav-cards { gap: 8px !important; margin: 0 0 26px !important; }
+.mnav-card { border-radius: 0 !important; border: 0 !important; aspect-ratio: 1 / 1; }
+.mnav-card span { font-family: var(--f-body) !important; font-size: 15px !important; font-weight: 600; letter-spacing: .06em !important; bottom: 12px !important; left: 12px !important; }
+.mnav-main { display: grid; gap: 4px; margin-bottom: 26px; }
+.mnav-main a { display: block; padding: 7px 0; font-size: 19px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: #0B3B2D; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease calc(var(--d) * 35ms + 120ms), transform .45s cubic-bezier(.22, 1, .36, 1) calc(var(--d) * 35ms + 120ms), color .2s; }
+.mnav-main a.mnav-hl { color: #B0782A; }
+.mnav-main a.active { color: #8C6A2E; }
+.mnav.open .mnav-main a { opacity: 1; transform: none; }
+.mnav .mnav-sub { margin: 0 0 6px !important; font-size: 14px !important; font-weight: 500; letter-spacing: .08em !important; text-transform: uppercase; color: #A79F8B !important; }
+.mnav .mnav-list { gap: 0 !important; margin-bottom: 24px; }
+.mnav .mnav-list a { min-height: 44px !important; padding: 0 !important; border-radius: 0 !important; background: none !important; color: #0B3B2D !important; font-size: 15.5px !important; font-weight: 500 !important; letter-spacing: .05em; text-transform: uppercase; }
+.mnav .mnav-list a::before { display: none !important; }
+.mnav .mnav-list a > span { flex: 1; }
+.mnav .mnav-list a .ic { width: 14px !important; height: 14px !important; color: #0B3B2D !important; opacity: .8 !important; stroke-width: 2.2; }
+.mnav .mnav-list a.active { color: #8C6A2E !important; }
+.mnav .mnav-list a:hover, .mnav-main a:hover { color: #8C6A2E !important; }
+.mnav-serv { display: grid; gap: 2px; }
+.mnav-serv a { padding: 7px 0; font-size: 14px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #A79F8B; }
+.mnav-serv a:hover { color: #0B3B2D; }
+.mnav-scrim { background: rgba(2, 18, 13, .6) !important; }
