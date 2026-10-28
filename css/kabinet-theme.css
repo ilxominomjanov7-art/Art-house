@@ -366,12 +366,3 @@ html,body{background:var(--em-900)}
 #adm .zh .zic.has-emo{width:30px;height:30px}
 #adm .zh .zic.has-emo .emo-t{font-size:25px}
 #adm #sd #nv button:hover .nt.has-emo .emo{transform:scale(1.08);transition:transform .25s var(--ease)}
-
-/* pastki qism: avatar va ism-familiya kartasi yo'q — faqat «Chiqish» qatori */
-#adm #sd #rl{display:none!important}
-#adm .suc{padding:0;border:0;background:none}
-#adm .suc #lo{width:100%;height:36px;display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:0 10px;border-radius:var(--r-sm);border:0;color:var(--tx-3);font:500 13.5px/1 var(--ui)}
-#adm .suc #lo:hover{color:#F1B3A8;background:rgba(232,137,122,.08)}
-#adm .suc #lo svg{width:18px;height:18px}
-#adm #ab.mini .suc #lo{justify-content:center}
-#adm #ab.mini .lot{display:none}
