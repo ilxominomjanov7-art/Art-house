@@ -856,6 +856,122 @@ h1 .sm{color:#E2C992;letter-spacing:.32em;font-weight:500;font-size:clamp(14px,c
 #splash{z-index:500}
 
 </style>
+<style>
+/* ===== Sozlamalar → Sayt boshqaruvi (CMS) ===== */
+.cm-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 10px;margin:0 0 18px;border-bottom:1px solid var(--line)}
+.cm-tabs::-webkit-scrollbar{display:none}
+.cm-tabs button{flex:none;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--iv);font:600 13.5px var(--f);cursor:pointer;white-space:nowrap;transition:background .25s,border-color .25s,color .25s}
+.cm-tabs button .ic{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.cm-tabs button:hover{border-color:var(--line-2,rgba(212,175,55,.42))}
+.cm-tabs button.on{background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(212,175,55,.06));border-color:var(--gold);color:var(--gold2)}
+.cm-body{display:grid;gap:16px}
+.cm-body .card{padding:clamp(18px,3vw,28px);border-radius:22px}
+.cm-h{color:var(--gold2);font-size:17px;margin:0 0 10px}
+.cm-l{text-align:left!important;margin:0 0 12px!important;color:var(--mut);font-size:13.5px;line-height:1.6}
+.cm-note{display:grid;gap:12px;justify-items:start}
+.cm-note p{margin:0;color:var(--mut)}
+.cm-f{display:grid;gap:6px;min-width:0;margin-bottom:12px}
+.cm-f>b,.cm-sb{font-size:12.5px;font-weight:600;color:var(--mut);letter-spacing:.02em}
+.cm-sb{display:block;margin:14px 0 6px}
+.cm-f input,.cm-f select,.cm-f textarea,.cm-tr textarea,.cm-ml input,.cm-ml textarea{width:100%;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--iv);font:500 14.5px var(--f);line-height:1.5}
+.cm-f select option{background:#0A2E23}
+.cm-f input:focus,.cm-f textarea:focus,.cm-tr textarea:focus,.cm-ml input:focus,.cm-ml textarea:focus,.cm-f select:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px 16px}
+.cm-grid .full{grid-column:1/-1}
+.cm-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cm-grid3 .cm-f{margin-bottom:4px}.cm-grid3 .cm-f>b{font-size:11px}
+.cm-row2{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.cm-row2 .grow{flex:1;min-width:200px}
+.cm-chk{display:inline-flex;align-items:center;gap:10px;margin:0 0 12px;font-size:14px;color:var(--iv);cursor:pointer}
+.cm-chk input{width:18px;height:18px;accent-color:var(--gold)}
+.cm-ml{display:grid;grid-template-columns:34px 1fr;align-items:start;gap:8px;margin-bottom:8px}
+.cm-ml i{display:block!important;width:auto!important;height:auto!important;border:0!important;background:none!important;border-radius:0!important;box-shadow:none!important;font-style:normal;font-size:11px;font-weight:700;color:var(--gold);padding:13px 0 0!important;margin:0!important;letter-spacing:.06em;position:static!important}
+.cm-f details summary,.cm-gi details summary{cursor:pointer;color:var(--gold2);font-size:12.5px;margin:4px 0 8px}
+.cm-list{display:grid;gap:10px}
+.cm-tr{padding:16px 18px!important;border-radius:16px!important;display:grid;gap:8px}
+.cm-tr.chg{border-color:var(--gold)}
+.cm-trh{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.cm-trh code{font-size:11.5px;color:var(--gold);background:rgba(212,175,55,.08);padding:2px 8px;border-radius:6px}
+.cm-trh small{color:var(--mut);font-size:12.5px}
+.cm-tr .btn{justify-self:start;width:auto}
+.cm-pg{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.cm-pg button{min-width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:none;color:var(--iv);cursor:pointer}
+.cm-pg button.on{background:var(--gold);color:#061F18;border-color:var(--gold)}
+.cm-tog{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cm-sw1{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);cursor:pointer;font-size:14px;color:var(--iv)}
+.cm-sw1.sm{padding:6px;border:0}
+.cm-sw1 input{position:absolute;opacity:0;pointer-events:none}
+.cm-sw1 i{flex:none;width:42px;height:24px;border-radius:99px;background:rgba(255,255,255,.12);position:relative;transition:background .25s}
+.cm-sw1 i::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--iv);transition:transform .25s}
+.cm-sw1 input:checked+i{background:var(--gold)}
+.cm-sw1 input:checked+i::after{transform:translateX(18px);background:#061F18}
+.cm-sw1 input:disabled+i{opacity:.5}
+.cm-sw1 input:focus-visible+i{outline:2px solid var(--gold);outline-offset:2px}
+.cm-sw1 small{color:var(--mut);margin-left:4px}
+.cm-hd{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.cm-hd .cm-h,.cm-hd h4{margin:0}
+.cm-it{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line)}
+.cm-it:first-of-type{border-top:0}
+.cm-it>div:first-of-type,.cm-it>.nt9{flex:1;min-width:180px;display:grid;gap:2px}
+.cm-it b{color:var(--iv)}.cm-it small{color:var(--mut);font-size:12.5px}
+.cm-it.off{opacity:.55}
+.cm-it .xa{margin:0}
+.cm-it .btn,.cm-sub .btn,.cm-gi .btn,.cm-media .btn,.cm-tool .btn,.cm-radd .btn{width:auto;flex:none;min-height:38px;padding:8px 14px;font-size:13px}
+.cm-it .btn .ic,.cm-body .btn .ic,.cmd .btn .ic,.cm-radd .btn .ic{width:16px;height:16px;margin-right:6px;stroke:currentColor;fill:none;stroke-width:1.8}
+.cm-it .btn[aria-label] .ic{margin:0}
+.cm-th{width:72px;height:54px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.cm-noimg{opacity:.25}
+.cm-media{display:grid;gap:8px}
+.cm-media img,.cm-media video{width:100%;max-height:220px;object-fit:contain;border-radius:14px;background:rgba(0,0,0,.25);border:1px solid var(--line)}
+.cm-media .xa{margin:0}
+.cm-empty{display:grid;place-items:center;height:110px;border-radius:14px;border:1px dashed var(--line);color:var(--mut)}
+.cm-empty .ic{width:28px;height:28px;stroke:currentColor;fill:none;opacity:.6}
+.cm-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.cm-gi{display:grid;gap:8px;padding:10px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.cm-gi.off{opacity:.5}.cm-gi video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:rgba(0,0,0,.25)}.cm-gi small{color:var(--mut);font-size:12px;min-height:1em}.cm-yt{display:grid;place-items:center;gap:6px;aspect-ratio:4/3;border-radius:10px;background:rgba(0,0,0,.3);color:var(--gold2);font-size:13px}.cm-yt .ic{width:28px;height:28px;stroke:currentColor;fill:none}.cm-gi img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:rgba(0,0,0,.25)}
+.cm-gi .xa{margin:0;gap:6px}.cm-gi .btn{padding:6px 10px;min-height:32px}
+.cm-sec{padding:16px 0;border-top:1px solid var(--line)}
+.cm-sec:first-child{border-top:0;padding-top:0}
+.cm-sec h4{color:var(--gold2);font-size:15px;margin:0 0 10px}
+.cm-sub{padding:12px;border-radius:14px;border:1px solid var(--line);margin-bottom:10px;background:rgba(255,255,255,.02)}
+.cm-pre{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cm-pre button{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:none;color:var(--iv);font:600 13.5px var(--f);cursor:pointer;text-align:left}
+.cm-pre span{width:34px;height:34px;border-radius:10px;flex:none;border:1px solid var(--line)}
+.cm-col span{display:flex;align-items:center;gap:10px}
+.cm-col input[type=color]{width:52px;height:40px;padding:2px;border-radius:10px;cursor:pointer}
+.cm-col code{font-size:12.5px;color:var(--mut)}
+.cm-sw>div{padding:22px;border-radius:18px}
+.cm-sw>div>div{padding:18px;border-radius:14px;border:1px solid}
+.cm-sw b{font-size:20px;letter-spacing:.2em}.cm-sw p{margin:4px 0}.cm-sw i{display:block;height:10px;border-radius:99px;margin-top:10px}
+.cm-roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.cm-roles .pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px}
+.cm-roles .pill .ic{width:14px;height:14px;stroke:currentColor;fill:none}
+.cm-perm .cm-tog{flex:2;min-width:260px}
+.cm-log{display:grid;gap:0;padding:6px 18px!important}
+.cm-lg{display:grid;grid-template-columns:150px 170px 1fr;gap:4px 14px;padding:11px 0;border-top:1px solid var(--line);font-size:13.5px}
+.cm-lg:first-child{border-top:0}
+.cm-lg time{color:var(--mut);font-size:12.5px}.cm-lg b{color:var(--gold2);font-weight:600}
+.cm-lg small{grid-column:3;color:var(--mut);font-size:12px}
+.cm-ol{margin:0 0 14px;padding-left:20px;color:var(--mut);display:grid;gap:8px;font-size:14px;line-height:1.6}
+.cm-add{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.cm-radd{margin:0 0 14px}
+.cm-stars{display:flex;gap:6px}
+.cm-stars button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:none;color:rgba(255,255,255,.25);font-size:22px;cursor:pointer}
+.cm-stars button.on{color:var(--gold);border-color:var(--gold)}
+/* dialog */
+.dlg.cmd{align-items:start;overflow-y:auto;padding:24px 14px}
+.cmbox{width:100%;max-width:640px;margin:auto;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg,#0f2a21,#061F18);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 60px rgba(212,175,55,.12);text-align:left;display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
+.cmbox.wide{max-width:900px}
+.cmh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.cmh h3{margin:0;color:var(--gold2);font-size:18px}
+.cmx{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--iv);font-size:22px;line-height:1;cursor:pointer}
+.cmc{padding:18px 22px;overflow-y:auto;flex:1}
+.cmf{display:flex;justify-content:flex-end;gap:10px;padding:14px 22px;border-top:1px solid var(--line)}
+.cmf .btn{width:auto;flex:none;min-width:120px}
+@media (max-width:720px){.cm-gal{grid-template-columns:repeat(2,1fr);gap:8px}.cm-gi .xa .btn{width:38px;height:38px;min-height:38px;padding:0;justify-content:center}.cm-gi .xa .btn .ic{margin:0}.cm-lg{grid-template-columns:1fr}.cm-lg small{grid-column:1}.cm-grid3{grid-template-columns:1fr 1fr}.cmf .btn{flex:1}.cm-tabs button{padding:10px 13px;font-size:13px}}
+.cm-gi .xa .btn.dl{height:auto;align-self:stretch}.cm-gi .xa .btn[aria-label] .ic{margin:0}
+
+</style>
 </head>
 <body class="lock">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1846,6 +1962,290 @@ window.AHDICT=D;
 
 </script>
 <script>
+/* ART HOUSE — Sozlamalar (CMS), rollar, jurnal va izoh qo'shish uchun lug'at: uz → en, ru, fr, it, es, de, tr */
+(function () {
+  var L = ['en', 'ru', 'fr', 'it', 'es', 'de', 'tr'];
+  var R = [
+["Sozlamalar","Settings","Настройки","Paramètres","Impostazioni","Ajustes","Einstellungen","Ayarlar"],
+["Saytdagi matn, raqam, rasm, video, rang, bo'lim va tillarni kodga tegmasdan boshqarish","Manage the website's text, numbers, images, videos, colours, sections and languages without touching code","Управление текстами, цифрами, фото, видео, цветами, разделами и языками сайта без правки кода","Gérez textes, chiffres, images, vidéos, couleurs, rubriques et langues du site sans toucher au code","Gestisci testi, numeri, immagini, video, colori, sezioni e lingue del sito senza toccare il codice","Gestione textos, cifras, imágenes, vídeos, colores, secciones e idiomas del sitio sin tocar el código","Texte, Zahlen, Bilder, Videos, Farben, Bereiche und Sprachen der Website ohne Code verwalten","Sitenin metin, rakam, görsel, video, renk, bölüm ve dillerini koda dokunmadan yönetin"],
+["Narxlar va tizim","Prices & system","Цены и система","Prix et système","Prezzi e sistema","Precios y sistema","Preise & System","Fiyatlar ve sistem"],
+["Matnlar va tarjimalar","Texts & translations","Тексты и переводы","Textes et traductions","Testi e traduzioni","Textos y traducciones","Texte & Übersetzungen","Metinler ve çeviriler"],
+["Aloqa va raqamlar","Contacts & numbers","Контакты и цифры","Contacts et chiffres","Contatti e numeri","Contactos y cifras","Kontakte & Zahlen","İletişim ve rakamlar"],
+["Rasm va videolar","Images & videos","Фото и видео","Images et vidéos","Immagini e video","Imágenes y vídeos","Bilder & Videos","Görseller ve videolar"],
+["Ranglar","Colours","Цвета","Couleurs","Colori","Colores","Farben","Renkler"],
+["Bo'limlar","Sections","Разделы","Rubriques","Sezioni","Secciones","Bereiche","Bölümler"],
+["Loyihalar","Projects","Проекты","Projets","Progetti","Proyectos","Projekte","Projeler"],
+["Tillar","Languages","Языки","Langues","Lingue","Idiomas","Sprachen","Diller"],
+["Rollar va huquqlar","Roles & permissions","Роли и права","Rôles et droits","Ruoli e permessi","Roles y permisos","Rollen & Rechte","Roller ve yetkiler"],
+["Faoliyat jurnali","Activity log","Журнал действий","Journal d’activité","Registro attività","Registro de actividad","Aktivitätsprotokoll","Etkinlik günlüğü"],
+["Nashr va zaxira","Publish & backup","Публикация и резерв","Publication et sauvegarde","Pubblicazione e backup","Publicación y copia","Veröffentlichen & Sichern","Yayın ve yedek"],
+["Bu bo'lim uchun saytning asl matn va rasmlari kerak. Saytni shu brauzerda bir marta oching — ma'lumot avtomatik keladi.","This section needs the website's original texts and images. Open the website once in this browser and the data will load automatically.","Для этого раздела нужны исходные тексты и фото сайта. Откройте сайт один раз в этом браузере — данные подтянутся автоматически.","Cette rubrique a besoin des textes et images d’origine du site. Ouvrez le site une fois dans ce navigateur : les données arriveront automatiquement.","Questa sezione richiede i testi e le immagini originali del sito. Apri il sito una volta in questo browser: i dati arriveranno automaticamente.","Esta sección necesita los textos e imágenes originales del sitio. Abra el sitio una vez en este navegador y los datos llegarán solos.","Dieser Bereich benötigt die Originaltexte und -bilder der Website. Öffnen Sie die Website einmal in diesem Browser – die Daten werden automatisch geladen.","Bu bölüm için sitenin orijinal metin ve görselleri gerekir. Siteyi bu tarayıcıda bir kez açın, veriler otomatik gelir."],
+["Saytni ochish","Open website","Открыть сайт","Ouvrir le site","Apri il sito","Abrir el sitio","Website öffnen","Siteyi aç"],
+["Yuklanmoqda…","Loading…","Загрузка…","Chargement…","Caricamento…","Cargando…","Wird geladen…","Yükleniyor…"],
+["Til","Language","Язык","Langue","Lingua","Idioma","Sprache","Dil"],
+["Qidirish","Search","Поиск","Rechercher","Cerca","Buscar","Suchen","Ara"],
+["Faqat o'zgartirilganlar","Changed only","Только изменённые","Modifiés uniquement","Solo modificati","Solo modificados","Nur geänderte","Yalnızca değiştirilenler"],
+["Saytda jonli tahrirlash","Live edit on website","Редактировать на сайте","Modifier en direct sur le site","Modifica dal vivo sul sito","Editar en vivo en el sitio","Live auf der Website bearbeiten","Sitede canlı düzenle"],
+["Tarjimani yuklab olish (JSON)","Download translation (JSON)","Скачать перевод (JSON)","Télécharger la traduction (JSON)","Scarica traduzione (JSON)","Descargar traducción (JSON)","Übersetzung herunterladen (JSON)","Çeviriyi indir (JSON)"],
+["Tarjimani yuklash (JSON)","Upload translation (JSON)","Загрузить перевод (JSON)","Importer une traduction (JSON)","Carica traduzione (JSON)","Subir traducción (JSON)","Übersetzung hochladen (JSON)","Çeviri yükle (JSON)"],
+["Matnni o'zgartiring — maydondan chiqqanda avtomatik saqlanadi va saytda darhol almashadi.","Edit the text: it saves automatically when you leave the field and updates on the website at once.","Измените текст: он сохраняется автоматически при выходе из поля и сразу меняется на сайте.","Modifiez le texte : il s’enregistre automatiquement en quittant le champ et change aussitôt sur le site.","Modifica il testo: si salva automaticamente uscendo dal campo e cambia subito sul sito.","Edite el texto: se guarda automáticamente al salir del campo y cambia al instante en el sitio.","Text bearbeiten: wird beim Verlassen des Feldes automatisch gespeichert und sofort auf der Website geändert.","Metni değiştirin: alandan çıkınca otomatik kaydedilir ve sitede hemen değişir."],
+["Aslini qaytarish","Restore original","Вернуть исходное","Rétablir l’original","Ripristina originale","Restaurar original","Original wiederherstellen","Orijinali geri yükle"],
+["Xotira to'ldi: rasmlarni kichikroq qiling yoki havola bilan qo'ying.","Storage is full: use smaller images or add them by link.","Память заполнена: уменьшите фото или добавьте их ссылкой.","Mémoire pleine : utilisez des images plus légères ou ajoutez-les par lien.","Memoria piena: usa immagini più leggere o inseriscile tramite link.","Memoria llena: use imágenes más ligeras o añádalas por enlace.","Speicher voll: kleinere Bilder verwenden oder per Link einfügen.","Bellek dolu: daha küçük görseller kullanın ya da bağlantıyla ekleyin."],
+["Saqlandi — saytda darhol ko'rinadi","Saved — visible on the website right away","Сохранено — сразу видно на сайте","Enregistré — visible tout de suite sur le site","Salvato — subito visibile sul sito","Guardado — visible al instante en el sitio","Gespeichert — sofort auf der Website sichtbar","Kaydedildi — sitede hemen görünür"],
+["Fayl noto'g'ri formatda.","The file format is incorrect.","Неверный формат файла.","Format de fichier incorrect.","Formato del file non valido.","Formato de archivo incorrecto.","Falsches Dateiformat.","Dosya biçimi hatalı."],
+["Video hajmi 120 MB dan oshmasin.","Video must not exceed 120 MB.","Видео не должно превышать 120 МБ.","La vidéo ne doit pas dépasser 120 Mo.","Il video non deve superare 120 MB.","El vídeo no debe superar 120 MB.","Video darf 120 MB nicht überschreiten.","Video 120 MB'ı geçmemelidir."],
+["Faylni saqlab bo'lmadi.","Could not save the file.","Не удалось сохранить файл.","Impossible d’enregistrer le fichier.","Impossibile salvare il file.","No se pudo guardar el archivo.","Datei konnte nicht gespeichert werden.","Dosya kaydedilemedi."],
+["Telefon raqamlar (vergul bilan)","Phone numbers (comma-separated)","Телефоны (через запятую)","Numéros de téléphone (séparés par des virgules)","Numeri di telefono (separati da virgola)","Teléfonos (separados por comas)","Telefonnummern (durch Komma getrennt)","Telefon numaraları (virgülle)"],
+["Telegram kanal havolasi","Telegram channel link","Ссылка на Telegram-канал","Lien de la chaîne Telegram","Link del canale Telegram","Enlace del canal de Telegram","Link zum Telegram-Kanal","Telegram kanal bağlantısı"],
+["Telegram menejer havolasi","Telegram manager link","Ссылка на менеджера в Telegram","Lien Telegram du conseiller","Link Telegram del consulente","Enlace de Telegram del asesor","Telegram-Link des Beraters","Telegram yönetici bağlantısı"],
+["Instagram havolasi","Instagram link","Ссылка на Instagram","Lien Instagram","Link Instagram","Enlace de Instagram","Instagram-Link","Instagram bağlantısı"],
+["Instagram nomi (@…)","Instagram handle (@…)","Ник в Instagram (@…)","Nom Instagram (@…)","Nome Instagram (@…)","Usuario de Instagram (@…)","Instagram-Name (@…)","Instagram adı (@…)"],
+["YouTube havolasi","YouTube link","Ссылка на YouTube","Lien YouTube","Link YouTube","Enlace de YouTube","YouTube-Link","YouTube bağlantısı"],
+["Facebook havolasi","Facebook link","Ссылка на Facebook","Lien Facebook","Link Facebook","Enlace de Facebook","Facebook-Link","Facebook bağlantısı"],
+["WhatsApp havolasi","WhatsApp link","Ссылка на WhatsApp","Lien WhatsApp","Link WhatsApp","Enlace de WhatsApp","WhatsApp-Link","WhatsApp bağlantısı"],
+["Tajriba (yil)","Experience (years)","Опыт (лет)","Expérience (années)","Esperienza (anni)","Experiencia (años)","Erfahrung (Jahre)","Deneyim (yıl)"],
+["Amalga oshirilgan loyihalar","Completed projects","Реализованные проекты","Projets réalisés","Progetti realizzati","Proyectos realizados","Realisierte Projekte","Tamamlanan projeler"],
+["Instagram obunachilar","Instagram followers","Подписчики в Instagram","Abonnés Instagram","Follower Instagram","Seguidores de Instagram","Instagram-Follower","Instagram takipçileri"],
+["Instagram postlar","Instagram posts","Публикации в Instagram","Publications Instagram","Post Instagram","Publicaciones de Instagram","Instagram-Beiträge","Instagram gönderileri"],
+["1 $ kursi (so'm)","Rate of $1 (UZS)","Курс 1 $ (сум)","Taux de 1 $ (UZS)","Cambio di 1 $ (UZS)","Tipo de 1 $ (UZS)","Kurs von 1 $ (UZS)","1 $ kuru (UZS)"],
+["Savdo ofisi — kenglik (lat)","Sales office — latitude","Офис продаж — широта","Bureau de vente — latitude","Ufficio vendite — latitudine","Oficina de ventas — latitud","Verkaufsbüro — Breitengrad","Satış ofisi — enlem"],
+["Savdo ofisi — uzunlik (lng)","Sales office — longitude","Офис продаж — долгота","Bureau de vente — longitude","Ufficio vendite — longitudine","Oficina de ventas — longitud","Verkaufsbüro — Längengrad","Satış ofisi — boylam"],
+["Saqlash","Save","Сохранить","Enregistrer","Salva","Guardar","Speichern","Kaydet"],
+["Saqlandi","Saved","Сохранено","Enregistré","Salvato","Guardado","Gespeichert","Kaydedildi"],
+["Tekshiring","Please check","Проверьте","Vérifiez","Controlla","Revise","Bitte prüfen","Kontrol edin"],
+["Savdo ofisi","Sales office","Офис продаж","Bureau de vente","Ufficio vendite","Oficina de ventas","Verkaufsbüro","Satış ofisi"],
+["asl holat","original state","исходное состояние","état d’origine","stato originale","estado original","Originalzustand","orijinal durum"],
+["Bosh sahifa videosi","Home page video","Видео на главной","Vidéo de la page d’accueil","Video della home","Vídeo de la página de inicio","Startseiten-Video","Ana sayfa videosu"],
+["Bosh sahifadagi katta video va uning muqova rasmi. MP4 fayl yuklang yoki havola qo'ying.","The large video on the home page and its cover image. Upload an MP4 file or paste a link.","Большое видео на главной и его обложка. Загрузите MP4 или вставьте ссылку.","La grande vidéo de l’accueil et son image de couverture. Importez un MP4 ou collez un lien.","Il grande video della home e la sua copertina. Carica un MP4 o incolla un link.","El vídeo grande de inicio y su portada. Suba un MP4 o pegue un enlace.","Das große Video auf der Startseite und sein Titelbild. MP4 hochladen oder Link einfügen.","Ana sayfadaki büyük video ve kapak görseli. MP4 yükleyin veya bağlantı yapıştırın."],
+["Video","Video","Видео","Vidéo","Video","Vídeo","Video","Video"],
+["Muqova rasm","Cover image","Обложка","Image de couverture","Copertina","Portada","Titelbild","Kapak görseli"],
+["Loyiha rasmlari, galereya, rejalar va videolar — «Loyihalar» bo'limida. Yangi bo'lim rasmlari — «Bo'limlar» bo'limida.","Project images, gallery, floor plans and videos are under «Projects». Images for new sections are under «Sections».","Фото проектов, галерея, планировки и видео — в разделе «Проекты». Фото новых разделов — в «Разделах».","Images des projets, galerie, plans et vidéos : rubrique «Projets». Images des nouvelles rubriques : «Rubriques».","Immagini dei progetti, galleria, planimetrie e video: sezione «Progetti». Immagini delle nuove sezioni: «Sezioni».","Imágenes de proyectos, galería, planos y vídeos: en «Proyectos». Imágenes de nuevas secciones: en «Secciones».","Projektbilder, Galerie, Grundrisse und Videos unter «Projekte». Bilder neuer Bereiche unter «Bereiche».","Proje görselleri, galeri, planlar ve videolar «Projeler» bölümünde. Yeni bölüm görselleri «Bölümler»de."],
+["Video yuklash","Upload video","Загрузить видео","Importer une vidéo","Carica video","Subir vídeo","Video hochladen","Video yükle"],
+["Rasm yuklash","Upload image","Загрузить фото","Importer une image","Carica immagine","Subir imagen","Bild hochladen","Görsel yükle"],
+["Havola","Link","Ссылка","Lien","Link","Enlace","Link","Bağlantı"],
+["Olib tashlash","Remove","Убрать","Retirer","Rimuovi","Quitar","Entfernen","Kaldır"],
+["Havola (https://… yoki media/fayl.mp4)","Link (https://… or media/file.mp4)","Ссылка (https://… или media/файл.mp4)","Lien (https://… ou media/fichier.mp4)","Link (https://… o media/file.mp4)","Enlace (https://… o media/archivo.mp4)","Link (https://… oder media/datei.mp4)","Bağlantı (https://… veya media/dosya.mp4)"],
+["Tayyor uslublar","Ready-made styles","Готовые стили","Styles prêts à l’emploi","Stili pronti","Estilos listos","Fertige Stile","Hazır stiller"],
+["Emerald & Gold (asl)","Emerald & Gold (original)","Emerald & Gold (исходный)","Emerald & Gold (original)","Emerald & Gold (originale)","Emerald & Gold (original)","Emerald & Gold (Original)","Emerald & Gold (orijinal)"],
+["Asosiy fon","Main background","Основной фон","Fond principal","Sfondo principale","Fondo principal","Haupthintergrund","Ana arka plan"],
+["Ikkinchi fon","Secondary background","Второй фон","Fond secondaire","Sfondo secondario","Fondo secundario","Zweiter Hintergrund","İkinci arka plan"],
+["Kartochka foni","Card background","Фон карточек","Fond des cartes","Sfondo delle schede","Fondo de tarjetas","Kartenhintergrund","Kart arka planı"],
+["Zumrad urg'u","Emerald accent","Изумрудный акцент","Accent émeraude","Accento smeraldo","Acento esmeralda","Smaragd-Akzent","Zümrüt vurgu"],
+["Oltin (asosiy)","Gold (main)","Золото (основное)","Or (principal)","Oro (principale)","Oro (principal)","Gold (Haupt)","Altın (ana)"],
+["Oltin (to'q)","Gold (dark)","Золото (тёмное)","Or (foncé)","Oro (scuro)","Oro (oscuro)","Gold (dunkel)","Altın (koyu)"],
+["Oltin (yorqin)","Gold (bright)","Золото (яркое)","Or (clair)","Oro (chiaro)","Oro (claro)","Gold (hell)","Altın (parlak)"],
+["Matn rangi","Text colour","Цвет текста","Couleur du texte","Colore del testo","Color del texto","Textfarbe","Metin rengi"],
+["Yordamchi matn","Secondary text","Вспомогательный текст","Texte secondaire","Testo secondario","Texto secundario","Nebentext","Yardımcı metin"],
+["Saytdagi asosiy bo'limlar","Main website sections","Основные разделы сайта","Rubriques principales du site","Sezioni principali del sito","Secciones principales del sitio","Hauptbereiche der Website","Sitenin ana bölümleri"],
+["O'chirilgan bo'lim menyudan va saytdan yashiriladi. Bosh sahifani o'chirib bo'lmaydi.","A switched-off section is hidden from the menu and the website. The home page cannot be switched off.","Выключенный раздел скрывается из меню и с сайта. Главную страницу отключить нельзя.","Une rubrique désactivée disparaît du menu et du site. La page d’accueil ne peut pas être désactivée.","Una sezione disattivata viene nascosta dal menu e dal sito. La home non si può disattivare.","Una sección desactivada se oculta del menú y del sitio. La página de inicio no se puede desactivar.","Ein ausgeschalteter Bereich wird im Menü und auf der Website ausgeblendet. Die Startseite lässt sich nicht ausschalten.","Kapatılan bölüm menüden ve siteden gizlenir. Ana sayfa kapatılamaz."],
+["Bosh sahifa","Home","Главная","Accueil","Home","Inicio","Startseite","Ana sayfa"],
+["Kalkulyator","Calculator","Калькулятор","Calculateur","Calcolatore","Calculadora","Rechner","Hesaplayıcı"],
+["Joylashuv","Location","Расположение","Emplacement","Posizione","Ubicación","Lage","Konum"],
+["Biz haqimizda","About us","О компании","À propos","Chi siamo","Quiénes somos","Über uns","Hakkımızda"],
+["Ijtimoiy sahifalarimiz","Social media","Мы в соцсетях","Réseaux sociaux","Social network","Redes sociales","Soziale Medien","Sosyal medya"],
+["Bog'lanish","Contact","Контакты","Contact","Contatti","Contacto","Kontakt","İletişim"],
+["Mijozlar izohlari","Client reviews","Отзывы клиентов","Avis clients","Recensioni dei clienti","Opiniones de clientes","Kundenbewertungen","Müşteri yorumları"],
+["Yangi bo'limlar","New sections","Новые разделы","Nouvelles rubriques","Nuove sezioni","Nuevas secciones","Neue Bereiche","Yeni bölümler"],
+["Bo'lim qo'shish","Add section","Добавить раздел","Ajouter une rubrique","Aggiungi sezione","Añadir sección","Bereich hinzufügen","Bölüm ekle"],
+["O'chirilgan","Switched off","Выключен","Désactivée","Disattivata","Desactivada","Ausgeschaltet","Kapalı"],
+["Saytda","On the website","На сайте","Sur le site","Sul sito","En el sitio","Auf der Website","Sitede"],
+["Rasm","Image","Фото","Image","Immagine","Imagen","Bild","Görsel"],
+["Tugma","Button","Кнопка","Bouton","Pulsante","Botón","Schaltfläche","Buton"],
+["Tahrirlash","Edit","Изменить","Modifier","Modifica","Editar","Bearbeiten","Düzenle"],
+["O'chirish","Delete","Удалить","Supprimer","Elimina","Eliminar","Löschen","Sil"],
+["Yuqoriga","Move up","Выше","Monter","Sposta su","Subir","Nach oben","Yukarı"],
+["Pastga","Move down","Ниже","Descendre","Sposta giù","Bajar","Nach unten","Aşağı"],
+["Hozircha yangi bo'lim yo'q. Masalan: «Aksiyalar», «Qurilish jarayoni», «Canva taqdimot» yoki «Telegram kanal».","No new sections yet. For example: «Offers», «Construction progress», «Canva presentation» or «Telegram channel».","Новых разделов пока нет. Например: «Акции», «Ход строительства», «Презентация Canva» или «Telegram-канал».","Aucune nouvelle rubrique pour l’instant. Par exemple : «Offres», «Avancement du chantier», «Présentation Canva» ou «Chaîne Telegram».","Ancora nessuna nuova sezione. Ad esempio: «Offerte», «Avanzamento lavori», «Presentazione Canva» o «Canale Telegram».","Aún no hay secciones nuevas. Por ejemplo: «Ofertas», «Avance de obra», «Presentación Canva» o «Canal de Telegram».","Noch keine neuen Bereiche. Zum Beispiel: «Angebote», «Baufortschritt», «Canva-Präsentation» oder «Telegram-Kanal».","Henüz yeni bölüm yok. Örneğin: «Kampanyalar», «İnşaat süreci», «Canva sunumu» veya «Telegram kanalı»."],
+["Bo'limni tahrirlash","Edit section","Изменить раздел","Modifier la rubrique","Modifica sezione","Editar sección","Bereich bearbeiten","Bölümü düzenle"],
+["Yangi bo'lim","New section","Новый раздел","Nouvelle rubrique","Nuova sezione","Nueva sección","Neuer Bereich","Yeni bölüm"],
+["Saytda ko'rsatish","Show on website","Показать на сайте","Afficher sur le site","Mostra sul sito","Mostrar en el sitio","Auf der Website zeigen","Sitede göster"],
+["Sarlavha (menyuda ham shu nom)","Title (also used in the menu)","Заголовок (так же в меню)","Titre (aussi dans le menu)","Titolo (anche nel menu)","Título (también en el menú)","Titel (auch im Menü)","Başlık (menüde de bu ad)"],
+["Kichik ustki yozuv","Small overline","Надзаголовок","Surtitre","Occhiello","Antetítulo","Kleine Überzeile","Küçük üst yazı"],
+["Matn","Text","Текст","Texte","Testo","Texto","Text","Metin"],
+["Video (MP4 yoki YouTube)","Video (MP4 or YouTube)","Видео (MP4 или YouTube)","Vidéo (MP4 ou YouTube)","Video (MP4 o YouTube)","Vídeo (MP4 o YouTube)","Video (MP4 oder YouTube)","Video (MP4 veya YouTube)"],
+["Canva / Figma havolasi (ulashish havolasi)","Canva / Figma link (share link)","Ссылка Canva / Figma (ссылка для просмотра)","Lien Canva / Figma (lien de partage)","Link Canva / Figma (link di condivisione)","Enlace de Canva / Figma (enlace para compartir)","Canva-/Figma-Link (Freigabelink)","Canva / Figma bağlantısı (paylaşım bağlantısı)"],
+["Tugma yozuvi","Button label","Текст кнопки","Libellé du bouton","Testo del pulsante","Texto del botón","Schaltflächentext","Buton yazısı"],
+["Tugma havolasi (masalan, https://t.me/…)","Button link (e.g. https://t.me/…)","Ссылка кнопки (например, https://t.me/…)","Lien du bouton (ex. https://t.me/…)","Link del pulsante (es. https://t.me/…)","Enlace del botón (p. ej. https://t.me/…)","Link der Schaltfläche (z. B. https://t.me/…)","Buton bağlantısı (örn. https://t.me/…)"],
+["Sarlavhani o'zbekcha yozing.","Please enter the title in Uzbek.","Укажите заголовок на узбекском.","Saisissez le titre en ouzbek.","Inserisci il titolo in uzbeko.","Escriba el título en uzbeko.","Bitte den Titel auf Usbekisch eingeben.","Başlığı Özbekçe yazın."],
+["Havola https:// bilan boshlanishi kerak.","The link must start with https://.","Ссылка должна начинаться с https://.","Le lien doit commencer par https://.","Il link deve iniziare con https://.","El enlace debe empezar por https://.","Der Link muss mit https:// beginnen.","Bağlantı https:// ile başlamalıdır."],
+["Boshqa tillar","Other languages","Другие языки","Autres langues","Altre lingue","Otros idiomas","Weitere Sprachen","Diğer diller"],
+["Bekor","Cancel","Отмена","Annuler","Annulla","Cancelar","Abbrechen","İptal"],
+["Yopish","Close","Закрыть","Fermer","Chiudi","Cerrar","Schließen","Kapat"],
+["Loyihalar (turar-joy majmualari)","Projects (residential complexes)","Проекты (жилые комплексы)","Projets (résidences)","Progetti (complessi residenziali)","Proyectos (complejos residenciales)","Projekte (Wohnanlagen)","Projeler (konut kompleksleri)"],
+["Loyiha qo'shish","Add project","Добавить проект","Ajouter un projet","Aggiungi progetto","Añadir proyecto","Projekt hinzufügen","Proje ekle"],
+["rasm","images","фото","images","immagini","imágenes","Bilder","görsel"],
+["reja","plans","планировок","plans","planimetrie","planos","Grundrisse","plan"],
+["o'zgartirilgan","edited","изменён","modifié","modificato","modificado","bearbeitet","düzenlendi"],
+["Yashirilgan","Hidden","Скрыт","Masqué","Nascosto","Oculto","Ausgeblendet","Gizli"],
+["Saytdan yashirish","Hide from website","Скрыть с сайта","Masquer du site","Nascondi dal sito","Ocultar del sitio","Auf der Website ausblenden","Siteden gizle"],
+["Kamida bitta loyiha saytda qolishi kerak.","At least one project must stay on the website.","На сайте должен остаться хотя бы один проект.","Au moins un projet doit rester sur le site.","Almeno un progetto deve restare sul sito.","Al menos un proyecto debe quedar en el sitio.","Mindestens ein Projekt muss auf der Website bleiben.","Sitede en az bir proje kalmalıdır."],
+["Yangi loyiha","New project","Новый проект","Nouveau projet","Nuovo progetto","Nuevo proyecto","Neues Projekt","Yeni proje"],
+["Loyihani tahrirlash","Edit project","Изменить проект","Modifier le projet","Modifica progetto","Editar proyecto","Projekt bearbeiten","Projeyi düzenle"],
+["Asosiy ma'lumot","Main information","Основная информация","Informations principales","Informazioni principali","Información principal","Grunddaten","Temel bilgiler"],
+["Loyiha nomi","Project name","Название проекта","Nom du projet","Nome del progetto","Nombre del proyecto","Projektname","Proje adı"],
+["Belgi (masalan: Biznes-klass)","Label (e.g. Business class)","Метка (например: Бизнес-класс)","Étiquette (ex. Classe affaires)","Etichetta (es. Business class)","Etiqueta (p. ej. Clase business)","Label (z. B. Business-Klasse)","Etiket (örn. Business sınıfı)"],
+["Tuman / hudud","District / area","Район","District / quartier","Distretto / zona","Distrito / zona","Bezirk / Gebiet","İlçe / bölge"],
+["Manzil","Address","Адрес","Adresse","Indirizzo","Dirección","Adresse","Adres"],
+["Tavsif","Description","Описание","Description","Descrizione","Descripción","Beschreibung","Açıklama"],
+["Taqdimot (PDF) havolasi","Presentation (PDF) link","Ссылка на презентацию (PDF)","Lien de la présentation (PDF)","Link della presentazione (PDF)","Enlace de la presentación (PDF)","Link zur Präsentation (PDF)","Sunum (PDF) bağlantısı"],
+["1 m² narxi ($, ixtiyoriy)","Price per 1 m² ($, optional)","Цена 1 м² ($, необязательно)","Prix du m² ($, facultatif)","Prezzo al m² ($, facoltativo)","Precio por m² ($, opcional)","Preis pro m² ($, optional)","1 m² fiyatı ($, isteğe bağlı)"],
+["Xarita: kenglik (lat)","Map: latitude","Карта: широта","Carte : latitude","Mappa: latitudine","Mapa: latitud","Karte: Breitengrad","Harita: enlem"],
+["Xarita: uzunlik (lng)","Map: longitude","Карта: долгота","Carte : longitude","Mappa: longitudine","Mapa: longitud","Karte: Längengrad","Harita: boylam"],
+["Asosiy video (muqova o'rnida)","Main video (in place of the cover)","Основное видео (вместо обложки)","Vidéo principale (à la place de la couverture)","Video principale (al posto della copertina)","Vídeo principal (en lugar de la portada)","Hauptvideo (statt Titelbild)","Ana video (kapak yerine)"],
+["Raqamlar (faktlar)","Key figures","Цифры (факты)","Chiffres clés","Numeri chiave","Cifras clave","Kennzahlen","Rakamlar (bilgiler)"],
+["Qo'shish","Add","Добавить","Ajouter","Aggiungi","Añadir","Hinzufügen","Ekle"],
+["Qiymat","Value","Значение","Valeur","Valore","Valor","Wert","Değer"],
+["Izoh","Caption","Подпись","Légende","Didascalia","Leyenda","Beschriftung","Açıklama"],
+["Galereya","Gallery","Галерея","Galerie","Galleria","Galería","Galerie","Galeri"],
+["Rasm qo'shish","Add images","Добавить фото","Ajouter des images","Aggiungi immagini","Añadir imágenes","Bilder hinzufügen","Görsel ekle"],
+["Chapga","Move left","Влево","Vers la gauche","A sinistra","A la izquierda","Nach links","Sola"],
+["O'ngga","Move right","Вправо","Vers la droite","A destra","A la derecha","Nach rechts","Sağa"],
+["Rasm izohi","Image caption","Подпись к фото","Légende de l’image","Didascalia dell’immagine","Leyenda de la imagen","Bildunterschrift","Görsel açıklaması"],
+["Xonadon rejalari","Floor plans","Планировки","Plans des logements","Planimetrie","Planos de viviendas","Grundrisse","Daire planları"],
+["Reja qo'shish","Add floor plans","Добавить планировки","Ajouter des plans","Aggiungi planimetrie","Añadir planos","Grundrisse hinzufügen","Plan ekle"],
+["Xona","Rooms","Комнат","Pièces","Locali","Habitaciones","Zimmer","Oda"],
+["Dupleks qavati (0/1/2)","Duplex level (0/1/2)","Уровень дуплекса (0/1/2)","Niveau du duplex (0/1/2)","Livello duplex (0/1/2)","Planta del dúplex (0/1/2)","Duplex-Ebene (0/1/2)","Dubleks katı (0/1/2)"],
+["Qulayliklar","Amenities","Удобства","Équipements","Servizi","Servicios","Ausstattung","Olanaklar"],
+["Nomi","Name","Название","Nom","Nome","Nombre","Name","Adı"],
+["Video-lavhalar","Video clips","Видеоролики","Vidéos","Video","Vídeos","Videos","Video klipler"],
+["Video qo'shish","Add video","Добавить видео","Ajouter une vidéo","Aggiungi video","Añadir vídeo","Video hinzufügen","Video ekle"],
+["Vertikal video (telefonda olingan)","Vertical video (shot on a phone)","Вертикальное видео (снято на телефон)","Vidéo verticale (tournée au téléphone)","Video verticale (girato con il telefono)","Vídeo vertical (grabado con el móvil)","Hochformat-Video (mit dem Handy gedreht)","Dikey video (telefonla çekilmiş)"],
+["Video nomi","Video title","Название видео","Titre de la vidéo","Titolo del video","Título del vídeo","Videotitel","Video adı"],
+["Loyiha nomini yozing.","Please enter the project name.","Укажите название проекта.","Saisissez le nom du projet.","Inserisci il nome del progetto.","Escriba el nombre del proyecto.","Bitte Projektnamen eingeben.","Proje adını yazın."],
+["Sayt va kabinet tillari","Website and office languages","Языки сайта и кабинета","Langues du site et de l’espace","Lingue del sito e del pannello","Idiomas del sitio y del panel","Sprachen von Website und Büro","Site ve panel dilleri"],
+["O'chirilgan til saytdagi va kabinetdagi til tanlash ro'yxatidan yo'qoladi. O'zbekcha — asosiy til, uni o'chirib bo'lmaydi.","A switched-off language disappears from the language list on the website and in the office. Uzbek is the main language and cannot be switched off.","Выключенный язык исчезает из списка языков на сайте и в кабинете. Узбекский — основной язык, его нельзя отключить.","Une langue désactivée disparaît de la liste des langues du site et de l’espace. L’ouzbek est la langue principale et ne peut pas être désactivé.","Una lingua disattivata scompare dall’elenco delle lingue del sito e del pannello. L’uzbeko è la lingua principale e non si può disattivare.","Un idioma desactivado desaparece de la lista del sitio y del panel. El uzbeko es el idioma principal y no se puede desactivar.","Eine ausgeschaltete Sprache verschwindet aus der Sprachauswahl auf Website und im Büro. Usbekisch ist die Hauptsprache und kann nicht ausgeschaltet werden.","Kapatılan dil, site ve paneldeki dil listesinden kalkar. Özbekçe ana dildir, kapatılamaz."],
+["Qo'shilgan tillar","Added languages","Добавленные языки","Langues ajoutées","Lingue aggiunte","Idiomas añadidos","Hinzugefügte Sprachen","Eklenen diller"],
+["Tarjima qilish","Translate","Перевести","Traduire","Traduci","Traducir","Übersetzen","Çevir"],
+["Hozircha qo'shilgan til yo'q.","No languages added yet.","Добавленных языков пока нет.","Aucune langue ajoutée pour l’instant.","Nessuna lingua aggiunta finora.","Aún no hay idiomas añadidos.","Noch keine Sprachen hinzugefügt.","Henüz eklenen dil yok."],
+["Til kodi (masalan: ko, zh, ar, kk)","Language code (e.g. ko, zh, ar, kk)","Код языка (например: ko, zh, ar, kk)","Code de langue (ex. ko, zh, ar, kk)","Codice lingua (es. ko, zh, ar, kk)","Código de idioma (p. ej. ko, zh, ar, kk)","Sprachcode (z. B. ko, zh, ar, kk)","Dil kodu (örn. ko, zh, ar, kk)"],
+["Til nomi (o'z yozuvida)","Language name (in its own script)","Название языка (на самом языке)","Nom de la langue (dans sa propre écriture)","Nome della lingua (nella sua scrittura)","Nombre del idioma (en su propia escritura)","Sprachname (in eigener Schrift)","Dil adı (kendi yazısıyla)"],
+["Mintaqa (ixtiyoriy, masalan: ko-KR)","Locale (optional, e.g. ko-KR)","Регион (необязательно, например: ko-KR)","Région (facultatif, ex. ko-KR)","Regione (facoltativo, es. ko-KR)","Región (opcional, p. ej. ko-KR)","Region (optional, z. B. ko-KR)","Bölge (isteğe bağlı, örn. ko-KR)"],
+["Til qo'shish","Add language","Добавить язык","Ajouter une langue","Aggiungi lingua","Añadir idioma","Sprache hinzufügen","Dil ekle"],
+["Yangi tilda hali tarjima qilinmagan matnlar inglizcha ko'rinadi. «Tarjima qilish» orqali har bir matnni yozing yoki JSON faylni yuklang.","In a new language, texts that are not yet translated are shown in English. Use «Translate» to write each text or upload a JSON file.","В новом языке непереведённые тексты показываются на английском. Через «Перевести» заполните каждый текст или загрузите JSON-файл.","Dans une nouvelle langue, les textes non traduits s’affichent en anglais. Via «Traduire», saisissez chaque texte ou importez un fichier JSON.","In una nuova lingua i testi non tradotti appaiono in inglese. Con «Traduci» scrivi ogni testo o carica un file JSON.","En un idioma nuevo, los textos aún sin traducir se muestran en inglés. Con «Traducir» escriba cada texto o suba un archivo JSON.","In einer neuen Sprache erscheinen noch nicht übersetzte Texte auf Englisch. Über «Übersetzen» jeden Text eingeben oder eine JSON-Datei hochladen.","Yeni dilde henüz çevrilmemiş metinler İngilizce görünür. «Çevir» ile her metni yazın veya JSON dosyası yükleyin."],
+["Til kodi 2–3 lotin harfidan iborat bo'lsin.","The language code must be 2–3 Latin letters.","Код языка — 2–3 латинские буквы.","Le code de langue doit comporter 2 à 3 lettres latines.","Il codice lingua deve avere 2–3 lettere latine.","El código de idioma debe tener 2–3 letras latinas.","Der Sprachcode muss aus 2–3 lateinischen Buchstaben bestehen.","Dil kodu 2–3 Latin harfinden oluşmalıdır."],
+["Bu til allaqachon bor.","This language already exists.","Такой язык уже есть.","Cette langue existe déjà.","Questa lingua esiste già.","Este idioma ya existe.","Diese Sprache gibt es bereits.","Bu dil zaten var."],
+["Direktor","Director","Директор","Directeur","Direttore","Director","Direktor","Direktör"],
+["To'liq huquq","Full access","Полный доступ","Accès complet","Accesso completo","Acceso total","Vollzugriff","Tam yetki"],
+["Barcha bo'limlar, narx va chegirmalar, menejerlarni qo'shish/o'chirish, huquq berish va har bir xodim amallarini «Faoliyat jurnali»da kuzatish.","All sections, prices and discounts, adding/removing managers, granting permissions and following every employee's actions in the «Activity log».","Все разделы, цены и скидки, добавление/удаление менеджеров, выдача прав и контроль действий каждого сотрудника в «Журнале действий».","Toutes les rubriques, prix et remises, ajout/suppression de conseillers, attribution des droits et suivi des actions de chaque employé dans le «Journal d’activité».","Tutte le sezioni, prezzi e sconti, aggiunta/rimozione dei consulenti, assegnazione dei permessi e controllo delle azioni di ogni dipendente nel «Registro attività».","Todas las secciones, precios y descuentos, alta/baja de asesores, asignación de permisos y seguimiento de las acciones de cada empleado en el «Registro de actividad».","Alle Bereiche, Preise und Rabatte, Berater hinzufügen/entfernen, Rechte vergeben und jede Aktion der Mitarbeiter im «Aktivitätsprotokoll» verfolgen.","Tüm bölümler, fiyat ve indirimler, yönetici ekleme/silme, yetki verme ve her çalışanın işlemlerini «Etkinlik günlüğü»nde izleme."],
+["Admin / Menejer","Admin / Manager","Админ / Менеджер","Admin / Conseiller","Admin / Consulente","Admin / Asesor","Admin / Berater","Yönetici / Temsilci"],
+["Direktor nazoratida","Under the director's control","Под контролем директора","Sous le contrôle du directeur","Sotto il controllo del direttore","Bajo el control del director","Unter Aufsicht des Direktors","Direktörün denetiminde"],
+["Mijozlar, arizalar, xabarlar, izohlarga javob, qo'ng'iroqlar. Qo'shimcha huquqlarni pastda direktor beradi. Barcha amallari jurnalga yoziladi.","Clients, requests, messages, replies to reviews, calls. The director grants extra permissions below. Every action is recorded in the log.","Клиенты, заявки, сообщения, ответы на отзывы, звонки. Дополнительные права выдаёт директор ниже. Все действия записываются в журнал.","Clients, demandes, messages, réponses aux avis, appels. Le directeur accorde des droits supplémentaires ci-dessous. Chaque action est enregistrée dans le journal.","Clienti, richieste, messaggi, risposte alle recensioni, chiamate. Il direttore concede permessi aggiuntivi qui sotto. Ogni azione viene registrata.","Clientes, solicitudes, mensajes, respuestas a opiniones, llamadas. El director concede permisos extra abajo. Cada acción queda registrada.","Kunden, Anfragen, Nachrichten, Antworten auf Bewertungen, Anrufe. Zusätzliche Rechte vergibt der Direktor unten. Jede Aktion wird protokolliert.","Müşteriler, talepler, mesajlar, yorumlara yanıt, aramalar. Ek yetkileri aşağıda direktör verir. Tüm işlemler günlüğe yazılır."],
+["Menejerlar huquqlari","Managers' permissions","Права менеджеров","Droits des conseillers","Permessi dei consulenti","Permisos de los asesores","Rechte der Berater","Temsilci yetkileri"],
+["Sayt kontentini tahrirlash (matn, rasm, bo'lim, loyiha, til)","Edit website content (text, images, sections, projects, languages)","Редактирование сайта (тексты, фото, разделы, проекты, языки)","Modifier le contenu du site (textes, images, rubriques, projets, langues)","Modificare i contenuti del sito (testi, immagini, sezioni, progetti, lingue)","Editar el contenido del sitio (textos, imágenes, secciones, proyectos, idiomas)","Website-Inhalte bearbeiten (Texte, Bilder, Bereiche, Projekte, Sprachen)","Site içeriğini düzenleme (metin, görsel, bölüm, proje, dil)"],
+["Izoh qo'shish va o'chirish","Add and delete reviews","Добавлять и удалять отзывы","Ajouter et supprimer des avis","Aggiungere ed eliminare recensioni","Añadir y eliminar opiniones","Bewertungen hinzufügen und löschen","Yorum ekleme ve silme"],
+["Hozircha menejer yo'q. «Menejerlar va Ballar» bo'limida qo'shing.","No managers yet. Add them in «Managers & Points».","Менеджеров пока нет. Добавьте их в разделе «Менеджеры и баллы».","Aucun conseiller pour l’instant. Ajoutez-en dans «Conseillers et points».","Ancora nessun consulente. Aggiungili in «Consulenti e punti».","Aún no hay asesores. Añádalos en «Asesores y puntos».","Noch keine Berater. Fügen Sie sie unter «Berater & Punkte» hinzu.","Henüz temsilci yok. «Temsilciler ve Puanlar» bölümünden ekleyin."],
+["Xodim","Employee","Сотрудник","Employé","Dipendente","Empleado","Mitarbeiter","Çalışan"],
+["CSV yuklab olish","Download CSV","Скачать CSV","Télécharger CSV","Scarica CSV","Descargar CSV","CSV herunterladen","CSV indir"],
+["Jurnalni tozalash","Clear log","Очистить журнал","Vider le journal","Svuota registro","Vaciar registro","Protokoll leeren","Günlüğü temizle"],
+["Jurnal bo'sh.","The log is empty.","Журнал пуст.","Le journal est vide.","Il registro è vuoto.","El registro está vacío.","Das Protokoll ist leer.","Günlük boş."],
+["O'zgarishlar barcha mijozlarga qanday yetadi","How changes reach every visitor","Как изменения доходят до всех посетителей","Comment les changements atteignent tous les visiteurs","Come le modifiche arrivano a tutti i visitatori","Cómo llegan los cambios a todos los visitantes","Wie Änderungen alle Besucher erreichen","Değişiklikler tüm ziyaretçilere nasıl ulaşır"],
+["Kabinetda saqlangan o'zgarishlar shu brauzerdagi saytda darhol ko'rinadi.","Changes saved in the office appear at once on the website in this browser.","Изменения, сохранённые в кабинете, сразу видны на сайте в этом браузере.","Les changements enregistrés apparaissent aussitôt sur le site dans ce navigateur.","Le modifiche salvate appaiono subito sul sito in questo browser.","Los cambios guardados aparecen al instante en el sitio en este navegador.","Im Büro gespeicherte Änderungen erscheinen sofort auf der Website in diesem Browser.","Panelde kaydedilen değişiklikler bu tarayıcıdaki sitede hemen görünür."],
+["Barcha tashrif buyuruvchilar ko'rishi uchun «site-content.json» faylini yuklab oling va uni hostingga index.html yoniga joylang — sayt uni avtomatik o'qiydi.","So that every visitor sees them, download «site-content.json» and upload it to your hosting next to index.html; the website reads it automatically.","Чтобы изменения увидели все посетители, скачайте «site-content.json» и разместите его на хостинге рядом с index.html — сайт прочитает его автоматически.","Pour que tous les visiteurs les voient, téléchargez «site-content.json» et placez-le sur l’hébergement à côté d’index.html : le site le lit automatiquement.","Perché tutti i visitatori le vedano, scarica «site-content.json» e caricalo sull’hosting accanto a index.html: il sito lo legge automaticamente.","Para que todos los visitantes los vean, descargue «site-content.json» y súbalo al hosting junto a index.html; el sitio lo lee automáticamente.","Damit alle Besucher sie sehen, «site-content.json» herunterladen und beim Hosting neben index.html ablegen – die Website liest sie automatisch.","Tüm ziyaretçilerin görmesi için «site-content.json» dosyasını indirip hostingde index.html'in yanına koyun; site onu otomatik okur."],
+["Server ulangan bo'lsa (API_URL), «Serverga nashr qilish» tugmasi o'zgarishlarni darhol hammaga tarqatadi.","If a server is connected (API_URL), the «Publish to server» button sends the changes to everyone at once.","Если подключён сервер (API_URL), кнопка «Опубликовать на сервере» сразу распространит изменения для всех.","Si un serveur est connecté (API_URL), le bouton «Publier sur le serveur» diffuse aussitôt les changements à tous.","Se è collegato un server (API_URL), il pulsante «Pubblica sul server» invia subito le modifiche a tutti.","Si hay un servidor conectado (API_URL), el botón «Publicar en el servidor» envía los cambios a todos al instante.","Ist ein Server verbunden (API_URL), verteilt die Schaltfläche «Auf Server veröffentlichen» die Änderungen sofort an alle.","Sunucu bağlıysa (API_URL), «Sunucuda yayınla» butonu değişiklikleri hemen herkese iletir."],
+["site-content.json yuklab olish","Download site-content.json","Скачать site-content.json","Télécharger site-content.json","Scarica site-content.json","Descargar site-content.json","site-content.json herunterladen","site-content.json indir"],
+["Serverga nashr qilish","Publish to server","Опубликовать на сервере","Publier sur le serveur","Pubblica sul server","Publicar en el servidor","Auf Server veröffentlichen","Sunucuda yayınla"],
+["Zaxiradan tiklash (JSON)","Restore from backup (JSON)","Восстановить из резервной копии (JSON)","Restaurer une sauvegarde (JSON)","Ripristina da backup (JSON)","Restaurar copia (JSON)","Aus Sicherung wiederherstellen (JSON)","Yedekten geri yükle (JSON)"],
+["Tozalash","Reset","Сброс","Réinitialiser","Ripristino","Restablecer","Zurücksetzen","Sıfırla"],
+["Saytdagi barcha CMS o'zgarishlari o'chadi va sayt asl holatiga qaytadi. Avval zaxira nusxa yuklab oling.","All website changes made here are removed and the website returns to its original state. Download a backup first.","Все изменения сайта будут удалены, и сайт вернётся к исходному виду. Сначала скачайте резервную копию.","Toutes les modifications du site sont supprimées et le site revient à son état d’origine. Téléchargez d’abord une sauvegarde.","Tutte le modifiche al sito vengono rimosse e il sito torna allo stato originale. Scarica prima un backup.","Se eliminan todos los cambios del sitio y vuelve a su estado original. Descargue antes una copia.","Alle Änderungen an der Website werden entfernt und sie kehrt in den Originalzustand zurück. Vorher eine Sicherung herunterladen.","Sitedeki tüm değişiklikler silinir ve site orijinal hâline döner. Önce yedek indirin."],
+["Barcha o'zgarishlarni bekor qilish","Discard all changes","Отменить все изменения","Annuler toutes les modifications","Annulla tutte le modifiche","Descartar todos los cambios","Alle Änderungen verwerfen","Tüm değişiklikleri iptal et"],
+["Tayyorlanmoqda…","Preparing…","Подготовка…","Préparation…","Preparazione…","Preparando…","Wird vorbereitet…","Hazırlanıyor…"],
+["Tayyor. Faylni hostingga index.html yoniga joylang.","Done. Upload the file to your hosting next to index.html.","Готово. Разместите файл на хостинге рядом с index.html.","Terminé. Placez le fichier sur l’hébergement à côté d’index.html.","Fatto. Carica il file sull’hosting accanto a index.html.","Listo. Suba el archivo al hosting junto a index.html.","Fertig. Datei beim Hosting neben index.html ablegen.","Hazır. Dosyayı hostingde index.html'in yanına koyun."],
+["Yuborilmoqda…","Sending…","Отправка…","Envoi…","Invio…","Enviando…","Wird gesendet…","Gönderiliyor…"],
+["Serverga nashr qilindi","Published to server","Опубликовано на сервере","Publié sur le serveur","Pubblicato sul server","Publicado en el servidor","Auf Server veröffentlicht","Sunucuda yayınlandı"],
+["Server qabul qilmadi. Workerga /api/cms qo'shilganini tekshiring.","The server did not accept it. Check that /api/cms is added to the worker.","Сервер не принял. Проверьте, что в worker добавлен /api/cms.","Le serveur a refusé. Vérifiez que /api/cms est ajouté au worker.","Il server non ha accettato. Verifica che /api/cms sia nel worker.","El servidor no lo aceptó. Compruebe que /api/cms está en el worker.","Der Server hat abgelehnt. Prüfen, ob /api/cms im Worker ergänzt ist.","Sunucu kabul etmedi. Worker'a /api/cms eklendiğini kontrol edin."],
+["Joriy sozlamalar almashtirilsinmi?","Replace the current settings?","Заменить текущие настройки?","Remplacer les paramètres actuels ?","Sostituire le impostazioni attuali?","¿Reemplazar los ajustes actuales?","Aktuelle Einstellungen ersetzen?","Mevcut ayarlar değiştirilsin mi?"],
+["Barcha o'zgarishlar","All changes","Все изменения","Toutes les modifications","Tutte le modifiche","Todos los cambios","Alle Änderungen","Tüm değişiklikler"],
+["Juda katta video havola bilan qo'yilishi kerak.","A very large video must be added by link.","Очень большое видео нужно добавить ссылкой.","Une très grande vidéo doit être ajoutée par lien.","Un video molto grande va inserito tramite link.","Un vídeo muy grande debe añadirse por enlace.","Ein sehr großes Video muss per Link eingefügt werden.","Çok büyük video bağlantıyla eklenmelidir."],
+["Izoh qo'shish","Add review","Добавить отзыв","Ajouter un avis","Aggiungi recensione","Añadir opinión","Bewertung hinzufügen","Yorum ekle"],
+["Mijoz ismi","Client name","Имя клиента","Nom du client","Nome del cliente","Nombre del cliente","Name des Kunden","Müşteri adı"],
+["Baho","Rating","Оценка","Note","Valutazione","Valoración","Bewertung","Puan"],
+["Loyiha","Project","Проект","Projet","Progetto","Proyecto","Projekt","Proje"],
+["Izoh matni","Review text","Текст отзыва","Texte de l’avis","Testo della recensione","Texto de la opinión","Bewertungstext","Yorum metni"],
+["Video-sharh (ixtiyoriy)","Video review (optional)","Видеоотзыв (необязательно)","Avis vidéo (facultatif)","Video-recensione (facoltativa)","Video-opinión (opcional)","Videobewertung (optional)","Video yorum (isteğe bağlı)"],
+["yoki YouTube / Instagram havolasi","or a YouTube / Instagram link","или ссылка на YouTube / Instagram","ou un lien YouTube / Instagram","o un link YouTube / Instagram","o un enlace de YouTube / Instagram","oder ein YouTube-/Instagram-Link","veya YouTube / Instagram bağlantısı"],
+["Hozircha saytda ko'rsatmaslik","Don't show on the website yet","Пока не показывать на сайте","Ne pas encore afficher sur le site","Non mostrare ancora sul sito","No mostrar aún en el sitio","Noch nicht auf der Website zeigen","Şimdilik sitede gösterme"],
+["Mijoz ismini yozing.","Please enter the client's name.","Укажите имя клиента.","Saisissez le nom du client.","Inserisci il nome del cliente.","Escriba el nombre del cliente.","Bitte Namen des Kunden eingeben.","Müşteri adını yazın."],
+["Izoh matnini yozing.","Please enter the review text.","Напишите текст отзыва.","Saisissez le texte de l’avis.","Scrivi il testo della recensione.","Escriba el texto de la opinión.","Bitte Bewertungstext eingeben.","Yorum metnini yazın."],
+["Izoh saytga qo'shildi","Review added to the website","Отзыв добавлен на сайт","Avis ajouté au site","Recensione aggiunta al sito","Opinión añadida al sitio","Bewertung zur Website hinzugefügt","Yorum siteye eklendi"],
+["Saytdagi foto va video galereya", "Website photo & video gallery", "Фото- и видеогалерея сайта", "Galerie photo et vidéo du site", "Galleria foto e video del sito", "Galería de fotos y vídeos del sitio", "Foto- und Videogalerie der Website", "Site fotoğraf ve video galerisi"],
+["Bu yerga qo'shilgan rasm va videolar saytda alohida «Foto va video» blokida chiqadi. Bir vaqtda bir nechta rasm tanlash mumkin.", "Images and videos added here appear on the website in a separate «Photos and videos» block. You can select several images at once.", "Добавленные здесь фото и видео появляются на сайте в отдельном блоке «Фото и видео». Можно выбрать сразу несколько фото.", "Les images et vidéos ajoutées ici apparaissent sur le site dans un bloc «Photos et vidéos». Vous pouvez choisir plusieurs images à la fois.", "Le immagini e i video aggiunti qui appaiono sul sito in un blocco «Foto e video». Puoi selezionare più immagini insieme.", "Las imágenes y vídeos añadidos aquí aparecen en el sitio en un bloque «Fotos y vídeos». Puede elegir varias imágenes a la vez.", "Hier hinzugefügte Bilder und Videos erscheinen auf der Website im Block «Fotos und Videos». Mehrere Bilder können gleichzeitig gewählt werden.", "Buraya eklenen görsel ve videolar sitede ayrı bir «Fotoğraf ve video» bloğunda görünür. Aynı anda birden çok görsel seçebilirsiniz."],
+["Havola qo'shish (YouTube / MP4)", "Add link (YouTube / MP4)", "Добавить ссылку (YouTube / MP4)", "Ajouter un lien (YouTube / MP4)", "Aggiungi link (YouTube / MP4)", "Añadir enlace (YouTube / MP4)", "Link hinzufügen (YouTube / MP4)", "Bağlantı ekle (YouTube / MP4)"],
+["Blok qayerda chiqsin", "Where to show the block", "Где показывать блок", "Où afficher le bloc", "Dove mostrare il blocco", "Dónde mostrar el bloque", "Wo der Block erscheint", "Blok nerede görünsün"],
+["Ko'rsatilmasin", "Don't show", "Не показывать", "Ne pas afficher", "Non mostrare", "No mostrar", "Nicht anzeigen", "Gösterme"],
+["Hozircha galereya bo'sh.", "The gallery is empty for now.", "Галерея пока пуста.", "La galerie est vide pour l’instant.", "La galleria è vuota per ora.", "La galería está vacía por ahora.", "Die Galerie ist noch leer.", "Galeri şimdilik boş."],
+["Loyihaga rasm yoki video qo'shish", "Add images or videos to a project", "Добавить фото или видео в проект", "Ajouter des images ou vidéos à un projet", "Aggiungi immagini o video a un progetto", "Añadir imágenes o vídeos a un proyecto", "Bilder oder Videos zu einem Projekt hinzufügen", "Projeye görsel veya video ekle"],
+["Loyihani tanlang — rasm uning galereyasiga, video esa «Video-lavhalar» qismiga qo'shiladi.", "Choose a project: images go to its gallery, videos to its «Video clips».", "Выберите проект: фото попадут в его галерею, видео — в «Видеоролики».", "Choisissez un projet : les images vont dans sa galerie, les vidéos dans «Vidéos».", "Scegli un progetto: le immagini vanno nella galleria, i video in «Video».", "Elija un proyecto: las imágenes van a su galería y los vídeos a «Vídeos».", "Projekt wählen: Bilder kommen in die Galerie, Videos zu «Videos».", "Proje seçin: görseller galerisine, videolar «Video klipler» kısmına eklenir."],
+["Video havolasi", "Video link", "Ссылка на видео", "Lien vidéo", "Link video", "Enlace de vídeo", "Videolink", "Video bağlantısı"],
+["Loyihani to'liq tahrirlash", "Edit the full project", "Полное редактирование проекта", "Modifier tout le projet", "Modifica l’intero progetto", "Editar el proyecto completo", "Projekt vollständig bearbeiten", "Projeyi tamamen düzenle"],
+["«Biz haqimizda» videosi", "«About us» video", "Видео «О компании»", "Vidéo «À propos»", "Video «Chi siamo»", "Vídeo «Quiénes somos»", "Video «Über uns»", "«Hakkımızda» videosu"],
+["Galereya elementi", "Gallery item", "Элемент галереи", "Élément de galerie", "Elemento della galleria", "Elemento de la galería", "Galerie-Element", "Galeri öğesi"],
+["Fayl tanlang yoki havola qo'ying.", "Choose a file or paste a link.", "Выберите файл или вставьте ссылку.", "Choisissez un fichier ou collez un lien.", "Scegli un file o incolla un link.", "Elija un archivo o pegue un enlace.", "Datei wählen oder Link einfügen.", "Dosya seçin veya bağlantı yapıştırın."],
+["Galereya joyi o'zgardi", "Gallery position changed", "Место галереи изменено", "Emplacement de la galerie modifié", "Posizione della galleria cambiata", "Ubicación de la galería cambiada", "Position der Galerie geändert", "Galeri konumu değişti"],
+["Galereyaga qo'shildi", "Added to gallery", "Добавлено в галерею", "Ajouté à la galerie", "Aggiunto alla galleria", "Añadido a la galería", "Zur Galerie hinzugefügt", "Galeriye eklendi"],
+["Loyihaga media qo'shildi", "Media added to project", "В проект добавлены медиа", "Médias ajoutés au projet", "Media aggiunti al progetto", "Medios añadidos al proyecto", "Medien zum Projekt hinzugefügt", "Projeye medya eklendi"],
+["Galereya tartibi o'zgardi", "Gallery order changed", "Порядок галереи изменён", "Ordre de la galerie modifié", "Ordine della galleria cambiato", "Orden de la galería cambiado", "Reihenfolge der Galerie geändert", "Galeri sırası değişti"],
+["Galereya elementi ko'rsatildi", "Gallery item shown", "Элемент галереи показан", "Élément de galerie affiché", "Elemento della galleria mostrato", "Elemento de galería mostrado", "Galerie-Element angezeigt", "Galeri öğesi gösterildi"],
+["Galereya elementi yashirildi", "Gallery item hidden", "Элемент галереи скрыт", "Élément de galerie masqué", "Elemento della galleria nascosto", "Elemento de galería ocultado", "Galerie-Element ausgeblendet", "Galeri öğesi gizlendi"],
+["Galereyadan o'chirildi", "Removed from gallery", "Удалено из галереи", "Retiré de la galerie", "Rimosso dalla galleria", "Eliminado de la galería", "Aus Galerie entfernt", "Galeriden silindi"],
+["Galereya elementi tahrirlandi", "Gallery item edited", "Элемент галереи изменён", "Élément de galerie modifié", "Elemento della galleria modificato", "Elemento de galería editado", "Galerie-Element bearbeitet", "Galeri öğesi düzenlendi"],
+["«Biz haqimizda» videosi almashtirildi", "«About us» video replaced", "Видео «О компании» заменено", "Vidéo «À propos» remplacée", "Video «Chi siamo» sostituito", "Vídeo «Quiénes somos» sustituido", "Video «Über uns» ersetzt", "«Hakkımızda» videosu değiştirildi"],
+["«Biz haqimizda» videosi asliga qaytarildi", "«About us» video restored", "Видео «О компании» восстановлено", "Vidéo «À propos» rétablie", "Video «Chi siamo» ripristinato", "Vídeo «Quiénes somos» restaurado", "Video «Über uns» wiederhergestellt", "«Hakkımızda» videosu geri yüklendi"],
+/* jurnal amallari */
+["Izoh qo'shildi","Review added","Отзыв добавлен","Avis ajouté","Recensione aggiunta","Opinión añadida","Bewertung hinzugefügt","Yorum eklendi"],
+["Ariza qo'shildi","Request added","Заявка добавлена","Demande ajoutée","Richiesta aggiunta","Solicitud añadida","Anfrage hinzugefügt","Talep eklendi"],
+["Izohga javob yozildi","Reply to review posted","Ответ на отзыв опубликован","Réponse à l’avis publiée","Risposta alla recensione pubblicata","Respuesta a la opinión publicada","Antwort auf Bewertung veröffentlicht","Yoruma yanıt yazıldı"],
+["Izoh javobi o'chirildi","Review reply deleted","Ответ на отзыв удалён","Réponse à l’avis supprimée","Risposta alla recensione eliminata","Respuesta a la opinión eliminada","Antwort auf Bewertung gelöscht","Yorum yanıtı silindi"],
+["Izoh saytdan yashirildi","Review hidden from website","Отзыв скрыт с сайта","Avis masqué du site","Recensione nascosta dal sito","Opinión ocultada del sitio","Bewertung auf Website ausgeblendet","Yorum siteden gizlendi"],
+["Izoh saytda ko'rsatildi","Review shown on website","Отзыв показан на сайте","Avis affiché sur le site","Recensione mostrata sul sito","Opinión mostrada en el sitio","Bewertung auf Website angezeigt","Yorum sitede gösterildi"],
+["Izoh tahrirlandi","Review edited","Отзыв изменён","Avis modifié","Recensione modificata","Opinión editada","Bewertung bearbeitet","Yorum düzenlendi"],
+["Izoh o'chirildi","Review deleted","Отзыв удалён","Avis supprimé","Recensione eliminata","Opinión eliminada","Bewertung gelöscht","Yorum silindi"],
+["Ariza o'chirildi","Request deleted","Заявка удалена","Demande supprimée","Richiesta eliminata","Solicitud eliminada","Anfrage gelöscht","Talep silindi"],
+["Qo'ng'iroq o'chirildi","Call deleted","Звонок удалён","Appel supprimé","Chiamata eliminata","Llamada eliminada","Anruf gelöscht","Arama silindi"],
+["Mijoz o'chirildi","Client deleted","Клиент удалён","Client supprimé","Cliente eliminato","Cliente eliminado","Kunde gelöscht","Müşteri silindi"],
+["Suhbat o'chirildi","Chat deleted","Чат удалён","Discussion supprimée","Chat eliminata","Chat eliminado","Chat gelöscht","Sohbet silindi"],
+["Mijozlar bazasi yangilandi","Client database updated","База клиентов обновлена","Base clients mise à jour","Database clienti aggiornato","Base de clientes actualizada","Kundendatenbank aktualisiert","Müşteri veritabanı güncellendi"],
+["Kabinetga kirdi","Signed in","Вошёл в кабинет","Connexion à l’espace","Accesso al pannello","Inició sesión","Angemeldet","Panele giriş yaptı"],
+["Kabinetdan chiqdi","Signed out","Вышел из кабинета","Déconnexion","Uscita dal pannello","Cerró sesión","Abgemeldet","Panelden çıktı"],
+["Matn tahrirlandi","Text edited","Текст изменён","Texte modifié","Testo modificato","Texto editado","Text bearbeitet","Metin düzenlendi"],
+["Saytda matn tahrirlandi","Text edited on website","Текст изменён на сайте","Texte modifié sur le site","Testo modificato sul sito","Texto editado en el sitio","Text auf der Website bearbeitet","Sitede metin düzenlendi"],
+["Matn asliga qaytarildi","Text restored","Текст восстановлен","Texte rétabli","Testo ripristinato","Texto restaurado","Text wiederhergestellt","Metin geri yüklendi"],
+["Tarjima fayldan yuklandi","Translation uploaded from file","Перевод загружен из файла","Traduction importée d’un fichier","Traduzione caricata da file","Traducción cargada desde archivo","Übersetzung aus Datei geladen","Çeviri dosyadan yüklendi"],
+["Aloqa va raqamlar o'zgartirildi","Contacts and numbers changed","Контакты и цифры изменены","Contacts et chiffres modifiés","Contatti e numeri modificati","Contactos y cifras cambiados","Kontakte und Zahlen geändert","İletişim ve rakamlar değiştirildi"],
+["Aloqa va raqamlar asliga qaytarildi","Contacts and numbers restored","Контакты и цифры восстановлены","Contacts et chiffres rétablis","Contatti e numeri ripristinati","Contactos y cifras restaurados","Kontakte und Zahlen wiederhergestellt","İletişim ve rakamlar geri yüklendi"],
+["Bosh sahifa videosi almashtirildi","Home page video replaced","Видео на главной заменено","Vidéo d’accueil remplacée","Video della home sostituito","Vídeo de inicio sustituido","Startseiten-Video ersetzt","Ana sayfa videosu değiştirildi"],
+["Bosh sahifa muqovasi almashtirildi","Home page cover replaced","Обложка главной заменена","Couverture d’accueil remplacée","Copertina della home sostituita","Portada de inicio sustituida","Startseiten-Titelbild ersetzt","Ana sayfa kapağı değiştirildi"],
+["Bosh sahifa videosi asliga qaytarildi","Home page video restored","Видео на главной восстановлено","Vidéo d’accueil rétablie","Video della home ripristinato","Vídeo de inicio restaurado","Startseiten-Video wiederhergestellt","Ana sayfa videosu geri yüklendi"],
+["Sayt ranglari o'zgartirildi","Website colours changed","Цвета сайта изменены","Couleurs du site modifiées","Colori del sito modificati","Colores del sitio cambiados","Website-Farben geändert","Site renkleri değiştirildi"],
+["Sayt ranglari asliga qaytarildi","Website colours restored","Цвета сайта восстановлены","Couleurs du site rétablies","Colori del sito ripristinati","Colores del sitio restaurados","Website-Farben wiederhergestellt","Site renkleri geri yüklendi"],
+["Bo'lim yoqildi","Section switched on","Раздел включён","Rubrique activée","Sezione attivata","Sección activada","Bereich eingeschaltet","Bölüm açıldı"],
+["Bo'lim o'chirildi","Section removed","Раздел отключён","Rubrique désactivée","Sezione rimossa","Sección eliminada","Bereich entfernt","Bölüm kaldırıldı"],
+["Bo'lim tahrirlandi","Section edited","Раздел изменён","Rubrique modifiée","Sezione modificata","Sección editada","Bereich bearbeitet","Bölüm düzenlendi"],
+["Yangi bo'lim qo'shildi","New section added","Добавлен новый раздел","Nouvelle rubrique ajoutée","Nuova sezione aggiunta","Nueva sección añadida","Neuer Bereich hinzugefügt","Yeni bölüm eklendi"],
+["Bo'limlar tartibi o'zgardi","Section order changed","Порядок разделов изменён","Ordre des rubriques modifié","Ordine delle sezioni cambiato","Orden de secciones cambiado","Reihenfolge der Bereiche geändert","Bölüm sırası değişti"],
+["Loyihalar tartibi o'zgardi","Project order changed","Порядок проектов изменён","Ordre des projets modifié","Ordine dei progetti cambiato","Orden de proyectos cambiado","Reihenfolge der Projekte geändert","Proje sırası değişti"],
+["Loyiha saytdan yashirildi","Project hidden from website","Проект скрыт с сайта","Projet masqué du site","Progetto nascosto dal sito","Proyecto ocultado del sitio","Projekt auf Website ausgeblendet","Proje siteden gizlendi"],
+["Loyiha saytda ko'rsatildi","Project shown on website","Проект показан на сайте","Projet affiché sur le site","Progetto mostrato sul sito","Proyecto mostrado en el sitio","Projekt auf Website angezeigt","Proje sitede gösterildi"],
+["Loyiha o'chirildi","Project deleted","Проект удалён","Projet supprimé","Progetto eliminato","Proyecto eliminado","Projekt gelöscht","Proje silindi"],
+["Loyiha asliga qaytarildi","Project restored","Проект восстановлен","Projet rétabli","Progetto ripristinato","Proyecto restaurado","Projekt wiederhergestellt","Proje geri yüklendi"],
+["Yangi loyiha qo'shildi","New project added","Добавлен новый проект","Nouveau projet ajouté","Nuovo progetto aggiunto","Nuevo proyecto añadido","Neues Projekt hinzugefügt","Yeni proje eklendi"],
+["Loyiha tahrirlandi","Project edited","Проект изменён","Projet modifié","Progetto modificato","Proyecto editado","Projekt bearbeitet","Proje düzenlendi"],
+["Til yoqildi","Language switched on","Язык включён","Langue activée","Lingua attivata","Idioma activado","Sprache eingeschaltet","Dil açıldı"],
+["Til o'chirildi","Language switched off","Язык отключён","Langue désactivée","Lingua disattivata","Idioma desactivado","Sprache ausgeschaltet","Dil kapatıldı"],
+["Yangi til qo'shildi","New language added","Добавлен новый язык","Nouvelle langue ajoutée","Nuova lingua aggiunta","Nuevo idioma añadido","Neue Sprache hinzugefügt","Yeni dil eklendi"],
+["Huquq berildi","Permission granted","Право выдано","Droit accordé","Permesso concesso","Permiso concedido","Recht erteilt","Yetki verildi"],
+["Huquq olib qo'yildi","Permission revoked","Право отозвано","Droit retiré","Permesso revocato","Permiso retirado","Recht entzogen","Yetki geri alındı"],
+["Jurnal tozalandi","Log cleared","Журнал очищен","Journal vidé","Registro svuotato","Registro vaciado","Protokoll geleert","Günlük temizlendi"],
+["Nashr fayli yuklab olindi","Publish file downloaded","Файл публикации скачан","Fichier de publication téléchargé","File di pubblicazione scaricato","Archivo de publicación descargado","Veröffentlichungsdatei heruntergeladen","Yayın dosyası indirildi"],
+["Zaxiradan tiklandi","Restored from backup","Восстановлено из резервной копии","Restauré depuis la sauvegarde","Ripristinato dal backup","Restaurado desde la copia","Aus Sicherung wiederhergestellt","Yedekten geri yüklendi"],
+["Barcha sayt o'zgarishlari bekor qilindi","All website changes discarded","Все изменения сайта отменены","Toutes les modifications du site annulées","Tutte le modifiche al sito annullate","Todos los cambios del sitio descartados","Alle Website-Änderungen verworfen","Tüm site değişiklikleri iptal edildi"],
+["Saytda jonli tahrirlash ochildi","Live website editing opened","Открыто редактирование на сайте","Édition en direct du site ouverte","Modifica dal vivo del sito aperta","Edición en vivo del sitio abierta","Live-Bearbeitung der Website geöffnet","Sitede canlı düzenleme açıldı"]
+  ];
+  var D = window.AHDICT || (window.AHDICT = {});
+  L.forEach(function (l, i) { D[l] = D[l] || {}; R.forEach(function (r) { if (r.length === 8) D[l][r[0]] = r[i + 1]; else console.error('cms-dict', r[0]); }); });
+})();
+
+</script>
+<script>
 /* =====================================================================
    ART HOUSE — MA'LUMOTLAR QATLAMI (sayt ↔ kabinet)
    • Server bo'lmasa: localStorage + BroadcastChannel — sayt va kabinet bitta
@@ -2742,6 +3142,317 @@ Store.on('calls',()=>{if(!tok)return;nav();if(VW==='V')vV()});
 Store.on('crm',i=>{if(!tok||!API)return;loadD().then(()=>{nav();if(i.op==='lead'){const l=DATA.leads.find(x=>x.id===i.id);if(l)kToast(TX('Yangi ariza')+': '+l.name)}if(['h','c','m','x','s'].includes(VW))view(VW)}).catch(()=>{})});
 addEventListener('storage',e=>{if(!tok||!DATA||Store.api)return;if(e.key==='ah_stats'){const s=LS('ah_stats')||{};DATA.leads=s.leads||[];DATA.days=s.days||{};DATA.exp=s.exp||DATA.exp;nav();if(['h','c'].includes(VW))view(VW)}else if(e.key==='ah_chats'){nav();if(VW==='m'||VW==='x')view(VW)}});
 
+
+/* ===================================================================
+   YANGI: SOZLAMALAR → SAYT BOSHQARUVI (CMS) · TILLAR · ROLLAR VA HUQUQLAR
+   · FAOLIYAT JURNALI · KABINETDAN IZOH QO'SHISH
+   Barcha o'zgarishlar 'ah_cms' ga yoziladi; sayt ularni kodga tegmasdan qo'llaydi.
+   =================================================================== */
+Object.assign(ICN,{
+layers:'<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
+edit:'<path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86z"/>',
+plus:'<path d="M5 12h14"/><path d="M12 5v14"/>',
+eye:'<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>',
+eyeoff:'<path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="m2 2 20 20"/>',
+link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',up:'<path d="m18 15-6-6-6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',
+upload:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/>',
+palette:'<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.55C21.97 6.01 17.46 2 12 2z"/>',
+shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>'});
+if(!ICN.globe)ICN.globe='<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/>';
+if(!ICN.phone)ICN.phone='<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>';
+
+/* ---------- ma'lumot, jurnal, huquqlar ---------- */
+const CMS=()=>{const c=LS('ah_cms')||{};c.text=c.text||{};c.cfg=c.cfg||{};c.colors=c.colors||{};c.hero=c.hero||{};
+ c.sections=c.sections||{};c.sections.off=c.sections.off||[];c.sections.custom=c.sections.custom||[];
+ c.projects=c.projects||{};['added','hidden','order'].forEach(k=>c.projects[k]=c.projects[k]||[]);c.projects.data=c.projects.data||{};
+ c.langs=c.langs||{};c.langs.added=c.langs.added||[];c.langs.off=c.langs.off||[];c.media=c.media||{};c.media.items=c.media.items||[];c.media.fest=c.media.fest||{};c.media.place=c.media.place||'home';return c};
+function cmAud(a,d){if(!tok)return;const m=ME(),L=LS('ah_audit')||[];L.unshift({at:Date.now(),who:tag(m),id:m.id,r:m.r,a,d:d==null?'':String(d).slice(0,160)});LS('ah_audit',L.slice(0,1000))}
+function cmsSave(c,act,det){c.v=Date.now();try{localStorage.setItem('ah_cms',JSON.stringify(c))}catch(e){kToast(TX("Xotira to'ldi: rasmlarni kichikroq qiling yoki havola bilan qo'ying."));return false}
+ cmAud(act,det);if(API)fetch(API+'/api/cms',{method:'PUT',keepalive:true,headers:Object.assign({'Content-Type':'application/json'},hd()),body:JSON.stringify(c)}).catch(()=>{});kToast(TX("Saqlandi — saytda darhol ko'rinadi"));return true}
+const PERM=()=>LS('ah_perm')||{};
+const cmCan=p=>own()||!!((PERM()[ME().id]||{})[p]);
+const BL=['uz','ru','en','fr','it','es','de','tr'],LNAME={uz:"O'zbekcha",cy:'Ўзбекча',ru:'Русский',en:'English',fr:'Français',it:'Italiano',es:'Español',de:'Deutsch',tr:'Türkçe'};
+const LANGS_ON=()=>{const c=CMS();return BL.filter(l=>l==='uz'||!c.langs.off.includes(l)).concat(c.langs.added.filter(x=>!c.langs.off.includes(x.code)).map(x=>x.code))};
+const lname=l=>LNAME[l]||((CMS().langs.added.find(x=>x.code===l)||{}).label)||l.toUpperCase();
+
+/* Store o'zgarishlarini jurnalga yozish */
+(function(){const N={reviews:'Izoh',leads:'Ariza',calls:"Qo'ng'iroq"},A=Store.add,U=Store.update,R=Store.remove;
+ Store.add=(k,o)=>A(k,o).then(x=>{if(tok&&k!=='calls')cmAud(N[k]?N[k]+" qo'shildi":k,o&&o.name);return x});
+ Store.update=(k,id,p)=>U(k,id,p).then(x=>{if(tok&&k==='reviews'){const r=Store.list(k).find(y=>y.id===id)||{};cmAud(p&&p.reply!==undefined?(p.reply?'Izohga javob yozildi':"Izoh javobi o'chirildi"):p&&p.hidden!==undefined?(p.hidden?'Izoh saytdan yashirildi':"Izoh saytda ko'rsatildi"):'Izoh tahrirlandi',r.name)}return x});
+ Store.remove=(k,id)=>{const r=(Store.list(k)||[]).find(y=>y.id===id)||{};return R(k,id).then(x=>{if(tok)cmAud((N[k]||k)+" o'chirildi",r.name);return x})}})();
+{const P0=persist;persist=function(o){P0(o);const k=Object.keys(o||{});cmAud(k.includes('delLeads')?"Mijoz o'chirildi":k.includes('delChats')?"Suhbat o'chirildi":'Mijozlar bazasi yangilandi','')}}
+{const E0=enter;enter=async function(){await E0();if(!tok)return;const L=LS('ah_audit')||[],m=ME(),p=L.find(x=>x.id===m.id&&x.a==='Kabinetga kirdi');if(!p||Date.now()-p.at>30*6e4)cmAud('Kabinetga kirdi','')}}
+{const O0=logout;logout=function(){if(tok)cmAud('Kabinetdan chiqdi','');O0()}}
+
+/* menejerga «Sozlamalar» faqat direktor ruxsat bersa ko'rinadi */
+{const N0=nav;nav=function(){N0();const nv=$('nv');if(nv&&tok&&!own()&&cmCan('cms')&&!nv.querySelector('[data-v="z"]'))nv.insertAdjacentHTML('beforeend','<button type="button" data-v="z" class="'+(VW==='z'?'on':'')+'"'+(VW==='z'?' aria-current="page"':'')+'><i class="nt">'+I2('set')+'</i><span>Sozlamalar</span></button>')}}
+
+/* ---------- sayt nusxasi (asl rasmlar, matnlar katalogi) — IndexedDB ---------- */
+let SNAP=null;
+const cmSnap=()=>SNAP?Promise.resolve(SNAP):new Promise(res=>{if(!('indexedDB' in window))return res(SNAP={});const r=indexedDB.open('arthouse-cms',1);
+ r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onerror=()=>res(SNAP={});
+ r.onsuccess=()=>{try{const tx=r.result.transaction('kv'),st=tx.objectStore('kv'),a=st.get('catalog'),b=st.get('base');tx.oncomplete=()=>res(SNAP={cat:(a.result||{}).cat||null,base:(b.result||{}).base||null});tx.onerror=()=>res(SNAP={})}catch(e){res(SNAP={})}}});
+addEventListener('storage',e=>{if(e.key==='ah_cms_cat_at'){SNAP=null;if(tok&&VW==='z')view('z')}});
+function refURL(ref,pid){if(!ref)return Promise.resolve('');ref=String(ref);
+ if(ref.indexOf('idb:')===0)return Store.mediaURL(ref);
+ if(ref.indexOf('base:')===0)return cmSnap().then(S=>{const a=ref.split(':'),B=S.base||{};if(a[1]==='hero')return(B._hero||{})[a[2]]||'';const b=B[a[3]||pid]||{};if(a[1]==='cover')return b.cover||'';if(a[1]==='video')return(b.video||{})[a[2]]||'';const it=(b[a[1]]||[])[+a[2]];return it?(it.src||it.img||''):''});
+ return Promise.resolve(ref)}
+function fillRefs(R,pid){R.querySelectorAll('[data-ref]').forEach(el=>{refURL(el.dataset.ref,el.dataset.pid||pid).then(u=>{if(!u){if(el.tagName==='IMG')el.classList.add('cm-noimg');return}if(el.tagName==='VIDEO'){el.src=u}else el.src=u})})}
+/* fayl tanlash: rasm → siqiladi (1600px, JPEG), video → o'zi */
+function cmPick(accept,multi){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.accept=accept;i.multiple=!!multi;i.onchange=()=>res([...i.files]);i.click()})}
+function cmShrink(f){return new Promise(res=>{if(!/^image\/(jpeg|png|webp)/.test(f.type)||f.size<350e3)return res(f);const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);res(b&&b.size<f.size?b:f)},'image/jpeg',.86)};im.onerror=()=>res(f);im.src=u})}
+async function cmUp(kind,multi){const fs=await cmPick(kind==='video'?'video/*':'image/*',multi);const out=[];for(const f of fs){if(kind==='video'&&f.size>120e6){kToast(TX('Video hajmi 120 MB dan oshmasin.'));continue}try{out.push(await Store.putBlob(kind==='video'?f:await cmShrink(f)))}catch(e){kToast(TX("Faylni saqlab bo'lmadi."))}}return out}
+
+/* ---------- umumiy dialog (tahrirlagich) ---------- */
+const cmGet=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);
+function cmSet(o,p,v){const k=p.split('.');let a=o;for(let i=0;i<k.length-1;i++){if(a[k[i]]==null||typeof a[k[i]]!=='object')a[k[i]]=/^\d+$/.test(k[i+1])?[]:{};a=a[k[i]]}a[k[k.length-1]]=v}
+function cmML(path,E,area,label){const L=LANGS_ON(),main=L.filter(l=>['uz','ru','en'].includes(l)),rest=L.filter(l=>!main.includes(l));
+ const row=l=>'<label class="cm-ml"><i>'+l.toUpperCase()+'</i>'+(area?'<textarea rows="3" data-p="'+path+'.'+l+'">'+esc(cmGet(E,path+'.'+l)||'')+'</textarea>':'<input data-p="'+path+'.'+l+'" value="'+esc(cmGet(E,path+'.'+l)||'')+'">')+'</label>';
+ return '<div class="cm-f"><b>'+label+'</b><div class="nt9">'+main.map(row).join('')+(rest.length?'<details><summary>'+esc(TX('Boshqa tillar'))+' · '+rest.map(x=>x.toUpperCase()).join(', ')+'</summary>'+rest.map(row).join('')+'</details>':'')+'</div></div>'}
+const cmIn=(p,E,label,type,ph)=>'<label class="cm-f"><b>'+label+'</b><input class="nt9" data-p="'+p+'"'+(type?' type="'+type+'" step="any"':'')+' value="'+esc(cmGet(E,p)==null?'':cmGet(E,p))+'"'+(ph?' data-ph="'+esc(ph)+'"':'')+'></label>';
+function mediaBox(p,E,kind,pid){const v=cmGet(E,p)||'';return '<div class="cm-media">'+(v?(kind==='video'?'<video data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" controls preload="metadata" playsinline></video>':'<img data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" alt="">'):'<div class="cm-empty">'+I('image')+'</div>')+
+ '<div class="xa"><button type="button" class="btn ghost sm" data-up="'+p+'" data-kind="'+kind+'">'+I('upload')+(kind==='video'?'Video yuklash':'Rasm yuklash')+'</button><button type="button" class="btn ghost sm" data-url="'+p+'">'+I('link')+'Havola</button>'+(v?'<button type="button" class="btn ghost sm dl" data-clr="'+p+'">'+I('trash')+'Olib tashlash</button>':'')+'</div></div>'}
+function cmTr(R){if(typeof LANG==='undefined'||LANG==='uz'||!window.AHTR)return;const w=document.createTreeWalker(R,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const p=n.parentElement;if(!p||p.closest('.nt9,script,style,svg'))continue;const v=AHTR(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}
+ R.querySelectorAll('[aria-label],[placeholder],[title]').forEach(e=>{if(e.closest('.nt9'))return;['aria-label','placeholder','title'].forEach(a=>{const v=e.getAttribute(a);if(v){const t=AHTR(v);if(t!==v)e.setAttribute(a,t)}})})}
+function DLG(title,E,body,onSave,wide){const m=document.createElement('div');m.className='dlg cmd';document.body.appendChild(m);
+ const draw=()=>{m.innerHTML='<div class="cmbox'+(wide?' wide':'')+'"><div class="cmh"><h3>'+title+'</h3><button type="button" class="cmx" data-cx aria-label="Yopish">×</button></div><div class="cmc">'+body(E)+'</div><div class="cmf"><button type="button" class="btn ghost" data-cx>Bekor</button><button type="button" class="btn gold" data-ok>'+I('check')+'Saqlash</button></div></div>';cmTr(m);fillRefs(m,E.id)};
+ draw();
+ m.addEventListener('input',e=>{const el=e.target;if(!el.dataset.p)return;let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number')v=el.value===''?'':+el.value;cmSet(E,el.dataset.p,v)});
+ m.addEventListener('change',e=>{const el=e.target;if(el.dataset.p&&(el.type==='checkbox'||el.tagName==='SELECT')){cmSet(E,el.dataset.p,el.type==='checkbox'?el.checked:el.value);if(el.dataset.redraw!=null)draw()}});
+ m.addEventListener('click',async e=>{const b=e.target.closest('button');if(e.target===m){return}if(!b)return;const d=b.dataset;
+  if(d.cx!=null){m.remove();return}
+  if(d.ok!=null){b.disabled=true;const r=await onSave(E);if(r!==false)m.remove();else b.disabled=false;return}
+  if(d.up){const refs=await cmUp(d.kind,d.multi!=null);if(!refs.length)return;if(d.multi!=null){const arr=cmGet(E,d.up)||[];refs.forEach(r=>arr.push(d.tpl?Object.assign(JSON.parse(d.tpl),{[d.key||'src']:r}):r));cmSet(E,d.up,arr)}else cmSet(E,d.up,refs[0]);draw();return}
+  if(d.url){const u=prompt(TX("Havola (https://… yoki media/fayl.mp4)"),cmGet(E,d.url)||'');if(u==null)return;cmSet(E,d.url,u.trim());draw();return}
+  if(d.clr){cmSet(E,d.clr,'');draw();return}
+  if(d.add){const arr=cmGet(E,d.add)||[];arr.push(JSON.parse(d.tpl||'{}'));cmSet(E,d.add,arr);draw();return}
+  if(d.del){const k=d.del.split('.'),i=+k.pop(),arr=cmGet(E,k.join('.'));arr.splice(i,1);draw();return}
+  if(d.mv){const k=d.mv.split('.'),i=+k.pop(),arr=cmGet(E,k.join('.')),j=i+(+d.dir);if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];draw();return}
+  if(d.star){cmSet(E,'rating',+d.star);draw();return}});
+ return m}
+
+/* ---------- SOZLAMALAR: tablar ---------- */
+let ZT='base',TL='ru',TQ='',TM=0,TP=0,JQ='',JW='';
+const ZTABS=[['base','set','Narxlar va tizim',1],['txt','file','Matnlar va tarjimalar'],['inf','phone','Aloqa va raqamlar'],['med','image','Rasm va videolar'],['col','palette','Ranglar',1],['sec','layers',"Bo'limlar"],['prj','bld','Loyihalar'],['lng','globe','Tillar'],['rol','crown','Rollar va huquqlar',1],['log','clock','Faoliyat jurnali',1],['pub','download','Nashr va zaxira']];
+const V0=vZ;
+vZ=function(){const o=own(),mn=$('mn');if(!o&&!cmCan('cms'))return V0();
+ const T=ZTABS.filter(t=>o||!t[3]);if(!T.some(t=>t[0]===ZT))ZT=T[0][0];
+ const bar='<div class="cm-tabs" role="tablist">'+T.map(t=>'<button type="button" role="tab" data-zt="'+t[0]+'" class="'+(ZT===t[0]?'on':'')+'" aria-selected="'+(ZT===t[0])+'">'+I(t[1])+'<span>'+t[2]+'</span></button>').join('')+'</div>';
+ if(ZT==='base'){V0();mn.insertAdjacentHTML('afterbegin','<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar)}
+ else{mn.innerHTML='<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar+'<div id="cmB" class="cm-body"></div>';ZV[ZT]($('cmB'))}
+ mn.querySelector('.cm-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-zt]');if(!b)return;ZT=b.dataset.zt;vZ()})};
+const needSite=()=>'<div class="card cm-note"><p>'+esc(TX("Bu bo'lim uchun saytning asl matn va rasmlari kerak. Saytni shu brauzerda bir marta oching — ma'lumot avtomatik keladi."))+'</p><a class="btn gold sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+'Saytni ochish</a></div>';
+function liveEdit(){LS('ah_edit',{exp:Date.now()+3*36e5,by:tag(ME())});cmAud('Saytda jonli tahrirlash ochildi','');open('index.html?edit=1','_blank')}
+
+const ZV={
+/* ---- Matnlar va tarjimalar ---- */
+txt(B){B.innerHTML='<div class="card"><p class="note cm-l">Yuklanmoqda…</p></div>';cmSnap().then(S=>{const cat=S.cat;if(!cat){B.innerHTML=needSite();return}
+ const L=LANGS_ON();if(!L.includes(TL))TL=L[0];const c=CMS(),ov=c.text[TL]||{},keys=Object.keys(cat);
+ const q=TQ.trim().toLowerCase(),F=keys.filter(k=>{const r=cat[k];if(TM&&ov[k]==null)return false;if(!q)return true;return(k+' '+(r.uz||'')+' '+(r[TL]||'')+' '+(ov[k]||'')).toLowerCase().includes(q)});
+ const PG=40,pages=Math.max(1,Math.ceil(F.length/PG));if(TP>=pages)TP=pages-1;const rows=F.slice(TP*PG,TP*PG+PG);
+ const val=k=>ov[k]!=null?ov[k]:(cat[k][TL]!=null&&cat[k][TL]!==''?cat[k][TL]:cat[k].en||cat[k].uz||'');
+ B.innerHTML='<div class="card cm-tool"><div class="cm-row2"><label class="cm-f"><b>Til</b><select id="tl">'+L.map(l=>'<option value="'+l+'"'+(l===TL?' selected':'')+'>'+esc(lname(l))+'</option>').join('')+'</select></label><label class="cm-f grow"><b>Qidirish</b><input id="tq" class="nt9" value="'+esc(TQ)+'"></label><label class="cm-chk"><input type="checkbox" id="tm"'+(TM?' checked':'')+'><span>Faqat o\'zgartirilganlar</span></label></div>'+
+  '<div class="xa"><button type="button" class="btn gold sm" id="tlive">'+I('edit')+'Saytda jonli tahrirlash</button><button type="button" class="btn ghost sm" id="texp">'+I('download')+'Tarjimani yuklab olish (JSON)</button><button type="button" class="btn ghost sm" id="timp">'+I('upload')+'Tarjimani yuklash (JSON)</button></div>'+
+  '<p class="note cm-l">'+esc(TX("Matnni o'zgartiring — maydondan chiqqanda avtomatik saqlanadi va saytda darhol almashadi."))+' <span class="nt9">'+F.length+' / '+keys.length+'</span></p></div>'+
+  '<div class="cm-list">'+rows.map(k=>'<div class="card cm-tr'+(ov[k]!=null?' chg':'')+'"><div class="cm-trh nt9"><code>'+esc(k)+'</code>'+(TL!=='uz'?'<small>UZ: '+esc(cat[k].uz||'')+'</small>':'')+'</div><textarea class="nt9" rows="'+Math.min(6,Math.max(1,Math.ceil(val(k).length/70)))+'" data-k="'+esc(k)+'">'+esc(val(k))+'</textarea>'+(ov[k]!=null?'<button type="button" class="btn ghost sm" data-rk="'+esc(k)+'">'+I('trash')+'Aslini qaytarish</button>':'')+'</div>').join('')+'</div>'+
+  (pages>1?'<div class="cm-pg">'+Array.from({length:pages},(_,i)=>'<button type="button" data-pg="'+i+'" class="'+(i===TP?'on':'')+'">'+(i+1)+'</button>').join('')+'</div>':'');
+ $('tl').onchange=e=>{TL=e.target.value;TP=0;ZV.txt(B)};
+ let tmr;$('tq').oninput=e=>{clearTimeout(tmr);tmr=setTimeout(()=>{TQ=e.target.value;TP=0;ZV.txt(B);const i=$('tq');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}},350)};
+ $('tm').onchange=e=>{TM=e.target.checked?1:0;TP=0;ZV.txt(B)};
+ $('tlive').onclick=liveEdit;
+ $('texp').onclick=()=>{const o={lang:TL,name:lname(TL),texts:{}};keys.forEach(k=>o.texts[k]=val(k));cmDL('arthouse-tarjima-'+TL+'.json',JSON.stringify(o,null,1))};
+ $('timp').onclick=async()=>{const f=(await cmPick('application/json,.json'))[0];if(!f)return;try{const j=JSON.parse(await f.text()),T=j.texts||j,c=CMS(),lg=j.lang&&L.includes(j.lang)?j.lang:TL;c.text[lg]=c.text[lg]||{};let n=0;Object.keys(T).forEach(k=>{if(cat[k]&&typeof T[k]==='string'&&T[k].trim()&&T[k]!==cat[k][lg]){c.text[lg][k]=T[k].trim();n++}});cmsSave(c,'Tarjima fayldan yuklandi',lg.toUpperCase()+' · '+n);ZV.txt(B)}catch(e){kToast(TX("Fayl noto'g'ri formatda."))}};
+ B.querySelector('.cm-list').addEventListener('change',e=>{const ta=e.target.closest('textarea[data-k]');if(!ta)return;const k=ta.dataset.k,v=ta.value.trim(),c=CMS();c.text[TL]=c.text[TL]||{};
+  if(!v||v===(cat[k][TL]||''))delete c.text[TL][k];else c.text[TL][k]=v;cmsSave(c,'Matn tahrirlandi',k+' · '+TL.toUpperCase());ta.closest('.cm-tr').classList.add('chg')});
+ B.onclick=e=>{const b=e.target.closest('[data-rk],[data-pg]');if(!b)return;if(b.dataset.pg!=null){TP=+b.dataset.pg;ZV.txt(B);scrollTo(0,0);return}const c=CMS();if(c.text[TL])delete c.text[TL][b.dataset.rk];cmsSave(c,'Matn asliga qaytarildi',b.dataset.rk+' · '+TL.toUpperCase());ZV.txt(B)}})},
+
+/* ---- Aloqa va raqamlar ---- */
+inf(B){const c=CMS(),g=k=>c.cfg[k]!=null&&c.cfg[k]!==''?c.cfg[k]:CFG[k];
+ const F=[['Telefon raqamlar (vergul bilan)','PHONES','tel'],['Telegram kanal havolasi','TELEGRAM_CHANNEL','url'],['Telegram menejer havolasi','TELEGRAM_MANAGER','url'],['Instagram havolasi','INSTAGRAM','url'],['Instagram nomi (@…)','INSTAGRAM_HANDLE','txt'],['YouTube havolasi','YOUTUBE','url'],['Facebook havolasi','FACEBOOK','url'],['WhatsApp havolasi','WHATSAPP','url'],['Tajriba (yil)','EXPERIENCE_YEARS','num'],['Amalga oshirilgan loyihalar','PROJECTS_DONE','txt'],['Instagram obunachilar','IG_FOLLOWERS','txt'],['Instagram postlar','IG_POSTS','txt'],['1 $ kursi (so\'m)','USD_UZS','num']];
+ B.innerHTML='<form class="card cm-grid" id="cfgF">'+F.map(f=>{let v=g(f[1]);if(Array.isArray(v))v=v.join(', ');return '<label class="cm-f"><b>'+f[0]+'</b><input class="nt9" name="'+f[1]+'" data-t="'+f[2]+'"'+(f[2]==='num'?' type="number" step="any"':'')+' value="'+esc(v==null?'':v)+'"></label>'}).join('')+
+ '<label class="cm-f"><b>Savdo ofisi — kenglik (lat)</b><input class="nt9" name="olat" type="number" step="any" value="'+esc((g('OFFICE')||{}).lat||'')+'"></label><label class="cm-f"><b>Savdo ofisi — uzunlik (lng)</b><input class="nt9" name="olng" type="number" step="any" value="'+esc((g('OFFICE')||{}).lng||'')+'"></label>'+
+ '<div class="xa full"><button class="btn gold" type="submit">'+I('check')+'Saqlash</button><button class="btn ghost" type="button" id="cfgR">Aslini qaytarish</button></div><p class="note cm-l full" id="cfgE"></p></form>';
+ $('cfgF').onsubmit=e=>{e.preventDefault();const fd=new FormData(e.target),c=CMS(),o={};let bad='';
+  F.forEach(f=>{let v=String(fd.get(f[1])||'').trim();if(f[2]==='tel'){const a=v.split(/[,;\n]+/).map(x=>x.replace(/[^\d+]/g,'')).filter(Boolean).map(x=>x[0]==='+'?x:'+'+x);if(!a.length||a.some(x=>!/^\+\d{9,15}$/.test(x)))bad=f[0];o[f[1]]=a}
+   else if(f[2]==='url'){if(v&&!/^https:\/\/\S+$/.test(v))bad=f[0];o[f[1]]=v}else if(f[2]==='num'){o[f[1]]=v===''?'':+v}else o[f[1]]=v});
+  const la=+fd.get('olat'),ln=+fd.get('olng');if(la&&ln){if(Math.abs(la)>90||Math.abs(ln)>180)bad='Savdo ofisi';else o.OFFICE={lat:la,lng:ln}}
+  if(bad){$('cfgE').textContent=TX("Tekshiring")+': '+TX(bad);return}
+  c.cfg=o;cmsSave(c,"Aloqa va raqamlar o'zgartirildi",'');Object.assign(CFG,Object.fromEntries(Object.entries(o).filter(x=>x[1]!==''&&x[1]!=null)));$('cfgE').textContent=TX('Saqlandi')};
+ $('cfgR').onclick=()=>askDel("Bu narsa o'chirilsinmi?",esc(TX('Aloqa va raqamlar'))+' → '+esc(TX('asl holat')),()=>{const c=CMS();c.cfg={};cmsSave(c,'Aloqa va raqamlar asliga qaytarildi','');ZV.inf(B)})},
+
+/* ---- Rasm va videolar ---- */
+med(B){cmSnap().then(S=>{if(!S.base){B.innerHTML=needSite();return}const c=CMS(),M=c.media,E={video:c.hero.video||'base:hero:src',poster:c.hero.poster||'base:hero:poster'},F={video:M.fest.video||'media/art-house-festival.mp4',poster:M.fest.poster||'media/art-house-festival.jpg'};
+ const ids=Object.keys(S.base).filter(k=>k[0]!=='_').concat(c.projects.added.filter(id=>!S.base[id])),nm=id=>{const e=c.projects.data[id],b=S.base[id];return(e&&e.name)||(b&&b.txt&&(typeof b.txt.name==='string'?b.txt.name:(b.txt.name||{}).uz))||id};
+ const it=(x,i)=>'<div class="cm-gi'+(x.on===false?' off':'')+'">'+(x.type==='video'?(/youtu/.test(x.src)?'<div class="cm-yt">'+I('video')+'YouTube</div>':'<video data-ref="'+esc(x.src)+'" preload="metadata" playsinline muted></video>'):'<img data-ref="'+esc(x.src)+'" alt="">')+
+  '<small class="nt9">'+esc((x.t||{}).uz||'')+'</small><div class="xa"><button type="button" class="btn ghost sm" data-gm="'+i+'" data-dir="-1" aria-label="Chapga">'+I('up')+'</button><button type="button" class="btn ghost sm" data-gm="'+i+'" data-dir="1" aria-label="O\'ngga">'+I('down')+'</button><button type="button" class="btn ghost sm" data-ge="'+i+'" aria-label="Tahrirlash">'+I('edit')+'</button><button type="button" class="btn ghost sm" data-gh="'+i+'" aria-label="'+(x.on===false?"Saytda ko'rsatish":'Saytdan yashirish')+'">'+I(x.on===false?'eyeoff':'eye')+'</button><button type="button" class="btn ghost sm dl" data-gd="'+i+'" aria-label="O\'chirish">'+I('trash')+'</button></div></div>';
+ B.innerHTML='<div class="card"><div class="cm-hd"><h3 class="cm-h">Saytdagi foto va video galereya</h3><span class="pill nt9">'+M.items.length+'</span></div><p class="note cm-l">'+esc(TX("Bu yerga qo'shilgan rasm va videolar saytda alohida «Foto va video» blokida chiqadi. Bir vaqtda bir nechta rasm tanlash mumkin."))+'</p>'+
+  '<div class="xa"><button type="button" class="btn gold sm" data-ga="image">'+I('image')+'Rasm qo\'shish</button><button type="button" class="btn gold sm" data-ga="video">'+I('video')+'Video qo\'shish</button><button type="button" class="btn ghost sm" data-ga="url">'+I('link')+'Havola qo\'shish (YouTube / MP4)</button></div>'+
+  '<label class="cm-f" style="max-width:320px;margin-top:12px"><b>Blok qayerda chiqsin</b><select id="gpl"><option value="home"'+(M.place==='home'?' selected':'')+'>Bosh sahifa</option><option value="about"'+(M.place==='about'?' selected':'')+'>Biz haqimizda</option><option value="off"'+(M.place==='off'?' selected':'')+'>Ko\'rsatilmasin</option></select></label>'+
+  (M.items.length?'<div class="cm-gal">'+M.items.map(it).join('')+'</div>':'<p class="note cm-l">'+esc(TX("Hozircha galereya bo'sh."))+'</p>')+'</div>'+
+ '<div class="card"><h3 class="cm-h">Loyihaga rasm yoki video qo\'shish</h3><p class="note cm-l">'+esc(TX("Loyihani tanlang — rasm uning galereyasiga, video esa «Video-lavhalar» qismiga qo'shiladi."))+'</p><div class="cm-row2"><label class="cm-f"><b>Loyiha</b><select id="mpj" class="nt9">'+ids.map(id=>'<option value="'+esc(id)+'">'+esc(nm(id))+'</option>').join('')+'</select></label></div>'+
+  '<div class="xa"><button type="button" class="btn gold sm" data-pa="image">'+I('image')+'Rasm qo\'shish</button><button type="button" class="btn gold sm" data-pa="video">'+I('video')+'Video qo\'shish</button><button type="button" class="btn ghost sm" data-pa="url">'+I('link')+'Video havolasi</button><button type="button" class="btn ghost sm" data-go="prj">'+I('edit')+'Loyihani to\'liq tahrirlash</button></div></div>'+
+ '<div class="card"><h3 class="cm-h">Bosh sahifa videosi</h3><p class="note cm-l">'+esc(TX("Bosh sahifadagi katta video va uning muqova rasmi. MP4 fayl yuklang yoki havola qo'ying."))+'</p><div class="cm-grid"><div class="cm-f"><b>Video</b>'+mediaBox('video',E,'video')+'</div><div class="cm-f"><b>Muqova rasm</b>'+mediaBox('poster',E,'image')+'</div></div>'+
+ '<div class="xa"><button type="button" class="btn ghost" id="hvR">Aslini qaytarish</button></div></div>'+
+ '<div class="card" id="fstC"><h3 class="cm-h">«Biz haqimizda» videosi</h3><div class="cm-grid"><div class="cm-f"><b>Video</b>'+mediaBox('video',F,'video')+'</div><div class="cm-f"><b>Muqova rasm</b>'+mediaBox('poster',F,'image')+'</div></div><div class="xa"><button type="button" class="btn ghost" id="fsR">Aslini qaytarish</button></div></div>';
+ fillRefs(B);
+ $('gpl').onchange=e=>{const c=CMS();c.media.place=e.target.value;cmsSave(c,"Galereya joyi o'zgardi",e.target.value)};
+ const addItems=async kind=>{let refs=[];if(kind==='url'){const u=prompt(TX("Havola (https://… yoki media/fayl.mp4)"),'');if(!u||!u.trim())return;const v=u.trim();if(!/^(https:\/\/|media\/)/.test(v)){kToast(TX("Havola https:// bilan boshlanishi kerak."));return}refs=[{src:v,type:/\.(jpe?g|png|webp|gif)(\?|$)/i.test(v)?'image':'video'}]}else refs=(await cmUp(kind,kind==='image')).map(r=>({src:r,type:kind}));if(!refs.length)return;return refs};
+ B.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;let c=CMS();
+  if(d.go){ZT=d.go;vZ();return}
+  if(d.ga){const R=await addItems(d.ga);if(!R)return;c=CMS();R.forEach(r=>c.media.items.push({id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),type:r.type,src:r.src,t:{},on:true}));cmsSave(c,"Galereyaga qo'shildi",R.length+'');ZV.med(B);return}
+  if(d.pa){const id=$('mpj').value,kind=d.pa==='url'?'url':d.pa;const R=await addItems(kind);if(!R)return;c=CMS();const P=Object.assign(projState(id,S),c.projects.data[id]||{});delete P.id;P.gallery=P.gallery||[];P.videos=P.videos||[];
+   R.forEach(r=>{if(r.type==='image')P.gallery.push({src:r.src,t:{}});else P.videos.push({src:r.src,poster:'',vert:false,t:{}})});c.projects.data[id]=JSON.parse(JSON.stringify(P));if(c.projects.added.indexOf(id)<0&&!S.base[id])c.projects.added.push(id);cmsSave(c,'Loyihaga media qo\'shildi',nm(id)+' · '+R.length);ZV.med(B);return}
+  const L=c.media.items;
+  if(d.gm!=null){const i=+d.gm,j=i+(+d.dir);if(j<0||j>=L.length)return;[L[i],L[j]]=[L[j],L[i]];cmsSave(c,"Galereya tartibi o'zgardi",'');ZV.med(B);return}
+  if(d.gh!=null){const x=L[+d.gh];x.on=x.on===false;cmsSave(c,x.on?"Galereya elementi ko'rsatildi":'Galereya elementi yashirildi','');ZV.med(B);return}
+  if(d.gd!=null){askDel("Bu narsa o'chirilsinmi?",'',()=>{const c=CMS(),x=c.media.items.splice(+d.gd,1)[0];if(x&&/^idb:/.test(x.src))Store.dropBlob(x.src);cmsSave(c,"Galereyadan o'chirildi",'');ZV.med(B)});return}
+  if(d.ge!=null){const i=+d.ge,X=JSON.parse(JSON.stringify(L[i]));X.t=X.t||{};DLG('Galereya elementi',X,X=>'<div class="cm-f"><b>'+(X.type==='video'?'Video':'Rasm')+'</b>'+mediaBox('src',X,X.type==='video'?'video':'image')+'</div>'+(X.type==='video'?'<div class="cm-f"><b>Muqova rasm</b>'+mediaBox('poster',X,'image')+'</div>':'')+cmML('t',X,0,'Izoh')+'<label class="cm-chk"><input type="checkbox" data-p="on"'+(X.on!==false?' checked':'')+'><span>Saytda ko\'rsatish</span></label>',
+   X=>{if(!X.src){kToast(TX("Fayl tanlang yoki havola qo'ying."));return false}const c=CMS();c.media.items[i]=X;cmsSave(c,'Galereya elementi tahrirlandi','');ZV.med(B)});return}
+  if(b.id==='hvR'){c.hero={};cmsSave(c,'Bosh sahifa videosi asliga qaytarildi','');ZV.med(B);return}
+  if(b.id==='fsR'){c.media.fest={};cmsSave(c,"«Biz haqimizda» videosi asliga qaytarildi",'');ZV.med(B);return}
+  const key=d.up||d.url||d.clr;if(!key)return;const fest=!!b.closest('#fstC');let v=null;
+  if(d.up){const r=await cmUp(d.kind);if(!r.length)return;v=r[0]}else if(d.url){v=prompt(TX("Havola (https://… yoki media/fayl.mp4)"),'');if(v==null)return;v=v.trim()}else v='';
+  c=CMS();if(fest){c.media.fest[key]=v;cmsSave(c,"«Biz haqimizda» videosi almashtirildi",'')}else{c.hero[key]=v;cmsSave(c,key==='video'?'Bosh sahifa videosi almashtirildi':'Bosh sahifa muqovasi almashtirildi','')}ZV.med(B)}})},
+
+/* ---- Ranglar ---- */
+col(B){const c=CMS(),D={bg:'#0A3B2C',bg2:'#0B3A2B',bg3:'#0F4736',emerald:'#145A43',gold:'#E6CB8B',gold2:'#B8913F',goldHi:'#F6E7B8',ink:'#F6EBCB',mut:'#D9CBA0'},
+ N={bg:'Asosiy fon',bg2:'Ikkinchi fon',bg3:'Kartochka foni',emerald:'Zumrad urg\'u',gold:'Oltin (asosiy)',gold2:'Oltin (to\'q)',goldHi:'Oltin (yorqin)',ink:'Matn rangi',mut:'Yordamchi matn'},
+ PR=[['Emerald & Gold (asl)',{}],['Obsidian & Gold',{bg:'#0B0C10',bg2:'#101218',bg3:'#161A22',emerald:'#1E2430',gold:'#D4AF37',gold2:'#A8842A',goldHi:'#F3E08D',ink:'#F8F5EE',mut:'#B9B4A6'}],['Deep Forest & Champagne',{bg:'#061F18',bg2:'#0A2E23',bg3:'#0D3B2E',emerald:'#145A43',gold:'#E5C158',gold2:'#B8913F',goldHi:'#F3E08D',ink:'#F8F5EE',mut:'#C9BFA0'}],['Midnight Navy & Gold',{bg:'#0A1428',bg2:'#0E1A33',bg3:'#132242',emerald:'#1B2E57',gold:'#E2C27A',gold2:'#B08D3C',goldHi:'#F6E3AE',ink:'#F4EFE2',mut:'#C3BBA6'}]];
+ const v=k=>c.colors[k]||D[k];
+ B.innerHTML='<div class="card"><h3 class="cm-h">Tayyor uslublar</h3><div class="cm-pre">'+PR.map((p,i)=>{const m=Object.assign({},D,p[1]);return '<button type="button" data-pr="'+i+'"><span style="background:linear-gradient(135deg,'+m.bg+' 0 55%,'+m.gold+' 55% 100%)"></span>'+p[0]+'</button>'}).join('')+'</div></div>'+
+ '<form class="card cm-grid" id="colF">'+Object.keys(D).map(k=>'<label class="cm-f cm-col"><b>'+N[k]+'</b><span><input type="color" name="'+k+'" value="'+v(k)+'"><code class="nt9">'+v(k)+'</code></span></label>').join('')+
+ '<div class="cm-sw full" id="colP"></div><div class="xa full"><button class="btn gold" type="submit">'+I('check')+'Saqlash</button><button class="btn ghost" type="button" id="colR">Aslini qaytarish</button></div></form>';
+ const prev=()=>{const f=new FormData($('colF')),g=k=>f.get(k);$('colP').innerHTML='<div style="background:'+g('bg')+';border:1px solid '+g('gold')+'55"><div style="background:'+g('bg3')+';border-color:'+g('gold')+'44"><b style="color:'+g('gold')+'">ART HOUSE</b><p style="color:'+g('ink')+'">Luxury Residence</p><small style="color:'+g('mut')+'">0% · 30% · 36</small><i style="background:linear-gradient(115deg,'+g('gold2')+','+g('goldHi')+','+g('gold')+')"></i></div></div>';$('colF').querySelectorAll('.cm-col code').forEach(cd=>cd.textContent=cd.previousElementSibling.value)};
+ $('colF').oninput=prev;prev();
+ B.querySelector('.cm-pre').onclick=e=>{const b=e.target.closest('[data-pr]');if(!b)return;const m=Object.assign({},D,PR[+b.dataset.pr][1]);Object.keys(D).forEach(k=>$('colF').elements[k].value=m[k]);prev()};
+ $('colF').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),c=CMS(),o={};Object.keys(D).forEach(k=>{const x=String(f.get(k)).toUpperCase();if(x!==D[k].toUpperCase())o[k]=x});c.colors=o;cmsSave(c,"Sayt ranglari o'zgartirildi",Object.keys(o).length+'')};
+ $('colR').onclick=()=>{const c=CMS();c.colors={};cmsSave(c,'Sayt ranglari asliga qaytarildi','');ZV.col(B)}},
+
+/* ---- Bo'limlar ---- */
+sec(B){const c=CMS(),BI=[['home','Bosh sahifa'],['calculator','Kalkulyator'],['projects','Loyihalar'],['location','Joylashuv'],['about','Biz haqimizda'],['social','Ijtimoiy sahifalarimiz'],['contact',"Bog'lanish"],['reviews','Mijozlar izohlari']],CU=c.sections.custom;
+ B.innerHTML='<div class="card"><h3 class="cm-h">Saytdagi asosiy bo\'limlar</h3><p class="note cm-l">'+esc(TX("O'chirilgan bo'lim menyudan va saytdan yashiriladi. Bosh sahifani o'chirib bo'lmaydi."))+'</p><div class="cm-tog">'+BI.map(x=>{const on=!c.sections.off.includes(x[0]);return '<label class="cm-sw1"><input type="checkbox" data-sec="'+x[0]+'"'+(on?' checked':'')+(x[0]==='home'?' disabled':'')+'><i></i><span>'+x[1]+'</span></label>'}).join('')+'</div></div>'+
+ '<div class="card"><div class="cm-hd"><h3 class="cm-h">Yangi bo\'limlar</h3><button type="button" class="btn gold sm" data-new>'+I('plus')+'Bo\'lim qo\'shish</button></div>'+
+ (CU.length?CU.map((s,i)=>'<div class="cm-it"><div class="nt9"><b>'+esc((s.title||{}).uz||'—')+'</b><small>'+(s.on===false?esc(TX("O'chirilgan")):esc(TX('Saytda')))+(s.video?' · Video':'')+(s.img?' · '+esc(TX('Rasm')):'')+(s.embed?' · Canva/Figma':'')+(s.btn&&s.btn.url?' · '+esc(TX('Tugma')):'')+'</small></div><div class="xa"><button type="button" class="btn ghost sm" data-mvs="'+i+'" data-dir="-1" aria-label="Yuqoriga">'+I('up')+'</button><button type="button" class="btn ghost sm" data-mvs="'+i+'" data-dir="1" aria-label="Pastga">'+I('down')+'</button><button type="button" class="btn ghost sm" data-ed="'+i+'">'+I('edit')+'Tahrirlash</button><button type="button" class="btn ghost sm dl" data-dels="'+i+'">'+I('trash')+'O\'chirish</button></div></div>').join('')
+ :'<p class="note cm-l">'+esc(TX("Hozircha yangi bo'lim yo'q. Masalan: «Aksiyalar», «Qurilish jarayoni», «Canva taqdimot» yoki «Telegram kanal»."))+'</p>')+'</div>';
+ B.onchange=e=>{const x=e.target.closest('[data-sec]');if(!x)return;const c=CMS(),k=x.dataset.sec;c.sections.off=c.sections.off.filter(y=>y!==k);if(!x.checked)c.sections.off.push(k);cmsSave(c,x.checked?"Bo'lim yoqildi":"Bo'lim o'chirildi",k)};
+ B.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset,c=CMS(),CU=c.sections.custom;
+  if(d.new!=null||d.ed!=null){const i=d.ed!=null?+d.ed:-1,E=i>-1?JSON.parse(JSON.stringify(CU[i])):{id:'s'+Date.now().toString(36),on:true,title:{},eyebrow:{},text:{},btn:{t:{},url:''},img:'',video:'',embed:''};
+   DLG(i>-1?"Bo'limni tahrirlash":"Yangi bo'lim",E,E=>'<label class="cm-chk"><input type="checkbox" data-p="on"'+(E.on!==false?' checked':'')+'><span>Saytda ko\'rsatish</span></label>'+cmML('title',E,0,'Sarlavha (menyuda ham shu nom)')+cmML('eyebrow',E,0,'Kichik ustki yozuv')+cmML('text',E,1,'Matn')+
+    '<div class="cm-grid"><div class="cm-f"><b>Rasm</b>'+mediaBox('img',E,'image')+'</div><div class="cm-f"><b>Video (MP4 yoki YouTube)</b>'+mediaBox('video',E,'video')+'</div></div>'+
+    cmIn('embed',E,'Canva / Figma havolasi (ulashish havolasi)','','https://www.canva.com/design/…')+cmML('btn.t',E,0,'Tugma yozuvi')+cmIn('btn.url',E,'Tugma havolasi (masalan, https://t.me/…)'),
+    E=>{if(!(E.title&&E.title.uz&&E.title.uz.trim())){kToast(TX("Sarlavhani o'zbekcha yozing."));return false}if(E.embed&&!/^https:\/\//.test(E.embed)){kToast(TX("Havola https:// bilan boshlanishi kerak."));return false}
+     const c=CMS();if(i>-1)c.sections.custom[i]=E;else c.sections.custom.push(E);cmsSave(c,i>-1?"Bo'lim tahrirlandi":"Yangi bo'lim qo'shildi",E.title.uz);ZV.sec(B)},1);return}
+  if(d.mvs!=null){const i=+d.mvs,j=i+(+d.dir);if(j<0||j>=CU.length)return;[CU[i],CU[j]]=[CU[j],CU[i]];cmsSave(c,"Bo'limlar tartibi o'zgardi",'');ZV.sec(B);return}
+  if(d.dels!=null){const i=+d.dels;askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc((CU[i].title||{}).uz||'')+'</b>',()=>{const c=CMS(),s=c.sections.custom.splice(i,1)[0];cmsSave(c,"Bo'lim o'chirildi",(s.title||{}).uz);ZV.sec(B)})}}},
+
+/* ---- Loyihalar ---- */
+prj(B){cmSnap().then(S=>{if(!S.base){B.innerHTML=needSite();return}const c=CMS(),PJ=c.projects,ids=Object.keys(S.base).filter(k=>k[0]!=='_').concat(PJ.added.filter(id=>!S.base[id]));
+ ids.sort((a,b)=>{const x=PJ.order.indexOf(a),y=PJ.order.indexOf(b);return(x<0?99:x)-(y<0?99:y)});
+ const nm=id=>{const e=PJ.data[id],b=S.base[id];return(e&&e.name)||(b&&b.txt&&(typeof b.txt.name==='string'?b.txt.name:b.txt.name&&b.txt.name.uz))||id};
+ B.innerHTML='<div class="card"><div class="cm-hd"><h3 class="cm-h">Loyihalar (turar-joy majmualari)</h3><button type="button" class="btn gold sm" data-newp>'+I('plus')+'Loyiha qo\'shish</button></div>'+ids.map((id,i)=>{const hid=PJ.hidden.includes(id),add=PJ.added.includes(id),e=PJ.data[id]||{},b=S.base[id]||{},g=(e.gallery||b.gallery||[]).length,pl=(e.plans||b.plans||[]).length,vd=(e.videos||b.videos||[]).length;
+  return '<div class="cm-it'+(hid?' off':'')+'"><img class="cm-th" data-ref="'+esc(e.cover!==undefined?e.cover:(b.cover?'base:cover:0':''))+'" data-pid="'+id+'" alt=""><div class="nt9"><b>'+esc(nm(id))+'</b><small>'+g+' · '+esc(TX('rasm'))+' | '+pl+' · '+esc(TX('reja'))+' | '+vd+' · video'+(hid?' | '+esc(TX('Yashirilgan')):'')+(e&&Object.keys(e).length?' | '+esc(TX("o'zgartirilgan")):'')+'</small></div><div class="xa"><button type="button" class="btn ghost sm" data-pmv="'+i+'" data-dir="-1" aria-label="Yuqoriga">'+I('up')+'</button><button type="button" class="btn ghost sm" data-pmv="'+i+'" data-dir="1" aria-label="Pastga">'+I('down')+'</button><button type="button" class="btn gold sm" data-pe="'+id+'">'+I('edit')+'Tahrirlash</button><button type="button" class="btn ghost sm" data-ph="'+id+'">'+I(hid?'eye':'eyeoff')+(hid?"Saytda ko'rsatish":'Saytdan yashirish')+'</button>'+(add?'<button type="button" class="btn ghost sm dl" data-pd="'+id+'">'+I('trash')+'O\'chirish</button>':(PJ.data[id]?'<button type="button" class="btn ghost sm" data-pr="'+id+'">Aslini qaytarish</button>':''))+'</div></div>'}).join('')+'</div>';
+ fillRefs(B);
+ B.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset,c=CMS(),PJ=c.projects;
+  if(d.pmv!=null){const o=ids.slice(),i=+d.pmv,j=i+(+d.dir);if(j<0||j>=o.length)return;[o[i],o[j]]=[o[j],o[i]];PJ.order=o;cmsSave(c,'Loyihalar tartibi o\'zgardi','');ZV.prj(B);return}
+  if(d.ph){const id=d.ph;if(PJ.hidden.includes(id))PJ.hidden=PJ.hidden.filter(x=>x!==id);else{if(ids.length-PJ.hidden.length<=1){kToast(TX('Kamida bitta loyiha saytda qolishi kerak.'));return}PJ.hidden.push(id)}cmsSave(c,PJ.hidden.includes(id)?'Loyiha saytdan yashirildi':"Loyiha saytda ko'rsatildi",nm(id));ZV.prj(B);return}
+  if(d.pd){askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(nm(d.pd))+'</b>',()=>{const c=CMS();c.projects.added=c.projects.added.filter(x=>x!==d.pd);delete c.projects.data[d.pd];c.projects.hidden=c.projects.hidden.filter(x=>x!==d.pd);cmsSave(c,"Loyiha o'chirildi",nm(d.pd));ZV.prj(B)});return}
+  if(d.pr){askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(nm(d.pr))+'</b> → '+esc(TX('asl holat')),()=>{const c=CMS();delete c.projects.data[d.pr];cmsSave(c,'Loyiha asliga qaytarildi',nm(d.pr));ZV.prj(B)});return}
+  if(d.newp!=null){const id='p'+Date.now().toString(36);projEdit(id,S,B,true);return}
+  if(d.pe)projEdit(d.pe,S,B,false)}})},
+
+/* ---- Tillar ---- */
+lng(B){const c=CMS(),L=BL.concat(['cy']);cmSnap().then(S=>{const tot=S.cat?Object.keys(S.cat).length:0;
+ B.innerHTML='<div class="card"><h3 class="cm-h">Sayt va kabinet tillari</h3><p class="note cm-l">'+esc(TX("O'chirilgan til saytdagi va kabinetdagi til tanlash ro'yxatidan yo'qoladi. O'zbekcha — asosiy til, uni o'chirib bo'lmaydi."))+'</p><div class="cm-tog">'+L.map(l=>'<label class="cm-sw1"><input type="checkbox" data-lo="'+l+'"'+(c.langs.off.includes(l)?'':' checked')+(l==='uz'?' disabled':'')+'><i></i><span>'+esc(LNAME[l])+' <small class="nt9">'+l.toUpperCase()+'</small></span></label>').join('')+'</div></div>'+
+ '<div class="card"><h3 class="cm-h">Qo\'shilgan tillar</h3>'+(c.langs.added.length?c.langs.added.map(x=>{const n=Object.keys(c.text[x.code]||{}).length;return '<div class="cm-it"><div class="nt9"><b>'+esc(x.label)+' · '+esc(x.code.toUpperCase())+'</b><small>'+n+' / '+tot+' · '+(tot?Math.round(n/tot*100):0)+'%</small></div><div class="xa"><label class="cm-sw1 sm"><input type="checkbox" data-lo="'+esc(x.code)+'"'+(c.langs.off.includes(x.code)?'':' checked')+'><i></i></label><button type="button" class="btn gold sm" data-tr="'+esc(x.code)+'">'+I('edit')+'Tarjima qilish</button><button type="button" class="btn ghost sm dl" data-ld="'+esc(x.code)+'">'+I('trash')+'O\'chirish</button></div></div>'}).join(''):'<p class="note cm-l">'+esc(TX("Hozircha qo'shilgan til yo'q."))+'</p>')+
+ '<form class="cm-grid cm-add" id="lgF"><label class="cm-f"><b>Til kodi (masalan: ko, zh, ar, kk)</b><input class="nt9" name="code" maxlength="10" required></label><label class="cm-f"><b>Til nomi (o\'z yozuvida)</b><input class="nt9" name="label" maxlength="30" required></label><label class="cm-f"><b>Mintaqa (ixtiyoriy, masalan: ko-KR)</b><input class="nt9" name="locale" maxlength="16"></label><div class="xa full"><button class="btn gold" type="submit">'+I('plus')+'Til qo\'shish</button></div><p class="note cm-l full">'+esc(TX("Yangi tilda hali tarjima qilinmagan matnlar inglizcha ko'rinadi. «Tarjima qilish» orqali har bir matnni yozing yoki JSON faylni yuklang."))+'</p></form></div>';
+ B.onchange=e=>{const x=e.target.closest('[data-lo]');if(!x)return;const c=CMS(),k=x.dataset.lo;c.langs.off=c.langs.off.filter(y=>y!==k);if(!x.checked)c.langs.off.push(k);cmsSave(c,x.checked?'Til yoqildi':"Til o'chirildi",k.toUpperCase());cabLangs()};
+ B.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.tr){TL=d.tr;TP=0;TQ='';ZT='txt';vZ();return}
+  if(d.ld){askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(lname(d.ld))+'</b>',()=>{const c=CMS();c.langs.added=c.langs.added.filter(x=>x.code!==d.ld);c.langs.off=c.langs.off.filter(x=>x!==d.ld);delete c.text[d.ld];cmsSave(c,"Til o'chirildi",d.ld.toUpperCase());if(LANG===d.ld)setLang('uz',true);cabLangs();ZV.lng(B)})}};
+ $('lgF').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),code=String(f.get('code')).trim().toLowerCase(),label=String(f.get('label')).trim(),loc=String(f.get('locale')||'').trim()||code;
+  if(!/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/.test(code)){kToast(TX("Til kodi 2–3 lotin harfidan iborat bo'lsin."));return}
+  const c=CMS();if(BL.concat(['cy']).includes(code)||c.langs.added.some(x=>x.code===code)){kToast(TX('Bu til allaqachon bor.'));return}
+  c.langs.added.push({code,label,short:code.slice(0,3).toUpperCase(),locale:loc});cmsSave(c,"Yangi til qo'shildi",label+' · '+code.toUpperCase());cabLangs();ZV.lng(B)}})},
+
+/* ---- Rollar va huquqlar ---- */
+rol(B){const u=UL(),P=PERM(),PR=[['cms','Sayt kontentini tahrirlash (matn, rasm, bo\'lim, loyiha, til)'],['rev',"Izoh qo'shish va o'chirish"]];
+ B.innerHTML='<div class="cm-roles"><div class="card"><span class="pill">'+I('crown')+'Direktor</span><h3 class="cm-h">To\'liq huquq</h3><p class="note cm-l">'+esc(TX("Barcha bo'limlar, narx va chegirmalar, menejerlarni qo'shish/o'chirish, huquq berish va har bir xodim amallarini «Faoliyat jurnali»da kuzatish."))+'</p></div>'+
+ '<div class="card"><span class="pill">'+I('users')+'Admin / Menejer</span><h3 class="cm-h">Direktor nazoratida</h3><p class="note cm-l">'+esc(TX("Mijozlar, arizalar, xabarlar, izohlarga javob, qo'ng'iroqlar. Qo'shimcha huquqlarni pastda direktor beradi. Barcha amallari jurnalga yoziladi."))+'</p></div></div>'+
+ '<div class="card"><h3 class="cm-h">Menejerlar huquqlari</h3>'+(u.m.length?'<div class="cm-perm">'+u.m.map(m=>'<div class="cm-it"><div class="nt9"><b>'+esc(((m.n||'')+' '+(m.s||'')).trim()||'Menejer')+'</b><small>'+esc(m.l||'')+'</small></div><div class="cm-tog">'+PR.map(p=>'<label class="cm-sw1"><input type="checkbox" data-mid="'+esc(m.id)+'" data-pp="'+p[0]+'"'+((P[m.id]||{})[p[0]]?' checked':'')+'><i></i><span>'+p[1]+'</span></label>').join('')+'</div></div>').join('')+'</div>'
+ :'<p class="note cm-l">'+esc(TX("Hozircha menejer yo'q. «Menejerlar va Ballar» bo'limida qo'shing."))+'</p><button type="button" class="btn ghost sm" id="goM">'+I('users')+'Menejerlar va Ballar</button>')+'</div>';
+ B.onchange=e=>{const x=e.target.closest('[data-pp]');if(!x)return;const P=PERM(),id=x.dataset.mid;P[id]=P[id]||{};P[id][x.dataset.pp]=x.checked;LS('ah_perm',P);const m=UL().m.find(y=>y.id===id)||{};cmAud(x.checked?'Huquq berildi':'Huquq olib qo\'yildi',((m.n||'')+' '+(m.s||'')).trim()+' · '+x.dataset.pp);kToast(TX('Saqlandi'))};
+ const g=$('goM');if(g)g.onclick=()=>view('M')},
+
+/* ---- Faoliyat jurnali ---- */
+log(B){const A=LS('ah_audit')||[],who=[...new Set(A.map(x=>x.who))],q=JQ.trim().toLowerCase(),F=A.filter(x=>(!JW||x.who===JW)&&(!q||(x.a+' '+x.d+' '+x.who).toLowerCase().includes(q)));
+ B.innerHTML='<div class="card cm-tool"><div class="cm-row2"><label class="cm-f"><b>Xodim</b><select id="jw"><option value="">Hammasi</option>'+who.map(w=>'<option'+(w===JW?' selected':'')+' value="'+esc(w)+'">'+esc(w)+'</option>').join('')+'</select></label><label class="cm-f grow"><b>Qidirish</b><input id="jq" class="nt9" value="'+esc(JQ)+'"></label></div><div class="xa"><button type="button" class="btn ghost sm" id="jcsv">'+I('download')+'CSV yuklab olish</button><button type="button" class="btn ghost sm dl" id="jclr">'+I('trash')+'Jurnalni tozalash</button></div></div>'+
+ '<div class="card cm-log">'+(F.length?F.slice(0,300).map(x=>'<div class="cm-lg"><time class="nt9">'+fd(x.at)+'</time><b class="nt9">'+esc(x.who)+'</b><span>'+esc(x.a)+'</span><small class="nt9">'+esc(x.d||'')+'</small></div>').join(''):'<p class="note cm-l">'+esc(TX("Jurnal bo'sh."))+'</p>')+'</div>';
+ $('jw').onchange=e=>{JW=e.target.value;ZV.log(B)};let tm;$('jq').oninput=e=>{clearTimeout(tm);tm=setTimeout(()=>{JQ=e.target.value;ZV.log(B);const i=$('jq');i.focus();i.setSelectionRange(i.value.length,i.value.length)},350)};
+ $('jcsv').onclick=()=>cmDL('arthouse-jurnal.csv','﻿Sana;Xodim;Amal;Tafsilot\n'+F.map(x=>[fd(x.at),x.who,TX(x.a),x.d].map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(';')).join('\n'),'text/csv');
+ $('jclr').onclick=()=>askDel("Bu narsa o'chirilsinmi?",esc(TX('Faoliyat jurnali')),()=>{LS('ah_audit',[]);cmAud('Jurnal tozalandi','');ZV.log(B)})},
+
+/* ---- Nashr va zaxira ---- */
+pub(B){const c=CMS(),n=JSON.stringify(c).length;
+ B.innerHTML='<div class="card"><h3 class="cm-h">O\'zgarishlar barcha mijozlarga qanday yetadi</h3><ol class="cm-ol"><li>'+esc(TX("Kabinetda saqlangan o'zgarishlar shu brauzerdagi saytda darhol ko'rinadi."))+'</li><li>'+esc(TX("Barcha tashrif buyuruvchilar ko'rishi uchun «site-content.json» faylini yuklab oling va uni hostingga index.html yoniga joylang — sayt uni avtomatik o'qiydi."))+'</li><li>'+esc(TX("Server ulangan bo'lsa (API_URL), «Serverga nashr qilish» tugmasi o'zgarishlarni darhol hammaga tarqatadi."))+'</li></ol>'+
+ '<p class="note cm-l nt9">'+(c.v?fd(c.v):'—')+' · '+Math.round(n/1024)+' KB</p><div class="xa"><button type="button" class="btn gold" id="pbJ">'+I('download')+'site-content.json yuklab olish</button>'+(API?'<button type="button" class="btn gold" id="pbS">'+I('send')+'Serverga nashr qilish</button>':'')+'<button type="button" class="btn ghost" id="pbI">'+I('upload')+'Zaxiradan tiklash (JSON)</button></div><p class="note cm-l" id="pbO"></p></div>'+
+ (own()?'<div class="card"><h3 class="cm-h">Tozalash</h3><p class="note cm-l">'+esc(TX("Saytdagi barcha CMS o'zgarishlari o'chadi va sayt asl holatiga qaytadi. Avval zaxira nusxa yuklab oling."))+'</p><button type="button" class="btn ghost dl" id="pbR">'+I('trash')+'Barcha o\'zgarishlarni bekor qilish</button></div>':'');
+ const exp=async()=>{const c=CMS(),s=JSON.stringify(c),refs=[...new Set(s.match(/idb:[a-z0-9]+/g)||[])];let o=s;for(const r of refs){const u=await Store.mediaURL(r);if(!u)continue;const b=await(await fetch(u)).blob();if(b.size>12e6){kToast(TX('Juda katta video havola bilan qo\'yilishi kerak.'));continue}const d=await new Promise(res=>{const f=new FileReader();f.onload=()=>res(f.result);f.readAsDataURL(b)});o=o.split(r).join(d)}return o};
+ $('pbJ').onclick=async()=>{$('pbO').textContent=TX('Tayyorlanmoqda…');const o=await exp();cmDL('site-content.json',o,'application/json');$('pbO').textContent=TX("Tayyor. Faylni hostingga index.html yoniga joylang.");cmAud('Nashr fayli yuklab olindi',Math.round(o.length/1024)+' KB')};
+ if(API)$('pbS').onclick=async()=>{$('pbO').textContent=TX('Yuborilmoqda…');try{const o=await exp(),r=await fetch(API+'/api/cms',{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hd()),body:o});if(!r.ok)throw r.status;$('pbO').textContent=TX('Serverga nashr qilindi');cmAud('Serverga nashr qilindi','')}catch(e){$('pbO').textContent=TX("Server qabul qilmadi. Workerga /api/cms qo'shilganini tekshiring.")+' ('+e+')'}};
+ $('pbI').onclick=async()=>{const f=(await cmPick('application/json,.json'))[0];if(!f)return;try{const j=JSON.parse(await f.text());if(typeof j!=='object'||Array.isArray(j))throw 0;askDel(TX('Joriy sozlamalar almashtirilsinmi?'),esc(f.name),()=>{localStorage.setItem('ah_cms',JSON.stringify(j));cmAud('Zaxiradan tiklandi',f.name);kToast(TX('Saqlandi'));vZ()})}catch(e){kToast(TX("Fayl noto'g'ri formatda."))}};
+ const r=$('pbR');if(r)r.onclick=()=>askDel("Bu narsa o'chirilsinmi?",esc(TX("Barcha o'zgarishlar")),()=>{localStorage.removeItem('ah_cms');cmAud('Barcha sayt o\'zgarishlari bekor qilindi','');kToast(TX('Saqlandi'));vZ()})}
+};
+function cmDL(name,text,type){const b=new Blob([text],{type:type||'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+
+/* ---- loyiha tahrirlagichi ---- */
+function projState(id,S){const c=CMS(),b=S.base[id]||{gallery:[],plans:[],amenities:[],videos:[]},bt=b.txt||{},e=c.projects.data[id];
+ const tok2=(arr,f,k)=>(arr||[]).map((x,i)=>Object.assign(JSON.parse(JSON.stringify(Object.assign({},x,{[k]:undefined}))),{[k]:String(x[k]||'').indexOf('data:')===0?'base:'+f+':'+i:x[k]}));
+ const def={name:typeof bt.name==='string'?bt.name:((bt.name||{}).uz||''),badge:bt.badge||{},district:bt.district||{},address:bt.address||{},lead:bt.lead||{},presentation:bt.presentation||'',geo:bt.geo||{lat:CFG.OFFICE.lat,lng:CFG.OFFICE.lng},facts:bt.facts||[],priceM2:bt.priceM2==null?'':bt.priceM2,
+  cover:b.cover?(String(b.cover).indexOf('data:')===0?'base:cover:0':b.cover):'',gallery:tok2(b.gallery,'gallery','src'),plans:tok2(b.plans,'plans','img'),amenities:tok2(b.amenities,'amenities','img'),videos:tok2(b.videos,'videos','src')};
+ if(b.video&&b.video.src)def.video={src:String(b.video.src).indexOf('data:')===0?'base:video:src':b.video.src,poster:String(b.video.poster||'').indexOf('data:')===0?'base:video:poster':(b.video.poster||'')};
+ const E=Object.assign({id},JSON.parse(JSON.stringify(def)),e?JSON.parse(JSON.stringify(e)):{});E.id=id;return E}
+function projEdit(id,S,B,isNew){const E=projState(id,S);
+ const T='{"t":{}}';
+ DLG(isNew?'Yangi loyiha':'Loyihani tahrirlash',E,E=>'<div class="cm-sec"><h4>Asosiy ma\'lumot</h4>'+cmIn('name',E,'Loyiha nomi')+cmML('badge',E,0,'Belgi (masalan: Biznes-klass)')+cmML('district',E,0,'Tuman / hudud')+cmML('address',E,0,'Manzil')+cmML('lead',E,1,'Tavsif')+
+  '<div class="cm-grid">'+cmIn('presentation',E,'Taqdimot (PDF) havolasi')+(id==='musaffo'?'':cmIn('priceM2',E,'1 m² narxi ($, ixtiyoriy)','number'))+cmIn('geo.lat',E,'Xarita: kenglik (lat)','number')+cmIn('geo.lng',E,'Xarita: uzunlik (lng)','number')+'</div></div>'+
+  '<div class="cm-sec"><h4>Muqova rasm</h4>'+mediaBox('cover',E,'image',id)+'<b class="cm-sb">Asosiy video (muqova o\'rnida)</b>'+mediaBox('video.src',E,'video',id)+'</div>'+
+  '<div class="cm-sec"><div class="cm-hd"><h4>Raqamlar (faktlar)</h4><button type="button" class="btn ghost sm" data-add="facts" data-tpl=\'{"v":"","k":{}}\'>'+I('plus')+'Qo\'shish</button></div>'+(E.facts||[]).map((f,i)=>'<div class="cm-sub">'+cmIn('facts.'+i+'.v',E,'Qiymat')+cmML('facts.'+i+'.k',E,0,'Izoh')+'<button type="button" class="btn ghost sm dl" data-del="facts.'+i+'">'+I('trash')+'O\'chirish</button></div>').join('')+'</div>'+
+  '<div class="cm-sec"><div class="cm-hd"><h4>Galereya</h4><button type="button" class="btn ghost sm" data-up="gallery" data-kind="image" data-multi data-tpl=\''+T+'\' data-key="src">'+I('upload')+'Rasm qo\'shish</button></div><div class="cm-gal">'+(E.gallery||[]).map((g,i)=>'<div class="cm-gi"><img data-ref="'+esc(g.src)+'" data-pid="'+id+'" alt=""><div class="xa"><button type="button" class="btn ghost sm" data-mv="gallery.'+i+'" data-dir="-1" aria-label="Chapga">'+I('up')+'</button><button type="button" class="btn ghost sm" data-mv="gallery.'+i+'" data-dir="1" aria-label="O\'ngga">'+I('down')+'</button><button type="button" class="btn ghost sm dl" data-del="gallery.'+i+'" aria-label="O\'chirish">'+I('trash')+'</button></div><details><summary>'+esc(TX('Rasm izohi'))+'</summary>'+cmML('gallery.'+i+'.t',E,0,'')+'</details></div>').join('')+'</div></div>'+
+  '<div class="cm-sec"><div class="cm-hd"><h4>Xonadon rejalari</h4><button type="button" class="btn ghost sm" data-up="plans" data-kind="image" data-multi data-tpl=\'{"rooms":1,"area":50}\' data-key="img">'+I('upload')+'Reja qo\'shish</button></div><div class="cm-gal">'+(E.plans||[]).map((p,i)=>'<div class="cm-gi"><img data-ref="'+esc(p.img)+'" data-pid="'+id+'" alt=""><div class="cm-grid3">'+cmIn('plans.'+i+'.rooms',E,'Xona','number')+cmIn('plans.'+i+'.area',E,'m²','number')+cmIn('plans.'+i+'.duplex',E,'Dupleks qavati (0/1/2)','number')+'</div><div class="xa"><button type="button" class="btn ghost sm" data-up="plans.'+i+'.img" data-kind="image">'+I('upload')+'Rasm</button><button type="button" class="btn ghost sm dl" data-del="plans.'+i+'" aria-label="O\'chirish">'+I('trash')+'</button></div></div>').join('')+'</div></div>'+
+  '<div class="cm-sec"><div class="cm-hd"><h4>Qulayliklar</h4><button type="button" class="btn ghost sm" data-add="amenities" data-tpl=\'{"img":"","t":{},"d":{}}\'>'+I('plus')+'Qo\'shish</button></div>'+(E.amenities||[]).map((a,i)=>'<div class="cm-sub">'+mediaBox('amenities.'+i+'.img',E,'image',id)+cmML('amenities.'+i+'.t',E,0,'Nomi')+cmML('amenities.'+i+'.d',E,1,'Tavsif')+'<button type="button" class="btn ghost sm dl" data-del="amenities.'+i+'">'+I('trash')+'O\'chirish</button></div>').join('')+'</div>'+
+  '<div class="cm-sec"><div class="cm-hd"><h4>Video-lavhalar</h4><button type="button" class="btn ghost sm" data-add="videos" data-tpl=\'{"src":"","poster":"","vert":false,"t":{}}\'>'+I('plus')+'Video qo\'shish</button></div>'+(E.videos||[]).map((v,i)=>'<div class="cm-sub"><div class="cm-grid"><div class="cm-f"><b>Video</b>'+mediaBox('videos.'+i+'.src',E,'video',id)+'</div><div class="cm-f"><b>Muqova rasm</b>'+mediaBox('videos.'+i+'.poster',E,'image',id)+'</div></div><label class="cm-chk"><input type="checkbox" data-p="videos.'+i+'.vert"'+(v.vert?' checked':'')+'><span>Vertikal video (telefonda olingan)</span></label>'+cmML('videos.'+i+'.t',E,0,'Video nomi')+'<button type="button" class="btn ghost sm dl" data-del="videos.'+i+'">'+I('trash')+'O\'chirish</button></div>').join('')+'</div>',
+ E=>{if(!String(E.name||'').trim()){kToast(TX('Loyiha nomini yozing.'));return false}
+  const o=JSON.parse(JSON.stringify(E));delete o.id;['geo'].forEach(k=>{if(o.geo){o.geo.lat=+o.geo.lat||CFG.OFFICE.lat;o.geo.lng=+o.geo.lng||CFG.OFFICE.lng}});
+  (o.plans||[]).forEach(p=>{p.rooms=+p.rooms||1;p.area=+p.area||0;p.duplex=+p.duplex||0;if(!p.duplex)delete p.duplex});(o.gallery||[]).forEach(g=>{g.t=g.t||{}});
+  if(o.priceM2!==''&&o.priceM2!=null)o.priceM2=+o.priceM2;else o.priceM2=null;
+  const c=CMS();c.projects.data[id]=o;if(isNew&&!c.projects.added.includes(id))c.projects.added.push(id);cmsSave(c,isNew?"Yangi loyiha qo'shildi":'Loyiha tahrirlandi',o.name);ZV.prj(B)},1)}
+
+/* ---- Izohlar: kabinetdan qo'shish, menejerga o'chirish huquqi ---- */
+{const R0=vR;vR=function(){R0();const mn=$('mn'),hh=mn.querySelector('.hh');
+ if(cmCan('rev')){const k=mn.querySelector('.kcs');(k||mn.firstChild).insertAdjacentHTML('beforebegin','<div class="xa cm-radd"><button type="button" class="btn gold sm" data-radd>'+I('plus')+'Izoh qo\'shish</button></div>')}
+ if(!own()&&cmCan('rev'))mn.querySelectorAll('[data-ro]').forEach(b=>{const x=b.parentNode;if(!x.querySelector('[data-rd]'))x.insertAdjacentHTML('beforeend','<button class="btn ghost sm dl" type="button" data-rd="'+esc(b.dataset.ro)+'">'+I('trash')+'O\'chirish</button>')});
+ const oc=mn.onclick;mn.onclick=e=>{const b=e.target.closest('button');if(b&&b.hasAttribute('data-radd')){revAdd();return}
+  if(b&&b.dataset.rd&&!own()&&cmCan('rev')){const r=Store.list('reviews').find(x=>x.id===b.dataset.rd);askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(r?r.name:'')+'</b>',()=>Store.remove('reviews',b.dataset.rd).then(()=>{if(r)Store.dropBlob(r.video);vR();nav()}));return}
+  if(oc)oc(e)}}}
+function revAdd(){const c0=CMS(),P=(window.PROJECTS||[]).map(p=>({id:p.id,name:p.name})).concat(c0.projects.added.map(id=>({id,name:(c0.projects.data[id]||{}).name||id}))).filter(p=>!c0.projects.hidden.includes(p.id)),E={name:'',rating:5,project:(P[0]||{}).id||'',text:'',link:'',video:'',hidden:false};
+ DLG("Izoh qo'shish",E,E=>cmIn('name',E,'Mijoz ismi')+'<div class="cm-f"><b>Baho</b><div class="cm-stars">'+[1,2,3,4,5].map(i=>'<button type="button" data-star="'+i+'" class="'+(i<=E.rating?'on':'')+'" aria-label="'+i+'">★</button>').join('')+'</div></div>'+
+  '<label class="cm-f"><b>Loyiha</b><select data-p="project" class="nt9">'+P.map(p=>'<option value="'+esc(p.id)+'"'+(p.id===E.project?' selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select></label>'+
+  '<label class="cm-f"><b>Izoh matni</b><textarea class="nt9" rows="4" data-p="text">'+esc(E.text)+'</textarea></label>'+
+  '<div class="cm-f"><b>Video-sharh (ixtiyoriy)</b>'+mediaBox('video',E,'video')+'</div>'+cmIn('link',E,'yoki YouTube / Instagram havolasi')+
+  '<label class="cm-chk"><input type="checkbox" data-p="hidden"'+(E.hidden?' checked':'')+'><span>Hozircha saytda ko\'rsatmaslik</span></label>',
+ async E=>{if(!E.name.trim()){kToast(TX('Mijoz ismini yozing.'));return false}if(E.text.trim().length<5){kToast(TX('Izoh matnini yozing.'));return false}if(E.link&&!/^https:\/\//.test(E.link)){kToast(TX("Havola https:// bilan boshlanishi kerak."));return false}
+  let video=E.video||null;if(video&&!/^idb:|^\//.test(video)&&!/^https?:/.test(video))video=null;
+  await Store.add('reviews',{name:E.name.trim(),rating:E.rating,project:E.project,text:E.text.trim(),video:video&&/^idb:|^\//.test(video)?video:null,link:E.link||(video&&/^https?:/.test(video)?video:''),hidden:!!E.hidden,reply:null,lang:'uz',src:'kabinet',by:tag(ME())});
+  kToast(TX("Izoh saytga qo'shildi"));vR();nav()})}
+
+/* ---- kabinet tillari: qo'shilgan tillar va o'chirilganlar ---- */
+function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=CMS();
+ c.langs.added.forEach(x=>{LOC[x.code]=x.locale||x.code;if(window.AHDICT&&!AHDICT[x.code])AHDICT[x.code]=AHDICT.en;if(window.I18N&&!I18N.langs.some(l=>l.code===x.code))I18N.langs.push({code:x.code,label:x.label,short:x.short||x.code.toUpperCase(),html:x.code,locale:x.locale||x.code});
+  if(!g.querySelector('[data-l="'+x.code+'"]'))g.insertAdjacentHTML('beforeend','<button type="button" data-l="'+esc(x.code)+'"><i>'+esc(x.code.toUpperCase())+'</i><span class="nt9">'+esc(x.label)+'</span></button>')});
+ g.querySelectorAll('[data-l]').forEach(b=>{const l=b.dataset.l;b.hidden=(l!=='uz'&&c.langs.off.includes(l))||(!LNAME[l]&&!c.langs.added.some(x=>x.code===l))});
+ let st='';try{st=localStorage.getItem('ah_lang')||''}catch(e){}if(st&&st!==LANG&&c.langs.added.some(x=>x.code===st)&&!c.langs.off.includes(st))setLang(st,false);
+ if(LANG!=='uz'&&(c.langs.off.includes(LANG)||(!LNAME[LANG]&&!c.langs.added.some(x=>x.code===LANG))))setLang('uz',true)}
+addEventListener('DOMContentLoaded',cabLangs);addEventListener('load',cabLangs);
 /* ---- ishga tushirish: lyuks splash → kabinet ---- */
 (function(){const sp=$('splash');if(!sp){openA();return}const lg=sp.querySelector('.lux-logo');for(let i=0;i<18;i++){const s=document.createElement('i');s.className='spark';s.style.cssText='left:'+(8+Math.random()*84)+'%;top:'+(15+Math.random()*70)+'%;animation-delay:'+(0.8+Math.random()*2.2)+'s';lg.appendChild(s)}
  let done=0;const go=()=>{if(done)return;done=1;sp.classList.add('done');setTimeout(()=>sp.remove(),900);openA()};sp.addEventListener('click',go);setTimeout(go,matchMedia('(prefers-reduced-motion:reduce)').matches?0:3200)})();

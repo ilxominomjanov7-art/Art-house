@@ -676,6 +676,107 @@ body.is-loading { overflow: hidden; }
 }
 
 </style>
+<style>
+/* =====================================================================
+   ART HOUSE — keng menyu, telefon menyusi, yangi bo'limlar, video-lavhalar,
+   jonli tahrirlash va kirish animatsiyasiga qo'shimcha nur halqalari
+   ===================================================================== */
+/* --- keng, o'qishga qulay asosiy menyu (kompyuter) --- */
+@media (min-width: 861px) {
+  .menu-track { flex-wrap: wrap; justify-content: center; gap: 6px 8px; padding: 10px 24px 14px; overflow: visible; }
+  .menu a { font-size: 14.5px; padding: 11px 18px; letter-spacing: .04em; border: 1px solid transparent; color: rgba(246, 235, 203, .86); }
+  .menu a:hover { border-color: var(--line); background: rgba(230, 203, 139, .06); }
+  .menu a.active { border-color: var(--line-2); background: linear-gradient(180deg, rgba(230, 203, 139, .16), rgba(230, 203, 139, .05)); }
+  .menu a i { font-size: 11px; opacity: .8; }
+  .menu-rev { margin-left: 4px; }
+  .mnav-btn { display: none !important; }
+}
+@media (min-width: 861px) and (max-width: 1180px) { .menu a { font-size: 13.5px; padding: 10px 14px; } }
+
+/* --- telefon: «Menyu» tugmasi va to'liq ekranli menyu --- */
+.mnav-btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px 0 12px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--gold-hi); font-size: 13px; font-weight: 600; letter-spacing: .06em; background: rgba(230, 203, 139, .06); }
+.mnav-ico { display: grid; gap: 3px; width: 16px; }
+.mnav-ico i { display: block; height: 1.5px; border-radius: 2px; background: var(--gold); }
+.mnav-ico i:nth-child(2) { width: 70%; justify-self: end; }
+@media (max-width: 860px) {
+  .menu { display: none; }
+  .top-act { display: flex; align-items: center; gap: 8px; }
+}
+@media (max-width: 520px) { .mnav-btn span[data-i] { display: none; } .mnav-btn { width: 38px; padding: 0; justify-content: center; } }
+@media (max-width: 430px) { .top-act .top-phone { display: none; } .top-act { gap: 0; } }
+@media (max-width: 360px) { .brand-txt small { display: none; } .brand-txt b { font-size: 14px; letter-spacing: .14em; } .brand-mark { width: 28px; height: 28px; } }
+.mnav { position: fixed; inset: 0; z-index: 120; background: radial-gradient(ellipse at 50% 0%, rgba(230, 203, 139, .14), transparent 60%), linear-gradient(170deg, #0F4736 0%, #0A3B2C 55%, #06291F 100%); opacity: 0; transition: opacity .35s var(--ease, ease); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.mnav.open { opacity: 1; }
+.mnav-in { max-width: 560px; margin: 0 auto; padding: max(14px, env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom)); min-height: 100%; display: flex; flex-direction: column; }
+.mnav-top { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 10px; border-bottom: 1px solid var(--line); }
+.mnav-brand { display: inline-flex; align-items: center; gap: 10px; }
+.mnav-brand svg { width: 34px; height: 34px; fill: none; stroke: url(#gGold); stroke-width: 2.4; }
+.mnav-brand b { font-family: var(--f-logo); letter-spacing: .26em; color: var(--gold-hi); font-size: 16px; }
+.mnav-top .modal-x { position: static; }
+.mnav-sub { margin: 18px 4px 6px; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); opacity: .8; }
+.mnav-list { display: grid; gap: 8px; }
+.mnav-list a { display: grid; grid-template-columns: 40px 1fr 20px; align-items: center; gap: 10px; min-height: 60px; padding: 10px 16px; border-radius: 16px; border: 1px solid var(--line); background: rgba(15, 71, 54, .5); color: var(--ink); font-size: 17px; font-weight: 500; transform: translateY(14px); opacity: 0; transition: transform .45s var(--ease, ease), opacity .45s, border-color .25s, background .25s; transition-delay: calc(var(--d) * 35ms); }
+.mnav.open .mnav-list a { transform: none; opacity: 1; }
+.mnav-list a i { font-style: normal; font-size: 12px; color: var(--gold); letter-spacing: .08em; }
+.mnav-list a .ic { width: 18px; height: 18px; color: var(--gold); opacity: .7; }
+.mnav-list a.active { border-color: var(--line-2); background: linear-gradient(120deg, rgba(230, 203, 139, .18), rgba(230, 203, 139, .04)); color: var(--gold-hi); }
+.mnav-foot { margin-top: auto; padding-top: 22px; display: grid; gap: 10px; }
+.mnav-foot .btn { width: 100%; justify-content: center; }
+
+/* --- yangi bo'limlar (kabinetdan) --- */
+.cms-card { display: grid; gap: 22px; }
+.cms-img, .cms-vid { width: 100%; max-height: 72vh; object-fit: contain; border-radius: 18px; background: #06291F; }
+.cms-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.cms-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cms-text p { color: var(--mut); line-height: 1.75; margin: 0 0 14px; font-size: 16px; }
+.cms-text .cta-row { margin-top: 8px; }
+
+/* --- loyiha video-lavhalari --- */
+.pvids { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 8px; }
+.pvid { margin: 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.pvid video, .pvid iframe { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 0; background: #06291F; }
+.pvid.vert { max-width: 380px; }
+.pvid.vert video { aspect-ratio: 9 / 16; }
+.pvid figcaption { padding: 12px 16px; font-size: 14px; color: var(--mut); }
+
+/* --- kabinetdan qo'shilgan galereya --- */
+.cms-gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.cms-gi { margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.cms-gi button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.cms-gi img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 1s var(--ease, ease); }
+.cms-gi button:hover img { transform: scale(1.04); }
+.cms-gi video, .cms-gi iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #06291F; }
+@media (max-width: 560px) { .cms-gal-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .cms-gi.v { grid-column: 1 / -1; } }
+.cms-gi figcaption { padding: 10px 14px; font-size: 14px; color: var(--mut); }
+.cms-lb { position: fixed; inset: 0; z-index: 400; display: grid; place-items: center; padding: 16px; background: rgba(3, 20, 15, .94); }
+.cms-lb img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 12px; }
+.cms-lb .modal-x { position: absolute; top: 16px; right: 16px; }
+
+/* --- festival bloki (Biz haqimizda) --- */
+.fest { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; align-items: center; margin: 8px 0 34px; }
+.fest video { width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #06291F; object-fit: cover; }
+.fest h3 { margin: 6px 0 10px; }
+@media (max-width: 860px) { .fest { grid-template-columns: 1fr; } }
+
+/* --- saytda jonli tahrirlash --- */
+.cms-edit [data-i], .cms-edit [data-i-ph] { outline: 1px dashed rgba(230, 203, 139, .45); outline-offset: 3px; cursor: text; }
+.cms-edit .menu [data-i], .cms-edit .mnav [data-i] { outline: 0; cursor: pointer; }
+.cms-edit [data-i]:hover, .cms-edit [data-i-ph]:hover { outline: 2px solid var(--gold); background: rgba(230, 203, 139, .08); }
+.cms-bar { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 300; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px); padding: 10px 12px 10px 18px; border-radius: 16px; border: 1px solid var(--line-2); background: rgba(6, 41, 31, .96); box-shadow: var(--shadow); font-size: 13px; color: var(--mut); }
+.cms-bar b { color: var(--gold-hi); }
+.cms-bar button { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line-2); color: var(--gold-hi); }
+.cms-pop { position: fixed; z-index: 310; width: min(420px, calc(100vw - 24px)); padding: 14px; border-radius: 16px; border: 1px solid var(--line-2); background: #0B3A2B; box-shadow: var(--shadow); display: grid; gap: 10px; }
+.cms-pop small { color: var(--gold); font-size: 11px; letter-spacing: .06em; }
+.cms-pop textarea { width: 100%; min-height: 96px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(0, 0, 0, .2); color: var(--ink); font: inherit; resize: vertical; }
+.cms-pop div { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* --- kirish animatsiyasi: oltin nur halqalari --- */
+.splash::before, .splash::after { content: ''; position: absolute; left: 50%; top: 50%; width: 30vmin; height: 30vmin; margin: -15vmin 0 0 -15vmin; border-radius: 50%; border: 1px solid rgba(230, 203, 139, .35); opacity: 0; animation: ahRing 2.8s cubic-bezier(.2, .7, .2, 1) .4s infinite; pointer-events: none; }
+.splash::after { animation-delay: 1.8s; }
+@keyframes ahRing { 0% { transform: scale(.55); opacity: 0; } 20% { opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .splash::before, .splash::after, .mnav-list a { animation: none; transition: none; } }
+
+</style>
 </head>
 <body class="is-loading">
 
@@ -778,9 +879,9 @@ body.is-loading { overflow: hidden; }
     </div>
     <div class="stats">
      <div><b data-count="years">14</b><span data-i="home.stat1">yillik tajriba</span></div>
-     <div><b>30+</b><span data-i="home.stat2">amalga oshirilgan loyiha</span></div>
+     <div><b data-cms="projects">30+</b><span data-i="home.stat2">amalga oshirilgan loyiha</span></div>
      <div><b>0%</b><span data-i="home.stat3">ustama va foiz</span></div>
-     <div><b>36</b><span data-i="home.stat4">oygacha muddat</span></div>
+     <div><b data-cms="months-max">36</b><span data-i="home.stat4">oygacha muddat</span></div>
     </div>
    </div>
    <figure class="hero-media">
@@ -949,17 +1050,26 @@ body.is-loading { overflow: hidden; }
  <div class="wrap">
   <div class="about-nums">
    <div class="card"><b data-count="years">14</b><span data-i="about.n1">yillik tajriba</span></div>
-   <div class="card"><b>30+</b><span data-i="about.n2">amalga oshirilgan loyiha</span></div>
+   <div class="card"><b data-cms="projects">30+</b><span data-i="about.n2">amalga oshirilgan loyiha</span></div>
    <div class="card"><b>0%</b><span data-i="about.n3">bo'lib to'lashda ustama</span></div>
-   <div class="card"><b>30%</b><span data-i="about.n4">dan boshlang'ich to'lov</span></div>
+   <div class="card"><b data-cms="down-min">30%</b><span data-i="about.n4">dan boshlang'ich to'lov</span></div>
   </div>
 
   <div class="card ig-band">
    <div class="ig-head"><svg class="ic lg"><use href="#i-ig"/></svg><div><b>@arthouse.tashkent</b><span data-i="about.igName">Art House Qurilish Kompaniyasi</span></div><a class="btn btn-gold sm" data-ig target="_blank" rel="noopener" data-i="about.igFollow">Kuzatish</a></div>
-   <div class="ig-stats"><div><b>114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b>1 010</b><span data-i="about.igPosts">post</span></div><div><b>14</b><span data-i="about.igYears">yillik tajriba</span></div><div><b>30+</b><span data-i="about.igProjects">loyiha</span></div></div>
+   <div class="ig-stats"><div><b data-cms="ig-followers">114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b data-cms="ig-posts">1 010</b><span data-i="about.igPosts">post</span></div><div><b data-cms="years">14</b><span data-i="about.igYears">yillik tajriba</span></div><div><b data-cms="projects">30+</b><span data-i="about.igProjects">loyiha</span></div></div>
    <p class="ig-bio"><span data-i="about.igBio1">Art House — sizning orzuingizdagi uylar</span> · <span data-i="about.igBio2">Biznes-klass turar-joy majmualari</span> · <span data-i="about.igBio3">Zamonaviy xonadonlar</span></p>
    <p class="hint" data-i="about.projList">Instagram sahifamizda tilga olingan loyihalar:</p>
    <div class="proj-chips" id="projChips"></div>
+  </div>
+
+  <div class="card fest">
+   <video id="festVideo" src="media/art-house-festival.mp4" poster="media/art-house-festival.jpg" controls playsinline preload="none"></video>
+   <div>
+    <p class="eyebrow" data-i="about.festE">ART HOUSE hayoti</p>
+    <h3 data-i="about.festT">Rezidentlar va mehmonlar uchun bayram</h3>
+    <p class="muted" data-i="about.festD">Konsertlar, sovg'alar va qo'shnilar bilan uchrashuvlar — biz faqat uy emas, ahil jamoa ham quramiz. ART HOUSE bayrami qanday o'tganini tomosha qiling.</p>
+   </div>
   </div>
 
   <div class="sec-head"><h2 data-i="about.whyTitle">Nega aynan ART HOUSE?</h2></div>
@@ -1426,6 +1536,119 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
 </script>
 <script>
 /* =====================================================================
+   ART HOUSE — SAYT BOSHQARUVI (CMS) · 1/3
+   Kabinet → Sozlamalar'da saqlangan o'zgarishlar (localStorage 'ah_cms')
+   sahifa chizilishidan OLDIN qo'llanadi: aloqa, raqamlar, ranglar,
+   loyihalar, rasm va videolar. Kodga tegish shart emas.
+   Rasm manbalari: 'base:<maydon>:<n>' — asl rasm, 'idb:…' — kabinetdan yuklangan,
+   'data:…' / 'https://…' / 'media/…' — to'g'ridan-to'g'ri manzil.
+   ===================================================================== */
+(function () {
+  'use strict';
+  var C = null;
+  try { C = JSON.parse(localStorage.getItem('ah_cms') || 'null'); } catch (e) {}
+  window.AH_CMS = C || {};
+  window.AH_BUILD = '2026-10-26.1';
+  var P = window.PROJECTS || [];
+
+  /* Yangi materiallar (standart): Obod Maskan videosi */
+  var VT = {
+    uz: "Obod Maskan — joylashuv va afzalliklar", ru: 'Obod Maskan — расположение и преимущества', en: 'Obod Maskan — location and advantages',
+    fr: 'Obod Maskan — emplacement et atouts', it: 'Obod Maskan — posizione e vantaggi', es: 'Obod Maskan — ubicación y ventajas',
+    de: 'Obod Maskan — Lage und Vorteile', tr: 'Obod Maskan — konum ve avantajlar'
+  };
+  P.forEach(function (p) { if (!p.videos) p.videos = []; });
+  var ob = P.filter(function (p) { return p.id === 'obod'; })[0];
+  if (ob && !ob.videos.length) ob.videos.push({ src: 'media/obod-maskan.mp4', poster: 'media/obod-maskan.jpg', vert: true, t: VT });
+
+  /* Asl (CMS'siz) qiymatlar — kabinet tahrirlagichi va 'base:' havolalari uchun */
+  var BASE = {};
+  P.forEach(function (p) {
+    BASE[p.id] = { cover: p.cover, video: p.video, gallery: (p.gallery || []).slice(), plans: (p.plans || []).slice(), amenities: (p.amenities || []).slice(), videos: (p.videos || []).slice(),
+      txt: JSON.parse(JSON.stringify({ name: p.name, badge: p.badge, district: p.district, address: p.address, lead: p.lead, presentation: p.presentation, geo: p.geo, facts: p.facts, priceM2: p.id === 'musaffo' ? null : p.priceM2 })) };
+  });
+  var hv = document.getElementById('heroVideo');
+  BASE._hero = hv ? { src: (hv.querySelector('source') || {}).src || hv.src, poster: hv.poster } : {};
+  window.AH_BASE = BASE;
+
+  if (!C) return;
+
+  /* ---------- 1) aloqa va raqamlar ---------- */
+  var cfg = C.cfg || {};
+  Object.keys(cfg).forEach(function (k) {
+    var v = cfg[k];
+    if (v === '' || v == null || (Array.isArray(v) && !v.length)) return;
+    CFG[k] = v;
+  });
+  if (cfg.TELEGRAM_CHANNEL) CFG.TG_CHANNEL = cfg.TELEGRAM_CHANNEL;
+  if (cfg.TELEGRAM_MANAGER) CFG.TG_MANAGER = cfg.TELEGRAM_MANAGER;
+  if (cfg.PHONES && cfg.PHONES.length) CFG.PHONE = cfg.PHONES[0];
+
+  /* ---------- 2) loyihalar ---------- */
+  function res(ref, id) { // 'base:gallery:3' → asl manba
+    if (typeof ref !== 'string' || ref.indexOf('base:') !== 0) return ref;
+    var a = ref.split(':');
+    if (a[1] === 'hero') return (BASE._hero || {})[a[2]] || '';
+    var b = BASE[a[3] || id] || {};
+    if (a[1] === 'cover') return b.cover;
+    if (a[1] === 'video') return (b.video || {})[a[2]] || '';
+    var arr = b[a[1]] || [], it = arr[+a[2]];
+    return it ? (it.src || it.img || '') : '';
+  }
+  window.AH_RES = res;
+  var pj = C.projects || {}, data = pj.data || {};
+  var FIELDS = ['name', 'badge', 'district', 'address', 'lead', 'cover', 'poster', 'video', 'videos', 'geo', 'presentation', 'gallery', 'plans', 'facts', 'amenities'];
+  function norm(p) {
+    return Object.assign({ name: 'Loyiha', badge: {}, district: {}, address: {}, lead: {}, geo: { lat: CFG.OFFICE.lat, lng: CFG.OFFICE.lng }, priceM2: null,
+      cover: '', video: null, videos: [], presentation: '', facts: [], amenities: [], gallery: [], plans: [] }, p);
+  }
+  (pj.added || []).forEach(function (id) {
+    if (!data[id] || P.some(function (p) { return p.id === id; })) return;
+    P.push(norm({ id: id }));
+    BASE[id] = { gallery: [], plans: [], amenities: [], videos: [] };
+  });
+  P.forEach(function (p) {
+    var e = data[p.id]; if (!e) return;
+    FIELDS.forEach(function (k) { if (e[k] !== undefined) p[k] = JSON.parse(JSON.stringify(e[k])); });
+    if (e.priceM2 !== undefined && p.id !== 'musaffo') p.priceM2 = e.priceM2 === '' ? null : e.priceM2;
+    p.cover = res(p.cover, p.id) || '';
+    if (p.video && p.video.src) { p.video.src = res(p.video.src, p.id); p.video.poster = res(p.video.poster, p.id); }
+    if (p.video && !p.video.src) p.video = null;
+    (p.gallery || []).forEach(function (g) { g.src = res(g.src, p.id); });
+    (p.plans || []).forEach(function (g) { g.img = res(g.img, p.id); });
+    (p.amenities || []).forEach(function (g) { g.img = res(g.img, p.id); });
+    (p.videos || []).forEach(function (g) { g.src = res(g.src, p.id); g.poster = res(g.poster, p.id); });
+  });
+  var hid = pj.hidden || [];
+  for (var i = P.length - 1; i >= 0; i--) if (hid.indexOf(P[i].id) > -1 && P.length > 1) P.splice(i, 1);
+  if (pj.order && pj.order.length) P.sort(function (a, b) { var x = pj.order.indexOf(a.id), y = pj.order.indexOf(b.id); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
+  if (window.ALL_PROJECT_NAMES) P.forEach(function (p) { var n = typeof p.name === 'string' ? p.name : (p.name.uz || ''); if (n && ALL_PROJECT_NAMES.indexOf(n) < 0) ALL_PROJECT_NAMES.push(n); });
+
+  /* ---------- 3) ranglar ---------- */
+  var col = C.colors || {}, css = '';
+  var MAP = { bg: '--bg', bg2: '--bg-2', bg3: '--bg-3', emerald: '--emerald', gold: '--gold', gold2: '--gold-2', goldHi: '--gold-hi', ink: '--ink', mut: '--mut' };
+  Object.keys(MAP).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(col[k] || '')) css += MAP[k] + ':' + col[k] + ';'; });
+  if (col.gold || col.gold2 || col.goldHi) {
+    var g1 = col.gold2 || '#b8913f', g2 = col.goldHi || '#f6e7b8', g3 = col.gold || '#d8bc7e';
+    css += '--gold-grad:linear-gradient(115deg,' + g1 + ' 0%,' + g2 + ' 28%,' + g3 + ' 50%,' + g1 + ' 72%,' + g2 + ' 100%);';
+  }
+  if (css) {
+    var st = document.createElement('style'); st.id = 'cmsColors';
+    st.textContent = ':root{' + css + '}' + (col.bg ? 'body{background-color:' + col.bg + '}' : '');
+    document.head.appendChild(st);
+  }
+
+  /* ---------- 4) bosh sahifa videosi ---------- */
+  var h = C.hero || {};
+  if (hv && (h.video || h.poster)) {
+    if (h.poster) hv.setAttribute('poster', res(h.poster));
+    if (h.video) { var s = hv.querySelector('source'); if (s) s.remove(); hv.src = res(h.video); }
+  }
+})();
+
+</script>
+<script>
+/* =====================================================================
    ART HOUSE — TARJIMA TIZIMI
    Tillar: O'zbekcha (lotin), Ўзбекча (kirill — avtomatik transliteratsiya),
            Русский, English.
@@ -1881,6 +2104,78 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
     on: function (cb) { subs.push(cb); },
     num: num, usd: usd, date: date, ago: ago, mountSwitcher: mountSwitcher
   };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — SAYT BOSHQARUVI (CMS) · 2/3 — tillar va matnlar
+   • Kabinetda qo'shilgan tillar ro'yxatga kiradi, o'chirilganlari yashiriladi.
+   • Matn o'zgarishlari (ah_cms.text[til][kalit]) har bir tarjimadan ustun turadi.
+   • Yangi til uchun tarjima yo'q kalitlar inglizcha ko'rsatiladi (o'zbekcha emas).
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (!window.I18N) return;
+  var C = window.AH_CMS || {}, T = C.text || {}, LG = C.langs || {};
+  var BUILTIN = I18N.langs.map(function (l) { return l.code; });
+  var ADDED = [];
+  (LG.added || []).forEach(function (L) {
+    if (!L || !/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/i.test(L.code) || BUILTIN.indexOf(L.code) > -1) return;
+    I18N.langs.push({ code: L.code, label: L.label || L.code, short: (L.short || L.code).toUpperCase().slice(0, 3), html: L.code, locale: L.locale || L.code, cms: true });
+    ADDED.push(L.code);
+  });
+  var OFF = (LG.off || []).filter(function (c) { return c !== 'uz'; });
+  for (var i = I18N.langs.length - 1; i >= 0; i--) if (OFF.indexOf(I18N.langs[i].code) > -1) I18N.langs.splice(i, 1);
+  var st = ''; try { st = localStorage.getItem('ah_lang') || ''; } catch (e) {}
+  if (st && ADDED.indexOf(st) > -1 && OFF.indexOf(st) < 0 && I18N.lang !== st) I18N.set(st);
+  if (OFF.indexOf(I18N.lang) > -1) { try { localStorage.setItem('ah_lang', 'uz'); } catch (e) {} I18N.set('uz'); }
+
+  function ov(key, lg) {
+    var o = T[lg === 'cy' ? 'uz' : lg];
+    if (!o || o[key] == null || o[key] === '') return null;
+    return lg === 'cy' ? I18N.toCyr(o[key]) : o[key];
+  }
+  function fill(s, v) { return v ? String(s).replace(/\{(\w+)\}/g, function (m, k) { return v[k] != null ? v[k] : m; }) : s; }
+  var t0 = I18N.t, p0 = I18N.pick;
+  window.AH_T0 = t0;
+  I18N.t = function (key, vars, lng) {
+    var lg = lng || I18N.lang, s = ov(key, lg);
+    if (s != null) return fill(s, vars);
+    return t0(key, vars, ADDED.indexOf(lg) > -1 && !(I18N.dict[lg] && I18N.dict[lg][key] != null) ? 'en' : lng);
+  };
+  I18N.pick = function (o) {
+    var lg = I18N.lang;
+    if (o && typeof o === 'object' && ADDED.indexOf(lg) > -1) return o[lg] || o.en || o.uz || '';
+    return p0(o);
+  };
+  /* HTML'dagi [data-i] matnlariga o'zgarishlarni qo'llash */
+  function post(root) {
+    var lg = I18N.lang;
+    (root || document).querySelectorAll('[data-i]').forEach(function (el) {
+      var s = ov(el.getAttribute('data-i'), lg); if (s != null && el.textContent !== s) el.textContent = s;
+    });
+    (root || document).querySelectorAll('[data-i-ph]').forEach(function (el) {
+      var s = ov(el.getAttribute('data-i-ph'), lg); if (s != null) el.setAttribute('placeholder', s);
+    });
+  }
+  var a0 = I18N.apply;
+  I18N.apply = function (r) { a0(r); post(r); };
+  I18N.on(function () { post(); });
+  window.AH_POST = post;
+  window.AH_ADDED_LANGS = ADDED;
+
+  /* Yangi bloklar uchun tarjimalar (festival, mobil menyu) */
+  var X = {
+    ru: { 'gal.eyebrow': 'Галерея', 'gal.title': 'Фото и видео', 'about.festE': 'Жизнь ART HOUSE', 'about.festT': 'Праздник для жителей и гостей', 'about.festD': 'Концерты, подарки и встречи с соседями — мы строим не только дома, но и дружное сообщество. Посмотрите, как прошёл праздник ART HOUSE.', 'nav.menu': 'Меню', 'nav.menuSub': 'Разделы сайта' },
+    en: { 'gal.eyebrow': 'Gallery', 'gal.title': 'Photos and videos', 'about.festE': 'Life at ART HOUSE', 'about.festT': 'A celebration for residents and guests', 'about.festD': 'Concerts, gifts and time with neighbours: we build a friendly community, not just homes. See how the ART HOUSE festival went.', 'nav.menu': 'Menu', 'nav.menuSub': 'Website sections' },
+    fr: { 'gal.eyebrow': 'Galerie', 'gal.title': 'Photos et vidéos', 'about.festE': 'La vie ART HOUSE', 'about.festT': 'Une fête pour les résidents et les invités', 'about.festD': 'Concerts, cadeaux et rencontres entre voisins : nous bâtissons une communauté chaleureuse, pas seulement des logements. Revivez la fête ART HOUSE.', 'nav.menu': 'Menu', 'nav.menuSub': 'Rubriques du site' },
+    it: { 'gal.eyebrow': 'Galleria', 'gal.title': 'Foto e video', 'about.festE': 'La vita ART HOUSE', 'about.festT': 'Una festa per residenti e ospiti', 'about.festD': 'Concerti, regali e momenti con i vicini: costruiamo una comunità unita, non solo case. Guarda com’è andata la festa ART HOUSE.', 'nav.menu': 'Menu', 'nav.menuSub': 'Sezioni del sito' },
+    es: { 'gal.eyebrow': 'Galería', 'gal.title': 'Fotos y vídeos', 'about.festE': 'La vida en ART HOUSE', 'about.festT': 'Una fiesta para vecinos e invitados', 'about.festD': 'Conciertos, regalos y encuentros entre vecinos: construimos una comunidad unida, no solo viviendas. Mire cómo fue la fiesta de ART HOUSE.', 'nav.menu': 'Menú', 'nav.menuSub': 'Secciones del sitio' },
+    de: { 'gal.eyebrow': 'Galerie', 'gal.title': 'Fotos und Videos', 'about.festE': 'Leben bei ART HOUSE', 'about.festT': 'Ein Fest für Bewohner und Gäste', 'about.festD': 'Konzerte, Geschenke und Begegnungen mit den Nachbarn: Wir bauen nicht nur Wohnungen, sondern eine echte Gemeinschaft. Sehen Sie, wie das ART HOUSE Fest war.', 'nav.menu': 'Menü', 'nav.menuSub': 'Bereiche der Website' },
+    tr: { 'gal.eyebrow': 'Galeri', 'gal.title': 'Fotoğraf ve video', 'about.festE': 'ART HOUSE yaşamı', 'about.festT': 'Sakinler ve misafirler için bir şenlik', 'about.festD': 'Konserler, hediyeler ve komşularla buluşmalar: Sadece ev değil, sıcak bir topluluk inşa ediyoruz. ART HOUSE şenliğinin nasıl geçtiğini izleyin.', 'nav.menu': 'Menü', 'nav.menuSub': 'Site bölümleri' }
+  };
+  Object.keys(X).forEach(function (l) { I18N.extend(l, X[l]); });
 })();
 
 </script>
@@ -4286,6 +4581,300 @@ window.AGENT_DICT = {
   }, 20000);
 
   window.ArtHouseAI = { open: open, reply: reply };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — SAYT BOSHQARUVI (CMS) · 3/3 — sahifadagi ish vaqti
+   • Bo'limlarni yoqish/o'chirish, yangi bo'limlar (matn, rasm, video, Canva/Figma, Telegram tugmasi)
+   • Keng menyu (kompyuter) va to'liq ekranli menyu (telefon)
+   • Loyiha video-lavhalari, kabinetdan yuklangan rasm/videolarni ko'rsatish (idb:)
+   • Saytda jonli tahrirlash rejimi (kabinet → Sozlamalar → Matnlar → «Saytda tahrirlash»)
+   • Nashr qilingan kontent: site-content.json yoki server (CFG.API_URL/api/cms)
+   ===================================================================== */
+(function () {
+  'use strict';
+  var C = window.AH_CMS || {}, P = window.PROJECTS || [];
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var pick = function (o) { return I18N.pick(o); };
+  var t = function (k, v) { return I18N.t(k, v); };
+  var API = (CFG.API_URL === 'auto' ? (location.protocol.indexOf('http') === 0 ? location.origin : '') : (CFG.API_URL || '')).replace(/\/$/, '');
+  var ROUTES = ['home', 'calculator', 'projects', 'location', 'about', 'social', 'contact', 'reviews'];
+  var SEC = C.sections || {}, OFF = (SEC.off || []).filter(function (r) { return r !== 'home'; });
+  var CUSTOM = (SEC.custom || []).filter(function (s) { return s && s.id && s.on !== false; });
+
+  /* ---------- media: idb:… havolalarini ko'rsatish ---------- */
+  var MU = {};
+  function mediaFix(root) {
+    $$('[src^="idb:"],[poster^="idb:"],[data-src^="idb:"]', root).forEach(function (el) {
+      ['src', 'poster', 'data-src'].forEach(function (a) {
+        var v = el.getAttribute(a); if (!v || v.indexOf('idb:') !== 0) return;
+        if (MU[v]) { el.setAttribute(a === 'data-src' ? 'src' : a, MU[v]); return; }
+        el.setAttribute(a, ''); el.dataset.ref = v;
+        Store.mediaURL(v).then(function (u) { if (u) { MU[v] = u; el.setAttribute(a === 'data-src' ? 'src' : a, u); } });
+      });
+    });
+  }
+  new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) mediaFix(n.parentNode || n); }); }); })
+    .observe(document.body, { childList: true, subtree: true });
+  mediaFix(document);
+
+  /* ---------- raqamlar (CFG) ---------- */
+  function nums() {
+    var mx = Math.max.apply(null, CFG.MONTHS || [36]);
+    var V = { projects: CFG.PROJECTS_DONE, years: CFG.EXPERIENCE_YEARS, 'ig-followers': CFG.IG_FOLLOWERS, 'ig-posts': CFG.IG_POSTS, 'months-max': mx, 'down-min': (CFG.DOWN_MIN != null ? CFG.DOWN_MIN : 30) + '%' };
+    $$('[data-cms]').forEach(function (el) { var v = V[el.getAttribute('data-cms')]; if (v != null && v !== '') el.textContent = v; });
+    var dl = $('#cDown'); if (dl && CFG.DOWN_MIN != null) dl.min = CFG.DOWN_MIN;
+  }
+
+  /* ---------- yangi bo'limlar ---------- */
+  function ytId(u) { var m = String(u || '').match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/); return m ? m[1] : ''; }
+  function embedURL(u) {
+    u = String(u || '').trim(); if (!/^https:\/\//.test(u)) return '';
+    var y = ytId(u); if (y) return 'https://www.youtube-nocookie.com/embed/' + y;
+    if (/canva\.com\/design\//.test(u)) return u.split('?')[0].replace(/\/(edit|view)$/, '') + '/view?embed';
+    if (/figma\.com\/(file|design|proto|board)\//.test(u)) return 'https://www.figma.com/embed?embed_host=arthouse&url=' + encodeURIComponent(u);
+    return u;
+  }
+  window.AH_EMBED = embedURL;
+  function media(s) {
+    var h = '';
+    if (s.video) { var y = ytId(s.video); h += y ? '<div class="cms-frame"><iframe src="https://www.youtube-nocookie.com/embed/' + y + '" title="Video" loading="lazy" allowfullscreen></iframe></div>' : '<video class="cms-vid" src="' + esc(s.video) + '" controls playsinline preload="metadata"' + (s.img ? ' poster="' + esc(s.img) + '"' : '') + '></video>'; }
+    else if (s.img) h += '<img class="cms-img" src="' + esc(s.img) + '" alt="" loading="lazy" decoding="async">';
+    if (s.embed && embedURL(s.embed)) h += '<div class="cms-frame"><iframe src="' + esc(embedURL(s.embed)) + '" title="Canva / Figma" loading="lazy" allowfullscreen allow="fullscreen"></iframe></div>';
+    return h;
+  }
+  function renderCustom() {
+    CUSTOM.forEach(function (s) {
+      var id = 'cms-' + s.id, sec = document.getElementById('p-' + id);
+      if (!sec) { sec = document.createElement('section'); sec.className = 'page cms-page'; sec.id = 'p-' + id; sec.dataset.page = id; sec.hidden = true; $('#app').appendChild(sec); }
+      var body = String(pick(s.text) || '').split(/\n{2,}/).map(function (p) { return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; }).join('');
+      var btn = s.btn && s.btn.url ? '<a class="btn btn-gold" href="' + esc(s.btn.url) + '"' + (/^https?:/.test(s.btn.url) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(pick(s.btn.t) || 'Telegram') + '<svg class="ic"><use href="#' + (/t\.me\//.test(s.btn.url) ? 'i-tg' : 'i-arrow') + '"/></svg></a>' : '';
+      sec.innerHTML = '<div class="wrap page-head">' + (pick(s.eyebrow) ? '<p class="eyebrow">' + esc(pick(s.eyebrow)) + '</p>' : '') + '<h2 class="h-page">' + esc(pick(s.title)) + '</h2></div>' +
+        '<div class="wrap"><div class="card cms-card">' + media(s) + '<div class="cms-text">' + body + (btn ? '<div class="cta-row">' + btn + '</div>' : '') + '</div></div></div>';
+      var a = $('.menu a[data-route="' + id + '"]');
+      if (!a) { a = document.createElement('a'); a.href = '#' + id; a.dataset.route = id; a.innerHTML = '<i></i><span></span>'; var rev = $('.menu .menu-rev'); rev ? rev.parentNode.insertBefore(a, rev) : $('.menu-track').appendChild(a); }
+      a.querySelector('span').textContent = pick(s.title);
+    });
+  }
+  function hideOff() {
+    OFF.forEach(function (r) {
+      var a = $('.menu a[data-route="' + r + '"]'); if (a) a.hidden = true;
+      var p = $('#p-' + r); if (p) p.hidden = true;
+      $$('a[href="#' + r + '"]').forEach(function (x) { if (x.closest('.menu,.foot,.mnav')) { var li = x.closest('li'); (li || x).hidden = true; } else if (x.closest('.teaser')) { var c = x.closest('.teaser'); if (c) c.hidden = true; } });
+    });
+    var n = 0;
+    $$('.menu-track > a').forEach(function (a) { if (a.hidden || a.classList.contains('menu-rev')) return; var i = a.querySelector('i'); if (i) i.textContent = String(++n).padStart(2, '0'); });
+  }
+  function footer() {
+    var ul = $('#footLinks'); if (!ul) return;
+    CUSTOM.forEach(function (s) { if (!ul.querySelector('a[href="#cms-' + s.id + '"]')) ul.insertAdjacentHTML('beforeend', '<li><a href="#cms-' + esc(s.id) + '"></a></li>'); ul.querySelector('a[href="#cms-' + s.id + '"]').textContent = pick(s.title); });
+  }
+
+  /* ---------- marshrut: yangi bo'limlar va o'chirilgan bo'limlar ---------- */
+  function route() {
+    var page = (location.hash || '#home').slice(1).split('/')[0];
+    if (OFF.indexOf(page) > -1) { location.replace('#home'); return; }
+    var isC = page.indexOf('cms-') === 0 && document.getElementById('p-' + page);
+    if (!isC && ROUTES.indexOf(page) < 0) page = 'home';
+    $$('.page').forEach(function (s) { s.hidden = s.dataset.page !== page; });
+    $$('.menu a').forEach(function (a) { var on = a.dataset.route === page; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $$('.mnav a[data-route]').forEach(function (a) { a.classList.toggle('active', a.dataset.route === page); });
+    if (isC) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.title = $('.menu a[data-route="' + page + '"] span').textContent + ' — ART HOUSE — Luxury Residence';
+      $$('#p-' + page + ' .card').forEach(function (c) { c.classList.add('in'); });
+    }
+    var hv = $('#heroVideo'); if (hv) { if (page === 'home' && !document.hidden) { var pr = hv.play(); if (pr && pr.catch) pr.catch(function () {}); } else hv.pause(); }
+    closeMnav();
+  }
+
+  /* ---------- telefon uchun to'liq ekranli menyu ---------- */
+  var mnav = null;
+  function buildMnav() {
+    if (!mnav) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'mnav-btn'; b.setAttribute('aria-haspopup', 'dialog');
+      b.innerHTML = '<span class="mnav-ico"><i></i><i></i><i></i></span><span data-i="nav.menu">Menyu</span>';
+      $('.top-act').appendChild(b);
+      mnav = document.createElement('div'); mnav.className = 'mnav'; mnav.hidden = true; mnav.setAttribute('role', 'dialog'); mnav.setAttribute('aria-modal', 'true');
+      document.body.appendChild(mnav);
+      b.addEventListener('click', function () { openMnav(); });
+      mnav.addEventListener('click', function (e) { if (e.target.closest('[data-mclose]') || e.target.closest('a')) closeMnav(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMnav(); });
+      I18N.apply(b);
+    }
+    var items = $$('.menu-track > a').filter(function (a) { return !a.hidden; }).map(function (a, i) {
+      var rev = a.classList.contains('menu-rev');
+      return '<a href="' + a.getAttribute('href') + '" data-route="' + a.dataset.route + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '><i>' + (rev ? '★' : esc((a.querySelector('i') || {}).textContent || '')) + '</i><span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-arrow"/></svg></a>';
+    }).join('');
+    mnav.innerHTML = '<div class="mnav-in"><div class="mnav-top"><span class="mnav-brand"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><b>ART HOUSE</b></span><button type="button" class="modal-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button></div>' +
+      '<p class="mnav-sub">' + esc(t('nav.menuSub')) + '</p><nav class="mnav-list">' + items + '</nav>' +
+      '<div class="mnav-foot"><a class="btn btn-gold" data-phone href="tel:' + esc(CFG.PHONE) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>' +
+      (CFG.TELEGRAM_CHANNEL ? '<a class="btn btn-ghost" href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener"><svg class="ic"><use href="#i-tg"/></svg><span>Telegram</span></a>' : '') +
+      '<a class="btn btn-ghost" href="kabinet.html"><span>' + esc(t('nav.cabinet')) + '</span></a></div></div>';
+  }
+  function openMnav() { buildMnav(); mnav.hidden = false; requestAnimationFrame(function () { mnav.classList.add('open'); }); document.body.classList.add('lock'); }
+  function closeMnav() { if (!mnav || mnav.hidden) return; mnav.classList.remove('open'); document.body.classList.remove('lock'); setTimeout(function () { mnav.hidden = true; }, 380); }
+
+  /* ---------- loyiha video-lavhalari ---------- */
+  function curProject() { var b = $('#projTabs [aria-selected="true"]'); return b ? b.dataset.p : (P[0] || {}).id; }
+  function projVideos() {
+    var box = $('#projDetail'); if (!box || !box.firstChild || box.querySelector('.pvids')) return;
+    var p = P.filter(function (x) { return x.id === curProject(); })[0];
+    if (!p || !p.videos || !p.videos.length) return;
+    var h = '<div class="sec-head reveal in"><h2>' + esc(t('proj.video')) + '</h2></div><div class="pvids">' + p.videos.map(function (v) {
+      var y = ytId(v.src);
+      return '<figure class="pvid' + (v.vert ? ' vert' : '') + '">' + (y ? '<iframe src="https://www.youtube-nocookie.com/embed/' + y + '" title="' + esc(pick(v.t)) + '" loading="lazy" allowfullscreen></iframe>'
+        : '<video src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') + ' controls playsinline preload="none"></video>') + (pick(v.t) ? '<figcaption>' + esc(pick(v.t)) + '</figcaption>' : '') + '</figure>';
+    }).join('') + '</div>';
+    var hero = box.querySelector('.pd-hero');
+    if (hero) hero.insertAdjacentHTML('afterend', h); else box.insertAdjacentHTML('beforeend', h);
+    $$('.pvid video', box).forEach(function (v) { v.addEventListener('error', function () { var f = v.closest('.pvid'); if (f) f.remove(); }); });
+  }
+  var pd = $('#projDetail'); if (pd) new MutationObserver(function () { projVideos(); }).observe(pd, { childList: true });
+  var fv = $('#festVideo'); if (fv) fv.addEventListener('error', function () { var c = fv.closest('.fest'); if (c) c.hidden = true; });
+
+  /* ---------- kabinetdan qo'shilgan foto va video galereya ---------- */
+  var MD = C.media || {}, GI = (MD.items || []).filter(function (x) { return x && x.src && x.on !== false; });
+  function gallery() {
+    var old = $('#cmsGal'); if (old) old.remove();
+    if (!GI.length || MD.place === 'off') return;
+    var host = MD.place === 'about' ? $('#p-about') : $('#p-home');
+    if (!host) return;
+    var box = document.createElement('div'); box.id = 'cmsGal'; box.className = 'wrap block cms-gal';
+    box.innerHTML = '<div class="sec-head reveal in"><p class="eyebrow" data-i="gal.eyebrow">Galereya</p><h2 data-i="gal.title">Foto va video</h2></div><div class="cms-gal-grid">' + GI.map(function (x, i) {
+      var cap = pick(x.t), y = x.type === 'video' && ytId(x.src);
+      var m = x.type === 'video' ? (y ? '<iframe src="https://www.youtube-nocookie.com/embed/' + y + '" title="' + esc(cap || 'Video') + '" loading="lazy" allowfullscreen></iframe>'
+        : '<video src="' + esc(x.src) + '"' + (x.poster ? ' poster="' + esc(x.poster) + '"' : '') + ' controls playsinline preload="metadata"></video>')
+        : '<button type="button" data-gi="' + i + '"><img src="' + esc(x.src) + '" alt="' + esc(cap) + '" loading="lazy" decoding="async"></button>';
+      return '<figure class="cms-gi' + (x.type === 'video' ? ' v' : '') + '">' + m + (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : '') + '</figure>';
+    }).join('') + '</div>';
+    if (MD.place === 'about') host.appendChild(box);
+    else { var cta = $('#p-home .cta-band'); cta ? cta.closest('.wrap').before(box) : host.appendChild(box); }
+    I18N.apply(box); mediaFix(box);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('#cmsGal [data-gi]'); if (!b) return;
+    var lb = $('#cmsLb'); if (!lb) { lb = document.createElement('div'); lb.id = 'cmsLb'; lb.className = 'cms-lb'; document.body.appendChild(lb); lb.addEventListener('click', function (ev) { if (!ev.target.closest('img')) { lb.hidden = true; document.body.classList.remove('lock'); } }); }
+    var img = b.querySelector('img'); lb.innerHTML = '<button type="button" class="modal-x" aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button><img src="' + img.src + '" alt="">';
+    lb.hidden = false; document.body.classList.add('lock');
+  });
+  var FS = MD.fest || {}, fvd = $('#festVideo');
+  if (fvd && (FS.video || FS.poster)) { if (FS.poster) fvd.setAttribute('poster', FS.poster); if (FS.video) fvd.setAttribute('src', FS.video); mediaFix(fvd.parentNode); }
+
+  function all() { renderCustom(); hideOff(); footer(); nums(); buildMnav(); projVideos(); gallery(); if (window.AH_POST) AH_POST(); }
+  all();
+  I18N.on(function () { setTimeout(all, 0); });
+  Store.on('settings', nums);
+  window.addEventListener('hashchange', route);
+  route();
+  window.addEventListener('resize', function () { if (innerWidth > 860) closeMnav(); }, { passive: true });
+
+  /* ---------- kabinet uchun: matnlar katalogi va asl rasmlar (IndexedDB) ---------- */
+  function kv() {
+    return new Promise(function (res, rej) {
+      if (!('indexedDB' in window)) return rej(new Error('no-idb'));
+      var r = indexedDB.open('arthouse-cms', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('kv'); };
+      r.onsuccess = function () { res(r.result); }; r.onerror = function () { rej(r.error); };
+    });
+  }
+  function snapshot() {
+    var sig = window.AH_BUILD + '|' + Object.keys(I18N.dict.en || {}).length;
+    try { if (localStorage.getItem('ah_cms_snap') === sig) return; } catch (e) { return; }
+    var keys = {}, L = ['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'];
+    $$('[data-i]').forEach(function (e) { keys[e.getAttribute('data-i')] = 1; });
+    $$('[data-i-ph]').forEach(function (e) { keys[e.getAttribute('data-i-ph')] = 1; });
+    Object.keys(I18N.dict.en || {}).forEach(function (k) { keys[k] = 1; });
+    var cat = {};
+    Object.keys(keys).sort().forEach(function (k) {
+      var row = {}; L.forEach(function (l) { try { row[l] = window.AH_T0(k, null, l); } catch (e) { row[l] = ''; } });
+      if (row.uz === k && row.en === k) return; cat[k] = row;
+    });
+    var base = window.AH_BASE || {};
+    kv().then(function (db) {
+      var tx = db.transaction('kv', 'readwrite');
+      tx.objectStore('kv').put({ at: Date.now(), build: window.AH_BUILD, cat: cat }, 'catalog');
+      tx.objectStore('kv').put({ at: Date.now(), base: base }, 'base');
+      tx.oncomplete = function () { try { localStorage.setItem('ah_cms_snap', sig); localStorage.setItem('ah_cms_cat_at', String(Date.now())); } catch (e) {} };
+    }).catch(function () {});
+  }
+  (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(snapshot);
+
+  /* ---------- nashr qilingan kontent (barcha tashrif buyuruvchilar uchun) ---------- */
+  function adopt(R) {
+    if (!R || typeof R !== 'object' || !R.v) return;
+    if (C.v && C.v >= R.v) return;
+    var g = ''; try { g = sessionStorage.getItem('ah_cms_r'); } catch (e) {}
+    if (g === String(R.v)) return;
+    try { localStorage.setItem('ah_cms', JSON.stringify(R)); sessionStorage.setItem('ah_cms_r', String(R.v)); location.reload(); }
+    catch (e) { console.warn('ART HOUSE CMS: kontent juda katta, brauzer xotirasiga sig\'madi', e); }
+  }
+  if (location.protocol.indexOf('http') === 0) {
+    fetch('site-content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
+    if (API) fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
+  }
+  /* kabinetda saqlansa — shu brauzerdagi sayt avtomatik yangilanadi */
+  window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT) location.reload(); });
+
+  /* ---------- saytda jonli tahrirlash ---------- */
+  var ED = {
+    uz: ['Tahrirlash rejimi', 'Istalgan yozuvni bosing va o\'zgartiring', 'Saqlash', 'Aslini qaytarish', 'Bekor', 'Chiqish', 'Saqlandi', 'Til'],
+    ru: ['Режим редактирования', 'Нажмите на любой текст и измените его', 'Сохранить', 'Вернуть исходный', 'Отмена', 'Выйти', 'Сохранено', 'Язык'],
+    en: ['Edit mode', 'Click any text to change it', 'Save', 'Restore original', 'Cancel', 'Exit', 'Saved', 'Language'],
+    fr: ['Mode édition', 'Cliquez sur un texte pour le modifier', 'Enregistrer', 'Rétablir l’original', 'Annuler', 'Quitter', 'Enregistré', 'Langue'],
+    it: ['Modalità modifica', 'Clicca su un testo per modificarlo', 'Salva', 'Ripristina originale', 'Annulla', 'Esci', 'Salvato', 'Lingua'],
+    es: ['Modo edición', 'Haga clic en un texto para cambiarlo', 'Guardar', 'Restaurar original', 'Cancelar', 'Salir', 'Guardado', 'Idioma'],
+    de: ['Bearbeitungsmodus', 'Klicken Sie auf einen Text, um ihn zu ändern', 'Speichern', 'Original wiederherstellen', 'Abbrechen', 'Beenden', 'Gespeichert', 'Sprache'],
+    tr: ['Düzenleme modu', 'Değiştirmek için bir metne tıklayın', 'Kaydet', 'Orijinali geri yükle', 'İptal', 'Çık', 'Kaydedildi', 'Dil']
+  };
+  function E(i) { var l = I18N.lang === 'cy' ? 'uz' : I18N.lang; var r = (ED[l] || ED.en)[i]; return I18N.lang === 'cy' ? I18N.toCyr(r) : r; }
+  var EDIT = false;
+  try { var tk = JSON.parse(localStorage.getItem('ah_edit') || 'null'); EDIT = /[?&#]edit\b/.test(location.search + location.hash) && tk && tk.exp > Date.now(); } catch (e) {}
+  if (EDIT) {
+    document.documentElement.classList.add('cms-edit');
+    var bar = document.createElement('div'); bar.className = 'cms-bar';
+    document.body.appendChild(bar);
+    var pop = document.createElement('div'); pop.className = 'cms-pop'; pop.hidden = true; document.body.appendChild(pop);
+    var drawBar = function () { bar.innerHTML = '<b>' + esc(E(0)) + '</b><span>' + esc(E(1)) + ' · ' + esc(E(7)) + ': ' + esc(I18N.info().short) + '</span><button type="button" data-x>' + esc(E(5)) + '</button>'; };
+    drawBar(); I18N.on(drawBar);
+    bar.addEventListener('click', function (e) { if (e.target.closest('[data-x]')) { try { localStorage.removeItem('ah_edit'); } catch (x) {} location.href = location.pathname; } });
+    var cur = null;
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.cms-pop,.cms-bar,.lang,.menu,.mnav,.mnav-btn')) return;
+      var el = e.target.closest('[data-i],[data-i-ph]'); if (!el) return;
+      e.preventDefault(); e.stopPropagation();
+      cur = el; var key = el.getAttribute('data-i') || el.getAttribute('data-i-ph'), ph = !el.hasAttribute('data-i');
+      var val = ph ? el.getAttribute('placeholder') : el.textContent;
+      var r = el.getBoundingClientRect();
+      pop.innerHTML = '<small>' + esc(key) + ' · ' + esc(I18N.info().label) + '</small><textarea rows="4"></textarea><div><button type="button" class="btn btn-gold sm" data-s>' + esc(E(2)) + '</button><button type="button" class="btn btn-ghost sm" data-r>' + esc(E(3)) + '</button><button type="button" class="btn btn-ghost sm" data-c>' + esc(E(4)) + '</button></div>';
+      pop.querySelector('textarea').value = val;
+      pop.hidden = false;
+      pop.style.top = Math.min(innerHeight - pop.offsetHeight - 12, Math.max(64, r.bottom + 8)) + 'px';
+      pop.style.left = Math.max(12, Math.min(innerWidth - pop.offsetWidth - 12, r.left)) + 'px';
+      pop.querySelector('textarea').focus();
+      pop.dataset.k = key;
+    }, true);
+    pop.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.hasAttribute('data-c')) { pop.hidden = true; return; }
+      var key = pop.dataset.k, lg = I18N.lang === 'cy' ? 'uz' : I18N.lang, c = {};
+      try { c = JSON.parse(localStorage.getItem('ah_cms') || '{}') || {}; } catch (x) {}
+      c.text = c.text || {}; c.text[lg] = c.text[lg] || {};
+      if (b.hasAttribute('data-s')) c.text[lg][key] = pop.querySelector('textarea').value.trim();
+      else delete c.text[lg][key];
+      c.v = Date.now();
+      var log = []; try { log = JSON.parse(localStorage.getItem('ah_audit') || '[]'); } catch (x) {}
+      var tk2 = {}; try { tk2 = JSON.parse(localStorage.getItem('ah_edit') || '{}'); } catch (x) {}
+      log.unshift({ at: Date.now(), who: tk2.by || 'Direktor', a: b.hasAttribute('data-s') ? 'Saytda matn tahrirlandi' : 'Matn asliga qaytarildi', d: key + ' · ' + lg.toUpperCase() });
+      try { localStorage.setItem('ah_cms', JSON.stringify(c)); localStorage.setItem('ah_audit', JSON.stringify(log.slice(0, 1000))); } catch (x) {}
+      window.AH_CMS = c; pop.hidden = true;
+      location.reload();
+    });
+  }
 })();
 
 </script>

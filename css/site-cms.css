@@ -1,0 +1,98 @@
+/* =====================================================================
+   ART HOUSE — keng menyu, telefon menyusi, yangi bo'limlar, video-lavhalar,
+   jonli tahrirlash va kirish animatsiyasiga qo'shimcha nur halqalari
+   ===================================================================== */
+/* --- keng, o'qishga qulay asosiy menyu (kompyuter) --- */
+@media (min-width: 861px) {
+  .menu-track { flex-wrap: wrap; justify-content: center; gap: 6px 8px; padding: 10px 24px 14px; overflow: visible; }
+  .menu a { font-size: 14.5px; padding: 11px 18px; letter-spacing: .04em; border: 1px solid transparent; color: rgba(246, 235, 203, .86); }
+  .menu a:hover { border-color: var(--line); background: rgba(230, 203, 139, .06); }
+  .menu a.active { border-color: var(--line-2); background: linear-gradient(180deg, rgba(230, 203, 139, .16), rgba(230, 203, 139, .05)); }
+  .menu a i { font-size: 11px; opacity: .8; }
+  .menu-rev { margin-left: 4px; }
+  .mnav-btn { display: none !important; }
+}
+@media (min-width: 861px) and (max-width: 1180px) { .menu a { font-size: 13.5px; padding: 10px 14px; } }
+
+/* --- telefon: «Menyu» tugmasi va to'liq ekranli menyu --- */
+.mnav-btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px 0 12px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--gold-hi); font-size: 13px; font-weight: 600; letter-spacing: .06em; background: rgba(230, 203, 139, .06); }
+.mnav-ico { display: grid; gap: 3px; width: 16px; }
+.mnav-ico i { display: block; height: 1.5px; border-radius: 2px; background: var(--gold); }
+.mnav-ico i:nth-child(2) { width: 70%; justify-self: end; }
+@media (max-width: 860px) {
+  .menu { display: none; }
+  .top-act { display: flex; align-items: center; gap: 8px; }
+}
+@media (max-width: 520px) { .mnav-btn span[data-i] { display: none; } .mnav-btn { width: 38px; padding: 0; justify-content: center; } }
+@media (max-width: 430px) { .top-act .top-phone { display: none; } .top-act { gap: 0; } }
+@media (max-width: 360px) { .brand-txt small { display: none; } .brand-txt b { font-size: 14px; letter-spacing: .14em; } .brand-mark { width: 28px; height: 28px; } }
+.mnav { position: fixed; inset: 0; z-index: 120; background: radial-gradient(ellipse at 50% 0%, rgba(230, 203, 139, .14), transparent 60%), linear-gradient(170deg, #0F4736 0%, #0A3B2C 55%, #06291F 100%); opacity: 0; transition: opacity .35s var(--ease, ease); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.mnav.open { opacity: 1; }
+.mnav-in { max-width: 560px; margin: 0 auto; padding: max(14px, env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom)); min-height: 100%; display: flex; flex-direction: column; }
+.mnav-top { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 10px; border-bottom: 1px solid var(--line); }
+.mnav-brand { display: inline-flex; align-items: center; gap: 10px; }
+.mnav-brand svg { width: 34px; height: 34px; fill: none; stroke: url(#gGold); stroke-width: 2.4; }
+.mnav-brand b { font-family: var(--f-logo); letter-spacing: .26em; color: var(--gold-hi); font-size: 16px; }
+.mnav-top .modal-x { position: static; }
+.mnav-sub { margin: 18px 4px 6px; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); opacity: .8; }
+.mnav-list { display: grid; gap: 8px; }
+.mnav-list a { display: grid; grid-template-columns: 40px 1fr 20px; align-items: center; gap: 10px; min-height: 60px; padding: 10px 16px; border-radius: 16px; border: 1px solid var(--line); background: rgba(15, 71, 54, .5); color: var(--ink); font-size: 17px; font-weight: 500; transform: translateY(14px); opacity: 0; transition: transform .45s var(--ease, ease), opacity .45s, border-color .25s, background .25s; transition-delay: calc(var(--d) * 35ms); }
+.mnav.open .mnav-list a { transform: none; opacity: 1; }
+.mnav-list a i { font-style: normal; font-size: 12px; color: var(--gold); letter-spacing: .08em; }
+.mnav-list a .ic { width: 18px; height: 18px; color: var(--gold); opacity: .7; }
+.mnav-list a.active { border-color: var(--line-2); background: linear-gradient(120deg, rgba(230, 203, 139, .18), rgba(230, 203, 139, .04)); color: var(--gold-hi); }
+.mnav-foot { margin-top: auto; padding-top: 22px; display: grid; gap: 10px; }
+.mnav-foot .btn { width: 100%; justify-content: center; }
+
+/* --- yangi bo'limlar (kabinetdan) --- */
+.cms-card { display: grid; gap: 22px; }
+.cms-img, .cms-vid { width: 100%; max-height: 72vh; object-fit: contain; border-radius: 18px; background: #06291F; }
+.cms-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.cms-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cms-text p { color: var(--mut); line-height: 1.75; margin: 0 0 14px; font-size: 16px; }
+.cms-text .cta-row { margin-top: 8px; }
+
+/* --- loyiha video-lavhalari --- */
+.pvids { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 8px; }
+.pvid { margin: 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.pvid video, .pvid iframe { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 0; background: #06291F; }
+.pvid.vert { max-width: 380px; }
+.pvid.vert video { aspect-ratio: 9 / 16; }
+.pvid figcaption { padding: 12px 16px; font-size: 14px; color: var(--mut); }
+
+/* --- kabinetdan qo'shilgan galereya --- */
+.cms-gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.cms-gi { margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.cms-gi button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.cms-gi img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 1s var(--ease, ease); }
+.cms-gi button:hover img { transform: scale(1.04); }
+.cms-gi video, .cms-gi iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #06291F; }
+@media (max-width: 560px) { .cms-gal-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .cms-gi.v { grid-column: 1 / -1; } }
+.cms-gi figcaption { padding: 10px 14px; font-size: 14px; color: var(--mut); }
+.cms-lb { position: fixed; inset: 0; z-index: 400; display: grid; place-items: center; padding: 16px; background: rgba(3, 20, 15, .94); }
+.cms-lb img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 12px; }
+.cms-lb .modal-x { position: absolute; top: 16px; right: 16px; }
+
+/* --- festival bloki (Biz haqimizda) --- */
+.fest { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; align-items: center; margin: 8px 0 34px; }
+.fest video { width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #06291F; object-fit: cover; }
+.fest h3 { margin: 6px 0 10px; }
+@media (max-width: 860px) { .fest { grid-template-columns: 1fr; } }
+
+/* --- saytda jonli tahrirlash --- */
+.cms-edit [data-i], .cms-edit [data-i-ph] { outline: 1px dashed rgba(230, 203, 139, .45); outline-offset: 3px; cursor: text; }
+.cms-edit .menu [data-i], .cms-edit .mnav [data-i] { outline: 0; cursor: pointer; }
+.cms-edit [data-i]:hover, .cms-edit [data-i-ph]:hover { outline: 2px solid var(--gold); background: rgba(230, 203, 139, .08); }
+.cms-bar { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 300; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px); padding: 10px 12px 10px 18px; border-radius: 16px; border: 1px solid var(--line-2); background: rgba(6, 41, 31, .96); box-shadow: var(--shadow); font-size: 13px; color: var(--mut); }
+.cms-bar b { color: var(--gold-hi); }
+.cms-bar button { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line-2); color: var(--gold-hi); }
+.cms-pop { position: fixed; z-index: 310; width: min(420px, calc(100vw - 24px)); padding: 14px; border-radius: 16px; border: 1px solid var(--line-2); background: #0B3A2B; box-shadow: var(--shadow); display: grid; gap: 10px; }
+.cms-pop small { color: var(--gold); font-size: 11px; letter-spacing: .06em; }
+.cms-pop textarea { width: 100%; min-height: 96px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(0, 0, 0, .2); color: var(--ink); font: inherit; resize: vertical; }
+.cms-pop div { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* --- kirish animatsiyasi: oltin nur halqalari --- */
+.splash::before, .splash::after { content: ''; position: absolute; left: 50%; top: 50%; width: 30vmin; height: 30vmin; margin: -15vmin 0 0 -15vmin; border-radius: 50%; border: 1px solid rgba(230, 203, 139, .35); opacity: 0; animation: ahRing 2.8s cubic-bezier(.2, .7, .2, 1) .4s infinite; pointer-events: none; }
+.splash::after { animation-delay: 1.8s; }
+@keyframes ahRing { 0% { transform: scale(.55); opacity: 0; } 20% { opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .splash::before, .splash::after, .mnav-list a { animation: none; transition: none; } }
