@@ -15,6 +15,7 @@ css/base.css      — umumiy uslublar, lyuks logotip animatsiyasi, qo'ng'iroq oy
 css/site.css      — sayt uslublari
 css/kabinet.css   — kabinet uslublari
 css/kabinet-cms.css — Sozlamalar (CMS) bo'limi uslublari
+js/kabinet-emoji.js — menyu va Sozlamalar uchun 3D emoji-ikonkalar (Apple qurilmada — tizim emojilari)
 css/kabinet-theme.css — kabinet dizayn tizimi: zumrad + shampan oltin, Inter shrifti, chap menyu, splash
 js/config.js      — BARCHA sozlamalar va kontent (telefonlar, havolalar, loyihalar, narxlar)
 js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.js, js/i18n-es-de-tr.js
