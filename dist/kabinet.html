@@ -1344,6 +1344,48 @@ html,body{background:var(--em-900)}
 /* «Mening profilim» — emojisiz, matn boshqa bandlar bilan bir chiziqda */
 #adm #sd #nv .nt.no-emo{visibility:hidden}
 
+/* =====================================================================
+   PROFIL RASMI (Instagram uslubi) va iPhone pastki menyusi
+   ===================================================================== */
+#adm .ua.av{padding:0;overflow:hidden;cursor:pointer;background:none;border:1.5px solid rgba(220,196,143,.55);transition:transform .2s,border-color .2s}
+#adm .ua.av:hover{border-color:var(--ch-200);transform:scale(1.04)}
+#adm .ua.av .av-img,#adm .ua.av .av-sil,.av-big .av-img,.av-big .av-sil,.ios-av .av-img,.ios-av .av-sil{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}
+#adm .av-hero{display:flex;align-items:center;gap:20px;margin:0 0 22px;padding:20px;border-radius:18px;background:var(--sf-2);border:1px solid var(--bd)}
+#adm .av-big{flex:none;width:88px;height:88px;padding:0;border-radius:50%;border:2px solid rgba(220,196,143,.6);background:none;overflow:hidden;cursor:pointer;box-shadow:0 0 0 4px rgba(220,196,143,.08)}
+#adm .av-meta{display:grid;gap:3px;justify-items:start}
+#adm .av-meta b{font:600 18px var(--ui);color:var(--tx)}
+#adm .av-meta small{font:500 12.5px var(--ui);color:var(--tx-3)}
+#adm .av-edit{margin-top:8px;padding:0;border:0;background:none;color:var(--ch-200);font:600 13.5px var(--ui);cursor:pointer}
+#adm .av-edit:hover{color:var(--ch-100);text-decoration:underline}
+
+.ios-sheet{position:fixed;inset:0;z-index:900;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;padding:0 10px calc(10px + env(safe-area-inset-bottom));background:rgba(0,0,0,0);transition:background .3s;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter',system-ui,sans-serif}
+.ios-sheet.on{background:rgba(0,0,0,.45)}
+.ios-grp{width:min(420px,100%);border-radius:14px;overflow:hidden;background:rgba(36,40,38,.92);backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6);transform:translateY(120%);transition:transform .34s cubic-bezier(.32,.72,0,1)}
+.ios-sheet.on .ios-grp{transform:none}
+.ios-head{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 16px 12px;border-bottom:.5px solid rgba(255,255,255,.14)}
+.ios-head b{font-size:13px;font-weight:600;color:rgba(235,235,245,.6)}
+.ios-av{width:56px;height:56px;border-radius:50%;overflow:hidden}
+.ios-grp button{display:block;width:100%;height:57px;border:0;background:none;color:#E8D5A3;font-size:19px;font-weight:400;letter-spacing:-.01em;cursor:pointer}
+.ios-grp button+button{border-top:.5px solid rgba(255,255,255,.14)}
+.ios-grp button:active{background:rgba(255,255,255,.08)}
+.ios-grp .ios-del{color:#FF453A}
+.ios-grp .ios-cancel{font-weight:600}
+@media (min-width:821px){.ios-sheet{justify-content:center}}
+
+/* iPhone uslubidagi tanlov ro'yxati (galochka bilan) va segmentli tugmalar */
+#adm .ios-list{border-radius:12px;overflow:hidden;background:var(--sf-2);border:1px solid var(--bd)}
+#adm .ios-row{position:relative;display:flex;align-items:center;gap:12px;min-height:46px;padding:0 16px;cursor:pointer;font:500 14.5px var(--ui);color:var(--tx)}
+#adm .ios-row+.ios-row:before{content:'';position:absolute;top:0;left:16px;right:0;height:1px;background:var(--bd)}
+#adm .ios-row input{position:absolute;opacity:0;pointer-events:none}
+#adm .ios-row span{flex:1}
+#adm .ios-ck{width:20px;height:20px;fill:none;stroke:var(--ch-300);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.6);transition:opacity .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+#adm .ios-row input:checked~.ios-ck{opacity:1;transform:none}
+#adm .ios-row input:checked~span{color:var(--ch-100)}
+#adm .ios-row:active{background:rgba(255,255,255,.04)}
+#adm .ios-seg{display:inline-flex;gap:2px;margin-top:8px;padding:2px;border-radius:9px;background:var(--sf-in);border:1px solid var(--bd)}
+#adm .ios-seg button{height:26px;padding:0 10px;border:0;border-radius:7px;background:none;color:var(--tx-2);font:500 12px var(--ui);cursor:pointer}
+#adm .ios-seg button.on{background:var(--em-600);color:var(--ch-100);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+
 </style>
 </head>
 <body class="lock">
@@ -2354,6 +2396,23 @@ window.AHDICT=D;
 ["Nashr va zaxira","Publish & backup","Публикация и резерв","Publication et sauvegarde","Pubblicazione e backup","Publicación y copia","Veröffentlichen & Sichern","Yayın ve yedek"],
 ["Bu bo'lim uchun saytning asl matn va rasmlari kerak. Saytni shu brauzerda bir marta oching — ma'lumot avtomatik keladi.","This section needs the website's original texts and images. Open the website once in this browser and the data will load automatically.","Для этого раздела нужны исходные тексты и фото сайта. Откройте сайт один раз в этом браузере — данные подтянутся автоматически.","Cette rubrique a besoin des textes et images d’origine du site. Ouvrez le site une fois dans ce navigateur : les données arriveront automatiquement.","Questa sezione richiede i testi e le immagini originali del sito. Apri il sito una volta in questo browser: i dati arriveranno automaticamente.","Esta sección necesita los textos e imágenes originales del sitio. Abra el sitio una vez en este navegador y los datos llegarán solos.","Dieser Bereich benötigt die Originaltexte und -bilder der Website. Öffnen Sie die Website einmal in diesem Browser – die Daten werden automatisch geladen.","Bu bölüm için sitenin orijinal metin ve görselleri gerekir. Siteyi bu tarayıcıda bir kez açın, veriler otomatik gelir."],
 ["Saytning asl matn va rasmlari yuklanmoqda…","Loading the website's original texts and images…","Загружаются исходные тексты и фото сайта…","Chargement des textes et images d’origine du site…","Caricamento di testi e immagini originali del sito…","Cargando los textos e imágenes originales del sitio…","Originaltexte und Bilder der Website werden geladen…","Sitenin orijinal metinleri ve görselleri yükleniyor…"],
+["Til qayerda chiqsin", "Where to show the language", "Где показывать язык", "Où afficher la langue", "Dove mostrare la lingua", "Dónde mostrar el idioma", "Wo die Sprache erscheint", "Dil nerede görünsün"],
+["Sayt va kabinet — hammasiga", "Website and office — everywhere", "Сайт и кабинет — везде", "Site et bureau — partout", "Sito e ufficio — ovunque", "Sitio y oficina — en todas partes", "Website und Büro — überall", "Site ve ofis — her yerde"],
+["Faqat saytga", "Website only", "Только сайт", "Site uniquement", "Solo sito", "Solo sitio", "Nur Website", "Yalnızca site"],
+["Faqat kabinetga", "Office only", "Только кабинет", "Bureau uniquement", "Solo ufficio", "Solo oficina", "Nur Büro", "Yalnızca ofis"],
+["Hammasi", "Everywhere", "Везде", "Partout", "Ovunque", "Todo", "Überall", "Hepsi"],
+["Sayt", "Website", "Сайт", "Site", "Sito", "Sitio", "Website", "Site"],
+["Kabinet", "Office", "Кабинет", "Bureau", "Ufficio", "Oficina", "Büro", "Ofis"],
+["Profil rasmi", "Profile photo", "Фото профиля", "Photo de profil", "Foto profilo", "Foto de perfil", "Profilbild", "Profil fotoğrafı"],
+["Rasm qo'yish", "Add photo", "Добавить фото", "Ajouter une photo", "Aggiungi foto", "Añadir foto", "Foto hinzufügen", "Fotoğraf ekle"],
+["Rasmni almashtirish", "Change photo", "Сменить фото", "Changer la photo", "Cambia foto", "Cambiar foto", "Foto ändern", "Fotoğrafı değiştir"],
+["Rasmni o'chirish", "Remove photo", "Удалить фото", "Supprimer la photo", "Rimuovi foto", "Eliminar foto", "Foto entfernen", "Fotoğrafı kaldır"],
+["Bekor qilish", "Cancel", "Отмена", "Annuler", "Annulla", "Cancelar", "Abbrechen", "İptal"],
+["Rasmni tahrirlash", "Edit picture", "Изменить фото", "Modifier la photo", "Modifica foto", "Editar foto", "Bild bearbeiten", "Fotoğrafı düzenle"],
+["Profil rasmi yangilandi", "Profile photo updated", "Фото профиля обновлено", "Photo de profil mise à jour", "Foto profilo aggiornata", "Foto de perfil actualizada", "Profilbild aktualisiert", "Profil fotoğrafı güncellendi"],
+["Profil rasmi o'chirildi", "Profile photo removed", "Фото профиля удалено", "Photo de profil supprimée", "Foto profilo rimossa", "Foto de perfil eliminada", "Profilbild entfernt", "Profil fotoğrafı kaldırıldı"],
+["Rasmni o'qib bo'lmadi.", "Could not read the image.", "Не удалось прочитать изображение.", "Impossible de lire l’image.", "Impossibile leggere l'immagine.", "No se pudo leer la imagen.", "Bild konnte nicht gelesen werden.", "Görsel okunamadı."],
+["Xotira to'ldi: kichikroq rasm tanlang.", "Storage full: choose a smaller image.", "Память заполнена: выберите фото поменьше.", "Mémoire pleine : choisissez une image plus petite.", "Memoria piena: scegli un'immagine più piccola.", "Memoria llena: elige una imagen más pequeña.", "Speicher voll: kleineres Bild wählen.", "Bellek dolu: daha küçük bir görsel seçin."],
 ["Sayt","Website","Сайт","Site","Sito","Sitio","Website","Site"],
 ["Media va ko'rinish", "Media & appearance", "Медиа и оформление", "Médias et apparence", "Media e aspetto", "Medios y apariencia", "Medien & Aussehen", "Medya ve görünüm"],
 ["Tillar va jamoa", "Languages & team", "Языки и команда", "Langues et équipe", "Lingue e team", "Idiomas y equipo", "Sprachen & Team", "Diller ve ekip"],
@@ -3793,16 +3852,17 @@ prj(B){cmSnap().then(S=>{if(!S.base){B.innerHTML=needSite();return}const c=CMS()
 /* ---- Tillar ---- */
 lng(B){const c=CMS(),L=BL.concat(['cy']);cmSnap().then(S=>{const tot=S.cat?Object.keys(S.cat).length:0;
  B.innerHTML='<div class="card"><h3 class="cm-h">Sayt va kabinet tillari</h3><p class="note cm-l">'+esc(TX("O'chirilgan til saytdagi va kabinetdagi til tanlash ro'yxatidan yo'qoladi. O'zbekcha — asosiy til, uni o'chirib bo'lmaydi."))+'</p><div class="cm-tog">'+L.map(l=>'<label class="cm-sw1"><input type="checkbox" data-lo="'+l+'"'+(c.langs.off.includes(l)?'':' checked')+(l==='uz'?' disabled':'')+'><i></i><span>'+esc(LNAME[l])+' <small class="nt9">'+l.toUpperCase()+'</small></span></label>').join('')+'</div></div>'+
- '<div class="card"><h3 class="cm-h">Qo\'shilgan tillar</h3>'+(c.langs.added.length?c.langs.added.map(x=>{const n=Object.keys(c.text[x.code]||{}).length;return '<div class="cm-it"><div class="nt9"><b>'+esc(x.label)+' · '+esc(x.code.toUpperCase())+'</b><small>'+n+' / '+tot+' · '+(tot?Math.round(n/tot*100):0)+'%</small></div><div class="xa"><label class="cm-sw1 sm"><input type="checkbox" data-lo="'+esc(x.code)+'"'+(c.langs.off.includes(x.code)?'':' checked')+'><i></i></label><button type="button" class="btn gold sm" data-tr="'+esc(x.code)+'">'+I('edit')+'Tarjima qilish</button><button type="button" class="btn ghost sm dl" data-ld="'+esc(x.code)+'">'+I('trash')+'O\'chirish</button></div></div>'}).join(''):'<p class="note cm-l">'+esc(TX("Hozircha qo'shilgan til yo'q."))+'</p>')+
- '<form class="cm-grid cm-add" id="lgF"><label class="cm-f"><b>Til kodi (masalan: ko, zh, ar, kk)</b><input class="nt9" name="code" maxlength="10" required></label><label class="cm-f"><b>Til nomi (o\'z yozuvida)</b><input class="nt9" name="label" maxlength="30" required></label><label class="cm-f"><b>Mintaqa (ixtiyoriy, masalan: ko-KR)</b><input class="nt9" name="locale" maxlength="16"></label><div class="xa full"><button class="btn gold" type="submit">'+I('plus')+'Til qo\'shish</button></div><p class="note cm-l full">'+esc(TX("Yangi tilda hali tarjima qilinmagan matnlar inglizcha ko'rinadi. «Tarjima qilish» orqali har bir matnni yozing yoki JSON faylni yuklang."))+'</p></form></div>';
+ '<div class="card"><h3 class="cm-h">Qo\'shilgan tillar</h3>'+(c.langs.added.length?c.langs.added.map(x=>{const n=Object.keys(c.text[x.code]||{}).length;return '<div class="cm-it"><div class="nt9"><b>'+esc(x.label)+' · '+esc(x.code.toUpperCase())+'</b><small>'+n+' / '+tot+' · '+(tot?Math.round(n/tot*100):0)+'%</small><div class="ios-seg" role="group">'+[['all','Hammasi'],['site','Sayt'],['cab','Kabinet']].map(o=>'<button type="button" data-sc="'+esc(x.code)+'" data-sv="'+o[0]+'" class="'+((x.scope||'all')===o[0]?'on':'')+'">'+o[1]+'</button>').join('')+'</div></div><div class="xa"><label class="cm-sw1 sm"><input type="checkbox" data-lo="'+esc(x.code)+'"'+(c.langs.off.includes(x.code)?'':' checked')+'><i></i></label><button type="button" class="btn gold sm" data-tr="'+esc(x.code)+'">'+I('edit')+'Tarjima qilish</button><button type="button" class="btn ghost sm dl" data-ld="'+esc(x.code)+'">'+I('trash')+'O\'chirish</button></div></div>'}).join(''):'<p class="note cm-l">'+esc(TX("Hozircha qo'shilgan til yo'q."))+'</p>')+
+ '<form class="cm-grid cm-add" id="lgF"><label class="cm-f"><b>Til kodi (masalan: ko, zh, ar, kk)</b><input class="nt9" name="code" maxlength="10" required></label><label class="cm-f"><b>Til nomi (o\'z yozuvida)</b><input class="nt9" name="label" maxlength="30" required></label><label class="cm-f"><b>Mintaqa (ixtiyoriy, masalan: ko-KR)</b><input class="nt9" name="locale" maxlength="16"></label><div class="cm-f full"><b>Til qayerda chiqsin</b><div class="ios-list" role="radiogroup">'+[['all','Sayt va kabinet — hammasiga'],['site','Faqat saytga'],['cab','Faqat kabinetga']].map((o,i)=>'<label class="ios-row"><input type="radio" name="scope" value="'+o[0]+'"'+(i?'':' checked')+'><span>'+o[1]+'</span><svg class="ios-ck" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></label>').join('')+'</div></div><div class="xa full"><button class="btn gold" type="submit">'+I('plus')+'Til qo\'shish</button></div><p class="note cm-l full">'+esc(TX("Yangi tilda hali tarjima qilinmagan matnlar inglizcha ko'rinadi. «Tarjima qilish» orqali har bir matnni yozing yoki JSON faylni yuklang."))+'</p></form></div>';
  B.onchange=e=>{const x=e.target.closest('[data-lo]');if(!x)return;const c=CMS(),k=x.dataset.lo;c.langs.off=c.langs.off.filter(y=>y!==k);if(!x.checked)c.langs.off.push(k);cmsSave(c,x.checked?'Til yoqildi':"Til o'chirildi",k.toUpperCase());cabLangs()};
  B.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
   if(d.tr){TL=d.tr;TP=0;TQ='';ZT='txt';vZ();return}
+  if(d.sc){const c=CMS(),x=c.langs.added.find(y=>y.code===d.sc);if(!x)return;x.scope=d.sv;cmsSave(c,'Til joyi o\'zgardi',d.sc.toUpperCase()+' · '+d.sv);cabLangs();ZV.lng(B);return}
   if(d.ld){askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(lname(d.ld))+'</b>',()=>{const c=CMS();c.langs.added=c.langs.added.filter(x=>x.code!==d.ld);c.langs.off=c.langs.off.filter(x=>x!==d.ld);delete c.text[d.ld];cmsSave(c,"Til o'chirildi",d.ld.toUpperCase());if(LANG===d.ld)setLang('uz',true);cabLangs();ZV.lng(B)})}};
  $('lgF').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),code=String(f.get('code')).trim().toLowerCase(),label=String(f.get('label')).trim(),loc=String(f.get('locale')||'').trim()||code;
   if(!/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/.test(code)){kToast(TX("Til kodi 2–3 lotin harfidan iborat bo'lsin."));return}
   const c=CMS();if(BL.concat(['cy']).includes(code)||c.langs.added.some(x=>x.code===code)){kToast(TX('Bu til allaqachon bor.'));return}
-  c.langs.added.push({code,label,short:code.slice(0,3).toUpperCase(),locale:loc});cmsSave(c,"Yangi til qo'shildi",label+' · '+code.toUpperCase());cabLangs();ZV.lng(B)}})},
+  const scope=String(f.get('scope')||'all');c.langs.added.push({code,label,short:code.slice(0,3).toUpperCase(),locale:loc,scope});cmsSave(c,"Yangi til qo'shildi",label+' · '+code.toUpperCase());cabLangs();ZV.lng(B)}})},
 
 /* ---- Rollar va huquqlar ---- */
 rol(B){const u=UL(),P=PERM(),PR=[['cms','Sayt kontentini tahrirlash (matn, rasm, bo\'lim, loyiha, til)'],['rev',"Izoh qo'shish va o'chirish"]];
@@ -3876,13 +3936,98 @@ function revAdd(){const c0=CMS(),P=(window.PROJECTS||[]).map(p=>({id:p.id,name:p
   kToast(TX("Izoh saytga qo'shildi"));vR();nav()})}
 
 /* ---- kabinet tillari: qo'shilgan tillar va o'chirilganlar ---- */
-function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=CMS();
- c.langs.added.forEach(x=>{LOC[x.code]=x.locale||x.code;if(window.AHDICT&&!AHDICT[x.code])AHDICT[x.code]=AHDICT.en;if(window.I18N&&!I18N.langs.some(l=>l.code===x.code))I18N.langs.push({code:x.code,label:x.label,short:x.short||x.code.toUpperCase(),html:x.code,locale:x.locale||x.code});
+function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=CMS(),AC=c.langs.added.filter(x=>x.scope!=='site');
+ AC.forEach(x=>{LOC[x.code]=x.locale||x.code;if(window.AHDICT&&!AHDICT[x.code])AHDICT[x.code]=AHDICT.en;if(window.I18N&&!I18N.langs.some(l=>l.code===x.code))I18N.langs.push({code:x.code,label:x.label,short:x.short||x.code.toUpperCase(),html:x.code,locale:x.locale||x.code});
   if(!g.querySelector('[data-l="'+x.code+'"]'))g.insertAdjacentHTML('beforeend','<button type="button" data-l="'+esc(x.code)+'"><i>'+esc(x.code.toUpperCase())+'</i><span class="nt9">'+esc(x.label)+'</span></button>')});
- g.querySelectorAll('[data-l]').forEach(b=>{const l=b.dataset.l;b.hidden=(l!=='uz'&&c.langs.off.includes(l))||(!LNAME[l]&&!c.langs.added.some(x=>x.code===l))});
- let st='';try{st=localStorage.getItem('ah_lang')||''}catch(e){}if(st&&st!==LANG&&c.langs.added.some(x=>x.code===st)&&!c.langs.off.includes(st))setLang(st,false);
- if(LANG!=='uz'&&(c.langs.off.includes(LANG)||(!LNAME[LANG]&&!c.langs.added.some(x=>x.code===LANG))))setLang('uz',true)}
+ g.querySelectorAll('[data-l]').forEach(b=>{const l=b.dataset.l;b.hidden=(l!=='uz'&&c.langs.off.includes(l))||(!LNAME[l]&&!AC.some(x=>x.code===l))});
+ let st='';try{st=localStorage.getItem('ah_lang')||''}catch(e){}if(st&&st!==LANG&&AC.some(x=>x.code===st)&&!c.langs.off.includes(st))setLang(st,false);
+ if(LANG!=='uz'&&(c.langs.off.includes(LANG)||(!LNAME[LANG]&&!AC.some(x=>x.code===LANG))))setLang('uz',true)}
 addEventListener('DOMContentLoaded',cabLangs);addEventListener('load',cabLangs);
+/* =====================================================================
+   ART HOUSE — kabinet: profil rasmi (Instagram uslubida)
+   Rasm bo'lmasa — kulrang odam siluetli doira. Bosilganda iPhone uslubidagi
+   pastki menyu: rasm qo'yish / almashtirish / o'chirish / bekor qilish.
+   Rasm har bir foydalanuvchi uchun alohida: localStorage 'ah_avatars' {id: dataURL}.
+   ===================================================================== */
+{
+  var KEY = 'ah_avatars';
+  function all() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function me() { try { return ME(); } catch (e) { return { id: 'dir' }; } }
+  function get(id) { return all()[id] || ''; }
+  function set(id, v) {
+    var a = all(); if (v) a[id] = v; else delete a[id];
+    try { localStorage.setItem(KEY, JSON.stringify(a)); return true; } catch (e) { kToast(TX("Xotira to'ldi: kichikroq rasm tanlang.")); return false; }
+  }
+  var t = function (s) { try { return TX(s); } catch (e) { return s; } };
+
+  /* Instagram'dagi kabi bo'sh profil belgisi */
+  var SIL = '<svg class="av-sil" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#C7CDD1"/><circle cx="32" cy="25" r="11" fill="#F4F6F7"/><path d="M11.5 54.5C14.6 45 22.6 39.5 32 39.5S49.4 45 52.5 54.5A31.8 31.8 0 0 1 32 64a31.8 31.8 0 0 1-20.5-9.5Z" fill="#F4F6F7"/></svg>';
+  function face(id) { var v = get(id); return v ? '<img class="av-img" src="' + v + '" alt="">' : SIL; }
+
+  /* rasmni 400px kvadratga kesib, JPEG qilib saqlash */
+  function pick() {
+    return new Promise(function (res) {
+      var i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
+      i.onchange = function () {
+        var f = i.files && i.files[0]; if (!f) return res('');
+        var u = URL.createObjectURL(f), im = new Image();
+        im.onload = function () {
+          var s = Math.min(im.width, im.height), c = document.createElement('canvas'); c.width = c.height = 400;
+          c.getContext('2d').drawImage(im, (im.width - s) / 2, (im.height - s) / 2, s, s, 0, 0, 400, 400);
+          URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg', .86));
+        };
+        im.onerror = function () { URL.revokeObjectURL(u); kToast(t("Rasmni o'qib bo'lmadi.")); res(''); };
+        im.src = u;
+      };
+      i.click();
+    });
+  }
+
+  /* iPhone uslubidagi pastki menyu (action sheet) */
+  function sheet() {
+    var id = me().id, has = !!get(id);
+    var m = document.createElement('div'); m.className = 'ios-sheet'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+    m.innerHTML = '<div class="ios-grp"><div class="ios-head"><span class="ios-av">' + face(id) + '</span><b>' + t('Profil rasmi') + '</b></div>' +
+      '<button type="button" data-a="up">' + t(has ? 'Rasmni almashtirish' : "Rasm qo'yish") + '</button>' +
+      (has ? '<button type="button" data-a="rm" class="ios-del">' + t("Rasmni o'chirish") + '</button>' : '') +
+      '</div><div class="ios-grp"><button type="button" data-a="x" class="ios-cancel">' + t('Bekor qilish') + '</button></div>';
+    document.body.appendChild(m);
+    requestAnimationFrame(function () { m.classList.add('on'); });
+    var close = function () { m.classList.remove('on'); setTimeout(function () { m.remove(); }, 320); };
+    m.addEventListener('click', function (e) {
+      if (e.target === m) return close();
+      var b = e.target.closest('button'); if (!b) return;
+      var a = b.dataset.a; close();
+      if (a === 'up') pick().then(function (v) { if (v && set(id, v)) { paint(); kToast(t('Profil rasmi yangilandi')); } });
+      if (a === 'rm') { set(id, ''); paint(); kToast(t("Profil rasmi o'chirildi")); }
+    });
+    document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } });
+  }
+
+  /* chizish: pastki karta va «Mening profilim» sarlavhasi */
+  function paint() {
+    var id = me().id;
+    document.querySelectorAll('#rl .ua').forEach(function (u) {
+      u.classList.add('av'); u.innerHTML = face(id);
+      u.setAttribute('role', 'button'); u.tabIndex = 0; u.setAttribute('aria-label', t('Profil rasmi'));
+    });
+    var h = document.getElementById('avHero'); if (h) h.querySelector('.av-big').innerHTML = face(id);
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('#rl .ua.av,#avHero .av-big,#avHero .av-edit')) { e.preventDefault(); sheet(); } });
+  document.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('#rl .ua.av')) { e.preventDefault(); sheet(); } });
+
+  var U0 = uCard; uCard = function () { U0.apply(this, arguments); paint(); };
+  var P0 = vPf; vPf = function () {
+    P0.apply(this, arguments);
+    var mn = document.getElementById('mn'), m = me(), o = own(), hh = mn && mn.querySelector('.hh');
+    if (!mn || document.getElementById('avHero')) return;
+    var box = document.createElement('div'); box.id = 'avHero'; box.className = 'av-hero';
+    box.innerHTML = '<button type="button" class="av-big" aria-label="' + t('Profil rasmi') + '"></button><div class="av-meta"><b>' + (o ? t('Direktor') : String(m.n || t('Menejer')).replace(/[<>&]/g, '')) + '</b><small>' + (o ? t("To'liq huquq") : t('Menejer')) + '</small><button type="button" class="av-edit">' + t('Rasmni tahrirlash') + '</button></div>';
+    if (hh) hh.after(box); else mn.prepend(box);
+    paint();
+  };
+  if (document.getElementById('rl') && document.getElementById('rl').children.length) paint();
+}
 /* ---- ishga tushirish: lyuks splash → kabinet ---- */
 (function(){const sp=$('splash');if(!sp){openA();return}
  let done=0;const go=()=>{if(done)return;done=1;sp.classList.add('done');setTimeout(()=>sp.remove(),900);openA()};sp.addEventListener('click',go);setTimeout(go,matchMedia('(prefers-reduced-motion:reduce)').matches?0:3600)})();
