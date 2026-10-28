@@ -396,3 +396,17 @@ html,body{background:var(--em-900)}
 .ios-grp .ios-del{color:#FF453A}
 .ios-grp .ios-cancel{font-weight:600}
 @media (min-width:821px){.ios-sheet{justify-content:center}}
+
+/* iPhone uslubidagi tanlov ro'yxati (galochka bilan) va segmentli tugmalar */
+#adm .ios-list{border-radius:12px;overflow:hidden;background:var(--sf-2);border:1px solid var(--bd)}
+#adm .ios-row{position:relative;display:flex;align-items:center;gap:12px;min-height:46px;padding:0 16px;cursor:pointer;font:500 14.5px var(--ui);color:var(--tx)}
+#adm .ios-row+.ios-row:before{content:'';position:absolute;top:0;left:16px;right:0;height:1px;background:var(--bd)}
+#adm .ios-row input{position:absolute;opacity:0;pointer-events:none}
+#adm .ios-row span{flex:1}
+#adm .ios-ck{width:20px;height:20px;fill:none;stroke:var(--ch-300);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.6);transition:opacity .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+#adm .ios-row input:checked~.ios-ck{opacity:1;transform:none}
+#adm .ios-row input:checked~span{color:var(--ch-100)}
+#adm .ios-row:active{background:rgba(255,255,255,.04)}
+#adm .ios-seg{display:inline-flex;gap:2px;margin-top:8px;padding:2px;border-radius:9px;background:var(--sf-in);border:1px solid var(--bd)}
+#adm .ios-seg button{height:26px;padding:0 10px;border:0;border-radius:7px;background:none;color:var(--tx-2);font:500 12px var(--ui);cursor:pointer}
+#adm .ios-seg button.on{background:var(--em-600);color:var(--ch-100);box-shadow:0 1px 3px rgba(0,0,0,.3)}

@@ -11,6 +11,7 @@
   var BUILTIN = I18N.langs.map(function (l) { return l.code; });
   var ADDED = [];
   (LG.added || []).forEach(function (L) {
+    if (L && L.scope === 'cab') return; /* faqat kabinet uchun qo'shilgan til */
     if (!L || !/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/i.test(L.code) || BUILTIN.indexOf(L.code) > -1) return;
     I18N.langs.push({ code: L.code, label: L.label || L.code, short: (L.short || L.code).toUpperCase().slice(0, 3), html: L.code, locale: L.locale || L.code, cms: true });
     ADDED.push(L.code);
