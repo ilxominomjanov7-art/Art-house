@@ -116,17 +116,15 @@ body { font-variant-numeric: lining-nums; }
 .mnav-list a { display: flex !important; align-items: center; gap: 12px; min-height: 48px !important; padding: 0 12px !important; border: 0 !important; border-radius: 12px !important; background: none !important;
   color: rgba(248, 240, 216, .9) !important; font-size: 15.5px !important; font-weight: 500; opacity: 0; transform: translateX(-10px); transition: background .2s, opacity .4s ease calc(var(--d) * 35ms + 120ms), transform .45s cubic-bezier(.22, 1, .36, 1) calc(var(--d) * 35ms + 120ms) !important; position: relative; }
 .mnav.open .mnav-list a { opacity: 1; transform: none; }
-.mnav-list a span { flex: 1; }
+.mnav-list a > span:not(.gt) { flex: 1; }
 .mnav-list a .ic { width: 16px !important; height: 16px !important; color: var(--gold) !important; opacity: .55 !important; }
 .mnav-list a:active, .mnav-list a:hover { background: rgba(255, 255, 255, .05) !important; }
 .mnav-list a.active { background: rgba(235, 212, 156, .12) !important; color: var(--gold-hi) !important; }
 .mnav-list a.active::before { content: ''; position: absolute; left: -14px; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0; background: var(--gold); }
-.mnav-emo { width: 26px; height: 26px; flex: none; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .35)); }
 .mnav-foot { margin-top: auto; padding-top: 18px; display: grid; gap: 10px; }
 .mnav-foot .btn { width: 100%; justify-content: center; min-height: 50px; }
 .mnav-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .mnav-mini { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; border: 1px solid rgba(235, 212, 156, .22); color: var(--ink); font-size: 14px; font-weight: 500; }
-.mnav-mini .mnav-emo { width: 22px; height: 22px; }
 
 /* =====================================================================
    RASM USTIDAGI YOZUV — har bir tilda (asl rasmdagi o'zbekcha matn o'rniga)
@@ -178,3 +176,20 @@ body { font-variant-numeric: lining-nums; }
 .mp-btns .btn:only-child { grid-column: 1 / -1; }
 .mp-btns .btn { justify-content: center; min-height: 50px; }
 .mp-help { justify-self: center; border: 0; background: none; color: var(--gold-hi); font-size: 14.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+/* =====================================================================
+   OCH OLTIN PLITKALAR — iOS ilova ikonkasi uslubidagi ikonkalar (js/gold-icons.js)
+   ===================================================================== */
+.gt { --s: 34px; flex: none; width: var(--s); height: var(--s); border-radius: calc(var(--s) * .3); display: inline-grid; place-items: center; vertical-align: middle;
+  background: linear-gradient(160deg, #FBF0D2 0%, #EBD49C 45%, #CFAE6E 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), inset 0 -1px 0 rgba(120, 88, 34, .25), 0 6px 14px -6px rgba(0, 0, 0, .5); }
+.gt svg { width: 54%; height: 54%; fill: #0D4333; stroke: none; }
+.gt.sm { --s: 26px; border-radius: 8px; }
+.gt.lg { --s: 48px; }
+.mnav-list a .gt { --s: 34px; }
+.mnav-mini .gt { --s: 26px; }
+.dock .gt { --s: 32px; margin-bottom: 2px; }
+.soc-card .ico { background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; width: auto !important; height: auto !important; }
+.soc-card .ico .gt { --s: 46px; }
+.why article > .gt { margin-bottom: 14px; }
+.btn-ghost > .gt { margin-right: 2px; }

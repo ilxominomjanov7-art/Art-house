@@ -119,9 +119,9 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMnav(); });
       I18N.apply(b);
     }
-    /* chap tomondan chiqadigan menyu (kabinetdagidek): iPhone emojili bo'limlar */
-    var EMO = window.AH_EMO || {};
-    var em = function (k) { return EMO[k] ? '<img class="mnav-emo" src="' + EMO[k] + '" alt="" aria-hidden="true">' : '<span class="mnav-emo"></span>'; };
+    /* chap tomondan chiqadigan menyu (kabinetdagidek): och oltin plitkali bo'limlar */
+    var RG = { home: 'home', calculator: 'calc', projects: 'build', location: 'pin', about: 'about', social: 'ig', contact: 'phone', reviews: 'star', tg: 'tg', cabinet: 'key' };
+    var em = function (k) { return '<span class="gt" aria-hidden="true"><svg><use href="#f-' + (RG[k] || 'star') + '"/></svg></span>'; };
     var items = $$('.menu-track > a').filter(function (a) { return !a.hidden; }).map(function (a, i) {
       var r = a.dataset.route;
       return '<a href="' + a.getAttribute('href') + '" data-route="' + r + '" style="--d:' + i + '"' + (a.classList.contains('active') ? ' class="active"' : '') + '>' + em(r) + '<span>' + esc(a.querySelector('span').textContent) + '</span><svg class="ic"><use href="#i-right"/></svg></a>';
