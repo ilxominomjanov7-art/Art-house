@@ -529,7 +529,19 @@ function fillRefs(R,pid){R.querySelectorAll('[data-ref]').forEach(el=>{refURL(el
 /* fayl tanlash: rasm → siqiladi (1600px, JPEG), video → o'zi */
 function cmPick(accept,multi){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.accept=accept;i.multiple=!!multi;i.onchange=()=>res([...i.files]);i.click()})}
 function cmShrink(f){return new Promise(res=>{if(!/^image\/(jpeg|png|webp)/.test(f.type)||f.size<350e3)return res(f);const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);res(b&&b.size<f.size?b:f)},'image/jpeg',.86)};im.onerror=()=>res(f);im.src=u})}
-async function cmUp(kind,multi){const fs=await cmPick(kind==='video'?'video/*':'image/*',multi);const out=[];for(const f of fs){if(kind==='video'&&f.size>120e6){kToast(TX('Video hajmi 120 MB dan oshmasin.'));continue}try{out.push(await Store.putBlob(kind==='video'?f:await cmShrink(f)))}catch(e){kToast(TX("Faylni saqlab bo'lmadi."))}}return out}
+/* drag & drop: fayl [data-up] tugmasi bor blokka tashlansa — o'sha tugma bosilgandek ishlaydi */
+let CM_DROP=null;
+const CM_UPB='[data-up],[data-ga=image],[data-ga=video],[data-pa=image],[data-pa=video]';
+const cmKind=b=>b.dataset.kind||b.dataset.ga||b.dataset.pa;
+const cmDropZone=t=>{const z=t&&t.closest&&t.closest('.cm-media,.cm-sec,.cm-drop,#cmB>.card');return z&&z.querySelector(CM_UPB)?z:null};
+const isFiles=e=>e.dataTransfer&&[].indexOf.call(e.dataTransfer.types||[],'Files')>=0;
+document.addEventListener('dragover',e=>{const z=cmDropZone(e.target);if(!z||!isFiles(e))return;e.preventDefault();e.dataTransfer.dropEffect='copy';document.querySelectorAll('.cm-drop-on').forEach(x=>x!==z&&x.classList.remove('cm-drop-on'));z.classList.add('cm-drop-on')});
+document.addEventListener('dragleave',e=>{const z=cmDropZone(e.target);if(z&&!z.contains(e.relatedTarget))z.classList.remove('cm-drop-on')});
+document.addEventListener('drop',e=>{const z=cmDropZone(e.target);if(!z)return;e.preventDefault();z.classList.remove('cm-drop-on');const fs=[...(e.dataTransfer&&e.dataTransfer.files||[])];if(!fs.length)return;
+ const mt=k=>k==='video'?'video/':'image/',btns=[...z.querySelectorAll(CM_UPB)],b=btns.find(x=>fs.some(f=>f.type.indexOf(mt(cmKind(x)))===0))||btns[0],k=cmKind(b);
+ const ok=fs.filter(f=>f.type.indexOf(mt(k))===0);if(!ok.length){kToast(TX(k==='video'?'Faqat video fayl yuklang.':'Faqat rasm fayl yuklang.'));return}
+ CM_DROP=(b.dataset.multi!=null||k==='image'&&!b.dataset.up)?ok:ok.slice(0,1);b.click()});
+async function cmUp(kind,multi){const fs=CM_DROP||await cmPick(kind==='video'?'video/*':'image/*',multi);CM_DROP=null;const out=[];for(const f of fs){if(kind==='video'&&f.size>120e6){kToast(TX('Video hajmi 120 MB dan oshmasin.'));continue}try{out.push(await Store.putBlob(kind==='video'?f:await cmShrink(f)))}catch(e){kToast(TX("Faylni saqlab bo'lmadi."))}}return out}
 
 /* ---------- umumiy dialog (tahrirlagich) ---------- */
 const cmGet=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);
@@ -538,7 +550,7 @@ function cmML(path,E,area,label){const L=LANGS_ON(),main=L.filter(l=>['uz','ru',
  const row=l=>'<label class="cm-ml"><i>'+l.toUpperCase()+'</i>'+(area?'<textarea rows="3" data-p="'+path+'.'+l+'">'+esc(cmGet(E,path+'.'+l)||'')+'</textarea>':'<input data-p="'+path+'.'+l+'" value="'+esc(cmGet(E,path+'.'+l)||'')+'">')+'</label>';
  return '<div class="cm-f"><b>'+label+'</b><div class="nt9">'+main.map(row).join('')+(rest.length?'<details><summary>'+esc(TX('Boshqa tillar'))+' · '+rest.map(x=>x.toUpperCase()).join(', ')+'</summary>'+rest.map(row).join('')+'</details>':'')+'</div></div>'}
 const cmIn=(p,E,label,type,ph)=>'<label class="cm-f"><b>'+label+'</b><input class="nt9" data-p="'+p+'"'+(type?' type="'+type+'" step="any"':'')+' value="'+esc(cmGet(E,p)==null?'':cmGet(E,p))+'"'+(ph?' data-ph="'+esc(ph)+'"':'')+'></label>';
-function mediaBox(p,E,kind,pid){const v=cmGet(E,p)||'';return '<div class="cm-media">'+(v?(kind==='video'?'<video data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" controls preload="metadata" playsinline></video>':'<img data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" alt="">'):'<div class="cm-empty">'+I('image')+'</div>')+
+function mediaBox(p,E,kind,pid){const v=cmGet(E,p)||'';return '<div class="cm-media">'+(v?(kind==='video'?'<video data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" controls preload="metadata" playsinline></video>':'<img data-ref="'+esc(v)+'" data-pid="'+(pid||'')+'" alt="">'):'<div class="cm-dropzone">'+I(kind==='video'?'video':'upload')+'<span>'+(kind==='video'?'Videoni shu yerga tashlang':'Rasmni shu yerga tashlang')+'</span></div>')+
  '<div class="xa"><button type="button" class="btn ghost sm" data-up="'+p+'" data-kind="'+kind+'">'+I('upload')+(kind==='video'?'Video yuklash':'Rasm yuklash')+'</button><button type="button" class="btn ghost sm" data-url="'+p+'">'+I('link')+'Havola</button>'+(v?'<button type="button" class="btn ghost sm dl" data-clr="'+p+'">'+I('trash')+'Olib tashlash</button>':'')+'</div></div>'}
 function cmTr(R){if(typeof LANG==='undefined'||LANG==='uz'||!window.AHTR)return;const w=document.createTreeWalker(R,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const p=n.parentElement;if(!p||p.closest('.nt9,script,style,svg'))continue;const v=AHTR(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}
  R.querySelectorAll('[aria-label],[placeholder],[title]').forEach(e=>{if(e.closest('.nt9'))return;['aria-label','placeholder','title'].forEach(a=>{const v=e.getAttribute(a);if(v){const t=AHTR(v);if(t!==v)e.setAttribute(a,t)}})})}
@@ -566,10 +578,14 @@ const V0=vZ;
 vZ=function(){const o=own(),mn=$('mn');if(!o&&!cmCan('cms'))return V0();
  const T=ZTABS.filter(t=>o||!t[3]);if(!T.some(t=>t[0]===ZT))ZT=T[0][0];
  const bar='<div class="cm-tabs" role="tablist">'+T.map(t=>'<button type="button" role="tab" data-zt="'+t[0]+'" class="'+(ZT===t[0]?'on':'')+'" aria-selected="'+(ZT===t[0])+'">'+I(t[1])+'<span>'+t[2]+'</span></button>').join('')+'</div>';
- if(ZT==='base'){V0();mn.insertAdjacentHTML('afterbegin','<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar)}
+ if(ZT==='base'){V0();const g0=mn.querySelector(':scope>.gs');(g0||mn).insertAdjacentHTML(g0?'afterend':'afterbegin','<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar)}
  else{mn.innerHTML='<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar+'<div id="cmB" class="cm-body"></div>';ZV[ZT]($('cmB'))}
  mn.querySelector('.cm-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-zt]');if(!b)return;ZT=b.dataset.zt;vZ()})};
-const needSite=()=>'<div class="card cm-note"><p>'+esc(TX("Bu bo'lim uchun saytning asl matn va rasmlari kerak. Saytni shu brauzerda bir marta oching — ma'lumot avtomatik keladi."))+'</p><a class="btn gold sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+'Saytni ochish</a></div>';
+/* asl matn/rasmlar nusxasi yo'q bo'lsa — sayt yashirin iframe'da yuklanadi va nusxani o'zi yozadi */
+let SNAPLD=0;
+function needSite(){if(!SNAPLD&&location.protocol.indexOf('http')===0){SNAPLD=1;const f=document.createElement('iframe');f.src='index.html?cmsnap=1';f.setAttribute('aria-hidden','true');f.tabIndex=-1;f.style.cssText='position:fixed;width:1px;height:1px;left:-9999px;top:0;border:0;opacity:0;pointer-events:none';document.body.appendChild(f);
+ let n=0;const t=setInterval(()=>{SNAP=null;cmSnap().then(S=>{if(S.base&&S.cat||++n>40){clearInterval(t);f.remove();if(S.base&&tok&&VW==='z')view('z');else if(!S.base)SNAPLD=0}})},750)}
+ return SNAPLD?'<div class="card cm-note cm-wait"><span class="cm-spin" aria-hidden="true"></span><p>'+esc(TX("Saytning asl matn va rasmlari yuklanmoqda…"))+'</p></div>':'<div class="card cm-note"><p>'+esc(TX("Bu bo'lim uchun saytning asl matn va rasmlari kerak. Saytni shu brauzerda bir marta oching — ma'lumot avtomatik keladi."))+'</p><a class="btn gold sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+'Saytni ochish</a></div>'}
 function liveEdit(){LS('ah_edit',{exp:Date.now()+3*36e5,by:tag(ME())});cmAud('Saytda jonli tahrirlash ochildi','');open('index.html?edit=1','_blank')}
 
 const ZV={
@@ -782,8 +798,8 @@ function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=
  if(LANG!=='uz'&&(c.langs.off.includes(LANG)||(!LNAME[LANG]&&!c.langs.added.some(x=>x.code===LANG))))setLang('uz',true)}
 addEventListener('DOMContentLoaded',cabLangs);addEventListener('load',cabLangs);
 /* ---- ishga tushirish: lyuks splash → kabinet ---- */
-(function(){const sp=$('splash');if(!sp){openA();return}const lg=sp.querySelector('.lux-logo');for(let i=0;i<18;i++){const s=document.createElement('i');s.className='spark';s.style.cssText='left:'+(8+Math.random()*84)+'%;top:'+(15+Math.random()*70)+'%;animation-delay:'+(0.8+Math.random()*2.2)+'s';lg.appendChild(s)}
- let done=0;const go=()=>{if(done)return;done=1;sp.classList.add('done');setTimeout(()=>sp.remove(),900);openA()};sp.addEventListener('click',go);setTimeout(go,matchMedia('(prefers-reduced-motion:reduce)').matches?0:3200)})();
+(function(){const sp=$('splash');if(!sp){openA();return}
+ let done=0;const go=()=>{if(done)return;done=1;sp.classList.add('done');setTimeout(()=>sp.remove(),900);openA()};sp.addEventListener('click',go);setTimeout(go,matchMedia('(prefers-reduced-motion:reduce)').matches?0:3600)})();
 })();
 
 /* === KABINET: til (globus), jonli tarjima, kirishni tiklash === */

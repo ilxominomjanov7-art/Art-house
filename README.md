@@ -14,6 +14,8 @@ kabinet.html      — kabinet: Bosh sahifa, Xabarlar (sayt xabarlari + telefon q
 css/base.css      — umumiy uslublar, lyuks logotip animatsiyasi, qo'ng'iroq oynasi
 css/site.css      — sayt uslublari
 css/kabinet.css   — kabinet uslublari
+css/kabinet-cms.css — Sozlamalar (CMS) bo'limi uslublari
+css/kabinet-theme.css — kabinet dizayn tizimi: zumrad + shampan oltin, Inter shrifti, chap menyu, splash
 js/config.js      — BARCHA sozlamalar va kontent (telefonlar, havolalar, loyihalar, narxlar)
 js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.js, js/i18n-es-de-tr.js
 js/agent.js       — saytdagi «Art House» AI maslahatchi (o'ng tomonda) + js/agent-dict.js (8 til)

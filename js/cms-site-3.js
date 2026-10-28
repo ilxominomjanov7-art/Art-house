@@ -197,7 +197,8 @@
   }
   function snapshot() {
     var sig = window.AH_BUILD + '|' + Object.keys(I18N.dict.en || {}).length;
-    try { if (localStorage.getItem('ah_cms_snap') === sig) return; } catch (e) { return; }
+    var force = /[?&]cmsnap=1/.test(location.search);
+    try { if (!force && localStorage.getItem('ah_cms_snap') === sig) return; } catch (e) { return; }
     var keys = {}, L = ['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'];
     $$('[data-i]').forEach(function (e) { keys[e.getAttribute('data-i')] = 1; });
     $$('[data-i-ph]').forEach(function (e) { keys[e.getAttribute('data-i-ph')] = 1; });
@@ -215,7 +216,8 @@
       tx.oncomplete = function () { try { localStorage.setItem('ah_cms_snap', sig); localStorage.setItem('ah_cms_cat_at', String(Date.now())); } catch (e) {} };
     }).catch(function () {});
   }
-  (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(snapshot);
+  if (/[?&]cmsnap=1/.test(location.search)) setTimeout(snapshot, 300);
+  else (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(snapshot);
 
   /* ---------- nashr qilingan kontent (barcha tashrif buyuruvchilar uchun) ---------- */
   function adopt(R) {
