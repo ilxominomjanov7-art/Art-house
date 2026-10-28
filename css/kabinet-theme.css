@@ -278,3 +278,77 @@ html,body{background:var(--em-900)}
 #adm input[type=checkbox],.dlg input[type=checkbox]{-webkit-appearance:none;appearance:none;width:16px;height:16px;flex:none;margin:0;border-radius:4px;border:1px solid var(--bd-3);background:var(--sf-in);display:inline-grid;place-items:center;cursor:pointer;vertical-align:middle;transition:background .15s,border-color .15s}
 #adm input[type=checkbox]:checked,.dlg input[type=checkbox]:checked{background:var(--ch-300);border-color:var(--ch-300)}
 #adm input[type=checkbox]:checked:after,.dlg input[type=checkbox]:checked:after{content:'';width:8px;height:4px;border:1.6px solid var(--em-900);border-top:0;border-right:0;transform:translateY(-1px) rotate(-45deg)}
+
+/* =====================================================================
+   SOZLAMALAR — chapda guruhlangan ro'yxat (telefon «Parametrlar» uslubi)
+   ===================================================================== */
+#adm .zs{display:grid;grid-template-columns:330px minmax(0,1fr);gap:24px;align-items:start}
+#adm .zl{position:sticky;top:16px;display:grid;gap:16px;max-height:calc(100vh - 32px);overflow-y:auto;scrollbar-width:none;padding-bottom:8px}
+#adm .zl::-webkit-scrollbar{display:none}
+#adm .zgh{margin:0 0 6px 14px;font:600 11px/1 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--tx-3)}
+#adm .zgc{border-radius:18px;background:var(--sf-2);border:1px solid var(--bd);overflow:hidden}
+#adm .zi{position:relative;display:flex;align-items:center;gap:14px;width:100%;padding:13px 14px;border:0;background:none;color:var(--tx);text-align:left;cursor:pointer;transition:background .18s}
+#adm .zi+.zi:before{content:'';position:absolute;top:0;left:66px;right:14px;height:1px;background:var(--bd)}
+#adm .zi:hover{background:rgba(255,255,255,.035)}
+#adm .zi.on{background:rgba(220,196,143,.1)}
+#adm .zi.on:after{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--ch-300)}
+#adm .zt{flex:1;min-width:0;display:grid;gap:3px}
+#adm .zt b{font:600 14.5px/1.25 var(--ui);color:var(--tx)}
+#adm .zi.on .zt b{color:var(--ch-100)}
+#adm .zt small{display:block;font:400 12px/1.35 var(--ui);color:var(--tx-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#adm .zt em{font-style:normal}
+#adm .zt em+em:before{content:'•';margin:0 6px;opacity:.7}
+#adm .zch{width:16px;height:16px;flex:none;fill:none;stroke:var(--tx-3);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+#adm .zc{min-width:0}
+#adm .zbk{display:none}
+#adm .zh{display:flex;align-items:center;gap:12px;font:600 18px/1.2 var(--ui)!important;margin:2px 0 16px!important}
+#adm .zh .zic{width:34px;height:34px;border-radius:10px}
+#adm .zh .zic svg{width:18px;height:18px}
+
+/* rangli ikonka plitkalari (oq chiziqli belgi, qimmatbaho tuslar) */
+#adm .zic{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 4px 10px -4px rgba(0,0,0,.45)}
+#adm .zic svg,#adm .zic .ic{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin:0}
+.zc-base{background:linear-gradient(145deg,#E3C27A,#B48A3A)}
+.zc-txt{background:linear-gradient(145deg,#6A98F2,#3A62C8)}
+.zc-inf{background:linear-gradient(145deg,#3FCB95,#1C9468)}
+.zc-med{background:linear-gradient(145deg,#F29274,#D45E45)}
+.zc-col{background:linear-gradient(145deg,#B196F2,#7A5CD4)}
+.zc-sec{background:linear-gradient(145deg,#46C6CE,#20909E)}
+.zc-prj{background:linear-gradient(145deg,#F4BE55,#D68E1C)}
+.zc-lng{background:linear-gradient(145deg,#55B6F2,#2A84C6)}
+.zc-rol{background:linear-gradient(145deg,#EA7895,#BF4568)}
+.zc-log{background:linear-gradient(145deg,#97AAC0,#62768E)}
+.zc-pub{background:linear-gradient(145deg,#73CF66,#3C9C44)}
+
+/* asosiy menyu ham rangli plitkalar bilan */
+#adm #sd #nv .nt{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+#adm #sd #nv .nt svg{width:16px;height:16px;stroke:#fff;stroke-width:1.9}
+#adm #sd #nv button.on .nt{color:#fff}
+#adm #sd #nv button .nt svg,#adm #sd #nv button.on .nt svg{stroke:#fff}
+#adm #sd #nv button{min-height:40px}
+#adm #sd #nv button[data-v=h] .nt{background:linear-gradient(145deg,#E3C27A,#B48A3A)}
+#adm #sd #nv button[data-v=m] .nt{background:linear-gradient(145deg,#6A98F2,#3A62C8)}
+#adm #sd #nv button[data-v=r] .nt{background:linear-gradient(145deg,#3FCB95,#1C9468)}
+#adm #sd #nv button[data-v=R] .nt{background:linear-gradient(145deg,#F4BE55,#D68E1C)}
+#adm #sd #nv button[data-v=V] .nt{background:linear-gradient(145deg,#F29274,#D45E45)}
+#adm #sd #nv button[data-v=c] .nt{background:linear-gradient(145deg,#55B6F2,#2A84C6)}
+#adm #sd #nv button[data-v=u] .nt{background:linear-gradient(145deg,#46C6CE,#20909E)}
+#adm #sd #nv button[data-v=p] .nt{background:linear-gradient(145deg,#73CF66,#3C9C44)}
+#adm #sd #nv button[data-v=d] .nt{background:linear-gradient(145deg,#EA7895,#BF4568)}
+#adm #sd #nv button[data-v=s] .nt{background:linear-gradient(145deg,#B196F2,#7A5CD4)}
+#adm #sd #nv button[data-v=g] .nt{background:linear-gradient(145deg,#8E7CF0,#5B47C8)}
+#adm #sd #nv button[data-v=P] .nt{background:linear-gradient(145deg,#3FCB95,#1C9468)}
+#adm #sd #nv button[data-v=M] .nt{background:linear-gradient(145deg,#E3C27A,#B48A3A)}
+#adm #sd #nv button[data-v=z] .nt{background:linear-gradient(145deg,#97AAC0,#62768E)}
+
+/* telefon: avval ro'yxat, bosilganda bo'lim ochiladi (orqaga tugmasi bilan) */
+@media (max-width:820px){
+ #adm .zs{grid-template-columns:1fr;gap:0}
+ #adm .zl{position:static;max-height:none;overflow:visible}
+ #adm .zs:not(.open) .zc{display:none}
+ #adm .zs.open .zl{display:none}
+ #adm .zbk{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 10px 0 4px;margin:0 0 10px;border-radius:var(--r-sm);border:0;background:none;color:var(--ch-200);font:600 14px var(--ui)}
+ #adm .zbk svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ #adm .zi{padding:14px}
+}
+#adm .zc>h2,#adm .zc>.hh{display:none}

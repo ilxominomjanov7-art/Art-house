@@ -575,12 +575,21 @@ function DLG(title,E,body,onSave,wide){const m=document.createElement('div');m.c
 let ZT='base',TL='ru',TQ='',TM=0,TP=0,JQ='',JW='';
 const ZTABS=[['base','set','Narxlar va tizim',1],['txt','file','Matnlar va tarjimalar'],['inf','phone','Aloqa va raqamlar'],['med','image','Rasm va videolar'],['col','palette','Ranglar',1],['sec','layers',"Bo'limlar"],['prj','bld','Loyihalar'],['lng','globe','Tillar'],['rol','crown','Rollar va huquqlar',1],['log','clock','Faoliyat jurnali',1],['pub','download','Nashr va zaxira']];
 const V0=vZ;
+/* Sozlamalar — chapda guruhlangan ro'yxat (rangli ikonka, nom, qisqa izoh), o'ngda tanlangan bo'lim */
+const ZGRP=[["Sayt",['base','txt','inf']],["Media va ko'rinish",['med','col','sec','prj']],["Tillar va jamoa",['lng','rol']],["Tizim",['log','pub']]];
+const ZSUB={base:["Narx","Bo'lib to'lash","Modullar"],txt:["Tarjimalar","Jonli tahrirlash"],inf:["Telefonlar","Ijtimoiy tarmoqlar","Raqamlar"],med:["Galereya","Videolar","Muqovalar"],col:["Tayyor uslublar","Ranglar palitrasi"],sec:["Bo'limlarni yoqish","Yangi bo'lim"],prj:["Loyihalar","Rejalar","Galereya"],lng:["Saytdagi tillar","Yangi til"],rol:["Menejerlar","Ruxsatlar"],log:["Kim, qachon, nima o'zgartirdi"],pub:["Nashr qilish","Zaxira nusxa"]};
+let ZOPEN=false;
+const zMob=()=>matchMedia('(max-width:820px)').matches;
 vZ=function(){const o=own(),mn=$('mn');if(!o&&!cmCan('cms'))return V0();
  const T=ZTABS.filter(t=>o||!t[3]);if(!T.some(t=>t[0]===ZT))ZT=T[0][0];
- const bar='<div class="cm-tabs" role="tablist">'+T.map(t=>'<button type="button" role="tab" data-zt="'+t[0]+'" class="'+(ZT===t[0]?'on':'')+'" aria-selected="'+(ZT===t[0])+'">'+I(t[1])+'<span>'+t[2]+'</span></button>').join('')+'</div>';
- if(ZT==='base'){V0();const g0=mn.querySelector(':scope>.gs');(g0||mn).insertAdjacentHTML(g0?'afterend':'afterbegin','<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar)}
- else{mn.innerHTML='<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>'+bar+'<div id="cmB" class="cm-body"></div>';ZV[ZT]($('cmB'))}
- mn.querySelector('.cm-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-zt]');if(!b)return;ZT=b.dataset.zt;vZ()})};
+ const row=t=>'<button type="button" role="tab" data-zt="'+t[0]+'" class="zi'+(ZT===t[0]?' on':'')+'" aria-selected="'+(ZT===t[0])+'"><i class="zic zc-'+t[0]+'">'+I(t[1])+'</i><span class="zt"><b>'+t[2]+'</b><small>'+(ZSUB[t[0]]||[]).map(x=>'<em>'+x+'</em>').join('')+'</small></span><svg class="zch" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>';
+ const list='<div class="zl" role="tablist" aria-label="Sozlamalar">'+ZGRP.map(g=>{const it=g[1].map(id=>T.find(t=>t[0]===id)).filter(Boolean);return it.length?'<div class="zg"><p class="zgh">'+g[0]+'</p><div class="zgc">'+it.map(row).join('')+'</div></div>':''}).join('')+'</div>';
+ const cur=T.find(t=>t[0]===ZT),back='<button type="button" class="zbk" data-zback>'+'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span>Sozlamalar</span></button><h3 class="zh"><i class="zic zc-'+cur[0]+'">'+I(cur[1])+'</i>'+cur[2]+'</h3>';
+ const head='<div class="hh"><div><h2>Sozlamalar</h2><p class="lead">Saytdagi matn, raqam, rasm, video, rang, bo\'lim va tillarni kodga tegmasdan boshqarish</p></div></div>';
+ if(ZT==='base'){V0();const g0=mn.querySelector(':scope>.gs'),box=document.createElement('div');box.className='zc';box.insertAdjacentHTML('afterbegin',back);[...mn.children].filter(x=>x!==g0).forEach(x=>box.appendChild(x));
+  const lay=document.createElement('div');lay.className='zs'+(ZOPEN?' open':'');lay.innerHTML=list;lay.appendChild(box);(g0||mn).insertAdjacentHTML(g0?'afterend':'afterbegin',head);mn.appendChild(lay)}
+ else{mn.innerHTML=head+'<div class="zs'+(ZOPEN?' open':'')+'">'+list+'<div class="zc">'+back+'<div id="cmB" class="cm-body"></div></div></div>';ZV[ZT]($('cmB'))}
+ mn.querySelector('.zs').addEventListener('click',e=>{if(e.target.closest('[data-zback]')){ZOPEN=false;vZ();mn.scrollIntoView&&scrollTo(0,0);return}const b=e.target.closest('[data-zt]');if(!b)return;ZT=b.dataset.zt;ZOPEN=true;vZ();if(zMob())scrollTo(0,0)})};
 /* asl matn/rasmlar nusxasi yo'q bo'lsa — sayt yashirin iframe'da yuklanadi va nusxani o'zi yozadi */
 let SNAPLD=0;
 function needSite(){if(!SNAPLD&&location.protocol.indexOf('http')===0){SNAPLD=1;const f=document.createElement('iframe');f.src='index.html?cmsnap=1';f.setAttribute('aria-hidden','true');f.tabIndex=-1;f.style.cssText='position:fixed;width:1px;height:1px;left:-9999px;top:0;border:0;opacity:0;pointer-events:none';document.body.appendChild(f);
