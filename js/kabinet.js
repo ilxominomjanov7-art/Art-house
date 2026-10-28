@@ -806,6 +806,91 @@ function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=
  let st='';try{st=localStorage.getItem('ah_lang')||''}catch(e){}if(st&&st!==LANG&&c.langs.added.some(x=>x.code===st)&&!c.langs.off.includes(st))setLang(st,false);
  if(LANG!=='uz'&&(c.langs.off.includes(LANG)||(!LNAME[LANG]&&!c.langs.added.some(x=>x.code===LANG))))setLang('uz',true)}
 addEventListener('DOMContentLoaded',cabLangs);addEventListener('load',cabLangs);
+/* =====================================================================
+   ART HOUSE — kabinet: profil rasmi (Instagram uslubida)
+   Rasm bo'lmasa — kulrang odam siluetli doira. Bosilganda iPhone uslubidagi
+   pastki menyu: rasm qo'yish / almashtirish / o'chirish / bekor qilish.
+   Rasm har bir foydalanuvchi uchun alohida: localStorage 'ah_avatars' {id: dataURL}.
+   ===================================================================== */
+{
+  var KEY = 'ah_avatars';
+  function all() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function me() { try { return ME(); } catch (e) { return { id: 'dir' }; } }
+  function get(id) { return all()[id] || ''; }
+  function set(id, v) {
+    var a = all(); if (v) a[id] = v; else delete a[id];
+    try { localStorage.setItem(KEY, JSON.stringify(a)); return true; } catch (e) { kToast(TX("Xotira to'ldi: kichikroq rasm tanlang.")); return false; }
+  }
+  var t = function (s) { try { return TX(s); } catch (e) { return s; } };
+
+  /* Instagram'dagi kabi bo'sh profil belgisi */
+  var SIL = '<svg class="av-sil" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#C7CDD1"/><circle cx="32" cy="25" r="11" fill="#F4F6F7"/><path d="M11.5 54.5C14.6 45 22.6 39.5 32 39.5S49.4 45 52.5 54.5A31.8 31.8 0 0 1 32 64a31.8 31.8 0 0 1-20.5-9.5Z" fill="#F4F6F7"/></svg>';
+  function face(id) { var v = get(id); return v ? '<img class="av-img" src="' + v + '" alt="">' : SIL; }
+
+  /* rasmni 400px kvadratga kesib, JPEG qilib saqlash */
+  function pick() {
+    return new Promise(function (res) {
+      var i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
+      i.onchange = function () {
+        var f = i.files && i.files[0]; if (!f) return res('');
+        var u = URL.createObjectURL(f), im = new Image();
+        im.onload = function () {
+          var s = Math.min(im.width, im.height), c = document.createElement('canvas'); c.width = c.height = 400;
+          c.getContext('2d').drawImage(im, (im.width - s) / 2, (im.height - s) / 2, s, s, 0, 0, 400, 400);
+          URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg', .86));
+        };
+        im.onerror = function () { URL.revokeObjectURL(u); kToast(t("Rasmni o'qib bo'lmadi.")); res(''); };
+        im.src = u;
+      };
+      i.click();
+    });
+  }
+
+  /* iPhone uslubidagi pastki menyu (action sheet) */
+  function sheet() {
+    var id = me().id, has = !!get(id);
+    var m = document.createElement('div'); m.className = 'ios-sheet'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+    m.innerHTML = '<div class="ios-grp"><div class="ios-head"><span class="ios-av">' + face(id) + '</span><b>' + t('Profil rasmi') + '</b></div>' +
+      '<button type="button" data-a="up">' + t(has ? 'Rasmni almashtirish' : "Rasm qo'yish") + '</button>' +
+      (has ? '<button type="button" data-a="rm" class="ios-del">' + t("Rasmni o'chirish") + '</button>' : '') +
+      '</div><div class="ios-grp"><button type="button" data-a="x" class="ios-cancel">' + t('Bekor qilish') + '</button></div>';
+    document.body.appendChild(m);
+    requestAnimationFrame(function () { m.classList.add('on'); });
+    var close = function () { m.classList.remove('on'); setTimeout(function () { m.remove(); }, 320); };
+    m.addEventListener('click', function (e) {
+      if (e.target === m) return close();
+      var b = e.target.closest('button'); if (!b) return;
+      var a = b.dataset.a; close();
+      if (a === 'up') pick().then(function (v) { if (v && set(id, v)) { paint(); kToast(t('Profil rasmi yangilandi')); } });
+      if (a === 'rm') { set(id, ''); paint(); kToast(t("Profil rasmi o'chirildi")); }
+    });
+    document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } });
+  }
+
+  /* chizish: pastki karta va «Mening profilim» sarlavhasi */
+  function paint() {
+    var id = me().id;
+    document.querySelectorAll('#rl .ua').forEach(function (u) {
+      u.classList.add('av'); u.innerHTML = face(id);
+      u.setAttribute('role', 'button'); u.tabIndex = 0; u.setAttribute('aria-label', t('Profil rasmi'));
+    });
+    var h = document.getElementById('avHero'); if (h) h.querySelector('.av-big').innerHTML = face(id);
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('#rl .ua.av,#avHero .av-big,#avHero .av-edit')) { e.preventDefault(); sheet(); } });
+  document.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('#rl .ua.av')) { e.preventDefault(); sheet(); } });
+
+  var U0 = uCard; uCard = function () { U0.apply(this, arguments); paint(); };
+  var P0 = vPf; vPf = function () {
+    P0.apply(this, arguments);
+    var mn = document.getElementById('mn'), m = me(), o = own(), hh = mn && mn.querySelector('.hh');
+    if (!mn || document.getElementById('avHero')) return;
+    var box = document.createElement('div'); box.id = 'avHero'; box.className = 'av-hero';
+    box.innerHTML = '<button type="button" class="av-big" aria-label="' + t('Profil rasmi') + '"></button><div class="av-meta"><b>' + (o ? t('Direktor') : String(m.n || t('Menejer')).replace(/[<>&]/g, '')) + '</b><small>' + (o ? t("To'liq huquq") : t('Menejer')) + '</small><button type="button" class="av-edit">' + t('Rasmni tahrirlash') + '</button></div>';
+    if (hh) hh.after(box); else mn.prepend(box);
+    paint();
+  };
+  if (document.getElementById('rl') && document.getElementById('rl').children.length) paint();
+}
 /* ---- ishga tushirish: lyuks splash → kabinet ---- */
 (function(){const sp=$('splash');if(!sp){openA();return}
  let done=0;const go=()=>{if(done)return;done=1;sp.classList.add('done');setTimeout(()=>sp.remove(),900);openA()};sp.addEventListener('click',go);setTimeout(go,matchMedia('(prefers-reduced-motion:reduce)').matches?0:3600)})();
