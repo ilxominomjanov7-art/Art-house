@@ -68,6 +68,15 @@
       'hi.search': 'Ara', 'hi.searchPh': 'Daire, proje veya bölüm…', 'hi.none': 'Sonuç bulunamadı', 'hi.about': 'Hakkımızda', 'hi.aboutD': "Art House, 14 yıllık deneyime sahip bir müteahhit: dürüst, şeffaf ve faizsiz taksit, premium konutlar.", 'hi.more': 'Daha fazla' }
   };
   Object.keys(D).forEach(function (l) { I18N.extend(l, D[l]); });
+  /* «Qurilish jarayoni» bloki matnlari */
+  I18N.extend('uz', { 'hi.bldE': "Musaffo · dron tasviri", 'hi.bldT': "Qurilish jarayoni", 'hi.bldD': "Uyingiz qanday qurilayotganini o'z ko'zingiz bilan ko'ring — dron tasviri to'g'ridan-to'g'ri qurilish maydonidan.", 'hi.bldB': "Loyihani ko'rish" });
+  I18N.extend('ru', { 'hi.bldE': "Musaffo · съёмка с дрона", 'hi.bldT': "Ход строительства", 'hi.bldD': "Посмотрите своими глазами, как строится ваш дом, — съёмка с дрона прямо со стройплощадки.", 'hi.bldB': "Смотреть проект" });
+  I18N.extend('en', { 'hi.bldE': "Musaffo · drone footage", 'hi.bldT': "Construction progress", 'hi.bldD': "See for yourself how your home is being built — drone footage straight from the site.", 'hi.bldB': "View project" });
+  I18N.extend('fr', { 'hi.bldE': "Musaffo · images de drone", 'hi.bldT': "Avancement des travaux", 'hi.bldD': "Voyez de vos propres yeux comment votre logement se construit — images de drone prises directement sur le chantier.", 'hi.bldB': "Voir le projet" });
+  I18N.extend('it', { 'hi.bldE': "Musaffo · riprese da drone", 'hi.bldT': "Avanzamento dei lavori", 'hi.bldD': "Guarda con i tuoi occhi come viene costruita la tua casa: riprese da drone direttamente dal cantiere.", 'hi.bldB': "Vedi il progetto" });
+  I18N.extend('es', { 'hi.bldE': "Musaffo · imágenes de dron", 'hi.bldT': "Avance de obra", 'hi.bldD': "Vea con sus propios ojos cómo se construye su hogar: imágenes de dron tomadas directamente en la obra.", 'hi.bldB': "Ver el proyecto" });
+  I18N.extend('de', { 'hi.bldE': "Musaffo · Drohnenaufnahmen", 'hi.bldT': "Baufortschritt", 'hi.bldD': "Sehen Sie selbst, wie Ihr Zuhause entsteht – Drohnenaufnahmen direkt von der Baustelle.", 'hi.bldB': "Projekt ansehen" });
+  I18N.extend('tr', { 'hi.bldE': "Musaffo · drone çekimi", 'hi.bldT': "İnşaat süreci", 'hi.bldD': "Evinizin nasıl inşa edildiğini kendi gözlerinizle görün — doğrudan şantiyeden drone çekimleri.", 'hi.bldB': "Projeyi görüntüle" });
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var t = function (k, v) { return I18N.t(k, v); };
@@ -123,6 +132,17 @@
       [['key', 'u1'], ['pct', 'u2'], ['tree', 'u3'], ['shield', 'u4']].map(function (x) { return '<div>' + IC[x[0]] + '<p><b>' + esc(t('hi.' + x[1] + 't')) + '</b><span>' + esc(t('hi.' + x[1] + 'd')) + '</span></p></div>'; }).join('') + '</div>';
     var a = $('#hiApts'); a ? a.after(s) : host.appendChild(s);
   }
+  /* --- 4a) qurilish jarayoni: dron videosi (bosh ekrandan ko'chirildi — u yerda endi toza renderlar) --- */
+  function build() {
+    var host = $('#p-home'), hp = $('#homeProjects'); if (!host) return;
+    var old = $('#hiBuild'); if (old) old.remove();
+    var s = document.createElement('section'); s.id = 'hiBuild'; s.className = 'hi-build';
+    s.innerHTML = '<figure class="hb-media"><video id="buildVideo" muted loop playsinline preload="none" poster="assets/video/musaffo-drone-poster.jpg"><source src="assets/video/musaffo-drone.mp4" type="video/mp4"></video></figure>' +
+      '<div class="hb-copy"><p class="eyebrow">' + esc(t('hi.bldE')) + '</p><h2>' + esc(t('hi.bldT')) + '</h2><p>' + esc(t('hi.bldD')) + '</p><a class="hi-btn ghost" href="#projects" data-hi-proj>' + esc(t('hi.bldB')) + '</a></div>';
+    var b = hp && hp.closest('.block'); b ? b.after(s) : host.appendChild(s);
+    var v = $('video', s);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !document.hidden) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }); }, { threshold: .35 }).observe(v);
+  }
   /* --- 4) savdo ofisi --- */
   function office() {
     var host = $('#p-home'); if (!host) return;
@@ -151,7 +171,9 @@
       e.preventDefault(); var v = $('input', n).value.replace(/[^\d+]/g, ''), m = $('small', n);
       if (v.replace(/\D/g, '').length < 9) { m.textContent = t('hi.newsBad'); m.hidden = false; return; }
       if (window.CRM && CRM.deliver) CRM.deliver({ name: 'Obuna (sayt)', phone: v, src: 'subscribe', unit: '—' });
-      m.textContent = t('hi.newsOk'); m.hidden = false; $('input', n).value = '';
+      if (window.CRM && CRM.api) m.textContent = t('hi.newsOk');
+      else m.innerHTML = esc(t('hi.newsManual')) + (CFG.TELEGRAM_CHANNEL ? ' <a href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">Telegram →</a>' : '');
+      m.hidden = false; $('input', n).value = '';
     });
     $$('.foot-in > div').forEach(function (c) { var h = $('h4', c); if (!h || c.id === 'hiNews') return; c.classList.add('hi-acc'); if (!h.dataset.acc) { h.dataset.acc = 1; h.setAttribute('role', 'button'); h.tabIndex = 0; h.addEventListener('click', function () { c.classList.toggle('open'); }); } });
   }
@@ -199,7 +221,7 @@
     var ti = e.target.closest('[data-hi-tile]'); if (ti) { tab = ti.dataset.hiTile; apts(); var a = $('#hiApts'); if (a) a.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     if (e.target.closest('[data-hi-proj]')) setTimeout(function () { var b = $('#projTabs [data-p="musaffo"]'); if (b) b.click(); }, 120);
   });
-  function all() { apts(); art(); tiles(); office(); bar(); foot(); searchBtn(); }
+  function all() { apts(); art(); tiles(); build(); office(); bar(); foot(); searchBtn(); }
   all();
   I18N.on(function () { setTimeout(function () { all(); var b = $('.hi-sbtn'); if (b) b.setAttribute('aria-label', t('hi.search')); }, 0); });
 })();

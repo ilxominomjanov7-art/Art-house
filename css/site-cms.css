@@ -91,8 +91,4 @@
 .cms-pop textarea { width: 100%; min-height: 96px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(0, 0, 0, .2); color: var(--ink); font: inherit; resize: vertical; }
 .cms-pop div { display: flex; gap: 8px; flex-wrap: wrap; }
 
-/* --- kirish animatsiyasi: oltin nur halqalari --- */
-.splash::before, .splash::after { content: ''; position: absolute; left: 50%; top: 50%; width: 30vmin; height: 30vmin; margin: -15vmin 0 0 -15vmin; border-radius: 50%; border: 1px solid rgba(230, 203, 139, .35); opacity: 0; animation: ahRing 2.8s cubic-bezier(.2, .7, .2, 1) .4s infinite; pointer-events: none; }
-.splash::after { animation-delay: 1.8s; }
-@keyframes ahRing { 0% { transform: scale(.55); opacity: 0; } 20% { opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .splash::before, .splash::after, .mnav-list a { animation: none; transition: none; } }
+@media (prefers-reduced-motion: reduce) { .mnav-list a { animation: none; transition: none; } }

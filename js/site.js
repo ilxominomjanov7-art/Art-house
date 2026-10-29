@@ -18,27 +18,29 @@
   function lock(on) { locks = Math.max(0, locks + (on ? 1 : -1)); document.body.classList.toggle('lock', locks > 0); }
   function fmtPhone(p) { return String(p).replace(/^\+?998(\d{2})(\d{3})(\d{2})(\d{2})$/, '+998 $1 $2 $3 $4'); }
 
-  /* ---------------- kirish animatsiyasi ---------------- */
+  /* ---------------- kirish animatsiyasi ----------------
+     index.html dagi kichik skript animatsiyani darhol boshlaydi (rejim: full — to'liq, quick — shu oynada qayta
+     yuklanganda qisqa, calm — «harakatni kamaytirish» yoqilgan bo'lsa sokin). Bu yerda — tugatish va eshiklarni ochish.
+     Kabinetning yashirin yuklovchisi (?cmsnap=1), jonli tahrir (?edit=1), ?intro=0 va iframe ichida ko'rsatilmaydi. */
   (function splash() {
-    var el = $('#splash'), seen = false, go = false;
-    try { seen = sessionStorage.getItem('ah3_intro') === '1'; } catch (e) {}
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    /* splash tugagach — bosh sahifa bosqichma-bosqich ochiladi, raqamlar sanaladi */
+    var el = $('#splash'), go = false, t, mode = el && el.getAttribute('data-mode');
+    /* splash tugagach — bosh sahifa matni bosqichma-bosqich ochiladi, raqamlar sanaladi */
     function hero() {
       if (go) return; go = true;
       document.body.classList.remove('intro-pre'); document.body.classList.add('intro-go');
       setTimeout(function () { countUp($$('.hero .stats b')); }, 900);
     }
     document.body.classList.add('intro-pre');
+    if (!mode) { if (el) el.remove(); document.body.classList.remove('is-loading'); hero(); return; }
     function done() {
-      if (!el.parentNode) return;
-      el.classList.add('done'); document.body.classList.remove('is-loading'); setTimeout(hero, 250);
-      setTimeout(function () { el.remove(); }, 1100);
-      try { sessionStorage.setItem('ah3_intro', '1'); } catch (e) {}
+      if (el.classList.contains('out')) return;
+      clearTimeout(t); el.classList.add('out'); document.body.classList.remove('is-loading');
+      setTimeout(hero, mode === 'calm' ? 100 : 450);
+      setTimeout(function () { el.remove(); }, mode === 'calm' ? 750 : 1500);
     }
-    if (seen || reduce) { el.remove(); document.body.classList.remove('is-loading'); hero(); return; }
     el.addEventListener('click', done);
-    setTimeout(done, 3800);
+    var T = { full: 3500, quick: 900, calm: 1500 }[mode], spent = Date.now() - (+el.getAttribute('data-t0') || Date.now());
+    t = setTimeout(done, Math.max(250, T - spent));
   })();
 
   /* raqamlarni 0 dan sanab chiqarish: «30+», «36», «1 010», «114K» — qo'shimchalar saqlanadi */
@@ -119,6 +121,21 @@
   var hv = $('#heroVideo');
   function heroVideo(on) { if (!hv) return; if (on && !document.hidden) { var p = hv.play(); if (p && p.catch) p.catch(function () {}); } else hv.pause(); }
   document.addEventListener('visibilitychange', function () { heroVideo(current === 'home'); });
+  /* bosh ekran: kabinetda video qo'yilmagan bo'lsa — toza renderlar navbatma-navbat (sekin yaqinlashish bilan) */
+  (function heroSlides() {
+    var box = $('#heroSlides'); if (!box) return;
+    if (document.documentElement.classList.contains('hero-vid')) { box.remove(); return; }
+    var im = $$('img', box), i = 0;
+    function lazy() { im.forEach(function (x) { if (x.dataset.src) { x.src = x.dataset.src; x.removeAttribute('data-src'); } }); }
+    if (document.readyState === 'complete') setTimeout(lazy, 1500); else addEventListener('load', function () { setTimeout(lazy, 1500); });
+    if (im.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setInterval(function () {
+      if (current !== 'home' || document.hidden) return;
+      var a = im[i], n = (i + 1) % im.length, b = im[n];
+      if (!b.complete || !b.naturalWidth) return;
+      i = n; a.classList.remove('on'); b.classList.add('on');
+    }, 6500);
+  })();
 
   /* ---------------- yugurib turuvchi satr ---------------- */
   function marquee() { var items = t('marquee').split('|'), h = items.concat(items).map(function (x) { return '<span>' + esc(x) + '</span>'; }).join(''); $('#marquee').innerHTML = h; }
@@ -356,6 +373,27 @@
   $$('[data-book]').forEach(function (b) { b.addEventListener('click', function () { openBook(current === 'calculator' ? { fromCalc: true } : { project: projState.id }); }); });
   var when = 'asap';
   $('#ldWhen').addEventListener('click', function (e) { var b = e.target.closest('[data-v]'); if (!b) return; when = b.dataset.v; $$('#ldWhen button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); });
+  /* Server ulanmagan (statik sayt): ariza menejerga avtomatik yetmaydi — mijozga «qabul qilindi» deyilmaydi,
+     o'rniga qo'ng'iroq / Telegram / WhatsApp tugmalari beriladi (xabar matni tayyor holda). */
+  I18N.extend('uz', { 'book.manualTitle': "Menejer bilan bog'laning", 'book.manualText': "{name}, so'rovingizni yakunlash uchun menejerga qo'ng'iroq qiling yoki yozing — ish vaqtida darhol javob beramiz.", 'book.msg': "Assalomu alaykum! Saytdan so'rov: {unit}. Ismim {name}, telefonim {phone}.", 'book.tg': "Telegram'da yozish", 'book.wa': "WhatsApp'da yozish", 'hi.newsManual': "Rahmat! Yangiliklarni o'tkazib yubormaslik uchun Telegram kanalimizga qo'shiling." });
+  I18N.extend('ru', { 'book.manualTitle': "Свяжитесь с менеджером", 'book.manualText': "{name}, чтобы завершить заявку, позвоните или напишите менеджеру — в рабочее время ответим сразу.", 'book.msg': "Здравствуйте! Заявка с сайта: {unit}. Меня зовут {name}, мой телефон {phone}.", 'book.tg': "Написать в Telegram", 'book.wa': "Написать в WhatsApp", 'hi.newsManual': "Спасибо! Чтобы не пропустить новости, подпишитесь на наш Telegram-канал." });
+  I18N.extend('en', { 'book.manualTitle': "Contact the manager", 'book.manualText': "{name}, to complete your request, call or message the manager — we reply right away during working hours.", 'book.msg': "Hello! Request from the website: {unit}. My name is {name}, phone {phone}.", 'book.tg': "Message on Telegram", 'book.wa': "Message on WhatsApp", 'hi.newsManual': "Thank you! To stay up to date, join our Telegram channel." });
+  I18N.extend('fr', { 'book.manualTitle': "Contactez le conseiller", 'book.manualText': "{name}, pour finaliser votre demande, appelez ou écrivez au conseiller — nous répondons tout de suite pendant les heures d'ouverture.", 'book.msg': "Bonjour ! Demande depuis le site : {unit}. Je m'appelle {name}, téléphone {phone}.", 'book.tg': "Écrire sur Telegram", 'book.wa': "Écrire sur WhatsApp", 'hi.newsManual': "Merci ! Pour ne rien manquer, rejoignez notre chaîne Telegram." });
+  I18N.extend('it', { 'book.manualTitle': "Contatta il consulente", 'book.manualText': "{name}, per completare la richiesta chiama o scrivi al consulente: in orario di lavoro rispondiamo subito.", 'book.msg': "Buongiorno! Richiesta dal sito: {unit}. Mi chiamo {name}, telefono {phone}.", 'book.tg': "Scrivi su Telegram", 'book.wa': "Scrivi su WhatsApp", 'hi.newsManual': "Grazie! Per restare aggiornato, unisciti al nostro canale Telegram." });
+  I18N.extend('es', { 'book.manualTitle': "Contacte con el asesor", 'book.manualText': "{name}, para completar su solicitud, llame o escriba al asesor: en horario laboral respondemos enseguida.", 'book.msg': "¡Hola! Solicitud desde la web: {unit}. Me llamo {name}, teléfono {phone}.", 'book.tg': "Escribir por Telegram", 'book.wa': "Escribir por WhatsApp", 'hi.newsManual': "¡Gracias! Para no perderse las novedades, únase a nuestro canal de Telegram." });
+  I18N.extend('de', { 'book.manualTitle': "Kontaktieren Sie den Berater", 'book.manualText': "{name}, um Ihre Anfrage abzuschließen, rufen Sie den Berater an oder schreiben Sie ihm – während der Geschäftszeiten antworten wir sofort.", 'book.msg': "Guten Tag! Anfrage von der Website: {unit}. Mein Name ist {name}, Telefon {phone}.", 'book.tg': "Auf Telegram schreiben", 'book.wa': "Auf WhatsApp schreiben", 'hi.newsManual': "Danke! Um nichts zu verpassen, abonnieren Sie unseren Telegram-Kanal." });
+  I18N.extend('tr', { 'book.manualTitle': "Danışmanla iletişime geçin", 'book.manualText': "{name}, talebinizi tamamlamak için danışmanı arayın veya yazın — mesai saatlerinde hemen yanıt veriyoruz.", 'book.msg': "Merhaba! Siteden talep: {unit}. Adım {name}, telefonum {phone}.", 'book.tg': "Telegram'dan yaz", 'book.wa': "WhatsApp'tan yaz", 'hi.newsManual': "Teşekkürler! Haberleri kaçırmamak için Telegram kanalımıza katılın." });
+  function manualActs(lead) {
+    var msg = encodeURIComponent(t('book.msg', { unit: lead.unit || '—', name: lead.name, phone: lead.phone })), h = '';
+    h += '<a class="btn btn-gold" href="tel:' + esc(CFG.PHONES[0]) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>';
+    var tg = CFG.TELEGRAM_MANAGER || CFG.TG_MANAGER;
+    if (tg && /^https:\/\/t\.me\/[A-Za-z0-9_]{4,}\/?$/.test(tg)) h += '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + esc(tg.replace(/\/$/, '')) + '?text=' + msg + '"><svg class="ic"><use href="#i-tg"/></svg><span>' + esc(t('book.tg')) + '</span></a>';
+    var wa = String(CFG.WHATSAPP || '').replace(/\D/g, '');
+    if (wa.length >= 9) h += '<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/' + wa + '?text=' + msg + '"><span>' + esc(t('book.wa')) + '</span></a>';
+    return h;
+  }
+  window.AH_manualActs = manualActs;
+
   $('#leadForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var n = $('#ldName'), ph = $('#ldPhone'), ok = checkName(n) & checkPhone(ph);
@@ -368,7 +406,11 @@
     if (bookCtx.fromCalc) Object.assign(lead, { price: calc.total, pct: calc.pct, down: Math.round(calc.down), months: calc.months, monthly: Math.round(calc.monthly) });
     remember(lead.name, lead.phone); LS('lastLead', Date.now());
     CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
-    $('#bookOkText').textContent = t('book.okText', { name: lead.name, phone: lead.phone });
+    var live = !!CRM.api, h3 = $('#bookOk h3'), act = $('#bookAct');
+    h3.setAttribute('data-i', live ? 'book.okTitle' : 'book.manualTitle'); h3.textContent = t(live ? 'book.okTitle' : 'book.manualTitle');
+    $('#bookOkText').textContent = t(live ? 'book.okText' : 'book.manualText', { name: lead.name, phone: lead.phone });
+    $('#bookOk .tick').hidden = !live;
+    act.innerHTML = live ? '' : manualActs(lead); act.hidden = live;
     $('#bookForm').hidden = true; $('#bookOk').hidden = false;
   });
 
@@ -383,8 +425,10 @@
     var lead = { src: 'callback', name: n.value.trim(), phone: ph.value.trim(), unit: TOPIC_UZ[$('#cbTopic').value], slot: "Qayta qo'ng'iroq", lang: I18N.lang, area: 0 };
     remember(lead.name, lead.phone);
     CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
-    $('.form-ok', this).hidden = false; this.reset(); prefill();
-    setTimeout(function () { $('#cbForm .form-ok').hidden = true; }, 6000);
+    var fo = $('.form-ok', this);
+    if (CRM.api) { fo.setAttribute('data-i', 'form.ok'); fo.textContent = t('form.ok'); fo.hidden = false; setTimeout(function () { fo.hidden = true; }, 6000); }
+    else { fo.removeAttribute('data-i'); fo.innerHTML = esc(t('book.manualText', { name: lead.name })) + '<span class="book-act">' + manualActs(lead) + '</span>'; fo.hidden = false; }
+    this.reset(); prefill();
   });
 
   /* ================= IZOHLAR ================= */
@@ -419,6 +463,9 @@
     $('#homeRating').innerHTML = '<b>' + (s.n ? s.avg.toFixed(1) : '—') + '</b><div>' + starsHTML(s.avg) + '<div class="muted" style="font-size:13px">' + esc(t('rev.count', { n: s.n })) + '</div></div>';
     $('#homeReviews').innerHTML = all.length ? all.slice(0, 2).map(function (r) { return '<div>' + starsHTML(+r.rating) + ' «' + esc(r.text.length > 140 ? r.text.slice(0, 140) + '…' : r.text) + '»<small>— ' + esc(r.name) + '</small></div>'; }).join('')
       : '<div class="muted">' + esc(t('rev.empty')) + '</div>';
+    /* izoh hali yo'q bo'lsa bosh sahifada bo'sh «0 ta izoh» bloki ko'rsatilmaydi (Izohlar sahifasi ochiq qoladi) */
+    var card = $('#homeReviews').closest('.teaser');
+    if (card) { card.classList.toggle('home-rev-empty', !all.length); card.parentNode.classList.toggle('one', !all.length); }
   }
   $('#revFilter').addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; revFilter = b.dataset.f; $$('#revFilter button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); renderReviews(); });
   function paintStars(n) { $$('#rvStars button').forEach(function (b) { b.classList.toggle('on', +b.dataset.v <= n); b.setAttribute('aria-checked', String(+b.dataset.v === n)); }); }

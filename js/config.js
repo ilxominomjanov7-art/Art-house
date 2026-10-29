@@ -70,7 +70,7 @@ window.PROJECTS = [
     address: { uz: "Chinobod ko'chasi, 120A", ru: 'ул. Чинабад, 120А', en: '120A Chinobod Street', fr: '120A, rue Chinobod', it: 'Via Chinobod 120A', es: 'Calle Chinobod, 120A', de: 'Chinobod-Straße 120A', tr: 'Chinobod Caddesi, 120A' }, // TEKSHIRING
     geo: { lat: 41.360158, lng: 69.315909 },
     get priceM2() { return window.CFG.PRICE_M2; }, set priceM2(v) { window.CFG.PRICE_M2 = +v || window.CFG.PRICE_M2; }, // kabinet → Sozlamalar → 1 m² baza narxi
-    cover: 'assets/img/musaffo/musaffo-cover.webp',
+    cover: 'assets/img/hero/musaffo-kechki.webp',      // toza render (tools/hero-images.py); asl Instagram rasmi: musaffo/musaffo-cover.webp
     video: { src: 'assets/video/musaffo-drone.mp4', poster: 'assets/video/musaffo-drone-poster.jpg' },
     presentation: '',                    // masalan: 'docs/musaffo-taqdimot.pdf'
     lead: {

@@ -28,11 +28,6 @@
 .mnav-serv a:hover { opacity: 1; }
 .mnav-card { border: 1px solid rgba(241, 224, 180, .2) !important; }
 
-/* ---------- ikonkalar: shisha-zumrad doira + och oltin belgi ---------- */
-.gt { background: radial-gradient(120% 120% at 30% 20%, rgba(255, 255, 255, .14), rgba(255, 255, 255, .03) 60%), rgba(9, 52, 39, .7) !important;
-  border-radius: 50% !important; box-shadow: inset 0 0 0 1px rgba(241, 224, 180, .55), 0 8px 18px -10px rgba(0, 0, 0, .6) !important;
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.gt svg { fill: #F3E3B8 !important; width: 48% !important; height: 48% !important; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25)); }
 
 /* ---------- AI maslahatchi tugmasi ---------- */
 #aib { color: #FBF3DC !important; background: rgba(8, 40, 30, .78) !important; background-size: auto !important;

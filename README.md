@@ -12,7 +12,9 @@ kabinet.html      — kabinet: Bosh sahifa, Xabarlar (sayt xabarlari + telefon q
                     Mijozlar izohlari, Video qo'ng'iroqlar, Mijozlar bazasi, Xonadonlar, To'lovlar, Chegirmalar,
                     Statistika, AI Agent, Mening profilim, Menejerlar va ballar, Sozlamalar
 css/base.css      — umumiy uslublar, lyuks logotip animatsiyasi, qo'ng'iroq oynasi
-css/site.css      — sayt uslublari
+css/site.css      — sayt uslublari (ustidan: site-cms, site-lux, site-final, site-icon)
+css/site-prime.css — oxirgi qatlam: tekis zumrad + shampan oltin, kirish animatsiyasi (eshiklar), bosh ekran slayd-shousi
+assets/img/hero/  — bosh ekran uchun toza renderlar (Instagram logotipi va yorliqlarisiz): python3 tools/hero-images.py
 css/kabinet.css   — kabinet uslublari
 css/kabinet-cms.css — Sozlamalar (CMS) bo'limi uslublari
 js/kabinet-emoji.js — menyu va Sozlamalar uchun Apple (iPhone) emojilari, barcha qurilmalarda bir xil (assets/emoji/README.md ga qarang)
@@ -54,11 +56,13 @@ Muhit o'zgaruvchilari (ixtiyoriy):
 | `AI_MODEL`          | model nomi (standart: `claude-opus-5-5`)                                  |
 | `TG_BOT_TOKEN`, `TG_CHAT_ID` | yangi arizalar Telegram guruhga yuboriladi                       |
 
-**Serversiz (statik hosting):** `API_URL: ''` bo'lsa, ma'lumotlar brauzer xotirasida saqlanadi. Bu rejimda sayt va kabinet bir xil brauzerda ochilgan bo'lsa, menejer javobi saytda darhol ko'rinadi va video-qo'ng'iroq ham ishlaydi. Boshqa qurilma bilan video-qo'ng'iroqni «kod orqali ulanish» yo'li bilan qilish mumkin. Haqiqiy foydalanish uchun server rejimi kerak.
+**Serversiz (statik hosting):** ⚠️ saytdagi arizalar sizga **yetib kelmaydi** — ular faqat mijozning o'z brauzerida qoladi. Shuning uchun bu rejimda sayt mijozga «So'rovingiz qabul qilindi» demaydi: band qilish, qayta qo'ng'iroq, AI maslahatchi va obuna oxirida menejerga qo'ng'iroq qilish (Kabinet → Sozlamalar → Aloqa'da «Telegram menejer havolasi» yoki «WhatsApp havolasi» kiritilsa — tayyor xabar bilan Telegram/WhatsApp) tugmasi chiqadi, kabinetda esa «Server ulanmagan» ogohlantirishi turadi. `API_URL: ''` bo'lsa, ma'lumotlar brauzer xotirasida saqlanadi. Bu rejimda sayt va kabinet bir xil brauzerda ochilgan bo'lsa, menejer javobi saytda darhol ko'rinadi va video-qo'ng'iroq ham ishlaydi. Boshqa qurilma bilan video-qo'ng'iroqni «kod orqali ulanish» yo'li bilan qilish mumkin. Haqiqiy foydalanish uchun server rejimi kerak.
 
 ## Kabinetga kirish
 
-Eski kabinet loginlari o'zgarishsiz ishlaydi. Qo'shimcha boshlang'ich login (**darhol almashtiring!**):
+Eski kabinet loginlari o'zgarishsiz ishlaydi. Login har qanday telefonda ishlaydi: brauzerda WebCrypto bo'lmasa (Telegram ichidagi ko'ruvchi, fayl menejeridan ochilgan `content://` fayl, `http://` manzil) parol xeshi JavaScript'da hisoblanadi.
+«Mening profilim»da login/parol almashtirilsa, **shu qurilmada** boshlang'ich `admin` login o'chadi — yangi login bilan kiring.
+Qo'shimcha boshlang'ich login (**darhol almashtiring!**):
 
 | Login   | Parol           | Huquq    |
 |---------|-----------------|----------|
@@ -83,3 +87,5 @@ Ko'kcha va Obod Maskan uchun rasm va rejalarni `assets/img/...` papkasiga qo'yib
 
 `dist/index.html` va `dist/kabinet.html` — hamma narsa (CSS, JS, rasmlar, video) ichiga joylangan nusxalar. Ikkala faylni bitta papkada saqlang va brauzerda oching.
 Kodni o'zgartirgandan keyin qayta yig'ish: `python3 tools/build-single.py`
+
+Kirish animatsiyasi har ochilishda ko'rinadi (shu oynada qayta yuklansa — qisqa varianti; telefonda «animatsiyalarni o'chirish» yoqilgan bo'lsa — sokin varianti, bosilsa darhol o'tadi). Animatsiyasiz ochish: `index.html?intro=0`.

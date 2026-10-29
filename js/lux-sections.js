@@ -23,7 +23,7 @@
   var t = function (k) { return I18N.t(k); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var pick = function (o) { return I18N.pick(o); };
-  var gt = function (f, cls) { return '<span class="gt' + (cls ? ' ' + cls : '') + '" aria-hidden="true"><svg><use href="#f-' + f + '"/></svg></span>'; };
+  var gt = function (f) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + f + '"/></svg>'; };
 
   /* 1) e'lon qatori */
   var ann = document.createElement('div'); ann.className = 'ann'; ann.setAttribute('role', 'region');

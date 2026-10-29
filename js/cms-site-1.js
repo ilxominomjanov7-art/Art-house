@@ -105,6 +105,6 @@
   var h = C.hero || {};
   if (hv && (h.video || h.poster)) {
     if (h.poster) hv.setAttribute('poster', res(h.poster));
-    if (h.video) { var s = hv.querySelector('source'); if (s) s.remove(); hv.src = res(h.video); }
+    if (h.video) { var s = hv.querySelector('source'); if (s) s.remove(); hv.src = res(h.video); document.documentElement.classList.add('hero-vid'); }
   }
 })();

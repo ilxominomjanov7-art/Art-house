@@ -70,7 +70,7 @@
   document.addEventListener('click', function (e) {
     var p = e.target.closest('.mp-pin'); if (p) return sheet(+p.dataset.mp);
     if (e.target.closest('.mplan [data-mp-help]')) return help();
-    if (e.target.closest('[data-mp-video]')) { var v = $('#projDetail .pvids video, #projDetail .pd-cover video'); if (v) { v.scrollIntoView({ behavior: 'smooth', block: 'center' }); try { v.play(); } catch (x) {} } else { var hv = $('#heroVideo'); location.hash = '#home'; if (hv) setTimeout(function () { hv.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400); } }
+    if (e.target.closest('[data-mp-video]')) { var v = $('#projDetail .pvids video, #projDetail .pd-cover video'); if (v) { v.scrollIntoView({ behavior: 'smooth', block: 'center' }); try { v.play(); } catch (x) {} } else { location.hash = '#home'; setTimeout(function () { var bv = $('#buildVideo'); if (bv) { bv.scrollIntoView({ behavior: 'smooth', block: 'center' }); try { bv.play(); } catch (x) {} } }, 400); } }
   });
   var pd = $('#projDetail'); if (pd) new MutationObserver(render).observe(pd, { childList: true });
   I18N.on(function () { var m = $('.mplan'); if (m) m.remove(); setTimeout(render, 0); });

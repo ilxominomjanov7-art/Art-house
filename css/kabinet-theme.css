@@ -416,3 +416,7 @@ html,body{background:var(--em-900)}
 #adm .sbh .sbm,#adm .tbb .sbm,#adm .lgc .sbm{border:0!important;background:none!important;border-radius:0!important}
 #adm .sbh .sbm svg,#adm .tbb .sbm svg{width:30px;height:30px;stroke:url(#gGold);stroke-width:2.6}
 #adm .lgc .sbm svg{width:46px;height:46px;stroke:url(#gGold);stroke-width:2.4}
+
+/* server ulanmagan — ogohlantirish (saytdagi arizalar yetib kelmaydi) */
+.srv-warn{border-color:rgba(232,180,90,.55)!important;background:rgba(232,180,90,.08)!important;margin-bottom:14px}
+.srv-warn .note{text-align:left;margin:6px 0 0;line-height:1.55}
