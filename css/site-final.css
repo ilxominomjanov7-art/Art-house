@@ -1,0 +1,49 @@
+/* =====================================================================
+   ART HOUSE — SAYT: yakuniy ranglar (egasining talabi bo'yicha)
+   · fon — boy zumrad yashil; oltin — ochroq, yumshoq shampan
+   · menyu — yashil fon: asosiy va pastki qatorlar oq, o'rtadagilar och oltin
+   · ikonkalar — shisha-zumrad doira, ingichka shampan halqa, och oltin belgi
+   · AI maslahatchi — shisha tugma, oltin halqali «uchqun» belgisi
+   ===================================================================== */
+:root {
+  --gold: #F1E0B4; --gold-hi: #FBF3DC; --gold-2: #D9BE84;
+  --gold-grad: linear-gradient(115deg, #E6CD92 0%, #FBF1D4 30%, #F1DFAE 52%, #DCC184 74%, #F8ECC9 100%);
+  --ink: #FBF5E4; --mut: #DCD2B4;
+  --line: rgba(241, 224, 180, .22); --line-2: rgba(241, 224, 180, .42);
+}
+.btn-gold { color: #12301F !important; box-shadow: 0 12px 30px -12px rgba(241, 224, 180, .45), inset 0 1px 0 rgba(255, 255, 255, .6) !important; }
+.stats b, .about-nums b, .ig-stats b, .mp-facts b { background: linear-gradient(180deg, #FFFBEF 0%, #F3E3B8 55%, #DCC184 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; }
+.ann { background: linear-gradient(90deg, #E2C98E, #FBF1D4 50%, #E2C98E) !important; }
+
+/* ---------- menyu: yashil ---------- */
+.mnav .mnav-in { background: linear-gradient(180deg, #0F4A38 0%, #0A3A2C 100%) !important; color: #fff; border-right: 1px solid rgba(241, 224, 180, .18) !important; }
+.mnav .mnav-x { background: transparent; color: #fff; }
+.mnav-main a { color: #fff !important; }
+.mnav-main a.mnav-hl { color: #fff !important; }
+.mnav-main a.active { color: #fff !important; text-decoration: underline; text-decoration-color: rgba(241, 224, 180, .6); text-underline-offset: 6px; }
+.mnav .mnav-sub { color: rgba(241, 224, 180, .55) !important; }
+.mnav .mnav-list a, .mnav .mnav-list a .ic { color: #F1E0B4 !important; }
+.mnav .mnav-list a.active, .mnav .mnav-list a:hover { color: #FFF8E4 !important; }
+.mnav-serv a { color: #fff; opacity: .92; }
+.mnav-serv a:hover { opacity: 1; }
+.mnav-card { border: 1px solid rgba(241, 224, 180, .2) !important; }
+
+/* ---------- ikonkalar: shisha-zumrad doira + och oltin belgi ---------- */
+.gt { background: radial-gradient(120% 120% at 30% 20%, rgba(255, 255, 255, .14), rgba(255, 255, 255, .03) 60%), rgba(9, 52, 39, .7) !important;
+  border-radius: 50% !important; box-shadow: inset 0 0 0 1px rgba(241, 224, 180, .55), 0 8px 18px -10px rgba(0, 0, 0, .6) !important;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.gt svg { fill: #F3E3B8 !important; width: 48% !important; height: 48% !important; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25)); }
+
+/* ---------- AI maslahatchi tugmasi ---------- */
+#aib { color: #FBF3DC !important; background: rgba(8, 40, 30, .78) !important; background-size: auto !important;
+  border: 1px solid rgba(241, 224, 180, .45) !important; padding: 8px 18px 8px 8px !important; gap: 10px !important;
+  backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, .7) !important; animation: none !important; font-weight: 600; letter-spacing: .02em; }
+#aib:hover { transform: translateY(-2px); border-color: rgba(241, 224, 180, .8) !important; }
+#aib .aib-dot { position: absolute; top: 6px; left: 34px; width: 9px !important; height: 9px !important; border: 2px solid #0A3A2C; background: #5FD39A !important; z-index: 2; }
+#aib .ic { width: 34px !important; height: 34px !important; padding: 8px; border-radius: 50%; color: #12301F; fill: #12301F; stroke: #12301F;
+  background: linear-gradient(150deg, #FFF8E2, #EBD49C 55%, #D2B271); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 0 0 4px rgba(241, 224, 180, .14); animation: aiGlow 3.4s ease-in-out infinite; }
+#aib { position: fixed; }
+@keyframes aiGlow { 0%, 100% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 0 0 4px rgba(241, 224, 180, .14); } 50% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 0 0 8px rgba(241, 224, 180, .06); } }
+@media (max-width: 760px) { #aib { padding: 6px 14px 6px 6px !important; } #aib .ic { width: 30px !important; height: 30px !important; padding: 7px; } #aib .aib-dot { left: 28px; top: 4px; } }
+.mnav-main a:hover{color:#F1E0B4!important}.mnav .mnav-list a:hover{color:#FFF8E4!important}
