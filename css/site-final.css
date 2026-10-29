@@ -47,3 +47,33 @@
 @keyframes aiGlow { 0%, 100% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 0 0 4px rgba(241, 224, 180, .14); } 50% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 0 0 8px rgba(241, 224, 180, .06); } }
 @media (max-width: 760px) { #aib { padding: 6px 14px 6px 6px !important; } #aib .ic { width: 30px !important; height: 30px !important; padding: 7px; } #aib .aib-dot { left: 28px; top: 4px; } }
 .mnav-main a:hover{color:#F1E0B4!important}.mnav .mnav-list a:hover{color:#FFF8E4!important}
+
+/* =====================================================================
+   PASTKI PANEL, AI TUGMASI VA FOIZ HALQASI — yangi shakl (ICON uslubida)
+   · panel ekran chetiga yopishgan, burchaksiz, tepada ingichka oltin chiziq
+   · ikonkalar doirasiz, ingichka chiziqli; «BAND QILISH» — to'g'ri burchakli oltin tugma
+   · telefonda AI maslahatchi pastki panelda; kompyuterda — ixcham to'rtburchak tugma
+   ===================================================================== */
+@media (max-width: 760px) {
+  .dock { left: 0 !important; right: 0 !important; bottom: 0 !important; border-radius: 0 !important; border: 0 !important; border-top: 1px solid rgba(241, 224, 180, .28) !important;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom)) !important; gap: 2px !important; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.55fr) !important;
+    background: rgba(7, 36, 27, .94) !important; box-shadow: 0 -12px 30px -18px rgba(0, 0, 0, .7) !important; }
+  .dock a, .dock button:not(.dock-main) { min-width: 0 !important; min-height: 54px !important; border-radius: 0 !important; gap: 5px !important; font-size: 10.5px !important; letter-spacing: .06em; text-transform: uppercase; color: #F1E0B4 !important; background: none !important; }
+  .dock .ic { width: 21px !important; height: 21px !important; color: #F1E0B4 !important; stroke-width: 1.4 !important; fill: none; }
+  .dock .dock-main { border-radius: 2px !important; min-height: 46px !important; align-self: center; font-size: 12.5px !important; letter-spacing: .14em; text-transform: uppercase; font-weight: 600 !important;
+    background: linear-gradient(180deg, #FBF1D4, #E6CD92) !important; color: #0B2B20 !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7) !important; }
+  #aib { display: none !important; }
+  .foot { padding-bottom: 86px !important; }
+}
+@media (min-width: 761px) {
+  #aib { border-radius: 2px !important; padding: 13px 20px !important; gap: 10px !important; text-transform: uppercase; letter-spacing: .14em; font-size: 12px !important; font-weight: 600;
+    background: rgba(7, 36, 27, .9) !important; border: 1px solid rgba(241, 224, 180, .55) !important; }
+  #aib .ic { width: 18px !important; height: 18px !important; padding: 0 !important; background: none !important; box-shadow: none !important; animation: none !important; fill: none !important; stroke: #F1E0B4 !important; color: #F1E0B4 !important; }
+  #aib .aib-dot { position: static !important; width: 7px !important; height: 7px !important; border: 0 !important; order: 3; }
+  #aib:hover { background: #F1E0B4 !important; color: #0B2B20 !important; }
+  #aib:hover .ic { stroke: #0B2B20 !important; }
+}
+/* foiz halqasi: qalin doira o'rniga ingichka, nafis halqa */
+.donut { width: 150px !important; height: 150px !important; background: conic-gradient(#F1E0B4 var(--a), rgba(241, 224, 180, .14) 0) !important; }
+.donut::before { inset: 3px !important; background: #0C3D2E !important; }
+.donut span { font-size: 38px !important; font-weight: 500; letter-spacing: -.01em; color: #FBF3DC !important; }

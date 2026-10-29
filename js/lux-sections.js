@@ -9,14 +9,14 @@
   'use strict';
   if (!window.I18N || !window.CFG) return;
   var X = {
-    uz: { 'mn.promo': "0% foizsiz bo'lib to'lash", 'mn.service': 'Mijozlarga xizmat', 'ann.1': "0% — foizsiz bo'lib to'lash, 36 oygacha", 'ann.2': "Quruvchidan to'g'ridan-to'g'ri — vositachilarsiz", 'ann.3': 'Bepul konsultatsiya va obyektga sayohat', 'ig.follow': '@arthouse.tashkent sahifasini kuzating', 'amb.title': 'Bizni tanlaganlar', 'amb.sub': 'Art House bilan birga' },
-    ru: { 'mn.promo': 'Рассрочка 0%', 'mn.service': 'Клиентский сервис', 'ann.1': '0% — рассрочка без процентов до 36 месяцев', 'ann.2': 'Напрямую от застройщика — без посредников', 'ann.3': 'Бесплатная консультация и экскурсия на объект', 'ig.follow': 'Подписывайтесь на @arthouse.tashkent', 'amb.title': 'Нас выбирают', 'amb.sub': 'Вместе с Art House' },
-    en: { 'mn.promo': '0% instalments', 'mn.service': 'Client services', 'ann.1': '0% instalments — interest-free for up to 36 months', 'ann.2': 'Direct from the developer — no middlemen', 'ann.3': 'Free consultation and site tour', 'ig.follow': 'Follow @arthouse.tashkent', 'amb.title': 'Chosen by', 'amb.sub': 'Together with Art House' },
-    fr: { 'mn.promo': 'Paiement échelonné 0 %', 'mn.service': 'Service client', 'ann.1': "0 % — paiement échelonné sans intérêts jusqu'à 36 mois", 'ann.2': 'En direct du promoteur — sans intermédiaire', 'ann.3': 'Consultation gratuite et visite du chantier', 'ig.follow': 'Suivez @arthouse.tashkent', 'amb.title': 'Ils nous ont choisis', 'amb.sub': 'Avec Art House' },
-    it: { 'mn.promo': 'Rate allo 0%', 'mn.service': 'Servizio clienti', 'ann.1': '0% — rateizzazione senza interessi fino a 36 mesi', 'ann.2': 'Direttamente dal costruttore — senza intermediari', 'ann.3': 'Consulenza gratuita e visita del cantiere', 'ig.follow': 'Segui @arthouse.tashkent', 'amb.title': 'Ci hanno scelto', 'amb.sub': 'Insieme ad Art House' },
-    es: { 'mn.promo': 'Plazos al 0 %', 'mn.service': 'Atención al cliente', 'ann.1': '0 % — pago a plazos sin intereses hasta 36 meses', 'ann.2': 'Directo del promotor — sin intermediarios', 'ann.3': 'Asesoría gratuita y visita a la obra', 'ig.follow': 'Sigue a @arthouse.tashkent', 'amb.title': 'Nos eligen', 'amb.sub': 'Junto a Art House' },
-    de: { 'mn.promo': '0 % Ratenzahlung', 'mn.service': 'Kundenservice', 'ann.1': '0 % — zinsfreie Ratenzahlung bis zu 36 Monate', 'ann.2': 'Direkt vom Bauträger — ohne Vermittler', 'ann.3': 'Kostenlose Beratung und Objektbesichtigung', 'ig.follow': 'Folgen Sie @arthouse.tashkent', 'amb.title': 'Sie vertrauen uns', 'amb.sub': 'Gemeinsam mit Art House' },
-    tr: { 'mn.promo': '%0 taksit', 'mn.service': 'Müşteri hizmetleri', 'ann.1': '%0 — 36 aya kadar faizsiz taksit', 'ann.2': 'Doğrudan müteahhitten — aracısız', 'ann.3': 'Ücretsiz danışmanlık ve şantiye turu', 'ig.follow': "@arthouse.tashkent'i takip edin", 'amb.title': 'Bizi seçenler', 'amb.sub': 'Art House ile birlikte' }
+    uz: { 'dock.ai': 'AI maslahat', 'mn.promo': "0% foizsiz bo'lib to'lash", 'mn.service': 'Mijozlarga xizmat', 'ann.1': "0% — foizsiz bo'lib to'lash, 36 oygacha", 'ann.2': "Quruvchidan to'g'ridan-to'g'ri — vositachilarsiz", 'ann.3': 'Bepul konsultatsiya va obyektga sayohat', 'ig.follow': '@arthouse.tashkent sahifasini kuzating', 'amb.title': 'Bizni tanlaganlar', 'amb.sub': 'Art House bilan birga' },
+    ru: { 'dock.ai': 'AI-совет', 'mn.promo': 'Рассрочка 0%', 'mn.service': 'Клиентский сервис', 'ann.1': '0% — рассрочка без процентов до 36 месяцев', 'ann.2': 'Напрямую от застройщика — без посредников', 'ann.3': 'Бесплатная консультация и экскурсия на объект', 'ig.follow': 'Подписывайтесь на @arthouse.tashkent', 'amb.title': 'Нас выбирают', 'amb.sub': 'Вместе с Art House' },
+    en: { 'dock.ai': 'AI advisor', 'mn.promo': '0% instalments', 'mn.service': 'Client services', 'ann.1': '0% instalments — interest-free for up to 36 months', 'ann.2': 'Direct from the developer — no middlemen', 'ann.3': 'Free consultation and site tour', 'ig.follow': 'Follow @arthouse.tashkent', 'amb.title': 'Chosen by', 'amb.sub': 'Together with Art House' },
+    fr: { 'dock.ai': 'Conseil IA', 'mn.promo': 'Paiement échelonné 0 %', 'mn.service': 'Service client', 'ann.1': "0 % — paiement échelonné sans intérêts jusqu'à 36 mois", 'ann.2': 'En direct du promoteur — sans intermédiaire', 'ann.3': 'Consultation gratuite et visite du chantier', 'ig.follow': 'Suivez @arthouse.tashkent', 'amb.title': 'Ils nous ont choisis', 'amb.sub': 'Avec Art House' },
+    it: { 'dock.ai': 'Consulente IA', 'mn.promo': 'Rate allo 0%', 'mn.service': 'Servizio clienti', 'ann.1': '0% — rateizzazione senza interessi fino a 36 mesi', 'ann.2': 'Direttamente dal costruttore — senza intermediari', 'ann.3': 'Consulenza gratuita e visita del cantiere', 'ig.follow': 'Segui @arthouse.tashkent', 'amb.title': 'Ci hanno scelto', 'amb.sub': 'Insieme ad Art House' },
+    es: { 'dock.ai': 'Asesor IA', 'mn.promo': 'Plazos al 0 %', 'mn.service': 'Atención al cliente', 'ann.1': '0 % — pago a plazos sin intereses hasta 36 meses', 'ann.2': 'Directo del promotor — sin intermediarios', 'ann.3': 'Asesoría gratuita y visita a la obra', 'ig.follow': 'Sigue a @arthouse.tashkent', 'amb.title': 'Nos eligen', 'amb.sub': 'Junto a Art House' },
+    de: { 'dock.ai': 'KI-Berater', 'mn.promo': '0 % Ratenzahlung', 'mn.service': 'Kundenservice', 'ann.1': '0 % — zinsfreie Ratenzahlung bis zu 36 Monate', 'ann.2': 'Direkt vom Bauträger — ohne Vermittler', 'ann.3': 'Kostenlose Beratung und Objektbesichtigung', 'ig.follow': 'Folgen Sie @arthouse.tashkent', 'amb.title': 'Sie vertrauen uns', 'amb.sub': 'Gemeinsam mit Art House' },
+    tr: { 'dock.ai': 'AI danışman', 'mn.promo': '%0 taksit', 'mn.service': 'Müşteri hizmetleri', 'ann.1': '%0 — 36 aya kadar faizsiz taksit', 'ann.2': 'Doğrudan müteahhitten — aracısız', 'ann.3': 'Ücretsiz danışmanlık ve şantiye turu', 'ig.follow': "@arthouse.tashkent'i takip edin", 'amb.title': 'Bizi seçenler', 'amb.sub': 'Art House ile birlikte' }
   };
   Object.keys(X).forEach(function (l) { I18N.extend(l, X[l]); });
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -68,7 +68,15 @@
     col.insertAdjacentHTML('beforeend', '<div class="foot-soc">' + links.map(function (x) { return '<a href="' + esc(x[0]) + '"' + (x[0].indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') + ' aria-label="' + x[2] + '">' + gt(x[1]) + '</a>'; }).join('') + '</div>');
   }
 
-  function all() { igStrip(); amb(); footSoc(); }
+  /* 5) pastki panelga AI maslahatchi tugmasi (telefonda suzuvchi tugma o'rniga) */
+  function dockAi() {
+    var d = $('#dock'); if (!d || $('[data-dock-ai]', d)) return;
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-dock-ai', '');
+    b.innerHTML = '<svg class="ic" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span data-i="dock.ai">' + esc(t('dock.ai')) + '</span>';
+    var main = $('.dock-main', d); d.insertBefore(b, main);
+    b.addEventListener('click', function () { var a = $('#aib'); if (a) a.click(); });
+  }
+  function all() { igStrip(); amb(); footSoc(); dockAi(); }
   all();
   I18N.on(function () { annDraw(); setTimeout(all, 0); });
 })();

@@ -1103,6 +1103,36 @@ body { font-variant-numeric: lining-nums; }
 @media (max-width: 760px) { #aib { padding: 6px 14px 6px 6px !important; } #aib .ic { width: 30px !important; height: 30px !important; padding: 7px; } #aib .aib-dot { left: 28px; top: 4px; } }
 .mnav-main a:hover{color:#F1E0B4!important}.mnav .mnav-list a:hover{color:#FFF8E4!important}
 
+/* =====================================================================
+   PASTKI PANEL, AI TUGMASI VA FOIZ HALQASI — yangi shakl (ICON uslubida)
+   · panel ekran chetiga yopishgan, burchaksiz, tepada ingichka oltin chiziq
+   · ikonkalar doirasiz, ingichka chiziqli; «BAND QILISH» — to'g'ri burchakli oltin tugma
+   · telefonda AI maslahatchi pastki panelda; kompyuterda — ixcham to'rtburchak tugma
+   ===================================================================== */
+@media (max-width: 760px) {
+  .dock { left: 0 !important; right: 0 !important; bottom: 0 !important; border-radius: 0 !important; border: 0 !important; border-top: 1px solid rgba(241, 224, 180, .28) !important;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom)) !important; gap: 2px !important; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.55fr) !important;
+    background: rgba(7, 36, 27, .94) !important; box-shadow: 0 -12px 30px -18px rgba(0, 0, 0, .7) !important; }
+  .dock a, .dock button:not(.dock-main) { min-width: 0 !important; min-height: 54px !important; border-radius: 0 !important; gap: 5px !important; font-size: 10.5px !important; letter-spacing: .06em; text-transform: uppercase; color: #F1E0B4 !important; background: none !important; }
+  .dock .ic { width: 21px !important; height: 21px !important; color: #F1E0B4 !important; stroke-width: 1.4 !important; fill: none; }
+  .dock .dock-main { border-radius: 2px !important; min-height: 46px !important; align-self: center; font-size: 12.5px !important; letter-spacing: .14em; text-transform: uppercase; font-weight: 600 !important;
+    background: linear-gradient(180deg, #FBF1D4, #E6CD92) !important; color: #0B2B20 !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7) !important; }
+  #aib { display: none !important; }
+  .foot { padding-bottom: 86px !important; }
+}
+@media (min-width: 761px) {
+  #aib { border-radius: 2px !important; padding: 13px 20px !important; gap: 10px !important; text-transform: uppercase; letter-spacing: .14em; font-size: 12px !important; font-weight: 600;
+    background: rgba(7, 36, 27, .9) !important; border: 1px solid rgba(241, 224, 180, .55) !important; }
+  #aib .ic { width: 18px !important; height: 18px !important; padding: 0 !important; background: none !important; box-shadow: none !important; animation: none !important; fill: none !important; stroke: #F1E0B4 !important; color: #F1E0B4 !important; }
+  #aib .aib-dot { position: static !important; width: 7px !important; height: 7px !important; border: 0 !important; order: 3; }
+  #aib:hover { background: #F1E0B4 !important; color: #0B2B20 !important; }
+  #aib:hover .ic { stroke: #0B2B20 !important; }
+}
+/* foiz halqasi: qalin doira o'rniga ingichka, nafis halqa */
+.donut { width: 150px !important; height: 150px !important; background: conic-gradient(#F1E0B4 var(--a), rgba(241, 224, 180, .14) 0) !important; }
+.donut::before { inset: 3px !important; background: #0C3D2E !important; }
+.donut span { font-size: 38px !important; font-weight: 500; letter-spacing: -.01em; color: #FBF3DC !important; }
+
 </style>
 </head>
 <body class="is-loading">
@@ -5387,14 +5417,14 @@ window.AGENT_DICT = {
   'use strict';
   if (!window.I18N || !window.CFG) return;
   var X = {
-    uz: { 'mn.promo': "0% foizsiz bo'lib to'lash", 'mn.service': 'Mijozlarga xizmat', 'ann.1': "0% — foizsiz bo'lib to'lash, 36 oygacha", 'ann.2': "Quruvchidan to'g'ridan-to'g'ri — vositachilarsiz", 'ann.3': 'Bepul konsultatsiya va obyektga sayohat', 'ig.follow': '@arthouse.tashkent sahifasini kuzating', 'amb.title': 'Bizni tanlaganlar', 'amb.sub': 'Art House bilan birga' },
-    ru: { 'mn.promo': 'Рассрочка 0%', 'mn.service': 'Клиентский сервис', 'ann.1': '0% — рассрочка без процентов до 36 месяцев', 'ann.2': 'Напрямую от застройщика — без посредников', 'ann.3': 'Бесплатная консультация и экскурсия на объект', 'ig.follow': 'Подписывайтесь на @arthouse.tashkent', 'amb.title': 'Нас выбирают', 'amb.sub': 'Вместе с Art House' },
-    en: { 'mn.promo': '0% instalments', 'mn.service': 'Client services', 'ann.1': '0% instalments — interest-free for up to 36 months', 'ann.2': 'Direct from the developer — no middlemen', 'ann.3': 'Free consultation and site tour', 'ig.follow': 'Follow @arthouse.tashkent', 'amb.title': 'Chosen by', 'amb.sub': 'Together with Art House' },
-    fr: { 'mn.promo': 'Paiement échelonné 0 %', 'mn.service': 'Service client', 'ann.1': "0 % — paiement échelonné sans intérêts jusqu'à 36 mois", 'ann.2': 'En direct du promoteur — sans intermédiaire', 'ann.3': 'Consultation gratuite et visite du chantier', 'ig.follow': 'Suivez @arthouse.tashkent', 'amb.title': 'Ils nous ont choisis', 'amb.sub': 'Avec Art House' },
-    it: { 'mn.promo': 'Rate allo 0%', 'mn.service': 'Servizio clienti', 'ann.1': '0% — rateizzazione senza interessi fino a 36 mesi', 'ann.2': 'Direttamente dal costruttore — senza intermediari', 'ann.3': 'Consulenza gratuita e visita del cantiere', 'ig.follow': 'Segui @arthouse.tashkent', 'amb.title': 'Ci hanno scelto', 'amb.sub': 'Insieme ad Art House' },
-    es: { 'mn.promo': 'Plazos al 0 %', 'mn.service': 'Atención al cliente', 'ann.1': '0 % — pago a plazos sin intereses hasta 36 meses', 'ann.2': 'Directo del promotor — sin intermediarios', 'ann.3': 'Asesoría gratuita y visita a la obra', 'ig.follow': 'Sigue a @arthouse.tashkent', 'amb.title': 'Nos eligen', 'amb.sub': 'Junto a Art House' },
-    de: { 'mn.promo': '0 % Ratenzahlung', 'mn.service': 'Kundenservice', 'ann.1': '0 % — zinsfreie Ratenzahlung bis zu 36 Monate', 'ann.2': 'Direkt vom Bauträger — ohne Vermittler', 'ann.3': 'Kostenlose Beratung und Objektbesichtigung', 'ig.follow': 'Folgen Sie @arthouse.tashkent', 'amb.title': 'Sie vertrauen uns', 'amb.sub': 'Gemeinsam mit Art House' },
-    tr: { 'mn.promo': '%0 taksit', 'mn.service': 'Müşteri hizmetleri', 'ann.1': '%0 — 36 aya kadar faizsiz taksit', 'ann.2': 'Doğrudan müteahhitten — aracısız', 'ann.3': 'Ücretsiz danışmanlık ve şantiye turu', 'ig.follow': "@arthouse.tashkent'i takip edin", 'amb.title': 'Bizi seçenler', 'amb.sub': 'Art House ile birlikte' }
+    uz: { 'dock.ai': 'AI maslahat', 'mn.promo': "0% foizsiz bo'lib to'lash", 'mn.service': 'Mijozlarga xizmat', 'ann.1': "0% — foizsiz bo'lib to'lash, 36 oygacha", 'ann.2': "Quruvchidan to'g'ridan-to'g'ri — vositachilarsiz", 'ann.3': 'Bepul konsultatsiya va obyektga sayohat', 'ig.follow': '@arthouse.tashkent sahifasini kuzating', 'amb.title': 'Bizni tanlaganlar', 'amb.sub': 'Art House bilan birga' },
+    ru: { 'dock.ai': 'AI-совет', 'mn.promo': 'Рассрочка 0%', 'mn.service': 'Клиентский сервис', 'ann.1': '0% — рассрочка без процентов до 36 месяцев', 'ann.2': 'Напрямую от застройщика — без посредников', 'ann.3': 'Бесплатная консультация и экскурсия на объект', 'ig.follow': 'Подписывайтесь на @arthouse.tashkent', 'amb.title': 'Нас выбирают', 'amb.sub': 'Вместе с Art House' },
+    en: { 'dock.ai': 'AI advisor', 'mn.promo': '0% instalments', 'mn.service': 'Client services', 'ann.1': '0% instalments — interest-free for up to 36 months', 'ann.2': 'Direct from the developer — no middlemen', 'ann.3': 'Free consultation and site tour', 'ig.follow': 'Follow @arthouse.tashkent', 'amb.title': 'Chosen by', 'amb.sub': 'Together with Art House' },
+    fr: { 'dock.ai': 'Conseil IA', 'mn.promo': 'Paiement échelonné 0 %', 'mn.service': 'Service client', 'ann.1': "0 % — paiement échelonné sans intérêts jusqu'à 36 mois", 'ann.2': 'En direct du promoteur — sans intermédiaire', 'ann.3': 'Consultation gratuite et visite du chantier', 'ig.follow': 'Suivez @arthouse.tashkent', 'amb.title': 'Ils nous ont choisis', 'amb.sub': 'Avec Art House' },
+    it: { 'dock.ai': 'Consulente IA', 'mn.promo': 'Rate allo 0%', 'mn.service': 'Servizio clienti', 'ann.1': '0% — rateizzazione senza interessi fino a 36 mesi', 'ann.2': 'Direttamente dal costruttore — senza intermediari', 'ann.3': 'Consulenza gratuita e visita del cantiere', 'ig.follow': 'Segui @arthouse.tashkent', 'amb.title': 'Ci hanno scelto', 'amb.sub': 'Insieme ad Art House' },
+    es: { 'dock.ai': 'Asesor IA', 'mn.promo': 'Plazos al 0 %', 'mn.service': 'Atención al cliente', 'ann.1': '0 % — pago a plazos sin intereses hasta 36 meses', 'ann.2': 'Directo del promotor — sin intermediarios', 'ann.3': 'Asesoría gratuita y visita a la obra', 'ig.follow': 'Sigue a @arthouse.tashkent', 'amb.title': 'Nos eligen', 'amb.sub': 'Junto a Art House' },
+    de: { 'dock.ai': 'KI-Berater', 'mn.promo': '0 % Ratenzahlung', 'mn.service': 'Kundenservice', 'ann.1': '0 % — zinsfreie Ratenzahlung bis zu 36 Monate', 'ann.2': 'Direkt vom Bauträger — ohne Vermittler', 'ann.3': 'Kostenlose Beratung und Objektbesichtigung', 'ig.follow': 'Folgen Sie @arthouse.tashkent', 'amb.title': 'Sie vertrauen uns', 'amb.sub': 'Gemeinsam mit Art House' },
+    tr: { 'dock.ai': 'AI danışman', 'mn.promo': '%0 taksit', 'mn.service': 'Müşteri hizmetleri', 'ann.1': '%0 — 36 aya kadar faizsiz taksit', 'ann.2': 'Doğrudan müteahhitten — aracısız', 'ann.3': 'Ücretsiz danışmanlık ve şantiye turu', 'ig.follow': "@arthouse.tashkent'i takip edin", 'amb.title': 'Bizi seçenler', 'amb.sub': 'Art House ile birlikte' }
   };
   Object.keys(X).forEach(function (l) { I18N.extend(l, X[l]); });
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -5446,7 +5476,15 @@ window.AGENT_DICT = {
     col.insertAdjacentHTML('beforeend', '<div class="foot-soc">' + links.map(function (x) { return '<a href="' + esc(x[0]) + '"' + (x[0].indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') + ' aria-label="' + x[2] + '">' + gt(x[1]) + '</a>'; }).join('') + '</div>');
   }
 
-  function all() { igStrip(); amb(); footSoc(); }
+  /* 5) pastki panelga AI maslahatchi tugmasi (telefonda suzuvchi tugma o'rniga) */
+  function dockAi() {
+    var d = $('#dock'); if (!d || $('[data-dock-ai]', d)) return;
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-dock-ai', '');
+    b.innerHTML = '<svg class="ic" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span data-i="dock.ai">' + esc(t('dock.ai')) + '</span>';
+    var main = $('.dock-main', d); d.insertBefore(b, main);
+    b.addEventListener('click', function () { var a = $('#aib'); if (a) a.click(); });
+  }
+  function all() { igStrip(); amb(); footSoc(); dockAi(); }
   all();
   I18N.on(function () { annDraw(); setTimeout(all, 0); });
 })();
@@ -5463,7 +5501,7 @@ window.AGENT_DICT = {
   var MAP = { 'i-phone': 'phone', 'i-video': 'video', 'i-tg': 'tg', 'i-ig': 'ig', 'i-pin': 'pin', 'i-doc': 'doc', 'i-car': 'car', 'i-mic': 'mic',
     'i-shield': 'shield', 'i-percent': 'percent', 'i-key': 'key', 'i-hand': 'hand', 'i-build': 'build', 'i-star': 'star' };
   /* qaysi joylarda plitka bo'ladi (oltin tugmalar ichida emas — u yerda belgi o'zi qoladi) */
-  var SEL = ['.dock svg.ic', '.why article > svg.ic', '.soc-card .ico > svg.ic', '.loc-list li > svg.ic', '.ig-head > svg.ic', '.notice > svg.ic',
+  var SEL = ['.why article > svg.ic', '.soc-card .ico > svg.ic', '.loc-list li > svg.ic', '.ig-head > svg.ic', '.notice > svg.ic',
     'li > a > svg.ic', '.btn-ghost > svg.ic', '.pd-meta svg.ic', '.contact-list svg.ic'].join(',');
   function tile(svg) {
     if (svg.closest('.gt') || svg.closest('.btn-gold')) return;

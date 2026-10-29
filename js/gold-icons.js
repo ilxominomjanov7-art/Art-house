@@ -8,7 +8,7 @@
   var MAP = { 'i-phone': 'phone', 'i-video': 'video', 'i-tg': 'tg', 'i-ig': 'ig', 'i-pin': 'pin', 'i-doc': 'doc', 'i-car': 'car', 'i-mic': 'mic',
     'i-shield': 'shield', 'i-percent': 'percent', 'i-key': 'key', 'i-hand': 'hand', 'i-build': 'build', 'i-star': 'star' };
   /* qaysi joylarda plitka bo'ladi (oltin tugmalar ichida emas — u yerda belgi o'zi qoladi) */
-  var SEL = ['.dock svg.ic', '.why article > svg.ic', '.soc-card .ico > svg.ic', '.loc-list li > svg.ic', '.ig-head > svg.ic', '.notice > svg.ic',
+  var SEL = ['.why article > svg.ic', '.soc-card .ico > svg.ic', '.loc-list li > svg.ic', '.ig-head > svg.ic', '.notice > svg.ic',
     'li > a > svg.ic', '.btn-ghost > svg.ic', '.pd-meta svg.ic', '.contact-list svg.ic'].join(',');
   function tile(svg) {
     if (svg.closest('.gt') || svg.closest('.btn-gold')) return;
