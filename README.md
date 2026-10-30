@@ -116,9 +116,10 @@ Rasm va ismdan faqat insonning roziligi bilan foydalaning.
 
 ## Instagram: Reels, gapirilgan matn va tarjima
 
-Saytdagi Instagram bo'limida telefon ichida Reels videolari aylanadi (Instagram belgisi Figma'da chizilgan — `assets/img/instagram.svg`):
+Saytdagi Instagram bo'limida telefon ichida videolar yon tomonga almashadi (Instagram belgisi Figma'da chizilgan — `assets/img/instagram.svg`):
 
-- **Surish:** telefonda yuqoriga/pastga surish, kompyuterda sichqoncha g'ildiragi, yonidagi ↑ ↓ tugmalar; video tugasa — keyingisi.
+- **Yon tomonga almashtirish:** barmoq bilan chapga/o'ngga surish (kompyuterda sichqoncha bilan tortish), telefon ostidagi
+  ← → tugmalar va nuqtalar; video tugasa — keyingisi, oxirgisidan keyin — birinchisi. Tepaga-pastga harakat sahifani aylantiradi.
 - **Bosish:** videoning o'zi bosilsa — aynan shu reel Instagram'da ochiladi (har bir videoning o'z havolasi).
 - **Ovoz:** brauzerlar ovozli avtomatik ijroga faqat foydalanuvchi sahifani bir marta bosgandan keyin ruxsat beradi —
   shuning uchun ovoz saytdagi birinchi bosishdan keyin o'zi yoqiladi; «Ovozni yoqish» tugmasi ham bor.

@@ -1,6 +1,6 @@
 /* ===================================================================
    ART HOUSE — KABINET: «INSTAGRAM» (saytdagi Instagram bo'limi)
-   • Reels videolar: telefon ichida shu tartibda aylanadi; har biriga Instagram havolasi (video bosilsa
+   • Videolar: telefon ichida shu tartibda, yon tomonga surib almashtiriladi; har biriga Instagram havolasi (video bosilsa
      o'sha reel ochiladi), muallif yozuvi va gapirilgan matn — subtitrlar, saytdagi har bir tilda.
    • Subtitrlar tahrirlagichi: vaqt (soniya), matn — tillar bo'yicha; videoni ko'rib vaqtni qo'yish.
    • Yetishmayotgan tillar — «AI bilan tarjima» (js/kabinet-translate.js, server kerak).
@@ -45,7 +45,7 @@ function vI(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Instagram</h2><div c
    '<button type="button" class="btn gold sm" data-icap="'+i+'">'+I('cc')+'Gaplar va tarjima</button><button type="button" class="te-ib dl" data-idel="'+i+'" aria-label="'+TX("O'chirish")+'">'+I('trash')+'</button></div></div>'};
  const anyMiss=g.reels.some(r=>missing(full(r)).length);
  mn.innerHTML='<div class="hh"><div><h2>Instagram</h2><p class="lead">Saytdagi Instagram bo\'limi: telefon ichidagi Reels videolari, ularning havolalari va gapirilgan matnlari — saytdagi barcha tillarda. Telefon yonidagi rasmlar ham shu yerda.</p></div><a class="btn ghost sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+'Saytni ochish</a></div>'+
-  '<div class="card"><div class="tt-h"><div><h3>Reels videolar</h3><p class="note">Telefonda shu tartibda aylanadi: yuqoriga surilsa — keyingisi. Ovoz saytda birinchi bosishdan keyin yoqiladi (brauzer qoidasi). Tavsiya: vertikal 9:16, 90 soniyagacha.</p></div><button type="button" class="btn gold sm" data-iadd>'+I('upload')+'Video qo\'shish</button></div>'+
+  '<div class="card"><div class="tt-h"><div><h3>Videolar</h3><p class="note">Telefonda shu tartibda almashadi: yon tomonga surilsa yoki ← → bosilsa — keyingisi. Ovoz saytda birinchi bosishdan keyin yoqiladi (brauzer qoidasi). Tavsiya: vertikal 9:16, 90 soniyagacha.</p></div><button type="button" class="btn gold sm" data-iadd>'+I('upload')+'Video qo\'shish</button></div>'+
   (g.reels.length?'<div class="ig-list">'+g.reels.map((r,i)=>row(r,i,g.reels.length)).join('')+'</div>':'<p class="note tt-empty">'+TX("Video yo'q — saytda telefon ko'rinmaydi, faqat Instagram havolasi qoladi.")+'</p>')+
   '<div class="xa"><button type="button" class="btn ghost sm" data-isave>'+I('check')+'Havola va yozuvlarni saqlash</button>'+(anyMiss?'<button type="button" class="btn ghost sm" data-iai>'+I('sparkle')+'Yetishmayotgan tarjimalarni AI bilan to\'ldirish</button>':'')+'</div></div>'+
   '<div class="card"><div class="tt-h"><div><h3>Telefon yonidagi rasmlar</h3><p class="note">Telefon ortida qiyshaygan holda suzib turadigan ikki rasm (loyiha, interyer).</p></div></div><div class="ig-peeks">'+[0,1].map(i=>'<div class="ig-peek"><img data-sref="'+esc(g.imgs[i]||PEEK0[i])+'" alt=""><div class="xa"><button type="button" class="btn ghost sm" data-ipk="'+i+'">'+I('upload')+'Almashtirish</button>'+(g.imgs[i]?'<button type="button" class="te-ib" data-ipr="'+i+'" aria-label="'+TX('Asl rasm')+'">'+I('undo')+'</button>':'')+'</div></div>').join('')+'</div></div>';

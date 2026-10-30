@@ -83,7 +83,7 @@
   var UI = { heart: SV('<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>'),
     msg: SV('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'), send: SV('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'), save: SV('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>'),
     cam: SV('<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'),
-    up: SV('<path d="m18 15-6-6-6 6"/>'), down: SV('<path d="m6 9 6 6 6-6"/>'),
+    prev: SV('<path d="m15 18-6-6 6-6"/>'), next: SV('<path d="m9 18 6-6-6-6"/>'),
     off: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/>'), on: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>') };
   /* Reels ro'yxati: kabinet → Sayt → Instagram (AH_CMS.ig.reels), bo'lmasa js/ig-reels.js (standart 3 ta video) */
   function reels() {
@@ -111,13 +111,12 @@
       '<div class="igs2-feed">' + R.map(function (r, i) {
         return '<div class="igs2-slide' + (i ? ' next' : ' on') + '" data-i="' + i + '"><video class="igs2-v" muted playsinline loop preload="' + (i ? 'none' : 'metadata') + '"' + vAttr('src', r.src) + vAttr('poster', r.poster) + '></video></div>';
       }).join('') + '</div>' +
-      '<span class="igs2-top"><b>Reels</b>' + UI.cam + '</span>' +
       '<span class="igs2-side"><i>' + UI.heart + '</i><i>' + UI.msg + '</i><i>' + UI.send + '</i><i>' + UI.save + '</i></span>' +
       '<span class="igs2-cc" aria-live="polite"></span>' +
       '<span class="igs2-bot"><span class="igs2-who"><svg class="igs2-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span></span>' +
       '<span class="igs2-hearts" aria-hidden="true"></span><span class="igs2-prog"><i></i></span></div>' +
       '<button type="button" class="igs2-snd" aria-label="' + esc(t('ig.sound')) + '" aria-pressed="false">' + UI.off + '<span>' + esc(t('ig.sound')) + '</span></button></div>' +
-      (R.length > 1 ? '<div class="igs2-nav"><button type="button" data-ig="-1" aria-label="↑">' + UI.up + '</button><span class="igs2-dots">' + R.map(function (_, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join('') + '</span><button type="button" data-ig="1" aria-label="↓">' + UI.down + '</button></div>' : '') +
+      (R.length > 1 ? '<div class="igs2-nav"><button type="button" data-ig="-1" aria-label="‹">' + UI.prev + '</button><span class="igs2-dots">' + R.map(function (_, i) { return '<i data-igi="' + i + '"' + (i ? '' : ' class="on"') + '></i>'; }).join('') + '</span><button type="button" data-ig="1" aria-label="›">' + UI.next + '</button></div>' : '') +
       '</div>' : '') + '</div>';
     if (old) old.replaceWith(s); else { var cta = $('#p-home .cta-band'); cta ? cta.closest('.wrap').after(s) : host.appendChild(s); }
     var scr = $('.igs2-screen', s), slides = s.querySelectorAll('.igs2-slide'), vids = s.querySelectorAll('.igs2-v'), cc = $('.igs2-cc', s), capEl = $('.igs2-cap', s);
@@ -129,32 +128,35 @@
     var sync = function () { var on = !cur().muted; snd.innerHTML = (on ? UI.on : UI.off) + (on ? '' : '<span>' + esc(t('ig.sound')) + '</span>'); snd.classList.toggle('on', on); snd.setAttribute('aria-pressed', String(on)); };
     var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; dots.forEach(function (d, i) { d.classList.toggle('on', i === k); }); };
     var caption = function () { var v = cur(), c = R[k].cap || [], tm = v.currentTime, x = ''; for (var i = 0; i < c.length; i++) if (tm >= c[i].s && tm < c[i].e) { x = capText(c[i].t); break; } if (cc.textContent !== x) { cc.textContent = x; cc.classList.toggle('on', !!x); } };
-    var go = function (d) {
-      var n = k + d; if (n < 0 || n >= vids.length) return false;
+    /* yon tomonga almashish: d = 1 — o'ngdagi (keyingi), -1 — chapdagi; oxirgisidan keyin birinchisi keladi */
+    var go = function (d, to) {
+      var N = vids.length, n = to != null ? to : (k + d + N) % N; if (n === k || N < 2) return;
+      if (to != null) d = n > k ? 1 : -1;
+      var nx = slides[n]; nx.style.transition = 'none'; nx.className = 'igs2-slide ' + (d > 0 ? 'next' : 'prev'); void nx.offsetWidth; nx.style.transition = '';
       cur().pause(); slides[k].className = 'igs2-slide ' + (d > 0 ? 'prev' : 'next');
-      k = n; slides[k].className = 'igs2-slide on'; vids.forEach(function (v, i) { if (i !== k && Math.abs(i - k) > 1) v.preload = 'none'; });
-      var v = cur(); v.preload = 'auto'; v.currentTime = 0; if (vids[k + 1]) vids[k + 1].preload = 'metadata';
-      slides.forEach(function (sl, i) { if (i < k) sl.className = 'igs2-slide prev'; else if (i > k) sl.className = 'igs2-slide next'; });
-      cc.textContent = ''; cc.classList.remove('on'); meta(); play(); return true;
+      k = n; nx.className = 'igs2-slide on';
+      var v = cur(); v.preload = 'auto'; v.currentTime = 0; var nn = vids[(k + 1) % N]; if (nn.preload === 'none') nn.preload = 'metadata';
+      cc.textContent = ''; cc.classList.remove('on'); meta(); play();
     };
     vids.forEach(function (v, i) {
       v.loop = vids.length < 2;
       v.addEventListener('timeupdate', function () { if (i !== k) return; if (v.duration) bar.style.transform = 'scaleX(' + (v.currentTime / v.duration) + ')'; caption(); });
-      v.addEventListener('ended', function () { if (i === k && !go(1)) { go(-k); } }); /* oxirgisidan keyin — birinchisiga */
+      v.addEventListener('ended', function () { if (i === k) go(1); }); /* oxirgisidan keyin — birinchisiga */
     });
-    /* surish (telefonda), g'ildirak (kompyuterda), tugmalar va klaviatura; oddiy bosish — shu videoning Instagram sahifasi */
-    var y0 = null, x0 = 0, t0 = 0, dy = 0;
-    scr.addEventListener('pointerdown', function (e) { y0 = e.clientY; x0 = e.clientX; t0 = Date.now(); dy = 0; });
-    scr.addEventListener('pointermove', function (e) { if (y0 == null) return; dy = e.clientY - y0; if (Math.abs(dy) > 8) $('.igs2-feed', s).style.transform = 'translateY(' + Math.max(-60, Math.min(60, dy * .35)) + 'px)'; });
+    /* yon tomonga surish (telefonda barmoq, kompyuterda sichqoncha bilan tortish), ← → tugmalar, nuqtalar va klaviatura;
+       tepaga-pastga harakat sahifani aylantiradi; oddiy bosish — shu videoning Instagram sahifasi */
+    var x0 = null, y0 = 0, t0 = 0, dx = 0, feed = $('.igs2-feed', s);
+    scr.addEventListener('pointerdown', function (e) { x0 = e.clientX; y0 = e.clientY; t0 = Date.now(); dx = 0; });
+    scr.addEventListener('pointermove', function (e) { if (x0 == null) return; dx = e.clientX - x0; if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) feed.style.transform = 'translateX(' + Math.max(-70, Math.min(70, dx * .4)) + 'px)'; });
     var end = function (e) {
-      if (y0 == null) return; var adx = Math.abs(e.clientX - x0), ady = Math.abs(dy); $('.igs2-feed', s).style.transform = ''; y0 = null;
-      if (ady > 40 && ady > adx) { go(dy < 0 ? 1 : -1); return; }
-      if (ady < 10 && adx < 10 && Date.now() - t0 < 600) window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener');
+      if (x0 == null) return; var adx = Math.abs(dx), ady = Math.abs(e.clientY - y0); feed.style.transform = ''; x0 = null;
+      if (adx > 40 && adx > ady) { go(dx < 0 ? 1 : -1); return; }
+      if (adx < 10 && ady < 10 && Date.now() - t0 < 600) window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener');
     };
-    scr.addEventListener('pointerup', end); scr.addEventListener('pointercancel', function () { y0 = null; $('.igs2-feed', s).style.transform = ''; });
-    var wt = 0; scr.addEventListener('wheel', function (e) { if (Math.abs(e.deltaY) < 25) return; var d = e.deltaY > 0 ? 1 : -1, n = k + d; if (n < 0 || n >= vids.length) return; e.preventDefault(); if (Date.now() - wt < 750) return; wt = Date.now(); go(d); }, { passive: false });
-    scr.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); go(1); } else if (e.key === 'ArrowUp') { e.preventDefault(); go(-1); } else if (e.key === 'Enter') window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener'); });
-    s.addEventListener('click', function (e) { var b = e.target.closest('[data-ig]'); if (b) go(+b.dataset.ig); });
+    scr.addEventListener('pointerup', end); scr.addEventListener('pointercancel', function () { x0 = null; feed.style.transform = ''; });
+    var wt = 0; scr.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) < 25 || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return; e.preventDefault(); if (Date.now() - wt < 750) return; wt = Date.now(); go(e.deltaX > 0 ? 1 : -1); }, { passive: false }); /* sensorli panelda yon tomonga */
+    scr.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } else if (e.key === 'Enter') window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener'); });
+    s.addEventListener('click', function (e) { var b = e.target.closest('[data-ig]'), d = e.target.closest('[data-igi]'); if (b) go(+b.dataset.ig); else if (d) go(0, +d.dataset.igi); });
     snd.addEventListener('click', function () { SOUND = cur().muted; play(); });
     /* sahifada birinchi bosishdan keyin ovoz o'zi yoqiladi (brauzer ovozli avtomatik ijroni faqat shundan keyin ruxsat beradi) */
     var arm = function (e) { document.removeEventListener('pointerdown', arm, true); document.removeEventListener('keydown', arm, true); if (snd.contains(e.target)) return; /* ovoz tugmasining o'zi hal qiladi */ if (SOUND === null) SOUND = true; if (vis) play(); };

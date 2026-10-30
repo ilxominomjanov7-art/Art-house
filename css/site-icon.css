@@ -67,7 +67,7 @@
   .hb2-copy { order: 1; padding: 0; max-width: 560px; }
 }
 
-/* ---------- 3) Instagram: telefon ichida Reels (surish, ovoz, subtitr) ---------- */
+/* ---------- 3) Instagram: telefon ichida videolar (yon tomonga surish, ovoz, subtitr) ---------- */
 .igs2 { position: relative; padding: clamp(72px, 9vw, 130px) 0; overflow: hidden; background: radial-gradient(700px 520px at 72% 50%, rgba(214, 36, 159, .1), transparent 70%), radial-gradient(600px 480px at 85% 30%, rgba(230, 203, 139, .14), transparent 70%); }
 .igs2-in { display: grid; gap: clamp(40px, 6vw, 90px); align-items: center; max-width: 1180px; margin: 0 auto; padding: 0 22px; }
 @media (min-width: 900px) { .igs2-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 0 40px; } }
@@ -82,7 +82,7 @@
 .igs2-lead { margin: 0 0 26px; max-width: 44ch; color: var(--mut); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; }
 .igs2-btn { gap: 10px; min-height: 50px !important; padding: 0 26px !important; }
 .igs2-btn .igs2-ico { width: 22px; height: 22px; flex: none; }
-.igs2-stage { position: relative; display: grid; place-items: center; min-height: 600px; }
+.igs2-stage { position: relative; display: grid; justify-items: center; align-content: center; gap: 20px; min-height: 600px; }
 .igs2-glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(230, 203, 139, .35), rgba(214, 36, 159, .12) 45%, transparent 70%); filter: blur(10px); animation: igsGlow 6s ease-in-out infinite; }
 @keyframes igsGlow { 50% { transform: scale(1.12); opacity: .75; } }
 .igs2-peek { position: absolute; width: 150px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .7); opacity: .9; }
@@ -93,11 +93,11 @@
 .igs2-phone { position: relative; z-index: 1; width: 280px; aspect-ratio: 9 / 19.3; padding: 11px; border-radius: 46px; background: linear-gradient(145deg, #2C2C2E, #0D0D0F 55%, #2A2A2C); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .12), 0 0 0 1px rgba(230, 203, 139, .35), 0 60px 110px -40px rgba(0, 0, 0, .85), 0 30px 70px -40px rgba(214, 36, 159, .45); }
 @media (prefers-reduced-motion: reduce) { .igs2-peek, .igs2-glow, .igs2-logo { animation: none !important; } }
 .igs2-island { position: absolute; z-index: 3; top: 20px; left: 50%; width: 88px; height: 25px; margin-left: -44px; border-radius: 20px; background: #000; pointer-events: none; }
-.igs2-screen { position: relative; display: block; height: 100%; overflow: hidden; border-radius: 36px; background: #000; color: #fff; cursor: pointer; touch-action: none; -webkit-user-select: none; user-select: none; outline: none; }
+.igs2-screen { position: relative; display: block; height: 100%; overflow: hidden; border-radius: 36px; background: #000; color: #fff; cursor: pointer; touch-action: pan-y; -webkit-user-select: none; user-select: none; outline: none; } /* tepaga-pastga — sahifa aylanadi, yonga — video almashadi */
 .igs2-screen:focus-visible { box-shadow: 0 0 0 3px var(--gold); }
 .igs2-feed { position: absolute; inset: 0; transition: transform .25s var(--ease); }
 .igs2-slide { position: absolute; inset: 0; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
-.igs2-slide.on { transform: none; } .igs2-slide.prev { transform: translateY(-100%); } .igs2-slide.next { transform: translateY(100%); }
+.igs2-slide.on { transform: none; } .igs2-slide.prev { transform: translateX(-100%); } .igs2-slide.next { transform: translateX(100%); }
 .igs2-v { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .igs2-screen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .35), transparent 18%, transparent 58%, rgba(0, 0, 0, .7)); pointer-events: none; }
 .igs2-top, .igs2-side, .igs2-bot, .igs2-hearts, .igs2-prog, .igs2-cc { position: absolute; z-index: 2; pointer-events: none; }
@@ -126,16 +126,17 @@
 .igs2-snd svg { width: 17px; height: 17px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .igs2-snd.on { width: 34px; padding: 0; justify-content: center; animation: none; }
 @keyframes igsSnd { 50% { box-shadow: 0 0 0 5px rgba(255, 255, 255, .16); } }
-/* surish tugmalari va nuqtalar — telefon yonida */
-.igs2-nav { position: absolute; z-index: 3; top: 50%; left: calc(50% + 156px); display: grid; justify-items: center; gap: 10px; transform: translateY(-50%); }
-.igs2-nav button { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(230, 203, 139, .4); border-radius: 50%; background: rgba(4, 23, 15, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--gold-hi, #F6E7B8); cursor: pointer; }
+/* yon tomonga almashtirish: telefon ostida ← • • • → */
+.igs2-nav { position: relative; z-index: 3; display: flex; align-items: center; gap: 16px; }
+.igs2-nav button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(230, 203, 139, .45); border-radius: 50%; background: rgba(4, 23, 15, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--gold-hi, #F6E7B8); cursor: pointer; transition: background .25s, transform .25s; }
+.igs2-nav button:hover { background: rgba(230, 203, 139, .16); transform: scale(1.06); }
 .igs2-nav button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.igs2-dots { display: grid; gap: 6px; justify-items: center; }
-.igs2-dots i { width: 5px; height: 5px; border-radius: 5px; background: rgba(246, 231, 184, .35); transition: height .35s var(--ease), background .35s; }
-.igs2-dots i.on { height: 22px; background: var(--gold); }
+.igs2-dots { display: flex; gap: 7px; align-items: center; }
+.igs2-dots i { width: 7px; height: 7px; border-radius: 7px; background: rgba(246, 231, 184, .35); cursor: pointer; transition: width .35s var(--ease), background .35s; }
+.igs2-dots i.on { width: 26px; background: var(--gold); }
 @media (max-width: 420px) {
   .igs2-stage { min-height: 560px; } .igs2-phone { width: 258px; } .igs2-peek { width: 112px; } .igs2-peek.l { left: -10px; } .igs2-peek.r { right: -10px; }
-  .igs2-nav { left: calc(50% + 136px); gap: 8px; } .igs2-nav button { width: 34px; height: 34px; }
+  .igs2-nav { gap: 14px; }
 }
 
 /* ---------- 4) shrift: Geologica, ICON uslubidagi sarlavhalar (ranglar o'zgarmaydi) ---------- */
