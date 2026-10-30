@@ -150,7 +150,7 @@
     var M = CX.M || Math.max.apply(null, CFG.MONTHS);
 
     if (CX.phone && !CX.name) { CX.ask = 'name'; return { h: T('gotPhone'), cards: cards }; }
-    if (CX.phone && CX.name && !CX.sent) { sendLead(); CX.ask = 0; return { h: pre + T('leadSent', { n: esc(CX.name), p: esc(CX.phone), tel: tel() }), cards: cards }; }
+    if (CX.phone && CX.name && !CX.sent) { sendLead(); CX.ask = 0; return { h: pre + T(window.CRM && CRM.api ? 'leadSent' : 'leadManual', { n: esc(CX.name), p: esc(CX.phone), tel: tel() }), cards: cards }; }
     CX.ask = 0;
 
     var intent = RX.angry.test(Tn) ? 'angry' : RX.human.test(Tn) ? 'human' : RX.trust.test(Tn) ? 'trust' : RX.unsure.test(Tn) ? 'unsure' :

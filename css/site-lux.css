@@ -1,0 +1,230 @@
+/* =====================================================================
+   ART HOUSE — SAYT: yakuniy lyuks qatlam
+   · biroz ochroq zumrad va shampan oltin palitra
+   · raqamlar: bir tekis («lining») va aniq o'qiladigan
+   · kirish animatsiyasi: halqalar va uchqunlarsiz, sekin oltin porlash
+   · bosh sahifa: birinchi soniyalarda bosqichma-bosqich ochilish
+   ===================================================================== */
+:root {
+  --bg: #0F4A38;
+  --bg-2: #0D4333;
+  --bg-3: #145842;
+  --panel: rgba(22, 92, 70, .5);
+  --emerald: #1A6A50;
+  --gold: #EBD49C;
+  --gold-hi: #F8EBC6;
+  --ink: #F8F0D8;
+  --mut: #E0D3AE;
+  --line: rgba(235, 212, 156, .26);
+  --line-2: rgba(235, 212, 156, .48);
+}
+
+/* ---------- raqamlar ---------- */
+body { font-variant-numeric: lining-nums; }
+.stats b, .about-nums b, .ig-stats b, .fact b, .facts b, .res b, [data-count], [data-cms] {
+  font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+.stats b, .about-nums b, .ig-stats b {
+  font-family: var(--f-display); font-weight: 600; letter-spacing: -.01em; line-height: 1;
+  background: linear-gradient(180deg, #FFF6DC 0%, #EBD49C 55%, #C9A660 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.stats span, .about-nums span, .ig-stats span { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.4; letter-spacing: .02em; color: var(--mut); }
+.about-nums .card { display: grid; align-content: center; justify-items: center; gap: 2px; min-height: 0; padding: 26px 14px; }
+.about-nums b { font-size: clamp(40px, 9vw, 52px); }
+.ig-stats > div { display: grid; align-content: center; justify-items: center; gap: 2px; }
+.ig-stats b { font-size: clamp(30px, 7vw, 38px); }
+
+
+/* ---------- bosh sahifa: birinchi soniyalar ---------- */
+.intro-pre .hero-copy > *, .intro-pre .hero-media { opacity: 0; }
+.intro-go .hero-copy > * { animation: hIn 1.1s cubic-bezier(.22, 1, .36, 1) both; }
+.intro-go .hero-copy > :nth-child(1) { animation-delay: .05s; }
+.intro-go .hero-copy > :nth-child(2) { animation-delay: .2s; }
+.intro-go .hero-copy > :nth-child(3) { animation-delay: .4s; }
+.intro-go .hero-copy > :nth-child(4) { animation-delay: .6s; }
+.intro-go .hero-copy > :nth-child(5) { animation-delay: .8s; }
+.intro-go .hero-media { animation: hMedia 1.6s cubic-bezier(.22, 1, .36, 1) .3s both; }
+.intro-go .hero-media video { animation: kenBurns 9s cubic-bezier(.25, .1, .25, 1) .3s both; }
+.intro-go .gold-text { background-size: 220% 100%; animation: goldPass 2.6s cubic-bezier(.45, 0, .25, 1) 1s 1 both; }
+@keyframes hIn { from { opacity: 0; transform: translateY(18px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes hMedia { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes kenBurns { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes goldPass { from { background-position: 100% 0; } to { background-position: 0 0; } }
+.hero-media { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .intro-pre .hero-copy > *, .intro-pre .hero-media { opacity: 1; } .intro-go * { animation: none !important; } }
+
+/* Instagram sarlavhasi: nik bitta qatorda, tugma pastga tushadi */
+.ig-head > div { min-width: 0; }
+.ig-head b { white-space: nowrap; font-size: clamp(15px, 4.4vw, 18px); letter-spacing: .01em; }
+.ig-head span { display: block; line-height: 1.4; margin-top: 2px; }
+@media (max-width: 520px) { .ig-head { display: grid; grid-template-columns: auto 1fr; } .ig-head .btn { grid-column: 1 / -1; justify-self: start; } }
+
+
+/* =====================================================================
+   MENYU — chap tomondan chiqadigan panel (kabinetdagidek), iPhone emojilari
+   ===================================================================== */
+.top-row { position: relative; }
+.mnav-btn { display: inline-flex !important; order: -1; width: 44px; height: 44px; padding: 0 !important; justify-content: center; border-radius: 14px; }
+.mnav-btn span[data-i] { display: none !important; }
+.mnav-ico { width: 18px; gap: 4px; }
+.mnav-ico i:nth-child(2) { width: 100%; }
+.mnav-ico i:nth-child(3) { width: 60%; }
+.mnav { position: fixed; inset: 0; z-index: 140; background: none !important; opacity: 1 !important; overflow: hidden; pointer-events: none; }
+.mnav.open { pointer-events: auto; }
+.mnav-scrim { position: absolute; inset: 0; background: rgba(2, 18, 13, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity .35s ease; }
+.mnav.open .mnav-scrim { opacity: 1; }
+.mnav .mnav-in { position: absolute; top: 0; bottom: 0; left: 0; width: min(320px, 86vw); max-width: none; margin: 0; min-height: 0; display: flex; flex-direction: column;
+  padding: max(16px, env(safe-area-inset-top)) 14px calc(16px + env(safe-area-inset-bottom)); overflow-y: auto;
+  background: linear-gradient(180deg, #0C3E2F 0%, #082F23 100%); border-right: 1px solid rgba(235, 212, 156, .2); box-shadow: 30px 0 60px -30px rgba(0, 0, 0, .6);
+  transform: translateX(-102%); transition: transform .42s cubic-bezier(.32, .72, 0, 1); }
+.mnav.open .mnav-in { transform: none; }
+.mnav-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 2px 4px 14px; border-bottom: 1px solid rgba(235, 212, 156, .16); }
+.mnav-brand { display: flex; align-items: center; gap: 10px; }
+.mnav-brand svg { width: 34px; height: 34px; fill: none; stroke: url(#gGold); stroke-width: 2.6; }
+.mnav-brand > span { display: grid; gap: 2px; }
+.mnav-brand b { font-family: var(--f-logo); font-weight: 500; letter-spacing: .24em; font-size: 15px; color: var(--gold-hi); }
+.mnav-brand small { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); opacity: .8; }
+.mnav-x { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(235, 212, 156, .2); background: none; color: var(--gold-hi); display: grid; place-items: center; cursor: pointer; }
+.mnav-x .ic { width: 18px; height: 18px; }
+.mnav-sub { margin: 16px 8px 8px !important; font-size: 10.5px !important; letter-spacing: .18em !important; color: rgba(235, 212, 156, .7) !important; opacity: 1 !important; }
+.mnav-list { display: grid; gap: 2px !important; }
+.mnav-list a { display: flex !important; align-items: center; gap: 12px; min-height: 48px !important; padding: 0 12px !important; border: 0 !important; border-radius: 12px !important; background: none !important;
+  color: rgba(248, 240, 216, .9) !important; font-size: 15.5px !important; font-weight: 500; opacity: 0; transform: translateX(-10px); transition: background .2s, opacity .4s ease calc(var(--d) * 35ms + 120ms), transform .45s cubic-bezier(.22, 1, .36, 1) calc(var(--d) * 35ms + 120ms) !important; position: relative; }
+.mnav.open .mnav-list a { opacity: 1; transform: none; }
+.mnav-list a > span { flex: 1; }
+.mnav-list a .ic { width: 16px !important; height: 16px !important; color: var(--gold) !important; opacity: .55 !important; }
+.mnav-list a:active, .mnav-list a:hover { background: rgba(255, 255, 255, .05) !important; }
+.mnav-list a.active { background: rgba(235, 212, 156, .12) !important; color: var(--gold-hi) !important; }
+.mnav-list a.active::before { content: ''; position: absolute; left: -14px; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0; background: var(--gold); }
+.mnav-foot { margin-top: auto; padding-top: 18px; display: grid; gap: 10px; }
+.mnav-foot .btn { width: 100%; justify-content: center; min-height: 50px; }
+.mnav-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mnav-mini { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; border: 1px solid rgba(235, 212, 156, .22); color: var(--ink); font-size: 14px; font-weight: 500; }
+
+/* =====================================================================
+   RASM USTIDAGI YOZUV — har bir tilda (asl rasmdagi o'zbekcha matn o'rniga)
+   ===================================================================== */
+.gallery button, .lb-wrap.sized { container-type: inline-size; }
+.lb-wrap { position: relative; display: block; max-width: 100%; margin: 0 auto; line-height: 0; }
+.lb-wrap:not(.sized) .img-ov { visibility: hidden; }
+.lb-wrap img { display: block; }
+.img-ov { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 7cqw 7cqw; display: grid; justify-items: center; text-align: center; gap: 1.6cqw; line-height: 1.15; pointer-events: none; }
+.img-ov b { font-family: var(--f-display); font-weight: 600; font-size: 7.4cqw; letter-spacing: .02em; text-transform: uppercase; color: #F8F1DE; text-shadow: 0 2px 14px rgba(0, 0, 0, .45); text-wrap: balance; }
+.img-ov em { font-family: var(--f-display); font-style: normal; font-weight: 600; font-size: 8cqw; text-transform: uppercase; background: linear-gradient(180deg, #FFF3D0, #D9B672); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.img-ov i { font-style: normal; font-family: var(--f-display); font-size: 5.4cqw; padding: .6cqw 2.4cqw; border-radius: 1cqw; background: #C9A570; color: #2A1E0C; }
+.img-ov b:has(~ small) { font-size: 6.2cqw; }
+.img-ov small { font-size: 3.6cqw; line-height: 1.35; color: rgba(248, 240, 216, .88); max-width: 88%; text-wrap: balance; }
+.gallery button.has-ov > span { display: none; }
+
+/* =====================================================================
+   INTERAKTIV BOSH REJA — blokni tanlash (js/masterplan.js)
+   ===================================================================== */
+.mplan { margin: 34px 0 10px; }
+.mp-stage { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: #06291F; }
+.mp-stage img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: cover; object-position: 50% 30%; }
+.mp-pin { position: absolute; transform: translate(-50%, -50%); width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: rgba(8, 30, 22, .82); color: #F8EBC6; font: 600 15px var(--f-body); box-shadow: 0 0 0 1.5px rgba(235, 212, 156, .9), 0 6px 18px -4px rgba(0, 0, 0, .6);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), background .2s, color .2s; }
+.mp-pin::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(235, 212, 156, .55); animation: mpPulse 2.6s ease-out infinite; }
+.mp-pin:hover, .mp-pin.on { transform: translate(-50%, -50%) scale(1.12); background: linear-gradient(180deg, #F3E2B2, #D2AE6A); color: #0B3B2D; }
+.mp-pin.on::after { animation: none; opacity: 0; }
+@keyframes mpPulse { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+.mp-hint { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); margin: 0; padding: 8px 14px; border-radius: 999px; background: rgba(4, 22, 16, .72); color: #F1E3BC; font-size: 12.5px; white-space: nowrap; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.mp-actions { display: grid; gap: 10px; margin-top: 14px; }
+.mp-actions .btn { width: 100%; justify-content: center; min-height: 52px; border-radius: 999px; }
+.mp-dark { background: #0B1F18; color: #F1E3BC; border: 1px solid rgba(235, 212, 156, .28); }
+@media (min-width: 761px) { .mp-actions { grid-template-columns: 1fr 1fr; } }
+.mp-sheet { position: fixed; inset: 0; z-index: 160; display: flex; align-items: flex-end; justify-content: center; background: rgba(2, 18, 13, 0); transition: background .3s; }
+.mp-sheet.on { background: rgba(2, 18, 13, .5); }
+.mp-card { width: min(520px, 100%); padding: 10px 20px calc(22px + env(safe-area-inset-bottom)); border-radius: 26px 26px 0 0; background: linear-gradient(180deg, #0F4A38, #0A3A2C); border: 1px solid rgba(235, 212, 156, .22); border-bottom: 0;
+  transform: translateY(105%); transition: transform .38s cubic-bezier(.32, .72, 0, 1); display: grid; gap: 16px; }
+.mp-sheet.on .mp-card { transform: none; }
+.mp-grab { justify-self: center; width: 40px; height: 4px; border-radius: 4px; background: rgba(235, 212, 156, .35); }
+.mp-head { display: flex; align-items: center; justify-content: space-between; }
+.mp-head b { font-family: var(--f-display); font-size: 30px; font-weight: 600; color: #F8EBC6; }
+.mp-tag { padding: 6px 12px; border-radius: 999px; background: rgba(127, 211, 164, .14); color: #9BE3BC; font-size: 12.5px; font-weight: 600; }
+.mp-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mp-facts > div { padding: 14px; border-radius: 16px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(235, 212, 156, .16); display: grid; gap: 4px; }
+.mp-facts b { font-family: var(--f-display); font-size: 30px; line-height: 1; background: linear-gradient(180deg, #FFF6DC, #C9A660); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mp-facts span { font-size: 12.5px; color: var(--mut); }
+.mp-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mp-btns .btn:only-child { grid-column: 1 / -1; }
+.mp-btns .btn { justify-content: center; min-height: 50px; }
+.mp-help { justify-self: center; border: 0; background: none; color: var(--gold-hi); font-size: 14.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+.soc-card .ico { background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; width: auto !important; height: auto !important; }
+
+/* =====================================================================
+   ICON uslubidagi bloklar: e'lon qatori, menyu kartalari, Instagram lentasi,
+   taniqli insonlar, pastki ijtimoiy ikonkalar (js/lux-sections.js)
+   ===================================================================== */
+.ann { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; min-height: 36px; background: linear-gradient(90deg, #C9A660, #EBD49C 50%, #C9A660); color: #0B3B2D; }
+.ann button { height: 36px; border: 0; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; }
+.ann .ic { width: 16px; height: 16px; }
+.ann p { margin: 0; text-align: center; font-size: 12.5px; font-weight: 600; letter-spacing: .02em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ann p span { display: inline-block; animation: annIn .45s ease both; }
+.ann p span.out { animation: annOut .26s ease both; }
+@keyframes annIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes annOut { to { opacity: 0; transform: translateY(-8px); } }
+
+.mnav-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 4px; }
+.mnav-card { position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; border: 1px solid rgba(235, 212, 156, .2); }
+.mnav-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.mnav-card:hover img { transform: scale(1.05); }
+.mnav-card::after { content: ''; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(3, 20, 15, .85)); }
+.mnav-card span { position: absolute; left: 10px; right: 10px; bottom: 9px; z-index: 1; font-family: var(--f-logo); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: #FFF6DC; }
+.mnav-proj a { min-height: 44px !important; font-size: 15px !important; }
+
+.igs { padding: 56px 0 8px; }
+.igs-head { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 16px 22px; text-align: center; }
+.igs-head h2 { margin: 0; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: .02em; }
+.igs-row { display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.igs-row::-webkit-scrollbar { display: none; }
+.igs-row a { flex: 0 0 min(42vw, 300px); aspect-ratio: 3 / 4; scroll-snap-align: start; overflow: hidden; }
+.igs-row img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
+.igs-row a:hover img { transform: scale(1.05); }
+
+.amb .sec-head.center { text-align: center; justify-items: center; }
+.amb-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
+.amb-track::-webkit-scrollbar { display: none; }
+.amb-card { flex: 0 0 min(78vw, 320px); margin: 0; scroll-snap-align: start; }
+.amb-ph { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #0B3B2D; }
+.amb-ph img { width: 100%; height: 100%; object-fit: cover; }
+.amb-badge { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: rgba(3, 20, 15, .7); color: #F8EBC6; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; backdrop-filter: blur(6px); }
+.amb-card figcaption { display: grid; gap: 3px; padding: 14px 2px 0; }
+.amb-card figcaption b { display: flex; align-items: center; gap: 8px; font-family: var(--f-display); font-size: 24px; font-weight: 600; color: var(--gold-hi); }
+.amb-v { width: 20px; height: 20px; fill: #D9B672; flex: none; }
+.amb-card figcaption span { color: var(--mut); font-size: 14px; }
+.amb-card figcaption a { color: var(--gold); font-size: 13px; }
+.amb-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.amb-dots i { width: 8px; height: 4px; border-radius: 4px; background: rgba(235, 212, 156, .3); transition: width .3s, background .3s; }
+.amb-dots i.on { width: 28px; background: var(--gold); }
+
+.foot-soc { display: flex; gap: 12px; margin-top: 18px; }
+
+/* =====================================================================
+   MENYU v3 — ICON uslubi: och shampan fon, ikonkasiz, toza katta harflar
+   ===================================================================== */
+.mnav .mnav-in { background: #F7EFDC !important; color: #0B3B2D; border-right: 0 !important; padding: max(14px, env(safe-area-inset-top)) 22px calc(22px + env(safe-area-inset-bottom)) !important; width: min(380px, 92vw) !important; }
+.mnav .mnav-x { position: sticky; top: 0; z-index: 2; margin: 0 0 6px auto; width: 44px; height: 44px; border-radius: 0; border: 0; background: #F7EFDC; color: #0B3B2D; display: grid; place-items: center; }
+.mnav .mnav-x .ic { width: 22px; height: 22px; stroke-width: 1.6; }
+.mnav-cards { gap: 8px !important; margin: 0 0 26px !important; }
+.mnav-card { border-radius: 0 !important; border: 0 !important; aspect-ratio: 1 / 1; }
+.mnav-card span { font-family: var(--f-body) !important; font-size: 15px !important; font-weight: 600; letter-spacing: .06em !important; bottom: 12px !important; left: 12px !important; }
+.mnav-main { display: grid; gap: 4px; margin-bottom: 26px; }
+.mnav-main a { display: block; padding: 7px 0; font-size: 19px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: #0B3B2D; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease calc(var(--d) * 35ms + 120ms), transform .45s cubic-bezier(.22, 1, .36, 1) calc(var(--d) * 35ms + 120ms), color .2s; }
+.mnav-main a.mnav-hl { color: #B0782A; }
+.mnav-main a.active { color: #8C6A2E; }
+.mnav.open .mnav-main a { opacity: 1; transform: none; }
+.mnav .mnav-sub { margin: 0 0 6px !important; font-size: 14px !important; font-weight: 500; letter-spacing: .08em !important; text-transform: uppercase; color: #A79F8B !important; }
+.mnav .mnav-list { gap: 0 !important; margin-bottom: 24px; }
+.mnav .mnav-list a { min-height: 44px !important; padding: 0 !important; border-radius: 0 !important; background: none !important; color: #0B3B2D !important; font-size: 15.5px !important; font-weight: 500 !important; letter-spacing: .05em; text-transform: uppercase; }
+.mnav .mnav-list a::before { display: none !important; }
+.mnav .mnav-list a > span { flex: 1; }
+.mnav .mnav-list a .ic { width: 14px !important; height: 14px !important; color: #0B3B2D !important; opacity: .8 !important; stroke-width: 2.2; }
+.mnav .mnav-list a.active { color: #8C6A2E !important; }
+.mnav .mnav-list a:hover, .mnav-main a:hover { color: #8C6A2E !important; }
+.mnav-serv { display: grid; gap: 2px; }
+.mnav-serv a { padding: 7px 0; font-size: 14px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #A79F8B; }
+.mnav-serv a:hover { color: #0B3B2D; }
+.mnav-scrim { background: rgba(2, 18, 13, .6) !important; }

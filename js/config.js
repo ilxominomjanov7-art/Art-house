@@ -18,6 +18,17 @@ window.CFG = {
   TG_MANAGER: '',
   INSTAGRAM: 'https://www.instagram.com/arthouse.tashkent',
   INSTAGRAM_HANDLE: '@arthouse.tashkent',
+  /* «Bizni tanlaganlar» bo'limi. Faqat inson roziligi va rasmiy rasmi bo'lsa qo'shing:
+     rasmini assets/img/amb/ ga qo'yib, photo maydoniga yozing va on: true qiling.
+     Rasm yoki ruxsat bo'lmasa — yozuv saytda chiqmaydi. */
+  AMBASSADORS: [
+    { on: false, photo: '', name: 'Xayrullo Hamidov', ig: '', verified: true,
+      role: { uz: 'Futbol sharhlovchisi', ru: 'Футбольный комментатор', en: 'Football commentator', fr: 'Commentateur sportif', it: 'Telecronista di calcio', es: 'Comentarista de fútbol', de: 'Fußballkommentator', tr: 'Futbol yorumcusu' } },
+    { on: false, photo: '', name: 'Madina', ig: 'madina_newyork', verified: true,
+      role: { uz: 'Bloger, Nyu-York', ru: 'Блогер, Нью-Йорк', en: 'Blogger, New York', fr: 'Blogueuse, New York', it: 'Blogger, New York', es: 'Bloguera, Nueva York', de: 'Bloggerin, New York', tr: 'Blogger, New York' } },
+    { on: false, photo: '', name: 'Dilafruz Sharipova', ig: '', verified: true,
+      role: { uz: 'Dietolog', ru: 'Диетолог', en: 'Dietitian', fr: 'Diététicienne', it: 'Dietologa', es: 'Dietista', de: 'Ernährungsberaterin', tr: 'Diyetisyen' } }
+  ],
   YOUTUBE: '',                           // bo'sh qolsa — ko'rsatilmaydi
   FACEBOOK: '',
   WHATSAPP: '',
@@ -59,7 +70,7 @@ window.PROJECTS = [
     address: { uz: "Chinobod ko'chasi, 120A", ru: 'ул. Чинабад, 120А', en: '120A Chinobod Street', fr: '120A, rue Chinobod', it: 'Via Chinobod 120A', es: 'Calle Chinobod, 120A', de: 'Chinobod-Straße 120A', tr: 'Chinobod Caddesi, 120A' }, // TEKSHIRING
     geo: { lat: 41.360158, lng: 69.315909 },
     get priceM2() { return window.CFG.PRICE_M2; }, set priceM2(v) { window.CFG.PRICE_M2 = +v || window.CFG.PRICE_M2; }, // kabinet → Sozlamalar → 1 m² baza narxi
-    cover: 'assets/img/musaffo/musaffo-cover.webp',
+    cover: 'assets/img/hero/musaffo-kechki.webp',      // toza render (tools/hero-images.py); asl Instagram rasmi: musaffo/musaffo-cover.webp
     video: { src: 'assets/video/musaffo-drone.mp4', poster: 'assets/video/musaffo-drone-poster.jpg' },
     presentation: '',                    // masalan: 'docs/musaffo-taqdimot.pdf'
     lead: {
@@ -132,9 +143,9 @@ window.PROJECTS = [
     ],
     gallery: [
       { src: 'assets/img/musaffo/fasad-kunduzi.webp', t: { uz: 'Tashqi fasad — kunduzi', ru: 'Фасад днём', en: 'Façade by day', fr: 'Façade de jour', it: 'Facciata di giorno', es: 'Fachada de día', de: 'Fassade bei Tag', tr: 'Gündüz cephe' } },
-      { src: 'assets/img/musaffo/majmua-kechki.webp', t: { uz: 'Kechki yoritilgan majmua', ru: 'Комплекс в вечерней подсветке', en: 'The complex at dusk', fr: 'La résidence au crépuscule', it: 'Il complesso al tramonto', es: 'El complejo al anochecer', de: 'Die Anlage in der Abendbeleuchtung', tr: 'Akşam ışıklarında kompleks' } },
-      { src: 'assets/img/musaffo/musaffo-aerial-ig.webp', t: { uz: "Musaffo — yuqoridan ko'rinish", ru: 'Musaffo — вид сверху', en: 'Musaffo — aerial view', fr: 'Musaffo — vue aérienne', it: "Musaffo — vista dall'alto", es: 'Musaffo — vista aérea', de: 'Musaffo — Luftansicht', tr: 'Musaffo — kuşbakışı' } },
-      { src: 'assets/img/musaffo/dupleks-interyer.webp', t: { uz: 'Dupleks — ikki qavatli makon', ru: 'Дуплекс — два уровня', en: 'Duplex — two levels', fr: 'Duplex sur deux niveaux', it: 'Duplex su due livelli', es: 'Dúplex de dos plantas', de: 'Duplex auf zwei Ebenen', tr: 'Dubleks — iki katlı yaşam' } },
+      { src: 'assets/img/musaffo/majmua-kechki.webp', t: { uz: 'Kechki yoritilgan majmua', ru: 'Комплекс в вечерней подсветке', en: 'The complex at dusk', fr: 'La résidence au crépuscule', it: 'Il complesso al tramonto', es: 'El complejo al anochecer', de: 'Die Anlage in der Abendbeleuchtung', tr: 'Akşam ışıklarında kompleks' }, ov: { h: { uz: "Har bir orzuning o'z manzili bo'ladi", ru: 'У каждой мечты есть свой адрес', en: 'Every dream has its own address', fr: 'Chaque rêve a son adresse', it: 'Ogni sogno ha il suo indirizzo', es: 'Cada sueño tiene su dirección', de: 'Jeder Traum hat seine Adresse', tr: 'Her hayalin bir adresi vardır' }, a: { uz: 'Sizniki — Musaffo', ru: 'Ваш — Musaffo', en: 'Yours is Musaffo', fr: 'La vôtre : Musaffo', it: 'Il tuo è Musaffo', es: 'La tuya: Musaffo', de: 'Ihre heißt Musaffo', tr: 'Sizinki — Musaffo' } } },
+      { src: 'assets/img/musaffo/musaffo-aerial-ig.webp', t: { uz: "Musaffo — yuqoridan ko'rinish", ru: 'Musaffo — вид сверху', en: 'Musaffo — aerial view', fr: 'Musaffo — vue aérienne', it: "Musaffo — vista dall'alto", es: 'Musaffo — vista aérea', de: 'Musaffo — Luftansicht', tr: 'Musaffo — kuşbakışı' }, ov: { h: { uz: 'MUSAFFO', ru: 'MUSAFFO', en: 'MUSAFFO', fr: 'MUSAFFO', it: 'MUSAFFO', es: 'MUSAFFO', de: 'MUSAFFO', tr: 'MUSAFFO' }, s: { uz: "Tabiiy muhitni zamonaviy yashash makoni bilan uyg'unlashtirgan manzil!", ru: 'Адрес, где природа гармонично сочетается с современной жизнью!', en: 'An address where nature meets modern living!', fr: 'Une adresse où la nature rencontre la vie moderne !', it: 'Un indirizzo dove la natura incontra la vita moderna!', es: '¡Una dirección donde la naturaleza se une a la vida moderna!', de: 'Eine Adresse, an der Natur und modernes Wohnen zusammenfinden!', tr: 'Doğayla modern yaşamı buluşturan bir adres!' } } },
+      { src: 'assets/img/musaffo/dupleks-interyer.webp', t: { uz: 'Dupleks — ikki qavatli makon', ru: 'Дуплекс — два уровня', en: 'Duplex — two levels', fr: 'Duplex sur deux niveaux', it: 'Duplex su due livelli', es: 'Dúplex de dos plantas', de: 'Duplex auf zwei Ebenen', tr: 'Dubleks — iki katlı yaşam' }, ov: { h: { uz: '«Musaffo» TJM', ru: 'ЖК «Musaffo»', en: 'Musaffo Residence', fr: 'Résidence Musaffo', it: 'Residenza Musaffo', es: 'Residencial Musaffo', de: 'Wohnanlage Musaffo', tr: 'Musaffo Konutları' }, t: { uz: 'dupleks xonadonlar', ru: 'квартиры-дуплексы', en: 'duplex apartments', fr: 'appartements en duplex', it: 'appartamenti duplex', es: 'apartamentos dúplex', de: 'Maisonette-Wohnungen', tr: 'dubleks daireler' } } },
       { src: 'assets/img/musaffo/mehmonxona.webp', t: { uz: 'Mehmonxona', ru: 'Гостиная', en: 'Living room', fr: 'Salon', it: 'Soggiorno', es: 'Salón', de: 'Wohnzimmer', tr: 'Oturma odası' } },
       { src: 'assets/img/musaffo/oshxona.webp', t: { uz: 'Oshxona', ru: 'Кухня', en: 'Kitchen', fr: 'Cuisine', it: 'Cucina', es: 'Cocina', de: 'Küche', tr: 'Mutfak' } },
       { src: 'assets/img/musaffo/yotoqxona.webp', t: { uz: 'Yotoqxona', ru: 'Спальня', en: 'Bedroom', fr: 'Chambre', it: 'Camera da letto', es: 'Dormitorio', de: 'Schlafzimmer', tr: 'Yatak odası' } }
@@ -179,8 +190,8 @@ window.PROJECTS = [
     ],
     amenities: [],
     gallery: [
-      { src: 'assets/img/obod/obod-joylashuv.webp', t: { uz: "Ko'kcha Oqtepa hududidagi infratuzilma xaritasi", ru: 'Карта инфраструктуры района Кукча-Октепа', en: 'Infrastructure map of the Kukcha Oqtepa area', fr: 'Carte des équipements du quartier de Kukcha Oqtepa', it: 'Mappa dei servizi della zona di Kukcha Oqtepa', es: 'Mapa de servicios de la zona de Kukcha Oqtepa', de: 'Infrastrukturkarte des Gebiets Kukcha Oqtepa', tr: 'Kukcha Oqtepa bölgesi altyapı haritası' } },
-      { src: 'assets/img/obod/obod-toshkent.webp', t: { uz: 'Obod Maskan — Toshkent shahridan xonadon', ru: 'Obod Maskan — квартира в Ташкенте', en: 'Obod Maskan — a home in Tashkent', fr: 'Obod Maskan — un logement à Tachkent', it: 'Obod Maskan — una casa a Tashkent', es: 'Obod Maskan — una vivienda en Taskent', de: 'Obod Maskan — ein Zuhause in Taschkent', tr: "Obod Maskan — Taşkent'te bir ev" } }
+      { src: 'assets/img/obod/obod-joylashuv.webp', t: { uz: "Ko'kcha Oqtepa hududidagi infratuzilma xaritasi", ru: 'Карта инфраструктуры района Кукча-Октепа', en: 'Infrastructure map of the Kukcha Oqtepa area', fr: 'Carte des équipements du quartier de Kukcha Oqtepa', it: 'Mappa dei servizi della zona di Kukcha Oqtepa', es: 'Mapa de servicios de la zona de Kukcha Oqtepa', de: 'Infrastrukturkarte des Gebiets Kukcha Oqtepa', tr: 'Kukcha Oqtepa bölgesi altyapı haritası' }, ov: { h: { uz: "Uyingiz joylashuvini to'g'ri tanlang", ru: 'Выберите правильное расположение дома', en: 'Choose the right location for your home', fr: 'Choisissez le bon emplacement pour votre maison', it: 'Scegli la posizione giusta per la tua casa', es: 'Elija la ubicación adecuada para su hogar', de: 'Wählen Sie die richtige Lage für Ihr Zuhause', tr: 'Evinizin konumunu doğru seçin' }, s: { uz: 'ObodMaskan — shahar markazi yaqinida yorqin hayot!', ru: 'ObodMaskan — яркая жизнь рядом с центром города!', en: 'ObodMaskan — a vibrant life near the city centre!', fr: 'ObodMaskan — une vie lumineuse près du centre-ville !', it: 'ObodMaskan — una vita vivace vicino al centro!', es: 'ObodMaskan: una vida vibrante cerca del centro.', de: 'ObodMaskan – lebendiges Wohnen nahe der Innenstadt!', tr: 'ObodMaskan — şehir merkezine yakın parlak bir yaşam!' } } },
+      // obod-toshkent.webp olib tashlandi: bu yuklanayotgan videodan olingan skrinshot (aylanuvchi belgi bilan)
     ],
     plans: []
   },

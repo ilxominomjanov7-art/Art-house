@@ -5,24 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ART HOUSE — Luxury Residence Tashkent</title>
 <meta name="description" content="ART HOUSE — Toshkentdagi premium turar-joy majmualari: Musaffo, Ko'kcha, Obod Maskan. Quruvchidan to'g'ridan-to'g'ri, 0% foizsiz bo'lib to'lash.">
-<meta name="theme-color" content="#04110d">
+<meta name="theme-color" content="#0F4A38">
 <meta property="og:title" content="ART HOUSE — Luxury Residence Tashkent">
 <meta property="og:description" content="Musaffo, Ko'kcha, Obod Maskan — quruvchidan 0% foizsiz bo'lib to'lash.">
-<meta property="og:image" content="assets/img/musaffo/musaffo-cover.webp">
+<meta property="og:image" content="assets/img/hero/musaffo-kechki.webp">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site-extra.css">
+<link rel="stylesheet" href="css/site-lux.css">
+<link rel="stylesheet" href="css/site-colors.css">
+<link rel="stylesheet" href="css/home-icon.css">
+<link rel="stylesheet" href="css/site-prime.css">
 </head>
 <body class="is-loading">
 
 <!-- ===== SVG IKONKALAR ===== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <defs>
-  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E7B8"/><stop offset=".45" stop-color="#D8BC7E"/><stop offset=".7" stop-color="#B8913F"/><stop offset="1" stop-color="#F3DFA6"/></linearGradient>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6DA"/><stop offset=".22" stop-color="#E9CF93"/><stop offset=".45" stop-color="#B58A41"/><stop offset=".64" stop-color="#F6E5B4"/><stop offset=".82" stop-color="#C69C55"/><stop offset="1" stop-color="#F3DFA6"/></linearGradient>
  </defs>
- <symbol id="logo" viewBox="0 0 100 100"><rect x="8" y="8" width="84" height="84"/><path d="M22 92V62q0-6 6-8M33 92V48q0-6 6-8M44 92V34q0-7 6-10 6 3 6 10v58M50 24V11M67 92V48q0-6-6-8M78 92V62q0-6-6-8"/></symbol>
+ <symbol id="logo" viewBox="0 0 100 100"><rect x="2.5" y="2.5" width="95" height="95" stroke-width="1.1"/><rect x="8" y="8" width="84" height="84"/><path d="M22 92V62q0-6 6-8M33 92V48q0-6 6-8M44 92V34q0-7 6-10 6 3 6 10v58M50 24V11M67 92V48q0-6-6-8M78 92V62q0-6-6-8"/></symbol>
  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
  <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.22 3.48a.5.5 0 0 0 .78-.42V7.94a.5.5 0 0 0-.76-.43L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
@@ -60,14 +65,29 @@
 
 <!-- ===== KIRISH ANIMATSIYASI ===== -->
 <div id="splash" class="splash" aria-hidden="true">
- <div class="splash-glow"></div>
- <div class="lux-logo">
-  <svg class="lux-mark" viewBox="0 0 100 100"><use href="#logo"/></svg>
-  <div class="lux-word"><span>ART HOUSE</span></div>
-  <div class="lux-line"></div>
-  <div class="lux-sub" data-i="brand.sub">Luxury Residence · Toshkent</div>
+ <i class="sp-door sp-l"></i><i class="sp-door sp-r"></i><i class="sp-seam"></i>
+ <div class="sp-logo">
+  <svg class="sp-mark" viewBox="0 0 100 100">
+   <path class="sp-f sp-fo" d="M50 97.5H2.5V2.5H50"/><path class="sp-f sp-fo" d="M50 97.5H97.5V2.5H50"/>
+   <path class="sp-f sp-fi" d="M50 92H8V8H50"/><path class="sp-f sp-fi" d="M50 92H92V8H50"/>
+   <path class="sp-t sp-t1" d="M44 92V34q0-7 6-10"/><path class="sp-t sp-t1" d="M56 92V34q0-7-6-10"/>
+   <path class="sp-t sp-t2" d="M33 92V48q0-6 6-8"/><path class="sp-t sp-t2" d="M67 92V48q0-6-6-8"/>
+   <path class="sp-t sp-t3" d="M22 92V62q0-6 6-8"/><path class="sp-t sp-t3" d="M78 92V62q0-6-6-8"/>
+   <path class="sp-t sp-sp" d="M50 24V11"/>
+  </svg>
+  <div class="sp-word">ART HOUSE</div>
+  <div class="sp-rule"><i></i></div>
+  <div class="sp-sub" data-i="brand.sub">Luxury Residence · Toshkent</div>
  </div>
 </div>
+<script>/* kirish animatsiyasi darhol boshlanadi — katta skriptlar yuklanishini kutmaydi (js/site.js tugatadi) */
+(function () { var el = document.getElementById('splash'), seen = false; if (!el) return;
+ if (/[?&](cmsnap|edit)=1|[?&]intro=0/.test(location.search) || window.top !== window.self) { el.className = 'splash sp-skip'; return; }
+ try { seen = sessionStorage.getItem('ah3_intro') === '1'; sessionStorage.setItem('ah3_intro', '1'); } catch (e) {}
+ var m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'calm' : seen ? 'quick' : 'full';
+ if (m === 'full') [].forEach.call(el.querySelectorAll('.sp-mark path'), function (p) { var L = Math.ceil(p.getTotalLength ? p.getTotalLength() : 160) + 1; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+ el.setAttribute('data-mode', m); el.setAttribute('data-t0', Date.now()); el.classList.add('sp-' + m);
+})();</script>
 
 <!-- ===== SARLAVHA: LOGOTIP + MENYU ===== -->
 <header class="top" id="top">
@@ -104,6 +124,11 @@
 <!-- ================= 1. BOSH SAHIFA ================= -->
 <section class="page" id="p-home" data-page="home">
  <div class="hero">
+  <div class="hero-slides" id="heroSlides" aria-hidden="true">
+   <img class="on" src="assets/img/hero/musaffo-kechki.webp" alt="" fetchpriority="high" decoding="async">
+   <img data-src="assets/img/hero/dupleks-interyer.webp" alt="" decoding="async">
+   <img data-src="assets/img/hero/musaffo-fasad.webp" alt="" decoding="async">
+  </div>
   <div class="hero-bg"></div>
   <div class="wrap hero-in">
    <div class="hero-copy">
@@ -116,13 +141,13 @@
     </div>
     <div class="stats">
      <div><b data-count="years">14</b><span data-i="home.stat1">yillik tajriba</span></div>
-     <div><b>30+</b><span data-i="home.stat2">amalga oshirilgan loyiha</span></div>
+     <div><b data-cms="projects">30+</b><span data-i="home.stat2">amalga oshirilgan loyiha</span></div>
      <div><b>0%</b><span data-i="home.stat3">ustama va foiz</span></div>
-     <div><b>36</b><span data-i="home.stat4">oygacha muddat</span></div>
+     <div><b data-cms="months-max">36</b><span data-i="home.stat4">oygacha muddat</span></div>
     </div>
    </div>
    <figure class="hero-media">
-    <video id="heroVideo" muted loop playsinline autoplay preload="metadata" poster="assets/video/musaffo-drone-poster.jpg"><source src="assets/video/musaffo-drone.mp4" type="video/mp4"></video>
+    <video id="heroVideo" muted loop playsinline autoplay preload="metadata"></video>
     <figcaption><span class="dot-live"></span><span data-i="home.videoCap">Musaffo — qurilish jarayoni, dron tasviri</span></figcaption>
    </figure>
   </div>
@@ -287,17 +312,26 @@
  <div class="wrap">
   <div class="about-nums">
    <div class="card"><b data-count="years">14</b><span data-i="about.n1">yillik tajriba</span></div>
-   <div class="card"><b>30+</b><span data-i="about.n2">amalga oshirilgan loyiha</span></div>
+   <div class="card"><b data-cms="projects">30+</b><span data-i="about.n2">amalga oshirilgan loyiha</span></div>
    <div class="card"><b>0%</b><span data-i="about.n3">bo'lib to'lashda ustama</span></div>
-   <div class="card"><b>30%</b><span data-i="about.n4">dan boshlang'ich to'lov</span></div>
+   <div class="card"><b data-cms="down-min">30%</b><span data-i="about.n4">dan boshlang'ich to'lov</span></div>
   </div>
 
   <div class="card ig-band">
    <div class="ig-head"><svg class="ic lg"><use href="#i-ig"/></svg><div><b>@arthouse.tashkent</b><span data-i="about.igName">Art House Qurilish Kompaniyasi</span></div><a class="btn btn-gold sm" data-ig target="_blank" rel="noopener" data-i="about.igFollow">Kuzatish</a></div>
-   <div class="ig-stats"><div><b>114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b>1 010</b><span data-i="about.igPosts">post</span></div><div><b>14</b><span data-i="about.igYears">yillik tajriba</span></div><div><b>30+</b><span data-i="about.igProjects">loyiha</span></div></div>
+   <div class="ig-stats"><div><b data-cms="ig-followers">114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b data-cms="ig-posts">1 010</b><span data-i="about.igPosts">post</span></div><div><b data-cms="years">14</b><span data-i="about.igYears">yillik tajriba</span></div><div><b data-cms="projects">30+</b><span data-i="about.igProjects">loyiha</span></div></div>
    <p class="ig-bio"><span data-i="about.igBio1">Art House — sizning orzuingizdagi uylar</span> · <span data-i="about.igBio2">Biznes-klass turar-joy majmualari</span> · <span data-i="about.igBio3">Zamonaviy xonadonlar</span></p>
    <p class="hint" data-i="about.projList">Instagram sahifamizda tilga olingan loyihalar:</p>
    <div class="proj-chips" id="projChips"></div>
+  </div>
+
+  <div class="card fest">
+   <video id="festVideo" src="media/art-house-festival.mp4" poster="media/art-house-festival.jpg" controls playsinline preload="metadata"></video>
+   <div>
+    <p class="eyebrow" data-i="about.festE">ART HOUSE hayoti</p>
+    <h3 data-i="about.festT">Rezidentlar va mehmonlar uchun bayram</h3>
+    <p class="muted" data-i="about.festD">Konsertlar, sovg'alar va qo'shnilar bilan uchrashuvlar — biz faqat uy emas, ahil jamoa ham quramiz. ART HOUSE bayrami qanday o'tganini tomosha qiling.</p>
+   </div>
   </div>
 
   <div class="sec-head"><h2 data-i="about.whyTitle">Nega aynan ART HOUSE?</h2></div>
@@ -469,6 +503,7 @@
    <div class="tick"><svg class="ic"><use href="#i-check"/></svg></div>
    <h3 data-i="book.okTitle">So'rovingiz qabul qilindi</h3>
    <p class="muted" id="bookOkText"></p>
+   <div class="book-act" id="bookAct" hidden></div>
    <button class="btn btn-ghost" type="button" data-close data-i="common.close">Yopish</button>
   </div>
  </div>
@@ -544,7 +579,9 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="js/config.js"></script>
+<script src="js/cms-apply.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/cms-text.js"></script>
 <script src="js/i18n-fr-it.js"></script>
 <script src="js/i18n-es-de-tr.js"></script>
 <script src="js/store.js"></script>
@@ -553,5 +590,9 @@
 <script src="js/site.js"></script>
 <script src="js/agent-dict.js"></script>
 <script src="js/agent.js"></script>
+<script src="js/cms-site.js"></script>
+<script src="js/masterplan.js"></script>
+<script src="js/lux-sections.js"></script>
+<script src="js/home-icon.js"></script>
 </body>
 </html>
