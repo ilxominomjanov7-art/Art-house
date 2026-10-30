@@ -118,8 +118,8 @@ Rasm va ismdan faqat insonning roziligi bilan foydalaning.
 
 Saytdagi Instagram bo'limida telefon ichida videolar yon tomonga almashadi (Instagram belgisi Figma'da chizilgan — `assets/img/instagram.svg`):
 
-- **Yon tomonga almashtirish:** barmoq bilan chapga/o'ngga surish (kompyuterda sichqoncha bilan tortish), telefon ostidagi
-  ← → tugmalar va nuqtalar; video tugasa — keyingisi, oxirgisidan keyin — birinchisi. Tepaga-pastga harakat sahifani aylantiradi.
+- **Yon tomonga almashtirish:** mijoz videoni barmog'i bilan chapga/o'ngga suradi (kompyuterda — sichqoncha bilan tortadi);
+  ekranda tugma, o'q yoki nuqta yo'q. Video tugasa — keyingisi, oxirgisidan keyin — birinchisi. Tepaga-pastga harakat sahifani aylantiradi.
 - **Bosish:** videoning o'zi bosilsa — aynan shu reel Instagram'da ochiladi (har bir videoning o'z havolasi).
 - **Ovoz:** brauzerlar ovozli avtomatik ijroga faqat foydalanuvchi sahifani bir marta bosgandan keyin ruxsat beradi —
   shuning uchun ovoz saytdagi birinchi bosishdan keyin o'zi yoqiladi; «Ovozni yoqish» tugmasi ham bor.
