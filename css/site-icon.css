@@ -146,3 +146,10 @@ html.ty-icon .hero em, html.ty-icon .hero i, html.ty-icon .hero-sub { font-style
 html.ty-icon .art-cover b { font-family: var(--f-display) !important; font-weight: 500 !important; }
 html.ty-icon .ths-proof b, html.ty-icon .ths-about-badge b, html.ty-icon [data-count], html.ty-icon .stats b, html.ty-icon .about-nums b { font-family: var(--f-display) !important; font-weight: 400 !important; }
 html.ty-icon .hi-btn, html.ty-icon .btn { font-family: var(--f-body); font-weight: 500; }
+
+/* ---------- til menyusi: ekrandan chiqib ketmasin ----------
+   Telefonda til tugmasi o'ng burchakda — ro'yxat chap chetidan ochilgani uchun ekrandan chiqib, sahifa yon tomonga
+   surilib qolardi va ro'yxat burchakda «qamalib» qolardi. Endi tugmaning o'ng chetiga tekislanadi. */
+@media (max-width: 860px) { .top-row > .lang .lang-list { left: auto !important; right: 0 !important; } }
+.lang-list { max-height: calc(100vh - 140px); max-height: calc(100svh - 140px); overflow-y: auto; overscroll-behavior: contain; }
+body { overflow-x: clip; } /* hech qaysi element sahifani yon tomonga cho'zmasin */

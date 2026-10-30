@@ -6,7 +6,7 @@ import base64, mimetypes, os, re, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'dist')
 MIME = {'.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp4': 'video/mp4', '.png': 'image/png'}
-SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js', 'js/ig-reels.js', 'js/kabinet-instagram.js'}  # kabinet: loyiha rasmlari kerak emas — config.js dagi yo'llar o'zgarmaydi (faqat «Yulduzlar» rasmlari joylanadi)
+SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js', 'js/ig-reels.js', 'js/kabinet-instagram.js'}  # kabinet: bu fayllardagi rasm/videolar internetdan (link_assets)
 
 def read(p):
     with open(os.path.join(ROOT, p), encoding='utf-8') as f:
@@ -38,9 +38,19 @@ def inline_assets(text, only=''):
         return data_uri(p)
     return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', one, text)
 
+def link_assets(text):
+    """Kabinet: loyiha rasmlari/videolari fayl ichiga joylanmaydi (kabinet yengil qoladi) — GitHub'dagi aniq versiyasi
+    jsDelivr orqali olinadi; shuning uchun bitta kabinet.html telefonda ochilganda ham rejalar va videolar ko'rinadi.
+    Yulduzlar rasmlari (assets/img/amb/) — kichik, fayl ichiga joylanadi."""
+    def one(m):
+        p = m.group(0)
+        if p.startswith('assets/img/amb/'): return data_uri(p)
+        return cdn(p) or p
+    return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', one, text)
+
 def script(p, with_assets):
     js = read(p).replace('</script', '<\\/script')
-    return '<script>\n' + (inline_assets(js) if with_assets or p not in SKIP_ASSETS else inline_assets(js, 'assets/img/amb/')) + '\n</script>'
+    return '<script>\n' + (inline_assets(js) if with_assets or p not in SKIP_ASSETS else link_assets(js)) + '\n</script>'
 
 def build(page, with_assets):
     """with_assets=False — config.js dagi rasm/video yo'llari joylanmaydi (kabinet uchun), qolganlari joylanadi."""
