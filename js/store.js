@@ -105,7 +105,8 @@
   }
   function putBlob(blob) {
     if (API) {
-      return fetch(API + '/api/media', { method: 'POST', headers: { 'Content-Type': blob.type || 'application/octet-stream' }, body: blob })
+      var h = { 'Content-Type': blob.type || 'application/octet-stream' }; if (token) h.Authorization = 'Bearer ' + token; // rasmlarni server faqat kabinetdan qabul qiladi
+      return fetch(API + '/api/media', { method: 'POST', headers: h, body: blob })
         .then(function (r) { if (!r.ok) throw new Error('upload'); return r.json(); }).then(function (j) { return j.url; });
     }
     var key = 'idb:' + uid();
@@ -170,6 +171,7 @@
         if (d.t === 'signal') return gotSignal(d.msg);
         if (d.t === 'change') {
           if (d.kind === 'crm') return emit('crm', d.info || {}); // kabinet: arizalar / suhbatlar yangilandi
+          if (d.kind === 'cms') return emit('cms', d.info || {}); // sayt sozlamalari / mavzu: js/theme.js /api/cms ni o'qiydi
           if (d.kind === 'settings') return req('GET', '/settings').then(function (s) { if (s && s.p) { try { localStorage.setItem('ah_set', JSON.stringify(s)); } catch (x) {} applySettings(s); emit('settings'); } }).catch(function () {});
           if ((d.kind === 'leads' || d.kind === 'calls') && !token) return; // bular faqat kabinet uchun
           load(d.kind).then(function () { emit(d.kind, d.info); });

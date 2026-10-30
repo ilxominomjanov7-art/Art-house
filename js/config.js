@@ -7,7 +7,7 @@
 window.CFG = {
   BRAND: 'ART HOUSE',
   COMPANY: 'Art House Qurilish Kompaniyasi',  // @arthouse.tashkent profilidagi rasmiy nom
-  EXPERIENCE_YEARS: 14,                  // @arthouse.tashkent: "14 yillik tajriba"
+  EXPERIENCE_YEARS: 15,                  // kompaniya ma'lumoti: 15 yillik tajriba
   PROJECTS_DONE: '30+',                  // @arthouse.tashkent: "30+ loyihalar"
   IG_FOLLOWERS: '114K', IG_POSTS: '1 010',
   PHONES: ['+998712307447', '+998781136350'],

@@ -1,8 +1,9 @@
 /* =====================================================================
    ART HOUSE — server (Node.js 18+, tashqi kutubxonalarsiz)
    • Saytni tarqatadi (index.html, kabinet.html, css, js, assets)
-   • REST API: izohlar, arizalar, qo'ng'iroqlar, sozlamalar, video fayllar
-   • SSE (/api/events): kabinetdagi javob saytda DARHOL ko'rinadi
+   • REST API: izohlar, arizalar, qo'ng'iroqlar, sozlamalar, video va rasm fayllar
+   • /api/cms: kabinet → Sozlamalar va Mavzular (bo'limlar, matnlar, ranglar) — barcha qurilmalar uchun
+   • SSE (/api/events): kabinetdagi javob va mavzu o'zgarishlari saytda DARHOL ko'rinadi
    • WebRTC signal (/api/signal): mijoz ↔ menejer video-qo'ng'iroqlari
    Ishga tushirish:  node server/server.js   (PORT=8080 standart)
    ===================================================================== */
@@ -20,6 +21,7 @@ const DB_FILE = path.join(DATA, 'db.json');
 const PORT = +process.env.PORT || 8080;
 const MAX_JSON = 64 * 1024;
 const MAX_MEDIA = 50 * 1024 * 1024;
+const MAX_CMS = 4 * 1024 * 1024;
 const ALLOW_ORIGIN = process.env.ALLOW_ORIGIN || ''; // sayt boshqa domenda bo'lsa: 'https://arthouse.uz'
 
 fs.mkdirSync(MEDIA, { recursive: true });
@@ -34,7 +36,7 @@ const ADMINS = loadAdmins();
 const sessions = new Map(); // token → { role, user, exp }
 
 /* ---------- ma'lumotlar bazasi (JSON fayl) ---------- */
-let db = { reviews: [], leads: [], calls: [], settings: {}, crm: { days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} } };
+let db = { reviews: [], leads: [], calls: [], settings: {}, cms: {}, crm: { days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} } };
 try { db = Object.assign(db, JSON.parse(fs.readFileSync(DB_FILE, 'utf8'))); } catch (e) { /* birinchi ishga tushirish */ }
 db.crm = Object.assign({ days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} }, db.crm || {});
 let saveT = null;
@@ -49,7 +51,7 @@ function broadcast(obj) { const s = 'data: ' + JSON.stringify(obj) + '\n\n'; cli
 setInterval(() => clients.forEach(res => res.write(': ping\n\n')), 25000);
 
 /* ---------- yordamchilar ---------- */
-const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.mp4': 'video/mp4', '.webm': 'video/webm', '.mov': 'video/quicktime', '.pdf': 'application/pdf', '.ico': 'image/x-icon' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.gif': 'image/gif', '.mp4': 'video/mp4', '.webm': 'video/webm', '.mov': 'video/quicktime', '.pdf': 'application/pdf', '.ico': 'image/x-icon' };
 const uid = () => Date.now().toString(36) + crypto.randomBytes(4).toString('hex');
 const str = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
 function send(res, code, body, headers) {
@@ -121,11 +123,24 @@ async function api(req, res, url) {
   }
   if (kind === 'media' && req.method === 'POST') {
     const type = String(req.headers['content-type'] || '').split(';')[0];
-    const ext = { 'video/webm': '.webm', 'video/mp4': '.mp4', 'video/quicktime': '.mov' }[type];
+    const ext = { 'video/webm': '.webm', 'video/mp4': '.mp4', 'video/quicktime': '.mov', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp', 'image/gif': '.gif' }[type];
     if (!ext) return send(res, 415, { error: 'type' });
+    if (type.indexOf('image/') === 0 && !me) return send(res, 401, { error: 'auth' }); // rasmlarni faqat kabinet yuklaydi
     const buf = await readBody(req, MAX_MEDIA), name = uid() + ext;
     fs.writeFileSync(path.join(MEDIA, name), buf);
     return send(res, 200, { url: '/media/' + name });
+  }
+  /* sayt sozlamalari va mavzular: o'qish — hamma uchun, yozish — kabinetga kirganlar uchun */
+  if (kind === 'cms' && !id) {
+    if (req.method === 'GET') return send(res, 200, db.cms || {});
+    if (req.method !== 'PUT') return send(res, 405, { error: 'method' });
+    if (!me) return send(res, 401, { error: 'auth' });
+    let b; try { b = JSON.parse((await readBody(req, MAX_CMS)).toString('utf8')); } catch (e) { return send(res, e.code === 413 ? 413 : 400, { error: e.code === 413 ? 'too large' : 'bad json' }); }
+    if (!b || typeof b !== 'object' || Array.isArray(b)) return send(res, 400, { error: 'bad' });
+    b.v = Math.max(+b.v || 0, ((db.cms || {}).v || 0) + 1);
+    db.cms = b; save();
+    broadcast({ t: 'change', kind: 'cms', info: { v: b.v } });
+    return send(res, 200, { v: b.v });
   }
   if (!['reviews', 'calls'].includes(kind)) return send(res, 404, { error: 'not found' });
 
@@ -250,7 +265,7 @@ async function crm(req, res, p) {
 
 /* ---------- AI maslahatchi: Claude (ANTHROPIC_API_KEY bo'lsa) ---------- */
 const SYS_PUBLIC = `Siz — "Art House" quruvchi kompaniyasining (Toshkent) saytidagi shaxsiy sotuv maslahatchisiz. Tajribali, iliq va muloyim menejer kabi yozing — robot kabi emas.
-FAKTLAR (faqat shulardan foydalaning): Art House Qurilish Kompaniyasi — 14 yillik tajriba, 30+ loyiha, biznes-klass turar-joy majmualari; Instagram @arthouse.tashkent (114K obunachi); tel +998712307447; Telegram t.me/arthouse_toshkent; savdo ofisi: Uchtepa tumani, Ko'kcha Darvoza ko'chasi 69.
+FAKTLAR (faqat shulardan foydalaning): Art House Qurilish Kompaniyasi — 15 yillik tajriba, 30+ loyiha, biznes-klass turar-joy majmualari; Instagram @arthouse.tashkent (114K obunachi); tel +998712307447; Telegram t.me/arthouse_toshkent; savdo ofisi: Uchtepa tumani, Ko'kcha Darvoza ko'chasi 69.
 Loyihalar: Musaffo (Yunusobod, biznes-klass, 1293 avtoturargoh, har podyezdda 2 lift, ta'mirlangan xonadonlar ham bor), Obod Maskan (Ko'kcha Oqtepa hududi, shahar markaziga yaqin), Ko'kcha Oqtepa (Uchtepa).
 To'lov: quruvchidan to'g'ridan-to'g'ri, 0% foizsiz bo'lib to'lash; boshlang'ich to'lov kamida {d}%; muddatlar: {m} oy; Musaffo 1 m² ≈ {p}$. Oylik = (narx − boshlang'ich) / oylar. Rasmiy shartnoma, to'lovlar faqat kompaniya hisobiga.
 USLUB: mijoz tilida javob bering (til kodi: {lang}). Qisqa (2–5 jumla), aniq raqamlar bilan. Bir gapni takrorlamang — mijozning so'zi o'zgarsa, javobingiz ham o'zgarsin. "Ishonchlimi?" desa — "Ha" deb faktlar bilan javob bering va obyektga tashrif taklif qiling. Jahli chiqsa — avval chin dildan uzr so'rang, tushunganingizni bildiring, keyin yechim taklif qiling. Ikkilansa — oddiy qadamlar bilan yo'naltiring. Emoji ishlatmang.

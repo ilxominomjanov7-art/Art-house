@@ -33,6 +33,8 @@
   var hv = document.getElementById('heroVideo');
   BASE._hero = hv ? { src: (hv.querySelector('source') || {}).src || hv.src, poster: hv.poster } : {};
   window.AH_BASE = BASE;
+  window.AH_RES = res; /* 'base:…' havolalari CMS o'zgarishlari bo'lmasa ham kerak (js/theme.js) */
+  window.AH_CFG0 = { EXPERIENCE_YEARS: CFG.EXPERIENCE_YEARS, PROJECTS_DONE: CFG.PROJECTS_DONE, IG_FOLLOWERS: CFG.IG_FOLLOWERS, IG_POSTS: CFG.IG_POSTS }; /* js/theme.js uchun asl raqamlar */
 
   if (!C) return;
 
@@ -58,7 +60,6 @@
     var arr = b[a[1]] || [], it = arr[+a[2]];
     return it ? (it.src || it.img || '') : '';
   }
-  window.AH_RES = res;
   var pj = C.projects || {}, data = pj.data || {};
   var FIELDS = ['name', 'badge', 'district', 'address', 'lead', 'cover', 'poster', 'video', 'videos', 'geo', 'presentation', 'gallery', 'plans', 'facts', 'amenities'];
   function norm(p) {

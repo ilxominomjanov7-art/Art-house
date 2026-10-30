@@ -22,8 +22,10 @@
   if (st && ADDED.indexOf(st) > -1 && OFF.indexOf(st) < 0 && I18N.lang !== st) I18N.set(st);
   if (OFF.indexOf(I18N.lang) > -1) { try { localStorage.setItem('ah_lang', 'uz'); } catch (e) {} I18N.set('uz'); }
 
+  /* mavzu matnlari (js/theme.js → AH_TTEXT) Sozlamalar → Matnlar'dan ustun turadi */
   function ov(key, lg) {
-    var o = T[lg === 'cy' ? 'uz' : lg];
+    var l = lg === 'cy' ? 'uz' : lg, th = (window.AH_TTEXT || {})[l];
+    var o = th && th[key] != null && th[key] !== '' ? th : T[l];
     if (!o || o[key] == null || o[key] === '') return null;
     return lg === 'cy' ? I18N.toCyr(o[key]) : o[key];
   }

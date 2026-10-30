@@ -1516,6 +1516,239 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
 .book-ok .book-act { justify-items: stretch; }
 
 </style>
+<style>
+/* =====================================================================
+   ART HOUSE — MAVZU BO'LIMLARI (js/theme.js)
+   «Yulduzlar va mijozlar tanlovi», «Biz haqimizda», «Taklif va harakatga chaqiruv»,
+   «Matn va tugma», «Video». Ikki xil fon:
+   · .ths-light — och shampan fon, zumrad matn, oltin urg'u (standart)
+   · .ths-dark  — saytning zumrad foni bilan bir xil
+   ===================================================================== */
+.ths-off { display: none !important; }
+
+.ths {
+  --t-bg: #F5EFE2; --t-bg2: #EDE3CC; --t-card: #FFFDF8; --t-ink: #0E3A2D; --t-mut: #536B5F; --t-gold: #A5803A; --t-gold2: #C9A961;
+  --t-line: rgba(14, 58, 45, .13); --t-em: #0F4A38; --t-em-ink: #F7F0DE; --t-shadow: 0 30px 60px -38px rgba(14, 58, 45, .45);
+  position: relative; padding: clamp(72px, 9vw, 128px) 0; color: var(--t-ink); background: var(--t-bg);
+}
+.ths-light { background: radial-gradient(900px 420px at 88% 0, rgba(201, 169, 97, .16), transparent 70%), radial-gradient(700px 380px at 0 100%, rgba(15, 74, 56, .06), transparent 70%), var(--t-bg); }
+.ths-light::before, .ths-light::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(165, 128, 58, .55), transparent); }
+.ths-light::before { top: 0; } .ths-light::after { bottom: 0; }
+.ths-dark {
+  --t-bg: transparent; --t-bg2: rgba(255, 255, 255, .04); --t-card: rgba(255, 255, 255, .035); --t-ink: var(--ink); --t-mut: var(--mut); --t-gold: var(--gold); --t-gold2: var(--gold-2);
+  --t-line: var(--line); --t-em: var(--gold); --t-em-ink: #0B2E23; --t-shadow: 0 30px 60px -36px rgba(0, 0, 0, .6);
+}
+.ths .wrap { transition: opacity .9s var(--pr-ease, ease), transform .9s var(--pr-ease, ease); }
+.ths.ths-wait .wrap { opacity: 0; transform: translateY(28px); }
+@media (prefers-reduced-motion: reduce) { .ths.ths-wait .wrap { opacity: 1; transform: none; } }
+
+/* ---------- umumiy: sarlavha, matn, tugmalar ---------- */
+.ths .eyebrow { color: var(--t-gold) !important; margin: 0 0 14px; }
+.ths h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.06; letter-spacing: -.005em; color: var(--t-ink) !important; margin: 0; text-wrap: balance; }
+.ths-head { max-width: 780px; margin: 0 0 clamp(30px, 4vw, 52px); }
+.ths-head.center { margin-inline: auto; text-align: center; }
+.ths-lead { margin: 18px 0 0; font-size: clamp(15px, 1.4vw, 17.5px); line-height: 1.7; color: var(--t-mut); text-wrap: pretty; }
+.ths-head.center .ths-lead { margin-inline: auto; max-width: 62ch; }
+.ths-text { color: var(--t-mut); font-size: 16px; line-height: 1.75; }
+.ths-text p { margin: 0 0 14px; } .ths-text.center { text-align: center; max-width: 66ch; margin: 28px auto 0; }
+.ths-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.ths-light .btn-gold { background: var(--t-em) !important; border-color: var(--t-em) !important; color: var(--t-em-ink) !important; }
+.ths-light .btn-gold:hover { background: #135A45 !important; border-color: #135A45 !important; }
+.ths-light .btn-ghost { color: var(--t-em) !important; border-color: rgba(14, 58, 45, .38) !important; }
+.ths-light .btn-ghost:hover { border-color: var(--t-em) !important; background: rgba(15, 74, 56, .05) !important; }
+.ths .btn .ic { width: 16px; height: 16px; }
+.ths .btn.wide { width: 100%; justify-content: center; }
+
+/* ---------- 1) YULDUZLAR VA MIJOZLAR TANLOVI ---------- */
+.ths-proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); max-width: 980px; margin: 0 auto clamp(30px, 4vw, 48px); border-block: 1px solid var(--t-line); }
+.ths-proof > div { display: grid; justify-items: center; gap: 4px; padding: 22px 12px; text-align: center; }
+.ths-proof > div + div { border-left: 1px solid var(--t-line); }
+.ths-proof b { font: 400 clamp(34px, 4vw, 46px)/1 var(--f-display); color: var(--t-gold); font-variant-numeric: lining-nums; }
+.ths-proof b i { font-style: normal; font-size: .55em; margin-left: 4px; vertical-align: .5em; }
+.ths-proof span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--t-mut); }
+
+.ths-filter { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.ths-filter button { min-height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--t-line); background: transparent; color: var(--t-ink); font: 600 12px/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.ths-filter button:hover { border-color: var(--t-gold); }
+.ths-filter button[aria-pressed="true"] { background: var(--t-em); border-color: var(--t-em); color: var(--t-em-ink); }
+
+.ths-reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: clamp(14px, 1.6vw, 22px); }
+.ths-reel { position: relative; display: grid; gap: 12px; align-content: start; }
+.ths-reel[hidden] { display: none; }
+.ths-reel-btn { position: relative; display: block; width: 100%; aspect-ratio: 9 / 14; padding: 0; border: 0; border-radius: 6px; overflow: hidden; cursor: pointer; background: #0B2E23; color: #fff; text-align: left; box-shadow: var(--t-shadow); isolation: isolate; }
+.ths-reel-media, .ths-reel-media > img, .ths-reel-media > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ths-reel-media > img { transition: transform 1.2s var(--pr-ease, ease); }
+.ths-reel-btn:hover .ths-reel-media > img { transform: scale(1.05); }
+.ths-reel-media .ths-hover { z-index: 1; }
+.ths-reel-btn::after { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(4, 22, 16, .35) 0, transparent 26%, transparent 48%, rgba(4, 22, 16, .9) 100%); pointer-events: none; }
+.ths-reel-ph { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #145A43, #082C22); }
+.ths-reel-ph .ic { width: 40px; height: 40px; color: rgba(232, 213, 164, .5); }
+.ths-badge { position: absolute; z-index: 3; top: 14px; left: 14px; padding: 6px 11px; border-radius: 999px; background: rgba(247, 240, 222, .94); color: #0E3A2D; font: 700 10.5px/1 var(--f-body); letter-spacing: .14em; text-transform: uppercase; }
+.ths-reel[data-k="star"] .ths-badge { background: linear-gradient(115deg, #B8913F, #F3DFA6 55%, #C69C55); color: #1D1608; }
+.ths-play { position: absolute; z-index: 3; top: 50%; left: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(243, 223, 166, .75); background: rgba(8, 40, 30, .38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .4s var(--pr-ease, ease), background .3s; }
+.ths-play .ic { width: 20px; height: 20px; margin-left: 3px; fill: #F3DFA6; stroke: none; }
+.ths-reel-btn:hover .ths-play { transform: scale(1.08); background: rgba(15, 74, 56, .62); }
+.ths-reel-cap { position: absolute; z-index: 3; left: 18px; right: 18px; bottom: 18px; display: grid; gap: 4px; }
+.ths-reel-cap b { display: flex; align-items: center; gap: 6px; font: 500 24px/1.1 var(--f-display); color: #FBF5E6; }
+.ths-reel-cap small { font-size: 12.5px; color: rgba(251, 245, 230, .78); letter-spacing: .02em; }
+.ths-v { width: 18px; height: 18px; flex: none; fill: #4FA3F7; }
+.ths-reel-q { margin: 0; padding: 0 4px; font: italic 400 17px/1.45 var(--f-display); color: var(--t-ink); }
+.ths-reel-q::before { content: '“'; color: var(--t-gold); }
+.ths-reel-q::after { content: '”'; color: var(--t-gold); }
+.ths-sample .ths-reel-btn { outline: 1.5px dashed rgba(201, 169, 97, .9); outline-offset: -8px; cursor: default; }
+.ths-sample-tag { position: absolute; z-index: 3; top: 50%; left: 14px; right: 14px; transform: translateY(-50%); padding: 10px 12px; border-radius: 4px; background: rgba(8, 40, 30, .7); color: #F3DFA6; font: 600 11px/1.4 var(--f-body); letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+.ths-reels > .ths-ig:only-child { grid-column: 1 / -1; justify-self: center; width: min(100%, 760px); aspect-ratio: auto; padding: clamp(36px, 5vw, 56px) 28px; }
+.ths-ig { aspect-ratio: 9 / 14; display: grid; align-content: center; justify-items: center; gap: 10px; padding: 26px; border-radius: 6px; text-align: center; color: var(--t-em-ink); background: radial-gradient(circle at 30% 20%, #17604A, #0A3428); box-shadow: var(--t-shadow); }
+.ths-ig .ic { width: 34px; height: 34px; color: #E8D5A4; }
+.ths-ig b { font: 400 26px/1.15 var(--f-display); color: #FBF5E6; }
+.ths-ig span { color: #E8D5A4; font-size: 13px; }
+.ths-ig em { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font: 600 11px/1 var(--f-body); font-style: normal; letter-spacing: .16em; text-transform: uppercase; color: #E8D5A4; border-bottom: 1px solid rgba(232, 213, 164, .5); padding-bottom: 4px; }
+.ths-ig em .ic { width: 14px; height: 14px; }
+
+.ths-quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: clamp(28px, 4vw, 48px); }
+.ths-quote { margin: 0; padding: 28px; border-radius: 6px; background: var(--t-card); border: 1px solid var(--t-line); display: grid; gap: 16px; align-content: start; }
+.ths-quote.ths-sample { border-style: dashed; border-color: var(--t-gold2); }
+.ths-rate { color: var(--t-gold); letter-spacing: .2em; font-size: 15px; } .ths-rate i { font-style: normal; opacity: .25; }
+.ths-quote blockquote { margin: 0; font: italic 400 20px/1.45 var(--f-display); color: var(--t-ink); }
+.ths-quote figcaption { display: flex; align-items: center; gap: 12px; }
+.ths-quote figcaption img, .ths-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; }
+.ths-av { display: grid; place-items: center; background: var(--t-em); color: var(--t-em-ink); font: 500 20px/1 var(--f-display); }
+.ths-quote figcaption > span { display: grid; gap: 2px; min-width: 0; } .ths-quote figcaption b { font-weight: 600; font-size: 14.5px; } .ths-quote figcaption small { color: var(--t-mut); font-size: 12.5px; }
+.ths-quote figcaption em { margin-left: auto; font-style: normal; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t-gold); }
+
+.ths-band { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 18px 28px; margin-top: clamp(36px, 5vw, 60px); padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid var(--t-line); text-align: center; }
+.ths-band p { margin: 0; font: 400 clamp(22px, 2.6vw, 30px)/1.2 var(--f-display); color: var(--t-ink); }
+
+/* ---------- 2) BIZ HAQIMIZDA ---------- */
+.ths-about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 88px); align-items: center; }
+.ths-about-media { position: relative; margin: 0 0 0 18px; }
+.ths-about-media::before { content: ''; position: absolute; inset: -18px 18px 18px -18px; border: 1px solid var(--t-gold2); border-radius: 4px; pointer-events: none; }
+.ths-about-media img { position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; box-shadow: var(--t-shadow); }
+.ths-about-badge { position: absolute; right: -22px; bottom: 28px; width: 148px; height: 148px; border-radius: 50%; display: grid; place-content: center; justify-items: center; text-align: center; gap: 4px; background: #0F4A38; color: #F7F0DE; box-shadow: 0 24px 50px -24px rgba(4, 22, 16, .8); outline: 1px solid rgba(232, 213, 164, .55); outline-offset: -8px; }
+.ths-about-badge b { font: 400 54px/1 var(--f-display); color: #EBD9A9; font-variant-numeric: lining-nums; margin-bottom: 2px; }
+.ths-about-badge span { max-width: 11ch; font-size: 10.5px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; }
+.ths-about-copy h2 { margin-bottom: 22px; }
+.ths-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0; margin: 30px 0 0; border-top: 1px solid var(--t-line); }
+.ths-stats > div { display: grid; gap: 6px; padding: 20px 16px 4px 0; }
+.ths-stats b { font: 400 clamp(40px, 4.4vw, 54px)/1 var(--f-display); color: var(--t-gold); font-variant-numeric: lining-nums; }
+.ths-stats span { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--t-mut); line-height: 1.4; }
+.ths-loc { display: flex; gap: 16px; margin-top: 30px; padding: 22px; border-radius: 6px; background: var(--t-card); border: 1px solid var(--t-line); }
+.ths-loc-ic { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--t-em); color: var(--t-em-ink); }
+.ths-loc-ic .ic { width: 20px; height: 20px; }
+.ths-loc > div { display: grid; gap: 4px; min-width: 0; }
+.ths-loc b { font: 500 21px/1.2 var(--f-display); color: var(--t-ink); }
+.ths-loc > div > span { font-weight: 600; font-size: 14.5px; color: var(--t-ink); }
+.ths-loc p { margin: 6px 0 0; color: var(--t-mut); font-size: 14.5px; line-height: 1.6; }
+.ths-loc a { display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin-top: 10px; font: 600 11px/1 var(--f-body); letter-spacing: .16em; text-transform: uppercase; color: var(--t-em); border-bottom: 1px solid var(--t-gold2); padding-bottom: 4px; }
+.ths-dark .ths-loc a { color: var(--gold); }
+.ths-loc a .ic { width: 14px; height: 14px; }
+.ths-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: clamp(44px, 6vw, 80px); }
+.ths-point { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 4px; padding-top: 22px; border-top: 1px solid var(--t-line); }
+.ths-point > span { grid-row: span 2; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--t-gold2); color: var(--t-gold); }
+.ths-point > span .ic { width: 19px; height: 19px; }
+.ths-point b { font-size: 15.5px; font-weight: 600; color: var(--t-ink); }
+.ths-point p { margin: 0; color: var(--t-mut); font-size: 14.5px; line-height: 1.6; }
+
+/* ---------- 3) TAKLIF VA HARAKATGA CHAQIRUV ---------- */
+.ths-cta { overflow: hidden; }
+.ths-cta.ths-light { background: linear-gradient(125deg, #F8F2E4 0%, #EFE3C8 55%, #E6D4AE 100%); }
+.ths-cta-bg { position: absolute; inset: 0; pointer-events: none; }
+.ths-cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.ths-light .ths-cta-bg { left: 52%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%); mask-image: linear-gradient(90deg, transparent, #000 60%); opacity: .22; }
+.ths-dark .ths-cta-bg img { opacity: .3; }
+.ths-dark .ths-cta-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, var(--bg) 20%, rgba(11, 57, 44, .7)); }
+.ths-cta-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.ths-cta-grid.solo { grid-template-columns: minmax(0, 860px); justify-content: center; text-align: center; }
+.ths-cta-grid.solo .ths-chips, .ths-cta-grid.solo .ths-btns, .ths-cta-grid.solo .ths-timer > div { justify-content: center; }
+.ths-big { display: flex; align-items: flex-end; gap: 14px; margin: 0 0 18px; }
+.ths-cta-grid.solo .ths-big { justify-content: center; }
+.ths-big b { margin: -.1em 0 -.02em; padding: .04em .02em 0 0; font: 400 clamp(92px, 13vw, 176px)/1 var(--f-display); letter-spacing: -.03em; background: linear-gradient(170deg, #C9A961 10%, #8E6A2A 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ths-dark .ths-big b { background: linear-gradient(170deg, #F6EBCF 10%, #C9AE73 90%); -webkit-background-clip: text; background-clip: text; }
+.ths-big span { padding-bottom: 12px; font: 600 12px/1.4 var(--f-body); letter-spacing: .2em; text-transform: uppercase; color: var(--t-ink); max-width: 16ch; }
+.ths-cta h2 { font-size: clamp(30px, 4.2vw, 50px); }
+.ths-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
+.ths-chips li { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 16px; border-radius: 999px; background: rgba(255, 253, 248, .7); border: 1px solid var(--t-line); font-size: 13.5px; font-weight: 600; color: var(--t-ink); }
+.ths-dark .ths-chips li { background: rgba(255, 255, 255, .05); }
+.ths-chips .ic { width: 15px; height: 15px; color: var(--t-gold); stroke-width: 2.2; }
+.ths-timer { display: grid; gap: 10px; margin-top: 28px; }
+.ths-timer small { font-size: 11.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--t-gold); }
+.ths-timer > div { display: flex; gap: 10px; }
+.ths-timer span { display: grid; justify-items: center; min-width: 70px; padding: 12px 8px; border-radius: 6px; background: var(--t-em); color: var(--t-em-ink); }
+.ths-timer b { font: 400 34px/1 var(--f-display); font-variant-numeric: tabular-nums lining-nums; }
+.ths-timer i { font-style: normal; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; opacity: .78; }
+.ths-form { display: grid; gap: 14px; padding: clamp(24px, 3vw, 36px); border-radius: 8px; background: #FFFDF8; color: #0E3A2D; box-shadow: 0 40px 80px -40px rgba(14, 58, 45, .55); border: 1px solid rgba(165, 128, 58, .28); }
+.ths-form h3 { margin: 0; font: 400 clamp(26px, 2.6vw, 32px)/1.1 var(--f-display); color: #0E3A2D; }
+.ths-form > p { margin: 0; color: #536B5F; font-size: 14.5px; line-height: 1.6; }
+.ths-form .field > label { color: #536B5F !important; }
+.ths-form input:not([type=checkbox]) { background: #fff !important; color: #0E3A2D !important; border: 1px solid rgba(14, 58, 45, .2) !important; border-radius: 4px !important; min-height: 52px; }
+.ths-form input:focus { border-color: #A5803A !important; box-shadow: 0 0 0 4px rgba(201, 169, 97, .2) !important; }
+.ths-form input::placeholder { color: rgba(83, 107, 95, .6) !important; }
+.ths-form .field .err { color: #B4442E; }
+.ths-form .field.bad input { border-color: #B4442E !important; }
+.ths-form .btn-gold { background: #0F4A38 !important; border-color: #0F4A38 !important; color: #F7F0DE !important; min-height: 54px; }
+.ths-form .btn-gold:hover { background: #135A45 !important; }
+.ths-note { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 12.5px; color: #6B7F75; }
+.ths-note .ic { width: 15px; height: 15px; color: #A5803A; flex: none; }
+.ths-ok { display: flex; align-items: center; gap: 10px; margin: 0; padding: 16px; border-radius: 6px; background: rgba(15, 74, 56, .08); color: #0F4A38; font-weight: 600; }
+.ths-ok .ic { width: 20px; height: 20px; flex: none; }
+
+/* ---------- 4) MATN VA TUGMA · 5) VIDEO ---------- */
+.ths-rt { max-width: 860px; text-align: center; }
+.ths-rt.left { text-align: left; margin-inline: auto; }
+.ths-rt .ths-btns { justify-content: center; } .ths-rt.left .ths-btns { justify-content: flex-start; }
+.ths-vid-box { position: relative; max-width: 1040px; margin: 0 auto; border-radius: 6px; overflow: hidden; background: #082C22; box-shadow: var(--t-shadow); aspect-ratio: 16 / 9; }
+.ths-vid-box.ig { max-width: 420px; aspect-ratio: 9 / 15; }
+.ths-vid-box video, .ths-vid-box iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.ths-vph { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: #E8D5A4; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.ths-vph .ic { width: 42px; height: 42px; }
+
+/* ---------- video oynasi ---------- */
+.ths-modal { position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; padding: 20px; background: rgba(3, 20, 15, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.ths-modal[hidden] { display: none; }
+.ths-modal-box { position: relative; display: grid; gap: 14px; justify-items: center; width: min(960px, 100%); }
+.ths-modal-media { width: 100%; display: grid; place-items: center; }
+.ths-modal-media video { max-width: 100%; max-height: min(78vh, 900px); border-radius: 6px; background: #000; }
+.ths-modal-media iframe { width: min(960px, 100%); aspect-ratio: 16 / 9; border: 0; border-radius: 6px; background: #000; }
+.ths-modal-media.ig iframe { width: min(420px, 100%); aspect-ratio: auto; height: min(78vh, 720px); background: #fff; }
+.ths-modal-cap { display: grid; gap: 4px; text-align: center; color: #F4EEDF; max-width: 640px; }
+.ths-modal-cap b { font: 400 26px/1.15 var(--f-display); } .ths-modal-cap span { color: #E8D5A4; font-size: 13px; letter-spacing: .06em; } .ths-modal-cap p { margin: 6px 0 0; font: italic 400 18px/1.5 var(--f-display); color: rgba(244, 238, 223, .85); }
+.ths-x { position: absolute; top: -8px; right: -8px; z-index: 2; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(232, 213, 164, .5); background: rgba(8, 40, 30, .8); color: #F4EEDF; cursor: pointer; }
+.ths-x .ic { width: 18px; height: 18px; }
+
+/* ---------- kabinetdagi oldindan ko'rish: bo'limni belgilash ---------- */
+.ths-hl { position: absolute; z-index: 90; pointer-events: none; outline: 2px solid #D9B970; outline-offset: -2px; background: rgba(217, 185, 112, .05); transition: top .15s, height .15s; }
+.ths-hl[hidden] { display: none; }
+.ths-hl span { position: absolute; top: 8px; left: 8px; padding: 5px 10px; border-radius: 3px; background: #D9B970; color: #0B2E23; font: 700 11px/1 var(--f-body, sans-serif); letter-spacing: .08em; text-transform: uppercase; }
+.ths-hl.flash { animation: thsFlash 1.2s ease 1; }
+@keyframes thsFlash { 0%, 100% { background: rgba(217, 185, 112, .05); } 40% { background: rgba(217, 185, 112, .22); } }
+.ths-preview #ai, .ths-preview #aib, .ths-preview #aip { display: none !important; }
+
+/* ---------- moslashuvchan ---------- */
+@media (max-width: 960px) {
+  .ths-about-grid, .ths-cta-grid { grid-template-columns: minmax(0, 1fr); }
+  .ths-about-media { max-width: 520px; margin: 18px auto 0; width: calc(100% - 36px); }
+  .ths-light .ths-cta-bg { left: 0; opacity: .1; -webkit-mask-image: linear-gradient(180deg, transparent, #000 70%); mask-image: linear-gradient(180deg, transparent, #000 70%); }
+}
+@media (max-width: 720px) {
+  .ths { padding: 64px 0; }
+  .ths-proof { grid-template-columns: 1fr 1fr; }
+  .ths-proof > div:nth-child(odd) { border-left: 0; } .ths-proof > div:nth-child(n+3) { border-top: 1px solid var(--t-line); }
+  .ths-proof > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .ths-reels { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -20px; padding: 4px 20px 16px; scrollbar-width: none; }
+  .ths-reels::-webkit-scrollbar { display: none; }
+  .ths-reel { flex: 0 0 72%; scroll-snap-align: center; }
+  .ths-ig { flex: 0 0 72%; } .ths-reels > .ths-ig:only-child { flex-basis: 100%; }
+  .ths-quotes { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 28px -20px 0; padding: 0 20px 8px; scrollbar-width: none; }
+  .ths-quote { flex: 0 0 86%; scroll-snap-align: center; }
+  .ths-about-badge { width: 116px; height: 116px; right: -12px; } .ths-about-badge b { font-size: 42px; }
+  .ths-stats { grid-template-columns: 1fr 1fr; }
+  .ths-loc { padding: 18px; }
+  .ths-btns .btn { flex: 1 1 100%; justify-content: center; }
+  .ths-timer span { min-width: 0; flex: 1; }
+  .ths-band { flex-direction: column; } .ths-band .btn { width: 100%; justify-content: center; }
+}
+
+</style>
 </head>
 <body class="is-loading">
 
@@ -1637,7 +1870,7 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
      <a class="btn btn-ghost" href="#calculator" data-i="home.cta2">To'lovni hisoblash</a>
     </div>
     <div class="stats">
-     <div><b data-count="years">14</b><span data-i="home.stat1">yillik tajriba</span></div>
+     <div><b data-count="years">15</b><span data-i="home.stat1">yillik tajriba</span></div>
      <div><b data-cms="projects">30+</b><span data-i="home.stat2">amalga oshirilgan loyiha</span></div>
      <div><b>0%</b><span data-i="home.stat3">ustama va foiz</span></div>
      <div><b data-cms="months-max">36</b><span data-i="home.stat4">oygacha muddat</span></div>
@@ -1677,7 +1910,7 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
   <article class="card teaser">
    <p class="eyebrow" data-i="nav.about">Biz haqimizda</p>
    <h3 data-i="home.aboutTitle">Ishonch — har bir g'ishtda</h3>
-   <p class="muted" data-i="home.aboutText">Art House Qurilish Kompaniyasi — 14 yillik tajriba va 30 dan ortiq loyiha. Biznes-klass turar-joy majmualari va zamonaviy xonadonlarni quruvchining o'zidan, bank va vositachilarsiz, foizsiz bo'lib to'lash asosida taklif qilamiz.</p>
+   <p class="muted" data-i="home.aboutText">Art House Qurilish Kompaniyasi — 15 yillik tajriba va 30 dan ortiq loyiha. Biznes-klass turar-joy majmualari va zamonaviy xonadonlarni quruvchining o'zidan, bank va vositachilarsiz, foizsiz bo'lib to'lash asosida taklif qilamiz.</p>
    <a class="btn btn-ghost sm" href="#about" data-i="common.more">Batafsil</a>
   </article>
   <article class="card teaser">
@@ -1804,11 +2037,11 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
  <div class="wrap page-head">
   <p class="eyebrow" data-i="about.eyebrow">Kompaniya</p>
   <h2 class="h-page" data-i="about.title">Biz haqimizda</h2>
-  <p class="lead" data-i="about.lead">Art House — sizning orzuingizdagi uylar. Art House Qurilish Kompaniyasi 14 yildan beri qurilish sohasida faoliyat yuritadi va 30 dan ortiq loyihani amalga oshirgan. Biz biznes-klass turar-joy majmualari va zamonaviy xonadonlar quramiz hamda ularni har bir oila uchun halol, shaffof shartlarda taklif qilamiz.</p>
+  <p class="lead" data-i="about.lead">Art House — sizning orzuingizdagi uylar. Art House Qurilish Kompaniyasi 15 yildan beri qurilish sohasida faoliyat yuritadi va 30 dan ortiq loyihani amalga oshirgan. Biz biznes-klass turar-joy majmualari va zamonaviy xonadonlar quramiz hamda ularni har bir oila uchun halol, shaffof shartlarda taklif qilamiz.</p>
  </div>
  <div class="wrap">
   <div class="about-nums">
-   <div class="card"><b data-count="years">14</b><span data-i="about.n1">yillik tajriba</span></div>
+   <div class="card"><b data-count="years">15</b><span data-i="about.n1">yillik tajriba</span></div>
    <div class="card"><b data-cms="projects">30+</b><span data-i="about.n2">amalga oshirilgan loyiha</span></div>
    <div class="card"><b>0%</b><span data-i="about.n3">bo'lib to'lashda ustama</span></div>
    <div class="card"><b data-cms="down-min">30%</b><span data-i="about.n4">dan boshlang'ich to'lov</span></div>
@@ -1816,7 +2049,7 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
 
   <div class="card ig-band">
    <div class="ig-head"><svg class="ic lg"><use href="#i-ig"/></svg><div><b>@arthouse.tashkent</b><span data-i="about.igName">Art House Qurilish Kompaniyasi</span></div><a class="btn btn-gold sm" data-ig target="_blank" rel="noopener" data-i="about.igFollow">Kuzatish</a></div>
-   <div class="ig-stats"><div><b data-cms="ig-followers">114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b data-cms="ig-posts">1 010</b><span data-i="about.igPosts">post</span></div><div><b data-cms="years">14</b><span data-i="about.igYears">yillik tajriba</span></div><div><b data-cms="projects">30+</b><span data-i="about.igProjects">loyiha</span></div></div>
+   <div class="ig-stats"><div><b data-cms="ig-followers">114K</b><span data-i="about.igFollowers">obunachi</span></div><div><b data-cms="ig-posts">1 010</b><span data-i="about.igPosts">post</span></div><div><b data-cms="years">15</b><span data-i="about.igYears">yillik tajriba</span></div><div><b data-cms="projects">30+</b><span data-i="about.igProjects">loyiha</span></div></div>
    <p class="ig-bio"><span data-i="about.igBio1">Art House — sizning orzuingizdagi uylar</span> · <span data-i="about.igBio2">Biznes-klass turar-joy majmualari</span> · <span data-i="about.igBio3">Zamonaviy xonadonlar</span></p>
    <p class="hint" data-i="about.projList">Instagram sahifamizda tilga olingan loyihalar:</p>
    <div class="proj-chips" id="projChips"></div>
@@ -2085,7 +2318,7 @@ html:not(.hero-vid) .hero .hero-media { display: none !important; }
 window.CFG = {
   BRAND: 'ART HOUSE',
   COMPANY: 'Art House Qurilish Kompaniyasi',  // @arthouse.tashkent profilidagi rasmiy nom
-  EXPERIENCE_YEARS: 14,                  // @arthouse.tashkent: "14 yillik tajriba"
+  EXPERIENCE_YEARS: 15,                  // kompaniya ma'lumoti: 15 yillik tajriba
   PROJECTS_DONE: '30+',                  // @arthouse.tashkent: "30+ loyihalar"
   IG_FOLLOWERS: '114K', IG_POSTS: '1 010',
   PHONES: ['+998712307447', '+998781136350'],
@@ -2341,6 +2574,8 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
   var hv = document.getElementById('heroVideo');
   BASE._hero = hv ? { src: (hv.querySelector('source') || {}).src || hv.src, poster: hv.poster } : {};
   window.AH_BASE = BASE;
+  window.AH_RES = res; /* 'base:…' havolalari CMS o'zgarishlari bo'lmasa ham kerak (js/theme.js) */
+  window.AH_CFG0 = { EXPERIENCE_YEARS: CFG.EXPERIENCE_YEARS, PROJECTS_DONE: CFG.PROJECTS_DONE, IG_FOLLOWERS: CFG.IG_FOLLOWERS, IG_POSTS: CFG.IG_POSTS }; /* js/theme.js uchun asl raqamlar */
 
   if (!C) return;
 
@@ -2366,7 +2601,6 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
     var arr = b[a[1]] || [], it = arr[+a[2]];
     return it ? (it.src || it.img || '') : '';
   }
-  window.AH_RES = res;
   var pj = C.projects || {}, data = pj.data || {};
   var FIELDS = ['name', 'badge', 'district', 'address', 'lead', 'cover', 'poster', 'video', 'videos', 'geo', 'presentation', 'gallery', 'plans', 'facts', 'amenities'];
   function norm(p) {
@@ -2903,8 +3137,10 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
   if (st && ADDED.indexOf(st) > -1 && OFF.indexOf(st) < 0 && I18N.lang !== st) I18N.set(st);
   if (OFF.indexOf(I18N.lang) > -1) { try { localStorage.setItem('ah_lang', 'uz'); } catch (e) {} I18N.set('uz'); }
 
+  /* mavzu matnlari (js/theme.js → AH_TTEXT) Sozlamalar → Matnlar'dan ustun turadi */
   function ov(key, lg) {
-    var o = T[lg === 'cy' ? 'uz' : lg];
+    var l = lg === 'cy' ? 'uz' : lg, th = (window.AH_TTEXT || {})[l];
+    var o = th && th[key] != null && th[key] !== '' ? th : T[l];
     if (!o || o[key] == null || o[key] === '') return null;
     return lg === 'cy' ? I18N.toCyr(o[key]) : o[key];
   }
@@ -2966,7 +3202,7 @@ I18N.extend('fr', {
   'home.calcTitle': 'Connaissez votre mensualité en un instant', 'home.calcText': "Choisissez le prix, l'apport et la durée : le résultat s'affiche immédiatement. Sans majoration.",
   'home.calcBtn': 'Calcul détaillé', 'home.locTitle': 'Aux meilleurs emplacements de la ville', 'home.locBtn': 'Voir sur la carte',
   'home.aboutTitle': 'La confiance, dans chaque brique',
-  'home.aboutText': "Art House Qurilish Kompaniyasi : 14 ans d'expérience et plus de 30 projets. Nous proposons des résidences de classe affaires et des appartements modernes directement du promoteur, sans banque ni intermédiaire, en paiement échelonné sans intérêts.",
+  'home.aboutText': "Art House Qurilish Kompaniyasi : 15 ans d'expérience et plus de 30 projets. Nous proposons des résidences de classe affaires et des appartements modernes directement du promoteur, sans banque ni intermédiaire, en paiement échelonné sans intérêts.",
   'common.more': 'En savoir plus', 'home.revBtn': 'Tous les avis', 'home.ctaTitle': 'Contactez un conseiller dès maintenant',
   'home.ctaText': 'Appel, appel vidéo ou Telegram : choisissez ce qui vous convient.',
   'call.video': 'Appel vidéo', 'call.phone': 'Appeler',
@@ -2984,7 +3220,7 @@ I18N.extend('fr', {
   'loc.google': 'Ouvrir dans Google Maps', 'loc.yandex': 'Ouvrir dans Yandex Maps', 'loc.taxi': 'Yandex Go — commander un taxi',
   'loc.infra': 'Services à proximité', 'loc.infraHint': 'Choisissez une catégorie pour voir les lieux les plus proches sur la carte.',
   'about.eyebrow': 'La société', 'about.title': 'À propos',
-  'about.lead': "Art House — les logements de vos rêves. Art House Qurilish Kompaniyasi exerce dans la construction depuis 14 ans et a réalisé plus de 30 projets. Nous construisons des résidences de classe affaires et des appartements modernes, proposés à chaque famille à des conditions honnêtes et transparentes.",
+  'about.lead': "Art House — les logements de vos rêves. Art House Qurilish Kompaniyasi exerce dans la construction depuis 15 ans et a réalisé plus de 30 projets. Nous construisons des résidences de classe affaires et des appartements modernes, proposés à chaque famille à des conditions honnêtes et transparentes.",
   'about.n1': "ans d'expérience", 'about.n2': 'projets réalisés', 'about.n3': 'de majoration en paiement échelonné', 'about.n4': "d'apport minimum",
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Suivre', 'about.igFollowers': 'abonnés', 'about.igPosts': 'publications',
   'about.igYears': "ans d'expérience", 'about.igProjects': 'projets', 'about.igBio1': 'Art House — les logements de vos rêves',
@@ -3097,7 +3333,7 @@ I18N.extend('it', {
   'home.calcTitle': 'Scopri subito la tua rata mensile', 'home.calcText': "Scegli prezzo, anticipo e durata: il risultato si aggiorna all'istante. Senza ricarichi.",
   'home.calcBtn': 'Calcolo dettagliato', 'home.locTitle': 'Nei punti più comodi della città', 'home.locBtn': 'Vedi sulla mappa',
   'home.aboutTitle': 'Fiducia in ogni mattone',
-  'home.aboutText': 'Art House Qurilish Kompaniyasi: 14 anni di esperienza e oltre 30 progetti. Offriamo complessi residenziali business class e appartamenti moderni direttamente dal costruttore, senza banche né intermediari, con rate senza interessi.',
+  'home.aboutText': 'Art House Qurilish Kompaniyasi: 15 anni di esperienza e oltre 30 progetti. Offriamo complessi residenziali business class e appartamenti moderni direttamente dal costruttore, senza banche né intermediari, con rate senza interessi.',
   'common.more': 'Scopri di più', 'home.revBtn': 'Tutte le recensioni', 'home.ctaTitle': 'Contatta subito un consulente',
   'home.ctaText': 'Telefono, videochiamata o Telegram: scegli il modo che preferisci.',
   'call.video': 'Videochiamata', 'call.phone': 'Chiama',
@@ -3115,7 +3351,7 @@ I18N.extend('it', {
   'loc.google': 'Apri in Google Maps', 'loc.yandex': 'Apri in Yandex Maps', 'loc.taxi': 'Yandex Go — chiama un taxi',
   'loc.infra': 'Servizi nelle vicinanze', 'loc.infraHint': 'Scegli una categoria per vedere i luoghi più vicini sulla mappa.',
   'about.eyebrow': "L'azienda", 'about.title': 'Chi siamo',
-  'about.lead': "Art House — le case dei tuoi sogni. Art House Qurilish Kompaniyasi opera nell'edilizia da 14 anni e ha realizzato oltre 30 progetti. Costruiamo complessi residenziali business class e appartamenti moderni, offerti a ogni famiglia a condizioni oneste e trasparenti.",
+  'about.lead': "Art House — le case dei tuoi sogni. Art House Qurilish Kompaniyasi opera nell'edilizia da 15 anni e ha realizzato oltre 30 progetti. Costruiamo complessi residenziali business class e appartamenti moderni, offerti a ogni famiglia a condizioni oneste e trasparenti.",
   'about.n1': 'anni di esperienza', 'about.n2': 'progetti realizzati', 'about.n3': 'di ricarico sulle rate', 'about.n4': 'di anticipo minimo',
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Segui', 'about.igFollowers': 'follower', 'about.igPosts': 'post',
   'about.igYears': 'anni di esperienza', 'about.igProjects': 'progetti', 'about.igBio1': 'Art House — le case dei tuoi sogni',
@@ -3231,7 +3467,7 @@ I18N.extend('es', {
   'home.calcTitle': 'Conozca su cuota mensual en segundos', 'home.calcText': 'Elija el precio, la entrada y el plazo: el resultado se calcula al instante. Sin recargos.',
   'home.calcBtn': 'Cálculo detallado', 'home.locTitle': 'En los puntos más cómodos de la ciudad', 'home.locBtn': 'Ver en el mapa',
   'home.aboutTitle': 'Confianza en cada ladrillo',
-  'home.aboutText': 'Art House Qurilish Kompaniyasi: 14 años de experiencia y más de 30 proyectos. Ofrecemos complejos residenciales de clase business y viviendas modernas directamente de la constructora, sin bancos ni intermediarios, con pago a plazos sin intereses.',
+  'home.aboutText': 'Art House Qurilish Kompaniyasi: 15 años de experiencia y más de 30 proyectos. Ofrecemos complejos residenciales de clase business y viviendas modernas directamente de la constructora, sin bancos ni intermediarios, con pago a plazos sin intereses.',
   'common.more': 'Más información', 'home.revBtn': 'Todas las opiniones', 'home.ctaTitle': 'Hable ahora con un asesor',
   'home.ctaText': 'Llamada, videollamada o Telegram: elija la opción que prefiera.',
   'call.video': 'Videollamada', 'call.phone': 'Llamar',
@@ -3249,7 +3485,7 @@ I18N.extend('es', {
   'loc.google': 'Abrir en Google Maps', 'loc.yandex': 'Abrir en Yandex Maps', 'loc.taxi': 'Yandex Go — pedir un taxi',
   'loc.infra': 'Servicios cercanos', 'loc.infraHint': 'Elija una categoría para ver los lugares más cercanos en el mapa.',
   'about.eyebrow': 'La empresa', 'about.title': 'Quiénes somos',
-  'about.lead': 'Art House: las viviendas de sus sueños. Art House Qurilish Kompaniyasi lleva 14 años en el sector de la construcción y ha realizado más de 30 proyectos. Construimos complejos residenciales de clase business y viviendas modernas, y las ofrecemos a cada familia en condiciones honestas y transparentes.',
+  'about.lead': 'Art House: las viviendas de sus sueños. Art House Qurilish Kompaniyasi lleva 15 años en el sector de la construcción y ha realizado más de 30 proyectos. Construimos complejos residenciales de clase business y viviendas modernas, y las ofrecemos a cada familia en condiciones honestas y transparentes.',
   'about.n1': 'años de experiencia', 'about.n2': 'proyectos realizados', 'about.n3': 'de recargo en el pago a plazos', 'about.n4': 'de entrada mínima',
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Seguir', 'about.igFollowers': 'seguidores', 'about.igPosts': 'publicaciones',
   'about.igYears': 'años de experiencia', 'about.igProjects': 'proyectos', 'about.igBio1': 'Art House: las viviendas de sus sueños',
@@ -3362,7 +3598,7 @@ I18N.extend('de', {
   'home.calcTitle': 'Ihre Monatsrate in Sekunden', 'home.calcText': 'Wählen Sie Preis, Anzahlung und Laufzeit – das Ergebnis erscheint sofort. Ohne Aufschlag.',
   'home.calcBtn': 'Detaillierte Berechnung', 'home.locTitle': 'An den besten Orten der Stadt', 'home.locBtn': 'Auf der Karte ansehen',
   'home.aboutTitle': 'Vertrauen in jedem Ziegel',
-  'home.aboutText': 'Art House Qurilish Kompaniyasi – 14 Jahre Erfahrung und über 30 Projekte. Wir bieten Wohnanlagen der Business-Klasse und moderne Wohnungen direkt vom Bauträger an – ohne Banken und Vermittler, mit zinsfreier Ratenzahlung.',
+  'home.aboutText': 'Art House Qurilish Kompaniyasi – 15 Jahre Erfahrung und über 30 Projekte. Wir bieten Wohnanlagen der Business-Klasse und moderne Wohnungen direkt vom Bauträger an – ohne Banken und Vermittler, mit zinsfreier Ratenzahlung.',
   'common.more': 'Mehr erfahren', 'home.revBtn': 'Alle Bewertungen', 'home.ctaTitle': 'Sprechen Sie jetzt mit einem Berater',
   'home.ctaText': 'Anruf, Videoanruf oder Telegram – wählen Sie, was Ihnen passt.',
   'call.video': 'Videoanruf', 'call.phone': 'Anrufen',
@@ -3380,7 +3616,7 @@ I18N.extend('de', {
   'loc.google': 'In Google Maps öffnen', 'loc.yandex': 'In Yandex Maps öffnen', 'loc.taxi': 'Yandex Go – Taxi bestellen',
   'loc.infra': 'Infrastruktur in der Nähe', 'loc.infraHint': 'Wählen Sie eine Kategorie, um die nächstgelegenen Orte auf der Karte zu sehen.',
   'about.eyebrow': 'Das Unternehmen', 'about.title': 'Über uns',
-  'about.lead': 'Art House – die Wohnungen Ihrer Träume. Art House Qurilish Kompaniyasi ist seit 14 Jahren im Bauwesen tätig und hat über 30 Projekte realisiert. Wir bauen Wohnanlagen der Business-Klasse und moderne Wohnungen und bieten sie jeder Familie zu ehrlichen, transparenten Bedingungen an.',
+  'about.lead': 'Art House – die Wohnungen Ihrer Träume. Art House Qurilish Kompaniyasi ist seit 15 Jahren im Bauwesen tätig und hat über 30 Projekte realisiert. Wir bauen Wohnanlagen der Business-Klasse und moderne Wohnungen und bieten sie jeder Familie zu ehrlichen, transparenten Bedingungen an.',
   'about.n1': 'Jahre Erfahrung', 'about.n2': 'realisierte Projekte', 'about.n3': 'Aufschlag bei Ratenzahlung', 'about.n4': 'Mindestanzahlung',
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Folgen', 'about.igFollowers': 'Follower', 'about.igPosts': 'Beiträge',
   'about.igYears': 'Jahre Erfahrung', 'about.igProjects': 'Projekte', 'about.igBio1': 'Art House – die Wohnungen Ihrer Träume',
@@ -3493,7 +3729,7 @@ I18N.extend('tr', {
   'home.calcTitle': 'Aylık ödemenizi saniyeler içinde öğrenin', 'home.calcText': 'Fiyatı, peşinatı ve vadeyi seçin — sonuç anında hesaplanır. Ek ücret yok.',
   'home.calcBtn': 'Ayrıntılı hesaplama', 'home.locTitle': 'Şehrin en elverişli noktalarında', 'home.locBtn': 'Haritada görün',
   'home.aboutTitle': 'Her tuğlada güven',
-  'home.aboutText': "Art House Qurilish Kompaniyasi — 14 yıllık deneyim ve 30'dan fazla proje. Business sınıfı konut kompleksleri ve modern daireleri doğrudan müteahhitten, banka ve aracı olmadan, faizsiz taksitle sunuyoruz.",
+  'home.aboutText': "Art House Qurilish Kompaniyasi — 15 yıllık deneyim ve 30'dan fazla proje. Business sınıfı konut kompleksleri ve modern daireleri doğrudan müteahhitten, banka ve aracı olmadan, faizsiz taksitle sunuyoruz.",
   'common.more': 'Ayrıntılar', 'home.revBtn': 'Tüm yorumlar', 'home.ctaTitle': 'Hemen bir satış danışmanıyla görüşün',
   'home.ctaText': 'Telefon, görüntülü arama veya Telegram — size uygun olanı seçin.',
   'call.video': 'Görüntülü arama', 'call.phone': 'Arayın',
@@ -3511,7 +3747,7 @@ I18N.extend('tr', {
   'loc.google': "Google Maps'te aç", 'loc.yandex': "Yandex Maps'te aç", 'loc.taxi': 'Yandex Go — taksi çağır',
   'loc.infra': 'Yakındaki olanaklar', 'loc.infraHint': 'Bir kategori seçin, haritada en yakın yerler açılsın.',
   'about.eyebrow': 'Şirket', 'about.title': 'Hakkımızda',
-  'about.lead': "Art House — hayalinizdeki evler. Art House Qurilish Kompaniyasi 14 yıldır inşaat sektöründe faaliyet gösteriyor ve 30'dan fazla projeyi hayata geçirdi. Business sınıfı konut kompleksleri ve modern daireler inşa ediyor, bunları her aileye dürüst ve şeffaf koşullarla sunuyoruz.",
+  'about.lead': "Art House — hayalinizdeki evler. Art House Qurilish Kompaniyasi 15 yıldır inşaat sektöründe faaliyet gösteriyor ve 30'dan fazla projeyi hayata geçirdi. Business sınıfı konut kompleksleri ve modern daireler inşa ediyor, bunları her aileye dürüst ve şeffaf koşullarla sunuyoruz.",
   'about.n1': 'yıllık deneyim', 'about.n2': 'tamamlanmış proje', 'about.n3': 'taksitte ek ücret', 'about.n4': "peşinat %30'dan başlar",
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Takip et', 'about.igFollowers': 'takipçi', 'about.igPosts': 'gönderi',
   'about.igYears': 'yıllık deneyim', 'about.igProjects': 'proje', 'about.igBio1': 'Art House — hayalinizdeki evler',
@@ -3615,8 +3851,8 @@ I18N.extend('tr', {
 /* ru / en: Instagram ma'lumotlari bo'yicha yangilangan matnlar */
 I18N.extend('ru', {
   'home.stat1': 'лет опыта', 'home.stat2': 'реализованных проектов',
-  'home.aboutText': 'Art House Qurilish Kompaniyasi — 14 лет опыта и более 30 проектов. Мы предлагаем жилые комплексы бизнес-класса и современные квартиры напрямую от застройщика — без банков и посредников, в беспроцентную рассрочку.',
-  'about.lead': 'Art House — дома вашей мечты. Art House Qurilish Kompaniyasi работает в строительстве 14 лет и реализовала более 30 проектов. Мы строим жилые комплексы бизнес-класса и современные квартиры и предлагаем их каждой семье на честных и прозрачных условиях.',
+  'home.aboutText': 'Art House Qurilish Kompaniyasi — 15 лет опыта и более 30 проектов. Мы предлагаем жилые комплексы бизнес-класса и современные квартиры напрямую от застройщика — без банков и посредников, в беспроцентную рассрочку.',
+  'about.lead': 'Art House — дома вашей мечты. Art House Qurilish Kompaniyasi работает в строительстве 15 лет и реализовала более 30 проектов. Мы строим жилые комплексы бизнес-класса и современные квартиры и предлагаем их каждой семье на честных и прозрачных условиях.',
   'about.n1': 'лет опыта', 'about.n2': 'реализованных проектов',
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Подписаться', 'about.igFollowers': 'подписчиков', 'about.igPosts': 'публикаций',
   'about.igYears': 'лет опыта', 'about.igProjects': 'проектов', 'about.igBio1': 'Art House — дома вашей мечты',
@@ -3625,14 +3861,830 @@ I18N.extend('ru', {
 });
 I18N.extend('en', {
   'home.stat1': 'years of experience', 'home.stat2': 'completed projects',
-  'home.aboutText': 'Art House Qurilish Kompaniyasi — 14 years of experience and more than 30 projects. We offer business-class residential complexes and modern apartments directly from the developer — no banks, no intermediaries, with interest-free instalments.',
-  'about.lead': 'Art House — the homes of your dreams. Art House Qurilish Kompaniyasi has worked in construction for 14 years and completed more than 30 projects. We build business-class residential complexes and modern apartments and offer them to every family on honest, transparent terms.',
+  'home.aboutText': 'Art House Qurilish Kompaniyasi — 15 years of experience and more than 30 projects. We offer business-class residential complexes and modern apartments directly from the developer — no banks, no intermediaries, with interest-free instalments.',
+  'about.lead': 'Art House — the homes of your dreams. Art House Qurilish Kompaniyasi has worked in construction for 15 years and completed more than 30 projects. We build business-class residential complexes and modern apartments and offer them to every family on honest, transparent terms.',
   'about.n1': 'years of experience', 'about.n2': 'completed projects',
   'about.igName': 'Art House Qurilish Kompaniyasi', 'about.igFollow': 'Follow', 'about.igFollowers': 'followers', 'about.igPosts': 'posts',
   'about.igYears': 'years of experience', 'about.igProjects': 'projects', 'about.igBio1': 'Art House — the homes of your dreams',
   'about.igBio2': 'Business-class residential complexes', 'about.igBio3': 'Modern apartments', 'about.projList': 'Projects featured on our Instagram page:',
   'home.locLine': '{district}'
 });
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — MAVZULAR VA BO'LIMLAR SXEMASI (sayt + kabinet uchun umumiy)
+   Shopify'dagi «section schema» mantig'i: har bir bo'lim turi o'z sozlamalari
+   (settings) va bloklari (blocks) bilan tavsiflanadi. Kabinetdagi mavzu
+   tahrirlagichi formalarni shu sxemadan quradi, sayt (js/theme.js) esa
+   bo'limlarni shu ma'lumot asosida chizadi.
+
+   Ma'lumot joyi: localStorage 'ah_cms' → themes = {
+     live: 'main',                       // saytda ko'rinadigan (nashr qilingan) mavzu
+     list: [{ id, name, at,              // mavzular kutubxonasi
+       s:     { palette, colors, font, btn, surface },   // mavzu sozlamalari
+       order: ['hero', 'stars', …],      // bosh sahifadagi bo'limlar tartibi
+       sec:   { id: { type, on, s: {…}, b: [{ id, type, … }] } },
+       text:  { uz: { 'kalit': 'matn' } } // asl bo'limlar matnlari (ustun turadi)
+     }]
+   }
+   Matnlarda {years}, {projects}, {months}, {down} — Sozlamalar → Raqamlar qiymatlari.
+   Rasm manbalari js/cms-apply.js dagidek: 'base:gallery:3:musaffo' — loyihaning asl rasmi,
+   'idb:…' — kabinetdan yuklangan fayl, 'https://…' / 'media/…' — to'g'ridan-to'g'ri manzil.
+   ===================================================================== */
+(function () {
+  'use strict';
+  var LANGS = ['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'];
+  /* ml('uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr') → { uz: …, ru: … } */
+  function ml() { var o = {}, a = arguments; LANGS.forEach(function (l, i) { if (a[i] != null) o[l] = a[i]; }); return o; }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function uid(p) { return (p || 'x') + Date.now().toString(36).slice(-5) + Math.random().toString(36).slice(2, 6); }
+
+  /* ---------------- mavzu palitralari ---------------- */
+  var PALETTES = {
+    emerald: { name: 'Zumrad Prime', note: "Joriy uslub: boy zumrad va shampan oltin", colors: {}, sw: ['#0B392C', '#E8D5A4', '#F4EEDF'] },
+    spring: { name: "Bahor zumradi", note: "Ochroq, yorug' yashil va yumshoq oltin",
+      colors: { bg: '#135643', bg2: '#104C3B', bg3: '#186450', deep: '#0C3E30', gold: '#EBD9A9', goldHi: '#F8EFD6', gold2: '#CFB57E', ink: '#F7F2E6' }, sw: ['#135643', '#EBD9A9', '#F7F2E6'] },
+    golden: { name: 'Oltin kech', note: "To'q yashil va boy, issiq oltin",
+      colors: { bg: '#0D3A2D', bg2: '#0B3328', bg3: '#104536', deep: '#082B21', gold: '#E4C47E', goldHi: '#F4E2B0', gold2: '#C49D52', ink: '#F6EEDC' }, sw: ['#0D3A2D', '#E4C47E', '#F6EEDC'] },
+    malachite: { name: 'Malaxit', note: "Chuqur, sokin tungi zumrad",
+      colors: { bg: '#082C22', bg2: '#06251C', bg3: '#0B372A', deep: '#041D16', gold: '#DCC48F', goldHi: '#F1E3BD', gold2: '#B99C62', ink: '#F1EBDD' }, sw: ['#082C22', '#DCC48F', '#F1EBDD'] }
+  };
+  var FONTS = {
+    cormorant: { name: 'Cormorant Garamond', css: "'Cormorant Garamond', 'Times New Roman', serif" },
+    cinzel: { name: 'Cinzel', css: "'Cinzel', 'Cormorant Garamond', serif" },
+    manrope: { name: 'Manrope', css: "'Manrope', system-ui, sans-serif" }
+  };
+
+  /* ---------------- maydon turlari ----------------
+     text/area — ko'p tilli matn; plain — bitta qiymat; num; check; select (o: [[qiymat, nom]]);
+     image/video — fayl yuklash yoki havola; url; date */
+  var KIND = [['star', 'Yulduz'], ['client', 'Mijoz'], ['gift', "Sovg'a"]];
+  var ACT = [['book', 'Band qilish oynasi'], ['phone', "Qo'ng'iroq"], ['video', "Video-qo'ng'iroq"], ['telegram', 'Telegram'], ['projects', 'Loyihalar sahifasi'], ['calc', 'Kalkulyator'], ['link', 'Havola']];
+  var ICONS = [['build', 'Bino'], ['percent', 'Foiz'], ['doc', 'Hujjat'], ['shield', 'Qalqon'], ['key', 'Kalit'], ['hand', "Qo'l"], ['star', 'Yulduz'], ['pin', 'Manzil'], ['clock', 'Soat']];
+
+  /* ---------------- asl (saytda mavjud) bo'limlar ----------------
+     find — bo'lim elementi; has — #p-home ichidagi shu elementni o'z ichiga olgan blok;
+     keys — JS orqali chiziladigan matnlar kalitlari (HTML'dagi [data-i] avtomatik topiladi) */
+  var NATIVE = [
+    { id: 'ann', name: "E'lon qatori", icon: 'megaphone', group: 'header', find: '.top > .ann', keys: ['ann.1', 'ann.2', 'ann.3'] },
+    { id: 'hero', name: 'Bosh banner', icon: 'image', find: '#p-home > .hero' },
+    { id: 'marquee', name: 'Yuguruvchi qator', icon: 'text', find: '#p-home > .marquee', keys: ['marquee'] },
+    { id: 'apts', name: 'Xonadonlar karuseli', icon: 'grid', find: '#hiApts', keys: ['hi.apts', 'hi.from', 'hi.view'] },
+    { id: 'art', name: "Yashash san'ati", icon: 'list', find: '#hiArt', keys: ['hi.artT', 'hi.artS', 'hi.u1t', 'hi.u1d', 'hi.u2t', 'hi.u2d', 'hi.u3t', 'hi.u3d', 'hi.u4t', 'hi.u4d'] },
+    { id: 'tiles', name: 'Xonalar plitkalari', icon: 'grid', find: '#hiTiles' },
+    { id: 'projects', name: 'Loyihalar', icon: 'building', has: '#homeProjects' },
+    { id: 'build', name: 'Qurilish jarayoni', icon: 'video', find: '#hiBuild', keys: ['hi.bldE', 'hi.bldT', 'hi.bldD', 'hi.bldB'] },
+    { id: 'calc', name: 'Kalkulyator va joylashuv', icon: 'calc', has: '#miniCalc' },
+    { id: 'teaser', name: 'Biz haqimizda va izohlar (qisqa)', icon: 'text', has: '#homeRating' },
+    { id: 'amb', name: 'Bizni tanlaganlar (kartalar)', icon: 'star', find: '#ambSec', keys: ['amb.title', 'amb.sub'] },
+    { id: 'contact', name: "Menejer bilan bog'lanish", icon: 'phone', has: '.cta-band' },
+    { id: 'office', name: 'Savdo ofisi', icon: 'pin', find: '#hiOffice', keys: ['hi.offT', 'hi.offD', 'hi.map', 'hi.call'] },
+    { id: 'ig', name: 'Instagram lentasi', icon: 'ig', find: '#igStrip', keys: ['ig.follow'] },
+    { id: 'bar', name: 'Afzalliklar qatori', icon: 'list', find: '#hiBar', keys: ['hi.b1t', 'hi.b1d', 'hi.b2t', 'hi.b2d', 'hi.b3t', 'hi.b3d'] },
+    { id: 'gallery', name: 'Foto va video galereya', icon: 'image', find: '#cmsGal' }
+  ];
+
+  /* ---------------- yangi bo'lim turlari ---------------- */
+  var TYPES = {
+    stars: {
+      name: 'Yulduzlar va mijozlar tanlovi', icon: 'star', note: "Taniqli insonlar va xaridorlarning videolari, sovg'a topshirish lahzalari va fikrlari",
+      settings: [
+        { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
+        { k: 'title', t: 'text', l: 'Sarlavha' },
+        { k: 'sub', t: 'area', l: 'Tavsif' },
+        { k: 'filters', t: 'check', l: "Saralash tugmalari (Yulduzlar / Mijozlar / Sovg'alar)" },
+        { k: 'proof', t: 'check', l: "Ishonch raqamlari (baho, obunachilar, loyihalar)" },
+        { k: 'reviews', t: 'check', l: "Saytdagi video-izohlarni ham ko'rsatish" },
+        { k: 'ctaOn', t: 'check', l: 'Pastda harakatga chaqiruv' },
+        { k: 'cta', t: 'text', l: 'Chaqiruv matni', when: 'ctaOn' },
+        { k: 'btn', t: 'text', l: 'Tugma matni', when: 'ctaOn' }
+      ],
+      blocks: {
+        video: { name: 'Video', icon: 'video', title: 'name', fields: [
+          { k: 'kind', t: 'select', l: 'Turi', o: KIND },
+          { k: 'name', t: 'text', l: 'Ism yoki nom' },
+          { k: 'role', t: 'text', l: 'Kim (kasbi, loyiha)' },
+          { k: 'quote', t: 'area', l: 'Qisqa fikr (ixtiyoriy)' },
+          { k: 'video', t: 'video', l: 'Video fayl' },
+          { k: 'link', t: 'url', l: 'yoki YouTube / Instagram havolasi' },
+          { k: 'poster', t: 'image', l: 'Muqova rasmi' },
+          { k: 'verified', t: 'check', l: 'Tasdiqlangan belgisi' }
+        ] },
+        quote: { name: 'Fikr (matn)', icon: 'quote', title: 'name', fields: [
+          { k: 'kind', t: 'select', l: 'Turi', o: KIND.slice(0, 2) },
+          { k: 'name', t: 'text', l: 'Ism' },
+          { k: 'role', t: 'text', l: 'Kim (kasbi, loyiha)' },
+          { k: 'photo', t: 'image', l: 'Surat' },
+          { k: 'text', t: 'area', l: 'Fikr matni' },
+          { k: 'rating', t: 'select', l: 'Baho', o: [['5', '★★★★★'], ['4', '★★★★'], ['3', '★★★']] }
+        ] }
+      },
+      max: 24
+    },
+    about: {
+      name: 'Biz haqimizda', icon: 'building', note: '15 yillik tajriba, 30+ loyiha, manzil va afzalliklar',
+      settings: [
+        { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
+        { k: 'title', t: 'text', l: 'Sarlavha' },
+        { k: 'text', t: 'area', l: 'Asosiy matn' },
+        { k: 'image', t: 'image', l: 'Rasm' },
+        { k: 'badge', t: 'text', l: "Rasm ustidagi yozuv ({years} raqami bilan)" },
+        { k: 'locTitle', t: 'text', l: 'Manzil sarlavhasi' },
+        { k: 'address', t: 'text', l: 'Manzil' },
+        { k: 'locNote', t: 'area', l: 'Manzil haqida' },
+        { k: 'map', t: 'url', l: 'Xarita havolasi' },
+        { k: 'btn', t: 'text', l: 'Tugma matni' },
+        { k: 'act', t: 'select', l: 'Tugma vazifasi', o: ACT },
+        { k: 'url', t: 'url', l: 'Havola', when: 'act=link' }
+      ],
+      blocks: {
+        stat: { name: 'Raqam', icon: 'hash', title: 'value', fields: [
+          { k: 'value', t: 'plain', l: "Qiymat ({years}, {projects}, {months} yoki o'zingiz yozing)" },
+          { k: 'label', t: 'text', l: 'Izoh' }
+        ] },
+        point: { name: 'Afzallik', icon: 'check', title: 'title', fields: [
+          { k: 'icon', t: 'select', l: 'Ikonka', o: ICONS },
+          { k: 'title', t: 'text', l: 'Sarlavha' },
+          { k: 'text', t: 'area', l: 'Matn' }
+        ] }
+      },
+      max: 12
+    },
+    cta: {
+      name: 'Taklif va harakatga chaqiruv', icon: 'target', note: "Kuchli sarlavha, ariza formasi, tugmalar va taklif muddati",
+      settings: [
+        { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
+        { k: 'title', t: 'area', l: 'Kuchli sarlavha' },
+        { k: 'text', t: 'area', l: 'Matn' },
+        { k: 'big', t: 'plain', l: 'Katta raqam (masalan, 33%)' },
+        { k: 'bigLabel', t: 'text', l: 'Raqam ostidagi yozuv' },
+        { k: 'image', t: 'image', l: 'Fon rasmi' },
+        { k: 'btn1', t: 'text', l: '1-tugma' },
+        { k: 'act1', t: 'select', l: '1-tugma vazifasi', o: ACT },
+        { k: 'url1', t: 'url', l: '1-tugma havolasi', when: 'act1=link' },
+        { k: 'btn2', t: 'text', l: '2-tugma' },
+        { k: 'act2', t: 'select', l: '2-tugma vazifasi', o: ACT },
+        { k: 'url2', t: 'url', l: '2-tugma havolasi', when: 'act2=link' },
+        { k: 'form', t: 'check', l: 'Ariza formasi (ism + telefon)' },
+        { k: 'formTitle', t: 'text', l: 'Forma sarlavhasi', when: 'form' },
+        { k: 'formText', t: 'area', l: 'Forma matni', when: 'form' },
+        { k: 'formBtn', t: 'text', l: 'Forma tugmasi', when: 'form' },
+        { k: 'timer', t: 'check', l: 'Taklif muddati (teskari sanoq)' },
+        { k: 'until', t: 'date', l: 'Taklif tugash sanasi', when: 'timer' },
+        { k: 'timerLabel', t: 'text', l: 'Sanoq yozuvi', when: 'timer' }
+      ],
+      blocks: {
+        chip: { name: 'Afzallik belgisi', icon: 'check', title: 'text', fields: [{ k: 'text', t: 'text', l: 'Matn' }] }
+      },
+      max: 6
+    },
+    richtext: {
+      name: 'Matn va tugma', icon: 'text', note: "Sarlavha, matn va bitta tugma — har qanday e'lon uchun", multi: true,
+      settings: [
+        { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
+        { k: 'title', t: 'text', l: 'Sarlavha' },
+        { k: 'text', t: 'area', l: 'Matn' },
+        { k: 'btn', t: 'text', l: 'Tugma matni' },
+        { k: 'act', t: 'select', l: 'Tugma vazifasi', o: ACT },
+        { k: 'url', t: 'url', l: 'Havola', when: 'act=link' },
+        { k: 'align', t: 'select', l: 'Joylashuv', o: [['center', "O'rtada"], ['left', 'Chapda']] }
+      ]
+    },
+    video: {
+      name: 'Video', icon: 'video', note: 'Bitta katta video: marosim, intervyu yoki obyekt sharhi', multi: true,
+      settings: [
+        { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
+        { k: 'title', t: 'text', l: 'Sarlavha' },
+        { k: 'text', t: 'area', l: 'Matn' },
+        { k: 'video', t: 'video', l: 'Video fayl' },
+        { k: 'link', t: 'url', l: 'yoki YouTube / Instagram havolasi' },
+        { k: 'poster', t: 'image', l: 'Muqova rasmi' }
+      ]
+    }
+  };
+
+  /* ---------------- standart kontent ---------------- */
+  var ROLE_BLOGGER = ml('Bloger, Nyu-York', 'Блогер, Нью-Йорк', 'Blogger, New York', 'Blogueuse, New York', 'Blogger, New York', 'Bloguera, Nueva York', 'Bloggerin, New York', 'Blogger, New York');
+  var BOOK = ml('Xonadonni band qilish', 'Забронировать квартиру', 'Reserve an apartment', 'Réserver un appartement', 'Prenota un appartamento', 'Reservar un apartamento', 'Wohnung reservieren', 'Daire ayırtın');
+  var DEF = {
+    stars: function () {
+      return { type: 'stars', on: true, s: {
+        eyebrow: ml('Haqiqiy insonlar · Haqiqiy quvonch', 'Реальные люди · Настоящая радость', 'Real people · Real joy', 'Des personnes réelles · Une vraie joie', 'Persone vere · Gioia vera', 'Personas reales · Alegría real', 'Echte Menschen · Echte Freude', 'Gerçek insanlar · Gerçek mutluluk'),
+        title: ml('Yulduzlar va mijozlar tanlovi', 'Выбор звёзд и клиентов', 'The choice of stars and clients', 'Le choix des stars et des clients', 'La scelta di star e clienti', 'La elección de estrellas y clientes', 'Die Wahl von Stars und Kunden', 'Yıldızların ve müşterilerin tercihi'),
+        sub: ml("Taniqli insonlar va oddiy oilalar Art House'ni tanladi. Kalit topshirish, sovg'alar va yangi uydagi ilk kunlar — ularning quvonchini o'z ko'zingiz bilan ko'ring.",
+          'Известные люди и обычные семьи выбрали Art House. Вручение ключей, подарки и первые дни в новом доме — увидьте их радость своими глазами.',
+          'Well-known personalities and ordinary families chose Art House. Key handovers, gifts and first days in a new home — see their joy with your own eyes.',
+          'Des personnalités connues et des familles ordinaires ont choisi Art House. Remise des clés, cadeaux et premiers jours dans un nouveau foyer : voyez leur joie de vos propres yeux.',
+          'Personaggi noti e famiglie comuni hanno scelto Art House. Consegna delle chiavi, regali e i primi giorni nella nuova casa: guardate la loro gioia con i vostri occhi.',
+          'Personas conocidas y familias corrientes eligieron Art House. Entrega de llaves, regalos y los primeros días en su nuevo hogar: vea su alegría con sus propios ojos.',
+          'Bekannte Persönlichkeiten und ganz normale Familien haben sich für Art House entschieden. Schlüsselübergaben, Geschenke und die ersten Tage im neuen Zuhause – sehen Sie ihre Freude mit eigenen Augen.',
+          "Tanınmış isimler ve sıradan aileler Art House'u seçti. Anahtar teslimi, hediyeler ve yeni evdeki ilk günler — mutluluklarını kendi gözlerinizle görün."),
+        filters: true, proof: true, reviews: true, ctaOn: true,
+        cta: ml("Siz ham baxtli oilalarimiz safiga qo'shiling", 'Присоединяйтесь к нашим счастливым семьям', 'Join our happy families', 'Rejoignez nos familles heureuses', 'Unitevi alle nostre famiglie felici', 'Únase a nuestras familias felices', 'Werden Sie Teil unserer glücklichen Familien', 'Mutlu ailelerimize siz de katılın'),
+        btn: BOOK
+      }, b: [
+        { id: uid('b'), type: 'video', kind: 'gift', video: 'media/art-house-festival.mp4', poster: 'media/art-house-festival.jpg',
+          name: ml('ART HOUSE bayrami', 'Праздник ART HOUSE', 'ART HOUSE festival', 'Fête ART HOUSE', 'Festa ART HOUSE', 'Fiesta ART HOUSE', 'ART HOUSE Fest', 'ART HOUSE şenliği'),
+          role: ml("Rezidentlar uchun konsert va sovg'alar", 'Концерт и подарки для жителей', 'Concert and gifts for residents', 'Concert et cadeaux pour les résidents', 'Concerto e regali per i residenti', 'Concierto y regalos para los vecinos', 'Konzert und Geschenke für die Bewohner', 'Sakinlere konser ve hediyeler') },
+        { id: uid('b'), type: 'video', kind: 'star', sample: true, verified: true, name: { uz: 'Madina' }, role: ROLE_BLOGGER, poster: 'base:gallery:3:musaffo' },
+        { id: uid('b'), type: 'video', kind: 'client', sample: true, poster: 'base:gallery:4:musaffo',
+          name: ml('Mijoz oilasi', 'Семья клиента', 'Client family', 'Famille cliente', 'Famiglia cliente', 'Familia cliente', 'Kundenfamilie', 'Müşteri ailesi'),
+          role: ml('Musaffo · kalit topshirish', 'Musaffo · вручение ключей', 'Musaffo · key handover', 'Musaffo · remise des clés', 'Musaffo · consegna delle chiavi', 'Musaffo · entrega de llaves', 'Musaffo · Schlüsselübergabe', 'Musaffo · anahtar teslimi') },
+        { id: uid('b'), type: 'video', kind: 'gift', sample: true, poster: 'base:gallery:1:musaffo',
+          name: ml("Sovg'a topshirish marosimi", 'Церемония вручения подарков', 'Gift ceremony', 'Remise des cadeaux', 'Consegna dei regali', 'Entrega de regalos', 'Geschenkübergabe', 'Hediye töreni'),
+          role: ml('Yangi uy egalariga', 'Новым владельцам квартир', 'For new homeowners', 'Pour les nouveaux propriétaires', 'Per i nuovi proprietari', 'Para los nuevos propietarios', 'Für neue Eigentümer', 'Yeni ev sahiplerine') },
+        { id: uid('b'), type: 'quote', kind: 'client', sample: true, rating: '5',
+          name: ml('Mijoz ismi', 'Имя клиента', 'Client name', 'Nom du client', 'Nome del cliente', 'Nombre del cliente', 'Name des Kunden', 'Müşteri adı'),
+          text: ml("Bu yerga mijoz yoki taniqli insonning haqiqiy fikri yoziladi.", 'Здесь будет настоящий отзыв клиента или известного человека.', 'A real quote from a client or a well-known person goes here.', 'Ici figurera le véritable avis d’un client ou d’une personnalité.', 'Qui va la vera opinione di un cliente o di un personaggio noto.', 'Aquí va la opinión real de un cliente o de una persona conocida.', 'Hier steht die echte Meinung eines Kunden oder einer bekannten Person.', 'Buraya bir müşterinin veya tanınmış birinin gerçek görüşü yazılır.') }
+      ] };
+    },
+    about: function () {
+      return { type: 'about', on: true, s: {
+        eyebrow: ml('Biz haqimizda', 'О компании', 'About us', 'À propos', 'Chi siamo', 'Quiénes somos', 'Über uns', 'Hakkımızda'),
+        title: ml('Biz uy emas — ishonch quramiz', 'Мы строим не просто дома — мы строим доверие', "We don't just build homes — we build trust", 'Nous ne bâtissons pas que des logements — nous bâtissons la confiance', 'Non costruiamo solo case: costruiamo fiducia', 'No solo construimos viviendas: construimos confianza', 'Wir bauen nicht nur Wohnungen – wir bauen Vertrauen', 'Sadece ev değil, güven inşa ediyoruz'),
+        text: ml("Art House — {years} yillik tajribaga ega quruvchi kompaniya. Shu yillar davomida Toshkentda {projects} ko'p qavatli turar-joy loyihasini amalga oshirdik. Har bir uyimiz mustahkam konstruksiya, o'ylangan rejalar va halol shartlar ustiga quriladi: bank kreditisiz, 0% ustama bilan, quruvchining o'zidan.",
+          'Art House — застройщик с опытом {years} лет. За эти годы мы реализовали в Ташкенте {projects} проектов многоэтажных жилых домов. Каждый наш дом стоит на надёжной конструкции, продуманных планировках и честных условиях: без банковского кредита, без наценки, напрямую от застройщика.',
+          'Art House is a developer with {years} years of experience. Over these years we have delivered {projects} multi-storey residential projects in Tashkent. Every home stands on a solid structure, well-thought-out layouts and honest terms: no bank loan, 0% markup, direct from the developer.',
+          "Art House est un promoteur fort de {years} ans d'expérience. Au fil de ces années, nous avons réalisé à Tachkent {projects} projets d'immeubles résidentiels. Chaque logement repose sur une structure solide, des plans réfléchis et des conditions honnêtes : sans crédit bancaire, 0 % de majoration, en direct du promoteur.",
+          'Art House è un costruttore con {years} anni di esperienza. In questi anni abbiamo realizzato a Tashkent {projects} progetti residenziali multipiano. Ogni casa poggia su una struttura solida, planimetrie studiate e condizioni oneste: senza mutuo bancario, 0% di maggiorazione, direttamente dal costruttore.',
+          'Art House es una promotora con {years} años de experiencia. En este tiempo hemos realizado en Taskent {projects} proyectos residenciales de varias plantas. Cada vivienda se apoya en una estructura sólida, planos bien pensados y condiciones honestas: sin crédito bancario, 0 % de recargo, directamente de la promotora.',
+          'Art House ist ein Bauträger mit {years} Jahren Erfahrung. In dieser Zeit haben wir in Taschkent {projects} mehrgeschossige Wohnprojekte realisiert. Jedes Zuhause steht auf einer soliden Konstruktion, durchdachten Grundrissen und fairen Bedingungen: ohne Bankkredit, 0 % Aufschlag, direkt vom Bauträger.',
+          "Art House, {years} yıllık deneyime sahip bir müteahhit firmadır. Bu yıllar boyunca Taşkent'te {projects} çok katlı konut projesini hayata geçirdik. Her evimiz sağlam bir yapı, iyi düşünülmüş planlar ve dürüst koşullar üzerine kurulur: banka kredisi yok, %0 ek ücret, doğrudan müteahhitten."),
+        image: 'base:gallery:0:musaffo',
+        badge: ml('yillik ishonch', 'лет доверия', 'years of trust', 'ans de confiance', 'anni di fiducia', 'años de confianza', 'Jahre Vertrauen', 'yıllık güven'),
+        locTitle: ml('Bosh ofisimiz — Yunusobodda', 'Наш главный офис — в Юнусабаде', 'Our head office is in Yunusabad', 'Notre siège est à Iounoussabad', 'La nostra sede è a Yunusabad', 'Nuestra oficina central está en Yunusabad', 'Unser Hauptbüro liegt in Yunusabad', "Merkez ofisimiz Yunusabad'da"),
+        address: ml("Yunusobod tumani, «High Town» — «Siti Mall» savdo markazi ortida", 'Юнусабадский район, «High Town» — за ТЦ «Siti Mall»', 'Yunusabad district, High Town — right behind Siti Mall', 'District de Iounoussabad, High Town — juste derrière le centre commercial Siti Mall', 'Distretto di Yunusabad, High Town — proprio dietro il centro commerciale Siti Mall', 'Distrito de Yunusabad, High Town — justo detrás del centro comercial Siti Mall', 'Bezirk Yunusabad, High Town — direkt hinter dem Einkaufszentrum Siti Mall', "Yunusabad ilçesi, High Town — Siti Mall AVM'nin hemen arkasında"),
+        locNote: ml("Ofisimizga keling: loyihalar maketini ko'rasiz, o'zingizga mos rejani tanlaysiz va barcha savollaringizni menejer bilan yuzma-yuz hal qilasiz.",
+          'Приходите в офис: посмотрите макеты проектов, выберите подходящую планировку и обсудите все вопросы с менеджером лично.',
+          'Visit our office: see the project models, choose the layout that suits you and settle every question with a manager in person.',
+          'Venez à notre bureau : découvrez les maquettes, choisissez le plan qui vous convient et réglez toutes vos questions en personne avec un conseiller.',
+          'Venite in ufficio: vedrete i plastici dei progetti, sceglierete la planimetria adatta e chiarirete ogni dubbio di persona con un consulente.',
+          'Visite nuestra oficina: verá las maquetas, elegirá la distribución que le conviene y resolverá todas sus dudas en persona con un asesor.',
+          'Besuchen Sie unser Büro: Sehen Sie die Projektmodelle, wählen Sie den passenden Grundriss und klären Sie alle Fragen persönlich mit einem Berater.',
+          'Ofisimize gelin: proje maketlerini görün, size uygun planı seçin ve tüm sorularınızı danışmanla yüz yüze konuşun.'),
+        map: 'https://yandex.uz/maps/?text=' + encodeURIComponent('High Town, Yunusobod, Toshkent'),
+        btn: ml('Loyihalar bilan tanishish', 'Смотреть проекты', 'Explore the projects', 'Découvrir les projets', 'Scopri i progetti', 'Ver los proyectos', 'Projekte entdecken', 'Projeleri keşfedin'),
+        act: 'projects'
+      }, b: [
+        { id: uid('b'), type: 'stat', value: '{years}', label: ml('yillik tajriba', 'лет опыта', 'years of experience', "ans d'expérience", 'anni di esperienza', 'años de experiencia', 'Jahre Erfahrung', 'yıllık deneyim') },
+        { id: uid('b'), type: 'stat', value: '{projects}', label: ml("ko'p qavatli uy loyihasi", 'многоэтажных проектов', 'multi-storey projects', "projets d'immeubles", 'progetti multipiano', 'proyectos de varias plantas', 'Mehrgeschossbauten', 'çok katlı proje') },
+        { id: uid('b'), type: 'stat', value: '0%', label: ml('ustama va foiz', 'наценки и процентов', 'markup and interest', "de majoration et d'intérêts", 'di maggiorazione e interessi', 'de recargo e intereses', 'Aufschlag und Zinsen', 'ek ücret ve faiz') },
+        { id: uid('b'), type: 'stat', value: '{months}', label: ml("oygacha bo'lib to'lash", 'месяцев рассрочки', 'months of instalments', "mois d'échelonnement", 'mesi di rateizzazione', 'meses a plazos', 'Monate Ratenzahlung', 'aya kadar taksit') },
+        { id: uid('b'), type: 'point', icon: 'shield',
+          title: ml('Rasmiy shartnoma', 'Официальный договор', 'Official contract', 'Contrat officiel', 'Contratto ufficiale', 'Contrato oficial', 'Offizieller Vertrag', 'Resmi sözleşme'),
+          text: ml("Narx va to'lov grafigi shartnomada aniq yoziladi.", 'Цена и график платежей прописаны в договоре.', 'The price and payment schedule are written into the contract.', "Le prix et l'échéancier figurent noir sur blanc dans le contrat.", 'Prezzo e piano dei pagamenti sono scritti nel contratto.', 'El precio y el calendario de pagos figuran en el contrato.', 'Preis und Zahlungsplan stehen im Vertrag.', 'Fiyat ve ödeme planı sözleşmede açıkça yazılır.') },
+        { id: uid('b'), type: 'point', icon: 'key',
+          title: ml('Kalitgacha hamrohlik', 'С вами до ключей', 'With you up to the keys', "À vos côtés jusqu'aux clés", 'Con voi fino alle chiavi', 'Con usted hasta las llaves', 'Begleitung bis zur Schlüsselübergabe', 'Anahtara kadar yanınızda'),
+          text: ml('Tanlovdan kalit topshirilgunga qadar shaxsiy menejer.', 'Личный менеджер — от выбора до вручения ключей.', 'A personal manager from choosing to the key handover.', "Un conseiller personnel, du choix jusqu'à la remise des clés.", 'Un consulente personale dalla scelta alla consegna delle chiavi.', 'Un asesor personal desde la elección hasta la entrega de llaves.', 'Ein persönlicher Berater von der Auswahl bis zur Schlüsselübergabe.', 'Seçimden anahtar teslimine kadar kişisel danışman.') },
+        { id: uid('b'), type: 'point', icon: 'percent',
+          title: ml("0% bo'lib to'lash", 'Рассрочка 0%', '0% instalments', 'Paiement échelonné à 0 %', 'Rate allo 0%', 'Plazos al 0 %', '0 % Ratenzahlung', '%0 taksit'),
+          text: ml('Bank kreditisiz, {months} oygacha teng ulushlarda.', 'Без банковского кредита, равными частями до {months} месяцев.', 'No bank loan, equal instalments for up to {months} months.', "Sans crédit bancaire, en mensualités égales jusqu'à {months} mois.", 'Senza mutuo, in rate uguali fino a {months} mesi.', 'Sin crédito bancario, en cuotas iguales hasta {months} meses.', 'Ohne Bankkredit, in gleichen Raten bis zu {months} Monate.', 'Banka kredisi olmadan, {months} aya kadar eşit taksitlerle.') }
+      ] };
+    },
+    cta: function () {
+      return { type: 'cta', on: true, s: {
+        eyebrow: ml('Maxsus taklif', 'Специальное предложение', 'Special offer', 'Offre spéciale', 'Offerta speciale', 'Oferta especial', 'Sonderangebot', 'Özel teklif'),
+        title: ml("Orzuingizdagi uyni kutmang — bor-yo'g'i 33% bosh to'lov bilan bugunoq kalitni qo'lga oling",
+          'Не откладывайте мечту — всего 33% первоначального взноса, и ключи уже сегодня ваши',
+          "Don't wait for your dream home — just 33% down and the keys are yours today",
+          "N'attendez plus la maison de vos rêves — seulement 33 % d'apport et les clés sont à vous dès aujourd'hui",
+          'Non aspettare la casa dei tuoi sogni: solo il 33% di anticipo e le chiavi sono tue già oggi',
+          'No espere más por la casa de sus sueños: solo un 33 % de entrada y hoy mismo tiene las llaves',
+          'Warten Sie nicht auf Ihr Traumzuhause — nur 33 % Anzahlung und die Schlüssel gehören heute Ihnen',
+          'Hayalinizdeki evi beklemeyin — sadece %33 peşinatla anahtarları bugün alın'),
+        text: ml("Qolgan summani 0% ustamasiz, {months} oygacha teng ulushlarda to'laysiz. Narx va to'lov grafigi shartnomada aniq yoziladi — kutilmagan to'lovlar bo'lmaydi.",
+          'Остаток выплачиваете равными частями до {months} месяцев без наценки. Цена и график платежей фиксируются в договоре — никаких неожиданных платежей.',
+          'Pay the rest in equal instalments over up to {months} months with 0% markup. The price and payment schedule are fixed in the contract — no surprise charges.',
+          "Réglez le solde en mensualités égales jusqu'à {months} mois, sans majoration. Le prix et l'échéancier sont fixés dans le contrat : aucun frais surprise.",
+          'Il resto lo paghi in rate uguali fino a {months} mesi, senza maggiorazioni. Prezzo e piano dei pagamenti sono fissati nel contratto: nessuna spesa a sorpresa.',
+          'El resto lo paga en cuotas iguales de hasta {months} meses sin recargo. El precio y el calendario de pagos quedan fijados en el contrato: sin pagos inesperados.',
+          'Den Rest zahlen Sie in gleichen Raten über bis zu {months} Monate ohne Aufschlag. Preis und Zahlungsplan stehen im Vertrag — keine überraschenden Kosten.',
+          'Kalan tutarı %0 ek ücretle, {months} aya kadar eşit taksitlerle ödersiniz. Fiyat ve ödeme planı sözleşmede sabitlenir — sürpriz ödeme yok.'),
+        big: '33%',
+        bigLabel: ml("bosh to'lov", 'первый взнос', 'down payment', "d'apport", 'di anticipo', 'de entrada', 'Anzahlung', 'peşinat'),
+        image: 'base:gallery:3:musaffo',
+        btn1: BOOK, act1: 'book',
+        btn2: ml("Qo'ng'iroq qilish", 'Позвонить', 'Call us', 'Nous appeler', 'Chiamaci', 'Llamar', 'Anrufen', 'Bizi arayın'), act2: 'phone',
+        form: true,
+        formTitle: ml('Bepul konsultatsiya oling', 'Получите бесплатную консультацию', 'Get a free consultation', 'Obtenez une consultation gratuite', 'Ricevi una consulenza gratuita', 'Reciba una asesoría gratuita', 'Kostenlose Beratung erhalten', 'Ücretsiz danışmanlık alın'),
+        formText: ml("Raqamingizni qoldiring — menejer ish vaqtida bir necha daqiqada qo'ng'iroq qilib, sizga mos xonadon va to'lov grafigini taklif qiladi.",
+          'Оставьте номер — менеджер перезвонит в течение нескольких минут в рабочее время и подберёт квартиру и график оплаты.',
+          'Leave your number — a manager will call you back within minutes during working hours and suggest the right apartment and payment plan.',
+          "Laissez votre numéro : un conseiller vous rappelle en quelques minutes aux heures ouvrables et vous propose l'appartement et l'échéancier adaptés.",
+          'Lascia il tuo numero: un consulente ti richiamerà entro pochi minuti in orario lavorativo e ti proporrà appartamento e piano di pagamento giusti.',
+          'Deje su número: un asesor le llamará en pocos minutos en horario laboral y le propondrá el apartamento y el plan de pagos adecuados.',
+          'Hinterlassen Sie Ihre Nummer — ein Berater ruft Sie während der Geschäftszeiten innerhalb weniger Minuten zurück und schlägt Ihnen Wohnung und Zahlungsplan vor.',
+          'Numaranızı bırakın — danışmanımız mesai saatlerinde birkaç dakika içinde sizi arayıp uygun daireyi ve ödeme planını önersin.'),
+        formBtn: ml("Menga qo'ng'iroq qiling", 'Перезвоните мне', 'Call me back', 'Rappelez-moi', 'Richiamatemi', 'Llámenme', 'Rufen Sie mich zurück', 'Beni arayın'),
+        timer: false, until: '',
+        timerLabel: ml('Taklif tugashiga', 'До конца предложения', 'Offer ends in', "L'offre se termine dans", "L'offerta termina tra", 'La oferta termina en', 'Angebot endet in', 'Teklifin bitmesine')
+      }, b: [
+        { id: uid('b'), type: 'chip', text: ml('0% ustama', '0% наценки', '0% markup', '0 % de majoration', '0% di maggiorazione', '0 % de recargo', '0 % Aufschlag', '%0 ek ücret') },
+        { id: uid('b'), type: 'chip', text: ml('{months} oygacha muddat', 'Срок до {months} месяцев', 'Up to {months} months', "Jusqu'à {months} mois", 'Fino a {months} mesi', 'Hasta {months} meses', 'Bis zu {months} Monate', '{months} aya kadar vade') },
+        { id: uid('b'), type: 'chip', text: ml('Rasmiy shartnoma', 'Официальный договор', 'Official contract', 'Contrat officiel', 'Contratto ufficiale', 'Contrato oficial', 'Offizieller Vertrag', 'Resmi sözleşme') }
+      ] };
+    },
+    richtext: function () {
+      return { type: 'richtext', on: true, s: { eyebrow: {}, title: ml("Yangi bo'lim", 'Новый раздел', 'New section'), text: ml('Matningizni shu yerga yozing.', 'Напишите здесь ваш текст.', 'Write your text here.'), btn: {}, act: 'book', align: 'center' }, b: [] };
+    },
+    video: function () {
+      return { type: 'video', on: true, s: { eyebrow: {}, title: ml('Video', 'Видео', 'Video'), text: {}, video: '', link: '', poster: '' }, b: [] };
+    }
+  };
+
+  /* bosh sahifadagi standart tartib: yangi bo'limlar mos joylarda */
+  var ORDER = ['hero', 'marquee', 'apts', 'stars', 'art', 'tiles', 'projects', 'about', 'build', 'cta', 'calc', 'teaser', 'amb', 'contact', 'office', 'ig', 'bar', 'gallery'];
+
+  function newTheme(name, palette) {
+    var sec = {};
+    NATIVE.forEach(function (n) { sec[n.id] = { type: 'native', on: true }; });
+    ['stars', 'about', 'cta'].forEach(function (t) { sec[t] = DEF[t](); });
+    return { id: uid('th'), name: name || 'Art House', at: Date.now(),
+      s: { palette: palette || 'emerald', colors: {}, font: 'cormorant', btn: 'square', surface: 'light' },
+      order: ORDER.slice(), sec: sec, text: {} };
+  }
+  /* yangi versiyada qo'shilgan asl bo'limlar eski mavzuga ham tushadi */
+  function normalize(th) {
+    th = th || newTheme();
+    th.s = Object.assign({ palette: 'emerald', colors: {}, font: 'cormorant', btn: 'square', surface: 'light' }, th.s || {});
+    th.sec = th.sec || {}; th.order = (th.order || []).filter(function (id) { return th.sec[id] || NATIVE.some(function (n) { return n.id === id; }); });
+    th.text = th.text || {};
+    NATIVE.forEach(function (n) {
+      if (!th.sec[n.id]) th.sec[n.id] = { type: 'native', on: true };
+      if (n.group !== 'header' && th.order.indexOf(n.id) < 0) { var i = ORDER.indexOf(n.id), after = ORDER.slice(0, i).reverse().filter(function (x) { return th.order.indexOf(x) > -1; })[0]; th.order.splice(after ? th.order.indexOf(after) + 1 : th.order.length, 0, n.id); }
+    });
+    th.order = th.order.filter(function (id) { return id !== 'ann'; });
+    return th;
+  }
+  /* saytda ko'rinadigan mavzu */
+  function liveOf(cms) {
+    var T = (cms && cms.themes) || {}, L = T.list || [];
+    return normalize(clone(L.filter(function (x) { return x.id === T.live; })[0] || L[0] || newTheme('Art House — Zumrad')));
+  }
+
+  window.AH_THEMES = {
+    LANGS: LANGS, PALETTES: PALETTES, FONTS: FONTS, NATIVE: NATIVE, TYPES: TYPES, ORDER: ORDER, ACT: ACT, ICONS: ICONS, KIND: KIND,
+    defaults: DEF, newTheme: newTheme, normalize: normalize, liveOf: liveOf, uid: uid, clone: clone, ml: ml,
+    native: function (id) { return NATIVE.filter(function (n) { return n.id === id; })[0] || null; }
+  };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — MAVZU VA BO'LIMLAR (saytdagi ish vaqti)
+   • Nashr qilingan mavzuni qo'llaydi: ranglar, shrift, tugmalar shakli.
+   • Bosh sahifadagi bo'limlarni mavzu tartibida joylaydi, o'chirilganlarini yashiradi.
+   • Yangi bo'limlarni chizadi: «Yulduzlar va mijozlar tanlovi», «Biz haqimizda»,
+     «Taklif va harakatga chaqiruv», «Matn va tugma», «Video».
+   • Jonli yangilanish — sahifa qayta yuklanmaydi:
+       – shu brauzerdagi kabinet saqlasa: 'storage' hodisasi;
+       – server rejimida: SSE (kind: 'cms') → /api/cms;
+       – kabinetdagi tahrirlagich ichida (?preview=1): postMessage orqali qoralama.
+   Sxema: js/theme-schema.js
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (!window.AH_THEMES || !window.I18N || !window.CFG) return;
+  var TH = window.AH_THEMES;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var t = function (k, v) { return I18N.t(k, v); };
+  var API = (CFG.API_URL === 'auto' ? (location.protocol.indexOf('http') === 0 ? location.origin : '') : (CFG.API_URL || '')).replace(/\/$/, '');
+  var PREVIEW = /[?&]preview=1/.test(location.search) && window.parent !== window;
+  var NUMK = ['EXPERIENCE_YEARS', 'PROJECTS_DONE', 'IG_FOLLOWERS', 'IG_POSTS'];
+  var CUR = TH.liveOf(window.AH_CMS);
+  var DRAFT = false;
+  window.AH_TTEXT = CUR.text;
+  if (PREVIEW) document.documentElement.classList.add('ths-preview');
+
+  /* ---------- tarjimalar ---------- */
+  var X = {
+    uz: { 'ths.all': 'Barchasi', 'ths.f.star': 'Yulduzlar', 'ths.f.client': 'Mijozlar', 'ths.f.gift': "Sovg'alar", 'ths.k.star': 'Yulduz', 'ths.k.client': 'Mijoz', 'ths.k.gift': "Sovg'a", 'ths.watch': "Videoni ko'rish", 'ths.rating': "o'rtacha baho · {n} ta izoh", 'ths.followers': 'Instagram obunachilari', 'ths.igT': 'Quvonchli lahzalar — Instagram sahifamizda', 'ths.igB': "Instagram'da ko'rish", 'ths.sample': 'Namuna — kabinetda video yuklang', 'ths.ok': "Rahmat! Menejer tez orada qo'ng'iroq qiladi.", 'ths.note': "Ma'lumotlaringiz faqat menejerga yetkaziladi.", 'ths.d': 'kun', 'ths.h': 'soat', 'ths.m': 'daq', 'ths.s': 'son', 'ths.close': 'Yopish', 'ths.prev': "Ko'rish rejimi: ariza yuborilmadi" },
+    ru: { 'ths.all': 'Все', 'ths.f.star': 'Звёзды', 'ths.f.client': 'Клиенты', 'ths.f.gift': 'Подарки', 'ths.k.star': 'Звезда', 'ths.k.client': 'Клиент', 'ths.k.gift': 'Подарок', 'ths.watch': 'Смотреть видео', 'ths.rating': 'средняя оценка · {n} отзывов', 'ths.followers': 'подписчиков в Instagram', 'ths.igT': 'Счастливые моменты — в нашем Instagram', 'ths.igB': 'Смотреть в Instagram', 'ths.sample': 'Образец — загрузите видео в кабинете', 'ths.ok': 'Спасибо! Менеджер скоро перезвонит.', 'ths.note': 'Ваши данные получит только менеджер.', 'ths.d': 'дн', 'ths.h': 'ч', 'ths.m': 'мин', 'ths.s': 'сек', 'ths.close': 'Закрыть', 'ths.prev': 'Режим просмотра: заявка не отправлена' },
+    en: { 'ths.all': 'All', 'ths.f.star': 'Stars', 'ths.f.client': 'Clients', 'ths.f.gift': 'Gifts', 'ths.k.star': 'Star', 'ths.k.client': 'Client', 'ths.k.gift': 'Gift', 'ths.watch': 'Watch video', 'ths.rating': 'average rating · {n} reviews', 'ths.followers': 'Instagram followers', 'ths.igT': 'Happy moments on our Instagram', 'ths.igB': 'View on Instagram', 'ths.sample': 'Sample — upload a video in the dashboard', 'ths.ok': 'Thank you! A manager will call you shortly.', 'ths.note': 'Your details go only to our manager.', 'ths.d': 'days', 'ths.h': 'hrs', 'ths.m': 'min', 'ths.s': 'sec', 'ths.close': 'Close', 'ths.prev': 'Preview mode: request not sent' },
+    fr: { 'ths.all': 'Tous', 'ths.f.star': 'Stars', 'ths.f.client': 'Clients', 'ths.f.gift': 'Cadeaux', 'ths.k.star': 'Star', 'ths.k.client': 'Client', 'ths.k.gift': 'Cadeau', 'ths.watch': 'Voir la vidéo', 'ths.rating': 'note moyenne · {n} avis', 'ths.followers': 'abonnés Instagram', 'ths.igT': 'Moments de bonheur sur notre Instagram', 'ths.igB': 'Voir sur Instagram', 'ths.sample': "Exemple — ajoutez une vidéo dans l'espace", 'ths.ok': 'Merci ! Un conseiller vous rappellera très vite.', 'ths.note': "Vos coordonnées ne sont transmises qu'à notre conseiller.", 'ths.d': 'j', 'ths.h': 'h', 'ths.m': 'min', 'ths.s': 's', 'ths.close': 'Fermer', 'ths.prev': 'Mode aperçu : demande non envoyée' },
+    it: { 'ths.all': 'Tutti', 'ths.f.star': 'Star', 'ths.f.client': 'Clienti', 'ths.f.gift': 'Regali', 'ths.k.star': 'Star', 'ths.k.client': 'Cliente', 'ths.k.gift': 'Regalo', 'ths.watch': 'Guarda il video', 'ths.rating': 'voto medio · {n} recensioni', 'ths.followers': 'follower su Instagram', 'ths.igT': 'Momenti felici sul nostro Instagram', 'ths.igB': 'Guarda su Instagram', 'ths.sample': 'Esempio — carica un video nel pannello', 'ths.ok': 'Grazie! Un consulente ti richiamerà a breve.', 'ths.note': 'I tuoi dati arrivano solo al nostro consulente.', 'ths.d': 'g', 'ths.h': 'h', 'ths.m': 'min', 'ths.s': 's', 'ths.close': 'Chiudi', 'ths.prev': 'Anteprima: richiesta non inviata' },
+    es: { 'ths.all': 'Todos', 'ths.f.star': 'Estrellas', 'ths.f.client': 'Clientes', 'ths.f.gift': 'Regalos', 'ths.k.star': 'Estrella', 'ths.k.client': 'Cliente', 'ths.k.gift': 'Regalo', 'ths.watch': 'Ver vídeo', 'ths.rating': 'valoración media · {n} opiniones', 'ths.followers': 'seguidores en Instagram', 'ths.igT': 'Momentos felices en nuestro Instagram', 'ths.igB': 'Ver en Instagram', 'ths.sample': 'Ejemplo — suba un vídeo en el panel', 'ths.ok': '¡Gracias! Un asesor le llamará en breve.', 'ths.note': 'Sus datos solo los recibe nuestro asesor.', 'ths.d': 'd', 'ths.h': 'h', 'ths.m': 'min', 'ths.s': 's', 'ths.close': 'Cerrar', 'ths.prev': 'Vista previa: solicitud no enviada' },
+    de: { 'ths.all': 'Alle', 'ths.f.star': 'Stars', 'ths.f.client': 'Kunden', 'ths.f.gift': 'Geschenke', 'ths.k.star': 'Star', 'ths.k.client': 'Kunde', 'ths.k.gift': 'Geschenk', 'ths.watch': 'Video ansehen', 'ths.rating': 'Durchschnitt · {n} Bewertungen', 'ths.followers': 'Instagram-Follower', 'ths.igT': 'Glückliche Momente auf unserem Instagram', 'ths.igB': 'Auf Instagram ansehen', 'ths.sample': 'Beispiel — Video im Dashboard hochladen', 'ths.ok': 'Danke! Ein Berater ruft Sie in Kürze zurück.', 'ths.note': 'Ihre Daten erhält nur unser Berater.', 'ths.d': 'T', 'ths.h': 'Std', 'ths.m': 'Min', 'ths.s': 'Sek', 'ths.close': 'Schließen', 'ths.prev': 'Vorschau: Anfrage nicht gesendet' },
+    tr: { 'ths.all': 'Tümü', 'ths.f.star': 'Yıldızlar', 'ths.f.client': 'Müşteriler', 'ths.f.gift': 'Hediyeler', 'ths.k.star': 'Yıldız', 'ths.k.client': 'Müşteri', 'ths.k.gift': 'Hediye', 'ths.watch': 'Videoyu izle', 'ths.rating': 'ortalama puan · {n} yorum', 'ths.followers': 'Instagram takipçisi', 'ths.igT': 'Mutlu anlar Instagram sayfamızda', 'ths.igB': "Instagram'da izle", 'ths.sample': 'Örnek — panelden video yükleyin', 'ths.ok': 'Teşekkürler! Danışmanımız kısa süre içinde sizi arayacak.', 'ths.note': 'Bilgileriniz yalnızca danışmanımıza iletilir.', 'ths.d': 'gün', 'ths.h': 'sa', 'ths.m': 'dk', 'ths.s': 'sn', 'ths.close': 'Kapat', 'ths.prev': 'Önizleme modu: talep gönderilmedi' }
+  };
+  Object.keys(X).forEach(function (l) { I18N.extend(l, X[l]); });
+
+  /* ---------- yordamchilar ---------- */
+  function maxM() { return Math.max.apply(null, CFG.MONTHS && CFG.MONTHS.length ? CFG.MONTHS : [36]); }
+  function tok(s) {
+    var V = { years: CFG.EXPERIENCE_YEARS, projects: CFG.PROJECTS_DONE, months: maxM(), down: (CFG.DOWN_MIN != null ? CFG.DOWN_MIN : 30) + '%' };
+    return String(s == null ? '' : s).replace(/\{(years|projects|months|down)\}/g, function (m, k) { return V[k] != null ? V[k] : m; });
+  }
+  function P(o) { return tok(typeof o === 'string' ? o : I18N.pick(o || {})); }
+  function src(ref) {
+    ref = String(ref || '');
+    if (ref.indexOf('base:') === 0) return window.AH_RES ? AH_RES(ref) || '' : '';
+    if (ref.charAt(0) === '/' && ref.charAt(1) !== '/') return API + ref;
+    return ref;
+  }
+  function ic(n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; }
+  function ytId(u) { var m = String(u || '').match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/); return m ? m[1] : ''; }
+  function igId(u) { var m = String(u || '').match(/instagram\.com\/(?:[\w.]+\/)?(?:reels?|p|tv)\/([\w-]+)/); return m ? m[1] : ''; }
+  function isFile(u) { return /^(idb:|blob:|data:video)/.test(u) || /\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(u); }
+  function lines(s) { return esc(s).split(/\n{2,}/).map(function (p) { return '<p>' + p.replace(/\n/g, '<br>') + '</p>'; }).join(''); }
+  function nl(s) { return esc(s).replace(/\n/g, '<br>'); }
+  function head(s, center) {
+    var e = P(s.eyebrow), h = P(s.title), d = P(s.sub);
+    return '<header class="ths-head' + (center ? ' center' : '') + '">' + (e ? '<p class="eyebrow">' + esc(e) + '</p>' : '') + (h ? '<h2>' + nl(h) + '</h2>' : '') + (d ? '<p class="ths-lead">' + esc(d) + '</p>' : '') + '</header>';
+  }
+  /* tugma: vazifasiga qarab havola yoki tugma */
+  function btn(label, act, url, cls) {
+    label = P(label); if (!label) return '';
+    var c = 'btn ' + (cls || 'btn-gold'), a = act || 'book';
+    if (a === 'phone') return '<a class="' + c + '" href="tel:' + esc(CFG.PHONE) + '">' + ic('phone') + '<span>' + esc(label) + '</span></a>';
+    if (a === 'telegram') return '<a class="' + c + '" href="' + esc(CFG.TG_MANAGER || CFG.TELEGRAM_MANAGER || CFG.TELEGRAM_CHANNEL || '#contact') + '" target="_blank" rel="noopener">' + ic('tg') + '<span>' + esc(label) + '</span></a>';
+    if (a === 'projects' || a === 'calc') return '<a class="' + c + '" href="#' + (a === 'calc' ? 'calculator' : 'projects') + '"><span>' + esc(label) + '</span>' + ic('arrow') + '</a>';
+    if (a === 'link' && url) return '<a class="' + c + '" href="' + esc(url) + '"' + (/^https?:/.test(url) ? ' target="_blank" rel="noopener"' : '') + '><span>' + esc(label) + '</span>' + ic('arrow') + '</a>';
+    return '<button type="button" class="' + c + '" data-ths-act="' + (a === 'video' ? 'video' : 'book') + '">' + ic(a === 'video' ? 'video' : 'key') + '<span>' + esc(label) + '</span></button>';
+  }
+
+  /* ---------- mavzu uslubi: ranglar, shrift, tugmalar ---------- */
+  function hexA(h, a) { var m = /^#?([0-9a-f]{6})$/i.exec(h || ''); if (!m) return ''; var n = parseInt(m[1], 16); return 'rgba(' + (n >> 16) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
+  function style(th) {
+    var s = th.s || {}, pal = TH.PALETTES[s.palette] || TH.PALETTES.emerald, c = Object.assign({}, pal.colors, s.colors || {}), css = '', v = '';
+    var MAP = { bg: '--bg', bg2: '--bg-2', bg3: '--bg-3', deep: '--deep', gold: '--gold', goldHi: '--gold-hi', gold2: '--gold-2', ink: '--ink' };
+    Object.keys(MAP).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(c[k] || '')) v += MAP[k] + ':' + c[k] + ';'; });
+    if (c.ink) v += '--mut:' + hexA(c.ink, .68) + ';';
+    if (c.gold) v += '--line:' + hexA(c.gold, .16) + ';--line-2:' + hexA(c.gold, .36) + ';--gold-grad:linear-gradient(' + c.gold + ',' + c.gold + ');';
+    var F = TH.FONTS[s.font]; if (F && s.font !== 'cormorant') v += '--f-display:' + F.css + ';';
+    if (v) css += ':root{' + v + '}';
+    if (c.bg) css += 'html,body{background-color:var(--bg)!important}.top,.foot{background-color:var(--bg)}';
+    if (c.gold) css += '.btn-gold{background:var(--gold)!important;border-color:var(--gold)!important}.btn-gold:hover{background:var(--gold-hi)!important;border-color:var(--gold-hi)!important}.eyebrow{color:var(--gold)}';
+    var R = { round: '12px', pill: '999px' }[s.btn];
+    if (R) css += '.btn,.hi-btn,.ths .btn{border-radius:' + R + '!important}';
+    var el = $('#ahTheme'); if (!el) { el = document.createElement('style'); el.id = 'ahTheme'; }
+    document.head.appendChild(el); /* doim oxirida — boshqa ranglardan ustun turadi */
+    if (el.textContent !== css) el.textContent = css;
+    var m = $('meta[name="theme-color"]'); if (m && c.bg) m.content = c.bg;
+  }
+  style(CUR);
+
+  /* ---------- 1) «Yulduzlar va mijozlar tanlovi» ---------- */
+  var MEDIA = {}; /* data-play → { video, link, name, role } */
+  function reviewItems(s) {
+    if (!s.reviews || !window.Store) return [];
+    var PR = window.PROJECTS || [];
+    return Store.list('reviews').filter(function (r) { return !r.hidden && (r.video || r.link); }).slice(0, 8).map(function (r) {
+      var p = PR.filter(function (x) { return x.id === r.project; })[0];
+      return { kind: 'client', name: r.name, role: p ? I18N.pick(p.name) : '', quote: r.text, video: r.video, link: r.link, rating: r.rating };
+    });
+  }
+  function stars(id, sec, el) {
+    var s = sec.s || {}, B = (sec.b || []).filter(function (b) { return PREVIEW || !b.sample; });
+    /* saytda — faqat videosi bor yozuvlar; tahrirlagichda — video hali yuklanmaganlari ham (namuna sifatida) */
+    var V = B.filter(function (b) { return b.type === 'video' && (PREVIEW || b.video || b.link); }).map(function (b) {
+      return { kind: b.kind || 'client', name: P(b.name), role: P(b.role), quote: P(b.quote), video: b.video, link: b.link, poster: b.poster, verified: b.verified, sample: b.sample || !(b.video || b.link) };
+    }).concat(reviewItems(s));
+    var Q = B.filter(function (b) { return b.type === 'quote' && P(b.text); });
+    var html = head(s, true);
+    if (s.proof) {
+      var R = window.Store ? Store.list('reviews').filter(function (r) { return !r.hidden && r.rating; }) : [];
+      var avg = R.length ? R.reduce(function (a, r) { return a + (+r.rating || 0); }, 0) / R.length : 0;
+      var cells = [];
+      if (R.length) cells.push('<div><b>' + avg.toFixed(1) + '<i>★</i></b><span>' + esc(t('ths.rating', { n: R.length })) + '</span></div>');
+      if (CFG.IG_FOLLOWERS) cells.push('<div><b>' + esc(CFG.IG_FOLLOWERS) + '</b><span>' + esc(t('ths.followers')) + '</span></div>');
+      if (CFG.PROJECTS_DONE) cells.push('<div><b>' + esc(CFG.PROJECTS_DONE) + '</b><span>' + esc(t('home.stat2')) + '</span></div>');
+      cells.push('<div><b>' + esc(CFG.EXPERIENCE_YEARS) + '</b><span>' + esc(t('home.stat1')) + '</span></div>');
+      html += '<div class="ths-proof">' + cells.join('') + '</div>';
+    }
+    var kinds = ['star', 'client', 'gift'].filter(function (k) { return V.some(function (v) { return v.kind === k; }); });
+    if (s.filters && kinds.length > 1) html += '<div class="ths-filter" role="group">' + ['all'].concat(kinds).map(function (k, i) {
+      return '<button type="button" data-ths-f="' + k + '" aria-pressed="' + !i + '">' + esc(t(k === 'all' ? 'ths.all' : 'ths.f.' + k)) + '</button>';
+    }).join('') + '</div>';
+    var cards = V.map(function (v, i) {
+      var key = id + ':' + i, y = ytId(v.link), poster = src(v.poster) || (y ? 'https://i.ytimg.com/vi/' + y + '/hqdefault.jpg' : ''), file = v.video ? src(v.video) : '';
+      MEDIA[key] = v;
+      var media = poster ? '<img src="' + esc(poster) + '" alt="" loading="lazy" decoding="async">'
+        : file && isFile(file) ? '<video src="' + esc(file) + '" muted playsinline preload="metadata"></video>' : '<i class="ths-reel-ph">' + ic('play') + '</i>';
+      return '<article class="ths-reel' + (v.sample ? ' ths-sample' : '') + '" data-k="' + v.kind + '">' +
+        '<button type="button" class="ths-reel-btn" data-play="' + esc(key) + '" aria-label="' + esc(t('ths.watch') + ': ' + v.name) + '">' +
+        '<span class="ths-reel-media">' + media + '</span>' +
+        '<span class="ths-badge">' + (v.kind === 'star' ? '★ ' : '') + esc(t('ths.k.' + v.kind)) + '</span>' +
+        (v.sample ? '<span class="ths-sample-tag">' + esc(t('ths.sample')) + '</span>' : '<span class="ths-play">' + ic('play') + '</span>') +
+        '<span class="ths-reel-cap"><b>' + esc(v.name) + (v.verified ? '<svg class="ths-v" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3-2.6-1.9 1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="m8 12 2.6 2.6L16 9.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '') + '</b>' + (v.role ? '<small>' + esc(v.role) + '</small>' : '') + '</span>' +
+        '</button>' + (v.quote ? '<p class="ths-reel-q">' + esc(v.quote) + '</p>' : '') + '</article>';
+    });
+    if (!V.length) cards.push(igCard());
+    html += '<div class="ths-reels">' + cards.join('') + '</div>';
+    if (Q.length) html += '<div class="ths-quotes">' + Q.map(function (q) {
+      var ph = src(q.photo), nm = P(q.name), n = Math.max(1, Math.min(5, +q.rating || 5));
+      return '<figure class="ths-quote' + (q.sample ? ' ths-sample' : '') + '"><div class="ths-rate" aria-label="' + n + '/5">' + '★★★★★'.slice(0, n) + '<i>' + '★★★★★'.slice(n) + '</i></div>' +
+        '<blockquote>' + esc(P(q.text)) + '</blockquote><figcaption>' + (ph ? '<img src="' + esc(ph) + '" alt="" loading="lazy">' : '<span class="ths-av">' + esc((nm || '?').charAt(0)) + '</span>') +
+        '<span><b>' + esc(nm) + '</b>' + (P(q.role) ? '<small>' + esc(P(q.role)) + '</small>' : '') + '</span>' + (q.kind === 'star' ? '<em>★ ' + esc(t('ths.k.star')) + '</em>' : '') + '</figcaption></figure>';
+    }).join('') + '</div>';
+    if (s.ctaOn && (P(s.cta) || P(s.btn))) html += '<div class="ths-band"><p>' + esc(P(s.cta)) + '</p>' + btn(s.btn, 'book') + '</div>';
+    el.innerHTML = '<div class="wrap">' + html + '</div>';
+  }
+
+  /* video hali yo'q bo'lsa — Instagram sahifasiga taklif */
+  function igCard() {
+    return CFG.INSTAGRAM ? '<a class="ths-reel ths-ig" href="' + esc(CFG.INSTAGRAM) + '" target="_blank" rel="noopener">' + ic('ig') + '<b>' + esc(t('ths.igT')) + '</b><span>' + esc(CFG.INSTAGRAM_HANDLE || '@arthouse.tashkent') + '</span><em>' + esc(t('ths.igB')) + ic('arrow') + '</em></a>' : '';
+  }
+  /* karta olib tashlangach: bo'sh qolgan saralash tugmalari ham yashiriladi */
+  function tidy(grid) {
+    var sec = grid.closest('.ths'), left = $$('.ths-reel:not(.ths-ig)', grid);
+    if (!left.length) grid.innerHTML = igCard();
+    var fl = $('.ths-filter', sec); if (!fl) return;
+    var ks = left.map(function (r) { return r.dataset.k; });
+    $$('[data-ths-f]', fl).forEach(function (b) { if (b.dataset.thsF !== 'all' && ks.indexOf(b.dataset.thsF) < 0) b.remove(); });
+    if ($$('[data-ths-f]', fl).length < 3) fl.remove();
+  }
+
+  /* ---------- 2) «Biz haqimizda» ---------- */
+  function about(id, sec, el) {
+    var s = sec.s || {}, B = sec.b || [], img = src(s.image);
+    var st = B.filter(function (b) { return b.type === 'stat' && (b.value || P(b.label)); });
+    var pt = B.filter(function (b) { return b.type === 'point' && (P(b.title) || P(b.text)); });
+    var e = P(s.eyebrow), h = P(s.title), x = P(s.text), lt = P(s.locTitle), ad = P(s.address), ln = P(s.locNote);
+    el.innerHTML = '<div class="wrap ths-about-grid">' +
+      (img ? '<figure class="ths-about-media"><img src="' + esc(img) + '" alt="" loading="lazy" decoding="async"><figcaption class="ths-about-badge"><b>' + esc(CFG.EXPERIENCE_YEARS) + '</b><span>' + esc(P(s.badge)) + '</span></figcaption></figure>' : '') +
+      '<div class="ths-about-copy">' + (e ? '<p class="eyebrow">' + esc(e) + '</p>' : '') + (h ? '<h2>' + nl(h) + '</h2>' : '') + (x ? '<div class="ths-text">' + lines(x) + '</div>' : '') +
+      (st.length ? '<div class="ths-stats">' + st.map(function (b) { return '<div><b>' + esc(tok(b.value)) + '</b><span>' + esc(P(b.label)) + '</span></div>'; }).join('') + '</div>' : '') +
+      (lt || ad ? '<div class="ths-loc"><span class="ths-loc-ic">' + ic('pin') + '</span><div><b>' + esc(lt) + '</b><span>' + esc(ad) + '</span>' + (ln ? '<p>' + esc(ln) + '</p>' : '') +
+        (s.map ? '<a href="' + esc(s.map) + '" target="_blank" rel="noopener">' + esc(t('home.locBtn')) + ic('arrow') + '</a>' : '') + '</div></div>' : '') +
+      (P(s.btn) ? '<div class="ths-btns">' + btn(s.btn, s.act, s.url) + '</div>' : '') + '</div></div>' +
+      (pt.length ? '<div class="wrap ths-points">' + pt.map(function (b) { return '<div class="ths-point"><span>' + ic(b.icon || 'check') + '</span><b>' + esc(P(b.title)) + '</b><p>' + esc(P(b.text)) + '</p></div>'; }).join('') + '</div>' : '');
+  }
+
+  /* ---------- 3) «Taklif va harakatga chaqiruv» ---------- */
+  function untilTs(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ''); return m ? Date.parse(d + 'T23:59:59+05:00') : 0; }
+  function cta(id, sec, el) {
+    var s = sec.s || {}, img = src(s.image), chips = (sec.b || []).filter(function (b) { return b.type === 'chip' && P(b.text); });
+    var e = P(s.eyebrow), h = P(s.title), x = P(s.text), end = s.timer ? untilTs(s.until) : 0;
+    var timer = end > Date.now() ? '<div class="ths-timer" data-until="' + end + '"><small>' + esc(P(s.timerLabel)) + '</small><div>' +
+      ['d', 'h', 'm', 's'].map(function (u) { return '<span><b data-u="' + u + '">00</b><i>' + esc(t('ths.' + u)) + '</i></span>'; }).join('') + '</div></div>' : '';
+    var form = s.form ? '<form class="ths-form" novalidate data-ths-form="' + esc(id) + '">' +
+      '<h3>' + esc(P(s.formTitle)) + '</h3>' + (P(s.formText) ? '<p>' + esc(P(s.formText)) + '</p>' : '') +
+      '<div class="field"><label for="' + id + 'N">' + esc(t('form.name')) + '</label><input id="' + id + 'N" name="name" autocomplete="name" placeholder="' + esc(t('form.namePh')) + '"><small class="err">' + esc(t('form.nameErr')) + '</small></div>' +
+      '<div class="field"><label for="' + id + 'P">' + esc(t('form.phone')) + '</label><input id="' + id + 'P" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" class="js-phone"><small class="err"></small></div>' +
+      '<button type="submit" class="btn btn-gold wide">' + esc(P(s.formBtn) || t('form.send')) + ic('arrow') + '</button>' +
+      '<p class="ths-note">' + ic('shield') + esc(t('ths.note')) + '</p><p class="ths-ok" hidden>' + ic('check') + '<span>' + esc(t('ths.ok')) + '</span></p></form>' : '';
+    el.innerHTML = (img ? '<div class="ths-cta-bg" aria-hidden="true"><img src="' + esc(img) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
+      '<div class="wrap ths-cta-grid' + (form ? '' : ' solo') + '"><div class="ths-cta-copy">' + (e ? '<p class="eyebrow">' + esc(e) + '</p>' : '') +
+      (s.big ? '<div class="ths-big"><b>' + esc(tok(s.big)) + '</b><span>' + esc(P(s.bigLabel)) + '</span></div>' : '') +
+      (h ? '<h2>' + nl(h) + '</h2>' : '') + (x ? '<p class="ths-lead">' + esc(x) + '</p>' : '') +
+      (chips.length ? '<ul class="ths-chips">' + chips.map(function (b) { return '<li>' + ic('check') + esc(P(b.text)) + '</li>'; }).join('') + '</ul>' : '') +
+      '<div class="ths-btns">' + btn(s.btn1, s.act1, s.url1) + btn(s.btn2, s.act2, s.url2, 'btn-ghost') + '</div>' + timer + '</div>' + form + '</div>';
+    var ph = $('.js-phone', el); if (ph && window.AH_SITE) AH_SITE.phoneMask(ph);
+    if (form) try { var me = JSON.parse(localStorage.getItem('ah3_me') || 'null') || {}; if (me.name) $('[name=name]', el).value = me.name; if (me.phone) ph.value = me.phone; } catch (x2) {} /* site.js → remember() */
+  }
+
+  /* ---------- 4) «Matn va tugma», 5) «Video» ---------- */
+  function richtext(id, sec, el) {
+    var s = sec.s || {};
+    el.innerHTML = '<div class="wrap ths-rt' + (s.align === 'left' ? ' left' : '') + '">' + head({ eyebrow: s.eyebrow, title: s.title }, s.align !== 'left') +
+      (P(s.text) ? '<div class="ths-text">' + lines(P(s.text)) + '</div>' : '') + (P(s.btn) ? '<div class="ths-btns">' + btn(s.btn, s.act, s.url) + '</div>' : '') + '</div>';
+  }
+  function frame(link) {
+    var y = ytId(link), g = igId(link);
+    if (y) return '<iframe src="https://www.youtube-nocookie.com/embed/' + y + '?rel=0" title="Video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    if (g) return '<iframe src="https://www.instagram.com/p/' + g + '/embed" title="Instagram" loading="lazy" allowfullscreen></iframe>';
+    return '';
+  }
+  function video(id, sec, el) {
+    var s = sec.s || {}, f = s.video ? src(s.video) : '', fr = !f && s.link ? frame(s.link) : '';
+    var m = f ? '<video src="' + esc(f) + '"' + (s.poster ? ' poster="' + esc(src(s.poster)) + '"' : '') + ' controls playsinline preload="metadata"></video>' : fr || (PREVIEW ? '<div class="ths-vph">' + ic('video') + '<span>' + esc(t('ths.sample')) + '</span></div>' : '');
+    if (!m) { el.innerHTML = ''; el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = '<div class="wrap ths-vid">' + head({ eyebrow: s.eyebrow, title: s.title }, true) + '<div class="ths-vid-box' + (igId(s.link) && !f ? ' ig' : '') + '">' + m + '</div>' + (P(s.text) ? '<div class="ths-text center">' + lines(P(s.text)) + '</div>' : '') + '</div>';
+  }
+  var RENDER = { stars: stars, about: about, cta: cta, richtext: richtext, video: video };
+
+  /* ---------- bo'limlarni joylash ---------- */
+  function nativeEl(id) {
+    var n = TH.native(id); if (!n) return null;
+    if (n.find) return $(n.find);
+    var x = $('#p-home ' + n.has); if (!x) return null;
+    while (x && x.parentNode && x.parentNode.id !== 'p-home') x = x.parentNode;
+    return x && x.parentNode ? x : null;
+  }
+  function elOf(id) { return TH.native(id) ? nativeEl(id) : document.getElementById('ths-' + id); }
+  var mo = null, busy = false;
+  function place() {
+    var host = $('#p-home'); if (!host) return;
+    busy = true; if (mo) mo.disconnect();
+    /* yangi bo'limlar */
+    Object.keys(CUR.sec).forEach(function (id) {
+      var sc = CUR.sec[id]; if (sc.type === 'native' || !RENDER[sc.type]) return;
+      var el = document.getElementById('ths-' + id);
+      if (!sc.on) { if (el) el.remove(); return; }
+      var fresh = !el;
+      if (fresh) { el = document.createElement('section'); el.id = 'ths-' + id; host.appendChild(el); }
+      /* ths-wait → ths-in: ekranga kirganda bir marta ochiladi; qayta chizilganda holat saqlanadi */
+      var st = el.classList.contains('ths-in') ? ' ths-in' : (fresh ? io : el.classList.contains('ths-wait')) ? ' ths-wait' : '';
+      el.className = 'ths ths-' + sc.type + ' ths-' + ((CUR.s || {}).surface === 'dark' ? 'dark' : 'light') + st;
+      el.setAttribute('data-ths', id);
+      RENDER[sc.type](id, sc, el);
+      if (fresh && io) io.observe(el);
+    });
+    $$('#p-home > [data-ths]').forEach(function (el) { var id = el.getAttribute('data-ths'); if (!TH.native(id) && !(CUR.sec[id] && CUR.sec[id].on)) el.remove(); });
+    order();
+    busy = false; watch();
+  }
+  /* tartib va ko'rinish; boshqa skriptlar blokni qayta chizsa ham tartib saqlanadi */
+  function order() {
+    var host = $('#p-home'); if (!host) return;
+    TH.NATIVE.forEach(function (n) { var el = nativeEl(n.id); if (!el) return; el.setAttribute('data-ths', n.id); el.classList.toggle('ths-off', !(CUR.sec[n.id] || {}).on); });
+    var ref = host.firstElementChild;
+    CUR.order.forEach(function (id) {
+      var el = elOf(id); if (!el || el.parentNode !== host) return;
+      if (el === ref) ref = ref.nextElementSibling; else host.insertBefore(el, ref);
+    });
+  }
+  function watch() {
+    var host = $('#p-home'), top = $('.top'); if (!host) return;
+    if (!mo) mo = new MutationObserver(function () { if (busy) return; busy = true; mo.disconnect(); order(); busy = false; watch(); });
+    mo.observe(host, { childList: true }); if (top) mo.observe(top, { childList: true });
+  }
+
+  /* ---------- kirish animatsiyasi ---------- */
+  var io = 'IntersectionObserver' in window && !PREVIEW ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.replace('ths-wait', 'ths-in'); io.unobserve(e.target); } }); }, { threshold: .08 }) : null;
+
+  /* ---------- raqamlar (Sozlamalar → Raqamlar) ---------- */
+  var CFG0 = window.AH_CFG0 || {};
+  function applyCfg(cfg) {
+    var ch = false;
+    NUMK.forEach(function (k) { var v = cfg && cfg[k] !== '' && cfg[k] != null ? cfg[k] : CFG0[k]; if (v != null && CFG[k] !== v) { CFG[k] = v; ch = true; } });
+    if (!ch) return false;
+    $$('[data-count="years"]').forEach(function (el) { el.textContent = CFG.EXPERIENCE_YEARS; });
+    if (window.AH_NUMS) AH_NUMS();
+    return true;
+  }
+
+  /* ---------- mavzuni almashtirish (jonli) ---------- */
+  function setTheme(th, cfg) {
+    var txt = JSON.stringify(th.text || {}) !== JSON.stringify(CUR.text || {});
+    CUR = th; window.AH_TTEXT = th.text || {};
+    var nums = cfg ? applyCfg(cfg) : false;
+    style(CUR);
+    if (txt || nums) I18N.set(I18N.lang); /* barcha matnlar qayta chiziladi → place() */
+    else place();
+  }
+  /* 'ah_cms' o'zgardi: faqat mavzu va raqamlar o'zgargan bo'lsa — sahifa qayta yuklanmaydi */
+  function prune(o) {
+    if (Array.isArray(o)) { var a = o.map(prune).filter(function (x) { return x !== undefined; }); return a.length ? a : undefined; }
+    if (o && typeof o === 'object') { var r = {}, n = 0; Object.keys(o).sort().forEach(function (k) { var v = prune(o[k]); if (v !== undefined) { r[k] = v; n++; } }); return n ? r : undefined; }
+    return o === '' || o == null ? undefined : o;
+  }
+  function rest(c) {
+    c = TH.clone(c || {}); delete c.themes; delete c.v;
+    if (c.cfg) NUMK.forEach(function (k) { delete c.cfg[k]; });
+    if (c.media && c.media.place === 'home') delete c.media.place; /* kabinet qo'yadigan standart qiymat */
+    return JSON.stringify(prune(c) || {});
+  }
+  function live(json) {
+    var N; try { N = JSON.parse(json || 'null'); } catch (e) { return false; }
+    if (!N || rest(N) !== rest(window.AH_CMS)) return false;
+    window.AH_CMS = N;
+    if (!DRAFT) setTheme(TH.liveOf(N), N.cfg || {});
+    return true;
+  }
+
+  /* ---------- video oynasi ---------- */
+  var modal = null;
+  function closeModal() { if (!modal || modal.hidden) return; modal.hidden = true; $('.ths-modal-media', modal).innerHTML = ''; document.body.classList.remove('lock'); }
+  function play(v) {
+    if (!modal) {
+      modal = document.createElement('div'); modal.className = 'ths-modal'; modal.hidden = true; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
+      modal.innerHTML = '<div class="ths-modal-box"><button type="button" class="ths-x" data-ths-x>' + ic('x') + '</button><div class="ths-modal-media"></div><div class="ths-modal-cap"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('[data-ths-x]')) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+    }
+    var box = $('.ths-modal-media', modal), f = v.video ? src(v.video) : '', fr = !f && v.link ? frame(v.link) : '';
+    $('[data-ths-x]', modal).setAttribute('aria-label', t('ths.close'));
+    $('.ths-modal-cap', modal).innerHTML = '<b>' + esc(v.name) + '</b>' + (v.role ? '<span>' + esc(v.role) + '</span>' : '') + (v.quote ? '<p>' + esc(v.quote) + '</p>' : '');
+    if (f) {
+      box.className = 'ths-modal-media';
+      box.innerHTML = '<video controls autoplay playsinline' + (v.poster ? ' poster="' + esc(src(v.poster)) + '"' : '') + '></video>';
+      var ve = $('video', box);
+      (f.indexOf('idb:') === 0 && window.Store ? Store.mediaURL(f) : Promise.resolve(f)).then(function (u) { if (u) { ve.src = u; var p = ve.play(); if (p && p.catch) p.catch(function () {}); } });
+    } else if (fr) { box.className = 'ths-modal-media' + (igId(v.link) ? ' ig' : ''); box.innerHTML = fr.replace('?rel=0', '?rel=0&autoplay=1'); }
+    else if (v.link) { window.open(v.link, '_blank', 'noopener'); return; }
+    else return;
+    modal.hidden = false; document.body.classList.add('lock');
+  }
+
+  /* ---------- hodisalar ---------- */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ths-act]');
+    if (b && window.AH_SITE) { if (b.dataset.thsAct === 'video') AH_SITE.call('video'); else AH_SITE.book({ topic: (b.textContent || '').trim() }); return; }
+    var p = e.target.closest('[data-play]');
+    if (p) { var v = MEDIA[p.dataset.play]; if (v && !v.sample) play(v); return; }
+    var f = e.target.closest('[data-ths-f]');
+    if (f) {
+      var sec = f.closest('.ths'), k = f.dataset.thsF;
+      $$('[data-ths-f]', sec).forEach(function (x) { x.setAttribute('aria-pressed', String(x === f)); });
+      $$('.ths-reel', sec).forEach(function (r) { r.hidden = k !== 'all' && r.dataset.k !== k; });
+    }
+  });
+  /* kompyuterda: video kartasi ustiga kelganda ovozsiz oldindan ko'rish */
+  if (matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mouseover', function (e) {
+      var b = e.target.closest('.ths-reel-btn'); if (!b || b.dataset.hv) return;
+      var v = MEDIA[b.dataset.play], f = v && v.video ? src(v.video) : ''; if (!f || !isFile(f) || !$('img', b)) return;
+      b.dataset.hv = '1';
+      var el = document.createElement('video'); el.muted = true; el.playsInline = true; el.loop = true; el.className = 'ths-hover';
+      (f.indexOf('idb:') === 0 && window.Store ? Store.mediaURL(f) : Promise.resolve(f)).then(function (u) { if (!u || !b.dataset.hv) return; el.src = u; $('.ths-reel-media', b).appendChild(el); var p = el.play(); if (p && p.catch) p.catch(function () {}); });
+      b.addEventListener('mouseleave', function out() { b.removeEventListener('mouseleave', out); delete b.dataset.hv; el.remove(); });
+    });
+  }
+  document.addEventListener('submit', function (e) {
+    var fm = e.target.closest('[data-ths-form]'); if (!fm) return;
+    e.preventDefault();
+    var S = window.AH_SITE, n = $('[name=name]', fm), ph = $('[name=phone]', fm);
+    var ok = S ? S.checkName(n) & S.checkPhone(ph) : n.value.trim().length > 1;
+    if (!ok) return;
+    var sc = CUR.sec[fm.dataset.thsForm] || {}, topic = P((sc.s || {}).eyebrow) + ': ' + P((sc.s || {}).title);
+    if (PREVIEW) { if (S) S.toast(t('ths.prev')); }
+    else if (window.CRM) { CRM.deliver({ src: 'callback', name: n.value.trim(), phone: ph.value.trim(), unit: topic.slice(0, 120), lang: I18N.lang }); if (S) S.remember(n.value.trim(), ph.value.trim()); }
+    $$('.field, [type=submit]', fm).forEach(function (x) { x.hidden = true; });
+    $('.ths-ok', fm).hidden = false;
+  });
+  /* rasm yoki video topilmasa — bo'sh oyna ko'rsatilmaydi */
+  document.addEventListener('error', function (e) {
+    var el = e.target; if (!el || (el.tagName !== 'IMG' && el.tagName !== 'VIDEO') || !el.closest('.ths')) return;
+    var card = el.closest('.ths-reel');
+    if (card) {
+      var bt = $('[data-play]', card), v = bt && MEDIA[bt.dataset.play], f = v && v.video ? src(v.video) : '';
+      if (el.tagName === 'IMG' && f && isFile(f)) { var ve = document.createElement('video'); ve.muted = true; ve.playsInline = true; ve.preload = 'metadata'; ve.src = f; el.replaceWith(ve); return; }
+      if (el.tagName === 'IMG' && v && (v.link || v.sample)) { el.remove(); return; }
+      var grid = card.parentNode; card.remove();
+      if (grid) tidy(grid);
+      return;
+    }
+    var box = el.closest('.ths-about-media, .ths-cta-bg, .ths-quote img');
+    if (box) { box.remove(); return; }
+    if (el.closest('.ths-vid-box')) { var sec = el.closest('.ths'); if (sec && !PREVIEW) sec.hidden = true; }
+  }, true);
+
+  /* teskari sanoq */
+  setInterval(function () {
+    $$('.ths-timer[data-until]').forEach(function (el) {
+      var d = Math.max(0, +el.dataset.until - Date.now()), v = { d: Math.floor(d / 864e5), h: Math.floor(d / 36e5) % 24, m: Math.floor(d / 6e4) % 60, s: Math.floor(d / 1e3) % 60 };
+      if (!d) { el.remove(); return; }
+      $$('[data-u]', el).forEach(function (b) { b.textContent = String(v[b.dataset.u]).padStart(2, '0'); });
+    });
+  }, 1000);
+
+  /* ---------- kabinetdagi tahrirlagich bilan aloqa (?preview=1) ---------- */
+  function present() { var o = {}; TH.NATIVE.forEach(function (n) { o[n.id] = !!nativeEl(n.id); }); return o; }
+  function keysOf(id) {
+    var n = TH.native(id), el = nativeEl(id), ks = (n && n.keys || []).slice(), out = [], saved = window.AH_TTEXT;
+    if (el) $$('[data-i]', el).forEach(function (x) { ks.push(x.getAttribute('data-i')); });
+    window.AH_TTEXT = {};
+    ks.forEach(function (k) { if (out.some(function (o) { return o.k === k; })) return; var v = I18N.t(k); if (v && v !== k) out.push({ k: k, v: v }); });
+    window.AH_TTEXT = saved;
+    return out;
+  }
+  var hl = null;
+  function mark(el, id, flash) {
+    if (!hl) { hl = document.createElement('div'); hl.className = 'ths-hl'; hl.innerHTML = '<span></span>'; document.body.appendChild(hl); }
+    var r = el && el.getBoundingClientRect();
+    if (!el || el.classList.contains('ths-off') || !r.height) { hl.hidden = true; return; }
+    var n = TH.native(id), sc = CUR.sec[id] || {}, ty = TH.TYPES[sc.type];
+    hl.hidden = false; hl.style.cssText = 'top:' + (r.top + scrollY) + 'px;left:' + (r.left + scrollX) + 'px;width:' + r.width + 'px;height:' + r.height + 'px';
+    $('span', hl).textContent = (window.AH_TE_NAMES && AH_TE_NAMES[id]) || (n ? n.name : ty ? ty.name : id);
+    hl.classList.toggle('flash', !!flash);
+  }
+  if (PREVIEW) {
+    var send = function (m) { m.ah = 'te'; window.parent.postMessage(m, '*'); };
+    window.addEventListener('message', function (e) {
+      if (e.source !== window.parent) return;
+      var d = e.data || {}; if (d.ah !== 'te') return;
+      if (d.op === 'theme') { DRAFT = true; window.AH_TE_NAMES = d.names || null; if (d.lang && d.lang !== I18N.lang) { var keep = localStorage.getItem('ah_lang'); I18N.set(d.lang); try { if (keep) localStorage.setItem('ah_lang', keep); } catch (x) {} } setTheme(TH.normalize(d.theme), d.cfg || {}); send({ op: 'present', present: present() }); }
+      if (d.op === 'focus') {
+        if ((location.hash || '#home') !== '#home') location.hash = '#home';
+        var el = elOf(d.id), top = $('.top'), off = top && getComputedStyle(top).position !== 'static' ? top.offsetHeight : 0;
+        if (el && !el.classList.contains('ths-off')) { window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + scrollY - (d.id === 'ann' ? 0 : off)), behavior: d.instant ? 'auto' : 'smooth' }); setTimeout(function () { mark(el, d.id, true); }, d.instant ? 0 : 450); }
+      }
+      if (d.op === 'keys') send({ op: 'keys', id: d.id, keys: keysOf(d.id) });
+    });
+    document.addEventListener('mousemove', function (e) { var el = e.target.closest && e.target.closest('#p-home > [data-ths], .top > .ann'); mark(el, el && (el.getAttribute('data-ths') || 'ann')); }, { passive: true });
+    document.addEventListener('click', function (e) { var el = e.target.closest('#p-home > [data-ths], .top > .ann'); if (el) send({ op: 'pick', id: el.getAttribute('data-ths') || 'ann' }); }, true);
+    window.addEventListener('scroll', function () { if (hl) hl.hidden = true; }, { passive: true });
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  function boot() {
+    place();
+    if (window.Store) { Store.on('reviews', function () { place(); }); Store.on('cms', function () { if (!API) return; fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (R) { if (R && window.AH_ADOPT) AH_ADOPT(R); }).catch(function () {}); }); }
+    I18N.on(function () { setTimeout(place, 0); });
+    if (PREVIEW) window.parent.postMessage({ ah: 'te', op: 'ready', present: present() }, '*');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+
+  window.AH_THEME = { live: live, current: function () { return CUR; }, setTheme: setTheme };
+})();
 
 </script>
 <script>
@@ -3743,7 +4795,8 @@ I18N.extend('en', {
   }
   function putBlob(blob) {
     if (API) {
-      return fetch(API + '/api/media', { method: 'POST', headers: { 'Content-Type': blob.type || 'application/octet-stream' }, body: blob })
+      var h = { 'Content-Type': blob.type || 'application/octet-stream' }; if (token) h.Authorization = 'Bearer ' + token; // rasmlarni server faqat kabinetdan qabul qiladi
+      return fetch(API + '/api/media', { method: 'POST', headers: h, body: blob })
         .then(function (r) { if (!r.ok) throw new Error('upload'); return r.json(); }).then(function (j) { return j.url; });
     }
     var key = 'idb:' + uid();
@@ -3808,6 +4861,7 @@ I18N.extend('en', {
         if (d.t === 'signal') return gotSignal(d.msg);
         if (d.t === 'change') {
           if (d.kind === 'crm') return emit('crm', d.info || {}); // kabinet: arizalar / suhbatlar yangilandi
+          if (d.kind === 'cms') return emit('cms', d.info || {}); // sayt sozlamalari / mavzu: js/theme.js /api/cms ni o'qiydi
           if (d.kind === 'settings') return req('GET', '/settings').then(function (s) { if (s && s.p) { try { localStorage.setItem('ah_set', JSON.stringify(s)); } catch (x) {} applySettings(s); emit('settings'); } }).catch(function () {});
           if ((d.kind === 'leads' || d.kind === 'calls') && !token) return; // bular faqat kabinet uchun
           load(d.kind).then(function () { emit(d.kind, d.info); });
@@ -3850,9 +4904,9 @@ I18N.extend('en', {
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.days = s.days || {}; s.leads = s.leads || [];
     var d = s.days[D0()] || (s.days[D0()] = { v: 0, pv: 0, c: 0, l: 0 }); d[e] = (d[e] || 0) + 1; LS('ah_stats', s);
   }
-  var SNAPMODE = /[?&]cmsnap=1/.test(location.search);
+  var SNAPMODE = /[?&](cmsnap|preview)=1/.test(location.search);
   function track(e) {
-    if (SNAPMODE) return; /* kabinetning yashirin yuklovchisi tashrif hisoblanmaydi */
+    if (SNAPMODE) return; /* kabinetning yashirin yuklovchisi va mavzu tahrirlagichi tashrif hisoblanmaydi */
     local(e);
     if (API) try { navigator.sendBeacon(API + '/track', new Blob([JSON.stringify({ e: e, vid: vid })], { type: 'text/plain' })); } catch (x) {}
   }
@@ -4148,7 +5202,7 @@ I18N.extend('en', {
   var icon = function (id, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '"><use href="#' + id + '"/></svg>'; };
   var P = window.PROJECTS, byId = function (id) { return P.filter(function (p) { return p.id === id; })[0] || P[0]; };
   var LS = function (k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('ah3_' + k)); localStorage.setItem('ah3_' + k, JSON.stringify(v)); } catch (e) { return null; } };
-  var YEARS = CFG.EXPERIENCE_YEARS || 14;
+  var YEARS = CFG.EXPERIENCE_YEARS || 15;
   var MB = 50;
 
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('show'); }, 3600); }
@@ -4473,7 +5527,7 @@ I18N.extend('en', {
 
   /* ================= TELEFON MASKASI ================= */
   var OPS = ['20', '33', '50', '55', '61', '62', '65', '66', '67', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '88', '90', '91', '93', '94', '95', '97', '98', '99'];
-  $$('.js-phone').forEach(function (el) {
+  function phoneMask(el) {
     el.addEventListener('focus', function () { if (!el.value) el.value = '+998 '; });
     el.addEventListener('blur', function () { if (el.value.replace(/\D/g, '') === '998') el.value = ''; });
     el.addEventListener('input', function () {
@@ -4481,7 +5535,8 @@ I18N.extend('en', {
       var o = '+998'; if (d.length) o += ' ' + d.slice(0, 2); if (d.length > 2) o += ' ' + d.slice(2, 5); if (d.length > 5) o += ' ' + d.slice(5, 7); if (d.length > 7) o += ' ' + d.slice(7);
       el.value = d.length ? o : '+998 '; el.closest('.field') && el.closest('.field').classList.remove('bad');
     });
-  });
+  }
+  $$('.js-phone').forEach(phoneMask);
   function checkPhone(el, optional) {
     var d = el.value.replace(/\D/g, '').slice(3), f = el.closest('.field'), m = '';
     if (!d) m = optional ? '' : t('phone.empty'); else if (d.length < 9) m = t('phone.short'); else if (OPS.indexOf(d.slice(0, 2)) < 0) m = t('phone.op');
@@ -4531,6 +5586,8 @@ I18N.extend('en', {
     return h;
   }
   window.AH_manualActs = manualActs;
+  /* mavzu bo'limlari (js/theme.js) uchun: band qilish, qo'ng'iroq va forma yordamchilari */
+  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember };
 
   $('#leadForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -4825,7 +5882,7 @@ window.AGENT_DICT = {
     book: 'Band qilish', cPrice: 'Narxi ≈ {p}', cDown: "Boshlang'ich: {d}", cMonthly: 'Oyiga: ≈ {m} × {M} oy',
     greet: "Assalomu alaykum! Men Art House maslahatchisiman — uy tanlashda va to'lovni hisoblashda yordam beraman. Qaysi loyiha qiziqtiradi: Musaffo (Yunusobod), Obod Maskan yoki Ko'kcha Oqtepa? Nechta xonali uy kerak?",
     greet2: "Yana bir bor xush kelibsiz! Davom etamiz: nechta xonali xonadon va qancha boshlang'ich to'lov haqida o'ylayapsiz?",
-    trust: "Ha, ishonchli. Art House — 14 yillik tajribaga ega qurilish kompaniyasi, 30 dan ortiq loyihani amalga oshirgan. Har bir xonadon rasmiy shartnoma bilan rasmiylashtiriladi, to'lovlar faqat kompaniya hisobiga qabul qilinadi. Instagram sahifamizda (@arthouse.tashkent, 114 mingdan ortiq obunachi) qurilish jarayonini har kuni kuzatishingiz mumkin. Eng yaxshisi — obyektga kelib o'z ko'zingiz bilan ko'ring: qaysi kun sizga qulay?",
+    trust: "Ha, ishonchli. Art House — 15 yillik tajribaga ega qurilish kompaniyasi, 30 dan ortiq loyihani amalga oshirgan. Har bir xonadon rasmiy shartnoma bilan rasmiylashtiriladi, to'lovlar faqat kompaniya hisobiga qabul qilinadi. Instagram sahifamizda (@arthouse.tashkent, 114 mingdan ortiq obunachi) qurilish jarayonini har kuni kuzatishingiz mumkin. Eng yaxshisi — obyektga kelib o'z ko'zingiz bilan ko'ring: qaysi kun sizga qulay?",
     trust2: "Ehtiyotkorligingizni tushunaman — uy hayotdagi eng katta xarid. Shuning uchun biz hech narsani faqat so'z bilan va'da qilmaymiz: savdo ofisimizga kelib hujjatlar, shartnoma namunasi va qurilish maydoni bilan tanishishingiz mumkin. Menejer sizga qo'ng'iroq qilib, tashrif vaqtini kelishib olsinmi?",
     angry: "Sizni xafa qilgan bo'lsak, chin dildan uzr so'rayman. Fikringiz biz uchun juda muhim. Nima bo'lganini qisqacha yozing — masalani shaxsan mas'ul menejerga yetkazaman va u bugunoq siz bilan bog'lanadi. Telefon raqamingizni qoldirasizmi?",
     angry2: "Sizni tushunaman va noqulaylik uchun yana bir bor uzr so'rayman. Vaqtingizni olmaslik uchun: raqamingizni yozing — rahbariyat siz bilan shaxsan bog'lanadi. Yoki hoziroq {tel} raqamiga qo'ng'iroq qiling.",
@@ -4864,7 +5921,7 @@ window.AGENT_DICT = {
     book: 'Забронировать', cPrice: 'Цена ≈ {p}', cDown: 'Первый взнос: {d}', cMonthly: 'В месяц: ≈ {m} × {M} мес.',
     greet: 'Здравствуйте! Я консультант Art House — помогу выбрать квартиру и рассчитать платёж. Какой проект вам интересен: Musaffo (Юнусабад), Obod Maskan или Ko\'kcha Oqtepa? Сколько комнат нужно?',
     greet2: 'Рад снова вас видеть! Продолжим: какую квартиру и какой первоначальный взнос вы рассматриваете?',
-    trust: 'Да, нам можно доверять. Art House — строительная компания с 14-летним опытом и более чем 30 реализованными проектами. Каждая квартира оформляется официальным договором, платежи принимаются только на счёт компании. В нашем Instagram (@arthouse.tashkent, более 114 тысяч подписчиков) вы можете каждый день следить за ходом строительства. А лучше всего — приезжайте и посмотрите объект своими глазами: какой день вам удобен?',
+    trust: 'Да, нам можно доверять. Art House — строительная компания с 15-летним опытом и более чем 30 реализованными проектами. Каждая квартира оформляется официальным договором, платежи принимаются только на счёт компании. В нашем Instagram (@arthouse.tashkent, более 114 тысяч подписчиков) вы можете каждый день следить за ходом строительства. А лучше всего — приезжайте и посмотрите объект своими глазами: какой день вам удобен?',
     trust2: 'Понимаю вашу осторожность — квартира самая крупная покупка в жизни. Поэтому мы ничего не обещаем на словах: приезжайте в наш офис продаж, познакомьтесь с документами, образцом договора и стройплощадкой. Попросить менеджера позвонить и согласовать время визита?',
     angry: 'Если мы вас огорчили, искренне прошу прощения. Ваше мнение для нас очень важно. Коротко опишите, что произошло, — я лично передам вопрос ответственному менеджеру, и он свяжется с вами сегодня же. Оставите номер телефона?',
     angry2: 'Я вас понимаю и ещё раз приношу извинения за неудобства. Чтобы не тратить ваше время: напишите номер — руководство свяжется с вами лично. Или позвоните прямо сейчас: {tel}.',
@@ -4903,7 +5960,7 @@ window.AGENT_DICT = {
     book: 'Reserve', cPrice: 'Price ≈ {p}', cDown: 'Down payment: {d}', cMonthly: 'Monthly: ≈ {m} × {M} mo',
     greet: "Hello! I'm the Art House adviser — I'll help you choose a home and work out the payments. Which project interests you: Musaffo (Yunusabad), Obod Maskan or Ko'kcha Oqtepa? How many rooms do you need?",
     greet2: "Welcome back! Let's continue: what size of apartment and what down payment are you considering?",
-    trust: "Yes, you can trust us. Art House is a construction company with 14 years of experience and more than 30 completed projects. Every apartment is formalised with an official contract, and payments are accepted only into the company account. On our Instagram (@arthouse.tashkent, over 114,000 followers) you can follow the construction every day. Best of all, come and see the site with your own eyes — which day suits you?",
+    trust: "Yes, you can trust us. Art House is a construction company with 15 years of experience and more than 30 completed projects. Every apartment is formalised with an official contract, and payments are accepted only into the company account. On our Instagram (@arthouse.tashkent, over 114,000 followers) you can follow the construction every day. Best of all, come and see the site with your own eyes — which day suits you?",
     trust2: "I understand your caution — a home is the biggest purchase in life. That's why we don't promise anything in words alone: visit our sales office to see the documents, a sample contract and the construction site. Shall I ask a manager to call you and arrange a visit?",
     angry: "If we've upset you, I sincerely apologise. Your opinion matters a great deal to us. Briefly tell me what happened — I'll pass it personally to the responsible manager, who will contact you today. Would you leave your phone number?",
     angry2: 'I understand, and I apologise again for the inconvenience. To save your time: leave your number and the management will contact you personally. Or call us right now: {tel}.',
@@ -4942,7 +5999,7 @@ window.AGENT_DICT = {
     book: 'Réserver', cPrice: 'Prix ≈ {p}', cDown: 'Apport : {d}', cMonthly: 'Par mois : ≈ {m} × {M} mois',
     greet: "Bonjour ! Je suis le conseiller Art House : je vous aide à choisir un logement et à calculer le paiement. Quel projet vous intéresse : Musaffo (Iounoussabad), Obod Maskan ou Ko'kcha Oqtepa ? Combien de pièces vous faut-il ?",
     greet2: 'Ravi de vous revoir ! Continuons : quelle taille de logement et quel apport envisagez-vous ?',
-    trust: "Oui, vous pouvez nous faire confiance. Art House est une société de construction forte de 14 ans d'expérience et de plus de 30 projets réalisés. Chaque appartement fait l'objet d'un contrat officiel et les paiements ne sont acceptés que sur le compte de la société. Sur notre Instagram (@arthouse.tashkent, plus de 114 000 abonnés), vous suivez le chantier au quotidien. Le mieux : venez voir le site de vos propres yeux. Quel jour vous convient ?",
+    trust: "Oui, vous pouvez nous faire confiance. Art House est une société de construction forte de 15 ans d'expérience et de plus de 30 projets réalisés. Chaque appartement fait l'objet d'un contrat officiel et les paiements ne sont acceptés que sur le compte de la société. Sur notre Instagram (@arthouse.tashkent, plus de 114 000 abonnés), vous suivez le chantier au quotidien. Le mieux : venez voir le site de vos propres yeux. Quel jour vous convient ?",
     trust2: "Je comprends votre prudence : un logement est le plus gros achat d'une vie. C'est pourquoi nous ne promettons rien en paroles seulement : venez à notre bureau de vente découvrir les documents, un modèle de contrat et le chantier. Voulez-vous qu'un conseiller vous appelle pour fixer une visite ?",
     angry: "Si nous vous avons déçu, je vous présente mes sincères excuses. Votre avis compte beaucoup pour nous. Dites-moi brièvement ce qui s'est passé : je transmets personnellement la question au conseiller responsable, qui vous contactera dès aujourd'hui. Pouvez-vous laisser votre numéro ?",
     angry2: 'Je vous comprends et vous prie à nouveau de nous excuser. Pour ne pas perdre votre temps : laissez votre numéro et la direction vous contactera personnellement. Ou appelez-nous dès maintenant : {tel}.',
@@ -4981,7 +6038,7 @@ window.AGENT_DICT = {
     book: 'Prenota', cPrice: 'Prezzo ≈ {p}', cDown: 'Anticipo: {d}', cMonthly: 'Al mese: ≈ {m} × {M} mesi',
     greet: "Buongiorno! Sono il consulente Art House: ti aiuto a scegliere casa e a calcolare il pagamento. Quale progetto ti interessa: Musaffo (Yunusabad), Obod Maskan o Ko'kcha Oqtepa? Quante stanze ti servono?",
     greet2: 'Bentornato! Continuiamo: che appartamento e quale anticipo stai valutando?',
-    trust: "Sì, puoi fidarti. Art House è un'impresa edile con 14 anni di esperienza e oltre 30 progetti realizzati. Ogni appartamento è formalizzato con un contratto ufficiale e i pagamenti sono accettati solo sul conto dell'azienda. Sul nostro Instagram (@arthouse.tashkent, oltre 114.000 follower) puoi seguire il cantiere ogni giorno. Ma la cosa migliore è venire a vedere il cantiere con i tuoi occhi: che giorno ti va bene?",
+    trust: "Sì, puoi fidarti. Art House è un'impresa edile con 15 anni di esperienza e oltre 30 progetti realizzati. Ogni appartamento è formalizzato con un contratto ufficiale e i pagamenti sono accettati solo sul conto dell'azienda. Sul nostro Instagram (@arthouse.tashkent, oltre 114.000 follower) puoi seguire il cantiere ogni giorno. Ma la cosa migliore è venire a vedere il cantiere con i tuoi occhi: che giorno ti va bene?",
     trust2: "Capisco la tua prudenza: la casa è l'acquisto più importante della vita. Per questo non promettiamo nulla solo a parole: vieni nel nostro ufficio vendite a vedere i documenti, un contratto tipo e il cantiere. Vuoi che un consulente ti chiami per fissare una visita?",
     angry: "Se ti abbiamo deluso, ti chiedo sinceramente scusa. La tua opinione è molto importante per noi. Raccontami in breve cosa è successo: porterò personalmente la questione al consulente responsabile, che ti contatterà oggi stesso. Mi lasci il tuo numero?",
     angry2: 'Ti capisco e mi scuso ancora per il disagio. Per non farti perdere tempo: lascia il tuo numero e la direzione ti contatterà personalmente. Oppure chiamaci subito: {tel}.',
@@ -5020,7 +6077,7 @@ window.AGENT_DICT = {
     book: 'Reservar', cPrice: 'Precio ≈ {p}', cDown: 'Entrada: {d}', cMonthly: 'Al mes: ≈ {m} × {M} meses',
     greet: "¡Hola! Soy el asesor de Art House: le ayudo a elegir vivienda y a calcular el pago. ¿Qué proyecto le interesa: Musaffo (Yunusabad), Obod Maskan o Ko'kcha Oqtepa? ¿Cuántas habitaciones necesita?",
     greet2: '¡Bienvenido de nuevo! Sigamos: ¿qué vivienda y qué entrada está considerando?',
-    trust: "Sí, puede confiar en nosotros. Art House es una constructora con 14 años de experiencia y más de 30 proyectos realizados. Cada vivienda se formaliza con un contrato oficial y los pagos solo se aceptan en la cuenta de la empresa. En nuestro Instagram (@arthouse.tashkent, más de 114.000 seguidores) puede seguir la obra a diario. Lo mejor es venir a ver la obra con sus propios ojos: ¿qué día le viene bien?",
+    trust: "Sí, puede confiar en nosotros. Art House es una constructora con 15 años de experiencia y más de 30 proyectos realizados. Cada vivienda se formaliza con un contrato oficial y los pagos solo se aceptan en la cuenta de la empresa. En nuestro Instagram (@arthouse.tashkent, más de 114.000 seguidores) puede seguir la obra a diario. Lo mejor es venir a ver la obra con sus propios ojos: ¿qué día le viene bien?",
     trust2: 'Entiendo su prudencia: una vivienda es la compra más importante de la vida. Por eso no prometemos nada solo de palabra: venga a nuestra oficina de ventas a ver los documentos, un contrato modelo y la obra. ¿Quiere que un asesor le llame para concertar una visita?',
     angry: 'Si le hemos causado molestias, le pido sinceras disculpas. Su opinión es muy importante para nosotros. Cuénteme brevemente qué ha pasado: trasladaré el asunto personalmente al asesor responsable, que se pondrá en contacto con usted hoy mismo. ¿Me deja su número de teléfono?',
     angry2: 'Le entiendo y le pido disculpas de nuevo por las molestias. Para no hacerle perder tiempo: deje su número y la dirección le contactará personalmente. O llámenos ahora mismo: {tel}.',
@@ -5059,7 +6116,7 @@ window.AGENT_DICT = {
     book: 'Reservieren', cPrice: 'Preis ≈ {p}', cDown: 'Anzahlung: {d}', cMonthly: 'Monatlich: ≈ {m} × {M} Mon.',
     greet: "Guten Tag! Ich bin der Art House-Berater und helfe Ihnen, eine Wohnung zu wählen und die Zahlung zu berechnen. Welches Projekt interessiert Sie: Musaffo (Yunusabad), Obod Maskan oder Ko'kcha Oqtepa? Wie viele Zimmer brauchen Sie?",
     greet2: 'Schön, dass Sie wieder da sind! Machen wir weiter: Welche Wohnungsgröße und welche Anzahlung ziehen Sie in Betracht?',
-    trust: 'Ja, Sie können uns vertrauen. Art House ist ein Bauunternehmen mit 14 Jahren Erfahrung und über 30 realisierten Projekten. Jede Wohnung wird mit einem offiziellen Vertrag beurkundet, Zahlungen werden ausschließlich auf das Firmenkonto angenommen. Auf unserem Instagram (@arthouse.tashkent, über 114.000 Follower) können Sie den Baufortschritt täglich verfolgen. Am besten sehen Sie sich die Baustelle selbst an – welcher Tag passt Ihnen?',
+    trust: 'Ja, Sie können uns vertrauen. Art House ist ein Bauunternehmen mit 15 Jahren Erfahrung und über 30 realisierten Projekten. Jede Wohnung wird mit einem offiziellen Vertrag beurkundet, Zahlungen werden ausschließlich auf das Firmenkonto angenommen. Auf unserem Instagram (@arthouse.tashkent, über 114.000 Follower) können Sie den Baufortschritt täglich verfolgen. Am besten sehen Sie sich die Baustelle selbst an – welcher Tag passt Ihnen?',
     trust2: 'Ich verstehe Ihre Vorsicht – eine Wohnung ist der größte Kauf im Leben. Deshalb versprechen wir nichts nur mit Worten: Besuchen Sie unser Verkaufsbüro und sehen Sie sich Unterlagen, einen Mustervertrag und die Baustelle an. Soll ein Berater Sie anrufen und einen Termin vereinbaren?',
     angry: 'Wenn wir Sie verärgert haben, entschuldige ich mich aufrichtig. Ihre Meinung ist uns sehr wichtig. Schildern Sie kurz, was passiert ist – ich leite es persönlich an den zuständigen Berater weiter, der sich noch heute bei Ihnen meldet. Hinterlassen Sie Ihre Telefonnummer?',
     angry2: 'Ich verstehe Sie und entschuldige mich nochmals für die Unannehmlichkeiten. Um Ihre Zeit zu sparen: Hinterlassen Sie Ihre Nummer, die Geschäftsleitung meldet sich persönlich. Oder rufen Sie gleich an: {tel}.',
@@ -5098,7 +6155,7 @@ window.AGENT_DICT = {
     book: 'Rezerve et', cPrice: 'Fiyat ≈ {p}', cDown: 'Peşinat: {d}', cMonthly: 'Aylık: ≈ {m} × {M} ay',
     greet: "Merhaba! Ben Art House danışmanıyım; ev seçmenize ve ödemeyi hesaplamanıza yardımcı olurum. Hangi proje ilginizi çekiyor: Musaffo (Yunusabad), Obod Maskan veya Ko'kcha Oqtepa? Kaç odalı bir eve ihtiyacınız var?",
     greet2: 'Tekrar hoş geldiniz! Devam edelim: nasıl bir daire ve ne kadar peşinat düşünüyorsunuz?',
-    trust: "Evet, bize güvenebilirsiniz. Art House, 14 yıllık deneyime ve 30'dan fazla tamamlanmış projeye sahip bir inşaat şirketidir. Her daire resmî sözleşmeyle düzenlenir, ödemeler yalnızca şirket hesabına kabul edilir. Instagram sayfamızda (@arthouse.tashkent, 114 binden fazla takipçi) inşaat sürecini her gün takip edebilirsiniz. En iyisi gelip şantiyeyi kendi gözlerinizle görmeniz: hangi gün size uygun?",
+    trust: "Evet, bize güvenebilirsiniz. Art House, 15 yıllık deneyime ve 30'dan fazla tamamlanmış projeye sahip bir inşaat şirketidir. Her daire resmî sözleşmeyle düzenlenir, ödemeler yalnızca şirket hesabına kabul edilir. Instagram sayfamızda (@arthouse.tashkent, 114 binden fazla takipçi) inşaat sürecini her gün takip edebilirsiniz. En iyisi gelip şantiyeyi kendi gözlerinizle görmeniz: hangi gün size uygun?",
     trust2: 'Temkinli olmanızı anlıyorum; ev hayattaki en büyük alışveriştir. Bu yüzden hiçbir şeyi yalnızca sözle vaat etmiyoruz: satış ofisimize gelip belgeleri, örnek sözleşmeyi ve şantiyeyi görebilirsiniz. Bir danışmanın sizi arayıp ziyaret saatini ayarlamasını ister misiniz?',
     angry: 'Sizi üzdüysek içtenlikle özür dilerim. Görüşünüz bizim için çok önemli. Ne olduğunu kısaca yazın; konuyu bizzat sorumlu danışmana ileteceğim ve sizinle bugün iletişime geçecek. Telefon numaranızı bırakır mısınız?',
     angry2: 'Sizi anlıyorum ve yaşanan aksaklık için tekrar özür dilerim. Zamanınızı almamak için: numaranızı yazın, yönetim sizinle bizzat iletişime geçsin. Ya da hemen şimdi arayın: {tel}.',
@@ -5649,6 +6706,7 @@ window.AGENT_DICT = {
   var FS = MD.fest || {}, fvd = $('#festVideo');
   if (fvd && (FS.video || FS.poster)) { if (FS.poster) fvd.setAttribute('poster', FS.poster); if (FS.video) fvd.setAttribute('src', FS.video); mediaFix(fvd.parentNode); }
 
+  window.AH_NUMS = nums;
   function all() { renderCustom(); hideOff(); footer(); nums(); buildMnav(); projVideos(); gallery(); if (window.AH_POST) AH_POST(); }
   all();
   I18N.on(function () { setTimeout(all, 0); });
@@ -5693,18 +6751,22 @@ window.AGENT_DICT = {
   /* ---------- nashr qilingan kontent (barcha tashrif buyuruvchilar uchun) ---------- */
   function adopt(R) {
     if (!R || typeof R !== 'object' || !R.v) return;
-    if (C.v && C.v >= R.v) return;
+    var cur = window.AH_CMS || C; if (cur.v && cur.v >= R.v) return;
+    var s = JSON.stringify(R);
+    try { localStorage.setItem('ah_cms', s); } catch (e) { console.warn('ART HOUSE CMS: kontent juda katta, brauzer xotirasiga sig\'madi', e); return; }
+    if (window.AH_THEME && AH_THEME.live(s)) return; /* faqat mavzu yoki raqamlar o'zgargan — sahifa joyida yangilanadi */
     var g = ''; try { g = sessionStorage.getItem('ah_cms_r'); } catch (e) {}
     if (g === String(R.v)) return;
-    try { localStorage.setItem('ah_cms', JSON.stringify(R)); sessionStorage.setItem('ah_cms_r', String(R.v)); location.reload(); }
-    catch (e) { console.warn('ART HOUSE CMS: kontent juda katta, brauzer xotirasiga sig\'madi', e); }
+    try { sessionStorage.setItem('ah_cms_r', String(R.v)); } catch (e) {}
+    location.reload();
   }
+  window.AH_ADOPT = adopt;
   if (location.protocol.indexOf('http') === 0) {
     fetch('site-content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
     if (API) fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
   }
   /* kabinetda saqlansa — shu brauzerdagi sayt avtomatik yangilanadi */
-  window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT) location.reload(); });
+  window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT && !(window.AH_THEME && AH_THEME.live(e.newValue))) location.reload(); });
 
   /* ---------- saytda jonli tahrirlash ---------- */
   var ED = {
@@ -5945,60 +7007,60 @@ window.AGENT_DICT = {
   var D = {
     uz: { 'hi.apts': 'Xonadonlar', 'hi.all': 'Barchasi', 'hi.r': '{n} xonali', 'hi.dup': 'Dupleks', 'hi.from': 'dan', 'hi.view': "Ko'rish", 'hi.m2': 'm²',
       'hi.artT': "Art House'da yashash san'ati", 'hi.artS': "Uzoq yillarga qurilgan uy — zamonaviy qulaylik va sokin hashamat.",
-      'hi.u1t': 'Quruvchidan to\'g\'ridan-to\'g\'ri', 'hi.u1d': 'Vositachilarsiz, rasmiy shartnoma asosida.', 'hi.u2t': "0% bo'lib to'lash", 'hi.u2d': "36 oygacha, ustama va foizsiz.", 'hi.u3t': 'Yopiq hovli va avtoturargoh', 'hi.u3d': "Bolalar va sport maydonlari, xavfsiz muhit.", 'hi.u4t': 'Sifat kafolati', 'hi.u4d': "14 yillik tajriba, 30+ loyiha.",
+      'hi.u1t': 'Quruvchidan to\'g\'ridan-to\'g\'ri', 'hi.u1d': 'Vositachilarsiz, rasmiy shartnoma asosida.', 'hi.u2t': "0% bo'lib to'lash", 'hi.u2d': "36 oygacha, ustama va foizsiz.", 'hi.u3t': 'Yopiq hovli va avtoturargoh', 'hi.u3d': "Bolalar va sport maydonlari, xavfsiz muhit.", 'hi.u4t': 'Sifat kafolati', 'hi.u4d': "15 yillik tajriba, 30+ loyiha.",
       'hi.offT': 'Savdo ofisimizga tashrif buyuring', 'hi.offD': "Xonadon rejalarini jonli ko'ring, maketni tomosha qiling va menejerdan shaxsiy maslahat oling.", 'hi.map': "Xaritada ko'rish", 'hi.call': "Qo'ng'iroq qilish",
       'hi.b1t': 'Tez javob', 'hi.b1d': 'Menejer ish vaqtida bir necha daqiqada bog\'lanadi.', 'hi.b2t': "0% bo'lib to'lash", 'hi.b2d': "Bank kreditisiz, 36 oygacha.", 'hi.b3t': 'Rasmiy shartnoma', 'hi.b3d': 'Shaffof shartlar, yashirin to\'lovlarsiz.',
       'hi.newsT': 'Birinchilardan bo\'ling', 'hi.newsD': "Yangi loyihalar, cheklangan takliflar va chegirmalar haqida birinchi bo'lib bilib oling.", 'hi.newsPh': 'Telefon raqamingiz', 'hi.newsOk': "Rahmat! Siz ro'yxatdasiz.", 'hi.newsBad': "Telefon raqamini to'liq kiriting.",
-      'hi.search': 'Qidiruv', 'hi.searchPh': 'Xonadon, loyiha yoki bo\'lim…', 'hi.none': 'Hech narsa topilmadi', 'hi.about': 'Biz haqimizda', 'hi.aboutD': "Art House — 14 yillik tajribaga ega quruvchi: halol, shaffof va foizsiz bo'lib to'lash asosida premium xonadonlar.", 'hi.more': "Batafsil" },
+      'hi.search': 'Qidiruv', 'hi.searchPh': 'Xonadon, loyiha yoki bo\'lim…', 'hi.none': 'Hech narsa topilmadi', 'hi.about': 'Biz haqimizda', 'hi.aboutD': "Art House — 15 yillik tajribaga ega quruvchi: halol, shaffof va foizsiz bo'lib to'lash asosida premium xonadonlar.", 'hi.more': "Batafsil" },
     ru: { 'hi.apts': 'Квартиры', 'hi.all': 'Все', 'hi.r': '{n}-комнатные', 'hi.dup': 'Дуплекс', 'hi.from': 'от', 'hi.view': 'Смотреть', 'hi.m2': 'м²',
       'hi.artT': 'Искусство жить в Art House', 'hi.artS': 'Дом, построенный на годы вперёд, — современный комфорт и спокойная роскошь.',
-      'hi.u1t': 'Напрямую от застройщика', 'hi.u1d': 'Без посредников, по официальному договору.', 'hi.u2t': 'Рассрочка 0%', 'hi.u2d': 'До 36 месяцев, без наценки и процентов.', 'hi.u3t': 'Закрытый двор и паркинг', 'hi.u3d': 'Детские и спортивные площадки, безопасная среда.', 'hi.u4t': 'Гарантия качества', 'hi.u4d': '14 лет опыта, 30+ проектов.',
+      'hi.u1t': 'Напрямую от застройщика', 'hi.u1d': 'Без посредников, по официальному договору.', 'hi.u2t': 'Рассрочка 0%', 'hi.u2d': 'До 36 месяцев, без наценки и процентов.', 'hi.u3t': 'Закрытый двор и паркинг', 'hi.u3d': 'Детские и спортивные площадки, безопасная среда.', 'hi.u4t': 'Гарантия качества', 'hi.u4d': '15 лет опыта, 30+ проектов.',
       'hi.offT': 'Посетите наш офис продаж', 'hi.offD': 'Посмотрите планировки вживую, изучите макет и получите личную консультацию менеджера.', 'hi.map': 'На карте', 'hi.call': 'Позвонить',
       'hi.b1t': 'Быстрый ответ', 'hi.b1d': 'Менеджер свяжется за несколько минут в рабочее время.', 'hi.b2t': 'Рассрочка 0%', 'hi.b2d': 'Без банковского кредита, до 36 месяцев.', 'hi.b3t': 'Официальный договор', 'hi.b3d': 'Прозрачные условия, без скрытых платежей.',
       'hi.newsT': 'Узнавайте первыми', 'hi.newsD': 'Новые проекты, ограниченные предложения и скидки — первыми.', 'hi.newsPh': 'Ваш номер телефона', 'hi.newsOk': 'Спасибо! Вы в списке.', 'hi.newsBad': 'Введите номер полностью.',
-      'hi.search': 'Поиск', 'hi.searchPh': 'Квартира, проект или раздел…', 'hi.none': 'Ничего не найдено', 'hi.about': 'О нас', 'hi.aboutD': 'Art House — застройщик с 14-летним опытом: честная, прозрачная рассрочка без процентов и премиальные квартиры.', 'hi.more': 'Подробнее' },
+      'hi.search': 'Поиск', 'hi.searchPh': 'Квартира, проект или раздел…', 'hi.none': 'Ничего не найдено', 'hi.about': 'О нас', 'hi.aboutD': 'Art House — застройщик с 15-летним опытом: честная, прозрачная рассрочка без процентов и премиальные квартиры.', 'hi.more': 'Подробнее' },
     en: { 'hi.apts': 'Apartments', 'hi.all': 'All', 'hi.r': '{n}-bedroom', 'hi.dup': 'Duplex', 'hi.from': 'from', 'hi.view': 'View', 'hi.m2': 'm²',
       'hi.artT': 'The art of living at Art House', 'hi.artS': 'A home built to last — modern comfort and quiet luxury.',
-      'hi.u1t': 'Direct from the developer', 'hi.u1d': 'No middlemen, an official contract.', 'hi.u2t': '0% instalments', 'hi.u2d': 'Up to 36 months, no markup or interest.', 'hi.u3t': 'Private courtyard & parking', 'hi.u3d': 'Play and sports areas in a safe setting.', 'hi.u4t': 'Quality guaranteed', 'hi.u4d': '14 years of experience, 30+ projects.',
+      'hi.u1t': 'Direct from the developer', 'hi.u1d': 'No middlemen, an official contract.', 'hi.u2t': '0% instalments', 'hi.u2d': 'Up to 36 months, no markup or interest.', 'hi.u3t': 'Private courtyard & parking', 'hi.u3d': 'Play and sports areas in a safe setting.', 'hi.u4t': 'Quality guaranteed', 'hi.u4d': '15 years of experience, 30+ projects.',
       'hi.offT': 'Visit our sales office', 'hi.offD': 'See the floor plans in person, explore the model and get personal advice from a manager.', 'hi.map': 'View on map', 'hi.call': 'Call us',
       'hi.b1t': 'Fast response', 'hi.b1d': 'A manager replies within minutes during working hours.', 'hi.b2t': '0% instalments', 'hi.b2d': 'No bank loan, up to 36 months.', 'hi.b3t': 'Official contract', 'hi.b3d': 'Transparent terms, no hidden fees.',
       'hi.newsT': 'Be the first to know', 'hi.newsD': 'New projects, limited offers and discounts — first.', 'hi.newsPh': 'Your phone number', 'hi.newsOk': "Thank you! You're on the list.", 'hi.newsBad': 'Please enter the full number.',
-      'hi.search': 'Search', 'hi.searchPh': 'Apartment, project or section…', 'hi.none': 'Nothing found', 'hi.about': 'About us', 'hi.aboutD': 'Art House is a developer with 14 years of experience: honest, transparent, interest-free instalments and premium homes.', 'hi.more': 'Learn more' },
+      'hi.search': 'Search', 'hi.searchPh': 'Apartment, project or section…', 'hi.none': 'Nothing found', 'hi.about': 'About us', 'hi.aboutD': 'Art House is a developer with 15 years of experience: honest, transparent, interest-free instalments and premium homes.', 'hi.more': 'Learn more' },
     fr: { 'hi.apts': 'Appartements', 'hi.all': 'Tous', 'hi.r': '{n} pièces', 'hi.dup': 'Duplex', 'hi.from': 'dès', 'hi.view': 'Voir', 'hi.m2': 'm²',
       'hi.artT': "L'art de vivre chez Art House", 'hi.artS': 'Une maison bâtie pour durer — confort moderne et luxe discret.',
-      'hi.u1t': 'En direct du promoteur', 'hi.u1d': 'Sans intermédiaire, contrat officiel.', 'hi.u2t': 'Paiement 0 %', 'hi.u2d': "Jusqu'à 36 mois, sans frais ni intérêts.", 'hi.u3t': 'Cour privée et parking', 'hi.u3d': 'Aires de jeux et de sport, cadre sûr.', 'hi.u4t': 'Qualité garantie', 'hi.u4d': "14 ans d'expérience, 30+ projets.",
+      'hi.u1t': 'En direct du promoteur', 'hi.u1d': 'Sans intermédiaire, contrat officiel.', 'hi.u2t': 'Paiement 0 %', 'hi.u2d': "Jusqu'à 36 mois, sans frais ni intérêts.", 'hi.u3t': 'Cour privée et parking', 'hi.u3d': 'Aires de jeux et de sport, cadre sûr.', 'hi.u4t': 'Qualité garantie', 'hi.u4d': "15 ans d'expérience, 30+ projets.",
       'hi.offT': 'Visitez notre bureau de vente', 'hi.offD': 'Découvrez les plans, la maquette et un conseil personnalisé.', 'hi.map': 'Voir sur la carte', 'hi.call': 'Appeler',
       'hi.b1t': 'Réponse rapide', 'hi.b1d': 'Un conseiller répond en quelques minutes.', 'hi.b2t': 'Paiement 0 %', 'hi.b2d': "Sans prêt bancaire, jusqu'à 36 mois.", 'hi.b3t': 'Contrat officiel', 'hi.b3d': 'Conditions transparentes, sans frais cachés.',
       'hi.newsT': 'Soyez les premiers informés', 'hi.newsD': 'Nouveaux projets, offres limitées et remises — en avant-première.', 'hi.newsPh': 'Votre numéro', 'hi.newsOk': 'Merci ! Vous êtes inscrit.', 'hi.newsBad': 'Saisissez le numéro complet.',
-      'hi.search': 'Recherche', 'hi.searchPh': 'Appartement, projet ou rubrique…', 'hi.none': 'Aucun résultat', 'hi.about': 'À propos', 'hi.aboutD': "Art House, promoteur depuis 14 ans : paiement échelonné honnête, transparent et sans intérêts, logements premium.", 'hi.more': 'En savoir plus' },
+      'hi.search': 'Recherche', 'hi.searchPh': 'Appartement, projet ou rubrique…', 'hi.none': 'Aucun résultat', 'hi.about': 'À propos', 'hi.aboutD': "Art House, promoteur depuis 15 ans : paiement échelonné honnête, transparent et sans intérêts, logements premium.", 'hi.more': 'En savoir plus' },
     it: { 'hi.apts': 'Appartamenti', 'hi.all': 'Tutti', 'hi.r': '{n} locali', 'hi.dup': 'Duplex', 'hi.from': 'da', 'hi.view': 'Vedi', 'hi.m2': 'm²',
       'hi.artT': "L'arte di vivere ad Art House", 'hi.artS': 'Una casa costruita per durare — comfort moderno e lusso discreto.',
-      'hi.u1t': 'Direttamente dal costruttore', 'hi.u1d': 'Senza intermediari, contratto ufficiale.', 'hi.u2t': 'Rate allo 0%', 'hi.u2d': 'Fino a 36 mesi, senza interessi.', 'hi.u3t': 'Cortile privato e parcheggio', 'hi.u3d': 'Aree gioco e sport, ambiente sicuro.', 'hi.u4t': 'Qualità garantita', 'hi.u4d': '14 anni di esperienza, 30+ progetti.',
+      'hi.u1t': 'Direttamente dal costruttore', 'hi.u1d': 'Senza intermediari, contratto ufficiale.', 'hi.u2t': 'Rate allo 0%', 'hi.u2d': 'Fino a 36 mesi, senza interessi.', 'hi.u3t': 'Cortile privato e parcheggio', 'hi.u3d': 'Aree gioco e sport, ambiente sicuro.', 'hi.u4t': 'Qualità garantita', 'hi.u4d': '15 anni di esperienza, 30+ progetti.',
       'hi.offT': 'Visita il nostro ufficio vendite', 'hi.offD': 'Guarda le planimetrie dal vivo e ricevi una consulenza personale.', 'hi.map': 'Vedi sulla mappa', 'hi.call': 'Chiama',
       'hi.b1t': 'Risposta rapida', 'hi.b1d': 'Un consulente risponde in pochi minuti.', 'hi.b2t': 'Rate allo 0%', 'hi.b2d': 'Senza mutuo, fino a 36 mesi.', 'hi.b3t': 'Contratto ufficiale', 'hi.b3d': 'Condizioni trasparenti, nessun costo nascosto.',
       'hi.newsT': 'Scoprilo per primo', 'hi.newsD': 'Nuovi progetti, offerte limitate e sconti — in anteprima.', 'hi.newsPh': 'Il tuo numero', 'hi.newsOk': 'Grazie! Sei in lista.', 'hi.newsBad': 'Inserisci il numero completo.',
-      'hi.search': 'Cerca', 'hi.searchPh': 'Appartamento, progetto o sezione…', 'hi.none': 'Nessun risultato', 'hi.about': 'Chi siamo', 'hi.aboutD': 'Art House, costruttore con 14 anni di esperienza: rate oneste e trasparenti senza interessi, case premium.', 'hi.more': 'Scopri di più' },
+      'hi.search': 'Cerca', 'hi.searchPh': 'Appartamento, progetto o sezione…', 'hi.none': 'Nessun risultato', 'hi.about': 'Chi siamo', 'hi.aboutD': 'Art House, costruttore con 15 anni di esperienza: rate oneste e trasparenti senza interessi, case premium.', 'hi.more': 'Scopri di più' },
     es: { 'hi.apts': 'Apartamentos', 'hi.all': 'Todos', 'hi.r': '{n} habitaciones', 'hi.dup': 'Dúplex', 'hi.from': 'desde', 'hi.view': 'Ver', 'hi.m2': 'm²',
       'hi.artT': 'El arte de vivir en Art House', 'hi.artS': 'Un hogar construido para durar: confort moderno y lujo sereno.',
-      'hi.u1t': 'Directo del promotor', 'hi.u1d': 'Sin intermediarios, contrato oficial.', 'hi.u2t': 'Plazos al 0 %', 'hi.u2d': 'Hasta 36 meses, sin recargo ni intereses.', 'hi.u3t': 'Patio privado y aparcamiento', 'hi.u3d': 'Zonas de juego y deporte, entorno seguro.', 'hi.u4t': 'Calidad garantizada', 'hi.u4d': '14 años de experiencia, 30+ proyectos.',
+      'hi.u1t': 'Directo del promotor', 'hi.u1d': 'Sin intermediarios, contrato oficial.', 'hi.u2t': 'Plazos al 0 %', 'hi.u2d': 'Hasta 36 meses, sin recargo ni intereses.', 'hi.u3t': 'Patio privado y aparcamiento', 'hi.u3d': 'Zonas de juego y deporte, entorno seguro.', 'hi.u4t': 'Calidad garantizada', 'hi.u4d': '15 años de experiencia, 30+ proyectos.',
       'hi.offT': 'Visite nuestra oficina de ventas', 'hi.offD': 'Vea los planos en persona, la maqueta y reciba asesoría personal.', 'hi.map': 'Ver en el mapa', 'hi.call': 'Llamar',
       'hi.b1t': 'Respuesta rápida', 'hi.b1d': 'Un asesor responde en minutos.', 'hi.b2t': 'Plazos al 0 %', 'hi.b2d': 'Sin préstamo bancario, hasta 36 meses.', 'hi.b3t': 'Contrato oficial', 'hi.b3d': 'Condiciones claras, sin cargos ocultos.',
       'hi.newsT': 'Entérese primero', 'hi.newsD': 'Nuevos proyectos, ofertas limitadas y descuentos, antes que nadie.', 'hi.newsPh': 'Su número', 'hi.newsOk': '¡Gracias! Está en la lista.', 'hi.newsBad': 'Introduzca el número completo.',
-      'hi.search': 'Buscar', 'hi.searchPh': 'Apartamento, proyecto o sección…', 'hi.none': 'Sin resultados', 'hi.about': 'Sobre nosotros', 'hi.aboutD': 'Art House, promotor con 14 años de experiencia: pagos a plazos honestos, transparentes y sin intereses, viviendas premium.', 'hi.more': 'Más información' },
+      'hi.search': 'Buscar', 'hi.searchPh': 'Apartamento, proyecto o sección…', 'hi.none': 'Sin resultados', 'hi.about': 'Sobre nosotros', 'hi.aboutD': 'Art House, promotor con 15 años de experiencia: pagos a plazos honestos, transparentes y sin intereses, viviendas premium.', 'hi.more': 'Más información' },
     de: { 'hi.apts': 'Wohnungen', 'hi.all': 'Alle', 'hi.r': '{n}-Zimmer', 'hi.dup': 'Maisonette', 'hi.from': 'ab', 'hi.view': 'Ansehen', 'hi.m2': 'm²',
       'hi.artT': 'Die Kunst, bei Art House zu wohnen', 'hi.artS': 'Ein Zuhause für Jahrzehnte — moderner Komfort und stiller Luxus.',
-      'hi.u1t': 'Direkt vom Bauträger', 'hi.u1d': 'Ohne Vermittler, mit offiziellem Vertrag.', 'hi.u2t': '0 % Ratenzahlung', 'hi.u2d': 'Bis 36 Monate, ohne Aufschlag und Zinsen.', 'hi.u3t': 'Privater Hof & Tiefgarage', 'hi.u3d': 'Spiel- und Sportplätze, sichere Umgebung.', 'hi.u4t': 'Qualitätsgarantie', 'hi.u4d': '14 Jahre Erfahrung, 30+ Projekte.',
+      'hi.u1t': 'Direkt vom Bauträger', 'hi.u1d': 'Ohne Vermittler, mit offiziellem Vertrag.', 'hi.u2t': '0 % Ratenzahlung', 'hi.u2d': 'Bis 36 Monate, ohne Aufschlag und Zinsen.', 'hi.u3t': 'Privater Hof & Tiefgarage', 'hi.u3d': 'Spiel- und Sportplätze, sichere Umgebung.', 'hi.u4t': 'Qualitätsgarantie', 'hi.u4d': '15 Jahre Erfahrung, 30+ Projekte.',
       'hi.offT': 'Besuchen Sie unser Verkaufsbüro', 'hi.offD': 'Grundrisse live ansehen, Modell entdecken und persönlich beraten lassen.', 'hi.map': 'Auf der Karte', 'hi.call': 'Anrufen',
       'hi.b1t': 'Schnelle Antwort', 'hi.b1d': 'Ein Berater meldet sich in wenigen Minuten.', 'hi.b2t': '0 % Ratenzahlung', 'hi.b2d': 'Ohne Bankkredit, bis 36 Monate.', 'hi.b3t': 'Offizieller Vertrag', 'hi.b3d': 'Transparente Konditionen, keine versteckten Kosten.',
       'hi.newsT': 'Als Erste erfahren', 'hi.newsD': 'Neue Projekte, limitierte Angebote und Rabatte — zuerst.', 'hi.newsPh': 'Ihre Telefonnummer', 'hi.newsOk': 'Danke! Sie sind auf der Liste.', 'hi.newsBad': 'Bitte vollständige Nummer eingeben.',
-      'hi.search': 'Suche', 'hi.searchPh': 'Wohnung, Projekt oder Bereich…', 'hi.none': 'Nichts gefunden', 'hi.about': 'Über uns', 'hi.aboutD': 'Art House – Bauträger mit 14 Jahren Erfahrung: ehrliche, transparente, zinsfreie Ratenzahlung und Premium-Wohnungen.', 'hi.more': 'Mehr erfahren' },
+      'hi.search': 'Suche', 'hi.searchPh': 'Wohnung, Projekt oder Bereich…', 'hi.none': 'Nichts gefunden', 'hi.about': 'Über uns', 'hi.aboutD': 'Art House – Bauträger mit 15 Jahren Erfahrung: ehrliche, transparente, zinsfreie Ratenzahlung und Premium-Wohnungen.', 'hi.more': 'Mehr erfahren' },
     tr: { 'hi.apts': 'Daireler', 'hi.all': 'Tümü', 'hi.r': '{n}+1', 'hi.dup': 'Dubleks', 'hi.from': "'den başlayan", 'hi.view': 'Görüntüle', 'hi.m2': 'm²',
       'hi.artT': "Art House'da yaşam sanatı", 'hi.artS': 'Uzun yıllar için inşa edilmiş bir ev — modern konfor ve sessiz lüks.',
-      'hi.u1t': 'Doğrudan müteahhitten', 'hi.u1d': 'Aracısız, resmi sözleşme ile.', 'hi.u2t': '%0 taksit', 'hi.u2d': '36 aya kadar, faizsiz.', 'hi.u3t': 'Kapalı avlu ve otopark', 'hi.u3d': 'Oyun ve spor alanları, güvenli ortam.', 'hi.u4t': 'Kalite garantisi', 'hi.u4d': '14 yıllık deneyim, 30+ proje.',
+      'hi.u1t': 'Doğrudan müteahhitten', 'hi.u1d': 'Aracısız, resmi sözleşme ile.', 'hi.u2t': '%0 taksit', 'hi.u2d': '36 aya kadar, faizsiz.', 'hi.u3t': 'Kapalı avlu ve otopark', 'hi.u3d': 'Oyun ve spor alanları, güvenli ortam.', 'hi.u4t': 'Kalite garantisi', 'hi.u4d': '15 yıllık deneyim, 30+ proje.',
       'hi.offT': 'Satış ofisimizi ziyaret edin', 'hi.offD': 'Planları yerinde görün, maketi inceleyin ve kişisel danışmanlık alın.', 'hi.map': 'Haritada gör', 'hi.call': 'Arayın',
       'hi.b1t': 'Hızlı yanıt', 'hi.b1d': 'Danışman mesai saatlerinde dakikalar içinde döner.', 'hi.b2t': '%0 taksit', 'hi.b2d': 'Banka kredisi olmadan, 36 aya kadar.', 'hi.b3t': 'Resmi sözleşme', 'hi.b3d': 'Şeffaf koşullar, gizli ücret yok.',
       'hi.newsT': 'İlk siz öğrenin', 'hi.newsD': 'Yeni projeler, sınırlı teklifler ve indirimler — ilk size.', 'hi.newsPh': 'Telefon numaranız', 'hi.newsOk': 'Teşekkürler! Listedesiniz.', 'hi.newsBad': 'Lütfen numaranın tamamını girin.',
-      'hi.search': 'Ara', 'hi.searchPh': 'Daire, proje veya bölüm…', 'hi.none': 'Sonuç bulunamadı', 'hi.about': 'Hakkımızda', 'hi.aboutD': "Art House, 14 yıllık deneyime sahip bir müteahhit: dürüst, şeffaf ve faizsiz taksit, premium konutlar.", 'hi.more': 'Daha fazla' }
+      'hi.search': 'Ara', 'hi.searchPh': 'Daire, proje veya bölüm…', 'hi.none': 'Sonuç bulunamadı', 'hi.about': 'Hakkımızda', 'hi.aboutD': "Art House, 15 yıllık deneyime sahip bir müteahhit: dürüst, şeffaf ve faizsiz taksit, premium konutlar.", 'hi.more': 'Daha fazla' }
   };
   Object.keys(D).forEach(function (l) { I18N.extend(l, D[l]); });
   /* «Qurilish jarayoni» bloki matnlari */

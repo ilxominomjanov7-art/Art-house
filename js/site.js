@@ -10,7 +10,7 @@
   var icon = function (id, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '"><use href="#' + id + '"/></svg>'; };
   var P = window.PROJECTS, byId = function (id) { return P.filter(function (p) { return p.id === id; })[0] || P[0]; };
   var LS = function (k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('ah3_' + k)); localStorage.setItem('ah3_' + k, JSON.stringify(v)); } catch (e) { return null; } };
-  var YEARS = CFG.EXPERIENCE_YEARS || 14;
+  var YEARS = CFG.EXPERIENCE_YEARS || 15;
   var MB = 50;
 
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('show'); }, 3600); }
@@ -335,7 +335,7 @@
 
   /* ================= TELEFON MASKASI ================= */
   var OPS = ['20', '33', '50', '55', '61', '62', '65', '66', '67', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '88', '90', '91', '93', '94', '95', '97', '98', '99'];
-  $$('.js-phone').forEach(function (el) {
+  function phoneMask(el) {
     el.addEventListener('focus', function () { if (!el.value) el.value = '+998 '; });
     el.addEventListener('blur', function () { if (el.value.replace(/\D/g, '') === '998') el.value = ''; });
     el.addEventListener('input', function () {
@@ -343,7 +343,8 @@
       var o = '+998'; if (d.length) o += ' ' + d.slice(0, 2); if (d.length > 2) o += ' ' + d.slice(2, 5); if (d.length > 5) o += ' ' + d.slice(5, 7); if (d.length > 7) o += ' ' + d.slice(7);
       el.value = d.length ? o : '+998 '; el.closest('.field') && el.closest('.field').classList.remove('bad');
     });
-  });
+  }
+  $$('.js-phone').forEach(phoneMask);
   function checkPhone(el, optional) {
     var d = el.value.replace(/\D/g, '').slice(3), f = el.closest('.field'), m = '';
     if (!d) m = optional ? '' : t('phone.empty'); else if (d.length < 9) m = t('phone.short'); else if (OPS.indexOf(d.slice(0, 2)) < 0) m = t('phone.op');
@@ -393,6 +394,8 @@
     return h;
   }
   window.AH_manualActs = manualActs;
+  /* mavzu bo'limlari (js/theme.js) uchun: band qilish, qo'ng'iroq va forma yordamchilari */
+  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember };
 
   $('#leadForm').addEventListener('submit', function (e) {
     e.preventDefault();

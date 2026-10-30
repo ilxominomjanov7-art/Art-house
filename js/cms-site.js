@@ -194,6 +194,7 @@
   var FS = MD.fest || {}, fvd = $('#festVideo');
   if (fvd && (FS.video || FS.poster)) { if (FS.poster) fvd.setAttribute('poster', FS.poster); if (FS.video) fvd.setAttribute('src', FS.video); mediaFix(fvd.parentNode); }
 
+  window.AH_NUMS = nums;
   function all() { renderCustom(); hideOff(); footer(); nums(); buildMnav(); projVideos(); gallery(); if (window.AH_POST) AH_POST(); }
   all();
   I18N.on(function () { setTimeout(all, 0); });
@@ -238,18 +239,22 @@
   /* ---------- nashr qilingan kontent (barcha tashrif buyuruvchilar uchun) ---------- */
   function adopt(R) {
     if (!R || typeof R !== 'object' || !R.v) return;
-    if (C.v && C.v >= R.v) return;
+    var cur = window.AH_CMS || C; if (cur.v && cur.v >= R.v) return;
+    var s = JSON.stringify(R);
+    try { localStorage.setItem('ah_cms', s); } catch (e) { console.warn('ART HOUSE CMS: kontent juda katta, brauzer xotirasiga sig\'madi', e); return; }
+    if (window.AH_THEME && AH_THEME.live(s)) return; /* faqat mavzu yoki raqamlar o'zgargan — sahifa joyida yangilanadi */
     var g = ''; try { g = sessionStorage.getItem('ah_cms_r'); } catch (e) {}
     if (g === String(R.v)) return;
-    try { localStorage.setItem('ah_cms', JSON.stringify(R)); sessionStorage.setItem('ah_cms_r', String(R.v)); location.reload(); }
-    catch (e) { console.warn('ART HOUSE CMS: kontent juda katta, brauzer xotirasiga sig\'madi', e); }
+    try { sessionStorage.setItem('ah_cms_r', String(R.v)); } catch (e) {}
+    location.reload();
   }
+  window.AH_ADOPT = adopt;
   if (location.protocol.indexOf('http') === 0) {
     fetch('site-content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
     if (API) fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
   }
   /* kabinetda saqlansa — shu brauzerdagi sayt avtomatik yangilanadi */
-  window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT) location.reload(); });
+  window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT && !(window.AH_THEME && AH_THEME.live(e.newValue))) location.reload(); });
 
   /* ---------- saytda jonli tahrirlash ---------- */
   var ED = {

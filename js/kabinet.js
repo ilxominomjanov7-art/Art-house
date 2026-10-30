@@ -393,8 +393,9 @@ var OTH=[['c','users','Mijozlar bazasi'],['u','bld','Xonadonlar'],['p','wal',"To
 /* v7: guruhlangan menyu, yig'iladigan rejim (desktop), chiquvchi drawer (mobil) */
 const NG=[['Asosiy',[['h','dash','Bosh sahifa'],['m','inbox','Xabarlar'],['r','chat2','Art House chati'],['R','star','Mijozlar izohlari'],['V','video',"Video qo'ng'iroqlar"]]],['Savdo',[['c','users','Mijozlar bazasi'],['u','bld','Xonadonlar'],['p','wal',"To'lovlar"],['d','tag','Chegirmalar',1]]],['Tahlil',[['s','chart','Statistika'],['g','bot','AI Agent']]],['Jamoa',[['P','user','Mening profilim'],['M','trophy','Menejerlar va Ballar'],['z','set','Sozlamalar',1]]]];
 function navN(k){try{if(k==='R')return Store.list('reviews').filter(r=>!r.hidden&&!(r.reply&&r.reply.text)).length;if(k==='V')return Store.list('calls').filter(c=>c.st==='missed'||c.st==='ringing').length;if(k==='c')return DATA.leads.filter(l=>(l.st||'new')==='new').length;if(k==='m'){const t=D0();return chats().filter(c=>dk(c.up||c.at)===t).length}}catch(e){}return 0}
-function nav(){const o=own(),cur=VW==='x'?'m':VW;let n=0;$('nv').innerHTML=NG.map(g=>{const it=g[1].filter(x=>!x[3]||o);return it.length?'<div class="ng">'+g[0]+'</div>'+it.map(x=>{const c=navN(x[0]),on=cur===x[0];return '<button type="button" data-v="'+x[0]+'" class="'+(on?'on':'')+'" style="--d:'+(n++)+'"'+(on?' aria-current="page"':'')+'><i class="nt">'+I2(x[1])+'</i><span>'+x[2]+'</span>'+(c?'<em class="nb">'+(c>99?'99+':c)+'</em>':'')+'</button>'}).join(''):''}).join('')}
-function view(v){if(v==='a')v='g';if(v==='o')v='c';VW=v;PNL=null;nav();sbClose();$('mn').onclick=null;$('mn').onchange=null;({h:vH,c:vC,s:vS,d:vD,g:vG,x:()=>{XT='s';vXM()},m:vXM,z:vZ,u:vU,p:vP,P:vPf,M:vMg,r:vRm,R:vR,V:vV})[v]();gsBar();scrollTo(0,0);AD.scrollTop=0}
+function nav(){const o=own(),cur=VW==='x'?'m':VW;let n=0;$('nv').innerHTML=NG.map(g=>{const it=g[1].filter(x=>!x[3]||o||(typeof x[3]==='function'&&x[3]()));return it.length?'<div class="ng">'+g[0]+'</div>'+it.map(x=>{const c=navN(x[0]),on=cur===x[0];return '<button type="button" data-v="'+x[0]+'" class="'+(on?'on':'')+'" style="--d:'+(n++)+'"'+(on?' aria-current="page"':'')+'><i class="nt">'+I2(x[1])+'</i><span>'+x[2]+'</span>'+(c?'<em class="nb">'+(c>99?'99+':c)+'</em>':'')+'</button>'}).join(''):''}).join('')}
+const XV={}; /* kengaytmalar qo'shgan bo'limlar (window.AHK.addView) */
+function view(v){if(v==='a')v='g';if(v==='o')v='c';VW=v;PNL=null;nav();sbClose();$('mn').onclick=null;$('mn').onchange=null;(XV[v]||{h:vH,c:vC,s:vS,d:vD,g:vG,x:()=>{XT='s';vXM()},m:vXM,z:vZ,u:vU,p:vP,P:vPf,M:vMg,r:vRm,R:vR,V:vV}[v])();gsBar();scrollTo(0,0);AD.scrollTop=0}
 const AB=$('ab'),SBT=document.createElement('div');SBT.className='sbtip';SBT.setAttribute('aria-hidden','true');AD.appendChild(SBT);
 function sbClose(){AB.classList.remove('nav-open');$('sdm').setAttribute('aria-expanded','false')}
 try{if(localStorage.getItem('ah_sb')==='1')AB.classList.add('mini')}catch(e){}
@@ -518,7 +519,8 @@ const CMS=()=>{const c=LS('ah_cms')||{};c.text=c.text||{};c.cfg=c.cfg||{};c.colo
  c.langs=c.langs||{};c.langs.added=c.langs.added||[];c.langs.off=c.langs.off||[];c.media=c.media||{};c.media.items=c.media.items||[];c.media.fest=c.media.fest||{};c.media.place=c.media.place||'home';return c};
 function cmAud(a,d){if(!tok)return;const m=ME(),L=LS('ah_audit')||[];L.unshift({at:Date.now(),who:tag(m),id:m.id,r:m.r,a,d:d==null?'':String(d).slice(0,160)});LS('ah_audit',L.slice(0,1000))}
 function cmsSave(c,act,det){c.v=Date.now();try{localStorage.setItem('ah_cms',JSON.stringify(c))}catch(e){kToast(TX("Xotira to'ldi: rasmlarni kichikroq qiling yoki havola bilan qo'ying."));return false}
- cmAud(act,det);if(API)fetch(API+'/api/cms',{method:'PUT',keepalive:true,headers:Object.assign({'Content-Type':'application/json'},hd()),body:JSON.stringify(c)}).catch(()=>{});kToast(TX("Saqlandi — saytda darhol ko'rinadi"));return true}
+ cmAud(act,det);/* keepalive ishlatilmaydi: brauzer ~64 KB dan katta keepalive so'rovlarni jim rad etadi */
+ if(API)fetch(API+'/api/cms',{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hd()),body:JSON.stringify(c)}).then(r=>{if(!r.ok)throw r.status}).catch(e=>kToast(TX(e===401?"Sessiya tugagan — qaytadan kiring.":"Serverga saqlanmadi — internet aloqasini tekshiring.")));kToast(TX("Saqlandi — saytda darhol ko'rinadi"));return true}
 const PERM=()=>LS('ah_perm')||{};
 const cmCan=p=>own()||!!((PERM()[ME().id]||{})[p]);
 const BL=['uz','ru','en','fr','it','es','de','tr'],LNAME={uz:"O'zbekcha",cy:'Ўзбекча',ru:'Русский',en:'English',fr:'Français',it:'Italiano',es:'Español',de:'Deutsch',tr:'Türkçe'};
@@ -820,6 +822,10 @@ function revAdd(){const c0=CMS(),P=(window.PROJECTS||[]).map(p=>({id:p.id,name:p
   let video=E.video||null;if(video&&!/^idb:|^\//.test(video)&&!/^https?:/.test(video))video=null;
   await Store.add('reviews',{name:E.name.trim(),rating:E.rating,project:E.project,text:E.text.trim(),video:video&&/^idb:|^\//.test(video)?video:null,link:E.link||(video&&/^https?:/.test(video)?video:''),hidden:!!E.hidden,reply:null,lang:'uz',src:'kabinet',by:tag(ME())});
   kToast(TX("Izoh saytga qo'shildi"));vR();nav()})}
+
+/* kengaytmalar uchun ochiq API (js/kabinet-themes.js): kabinetning ichki yordamchilari */
+window.AHK={CMS,cmsSave,cmCan,own,LANGS_ON,refURL,cmUp,askDel,kToast,esc,I,I2,ICN,TX,TT,IDF,API,AD,NG,ZV,
+ tok:()=>tok,VW:()=>VW,nav:()=>nav(),view:v=>view(v),addView:(k,f)=>{XV[k]=f}};
 
 /* ---- kabinet tillari: qo'shilgan tillar va o'chirilganlar ---- */
 function cabLangs(){const g=document.getElementById('cgm');if(!g)return;const c=CMS(),AC=c.langs.added.filter(x=>x.scope!=='site');

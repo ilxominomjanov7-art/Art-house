@@ -17,9 +17,9 @@
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.days = s.days || {}; s.leads = s.leads || [];
     var d = s.days[D0()] || (s.days[D0()] = { v: 0, pv: 0, c: 0, l: 0 }); d[e] = (d[e] || 0) + 1; LS('ah_stats', s);
   }
-  var SNAPMODE = /[?&]cmsnap=1/.test(location.search);
+  var SNAPMODE = /[?&](cmsnap|preview)=1/.test(location.search);
   function track(e) {
-    if (SNAPMODE) return; /* kabinetning yashirin yuklovchisi tashrif hisoblanmaydi */
+    if (SNAPMODE) return; /* kabinetning yashirin yuklovchisi va mavzu tahrirlagichi tashrif hisoblanmaydi */
     local(e);
     if (API) try { navigator.sendBeacon(API + '/track', new Blob([JSON.stringify({ e: e, vid: vid })], { type: 'text/plain' })); } catch (x) {}
   }
