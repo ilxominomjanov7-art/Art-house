@@ -3,8 +3,8 @@
    • Taniqli insonlar kartalari: rasm, ism, rasm ustidagi belgi, kasbi, Instagram, ko'k tasdiq belgisi.
      Qo'shish, tahrirlash, tartiblash (↑ ↓), saytda yashirish, o'chirish. Matnlar 8 tilda.
    • Bo'lim sarlavhasi va tavsifi (8 til), bo'limni saytda yoqish/o'chirish (jonli mavzuda).
-   • «Instagram oynasi»: saytdagi telefon ichida navbat bilan aylanadigan Reels videolari.
-   Saqlash: 'ah_cms'.stars = { title, sub, list }, 'ah_cms'.ig = { reels } — sayt sahifani
+   • Instagram videolari — alohida «Instagram» bo'limida (js/kabinet-instagram.js).
+   Saqlash: 'ah_cms'.stars = { title, sub, list } — sayt sahifani
    qayta yuklamasdan darhol yangilanadi (js/theme.js → js/lux-sections.js).
    Standart ro'yxat: js/config.js → CFG.AMBASSADORS (photo bo'sh bo'lsa — o'sha yerdagi rasm).
    =================================================================== */
@@ -15,7 +15,6 @@ const $=id=>document.getElementById(id);
 const L8=TH.LANGS,LN={uz:"O'zbekcha",ru:'Русский',en:'English',fr:'Français',it:'Italiano',es:'Español',de:'Deutsch',tr:'Türkçe'};
 const can=()=>own()||cmCan('cms');
 const DEF=()=>(window.CFG&&CFG.AMBASSADORS)||[];
-const REEL0=[{src:'assets/video/ig-reel-1.mp4',poster:'assets/video/ig-reel-1.jpg'}];
 const clone=o=>JSON.parse(JSON.stringify(o));
 const pk=(o,l)=>o==null?'':typeof o==='string'?o:(o[l||'uz']||o.uz||'');
 const igName=h=>{const m=String(h||'').match(/instagram\.com\/([\w.]+)/);return(m?m[1]:String(h||'').trim().replace(/^@/,'').replace(/\/+$/,''))};
@@ -30,8 +29,6 @@ Object.assign(ICN,{
 /* ---------- ma'lumot ---------- */
 function ST(){const s=CMS().stars||{};return{title:clone(s.title||{}),sub:clone(s.sub||{}),list:Array.isArray(s.list)?clone(s.list):DEF().map(a=>Object.assign(clone(a),{photo:''}))}}
 function put(st,act,det){const c=CMS();c.stars={title:st.title,sub:st.sub,list:st.list};return cmsSave(c,act,det||'')}
-function REELS(){const r=(CMS().ig||{}).reels;return Array.isArray(r)?clone(r):clone(REEL0)}
-function putReels(r,act){const c=CMS();c.ig=Object.assign({},c.ig||{},{reels:r});return cmsSave(c,act,'Instagram')}
 /* bo'lim jonli mavzuda yoqilganmi (js/theme-schema.js → 'amb') */
 function liveTh(c){c.themes=c.themes||{};const T=c.themes;T.list=Array.isArray(T.list)?T.list:[];
  if(!T.list.length){const th=TH.newTheme('Art House — Zumrad');th.id='main';T.list.push(th);T.live='main'}
@@ -45,7 +42,7 @@ K.addView('S',()=>vS());
 
 let LG='uz'; /* sarlavha tahririda tanlangan til */
 function vS(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Yulduzlar</h2><div class="card">'+TX("Bu bo'lim uchun ruxsat yo'q.")+'</div>';return}
- const st=ST(),R=REELS();
+ const st=ST();
  const tabs=(cur,attr)=>'<div class="st-tabs" role="tablist">'+L8.map(l=>'<button type="button" role="tab" '+attr+'="'+l+'" aria-selected="'+(l===cur)+'" title="'+LN[l]+'">'+l.toUpperCase()+'</button>').join('')+'</div>';
  const ph0=(l,k)=>{const t=window.I18N?I18N.t(k,null,l):'';return t&&t!==k?t:''};
  const head='<div class="card st-sec"><div class="tt-h"><div><h3>Bo\'lim</h3><p class="note">Sarlavha va tavsif har bir tilda alohida. Bo\'sh qoldirilsa — standart matn chiqadi.</p></div>'+
@@ -62,12 +59,9 @@ function vS(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Yulduzlar</h2><div c
  const list='<div class="card"><div class="tt-h"><div><h3>Insonlar</h3><p class="note">Saytda shu tartibda ko\'rinadi. Kartani tahrirlang, ↑ ↓ bilan tartiblang yoki ko\'z belgisi bilan vaqtincha yashiring.</p></div><button type="button" class="btn gold sm" data-sadd>'+I('plus')+'Yulduz qo\'shish</button></div>'+
   (st.list.length?'<div class="st-grid">'+st.list.map((a,i)=>card(a,i,st.list.length)).join('')+'</div>':'<p class="note tt-empty">'+TX("Hozircha hech kim yo'q. «Yulduz qo'shish» tugmasini bosing.")+'</p>')+
   '<p class="note st-law">'+I('alert')+'<span>'+TX("Rasm va ismdan faqat insonning roziligi bilan foydalaning. Obunachilar soni saytda ko'rsatilmaydi.")+'</span></p></div>';
- const ig='<div class="card"><div class="tt-h"><div><h3>Instagram oynasi</h3><p class="note">Saytdagi telefon ichida navbat bilan aylanadigan Reels videolari. Tavsiya: vertikal 9:16, 60 soniyagacha. Telefon bosilsa — Instagram sahifangiz ochiladi.</p></div><button type="button" class="btn gold sm" data-radd>'+I('upload')+'Video qo\'shish</button></div>'+
-  '<div class="st-reels">'+R.map((r,i)=>'<div class="st-reel"><video muted playsinline preload="metadata" data-rref="'+esc(r.src)+'"></video><div class="st-act"><button type="button" class="te-ib" data-rup="'+i+'"'+(i?'':' disabled')+' aria-label="'+TX('Yuqoriga')+'">'+I('up')+'</button><button type="button" class="te-ib" data-rdn="'+i+'"'+(i<R.length-1?'':' disabled')+' aria-label="'+TX('Pastga')+'">'+I('down')+'</button><button type="button" class="te-ib dl" data-rdel="'+i+'" aria-label="'+TX("O'chirish")+'">'+I('trash')+'</button></div></div>').join('')+'</div>'+
-  (R.length?'':'<p class="note tt-empty">'+TX("Video yo'q — saytda Instagram bo'limi faqat havola bilan chiqadi.")+'</p>')+'</div>';
+ const ig='<div class="card"><div class="tt-h"><div><h3>Instagram</h3><p class="note">Saytdagi telefon ichidagi Reels videolari, havolalari va gapirilgan matnlari — alohida bo\'limda.</p></div><button type="button" class="btn ghost sm" data-goig>'+I('ig')+'Instagram bo\'limiga o\'tish</button></div></div>';
  mn.innerHTML='<div class="hh"><div><h2>Yulduzlar</h2><p class="lead">Saytdagi «Ular Art House\'ni tanladi» bo\'limi — taniqli insonlar kartalari va Instagram oynasi. O\'zgarish saytda darhol ko\'rinadi.</p></div><a class="btn ghost sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+'Saytni ochish</a></div>'+head+list+ig;
  mn.querySelectorAll('img[data-sref]').forEach(el=>refURL(el.dataset.sref).then(u=>{if(u)el.src=u;else el.classList.add('cm-noimg')}));
- mn.querySelectorAll('video[data-rref]').forEach(el=>refURL(el.dataset.rref).then(u=>{if(u)el.src=u+'#t=1'}));
  mn.querySelectorAll('img[data-sref]').forEach(el=>el.addEventListener('error',()=>el.classList.add('cm-noimg'),{once:true}));
  mn.onchange=e=>{const x=e.target.closest('[data-son]');if(!x)return;const c=CMS(),th=liveTh(c);th.sec=th.sec||{};th.sec.amb=Object.assign({type:'native'},th.sec.amb||{},{on:x.checked});th.at=Date.now();cmsSave(c,x.checked?"Bo'lim yoqildi":"Bo'lim o'chirildi",'Yulduzlar')};
  mn.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
@@ -79,9 +73,7 @@ function vS(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Yulduzlar</h2><div c
   if(d.sup!=null||d.sdn!=null){const s2=ST(),i=+(d.sup!=null?d.sup:d.sdn),j=d.sup!=null?i-1:i+1;if(j<0||j>=s2.list.length)return;[s2.list[i],s2.list[j]]=[s2.list[j],s2.list[i]];put(s2,'Yulduzlar tartibi o\'zgartirildi',s2.list[j].name);vS();return}
   if(d.seye!=null){const s2=ST(),a=s2.list[+d.seye];a.on=a.on===false;put(s2,a.on?"Yulduz saytda ko'rsatildi":'Yulduz saytda yashirildi',a.name);vS();return}
   if(d.sdel!=null){const s2=ST(),a=s2.list[+d.sdel];askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(a.name)+'</b>',()=>{const s3=ST();s3.list.splice(+d.sdel,1);put(s3,"Yulduz o'chirildi",a.name);vS()});return}
-  if(d.radd!=null){const refs=await cmUp('video',true);if(!refs.length)return;const r=REELS();refs.forEach(x=>r.push({src:x}));putReels(r,"Instagram oynasiga video qo'shildi");vS();return}
-  if(d.rup!=null||d.rdn!=null){const r=REELS(),i=+(d.rup!=null?d.rup:d.rdn),j=d.rup!=null?i-1:i+1;if(j<0||j>=r.length)return;[r[i],r[j]]=[r[j],r[i]];putReels(r,"Instagram videolari tartibi o'zgartirildi");vS();return}
-  if(d.rdel!=null){askDel("Bu narsa o'chirilsinmi?",'Instagram · video '+(+d.rdel+1),()=>{const r=REELS();r.splice(+d.rdel,1);putReels(r,"Instagram oynasidan video o'chirildi");vS()});return}}}
+  if(d.goig!=null){K.view('G2');return}}}
 
 /* ---------- tahrirlash oynasi (8 til) ---------- */
 function edit(idx){const st=ST(),isNew=idx<0;

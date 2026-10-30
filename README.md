@@ -26,7 +26,10 @@ js/agent.js       — saytdagi «Art House» AI maslahatchi (o'ng tomonda) + js/
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
-js/kabinet-stars.js — «Yulduzlar» sahifasi: taniqli insonlar kartalari va Instagram oynasi (+ css/kabinet-stars.css)
+js/kabinet-stars.js — «Yulduzlar» sahifasi: taniqli insonlar kartalari (+ css/kabinet-stars.css)
+js/kabinet-instagram.js — «Instagram» sahifasi: Reels videolari, havolalar, gapirilgan matn 8 tilda
+js/kabinet-translate.js — yangi til uchun AI tarjima (server → /api/translate)
+js/ig-reels.js     — saytdagi standart Reels: video, Instagram havolasi, subtitrlar (8 til)
 js/masterplan.js, lux-sections.js, home-icon.js — bosh reja, e'lon qatori, bosh sahifa bloklari (yulduzlar, Instagram telefoni, dron videosi)
 css/site-icon.css — ICON uslubidagi qatlam: yulduzlar kartalari, dron videosi bloki, Instagram telefoni, Geologica shrifti
 js/store.js       — ma'lumotlar: localStorage + BroadcastChannel yoki server (REST + SSE)
@@ -98,7 +101,7 @@ Har bir qatorni alohida yozib (`phone-00.mp3`, `desktop-07.mp3` …) `tools/guid
 ishga tushiring — o'sha qatorlar sun'iy ovoz o'rniga diktor ovozi bilan chiqadi, video tempi o'zi moslanadi.
 O'zbekcha sun'iy ovoz sozlamasi (`tools/guide/tts.py` → `OPTS`): tezroq va balandroq — reklama roligidagi boshlovchi tempiga moslangan.
 
-## Yulduzlar va Instagram oynasi
+## Yulduzlar
 
 Kabinet → **Sayt → Yulduzlar** (direktor va «Sayt sozlamalari» ruxsati bor menejerlar):
 
@@ -106,12 +109,37 @@ Kabinet → **Sayt → Yulduzlar** (direktor va «Sayt sozlamalari» ruxsati bor
   belgi, ism + ko'k tasdiq belgisi, kasbi, Instagram havolasi. Obunachilar soni ko'rsatilmaydi.
 - Qo'shish, tahrirlash, ↑ ↓ tartiblash, yashirish, o'chirish; belgi va kasbi — 8 tilda (bo'sh tilda o'zbekcha chiqadi).
 - Bo'lim sarlavhasi va tavsifi har bir tilda, bo'limni yoqish/o'chirish.
-- **Instagram oynasi** — saytdagi telefon ichida navbat bilan aylanadigan Reels videolari (yuklash, tartib, o'chirish).
-  Telefon bosilsa `CFG.INSTAGRAM` sahifasi ochiladi.
 
 Saqlangan zahoti sayt sahifani qayta yuklamasdan yangilanadi. Standart ro'yxat — `js/config.js` → `AMBASSADORS`,
 rasmlar `assets/img/amb/` (Instagram skrinshotlaridan kesilgan — sifatli asl rasmlar bilan almashtirish tavsiya etiladi).
 Rasm va ismdan faqat insonning roziligi bilan foydalaning.
+
+## Instagram: Reels, gapirilgan matn va tarjima
+
+Saytdagi Instagram bo'limida telefon ichida Reels videolari aylanadi (Instagram belgisi Figma'da chizilgan — `assets/img/instagram.svg`):
+
+- **Surish:** telefonda yuqoriga/pastga surish, kompyuterda sichqoncha g'ildiragi, yonidagi ↑ ↓ tugmalar; video tugasa — keyingisi.
+- **Bosish:** videoning o'zi bosilsa — aynan shu reel Instagram'da ochiladi (har bir videoning o'z havolasi).
+- **Ovoz:** brauzerlar ovozli avtomatik ijroga faqat foydalanuvchi sahifani bir marta bosgandan keyin ruxsat beradi —
+  shuning uchun ovoz saytdagi birinchi bosishdan keyin o'zi yoqiladi; «Ovozni yoqish» tugmasi ham bor.
+- **Gapirilgan matn (subtitr)** sayt tilida, so'zma-so'z vaqt bilan chiqadi. Standart 3 ta video (`js/ig-reels.js`):
+  1) Ko'kcha Oqtepa — @dilyanora, 2) Musaffo — Art House taqdimotchisi, 3) Medina Akmal. Gaplar nutqni tanib olish
+  modeli (rubaistt v2, o'zbek tili) bilan yozildi, qo'lda tahrirlandi va 8 tilga tarjima qilindi.
+  Medina videosi bizga 6 MB da kesilib kelgan — dastlabki 65 soniyasi qo'yildi; to'liq faylni kabinetdan almashtirish mumkin.
+
+Kabinet → **Sayt → Instagram**: video qo'shish/tartiblash/o'chirish, har bir videoning Instagram havolasi va muallif yozuvi,
+**«Gaplar va tarjima»** — vaqt (soniya) va matn har bir tilda, videoni ko'rib vaqtni qo'yish; telefon yonidagi ikki rasm.
+
+### AI tarjima (yangi til qo'shilganda)
+
+Kabinet → Sozlamalar → Tillar orqali yangi til qo'shilsa, **avtomatik** AI tarjima ishga tushadi: saytning barcha matnlari,
+Reels subtitrlari, yulduzlar belgisi/kasbi va mavzu bo'limlari (sarlavha, matn, tugmalar). Keyin ham «AI bilan tarjima»
+tugmasi bilan yetishmayotganlarini to'ldirish mumkin (Tillar ro'yxatida va Instagram bo'limida). Natijani tekshirib,
+kerak bo'lsa «Tarjima qilish» orqali qo'lda tuzating.
+
+Talab: sayt `node server/server.js` bilan ishlashi va serverda `ANTHROPIC_API_KEY` bo'lishi kerak (`POST /api/translate`,
+faqat kabinetga kirgan xodimlar uchun; model — `AI_MODEL`, standart `claude-opus-5-5`). Serversiz rejimda kabinet
+tushunarli xabar ko'rsatadi — tarjimani qo'lda yoki JSON fayl bilan kiritiladi.
 
 **Tajriba yili** avtomatik: `js/config.js` → `FOUNDED: 2012` (kabinet → Sozlamalar / Mavzular → Raqamlar → «Tashkil topgan yil»).
 Saytdagi barcha matnlarda (8 til), AI maslahatchi javoblarida va serverdagi AI faktlarida `{years}` = joriy yil − 2012.
@@ -171,3 +199,6 @@ Ko'kcha va Obod Maskan uchun rasm va rejalarni `assets/img/...` papkasiga qo'yib
 
 `dist/index.html` va `dist/kabinet.html` — hamma narsa (CSS, JS, rasmlar, video) ichiga joylangan nusxalar. Ikkala faylni bitta papkada saqlang va brauzerda oching.
 Kodni o'zgartirgandan keyin qayta yig'ish: `python3 tools/build-single.py`
+
+1,5 MB dan katta videolar (Reels, dron videosi) bitta faylga joylanmaydi: GitHub'ga yuklangan bo'lsa,
+ularning aniq versiyasi jsDelivr orqali olinadi (fayl kichik qoladi; internet kerak). Yuklanmagan bo'lsa — fayl ichiga joylanadi.

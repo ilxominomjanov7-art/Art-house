@@ -75,49 +75,93 @@
      Videolar: kabinet → Sayt → Yulduzlar → «Instagram oynasi» (AH_CMS.ig.reels), bo'lmasa CFG.IG_REELS.
      Obunachi va post soni ko'rsatilmaydi. */
   var IG_IMG = CFG.IG_STRIP || ['assets/img/musaffo/majmua-kechki.webp', 'assets/img/musaffo/mehmonxona.webp', 'assets/img/musaffo/fasad-kunduzi.webp', 'assets/img/musaffo/oshxona.webp', 'assets/img/musaffo/dupleks-interyer.webp', 'assets/img/musaffo/yotoqxona.webp'];
-  var IGG = '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igGr" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6.5" fill="url(#igGr)"/><rect x="5.6" y="5.6" width="12.8" height="12.8" rx="3.9" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.4" cy="7.6" r="1" fill="#fff"/></svg>';
+  /* Instagram belgisi — Figma'da chizilgan (rasmiy 2022 gradienti, iOS uslubidagi silliq burchaklar); assets/img/instagram.svg.
+     Har bir nusxada gradient id alohida (bir sahifada ikki marta ishlatiladi) */
+  var IGN = 0, IGS = '<svg class="igs2-ico" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M0 36C0 23.3988 0 17.0982 2.45235 12.2852C4.6095 8.05157 8.05157 4.6095 12.2852 2.45235C17.0982 0 23.3988 0 36 0H64C76.6012 0 82.9018 0 87.7148 2.45235C91.9484 4.6095 95.3905 8.05157 97.5476 12.2852C100 17.0982 100 23.3988 100 36V64C100 76.6012 100 82.9018 97.5476 87.7148C95.3905 91.9484 91.9484 95.3905 87.7148 97.5476C82.9018 100 76.6012 100 64 100H36C23.3988 100 17.0982 100 12.2852 97.5476C8.05157 95.3905 4.6095 91.9484 2.45235 87.7148C0 82.9018 0 76.6012 0 64V36Z" fill="url(#igGrad)"/><path d="M58.125 20C62.1907 20 64.2236 19.9997 65.9141 20.3359C72.8561 21.7168 78.2832 27.1439 79.6641 34.0859C80.0003 35.7764 80 37.8093 80 41.875V58.125C80 62.1907 80.0003 64.2236 79.6641 65.9141L79.5225 66.5605C77.9421 73.1915 72.6392 78.3264 65.9141 79.6641L65.5928 79.7227C64.3965 79.9259 62.9886 79.9807 60.8193 79.9951L58.125 80H41.875L39.1807 79.9951C37.0114 79.9807 35.6035 79.9259 34.4072 79.7227L34.0859 79.6641C27.1439 78.2832 21.7168 72.8561 20.3359 65.9141C20.0837 64.6462 20.0206 63.1856 20.0049 60.8193L20 58.125V41.875C20 38.0633 20.0003 36.0384 20.2773 34.4072L20.3359 34.0859C21.6736 27.3608 26.8085 22.0579 33.4395 20.4775L34.0859 20.3359C35.7764 19.9997 37.8093 20 41.875 20H58.125ZM41.875 25.4004C37.5507 25.4004 36.177 25.4265 35.1396 25.6328C30.3397 26.5876 26.5876 30.3397 25.6328 35.1396C25.4265 36.177 25.4004 37.5507 25.4004 41.875V58.125C25.4004 62.4493 25.4265 63.823 25.6328 64.8604C26.5876 69.6603 30.3397 73.4124 35.1396 74.3672C36.177 74.5735 37.5507 74.5996 41.875 74.5996H58.125C62.4493 74.5996 63.823 74.5735 64.8604 74.3672C69.6603 73.4124 73.4124 69.6603 74.3672 64.8604C74.5735 63.823 74.5996 62.4493 74.5996 58.125V41.875C74.5996 37.5507 74.5735 36.177 74.3672 35.1396C73.4124 30.3397 69.6603 26.5876 64.8604 25.6328C63.823 25.4265 62.4493 25.4004 58.125 25.4004H41.875ZM50.3984 34.6045C58.7196 34.8158 65.4004 41.6289 65.4004 50.001L65.3955 50.3984C65.1842 58.7193 58.3726 65.3999 50.001 65.4004L49.6035 65.3955C41.4142 65.1882 34.8124 58.5876 34.6045 50.3984L34.5996 50.001C34.5996 41.4957 41.4957 34.5996 50.001 34.5996L50.3984 34.6045ZM50.001 40C44.4781 40 40 44.4781 40 50.001C40.0005 55.5235 44.4784 60.001 50.001 60.001C55.5232 60.0005 60.0005 55.5232 60.001 50.001C60.001 44.4784 55.5235 40.0005 50.001 40ZM66.0146 30.3848C68.0029 30.3848 69.6152 31.9971 69.6152 33.9854C69.615 35.9734 68.0028 37.585 66.0146 37.585C64.0267 37.5848 62.4152 35.9733 62.415 33.9854C62.415 31.9972 64.0266 30.385 66.0146 30.3848Z" fill="white"/><defs><radialGradient id="igGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16 104) scale(132)"><stop stop-color="#FFD600"/><stop offset="0.22" stop-color="#FF7A00"/><stop offset="0.46" stop-color="#FF0069"/><stop offset="0.72" stop-color="#D300C5"/><stop offset="1" stop-color="#7638FA"/></radialGradient></defs></svg>';
+  function IGG() { var id = 'igGrad' + (++IGN); return IGS.replace(/igGrad/g, id); }
   var SV = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + d + '</svg>'; };
   var UI = { heart: SV('<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>'),
     msg: SV('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'), send: SV('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'), save: SV('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>'),
     cam: SV('<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'),
+    up: SV('<path d="m18 15-6-6-6 6"/>'), down: SV('<path d="m6 9 6 6 6-6"/>'),
     off: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/>'), on: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>') };
+  /* Reels ro'yxati: kabinet → Sayt → Instagram (AH_CMS.ig.reels), bo'lmasa js/ig-reels.js (standart 3 ta video) */
   function reels() {
-    var R = ((window.AH_CMS || {}).ig || {}).reels;
-    R = (Array.isArray(R) && R.length ? R : CFG.IG_REELS || [{ src: 'assets/video/ig-reel-1.mp4', poster: 'assets/video/ig-reel-1.jpg' }]).filter(function (r) { return r && r.src; });
-    return R;
+    var D = window.AH_IG_REELS || CFG.IG_REELS || [], R = ((window.AH_CMS || {}).ig || {}).reels;
+    /* kabinetdagi standart videolar faqat id va matn bilan saqlanadi — video va muqova standartdan olinadi */
+    return (Array.isArray(R) ? R : D).map(function (r) { var d = D.filter(function (x) { return x.id && x.id === r.id; })[0] || {}; return Object.assign({}, d, r, { src: r.src || d.src, poster: r.poster || d.poster }); })
+      .filter(function (r) { return r && r.src; });
   }
+  function peeks() { var P = ((window.AH_CMS || {}).ig || {}).imgs; return [0, 1].map(function (i) { return (P && P[i]) || IG_IMG[i]; }); }
+  /* subtitr shu tilda; yo'q bo'lsa: kirill — o'zbekchadan, qo'shilgan til — inglizcha */
+  function capText(t) { var l = I18N.lang; t = t || {}; return t[l] || (l === 'cy' ? I18N.toCyr(t.uz || '') : '') || (['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'].indexOf(l) < 0 ? t.en : '') || t.uz || ''; }
   function vAttr(a, v) { v = String(v || ''); return v ? ' ' + (v.indexOf('idb:') === 0 ? 'data-src' : a) + '="' + esc(v) + '"' : ''; }
-  var igT = 0, igIO = null;
+  var igT = 0, igIO = null, SOUND = null; /* SOUND: null — hali tanlanmagan, true/false — foydalanuvchi tanlovi */
   function igStrip() {
     var old = $('#igStrip'); clearInterval(igT); if (igIO) igIO.disconnect();
-    var host = $('#p-home'); if (!host || !CFG.INSTAGRAM) { if (old) old.remove(); return; }
-    var U = esc(CFG.INSTAGRAM), H = esc(CFG.INSTAGRAM_HANDLE || '@arthouse.tashkent'), R = reels(), nm = H.replace(/^@/, '');
+    var host = $('#p-home'), R = reels(); if (!host || !CFG.INSTAGRAM) { if (old) old.remove(); return; }
+    var U = esc(CFG.INSTAGRAM), H = esc(CFG.INSTAGRAM_HANDLE || '@arthouse.tashkent'), nm = H.replace(/^@/, ''), P = peeks();
     var s = document.createElement('section'); s.id = 'igStrip'; s.className = 'igs2';
-    s.innerHTML = '<div class="igs2-in"><div class="igs2-copy"><a class="igs2-logo" href="' + U + '" target="_blank" rel="noopener" aria-label="Instagram">' + IGG + '</a>' +
+    s.innerHTML = '<div class="igs2-in"><div class="igs2-copy"><a class="igs2-logo" href="' + U + '" target="_blank" rel="noopener" aria-label="Instagram">' + IGG() + '</a>' +
       '<p class="eyebrow">Instagram</p><h2>' + H + '</h2><p class="igs2-lead">' + esc(t('ig.lead')) + '</p>' +
-      '<a class="hi-btn igs2-btn" href="' + U + '" target="_blank" rel="noopener">' + IGG + '<span>' + esc(t('ig.btn')) + '</span></a></div>' +
-      '<div class="igs2-stage"><i class="igs2-glow"></i>' +
-      '<img class="igs2-peek l" src="' + IG_IMG[0] + '" alt="" loading="lazy" decoding="async"><img class="igs2-peek r" src="' + IG_IMG[1] + '" alt="" loading="lazy" decoding="async">' +
-      '<div class="igs2-phone"><i class="igs2-island"></i><a class="igs2-screen" href="' + U + '" target="_blank" rel="noopener" aria-label="Instagram ' + H + '">' +
-      R.map(function (r, i) { return '<video class="igs2-v' + (i ? '' : ' on') + '" muted playsinline preload="' + (i ? 'none' : 'metadata') + '"' + (R.length > 1 ? '' : ' loop') + vAttr('src', r.src) + vAttr('poster', r.poster) + '></video>'; }).join('') +
+      '<a class="hi-btn igs2-btn" href="' + U + '" target="_blank" rel="noopener">' + IGG() + '<span>' + esc(t('ig.btn')) + '</span></a></div>' +
+      (R.length ? '<div class="igs2-stage"><i class="igs2-glow"></i>' +
+      '<img class="igs2-peek l"' + vAttr('src', P[0]) + ' alt="" loading="lazy" decoding="async"><img class="igs2-peek r"' + vAttr('src', P[1]) + ' alt="" loading="lazy" decoding="async">' +
+      '<div class="igs2-phone"><i class="igs2-island"></i><div class="igs2-screen" role="region" aria-roledescription="carousel" aria-label="Instagram Reels" tabindex="0">' +
+      '<div class="igs2-feed">' + R.map(function (r, i) {
+        return '<div class="igs2-slide' + (i ? ' next' : ' on') + '" data-i="' + i + '"><video class="igs2-v" muted playsinline loop preload="' + (i ? 'none' : 'metadata') + '"' + vAttr('src', r.src) + vAttr('poster', r.poster) + '></video></div>';
+      }).join('') + '</div>' +
       '<span class="igs2-top"><b>Reels</b>' + UI.cam + '</span>' +
       '<span class="igs2-side"><i>' + UI.heart + '</i><i>' + UI.msg + '</i><i>' + UI.send + '</i><i>' + UI.save + '</i></span>' +
-      '<span class="igs2-bot"><span class="igs2-who"><svg class="igs2-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap">♫ ' + nm + ' · Original audio</span></span>' +
-      '<span class="igs2-hearts" aria-hidden="true"></span><span class="igs2-prog"><i></i></span></a>' +
-      '<button type="button" class="igs2-snd" aria-label="' + esc(t('ig.sound')) + '" aria-pressed="false">' + UI.off + '</button></div></div></div>';
+      '<span class="igs2-cc" aria-live="polite"></span>' +
+      '<span class="igs2-bot"><span class="igs2-who"><svg class="igs2-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span></span>' +
+      '<span class="igs2-hearts" aria-hidden="true"></span><span class="igs2-prog"><i></i></span></div>' +
+      '<button type="button" class="igs2-snd" aria-label="' + esc(t('ig.sound')) + '" aria-pressed="false">' + UI.off + '<span>' + esc(t('ig.sound')) + '</span></button></div>' +
+      (R.length > 1 ? '<div class="igs2-nav"><button type="button" data-ig="-1" aria-label="↑">' + UI.up + '</button><span class="igs2-dots">' + R.map(function (_, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join('') + '</span><button type="button" data-ig="1" aria-label="↓">' + UI.down + '</button></div>' : '') +
+      '</div>' : '') + '</div>';
     if (old) old.replaceWith(s); else { var cta = $('#p-home .cta-band'); cta ? cta.closest('.wrap').after(s) : host.appendChild(s); }
-    var vids = s.querySelectorAll('.igs2-v'), k = 0, vis = false, snd = $('.igs2-snd', s), hearts = $('.igs2-hearts', s), bar = $('.igs2-prog i', s);
+    var scr = $('.igs2-screen', s), slides = s.querySelectorAll('.igs2-slide'), vids = s.querySelectorAll('.igs2-v'), cc = $('.igs2-cc', s), capEl = $('.igs2-cap', s);
+    var snd = $('.igs2-snd', s), hearts = $('.igs2-hearts', s), bar = $('.igs2-prog i', s), dots = s.querySelectorAll('.igs2-dots i'), k = 0, vis = false;
+    if (!R.length) return;
     var cur = function () { return vids[k]; };
-    var play = function () { var v = cur(); if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    var wantSound = function () { return SOUND === true; };
+    var play = function () { var v = cur(); if (!v || !vis) return; v.muted = !wantSound(); var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; v.play().catch(function () {}); sync(); }); sync(); };
+    var sync = function () { var on = !cur().muted; snd.innerHTML = (on ? UI.on : UI.off) + (on ? '' : '<span>' + esc(t('ig.sound')) + '</span>'); snd.classList.toggle('on', on); snd.setAttribute('aria-pressed', String(on)); };
+    var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; dots.forEach(function (d, i) { d.classList.toggle('on', i === k); }); };
+    var caption = function () { var v = cur(), c = R[k].cap || [], tm = v.currentTime, x = ''; for (var i = 0; i < c.length; i++) if (tm >= c[i].s && tm < c[i].e) { x = capText(c[i].t); break; } if (cc.textContent !== x) { cc.textContent = x; cc.classList.toggle('on', !!x); } };
+    var go = function (d) {
+      var n = k + d; if (n < 0 || n >= vids.length) return false;
+      cur().pause(); slides[k].className = 'igs2-slide ' + (d > 0 ? 'prev' : 'next');
+      k = n; slides[k].className = 'igs2-slide on'; vids.forEach(function (v, i) { if (i !== k && Math.abs(i - k) > 1) v.preload = 'none'; });
+      var v = cur(); v.preload = 'auto'; v.currentTime = 0; if (vids[k + 1]) vids[k + 1].preload = 'metadata';
+      slides.forEach(function (sl, i) { if (i < k) sl.className = 'igs2-slide prev'; else if (i > k) sl.className = 'igs2-slide next'; });
+      cc.textContent = ''; cc.classList.remove('on'); meta(); play(); return true;
+    };
     vids.forEach(function (v, i) {
-      v.addEventListener('timeupdate', function () { if (i === k && v.duration) bar.style.transform = 'scaleX(' + (v.currentTime / v.duration) + ')'; });
-      v.addEventListener('ended', function () { if (vids.length < 2) return; v.classList.remove('on'); v.classList.add('out'); setTimeout(function () { v.classList.remove('out'); v.currentTime = 0; }, 700);
-        k = (k + 1) % vids.length; var n = cur(); n.muted = v.muted; n.preload = 'auto'; n.classList.add('on'); if (vis) play(); });
+      v.loop = vids.length < 2;
+      v.addEventListener('timeupdate', function () { if (i !== k) return; if (v.duration) bar.style.transform = 'scaleX(' + (v.currentTime / v.duration) + ')'; caption(); });
+      v.addEventListener('ended', function () { if (i === k && !go(1)) { go(-k); } }); /* oxirgisidan keyin — birinchisiga */
     });
-    snd.addEventListener('click', function () { var m = !cur().muted; vids.forEach(function (v) { v.muted = m; }); snd.innerHTML = m ? UI.off : UI.on; snd.setAttribute('aria-pressed', String(!m)); if (!m) play(); });
+    /* surish (telefonda), g'ildirak (kompyuterda), tugmalar va klaviatura; oddiy bosish — shu videoning Instagram sahifasi */
+    var y0 = null, x0 = 0, t0 = 0, dy = 0;
+    scr.addEventListener('pointerdown', function (e) { y0 = e.clientY; x0 = e.clientX; t0 = Date.now(); dy = 0; });
+    scr.addEventListener('pointermove', function (e) { if (y0 == null) return; dy = e.clientY - y0; if (Math.abs(dy) > 8) $('.igs2-feed', s).style.transform = 'translateY(' + Math.max(-60, Math.min(60, dy * .35)) + 'px)'; });
+    var end = function (e) {
+      if (y0 == null) return; var adx = Math.abs(e.clientX - x0), ady = Math.abs(dy); $('.igs2-feed', s).style.transform = ''; y0 = null;
+      if (ady > 40 && ady > adx) { go(dy < 0 ? 1 : -1); return; }
+      if (ady < 10 && adx < 10 && Date.now() - t0 < 600) window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener');
+    };
+    scr.addEventListener('pointerup', end); scr.addEventListener('pointercancel', function () { y0 = null; $('.igs2-feed', s).style.transform = ''; });
+    var wt = 0; scr.addEventListener('wheel', function (e) { if (Math.abs(e.deltaY) < 25) return; var d = e.deltaY > 0 ? 1 : -1, n = k + d; if (n < 0 || n >= vids.length) return; e.preventDefault(); if (Date.now() - wt < 750) return; wt = Date.now(); go(d); }, { passive: false });
+    scr.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); go(1); } else if (e.key === 'ArrowUp') { e.preventDefault(); go(-1); } else if (e.key === 'Enter') window.open(R[k].url || CFG.INSTAGRAM, '_blank', 'noopener'); });
+    s.addEventListener('click', function (e) { var b = e.target.closest('[data-ig]'); if (b) go(+b.dataset.ig); });
+    snd.addEventListener('click', function () { SOUND = cur().muted; play(); });
+    /* sahifada birinchi bosishdan keyin ovoz o'zi yoqiladi (brauzer ovozli avtomatik ijroni faqat shundan keyin ruxsat beradi) */
+    var arm = function (e) { document.removeEventListener('pointerdown', arm, true); document.removeEventListener('keydown', arm, true); if (snd.contains(e.target)) return; /* ovoz tugmasining o'zi hal qiladi */ if (SOUND === null) SOUND = true; if (vis) play(); };
+    document.addEventListener('pointerdown', arm, true); document.addEventListener('keydown', arm, true);
     var heart = function () { if (!vis || document.hidden) return; var h = document.createElement('i'); h.innerHTML = UI.heart; h.style.setProperty('--x', (Math.random() * 28 - 14).toFixed(0) + 'px'); h.style.setProperty('--r', (Math.random() * 40 - 20).toFixed(0) + 'deg'); hearts.appendChild(h); setTimeout(function () { h.remove(); }, 2600); };
-    igT = setInterval(heart, 1500);
-    if ('IntersectionObserver' in window) { igIO = new IntersectionObserver(function (es) { vis = es[0].isIntersecting; s.classList.toggle('igs2-in-view', vis); if (vis) play(); else vids.forEach(function (v) { v.pause(); }); }, { threshold: .25 }); igIO.observe(s); }
+    igT = setInterval(heart, 1500); meta(); sync();
+    if ('IntersectionObserver' in window) { igIO = new IntersectionObserver(function (es) { vis = es[0].isIntersecting; s.classList.toggle('igs2-in-view', vis); if (vis) play(); else vids.forEach(function (v) { v.pause(); }); }, { threshold: .35 }); igIO.observe($('.igs2-phone', s)); }
     else { vis = true; play(); }
   }
   window.AH_IG = igStrip;

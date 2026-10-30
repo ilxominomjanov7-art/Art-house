@@ -43,3 +43,31 @@
 .st-box > .tt-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .st-lg { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 5px; background: rgba(220, 196, 143, .16); color: var(--ch-300, #DCC48F); font-style: normal; font-size: 11px; letter-spacing: .05em; }
 .st-v .ic { stroke: #3897F0 !important; color: #3897F0; }
+
+/* ---------- «Instagram» sahifasi (js/kabinet-instagram.js) ---------- */
+.ig-list { display: grid; gap: 12px; margin-top: 6px; }
+.ig-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 12px; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: rgba(255, 255, 255, .025); }
+.ig-thumb { position: relative; }
+.ig-thumb video { width: 96px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; background: #000; display: block; }
+.ig-thumb span { position: absolute; top: 6px; left: 6px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(0, 0, 0, .6); color: #fff; font-size: 12px; font-weight: 700; }
+.ig-f { display: grid; gap: 8px; min-width: 0; }
+.ig-st { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 !important; }
+.ig-st .ic { width: 16px; height: 16px; }
+.ig-st em { font-style: normal; font-weight: 600; }
+.ig-miss { color: var(--warn, #E8B86B); } .ig-ok { color: var(--ok, #7fd3a4); }
+.ig-row .st-act { grid-column: 1 / -1; }
+.ig-row .st-act .btn { margin-left: auto; }
+.ig-peeks { display: flex; flex-wrap: wrap; gap: 14px; }
+.ig-peek { display: grid; gap: 8px; width: 150px; }
+.ig-peek img { width: 150px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: rgba(255, 255, 255, .05); }
+.ig-peek img.cm-noimg { opacity: 0; }
+.ig-box { width: min(980px, 100%); }
+.ig-ed { display: grid; gap: 16px; }
+@media (min-width: 860px) { .ig-ed { grid-template-columns: 260px minmax(0, 1fr); align-items: start; } .ig-vid { position: sticky; top: 0; } }
+.ig-vid video { width: 100%; max-height: 60vh; aspect-ratio: 9 / 16; object-fit: contain; border-radius: 14px; background: #000; display: block; }
+.ig-caps { display: grid; gap: 10px; max-height: 56vh; overflow-y: auto; padding-right: 4px; }
+.ig-cap { display: grid; gap: 6px; padding: 10px; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 12px; }
+.ig-tm { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ig-tm input { width: 76px !important; min-height: 34px !important; padding: 0 8px !important; }
+.ig-tm .dl { margin-left: auto; }
+.ig-cap textarea { width: 100%; resize: vertical; }

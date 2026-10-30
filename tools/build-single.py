@@ -1,16 +1,28 @@
 """Saytni bitta faylga yig'ish: CSS, JS va rasmlar/video HTML ichiga joylanadi.
 Ishlatish:  python3 tools/build-single.py   →  dist/index.html, dist/kabinet.html
 """
-import base64, mimetypes, os, re
+import base64, mimetypes, os, re, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'dist')
 MIME = {'.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp4': 'video/mp4', '.png': 'image/png'}
-SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js'}  # kabinet: loyiha rasmlari kerak emas — config.js dagi yo'llar o'zgarmaydi (faqat «Yulduzlar» rasmlari joylanadi)
+SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js', 'js/ig-reels.js', 'js/kabinet-instagram.js'}  # kabinet: loyiha rasmlari kerak emas — config.js dagi yo'llar o'zgarmaydi (faqat «Yulduzlar» rasmlari joylanadi)
 
 def read(p):
     with open(os.path.join(ROOT, p), encoding='utf-8') as f:
         return f.read()
+
+CDN_MIN = 1_500_000  # bundan katta videolar fayl ichiga joylanmaydi — GitHub'dagi aniq versiyasi jsDelivr orqali olinadi
+def cdn(p):
+    """Fayl gitga yuklangan va o'zgarmagan bo'lsa — o'sha commit'ga bog'langan jsDelivr manzili, aks holda None"""
+    try:
+        git = lambda *a: subprocess.run(['git', '-C', ROOT] + list(a), capture_output=True, text=True)
+        if git('diff', '--quiet', 'HEAD', '--', p).returncode != 0: return None
+        sha = git('log', '-1', '--format=%H', '--', p).stdout.strip()
+        m = re.search(r'github\.com[:/]([\w.-]+/[\w.-]+?)(?:\.git)?$', git('remote', 'get-url', 'origin').stdout.strip())
+        return 'https://cdn.jsdelivr.net/gh/%s@%s/%s' % (m.group(1), sha, p) if sha and m else None
+    except Exception:
+        return None
 
 def data_uri(p):
     with open(os.path.join(ROOT, p), 'rb') as f:
@@ -19,7 +31,12 @@ def data_uri(p):
 
 def inline_assets(text, only=''):
     """only — faqat shu papkadagi fayllar joylanadi (masalan, kabinet uchun yulduzlar rasmlari)"""
-    return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', lambda m: data_uri(m.group(0)) if m.group(0).startswith(only) else m.group(0), text)
+    def one(m):
+        p = m.group(0)
+        if not p.startswith(only): return p
+        if p.endswith('.mp4') and os.path.getsize(os.path.join(ROOT, p)) > CDN_MIN: return cdn(p) or data_uri(p)
+        return data_uri(p)
+    return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', one, text)
 
 def script(p, with_assets):
     js = read(p).replace('</script', '<\\/script')

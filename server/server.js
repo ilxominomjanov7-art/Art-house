@@ -121,6 +121,7 @@ async function api(req, res, url) {
     broadcast({ t: 'signal', msg: { room: str(b.room, 40), type: b.type, data: b.data, role: b.role === 'manager' ? 'manager' : 'client', from: str(b.from, 40) } });
     return send(res, 204);
   }
+  if (kind === 'translate' && req.method === 'POST') { if (!me) return send(res, 401, { error: 'auth' }); return translate(req, res); }
   if (kind === 'media' && req.method === 'POST') {
     const type = String(req.headers['content-type'] || '').split(';')[0];
     const ext = { 'video/webm': '.webm', 'video/mp4': '.mp4', 'video/quicktime': '.mov', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp', 'image/gif': '.gif' }[type];
@@ -303,6 +304,40 @@ async function ai(req, res, me) {
   } catch (e) {
     console.error('AI xatosi:', e && (e.status || '') + ' ' + (e.message || e));
     return send(res, 200, { text: '' });
+  }
+}
+
+/* ---------- AI tarjima: kabinetda yangi til qo'shilganda sayt matnlari, Reels subtitrlari va yulduzlar yozuvlari
+   (POST /api/translate { to, name, items: { kalit: matn } } → { items: { kalit: tarjima } }; ANTHROPIC_API_KEY kerak) ---------- */
+const TR_SCHEMA = { type: 'object', properties: { items: { type: 'array', items: { type: 'object', properties: { k: { type: 'string' }, v: { type: 'string' } }, required: ['k', 'v'], additionalProperties: false } } }, required: ['items'], additionalProperties: false };
+const TR_SYS = `You localize the website and dashboard of Art House, a premium residential developer in Tashkent, Uzbekistan.
+Translate every "v" into the target language and return each item with its "k" unchanged.
+Keep exactly as written: brand and project names (Art House, Musaffo, Obod Maskan, Ko'kcha-Oqtepa, High Town, Siti Mall), social network names, @handles, URLs, placeholders in braces such as {years} {n} {months}, numbers, %, $ and any HTML tags.
+Write natural, concise marketing language a native speaker would use; subtitles of spoken video stay conversational and short.`;
+async function translate(req, res) {
+  const b = await json(req), to = str(b.to, 16), name = str(b.name, 40) || to, src = b.items && typeof b.items === 'object' ? b.items : {};
+  const keys = Object.keys(src).filter(k => typeof src[k] === 'string' && src[k].trim()).slice(0, 150);
+  if (!/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/i.test(to) || !keys.length) return send(res, 400, { error: 'bad' });
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) return send(res, 503, { error: 'ai-off' });
+  try { if (!Anthropic) Anthropic = (await import('@anthropic-ai/sdk')).default; } catch (e) { return send(res, 503, { error: 'ai-off' }); }
+  try {
+    const r = await new Anthropic().beta.messages.create({
+      model: process.env.AI_MODEL || 'claude-opus-5-5',
+      max_tokens: 16000,
+      output_config: { effort: 'low', format: { type: 'json_schema', schema: TR_SCHEMA } }, // oddiy tarjima — past effort, javob faqat JSON
+      betas: ['server-side-fallback-2026-07-01'],
+      fallbacks: 'default',
+      system: TR_SYS,
+      messages: [{ role: 'user', content: 'Target language: ' + name + ' (' + to + ')\n' + JSON.stringify(keys.map(k => ({ k, v: str(src[k], 3000) }))) }]
+    });
+    if (r.stop_reason === 'refusal') return send(res, 502, { error: 'refusal' });
+    if (r.stop_reason === 'max_tokens') return send(res, 502, { error: 'too-long' });
+    const out = {}, known = new Set(keys);
+    (JSON.parse(r.content.filter(x => x.type === 'text').map(x => x.text).join('')).items || []).forEach(x => { if (x && known.has(x.k) && typeof x.v === 'string') out[x.k] = x.v.slice(0, 6000); });
+    return send(res, 200, { items: out });
+  } catch (e) {
+    console.error('Tarjima xatosi:', e && (e.status || '') + ' ' + (e.message || e));
+    return send(res, 502, { error: 'ai' });
   }
 }
 
