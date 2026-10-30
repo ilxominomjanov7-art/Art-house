@@ -34,7 +34,7 @@
   BASE._hero = hv ? { src: (hv.querySelector('source') || {}).src || hv.src, poster: hv.poster } : {};
   window.AH_BASE = BASE;
   window.AH_RES = res; /* 'base:…' havolalari CMS o'zgarishlari bo'lmasa ham kerak (js/theme.js) */
-  window.AH_CFG0 = { EXPERIENCE_YEARS: CFG.EXPERIENCE_YEARS, PROJECTS_DONE: CFG.PROJECTS_DONE, IG_FOLLOWERS: CFG.IG_FOLLOWERS, IG_POSTS: CFG.IG_POSTS }; /* js/theme.js uchun asl raqamlar */
+  window.AH_CFG0 = { FOUNDED: CFG.FOUNDED, PROJECTS_DONE: CFG.PROJECTS_DONE }; /* js/theme.js uchun asl raqamlar */
 
   if (!C) return;
 
@@ -42,9 +42,10 @@
   var cfg = C.cfg || {};
   Object.keys(cfg).forEach(function (k) {
     var v = cfg[k];
-    if (v === '' || v == null || (Array.isArray(v) && !v.length)) return;
+    if (v === '' || v == null || (Array.isArray(v) && !v.length) || k === 'EXPERIENCE_YEARS') return; /* tajriba — faqat tashkil topgan yildan */
     CFG[k] = v;
   });
+  CFG.EXPERIENCE_YEARS = new Date().getFullYear() - (+CFG.FOUNDED || 2012);
   if (cfg.TELEGRAM_CHANNEL) CFG.TG_CHANNEL = cfg.TELEGRAM_CHANNEL;
   if (cfg.TELEGRAM_MANAGER) CFG.TG_MANAGER = cfg.TELEGRAM_MANAGER;
   if (cfg.PHONES && cfg.PHONES.length) CFG.PHONE = cfg.PHONES[0];

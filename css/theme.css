@@ -228,3 +228,7 @@
   .ths-timer span { min-width: 0; flex: 1; }
   .ths-band { flex-direction: column; } .ths-band .btn { width: 100%; justify-content: center; }
 }
+
+/* «Biz haqimizda» bo'limi bor — eski qisqa karta yashiringan, izohlar kartasi bir ustunda */
+.grid-2.ths-one { grid-template-columns: minmax(0, 1fr) !important; }
+.grid-2.ths-one > .teaser { max-width: 760px; }

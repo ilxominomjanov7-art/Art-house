@@ -7,7 +7,7 @@
 window.CFG = {
   BRAND: 'ART HOUSE',
   COMPANY: 'Art House Qurilish Kompaniyasi',  // @arthouse.tashkent profilidagi rasmiy nom
-  EXPERIENCE_YEARS: 15,                  // kompaniya ma'lumoti: 15 yillik tajriba
+  FOUNDED: 2012,                         // tashkil topgan yil: tajriba = joriy yil − 2012 (2026 da 14, 2027 da 15 …)
   PROJECTS_DONE: '30+',                  // @arthouse.tashkent: "30+ loyihalar"
   IG_FOLLOWERS: '114K', IG_POSTS: '1 010',
   PHONES: ['+998712307447', '+998781136350'],
@@ -18,16 +18,28 @@ window.CFG = {
   TG_MANAGER: '',
   INSTAGRAM: 'https://www.instagram.com/arthouse.tashkent',
   INSTAGRAM_HANDLE: '@arthouse.tashkent',
-  /* «Bizni tanlaganlar» bo'limi. Faqat inson roziligi va rasmiy rasmi bo'lsa qo'shing:
-     rasmini assets/img/amb/ ga qo'yib, photo maydoniga yozing va on: true qiling.
-     Rasm yoki ruxsat bo'lmasa — yozuv saytda chiqmaydi. */
+  /* Kabinet video-yo'riqnomasi: guide/ papkasi topilmasa (masalan, bitta kabinet.html faylini telefonda ochganda)
+     videolar shu internet manzilidan olinadi. GitHub omborining aniq versiyasiga bog'langan — o'chib ketmaydi. */
+  GUIDE_CDN: 'https://cdn.jsdelivr.net/gh/ilxominomjanov7-art/Art-house@71b11e784662dafd568b5f01beea37b20ddded2a/guide/',
+  /* «Ular Art House'ni tanladi» — taniqli insonlar kartalari (icon-amsterdam.com uslubida).
+     Standart ro'yxat; kabinet → Sayt → Yulduzlar orqali qo'shiladi, o'zgartiriladi va tartiblanadi.
+     Rasm va ismdan foydalanish uchun insonning roziligi bo'lishi kerak. Obunachilar soni ko'rsatilmaydi. */
   AMBASSADORS: [
-    { on: false, photo: '', name: 'Xayrullo Hamidov', ig: '', verified: true,
-      role: { uz: 'Futbol sharhlovchisi', ru: 'Футбольный комментатор', en: 'Football commentator', fr: 'Commentateur sportif', it: 'Telecronista di calcio', es: 'Comentarista de fútbol', de: 'Fußballkommentator', tr: 'Futbol yorumcusu' } },
-    { on: false, photo: '', name: 'Madina', ig: 'madina_newyork', verified: true,
-      role: { uz: 'Bloger, Nyu-York', ru: 'Блогер, Нью-Йорк', en: 'Blogger, New York', fr: 'Blogueuse, New York', it: 'Blogger, New York', es: 'Bloguera, Nueva York', de: 'Bloggerin, New York', tr: 'Blogger, New York' } },
-    { on: false, photo: '', name: 'Dilafruz Sharipova', ig: '', verified: true,
-      role: { uz: 'Dietolog', ru: 'Диетолог', en: 'Dietitian', fr: 'Diététicienne', it: 'Dietologa', es: 'Dietista', de: 'Ernährungsberaterin', tr: 'Diyetisyen' } }
+    { id: "xayrulla", on: true, photo: 'assets/img/amb/xayrulla-hamidov.webp', name: "Xayrulla Hamidov", ig: "xayrulla_hamidov", verified: true,
+      badge: { uz: "Mashhur sharhlovchi", ru: "Известный комментатор", en: "Renowned commentator", fr: "Commentateur renommé", it: "Commentatore famoso", es: "Comentarista famoso", de: "Bekannter Kommentator", tr: "Ünlü yorumcu" },
+      role: { uz: "Futbol sharhlovchisi", ru: "Футбольный комментатор", en: "Football commentator", fr: "Commentateur de football", it: "Telecronista di calcio", es: "Comentarista de fútbol", de: "Fußballkommentator", tr: "Futbol yorumcusu" } },
+    { id: "medina", on: true, photo: 'assets/img/amb/medina-akmal.webp', name: "Medina Akmal", ig: "medina_newyork", verified: true,
+      badge: { uz: "Bloger · Nyu-York", ru: "Блогер · Нью-Йорк", en: "Creator · New York", fr: "Créatrice · New York", it: "Creator · New York", es: "Creadora · Nueva York", de: "Creatorin · New York", tr: "İçerik üreticisi · New York" },
+      role: { uz: "Geosiyosat, biznes va marketing", ru: "Геополитика, бизнес и маркетинг", en: "Geopolitics, business and marketing", fr: "Géopolitique, business et marketing", it: "Geopolitica, business e marketing", es: "Geopolítica, negocios y marketing", de: "Geopolitik, Business und Marketing", tr: "Jeopolitik, iş dünyası ve pazarlama" } },
+    { id: "dilfuza", on: true, photo: 'assets/img/amb/dilfuza-ismailova.webp', name: "Dilfuza Ismailova", ig: "dilfuza_ismailova", verified: true,
+      badge: { uz: "Xizmat ko'rsatgan artist", ru: "Заслуженная артистка", en: "Honored Artist", fr: "Artiste émérite", it: "Artista emerita", es: "Artista de Honor", de: "Verdiente Künstlerin", tr: "Onurlu Sanatçı" },
+      role: { uz: "Xonanda, O'zbekiston", ru: "Певица, Узбекистан", en: "Singer, Uzbekistan", fr: "Chanteuse, Ouzbékistan", it: "Cantante, Uzbekistan", es: "Cantante, Uzbekistán", de: "Sängerin, Usbekistan", tr: "Şarkıcı, Özbekistan" } },
+    { id: "autodoctor", on: true, photo: 'assets/img/amb/auto-doctor.webp', name: "Auto Doctor", ig: "autodoctoruz", verified: true,
+      badge: { uz: "Avtoservis", ru: "Автосервис", en: "Car service", fr: "Garage automobile", it: "Autofficina", es: "Taller mecánico", de: "Autoservice", tr: "Oto servis" },
+      role: { uz: "Avtoservislar tarmog'i", ru: "Сеть автосервисов", en: "Car service network", fr: "Réseau de garages", it: "Rete di autofficine", es: "Red de talleres", de: "Autoservice-Kette", tr: "Oto servis ağı" } },
+    { id: "dilafruz", on: true, photo: 'assets/img/amb/dilafruz-sharipova.webp', name: "Dilafruz Sharipova", ig: "dietolog_asliddinovna", verified: true,
+      badge: { uz: "MDH'da tan olingan ekspert", ru: "Эксперт, признанный в СНГ", en: "Expert recognised across the CIS", fr: "Experte reconnue dans la CEI", it: "Esperta riconosciuta nella CSI", es: "Experta reconocida en la CEI", de: "In der GUS anerkannte Expertin", tr: "BDT'de tanınan uzman" },
+      role: { uz: "Dietolog", ru: "Диетолог", en: "Nutritionist", fr: "Nutritionniste", it: "Nutrizionista", es: "Nutricionista", de: "Ernährungsberaterin", tr: "Diyetisyen" } }
   ],
   YOUTUBE: '',                           // bo'sh qolsa — ko'rsatilmaydi
   FACEBOOK: '',
@@ -51,6 +63,7 @@ window.CFG = {
     'd034d8712ec91325d91b3f19522c25b01a10e0dcb5b56c36f9b387115901b90e': 'owner'
   }
 };
+window.CFG.EXPERIENCE_YEARS = new Date().getFullYear() - window.CFG.FOUNDED; /* har yili o'zi yangilanadi (kabinet → Mavzular → Raqamlar → Tashkil topgan yil) */
 try { const _s = JSON.parse(localStorage.getItem('ah_set')); if (_s) { CFG.PRICE_M2 = +_s.p || CFG.PRICE_M2; CFG.DOWN_MIN = _s.d != null ? +_s.d : CFG.DOWN_MIN; CFG.MONTHS = _s.m && _s.m.length ? _s.m : CFG.MONTHS; } } catch (e) {}
 
 /* Xonadon nomi (kabinet bazasi bilan bir xil ko'rinishda): "2 xonali dupleks · 2-qavat · 54,3 m² · terassa" */

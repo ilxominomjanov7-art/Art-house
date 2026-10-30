@@ -14,7 +14,7 @@
 const TH=window.AH_THEMES,K=window.AHK;if(!TH||!K)return;
 const {CMS,cmsSave,cmCan,own,LANGS_ON,refURL,cmUp,askDel,kToast,esc,I,I2,ICN,TX,TT,IDF,API,AD,NG,ZV}=K;
 const $=id=>document.getElementById(id);
-const NUMK=['EXPERIENCE_YEARS','PROJECTS_DONE','IG_FOLLOWERS','IG_POSTS'];
+const NUMK=['FOUNDED','PROJECTS_DONE'];
 const L8=TH.LANGS;
 Object.assign(ICN,{
 grip:'<circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="15" cy="6" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="18" r="1" fill="currentColor"/><circle cx="15" cy="18" r="1" fill="currentColor"/>',
@@ -125,7 +125,8 @@ function undo(){if(!E.hist.length)return;E.fut.push(snap());const s=JSON.parse(E
 function redo(){if(!E.fut.length)return;E.hist.push(snap());const s=JSON.parse(E.fut.pop());E.th=s.th;E.cfg=s.cfg;E.last=snap();hT=0;E.dirty=true;bar();pane();push(1)}
 function save(publish){const c=TS(),i=c.themes.list.findIndex(x=>x.id===E.id);if(i<0){kToast(TX('Mavzu topilmadi'));return}
  E.th.at=Date.now();c.themes.list[i]=TH.clone(E.th);
- NUMK.forEach(k=>{const v=E.cfg[k];if(v===''||v==null)delete c.cfg[k];else c.cfg[k]=k==='EXPERIENCE_YEARS'&&/^\d+$/.test(String(v))?+v:String(v)});
+ NUMK.forEach(k=>{const v=E.cfg[k];if(v===''||v==null)delete c.cfg[k];else c.cfg[k]=k==='FOUNDED'&&/^\d{4}$/.test(String(v))?+v:String(v)});
+ ['EXPERIENCE_YEARS','IG_FOLLOWERS','IG_POSTS'].forEach(k=>delete c.cfg[k]); /* eski qiymatlar: tajriba endi tashkil topgan yildan hisoblanadi */
  if(publish)c.themes.live=E.id;
  if(!cmsSave(c,publish?'Mavzu nashr qilindi':'Mavzu saqlandi',E.th.name))return;
  E.dirty=false;bar();if(!publish&&c.themes.live!==E.id)setTimeout(()=>kToast(TX("Saqlandi. Saytda ko'rinishi uchun «Nashr qilish» tugmasini bosing.")),900)}
@@ -188,7 +189,8 @@ function paneSet(){const s=E.th.s,C=s.colors||{},P=TH.PALETTES,cur=Object.assign
   '<div class="te-gt">'+I('diamond')+'<b>Tugmalar shakli</b></div><div class="te-seg2">'+[['square',"To'g'ri burchak"],['round','Yumaloq'],['pill','Kapsula']].map(x=>'<button type="button" data-btn="'+x[0]+'" aria-pressed="'+(s.btn===x[0])+'"><i class="te-bs '+x[0]+'"></i><small>'+x[1]+'</small></button>').join('')+'</div>'+
   '<div class="te-gt">'+I('layers')+'<b>Yangi bo\'limlar foni</b></div><div class="te-seg2">'+[['light','Och shampan','Ochroq, tillarang va yashil'],['dark','Zumrad','Sayt foni bilan bir xil']].map(x=>'<button type="button" data-surf="'+x[0]+'" aria-pressed="'+(s.surface===x[0])+'"><i class="te-bs sf '+x[0]+'"></i><small>'+x[1]+'</small></button>').join('')+'</div>'+
   '<div class="te-gt">'+I('hash')+'<b>Raqamlar</b></div><p class="note te-n">'+TX("Butun sayt uchun umumiy: bosh sahifa, «Biz haqimizda» va boshqa bloklarda {years}, {projects} o'rnida ko'rinadi.")+'</p>'+
-  [['EXPERIENCE_YEARS','Tajriba (yil)'],['PROJECTS_DONE','Amalga oshirilgan loyihalar'],['IG_FOLLOWERS','Instagram obunachilari'],['IG_POSTS','Instagram postlari']].map(x=>'<div class="te-f"><label for="n'+x[0]+'">'+x[1]+'</label><input class="nt9" id="n'+x[0]+'" data-f="cfg.'+x[0]+'" value="'+esc(E.cfg[x[0]])+'" placeholder="'+esc(String(window.CFG&&CFG[x[0]]!=null?CFG[x[0]]:''))+'"></div>').join('')+
+  [['FOUNDED','Tashkil topgan yil'],['PROJECTS_DONE','Amalga oshirilgan loyihalar']].map(x=>'<div class="te-f"><label for="n'+x[0]+'">'+x[1]+'</label><input class="nt9" id="n'+x[0]+'" data-f="cfg.'+x[0]+'" value="'+esc(E.cfg[x[0]])+'" placeholder="'+esc(String(window.CFG&&CFG[x[0]]!=null?CFG[x[0]]:''))+'"></div>').join('')+
+  '<p class="note te-n">'+TX("Tajriba har yili o'zi oshadi")+': '+new Date().getFullYear()+' − '+(E.cfg.FOUNDED||CFG.FOUNDED)+' = <b>'+(new Date().getFullYear()-(+E.cfg.FOUNDED||CFG.FOUNDED))+'</b></p>'+
   '<p class="note te-n">'+TX("Boshlang'ich to'lov foizi, oylar va 1 m² narxi — Sozlamalar → Narxlar va tizim.")+'</p>'}
 
 function fillThumbs(R){R.querySelectorAll('[data-ref]').forEach(el=>{refURL(el.dataset.ref).then(u=>{if(!u){el.replaceWith(Object.assign(document.createElement('div'),{className:'te-ph',innerHTML:I('image')}));return}el.src=u})})}

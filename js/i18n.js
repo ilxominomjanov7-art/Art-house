@@ -368,7 +368,8 @@
   }
   var subs = [];
 
-  function fill(s, vars) { return vars ? String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }) : s; }
+  /* {years} — kompaniya tajribasi (CFG.FOUNDED dan avtomatik), har bir matnda o'z-o'zidan qo'yiladi */
+  function fill(s, vars) { return s == null ? s : String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars && vars[k] != null ? vars[k] : k === 'years' && window.CFG && CFG.EXPERIENCE_YEARS ? CFG.EXPERIENCE_YEARS : m; }); }
   function base(key) { return uz[key] != null ? uz[key] : CAPT[key] != null ? CAPT[key] : key; }
   function t(key, vars, lng) {
     var s, lang0 = lang; if (lng) lang = lng;

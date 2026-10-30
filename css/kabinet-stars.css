@@ -1,0 +1,45 @@
+/* =====================================================================
+   ART HOUSE — KABINET: «Yulduzlar» sahifasi (js/kabinet-stars.js)
+   ===================================================================== */
+.st-sec .tt-h { align-items: center; }
+.st-on { flex: none; }
+.st-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.st-tabs button { position: relative; min-width: 42px; height: 32px; padding: 0 10px; border: 1px solid var(--bd, rgba(234, 219, 176, .14)); border-radius: 8px; background: transparent; color: var(--tx-2, #B9C9C0); font: 600 12px/1 var(--ui, inherit); letter-spacing: .05em; cursor: pointer; }
+.st-tabs button[aria-selected="true"] { border-color: var(--ch-300, #DCC48F); color: var(--tx, #F4EEDF); box-shadow: inset 0 0 0 1px var(--ch-300, #DCC48F); }
+.st-tabs button i { position: absolute; top: 4px; right: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--ok, #7fd3a4); }
+.st-f2 { display: grid; gap: 10px; }
+@media (min-width: 900px) { .st-f2 { grid-template-columns: 1fr 1.4fr; } }
+.st-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); margin-top: 6px; }
+.st-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; padding: 10px; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: rgba(255, 255, 255, .025); }
+.st-card.off { opacity: .55; }
+.st-ph { position: relative; aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; background: rgba(255, 255, 255, .05); }
+.st-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.st-ph img.cm-noimg { opacity: 0; }
+.st-ph span { position: absolute; left: 5px; right: 5px; bottom: 5px; padding: 3px 6px; border-radius: 999px; background: rgba(20, 20, 20, .62); color: #fff; font-size: 8.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+.st-in { display: grid; gap: 3px; min-width: 0; }
+.st-in b { display: flex; align-items: center; gap: 5px; font-size: 15px; color: var(--tx, #F4EEDF); }
+.st-v .ic { width: 16px; height: 16px; color: #3897F0; }
+.st-in small { color: var(--tx-2, #B9C9C0); font-size: 12.5px; }
+.st-in em { display: inline-flex; align-items: center; gap: 5px; font-style: normal; font-size: 12px; color: var(--ch-300, #DCC48F); }
+.st-in em .ic { width: 13px; height: 13px; }
+.st-hid { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; font-size: 11.5px; color: var(--tx-3, #86A296); }
+.st-hid .ic { width: 14px; height: 14px; }
+.st-act { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.st-act .btn { margin-left: auto; }
+.st-act .te-ib[disabled] { opacity: .3; pointer-events: none; }
+.st-law { display: flex; gap: 8px; align-items: flex-start; margin-top: 12px !important; }
+.st-law .ic { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--ch-300, #DCC48F); }
+.st-reels { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.st-reel { display: grid; gap: 6px; width: 132px; }
+.st-reel video { width: 132px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; background: #000; }
+.st-reel .st-act .btn { margin-left: 0; }
+.st-dlg { align-items: start; overflow-y: auto; }
+.st-box { width: min(560px, 100%); margin: 4vh auto; padding: 18px; display: grid; gap: 12px; font-family: var(--ui); background: var(--em-850, #0C3328); border: 1px solid var(--bd-2, rgba(234, 219, 176, .2)); border-radius: 16px; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .7); }
+.st-box h3 { margin: 0; }
+.st-fph { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; }
+.st-fbtn { display: grid; gap: 8px; justify-items: start; }
+.st-err { color: var(--danger, #e8897a) !important; }
+.st-box .cm-sw1 small { display: block; color: var(--tx-3, #86A296); font-size: 12px; font-weight: 400; }
+.st-box > .tt-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.st-lg { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 5px; background: rgba(220, 196, 143, .16); color: var(--ch-300, #DCC48F); font-style: normal; font-size: 11px; letter-spacing: .05em; }
+.st-v .ic { stroke: #3897F0 !important; color: #3897F0; }

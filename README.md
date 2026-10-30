@@ -26,7 +26,9 @@ js/agent.js       — saytdagi «Art House» AI maslahatchi (o'ng tomonda) + js/
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
-js/masterplan.js, lux-sections.js, home-icon.js — bosh reja, e'lon qatori, bosh sahifa bloklari
+js/kabinet-stars.js — «Yulduzlar» sahifasi: taniqli insonlar kartalari va Instagram oynasi (+ css/kabinet-stars.css)
+js/masterplan.js, lux-sections.js, home-icon.js — bosh reja, e'lon qatori, bosh sahifa bloklari (yulduzlar, Instagram telefoni, dron videosi)
+css/site-icon.css — ICON uslubidagi qatlam: yulduzlar kartalari, dron videosi bloki, Instagram telefoni, Geologica shrifti
 js/store.js       — ma'lumotlar: localStorage + BroadcastChannel yoki server (REST + SSE)
 js/media.js       — getUserMedia (mikrofon/kamera ruxsati) va WebRTC qo'ng'iroq
 js/site.js        — sayt mantiqi
@@ -79,8 +81,10 @@ ispan, nemis, turk.
 - Kirish oynasidan ochilsa: telefonda — «Telefondan kirish», kompyuterda — «Kompyuterdan kirish» bobidan boshlanadi.
 
 Fayllar: `guide/kabinet-<til>.mp4` (kabinet.html bilan bir papkada) va `js/guide-chapters.js`.
-Bitta faylli `dist/kabinet.html` videoni `dist/guide/` dan, topilmasa — bir pog'ona yuqoridagi `guide/` dan oladi;
-faqat `dist/` ni alohida joylasangiz, `guide/` papkasini uning ichiga nusxalang.
+Video quyidagi tartibda qidiriladi: `guide/` → bir pog'ona yuqoridagi `guide/` (dist/ uchun) → internetdagi nusxa
+(`CFG.GUIDE_CDN`, GitHub omborining aniq versiyasi jsDelivr orqali). Shuning uchun bitta `kabinet.html` faylini
+telefonda ochganda ham video internet orqali ishlaydi. Videolar yangilangach `GUIDE_CDN` dagi versiyani almashtiring.
+Yangi til qo'shilsa, o'z videosi tayyor bo'lgunicha inglizcha video ochiladi.
 Boblarga o'tish uchun veb-server Range so'rovlarini qo'llashi kerak (`node server/server.js`, nginx, Apache,
 hosting xizmatlari — qo'llaydi; `python -m http.server` — qo'llamaydi, video faqat boshidan o'ynaydi).
 
@@ -88,6 +92,32 @@ Kabinet o'zgargach videoni qayta yaratish: `tools/guide/run.sh` (ssenariy va mat
 namunaviy ma'lumotlar — `tools/guide/seed.js`). Talablar: Node + Playwright, Python + `edge-tts`, ffmpeg (libass).
 Ovozlar Microsoft Edge neyron ovozlari (edge-tts) bilan yaratilgan; tijorat maqsadida keng tarqatishdan oldin
 ularning foydalanish shartlarini tekshiring yoki diktor ovozi bilan almashtiring.
+
+**Odam ovozi (diktor):** `node tools/guide/voice-script.js uz` → `tools/guide/voice/SCRIPT-uz.md` — 56 ta qator va fayl nomlari.
+Har bir qatorni alohida yozib (`phone-00.mp3`, `desktop-07.mp3` …) `tools/guide/voice/uz/` ga qo'ying va `run.sh` ni
+ishga tushiring — o'sha qatorlar sun'iy ovoz o'rniga diktor ovozi bilan chiqadi, video tempi o'zi moslanadi.
+O'zbekcha sun'iy ovoz sozlamasi (`tools/guide/tts.py` → `OPTS`): tezroq va balandroq — reklama roligidagi boshlovchi tempiga moslangan.
+
+## Yulduzlar va Instagram oynasi
+
+Kabinet → **Sayt → Yulduzlar** (direktor va «Sayt sozlamalari» ruxsati bor menejerlar):
+
+- Saytdagi **«Ular Art House'ni tanladi»** bo'limi (icon-amsterdam.com «Worn by ICONS» uslubida): rasm, rasm ustidagi
+  belgi, ism + ko'k tasdiq belgisi, kasbi, Instagram havolasi. Obunachilar soni ko'rsatilmaydi.
+- Qo'shish, tahrirlash, ↑ ↓ tartiblash, yashirish, o'chirish; belgi va kasbi — 8 tilda (bo'sh tilda o'zbekcha chiqadi).
+- Bo'lim sarlavhasi va tavsifi har bir tilda, bo'limni yoqish/o'chirish.
+- **Instagram oynasi** — saytdagi telefon ichida navbat bilan aylanadigan Reels videolari (yuklash, tartib, o'chirish).
+  Telefon bosilsa `CFG.INSTAGRAM` sahifasi ochiladi.
+
+Saqlangan zahoti sayt sahifani qayta yuklamasdan yangilanadi. Standart ro'yxat — `js/config.js` → `AMBASSADORS`,
+rasmlar `assets/img/amb/` (Instagram skrinshotlaridan kesilgan — sifatli asl rasmlar bilan almashtirish tavsiya etiladi).
+Rasm va ismdan faqat insonning roziligi bilan foydalaning.
+
+**Tajriba yili** avtomatik: `js/config.js` → `FOUNDED: 2012` (kabinet → Sozlamalar / Mavzular → Raqamlar → «Tashkil topgan yil»).
+Saytdagi barcha matnlarda (8 til), AI maslahatchi javoblarida va serverdagi AI faktlarida `{years}` = joriy yil − 2012.
+
+**Shrift:** standart — Geologica (ICON uslubidagi geometrik shrift, katta harfli sarlavhalar; kirill va o'zbek harflari bor).
+Kabinet → Mavzular → Moslashtirish → Mavzu sozlamalari → Sarlavha shrifti orqali eski Cormorant'ga qaytarish mumkin.
 
 ## Ishga tushirish
 

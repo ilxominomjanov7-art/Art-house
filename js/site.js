@@ -10,7 +10,7 @@
   var icon = function (id, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '"><use href="#' + id + '"/></svg>'; };
   var P = window.PROJECTS, byId = function (id) { return P.filter(function (p) { return p.id === id; })[0] || P[0]; };
   var LS = function (k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('ah3_' + k)); localStorage.setItem('ah3_' + k, JSON.stringify(v)); } catch (e) { return null; } };
-  var YEARS = CFG.EXPERIENCE_YEARS || 15;
+  var YEARS = CFG.EXPERIENCE_YEARS;
   var MB = 50;
 
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('show'); }, 3600); }

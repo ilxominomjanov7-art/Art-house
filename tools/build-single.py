@@ -6,7 +6,7 @@ import base64, mimetypes, os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'dist')
 MIME = {'.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp4': 'video/mp4', '.png': 'image/png'}
-SKIP_ASSETS = {'js/config.js'}  # kabinet: loyiha rasmlari kerak emas — config.js dagi yo'llar o'zgarmaydi
+SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js'}  # kabinet: loyiha rasmlari kerak emas — config.js dagi yo'llar o'zgarmaydi (faqat «Yulduzlar» rasmlari joylanadi)
 
 def read(p):
     with open(os.path.join(ROOT, p), encoding='utf-8') as f:
@@ -17,12 +17,13 @@ def data_uri(p):
         b = base64.b64encode(f.read()).decode()
     return 'data:%s;base64,%s' % (MIME.get(os.path.splitext(p)[1], 'application/octet-stream'), b)
 
-def inline_assets(text):
-    return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', lambda m: data_uri(m.group(0)), text)
+def inline_assets(text, only=''):
+    """only — faqat shu papkadagi fayllar joylanadi (masalan, kabinet uchun yulduzlar rasmlari)"""
+    return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', lambda m: data_uri(m.group(0)) if m.group(0).startswith(only) else m.group(0), text)
 
 def script(p, with_assets):
     js = read(p).replace('</script', '<\\/script')
-    return '<script>\n' + (inline_assets(js) if with_assets or p not in SKIP_ASSETS else js) + '\n</script>'
+    return '<script>\n' + (inline_assets(js) if with_assets or p not in SKIP_ASSETS else inline_assets(js, 'assets/img/amb/')) + '\n</script>'
 
 def build(page, with_assets):
     """with_assets=False — config.js dagi rasm/video yo'llari joylanmaydi (kabinet uchun), qolganlari joylanadi."""

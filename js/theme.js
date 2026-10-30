@@ -20,7 +20,7 @@
   var t = function (k, v) { return I18N.t(k, v); };
   var API = (CFG.API_URL === 'auto' ? (location.protocol.indexOf('http') === 0 ? location.origin : '') : (CFG.API_URL || '')).replace(/\/$/, '');
   var PREVIEW = /[?&]preview=1/.test(location.search) && window.parent !== window;
-  var NUMK = ['EXPERIENCE_YEARS', 'PROJECTS_DONE', 'IG_FOLLOWERS', 'IG_POSTS'];
+  var NUMK = ['FOUNDED', 'PROJECTS_DONE'];
   var CUR = TH.liveOf(window.AH_CMS);
   var DRAFT = false;
   window.AH_TTEXT = CUR.text;
@@ -81,7 +81,8 @@
     Object.keys(MAP).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(c[k] || '')) v += MAP[k] + ':' + c[k] + ';'; });
     if (c.ink) v += '--mut:' + hexA(c.ink, .68) + ';';
     if (c.gold) v += '--line:' + hexA(c.gold, .16) + ';--line-2:' + hexA(c.gold, .36) + ';--gold-grad:linear-gradient(' + c.gold + ',' + c.gold + ');';
-    var F = TH.FONTS[s.font]; if (F && s.font !== 'cormorant') v += '--f-display:' + F.css + ';';
+    var F = TH.FONTS[s.font]; if (F && s.font !== 'cormorant' && !F.icon) v += '--f-display:' + F.css + ';';
+    document.documentElement.classList.toggle('ty-icon', !!(F && F.icon)); /* css/site-icon.css */
     if (v) css += ':root{' + v + '}';
     if (c.bg) css += 'html,body{background-color:var(--bg)!important}.top,.foot{background-color:var(--bg)}';
     if (c.gold) css += '.btn-gold{background:var(--gold)!important;border-color:var(--gold)!important}.btn-gold:hover{background:var(--gold-hi)!important;border-color:var(--gold-hi)!important}.eyebrow{color:var(--gold)}';
@@ -117,10 +118,7 @@
       var avg = R.length ? R.reduce(function (a, r) { return a + (+r.rating || 0); }, 0) / R.length : 0;
       var cells = [];
       if (R.length) cells.push('<div><b>' + avg.toFixed(1) + '<i>★</i></b><span>' + esc(t('ths.rating', { n: R.length })) + '</span></div>');
-      if (CFG.IG_FOLLOWERS) cells.push('<div><b>' + esc(CFG.IG_FOLLOWERS) + '</b><span>' + esc(t('ths.followers')) + '</span></div>');
-      if (CFG.PROJECTS_DONE) cells.push('<div><b>' + esc(CFG.PROJECTS_DONE) + '</b><span>' + esc(t('home.stat2')) + '</span></div>');
-      cells.push('<div><b>' + esc(CFG.EXPERIENCE_YEARS) + '</b><span>' + esc(t('home.stat1')) + '</span></div>');
-      html += '<div class="ths-proof">' + cells.join('') + '</div>';
+      if (cells.length) html += '<div class="ths-proof">' + cells.join('') + '</div>';
     }
     var kinds = ['star', 'client', 'gift'].filter(function (k) { return V.some(function (v) { return v.kind === k; }); });
     if (s.filters && kinds.length > 1) html += '<div class="ths-filter" role="group">' + ['all'].concat(kinds).map(function (k, i) {
@@ -139,7 +137,9 @@
         '<span class="ths-reel-cap"><b>' + esc(v.name) + (v.verified ? '<svg class="ths-v" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3-2.6-1.9 1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="m8 12 2.6 2.6L16 9.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '') + '</b>' + (v.role ? '<small>' + esc(v.role) + '</small>' : '') + '</span>' +
         '</button>' + (v.quote ? '<p class="ths-reel-q">' + esc(v.quote) + '</p>' : '') + '</article>';
     });
-    if (!V.length) cards.push(igCard());
+    /* saytda: video ham, fikr ham bo'lmasa — bo'lim ko'rinmaydi (Instagram bo'limi alohida bor); tahrirlagichda — namuna karta */
+    el.hidden = !PREVIEW && !V.length && !Q.length; if (el.hidden) { el.innerHTML = ''; return; }
+    if (!V.length && PREVIEW) cards.push(igCard());
     html += '<div class="ths-reels">' + cards.join('') + '</div>';
     if (Q.length) html += '<div class="ths-quotes">' + Q.map(function (q) {
       var ph = src(q.photo), nm = P(q.name), n = Math.max(1, Math.min(5, +q.rating || 5));
@@ -158,7 +158,7 @@
   /* karta olib tashlangach: bo'sh qolgan saralash tugmalari ham yashiriladi */
   function tidy(grid) {
     var sec = grid.closest('.ths'), left = $$('.ths-reel:not(.ths-ig)', grid);
-    if (!left.length) grid.innerHTML = igCard();
+    if (!left.length) { if (PREVIEW) grid.innerHTML = igCard(); else if ($('.ths-quotes', sec)) grid.remove(); else { sec.hidden = true; return; } }
     var fl = $('.ths-filter', sec); if (!fl) return;
     var ks = left.map(function (r) { return r.dataset.k; });
     $$('[data-ths-f]', fl).forEach(function (b) { if (b.dataset.thsF !== 'all' && ks.indexOf(b.dataset.thsF) < 0) b.remove(); });
@@ -260,6 +260,9 @@
   function order() {
     var host = $('#p-home'); if (!host) return;
     TH.NATIVE.forEach(function (n) { var el = nativeEl(n.id); if (!el) return; el.setAttribute('data-ths', n.id); el.classList.toggle('ths-off', !(CUR.sec[n.id] || {}).on); });
+    /* «Biz haqimizda» bo'limi yoqilgan bo'lsa, eski qisqa «Biz haqimizda» kartasi takrorlanmaydi (izohlar kartasi qoladi) */
+    var ab = $('[data-i="home.aboutText"]', host), card = ab && ab.closest('.teaser');
+    if (card) { var dup = !!(CUR.sec.about && CUR.sec.about.on); card.hidden = dup; card.parentNode.classList.toggle('ths-one', dup); }
     var ref = host.firstElementChild;
     CUR.order.forEach(function (id) {
       var el = elOf(id); if (!el || el.parentNode !== host) return;
@@ -280,6 +283,7 @@
   function applyCfg(cfg) {
     var ch = false;
     NUMK.forEach(function (k) { var v = cfg && cfg[k] !== '' && cfg[k] != null ? cfg[k] : CFG0[k]; if (v != null && CFG[k] !== v) { CFG[k] = v; ch = true; } });
+    var y = new Date().getFullYear() - (+CFG.FOUNDED || 2012); if (CFG.EXPERIENCE_YEARS !== y) { CFG.EXPERIENCE_YEARS = y; ch = true; }
     if (!ch) return false;
     $$('[data-count="years"]').forEach(function (el) { el.textContent = CFG.EXPERIENCE_YEARS; });
     if (window.AH_NUMS) AH_NUMS();
@@ -302,7 +306,7 @@
     return o === '' || o == null ? undefined : o;
   }
   function rest(c) {
-    c = TH.clone(c || {}); delete c.themes; delete c.v;
+    c = TH.clone(c || {}); delete c.themes; delete c.v; delete c.stars; delete c.ig; /* yulduzlar va Instagram videolari ham joyida yangilanadi (js/lux-sections.js) */
     if (c.cfg) NUMK.forEach(function (k) { delete c.cfg[k]; });
     if (c.media && c.media.place === 'home') delete c.media.place; /* kabinet qo'yadigan standart qiymat */
     return JSON.stringify(prune(c) || {});
@@ -310,7 +314,10 @@
   function live(json) {
     var N; try { N = JSON.parse(json || 'null'); } catch (e) { return false; }
     if (!N || rest(N) !== rest(window.AH_CMS)) return false;
+    var O = window.AH_CMS || {}, ch = function (k) { return JSON.stringify(N[k] || null) !== JSON.stringify(O[k] || null); }, st = ch('stars'), ig = ch('ig');
     window.AH_CMS = N;
+    if (st && window.AH_AMB) AH_AMB();
+    if (ig && window.AH_IG) AH_IG();
     if (!DRAFT) setTheme(TH.liveOf(N), N.cfg || {});
     return true;
   }

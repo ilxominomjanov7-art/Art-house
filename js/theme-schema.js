@@ -37,6 +37,8 @@
       colors: { bg: '#082C22', bg2: '#06251C', bg3: '#0B372A', deep: '#041D16', gold: '#DCC48F', goldHi: '#F1E3BD', gold2: '#B99C62', ink: '#F1EBDD' }, sw: ['#082C22', '#DCC48F', '#F1EBDD'] }
   };
   var FONTS = {
+    /* icon-amsterdam.com uslubi: bitta geometrik shrift, katta harfli sarlavhalar (html.ty-icon, css/site-icon.css) */
+    geologica: { name: 'Geologica (ICON uslubi)', css: "'Geologica', 'Manrope', system-ui, sans-serif", icon: true },
     cormorant: { name: 'Cormorant Garamond', css: "'Cormorant Garamond', 'Times New Roman', serif" },
     cinzel: { name: 'Cinzel', css: "'Cinzel', 'Cormorant Garamond', serif" },
     manrope: { name: 'Manrope', css: "'Manrope', system-ui, sans-serif" }
@@ -63,7 +65,7 @@
     { id: 'build', name: 'Qurilish jarayoni', icon: 'video', find: '#hiBuild', keys: ['hi.bldE', 'hi.bldT', 'hi.bldD', 'hi.bldB'] },
     { id: 'calc', name: 'Kalkulyator va joylashuv', icon: 'calc', has: '#miniCalc' },
     { id: 'teaser', name: 'Biz haqimizda va izohlar (qisqa)', icon: 'text', has: '#homeRating' },
-    { id: 'amb', name: 'Bizni tanlaganlar (kartalar)', icon: 'star', find: '#ambSec', keys: ['amb.title', 'amb.sub'] },
+    { id: 'amb', name: "Ular Art House'ni tanladi (yulduzlar)", icon: 'star', find: '#ambSec', keys: ['amb.title', 'amb.sub'] },
     { id: 'contact', name: "Menejer bilan bog'lanish", icon: 'phone', has: '.cta-band' },
     { id: 'office', name: 'Savdo ofisi', icon: 'pin', find: '#hiOffice', keys: ['hi.offT', 'hi.offD', 'hi.map', 'hi.call'] },
     { id: 'ig', name: 'Instagram lentasi', icon: 'ig', find: '#igStrip', keys: ['ig.follow'] },
@@ -74,7 +76,7 @@
   /* ---------------- yangi bo'lim turlari ---------------- */
   var TYPES = {
     stars: {
-      name: 'Yulduzlar va mijozlar tanlovi', icon: 'star', note: "Taniqli insonlar va xaridorlarning videolari, sovg'a topshirish lahzalari va fikrlari",
+      name: 'Quvonchli lahzalar (videolar)', icon: 'video', note: "Kalit topshirish, sovg'alar, bayramlar: mijozlar va taniqli insonlar videolari va fikrlari",
       settings: [
         { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
         { k: 'title', t: 'text', l: 'Sarlavha' },
@@ -109,7 +111,7 @@
       max: 24
     },
     about: {
-      name: 'Biz haqimizda', icon: 'building', note: '15 yillik tajriba, 30+ loyiha, manzil va afzalliklar',
+      name: 'Biz haqimizda', icon: 'building', note: 'Tajriba (yillar avtomatik), loyihalar soni, manzil va afzalliklar',
       settings: [
         { k: 'eyebrow', t: 'text', l: 'Kichik sarlavha' },
         { k: 'title', t: 'text', l: 'Sarlavha' },
@@ -196,16 +198,16 @@
   var DEF = {
     stars: function () {
       return { type: 'stars', on: true, s: {
-        eyebrow: ml('Haqiqiy insonlar · Haqiqiy quvonch', 'Реальные люди · Настоящая радость', 'Real people · Real joy', 'Des personnes réelles · Une vraie joie', 'Persone vere · Gioia vera', 'Personas reales · Alegría real', 'Echte Menschen · Echte Freude', 'Gerçek insanlar · Gerçek mutluluk'),
-        title: ml('Yulduzlar va mijozlar tanlovi', 'Выбор звёзд и клиентов', 'The choice of stars and clients', 'Le choix des stars et des clients', 'La scelta di star e clienti', 'La elección de estrellas y clientes', 'Die Wahl von Stars und Kunden', 'Yıldızların ve müşterilerin tercihi'),
-        sub: ml("Taniqli insonlar va oddiy oilalar Art House'ni tanladi. Kalit topshirish, sovg'alar va yangi uydagi ilk kunlar — ularning quvonchini o'z ko'zingiz bilan ko'ring.",
-          'Известные люди и обычные семьи выбрали Art House. Вручение ключей, подарки и первые дни в новом доме — увидьте их радость своими глазами.',
-          'Well-known personalities and ordinary families chose Art House. Key handovers, gifts and first days in a new home — see their joy with your own eyes.',
-          'Des personnalités connues et des familles ordinaires ont choisi Art House. Remise des clés, cadeaux et premiers jours dans un nouveau foyer : voyez leur joie de vos propres yeux.',
-          'Personaggi noti e famiglie comuni hanno scelto Art House. Consegna delle chiavi, regali e i primi giorni nella nuova casa: guardate la loro gioia con i vostri occhi.',
-          'Personas conocidas y familias corrientes eligieron Art House. Entrega de llaves, regalos y los primeros días en su nuevo hogar: vea su alegría con sus propios ojos.',
-          'Bekannte Persönlichkeiten und ganz normale Familien haben sich für Art House entschieden. Schlüsselübergaben, Geschenke und die ersten Tage im neuen Zuhause – sehen Sie ihre Freude mit eigenen Augen.',
-          "Tanınmış isimler ve sıradan aileler Art House'u seçti. Anahtar teslimi, hediyeler ve yeni evdeki ilk günler — mutluluklarını kendi gözlerinizle görün."),
+        eyebrow: ml("Kalit topshirish · Sovg'alar · Bayramlar", 'Вручение ключей · Подарки · Праздники', 'Key handovers · Gifts · Celebrations', 'Remise des clés · Cadeaux · Fêtes', 'Consegna delle chiavi · Regali · Feste', 'Entrega de llaves · Regalos · Fiestas', 'Schlüsselübergaben · Geschenke · Feste', 'Anahtar teslimi · Hediyeler · Kutlamalar'),
+        title: ml('Quvonchli lahzalar', 'Счастливые моменты', 'Moments of joy', 'Moments de joie', 'Momenti di gioia', 'Momentos de alegría', 'Momente der Freude', 'Mutlu anlar'),
+        sub: ml("Kalit topshirish, sovg'alar va yangi uydagi ilk kunlar — mijozlarimiz quvonchini o'z ko'zingiz bilan ko'ring.",
+          'Вручение ключей, подарки и первые дни в новом доме — увидьте радость наших клиентов своими глазами.',
+          "Key handovers, gifts and first days in a new home — see our clients' joy with your own eyes.",
+          'Remises de clés, cadeaux et premiers jours dans un nouveau foyer : voyez la joie de nos clients de vos propres yeux.',
+          'Consegne delle chiavi, regali e i primi giorni nella nuova casa: guarda con i tuoi occhi la gioia dei nostri clienti.',
+          'Entregas de llaves, regalos y los primeros días en un nuevo hogar: vea con sus propios ojos la alegría de nuestros clientes.',
+          'Schlüsselübergaben, Geschenke und die ersten Tage im neuen Zuhause – erleben Sie die Freude unserer Kunden mit eigenen Augen.',
+          'Anahtar teslimleri, hediyeler ve yeni evdeki ilk günler — müşterilerimizin mutluluğunu kendi gözlerinizle görün.'),
         filters: true, proof: true, reviews: true, ctaOn: true,
         cta: ml("Siz ham baxtli oilalarimiz safiga qo'shiling", 'Присоединяйтесь к нашим счастливым семьям', 'Join our happy families', 'Rejoignez nos familles heureuses', 'Unitevi alle nostre famiglie felici', 'Únase a nuestras familias felices', 'Werden Sie Teil unserer glücklichen Familien', 'Mutlu ailelerimize siz de katılın'),
         btn: BOOK
@@ -253,7 +255,6 @@
         btn: ml('Loyihalar bilan tanishish', 'Смотреть проекты', 'Explore the projects', 'Découvrir les projets', 'Scopri i progetti', 'Ver los proyectos', 'Projekte entdecken', 'Projeleri keşfedin'),
         act: 'projects'
       }, b: [
-        { id: uid('b'), type: 'stat', value: '{years}', label: ml('yillik tajriba', 'лет опыта', 'years of experience', "ans d'expérience", 'anni di esperienza', 'años de experiencia', 'Jahre Erfahrung', 'yıllık deneyim') },
         { id: uid('b'), type: 'stat', value: '{projects}', label: ml("ko'p qavatli uy loyihasi", 'многоэтажных проектов', 'multi-storey projects', "projets d'immeubles", 'progetti multipiano', 'proyectos de varias plantas', 'Mehrgeschossbauten', 'çok katlı proje') },
         { id: uid('b'), type: 'stat', value: '0%', label: ml('ustama va foiz', 'наценки и процентов', 'markup and interest', "de majoration et d'intérêts", 'di maggiorazione e interessi', 'de recargo e intereses', 'Aufschlag und Zinsen', 'ek ücret ve faiz') },
         { id: uid('b'), type: 'stat', value: '{months}', label: ml("oygacha bo'lib to'lash", 'месяцев рассрочки', 'months of instalments', "mois d'échelonnement", 'mesi di rateizzazione', 'meses a plazos', 'Monate Ratenzahlung', 'aya kadar taksit') },
@@ -320,20 +321,22 @@
   };
 
   /* bosh sahifadagi standart tartib: yangi bo'limlar mos joylarda */
-  var ORDER = ['hero', 'marquee', 'apts', 'stars', 'art', 'tiles', 'projects', 'about', 'build', 'cta', 'calc', 'teaser', 'amb', 'contact', 'office', 'ig', 'bar', 'gallery'];
+  var ORDER = ['hero', 'marquee', 'apts', 'amb', 'art', 'tiles', 'projects', 'about', 'stars', 'build', 'cta', 'calc', 'teaser', 'contact', 'office', 'ig', 'bar', 'gallery'];
 
   function newTheme(name, palette) {
     var sec = {};
     NATIVE.forEach(function (n) { sec[n.id] = { type: 'native', on: true }; });
     ['stars', 'about', 'cta'].forEach(function (t) { sec[t] = DEF[t](); });
     return { id: uid('th'), name: name || 'Art House', at: Date.now(),
-      s: { palette: palette || 'emerald', colors: {}, font: 'cormorant', btn: 'square', surface: 'light' },
+      s: { palette: palette || 'emerald', colors: {}, font: 'geologica', fv: 2, btn: 'square', surface: 'light' },
       order: ORDER.slice(), sec: sec, text: {} };
   }
   /* yangi versiyada qo'shilgan asl bo'limlar eski mavzuga ham tushadi */
   function normalize(th) {
     th = th || newTheme();
-    th.s = Object.assign({ palette: 'emerald', colors: {}, font: 'cormorant', btn: 'square', surface: 'light' }, th.s || {});
+    th.s = Object.assign({ palette: 'emerald', colors: {}, font: 'geologica', btn: 'square', surface: 'light' }, th.s || {});
+    /* bir martalik: ICON uslubidagi shrift yangi standart (keyin kabinetdan istalgan shriftga qaytarish mumkin) */
+    if (th.s.fv !== 2) { if (th.s.font === 'cormorant') th.s.font = 'geologica'; th.s.fv = 2; }
     th.sec = th.sec || {}; th.order = (th.order || []).filter(function (id) { return th.sec[id] || NATIVE.some(function (n) { return n.id === id; }); });
     th.text = th.text || {};
     NATIVE.forEach(function (n) {

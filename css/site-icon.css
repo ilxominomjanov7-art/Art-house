@@ -1,0 +1,137 @@
+/* =====================================================================
+   ART HOUSE — icon-amsterdam.com uslubidagi qatlam (eng oxirgi yuklanadi)
+   1) «Ular Art House'ni tanladi» — taniqli insonlar kartalari (#ambSec)
+   2) «Qurilish jarayoni» — katta kinematografik dron videosi (#hiBuild)
+   3) Instagram — telefon ichida Reels animatsiyasi (#igStrip)
+   4) Shrift: Geologica, ICON kabi katta harfli sarlavhalar (html.ty-icon;
+      kabinet → Mavzular → Mavzu sozlamalari → Sarlavha shrifti). Ranglar o'zgarmaydi.
+   ===================================================================== */
+
+/* ---------- 1) taniqli insonlar ---------- */
+.amb2 {
+  --a-bg: #F5EFE2; --a-ink: #0E3A2D; --a-mut: #536B5F; --a-gold: #A5803A; --a-line: rgba(14, 58, 45, .12);
+  position: relative; padding: clamp(64px, 8vw, 112px) 0 clamp(56px, 7vw, 96px); background: var(--a-bg); color: var(--a-ink); overflow: hidden;
+}
+.amb2::before, .amb2::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(165, 128, 58, .5), transparent); }
+.amb2::before { top: 0; } .amb2::after { bottom: 0; }
+.amb2-head { max-width: 760px; margin: 0 auto clamp(28px, 4vw, 48px); text-align: center; }
+.amb2-head h2 { margin: 0; color: var(--a-ink) !important; font-family: 'Geologica', var(--f-body); font-weight: 500 !important; font-size: clamp(26px, 3.6vw, 42px) !important; line-height: 1.12; letter-spacing: .01em !important; text-transform: uppercase; max-width: none !important; }
+.amb2-head p { margin: 14px auto 0; max-width: 560px; color: var(--a-mut); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; }
+.amb2-rail { position: relative; max-width: 1360px; margin: 0 auto; }
+.amb2-track { display: flex; gap: clamp(14px, 1.6vw, 22px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: max(20px, calc((100vw - 1280px) / 2)); padding: 4px max(20px, calc((100vw - 1280px) / 2)) 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.amb2-track::-webkit-scrollbar { display: none; }
+.amb2-card { flex: 0 0 min(76vw, 300px); scroll-snap-align: start; color: inherit; text-decoration: none; transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }
+.amb2-wait .amb2-card { opacity: 0; transform: translateY(26px); }
+@media (min-width: 900px) { .amb2-card { flex-basis: calc((min(100vw, 1280px) - 40px - 3 * 22px) / 4); } }
+.amb2-ph { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: #E5DCC6; box-shadow: 0 26px 50px -34px rgba(14, 58, 45, .55); }
+.amb2-ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
+.amb2-card:hover .amb2-ph img { transform: scale(1.045); }
+.amb2-ph::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(5, 25, 18, .38)); pointer-events: none; }
+.amb2-badge { position: absolute; z-index: 1; left: 12px; bottom: 12px; max-width: calc(100% - 24px); padding: 7px 12px; border-radius: 999px; background: rgba(28, 28, 28, .58); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font: 500 11px/1.25 'Geologica', var(--f-body); letter-spacing: .07em; text-transform: uppercase; }
+.amb2-ig { position: absolute; z-index: 1; top: 12px; right: 12px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, .86); color: #111; }
+.amb2-ig .ic { width: 17px; height: 17px; }
+.amb2-cap { display: grid; gap: 4px; padding: 16px 2px 0; }
+.amb2-cap b { display: flex; align-items: center; gap: 7px; font: 500 clamp(18px, 1.6vw, 21px)/1.25 'Geologica', var(--f-body); color: var(--a-ink); }
+.amb2-v { width: 19px; height: 19px; flex: none; }
+.amb2-cap > span { font-size: 15px; line-height: 1.4; color: var(--a-mut); }
+.amb2-cap em { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-style: normal; font-size: 13px; color: var(--a-gold); letter-spacing: .01em; }
+.amb2-cap em .ic { width: 14px; height: 14px; }
+.amb2-nav { position: absolute; z-index: 2; top: calc((min(100vw, 1280px) - 40px - 66px) / 4 * 1.25 / 2); display: none; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: #FFFDF8; color: var(--a-ink); box-shadow: 0 12px 30px -12px rgba(14, 58, 45, .45); cursor: pointer; transition: opacity .3s, transform .3s; }
+.amb2-nav.prev { left: max(8px, calc((100vw - 1280px) / 2 - 24px)); } .amb2-nav.next { right: max(8px, calc((100vw - 1280px) / 2 - 24px)); }
+.amb2-nav:hover { transform: scale(1.06); }
+.amb2.at-start .amb2-nav.prev, .amb2.at-end .amb2-nav.next { opacity: 0; pointer-events: none; }
+@media (hover: hover) and (min-width: 900px) { .amb2-nav { display: grid; } }
+.amb2-dots { display: flex; justify-content: center; gap: 8px; margin-top: clamp(22px, 3vw, 34px); }
+.amb2-dots i { width: 12px; height: 5px; border-radius: 5px; background: rgba(14, 58, 45, .18); transition: width .35s var(--ease), background .35s; }
+.amb2-dots i.on { width: 40px; background: var(--a-gold); }
+
+/* ---------- 2) qurilish jarayoni — kinematografik dron videosi ---------- */
+.hb2 { display: block !important; max-width: none !important; margin: clamp(56px, 8vw, 110px) 0 0 !important; padding: 0 !important; }
+.hb2-stage { position: relative; isolation: isolate; overflow: hidden; background: #04170F; min-height: min(92svh, 920px); display: grid; align-items: end; }
+.hb2-amb { position: absolute; inset: -8%; z-index: -2; width: 116%; height: 116%; object-fit: cover; filter: blur(42px) saturate(1.25) brightness(.62); transform: scale(1.08); }
+.hb2-media { position: absolute; inset: 0; z-index: -1; margin: 0; }
+.hb2-media video { width: 100%; height: 100%; object-fit: cover; }
+.hb2-stage::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(4, 23, 15, .1) 0%, rgba(4, 23, 15, 0) 35%, rgba(4, 23, 15, .55) 66%, rgba(4, 23, 15, .92) 100%); pointer-events: none; }
+.hb2-copy { position: relative; padding: 0 22px clamp(36px, 6vw, 72px); max-width: 640px; color: #F7F0DE; transform: translateY(18px); opacity: .001; transition: transform 1.1s var(--ease), opacity 1.1s var(--ease); }
+.hb2-in .hb2-copy { transform: none; opacity: 1; }
+.hb2-copy .eyebrow { color: var(--gold) !important; }
+.hb2-copy h2 { margin: 6px 0 12px; color: #FFF8E6 !important; font-size: clamp(32px, 5vw, 64px) !important; line-height: 1.04; text-shadow: 0 2px 30px rgba(0, 0, 0, .35); }
+.hb2-copy p:not(.eyebrow) { margin: 0 0 24px; color: rgba(247, 240, 222, .88); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; max-width: 46ch; }
+.hb2-full { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, .35); border-radius: 50%; background: rgba(4, 23, 15, .38); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #fff; cursor: pointer; }
+.hb2-full .ic { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+@media (min-width: 900px) {
+  /* kompyuter: vertikal video asl o'lchamida o'ngda, orqada o'sha videoning «ambilight» foni, matn chapda */
+  .hb2-stage { min-height: 0; height: min(88vh, 900px); grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(40px, 6vw, 110px); padding: 0 max(40px, calc((100vw - 1280px) / 2)); }
+  .hb2-stage::after { background: linear-gradient(90deg, rgba(4, 23, 15, .82) 0%, rgba(4, 23, 15, .5) 48%, rgba(4, 23, 15, .2) 100%); }
+  .hb2-media { position: relative; inset: auto; z-index: 1; order: 2; height: calc(min(88vh, 900px) - 96px); aspect-ratio: 9 / 16; border-radius: 6px; overflow: hidden; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, .8), 0 0 0 1px rgba(230, 203, 139, .28); }
+  .hb2-copy { order: 1; padding: 0; max-width: 560px; }
+}
+
+/* ---------- 3) Instagram: telefon ichida Reels ---------- */
+.igs2 { position: relative; padding: clamp(72px, 9vw, 130px) 0; overflow: hidden; background: radial-gradient(700px 520px at 72% 50%, rgba(214, 36, 159, .1), transparent 70%), radial-gradient(600px 480px at 85% 30%, rgba(230, 203, 139, .14), transparent 70%); }
+.igs2-in { display: grid; gap: clamp(40px, 6vw, 90px); align-items: center; max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+@media (min-width: 900px) { .igs2-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 0 40px; } }
+.igs2-copy { text-align: center; justify-items: center; display: grid; }
+@media (min-width: 900px) { .igs2-copy { text-align: left; justify-items: start; } }
+.igs2-logo { display: grid; place-items: center; width: 74px; height: 74px; margin-bottom: 18px; border-radius: 22px; background: linear-gradient(145deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .02)); box-shadow: 0 0 0 1px rgba(230, 203, 139, .45), 0 20px 50px -18px rgba(214, 36, 159, .55); animation: igsPulse 3.2s ease-in-out infinite; }
+.igs2-logo svg { width: 46px; height: 46px; }
+@keyframes igsPulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(230, 203, 139, .45), 0 20px 50px -18px rgba(214, 36, 159, .55); } 50% { box-shadow: 0 0 0 1px rgba(230, 203, 139, .7), 0 24px 64px -14px rgba(253, 89, 73, .7); } }
+.igs2-copy h2 { margin: 4px 0 14px; font-size: clamp(26px, 3.2vw, 42px) !important; white-space: nowrap; }
+.igs2-lead { margin: 0 0 26px; max-width: 44ch; color: var(--mut); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; }
+.igs2-btn { gap: 10px; min-height: 50px !important; padding: 0 26px !important; }
+.igs2-btn svg { width: 20px; height: 20px; }
+.igs2-stage { position: relative; display: grid; place-items: center; min-height: 600px; }
+.igs2-glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(230, 203, 139, .35), rgba(214, 36, 159, .12) 45%, transparent 70%); filter: blur(10px); animation: igsGlow 6s ease-in-out infinite; }
+@keyframes igsGlow { 50% { transform: scale(1.12); opacity: .75; } }
+.igs2-peek { position: absolute; width: 150px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .7); opacity: .9; }
+.igs2-peek.l { left: calc(50% - 205px); top: 80px; transform: rotate(-9deg); animation: igsFloatL 7s ease-in-out infinite; }
+.igs2-peek.r { right: calc(50% - 205px); bottom: 70px; transform: rotate(8deg); animation: igsFloatR 8s ease-in-out infinite; }
+@keyframes igsFloatL { 50% { transform: rotate(-6deg) translateY(-14px); } }
+@keyframes igsFloatR { 50% { transform: rotate(11deg) translateY(12px); } }
+.igs2-phone { position: relative; z-index: 1; width: 280px; aspect-ratio: 9 / 19.3; padding: 11px; border-radius: 46px; background: linear-gradient(145deg, #2C2C2E, #0D0D0F 55%, #2A2A2C); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .12), 0 0 0 1px rgba(230, 203, 139, .35), 0 60px 110px -40px rgba(0, 0, 0, .85), 0 30px 70px -40px rgba(214, 36, 159, .45); animation: igsPhone 6s ease-in-out infinite; }
+@keyframes igsPhone { 50% { transform: translateY(-12px) rotate(.6deg); } }
+@media (prefers-reduced-motion: reduce) { .igs2-phone, .igs2-peek, .igs2-glow, .igs2-logo { animation: none !important; } }
+.igs2-island { position: absolute; z-index: 3; top: 20px; left: 50%; width: 88px; height: 25px; margin-left: -44px; border-radius: 20px; background: #000; }
+.igs2-screen { position: relative; display: block; height: 100%; overflow: hidden; border-radius: 36px; background: #000; color: #fff; text-decoration: none; }
+.igs2-v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: translateY(100%); transition: transform .7s var(--ease), opacity .7s; }
+.igs2-v.on { opacity: 1; transform: none; }
+.igs2-v.out { opacity: 1; transform: translateY(-100%); }
+.igs2-screen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .35), transparent 18%, transparent 62%, rgba(0, 0, 0, .65)); pointer-events: none; }
+.igs2-top, .igs2-side, .igs2-bot, .igs2-hearts, .igs2-prog { position: absolute; z-index: 2; }
+.igs2-top { top: 52px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; font: 600 17px/1 system-ui, -apple-system, sans-serif; }
+.igs2-top svg, .igs2-side svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .4)); }
+.igs2-side { right: 12px; bottom: 112px; display: grid; gap: 20px; }
+.igs2-side i:first-child svg { fill: #FF3040; stroke: #FF3040; animation: igsBeat 1.5s ease-in-out infinite; }
+@keyframes igsBeat { 15% { transform: scale(1.22); } 30% { transform: scale(1); } }
+.igs2-bot { left: 14px; right: 52px; bottom: 26px; display: grid; gap: 8px; font: 13px/1.3 system-ui, -apple-system, sans-serif; text-shadow: 0 1px 3px rgba(0, 0, 0, .5); }
+.igs2-who { display: flex; align-items: center; gap: 8px; }
+.igs2-av { width: 30px; height: 30px; padding: 4px; border-radius: 50%; background: #0A3B2C; box-shadow: 0 0 0 1.5px #fff; fill: none; stroke: #E6CB8B; }
+.igs2-who b { font-weight: 600; font-size: 13px; }
+.igs2-who em { padding: 3px 9px; border: 1px solid rgba(255, 255, 255, .8); border-radius: 7px; font-style: normal; font-size: 12px; font-weight: 600; }
+.igs2-cap { opacity: .9; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.igs2-prog { left: 0; right: 0; bottom: 0; height: 2px; background: rgba(255, 255, 255, .25); }
+.igs2-prog i { display: block; height: 100%; background: #fff; transform-origin: 0 50%; transform: scaleX(0); }
+.igs2-hearts { right: 14px; bottom: 300px; width: 30px; height: 0; }
+.igs2-hearts i { position: absolute; bottom: 0; left: 0; width: 26px; height: 26px; animation: igsHeart 2.6s ease-out forwards; }
+.igs2-hearts svg { width: 100%; height: 100%; fill: #FF3040; filter: drop-shadow(0 2px 6px rgba(255, 48, 64, .5)); }
+@keyframes igsHeart { 0% { transform: translate(0, 0) scale(.3) rotate(0); opacity: 0; } 15% { opacity: 1; transform: translate(0, -20px) scale(1.1) rotate(var(--r)); } 100% { transform: translate(var(--x), -220px) scale(.8) rotate(var(--r)); opacity: 0; } }
+.igs2-snd { position: absolute; z-index: 4; top: 92px; right: 22px; display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .45); color: #fff; cursor: pointer; }
+.igs2-snd svg { width: 17px; height: 17px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 420px) { .igs2-stage { min-height: 560px; } .igs2-phone { width: 258px; } .igs2-peek { width: 120px; } .igs2-peek.l { left: -6px; } .igs2-peek.r { right: -6px; } }
+
+/* ---------- 4) shrift: Geologica, ICON uslubidagi sarlavhalar (ranglar o'zgarmaydi) ---------- */
+html.ty-icon { --f-display: 'Geologica', 'Manrope', system-ui, sans-serif; --f-body: 'Geologica', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html.ty-icon body { font-weight: 300; }
+html.ty-icon b, html.ty-icon strong { font-weight: 500; }
+html.ty-icon h2, html.ty-icon .ths h2, html.ty-icon .h-page, html.ty-icon .sec-head h2, html.ty-icon .hi-art h2, html.ty-icon .hi-office h2, html.ty-icon .hi-apts h2, html.ty-icon #igStrip h2 {
+  font-family: var(--f-display) !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: .01em !important; line-height: 1.12 !important; font-size: clamp(26px, 3.6vw, 44px) !important; max-width: none;
+}
+html.ty-icon .hero h1, html.ty-icon .hero .h1, html.ty-icon .hero-title { font-family: var(--f-display) !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: .01em !important; line-height: 1.06 !important; }
+html.ty-icon h3, html.ty-icon .card h3 { font-family: var(--f-display) !important; font-weight: 500 !important; letter-spacing: 0 !important; }
+html.ty-icon h2 em, html.ty-icon h1 em, html.ty-icon h3 em { font-style: normal; color: var(--gold); }
+html.ty-icon .eyebrow { font-family: var(--f-body) !important; font-weight: 500 !important; letter-spacing: .16em !important; }
+html.ty-icon #igStrip .igs2-copy h2 { text-transform: none; letter-spacing: 0 !important; font-size: clamp(26px, 3.2vw, 42px) !important; }
+html.ty-icon .hero em, html.ty-icon .hero i, html.ty-icon .hero-sub { font-style: normal !important; letter-spacing: .14em; }
+html.ty-icon .art-cover b { font-family: var(--f-display) !important; font-weight: 500 !important; }
+html.ty-icon .ths-proof b, html.ty-icon .ths-about-badge b, html.ty-icon [data-count], html.ty-icon .stats b, html.ty-icon .about-nums b { font-family: var(--f-display) !important; font-weight: 400 !important; }
+html.ty-icon .hi-btn, html.ty-icon .btn { font-family: var(--f-body); font-weight: 500; }

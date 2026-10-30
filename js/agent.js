@@ -34,7 +34,7 @@
   function L() { return CX && CX.ml && D[CX.ml === 'cy' ? 'uz' : CX.ml] ? CX.ml : I18N.lang; }
   function T(k, o) {
     var l = L(), d = D[l === 'cy' ? 'uz' : l] || D.uz, s = d[k] != null ? d[k] : D.uz[k];
-    s = String(s).replace(/\{(\w+)\}/g, function (m, x) { return o && o[x] != null ? o[x] : m; });
+    s = String(s).replace(/\{(\w+)\}/g, function (m, x) { return o && o[x] != null ? o[x] : x === 'years' ? CFG.EXPERIENCE_YEARS : m; });
     return l === 'cy' ? I18N.toCyr(s) : s;
   }
   var usd = function (n) { return I18N.usd(n); };
