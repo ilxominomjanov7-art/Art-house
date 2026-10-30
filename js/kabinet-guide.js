@@ -5,7 +5,7 @@
    • Boblar ro'yxati (js/guide-chapters.js) — bosilganda video o'sha joyga o'tadi.
    • Kirish oynasida «Video yo'riqnoma» tugmasi: telefonda — telefondan kirish,
      kompyuterda — kompyuterdan kirish bobidan boshlanadi.
-   Videolar: guide/kabinet-<til>.mp4 (kabinet.html bilan bir papkada).
+   Videolar: guide/kabinet-<til>.mp4 (kabinet.html bilan bir papkada; topilmasa — bir pog'ona yuqoridagi guide/, ya'ni dist/ uchun).
    =================================================================== */
 (function(){
 const K=window.AHK;if(!K)return;
@@ -25,7 +25,7 @@ function player(box,l,startCh){const C=(G()[l]||{}).ch||[];
   '<aside class="gd-side"><div class="gd-langs" role="group" aria-label="Video tili">'+L8.map(x=>'<button type="button" data-gl="'+x+'" aria-pressed="'+(x===l)+'"><b>'+x.toUpperCase()+'</b><span class="nt9">'+LN[x]+'</span></button>').join('')+'</div>'+
   (C.length?'<p class="gd-h">Boblar</p><ol class="gd-ch">'+C.map((c,i)=>'<li><button type="button" data-gt="'+c.t+'" data-gi="'+i+'"><em>'+mmss(c.t)+'</em><span class="nt9">'+esc(c.title)+'</span></button></li>').join('')+'</ol>':'')+'</aside></div>';
  const v=box.querySelector('video'),ol=box.querySelector('.gd-ch');
- v.addEventListener('error',()=>{box.querySelector('.gd-miss').hidden=false;v.hidden=true});
+ v.addEventListener('error',()=>{if(!v.dataset.fb){v.dataset.fb=1;v.src='../'+src(l);return}box.querySelector('.gd-miss').hidden=false;v.hidden=true}); /* dist/kabinet.html → ../guide/ */
  v.addEventListener('timeupdate',()=>{if(!ol)return;let k=-1;C.forEach((c,i)=>{if(v.currentTime+.4>=c.t)k=i});ol.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on',i===k))});
  if(startCh){const c=C.find(x=>x.id===startCh);if(c)v.addEventListener('loadedmetadata',()=>{v.currentTime=c.t},{once:true})}
  box.querySelector('.gd').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
@@ -36,7 +36,7 @@ function player(box,l,startCh){const C=(G()[l]||{}).ch||[];
 /* ---------- menyu: «Yordam → Video yo'riqnoma» (barcha xodimlar uchun) ---------- */
 NG.push(['Yordam',[['Y','play2',"Video yo'riqnoma"]]]);
 K.addView('Y',vY);
-function vY(){const mn=document.getElementById('mn'),l=VL||kl(),d=G().dur&&G().dur[l];
+function vY(){const mn=document.getElementById('mn'),l=VL||kl(),d=(G()[l]||{}).dur;
  mn.innerHTML='<div class="hh"><div><h2>Video yo\'riqnoma</h2><p class="lead"><span>Telefon va kompyuterdan kirish, kabinetning barcha bo\'limlari va sozlamalari</span>'+(d?' — '+Math.round(d/60)+' '+TX('daqiqa'):'')+'. <span>Video kabinet tilida ochiladi; boshqa tilni o\'ngdan tanlang.</span></p></div></div><div class="card gd-card" id="gdBox"></div>';
  player(document.getElementById('gdBox'),l)}
 addEventListener('langchange',()=>{VL=null;if(K.VW()==='Y'&&K.tok())vY()});

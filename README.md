@@ -78,8 +78,11 @@ ispan, nemis, turk.
 - Boblar ro'yxati (Bosh sahifa, Xabarlar, … Sozlamalar) — bosilganda video o'sha joyga o'tadi.
 - Kirish oynasidan ochilsa: telefonda — «Telefondan kirish», kompyuterda — «Kompyuterdan kirish» bobidan boshlanadi.
 
-Fayllar: `guide/kabinet-<til>.mp4` (kabinet.html bilan bir papkada bo'lishi kerak) va `js/guide-chapters.js`.
-Bitta faylli `dist/` versiyasida ham `guide/` papkasini `dist/` ichiga nusxalang.
+Fayllar: `guide/kabinet-<til>.mp4` (kabinet.html bilan bir papkada) va `js/guide-chapters.js`.
+Bitta faylli `dist/kabinet.html` videoni `dist/guide/` dan, topilmasa — bir pog'ona yuqoridagi `guide/` dan oladi;
+faqat `dist/` ni alohida joylasangiz, `guide/` papkasini uning ichiga nusxalang.
+Boblarga o'tish uchun veb-server Range so'rovlarini qo'llashi kerak (`node server/server.js`, nginx, Apache,
+hosting xizmatlari — qo'llaydi; `python -m http.server` — qo'llamaydi, video faqat boshidan o'ynaydi).
 
 Kabinet o'zgargach videoni qayta yaratish: `tools/guide/run.sh` (ssenariy va matnlar — `tools/guide/script.js`,
 namunaviy ma'lumotlar — `tools/guide/seed.js`). Talablar: Node + Playwright, Python + `edge-tts`, ffmpeg (libass).
