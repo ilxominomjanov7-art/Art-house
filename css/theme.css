@@ -202,7 +202,7 @@
 .ths-hl span { position: absolute; top: 8px; left: 8px; padding: 5px 10px; border-radius: 3px; background: #D9B970; color: #0B2E23; font: 700 11px/1 var(--f-body, sans-serif); letter-spacing: .08em; text-transform: uppercase; }
 .ths-hl.flash { animation: thsFlash 1.2s ease 1; }
 @keyframes thsFlash { 0%, 100% { background: rgba(217, 185, 112, .05); } 40% { background: rgba(217, 185, 112, .22); } }
-.ths-preview #ai, .ths-preview #aib, .ths-preview #aip { display: none !important; }
+.ths-preview #ai, .ths-preview #ain, .ths-preview #aib, .ths-preview #aip, .ths-preview #aipO, .ths-preview #aipT { display: none !important; }
 
 /* ---------- moslashuvchan ---------- */
 @media (max-width: 960px) {

@@ -10,7 +10,9 @@ Art House — 15 yillik tajriba, 30 dan ortiq ko'p qavatli uy loyihasi, bosh ofi
 index.html        — sayt: 7 bo'lim + «Mijozlar izohlari»; bosh sahifa bo'limlari mavzu orqali boshqariladi
 kabinet.html      — kabinet: Bosh sahifa, Xabarlar, Art House chati, Mijozlar izohlari, Video qo'ng'iroqlar,
                     Mijozlar bazasi, Xonadonlar, To'lovlar, Chegirmalar, Statistika, AI Agent,
-                    Mavzular (Shopify uslubidagi tahrirlagich), Mening profilim, Menejerlar va ballar, Sozlamalar
+                    Mavzular (Shopify uslubidagi tahrirlagich), Mening profilim, Menejerlar va ballar, Sozlamalar,
+                    Video yo'riqnoma (8 til)
+guide/            — kabinet video-yo'riqnomasi: kabinet-uz.mp4, kabinet-ru.mp4 … (tools/guide/run.sh yaratadi)
 css/base.css, site*.css, home-icon.css — sayt uslublari (oxirgi qatlam: site-prime.css)
 css/theme.css     — mavzu bo'limlari: «Yulduzlar va mijozlar tanlovi», «Biz haqimizda», «Taklif va CTA» …
 css/kabinet*.css  — kabinet uslublari; kabinet-themes.css — «Mavzular» sahifasi va tahrirlagich
@@ -23,6 +25,7 @@ js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.j
 js/agent.js       — saytdagi «Art House» AI maslahatchi (o'ng tomonda) + js/agent-dict.js (8 til)
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
+js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
 js/masterplan.js, lux-sections.js, home-icon.js — bosh reja, e'lon qatori, bosh sahifa bloklari
 js/store.js       — ma'lumotlar: localStorage + BroadcastChannel yoki server (REST + SSE)
 js/media.js       — getUserMedia (mikrofon/kamera ruxsati) va WebRTC qo'ng'iroq
@@ -62,6 +65,26 @@ Matnlarda `{years}`, `{projects}`, `{months}` yozilsa, ular «Raqamlar» qiymatl
 orqali, server rejimida — barcha qurilmalarda SSE (`/api/events`) va `/api/cms` orqali. Serversiz rejimda yuklangan
 video va rasmlar faqat shu brauzerda saqlanadi — boshqa qurilmalar uchun server yoki YouTube/Instagram havolasidan
 foydalaning.
+
+## Video yo'riqnoma (8 til, ovozli)
+
+Kabinet → **Yordam → Video yo'riqnoma** (barcha xodimlar uchun) va kirish oynasidagi **«Video yo'riqnoma»** tugmasi.
+Taxminan 7–8 daqiqalik video: telefondan va kompyuterdan kirish, kabinetning barcha bo'limlari va
+Sozlamalarning har bir yorlig'i. Ovozli izoh va subtitrlar 8 tilda: o'zbek, rus, ingliz, fransuz, italyan,
+ispan, nemis, turk.
+
+- Video **kabinet tilida** ochiladi: menejer globus orqali ruschani tanlasa — ruscha video chiqadi
+  (o'zbek kirill → o'zbekcha). Boshqa tilni video yonidan ham tanlash mumkin.
+- Boblar ro'yxati (Bosh sahifa, Xabarlar, … Sozlamalar) — bosilganda video o'sha joyga o'tadi.
+- Kirish oynasidan ochilsa: telefonda — «Telefondan kirish», kompyuterda — «Kompyuterdan kirish» bobidan boshlanadi.
+
+Fayllar: `guide/kabinet-<til>.mp4` (kabinet.html bilan bir papkada bo'lishi kerak) va `js/guide-chapters.js`.
+Bitta faylli `dist/` versiyasida ham `guide/` papkasini `dist/` ichiga nusxalang.
+
+Kabinet o'zgargach videoni qayta yaratish: `tools/guide/run.sh` (ssenariy va matnlar — `tools/guide/script.js`,
+namunaviy ma'lumotlar — `tools/guide/seed.js`). Talablar: Node + Playwright, Python + `edge-tts`, ffmpeg (libass).
+Ovozlar Microsoft Edge neyron ovozlari (edge-tts) bilan yaratilgan; tijorat maqsadida keng tarqatishdan oldin
+ularning foydalanish shartlarini tekshiring yoki diktor ovozi bilan almashtiring.
 
 ## Ishga tushirish
 
