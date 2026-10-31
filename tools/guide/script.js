@@ -117,7 +117,7 @@ const PHONE = [
 
 const z = (k, ...a) => ({ do: async h => { await h.click('[data-zt="' + k + '"]', 900); await h.scrollTop(); }, s: t(...a) });
 const DESKTOP = [
-  { ch: 'login-desktop', do: async h => { await h.wait(500); await h.point('.top-cab'); }, s: t(
+  { ch: 'login-desktop', do: async h => { await h.wait(500); await h.point('.top-cab, .top-act a[href="kabinet.html"], .hi-sbtn'); }, s: t(
     "Endi kompyuterda. Saytning yuqori o'ng burchagidagi Kabinet tugmasini bosing.",
     'Теперь на компьютере. Нажмите кнопку «Кабинет» в правом верхнем углу сайта.',
     'Now on a computer. Click the Dashboard button in the top right corner of the site.',
@@ -126,7 +126,7 @@ const DESKTOP = [
     'Ahora en el ordenador. Haga clic en el botón «Panel» de la esquina superior derecha del sitio.',
     'Jetzt am Computer. Klicken Sie oben rechts auf der Website auf „Kundenbereich“.',
     'Şimdi bilgisayarda. Sitenin sağ üst köşesindeki «Panel» düğmesine tıklayın.') },
-  { pre: async h => { await h.click('.top-cab', 300); await h.wait(4200); }, do: async h => { await h.point('#gdOpen'); }, s: t(
+  { pre: async h => { const ok = await h.page.evaluate(() => { const e = document.querySelector('.top-cab'); return !!(e && e.offsetParent); }); if (ok) await h.click('.top-cab', 300); else await h.page.evaluate(() => { location.href = 'kabinet.html'; }); await h.wait(4200); }, do: async h => { await h.point('#gdOpen'); }, s: t(
     "Kirish oynasidagi Video yo'riqnoma tugmasi aynan shu videoni ochadi.",
     'Кнопка «Видеоинструкция» в окне входа открывает это же видео.',
     'The Video guide button on the sign-in screen opens this very video.',
