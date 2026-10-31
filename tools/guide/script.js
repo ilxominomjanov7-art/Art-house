@@ -126,7 +126,7 @@ const DESKTOP = [
     'Ahora en el ordenador. Haga clic en el botón «Panel» de la esquina superior derecha del sitio.',
     'Jetzt am Computer. Klicken Sie oben rechts auf der Website auf „Kundenbereich“.',
     'Şimdi bilgisayarda. Sitenin sağ üst köşesindeki «Panel» düğmesine tıklayın.') },
-  { pre: async h => { const ok = await h.page.evaluate(() => { const e = document.querySelector('.top-cab'); return !!(e && e.offsetParent); }); if (ok) await h.click('.top-cab', 300); else await h.page.evaluate(() => { location.href = 'kabinet.html'; }); await h.wait(4200); }, do: async h => { await h.point('#gdOpen'); }, s: t(
+  { pre: async h => { await h.page.evaluate(() => { location.href = 'kabinet.html'; }); await h.wait(4200); }, do: async h => { await h.point('#gdOpen'); }, s: t(
     "Kirish oynasidagi Video yo'riqnoma tugmasi aynan shu videoni ochadi.",
     'Кнопка «Видеоинструкция» в окне входа открывает это же видео.',
     'The Video guide button on the sign-in screen opens this very video.',
