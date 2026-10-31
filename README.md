@@ -23,7 +23,8 @@ js/kabinet-themes.js — kabinetdagi «Mavzular» sahifasi va tahrirlagich (+ js
 js/cms-apply.js, cms-text.js, cms-site.js — Sozlamalar (CMS) o'zgarishlarini saytga qo'llash
 js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.js, js/i18n-es-de-tr.js
 js/agent.js       — saytdagi «AI maslahatchi» (o'ng tomonda va bosh sahifa kartasida) + js/agent-dict.js (8 til)
-js/funnel.js      — sotuv oynalari (taklif kalit-kartasi, bo'lib to'lash kalkulyatori) va afzalliklar lentasi (+ css/funnel.css)
+js/funnel.js      — sotuv oynalari (taklif kalit-kartasi, bo'lib to'lash kalkulyatori) va afzalliklar lentasi (+ css/funnel.css, js/funnel-dict.js)
+js/kabinet-funnel.js — kabinetdagi «Sotuv oynalari» sahifasi: qoidalar, matnlar, rasmlar, ikonkalar, «Asliga qaytarish»
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
@@ -152,13 +153,30 @@ Kabinet → Mavzular → Moslashtirish → Mavzu sozlamalari → Sarlavha shrift
 ## Sotuv oynalari va afzalliklar lentasi
 
 Dizayn Figma faylida: «Art House · Sotuv oynalari va afzalliklar» (telefon va kompyuter, komponentlar va ranglar bilan).
-Kod: `js/funnel.js` + `css/funnel.css`. Matnlar 8 tilda; kabinet → Sozlamalar → Matnlar orqali o'zgartiriladi.
+Kod: `js/funnel.js` + `css/funnel.css` (sayt), `js/funnel-dict.js` (matnlar 8 tilda, ikonkalar, standart sozlamalar),
+`js/kabinet-funnel.js` + `css/kabinet-funnel.css` (kabinet).
 
-- **Taklif oynasi.** Mijoz kalit-kartani barmog'i bilan suradi (yoki «kartani ochish»ni bosadi): eng arzon xonadonning
+**Kabinet → Sayt → «Sotuv oynalari»** — hammasi shu yerda o'zgartiriladi va saytda sahifa yangilanmasdan ko'rinadi:
+- *Qachon chiqadi:* har oynani yoqish/o'chirish, kutish (soniya), surish (ekran), ikkinchi oyna oralig'i, yopilgandan keyin
+  necha kun chiqmasligi, bir tashrifdagi eng ko'p soni, lenta tezligi.
+- *Taklif oynasi:* summa (bo'sh — avtomatik), kartadagi nom va raqam, kompyuterdagi rasm, yulduzlar qatori, ishonch qatorlari
+  (ikonka yoki o'z rasmingiz + matn 8 tilda) va oynaning barcha matnlari 8 tilda.
+- *Kalkulyator oynasi:* barcha matnlar 8 tilda (xonadonlar, narx, foiz va muddatlar — Sozlamalar va Xonadonlar'dan).
+- *Afzalliklar lentasi:* bandlar (21 ta ikonkadan biri yoki o'z rasmingiz, sarlavha va matn 8 tilda), tartib, yashirish,
+  qo'shish, o'chirish; lentani yoqish/o'chirish.
+- Har qismda **«Asliga qaytarish»** — kabinetdagi o'zgarishlar o'chadi, standart holat tiklanadi.
+- Saqlash: `'ah_cms'.funnel`. Yangi til qo'shilganda bu matnlar ham AI bilan tarjima qilinadi.
+
+**Statistika va mijozlar bazasi.** Har arizada manba saqlanadi va ko'rinadi: Taklif oynasi, Kalkulyator oynasi, AI maslahatchi,
+Sayt: band qilish, Qayta qo'ng'iroq, Kabinet (qo'lda). Mijozlar bazasida har mijoz yonida manba belgisi va manba bo'yicha filtr.
+Statistika → «Mijozlar qayerdan keldi»: har manbadan nechta so'rov, nechtasi sotib oldi, konversiya; oynalar voronkasi:
+taklif ko'rsatildi → kartani ochdi → ism va telefon qoldirdi, kalkulyator ko'rsatildi → ariza (`/track`: `po`, `pr`, `pq`).
+
+- **Taklif oynasi.** Mijoz kalit-kartaning oltin folgasini (gilosh naqshi, o'yma yozuv) barmog'i bilan suradi (yoki «kartani ochish»ni bosadi): eng arzon xonadonning
   boshlang'ich to'lovi ochiladi (hozir $15 060 = 45,6 m² × 1 100 $ × 30%; narx yoki foiz Sozlamalar'da o'zgarsa, raqam ham o'zgaradi).
   Keyin ism va telefon: ariza `via: 'popup'` bilan kabinet → Mijozlar bazasiga («Taklif oynasi» belgisi) va Telegram guruhga
   («🎁 Saytdagi taklif oynasidan») boradi.
-- **Bo'lib to'lash kalkulyatori oynasi.** Necha xonali, maydon, boshlang'ich to'lov, muddat → oylik to'lov → «Shu shart bilan
+- **Bo'lib to'lash kalkulyatori oynasi.** 4 ta raqamli qadam: necha xonali, maydon, boshlang'ich to'lov, muddat → hisob (narx, boshlang'ich, qolgan summa, oylik × oy) → «Shu shart bilan
   band qilish» → ism va telefon. Ariza `via: 'popup-calc'`, xonadon, narx, muddat va oylik to'lov bilan. Bosh bannerdagi
   «To'lovni hisoblash» tugmasi shu oynani ochadi.
 - **Qachon chiqadi.** Kirgan zahoti emas: mijoz kamida 12 soniya saytda bo'lib, bir ekrandan ko'proq pastga surgandan keyin

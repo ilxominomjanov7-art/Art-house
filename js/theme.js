@@ -306,7 +306,7 @@
     return o === '' || o == null ? undefined : o;
   }
   function rest(c) {
-    c = TH.clone(c || {}); delete c.themes; delete c.v; delete c.stars; delete c.ig; /* yulduzlar va Instagram videolari ham joyida yangilanadi (js/lux-sections.js) */
+    c = TH.clone(c || {}); delete c.themes; delete c.v; delete c.stars; delete c.ig; delete c.funnel; /* yulduzlar, Instagram videolari va sotuv oynalari ham joyida yangilanadi (js/lux-sections.js, js/funnel.js) */
     if (c.cfg) NUMK.forEach(function (k) { delete c.cfg[k]; });
     if (c.media && c.media.place === 'home') delete c.media.place; /* kabinet qo'yadigan standart qiymat */
     return JSON.stringify(prune(c) || {});
@@ -314,10 +314,11 @@
   function live(json) {
     var N; try { N = JSON.parse(json || 'null'); } catch (e) { return false; }
     if (!N || rest(N) !== rest(window.AH_CMS)) return false;
-    var O = window.AH_CMS || {}, ch = function (k) { return JSON.stringify(N[k] || null) !== JSON.stringify(O[k] || null); }, st = ch('stars'), ig = ch('ig');
+    var O = window.AH_CMS || {}, ch = function (k) { return JSON.stringify(N[k] || null) !== JSON.stringify(O[k] || null); }, st = ch('stars'), ig = ch('ig'), fn = ch('funnel');
     window.AH_CMS = N;
     if (st && window.AH_AMB) AH_AMB();
     if (ig && window.AH_IG) AH_IG();
+    if ((fn || st) && window.AH_FUNNEL) AH_FUNNEL();
     if (!DRAFT) setTheme(TH.liveOf(N), N.cfg || {});
     return true;
   }

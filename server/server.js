@@ -225,7 +225,7 @@ async function crm(req, res, p) {
   if (p === '/patches' && req.method === 'GET') return send(res, 200, []);
   if (p === '/track' && req.method === 'POST') {
     let b = {}; try { b = JSON.parse((await readBody(req, 2048)).toString('utf8')); } catch (e) {}
-    const e = ['v', 'pv', 'c', 'l'].includes(b.e) ? b.e : null; if (!e) return send(res, 204);
+    const e = ['v', 'pv', 'c', 'l', 'po', 'pq', 'pr'].includes(b.e) ? b.e : null; /* po/pq — taklif/kalkulyator oynasi ko'rsatildi, pr — karta ochildi */ if (!e) return send(res, 204);
     const d = C.days[dk(Date.now())] || (C.days[dk(Date.now())] = { v: 0, pv: 0, c: 0, l: 0 }); d[e] = (d[e] || 0) + 1; save(); return send(res, 204);
   }
   if (p === '/lead' && req.method === 'POST') {

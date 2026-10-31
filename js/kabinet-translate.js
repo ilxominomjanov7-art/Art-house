@@ -5,6 +5,7 @@
    • Instagram Reels subtitrlari ('ah_cms'.ig.reels[].cap[].t[til])
    • yulduzlar belgisi va kasbi, bo'lim sarlavhalari ('ah_cms'.stars)
    • jonli mavzuning yangi bo'limlari (sarlavha, matn, tugmalar, bloklar)
+   • sotuv oynalari: kabinetda yozilgan matnlar, ishonch qatorlari va afzalliklar lentasi bandlari ('ah_cms'.funnel)
    Manba — inglizcha (bo'lmasa o'zbekcha). Server va ANTHROPIC_API_KEY bo'lmasa — tushunarli xabar.
    =================================================================== */
 (function(){
@@ -28,7 +29,7 @@ async function call(to,items,step){const keys=Object.keys(items),out={};
  return out}
 
 /* langs — tarjima qilinadigan tillar; o.parts — ['site','ig','stars','theme'] (standart — hammasi) */
-async function autoTr(langs,o){o=o||{};const parts=o.parts||['site','ig','stars','theme'];
+async function autoTr(langs,o){o=o||{};const parts=o.parts||['site','ig','stars','theme','funnel'];
  if(!API){kToast(TX("AI tarjima uchun sayt server bilan ishlashi va serverda ANTHROPIC_API_KEY bo'lishi kerak (README → «AI tarjima»)."));return false}
  const S=parts.includes('site')?await K.cmSnap():{};let done=0;
  for(const to of langs){if(to==='uz'||to==='cy')continue;
@@ -37,6 +38,10 @@ async function autoTr(langs,o){o=o||{};const parts=o.parts||['site','ig','stars'
   if(parts.includes('ig'))reels.forEach((r,i)=>(r.cap||[]).forEach((cu,j)=>{if(cu.t&&!cu.t[to]&&src(cu.t))items['r|'+i+'|'+j]=src(cu.t)}));
   if(parts.includes('stars')){stars.forEach((a,i)=>['badge','role'].forEach(f=>{const v=a[f];if(v&&typeof v==='object'&&!v[to]&&src(v))items['s|'+i+'|'+f]=src(v)}));
    const st=c0.stars||{};['title','sub'].forEach(f=>{if(st[f]&&!st[f][to]&&src(st[f]))items['S|'+f]=src(st[f])})}
+  /* sotuv oynalari: kabinetda yozilgan matnlar va ro'yxat bandlari (ishonch qatorlari, afzalliklar lentasi) */
+  const fu=c0.funnel||{};
+  if(parts.includes('funnel')){Object.keys(fu.text||{}).forEach(k=>{const v=fu.text[k];if(v&&!v[to]&&src(v))items['f|t|'+k]=src(v)});
+   [['tr',(fu.offer||{}).trust],['us',(fu.usp||{}).items]].forEach(([g,L])=>(Array.isArray(L)?L:[]).forEach((it,i)=>['t','d'].forEach(fl=>{const v=it[fl];if(v&&typeof v==='object'&&!v[to]&&src(v))items['f|'+g+'|'+i+'|'+fl]=src(v)})))}
   if(parts.includes('theme')&&th)Object.keys(th.sec||{}).forEach(id=>{const sc=th.sec[id];if(!sc||sc.type==='native')return;
    Object.keys(sc.s||{}).forEach(f=>{const v=sc.s[f];if(v&&typeof v==='object'&&'uz' in v&&!v[to]&&src(v))items['h|'+id+'|s|'+f]=src(v)});
    (sc.b||[]).forEach((bl,bi)=>Object.keys(bl).forEach(f=>{const v=bl[f];if(v&&typeof v==='object'&&'uz' in v&&!v[to]&&src(v))items['h|'+id+'|b|'+bi+'|'+f]=src(v)}))});
@@ -52,6 +57,8 @@ async function autoTr(langs,o){o=o||{};const parts=o.parts||['site','ig','stars'
    else if(p[0]==='r'){const cu=((R2[+p[1]]||{}).cap||[])[+p[2]];if(cu&&cu.t){cu.t[to]=v;ig=1}}
    else if(p[0]==='s'){const a=A2[+p[1]];if(a&&a[p[2]]&&typeof a[p[2]]==='object'){a[p[2]][to]=v;sa=1}}
    else if(p[0]==='S'){c.stars=c.stars||{};c.stars[p[1]]=Object.assign({},c.stars[p[1]]||{},{[to]:v})}
+   else if(p[0]==='f'){c.funnel=c.funnel||{};if(p[1]==='t'){c.funnel.text=c.funnel.text||{};c.funnel.text[p[2]]=Object.assign({},c.funnel.text[p[2]]||{},{[to]:v})}
+    else{const L=p[1]==='tr'?(c.funnel.offer||{}).trust:(c.funnel.usp||{}).items,it=Array.isArray(L)&&L[+p[2]];if(it&&it[p[3]]&&typeof it[p[3]]==='object')it[p[3]][to]=v}}
    else if(p[0]==='h'&&th2){const sc=th2.sec[p[1]];if(!sc)return;const o2=p[2]==='s'?(sc.s||{})[p[3]]:((sc.b||[])[+p[3]]||{})[p[4]];if(o2&&typeof o2==='object')o2[to]=v}});
   if(ig)c.ig=Object.assign({},c.ig||{},{reels:R2});
   if(sa)c.stars=Object.assign({},c.stars||{},{list:A2});
