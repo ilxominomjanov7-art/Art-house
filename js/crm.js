@@ -12,6 +12,12 @@
   var dk = function (t) { return new Date(t + 5 * 36e5).toISOString().slice(0, 10); }, D0 = function () { return dk(Date.now()); };
   var vid = LS('ah_vid') || (LS('ah_vid', Math.random().toString(36).slice(2)), LS('ah_vid'));
   var nfm = function (x) { return Math.round(x).toLocaleString('en-US') + ' $'; };
+  /* reklama manbasi: saytga ?utm_source=instagram kabi havola bilan kirilsa, shu tashrifdagi har arizaga yoziladi */
+  var UTM = (function () {
+    var m = location.search.match(/[?&]utm_source=([^&#]{1,40})/), u = '';
+    try { u = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')).replace(/[^\p{L}\p{N} ._-]/gu, '').slice(0, 40) : ''; if (u) sessionStorage.setItem('ah_utm', u); else u = sessionStorage.getItem('ah_utm') || ''; } catch (e) {}
+    return u;
+  })();
 
   function local(e) {
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.days = s.days || {}; s.leads = s.leads || [];
@@ -24,10 +30,10 @@
     if (API) try { navigator.sendBeacon(API + '/track', new Blob([JSON.stringify({ e: e, vid: vid })], { type: 'text/plain' })); } catch (x) {}
   }
   function msgOf(l) {
-    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : '', '',
+    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : l.via === 'hero' ? '🎯 Bosh sahifadagi kalkulyatordan' : '', '',
       '👤 Mijoz: ' + l.name, '📞 Tel: ' + l.phone, '', '🏠 Xonadon: ' + (l.unit || '—'), l.area ? '📐 Maydon: ' + l.area + ' m²' : '',
       l.price ? '💰 Umumiy narxi: ' + nfm(l.price) : '', l.down ? "💵 Boshlang'ich to'lov: " + nfm(l.down) + ' (' + l.pct + '%)' : '',
-      l.months && l.monthly ? '📅 Muddati: ' + l.months + " oy (0%)\n💳 Oylik to'lov: " + nfm(l.monthly) : '', l.slot ? "⏰ Qo'ng'iroq: " + l.slot : '']
+      l.months && l.monthly ? '📅 Muddati: ' + l.months + " oy (0%)\n💳 Oylik to'lov: " + nfm(l.monthly) : '', l.slot ? "⏰ Qo'ng'iroq: " + l.slot : '', l.utm ? '📣 Manba: ' + l.utm : '']
       .filter(function (x, i, a) { return x !== '' || a[i - 1] !== ''; }).join('\n');
   }
   function send(l) {
@@ -36,7 +42,7 @@
   }
   /* Ariza: kabinet → Mijozlar bazasi (+ server bo'lsa Telegram guruhga) */
   function deliver(l) {
-    l = Object.assign({ id: (l.src === 'ai' ? 'a' : 's') + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), st: 'new', at: Date.now() }, l);
+    l = Object.assign({ id: (l.src === 'ai' ? 'a' : 's') + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), st: 'new', at: Date.now() }, UTM ? { utm: UTM } : null, l);
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.leads = s.leads || []; s.leads.unshift(l); s.leads = s.leads.slice(0, 500); LS('ah_stats', s);
     local('l');
     return send(l).catch(function () { var q = (LS('ah_q') || []).slice(-19); q.push(l); LS('ah_q', q); return false; });

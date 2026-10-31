@@ -3,7 +3,7 @@
 window.AGENT_DICT = {
   uz: {
     title: "Art House · Shaxsiy maslahatchi", online: 'onlayn', typing: 'Art House yozmoqda…', placeholder: 'Savolingizni yozing…',
-    open: 'Art House', nudge: "Savolingiz bormi? Uy tanlash va to'lovni hisoblashda yordam beraman.",
+    open: 'AI maslahatchi', nudge: "Savolingiz bormi? Uy tanlash va to'lovni hisoblashda yordam beraman.",
     chips: "Ishonchli kompaniyami?|2 xonali narxi qancha?|Menda 25 000$ bor|Qayerda joylashgan?",
     voiceOn: 'Ovozli javob', mic: 'Ovozli xabar', send: 'Yuborish', close: 'Yopish',
     recording: "Yozilmoqda… to'xtatish uchun yana bosing", micDenied: 'Mikrofonga ruxsat berilmadi', notHeard: "Eshitilmadi, iltimos qayta urinib ko'ring", voiceMsg: 'Ovozli xabar',
@@ -42,7 +42,7 @@ window.AGENT_DICT = {
   },
   ru: {
     title: 'Art House · Личный консультант', online: 'онлайн', typing: 'Art House печатает…', placeholder: 'Напишите ваш вопрос…',
-    open: 'Art House', nudge: 'Есть вопрос? Помогу выбрать квартиру и рассчитать платёж.',
+    open: 'AI-консультант', nudge: 'Есть вопрос? Помогу выбрать квартиру и рассчитать платёж.',
     chips: 'Компании можно доверять?|Сколько стоит 2-комнатная?|У меня есть 25 000$|Где вы находитесь?',
     voiceOn: 'Голосовой ответ', mic: 'Голосовое сообщение', send: 'Отправить', close: 'Закрыть',
     recording: 'Идёт запись… нажмите ещё раз, чтобы остановить', micDenied: 'Доступ к микрофону запрещён', notHeard: 'Не расслышал, попробуйте ещё раз', voiceMsg: 'Голосовое сообщение',
@@ -81,7 +81,7 @@ window.AGENT_DICT = {
   },
   en: {
     title: 'Art House · Personal adviser', online: 'online', typing: 'Art House is typing…', placeholder: 'Type your question…',
-    open: 'Art House', nudge: 'Have a question? I can help you choose a home and calculate payments.',
+    open: 'AI adviser', nudge: 'Have a question? I can help you choose a home and calculate payments.',
     chips: 'Is the company trustworthy?|How much is a 2-room flat?|I have $25,000|Where are you located?',
     voiceOn: 'Voice reply', mic: 'Voice message', send: 'Send', close: 'Close',
     recording: 'Recording… tap again to stop', micDenied: 'Microphone access denied', notHeard: "I couldn't hear that, please try again", voiceMsg: 'Voice message',
@@ -120,7 +120,7 @@ window.AGENT_DICT = {
   },
   fr: {
     title: 'Art House · Conseiller personnel', online: 'en ligne', typing: 'Art House écrit…', placeholder: 'Écrivez votre question…',
-    open: 'Art House', nudge: 'Une question ? Je vous aide à choisir un logement et à calculer vos mensualités.',
+    open: 'Conseiller IA', nudge: 'Une question ? Je vous aide à choisir un logement et à calculer vos mensualités.',
     chips: 'La société est-elle fiable ?|Quel prix pour un 2 pièces ?|J’ai 25 000 $|Où êtes-vous situés ?',
     voiceOn: 'Réponse vocale', mic: 'Message vocal', send: 'Envoyer', close: 'Fermer',
     recording: 'Enregistrement… touchez à nouveau pour arrêter', micDenied: 'Accès au micro refusé', notHeard: "Je n'ai pas entendu, veuillez réessayer", voiceMsg: 'Message vocal',
@@ -159,7 +159,7 @@ window.AGENT_DICT = {
   },
   it: {
     title: 'Art House · Consulente personale', online: 'online', typing: 'Art House sta scrivendo…', placeholder: 'Scrivi la tua domanda…',
-    open: 'Art House', nudge: 'Hai una domanda? Ti aiuto a scegliere casa e a calcolare le rate.',
+    open: 'Consulente IA', nudge: 'Hai una domanda? Ti aiuto a scegliere casa e a calcolare le rate.',
     chips: "L'azienda è affidabile?|Quanto costa un bilocale?|Ho 25.000 $|Dove vi trovate?",
     voiceOn: 'Risposta vocale', mic: 'Messaggio vocale', send: 'Invia', close: 'Chiudi',
     recording: 'Registrazione… tocca di nuovo per fermare', micDenied: 'Accesso al microfono negato', notHeard: 'Non ho sentito, riprova', voiceMsg: 'Messaggio vocale',
@@ -198,7 +198,7 @@ window.AGENT_DICT = {
   },
   es: {
     title: 'Art House · Asesor personal', online: 'en línea', typing: 'Art House está escribiendo…', placeholder: 'Escriba su pregunta…',
-    open: 'Art House', nudge: '¿Tiene alguna pregunta? Le ayudo a elegir vivienda y a calcular los pagos.',
+    open: 'Asesor IA', nudge: '¿Tiene alguna pregunta? Le ayudo a elegir vivienda y a calcular los pagos.',
     chips: '¿Es una empresa de confianza?|¿Cuánto cuesta un piso de 2 habitaciones?|Tengo 25.000 $|¿Dónde están ubicados?',
     voiceOn: 'Respuesta por voz', mic: 'Mensaje de voz', send: 'Enviar', close: 'Cerrar',
     recording: 'Grabando… pulse de nuevo para detener', micDenied: 'Acceso al micrófono denegado', notHeard: 'No le he oído, inténtelo de nuevo', voiceMsg: 'Mensaje de voz',
@@ -237,7 +237,7 @@ window.AGENT_DICT = {
   },
   de: {
     title: 'Art House · Persönlicher Berater', online: 'online', typing: 'Art House schreibt…', placeholder: 'Ihre Frage…',
-    open: 'Art House', nudge: 'Haben Sie eine Frage? Ich helfe bei der Wohnungswahl und berechne die Raten.',
+    open: 'KI-Berater', nudge: 'Haben Sie eine Frage? Ich helfe bei der Wohnungswahl und berechne die Raten.',
     chips: 'Ist das Unternehmen seriös?|Was kostet eine 2-Zimmer-Wohnung?|Ich habe 25.000 $|Wo befinden Sie sich?',
     voiceOn: 'Sprachantwort', mic: 'Sprachnachricht', send: 'Senden', close: 'Schließen',
     recording: 'Aufnahme… zum Beenden erneut tippen', micDenied: 'Mikrofonzugriff verweigert', notHeard: 'Nicht verstanden, bitte erneut versuchen', voiceMsg: 'Sprachnachricht',
@@ -276,7 +276,7 @@ window.AGENT_DICT = {
   },
   tr: {
     title: 'Art House · Kişisel danışman', online: 'çevrimiçi', typing: 'Art House yazıyor…', placeholder: 'Sorunuzu yazın…',
-    open: 'Art House', nudge: 'Bir sorunuz mu var? Ev seçmenize ve ödemeyi hesaplamanıza yardımcı olurum.',
+    open: 'AI danışman', nudge: 'Bir sorunuz mu var? Ev seçmenize ve ödemeyi hesaplamanıza yardımcı olurum.',
     chips: 'Şirket güvenilir mi?|2 odalı daire ne kadar?|25.000 $ param var|Neredesiniz?',
     voiceOn: 'Sesli yanıt', mic: 'Sesli mesaj', send: 'Gönder', close: 'Kapat',
     recording: 'Kaydediliyor… durdurmak için tekrar dokunun', micDenied: 'Mikrofon izni reddedildi', notHeard: 'Duyamadım, lütfen tekrar deneyin', voiceMsg: 'Sesli mesaj',

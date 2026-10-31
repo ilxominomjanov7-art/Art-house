@@ -368,8 +368,16 @@
   }
   var subs = [];
 
-  /* {years} — kompaniya tajribasi (CFG.FOUNDED dan avtomatik), har bir matnda o'z-o'zidan qo'yiladi */
-  function fill(s, vars) { return s == null ? s : String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars && vars[k] != null ? vars[k] : k === 'years' && window.CFG && CFG.EXPERIENCE_YEARS ? CFG.EXPERIENCE_YEARS : m; }); }
+  /* {years} — kompaniya tajribasi (CFG.FOUNDED dan avtomatik), {down} — eng kam boshlang'ich to'lov («30%»), {months} — eng uzun muddat (oy);
+     kabinet → Sozlamalar o'zgarsa, matnlar ham o'zi yangilanadi */
+  function cfgVar(k) {
+    var C = window.CFG; if (!C) return null;
+    if (k === 'years') return C.EXPERIENCE_YEARS || null;
+    if (k === 'down') return C.DOWN_MIN != null ? C.DOWN_MIN + '%' : null;
+    if (k === 'months') return C.MONTHS && C.MONTHS.length ? Math.max.apply(null, C.MONTHS) : null;
+    return null;
+  }
+  function fill(s, vars) { return s == null ? s : String(s).replace(/\{(\w+)\}/g, function (m, k) { var v = vars && vars[k] != null ? vars[k] : cfgVar(k); return v != null ? v : m; }); }
   function base(key) { return uz[key] != null ? uz[key] : CAPT[key] != null ? CAPT[key] : key; }
   function t(key, vars, lng) {
     var s, lang0 = lang; if (lng) lang = lng;

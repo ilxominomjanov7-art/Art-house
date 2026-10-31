@@ -21,8 +21,8 @@
     ['tr', /[ğış]|\b(merhaba|nasıl|fiyat\w*|evet|teşekkür\w*|güvenilir|daire|istiyorum|kaç)\b/i],
     ['de', /[äß]|\b(hallo|ich|und|wie|nicht|wohnung|danke|guten|viel|kostet|möchte)\b/i],
     ['es', /[ñ¿¡]|\b(hola|quiero|cu[aá]nto|gracias|precio|buenos|necesito|puedo|piso)\b/i],
+    ['it', /(^|\s)è(\s|$)|\b(ciao|buongiorno|grazie|prezzo|vorrei|sono|appartamento|quanto|azienda|affidabile|mutuo|serve|dove|trova|complesso)\b/i], /* «è» alohida so'z — italyancha (fransuzchadan oldin) */
     ['fr', /[èêœ]|\b(bonjour|je|merci|prix|combien|vous|est-ce|appartement|salut)\b/i],
-    ['it', /\b(ciao|buongiorno|grazie|prezzo|vorrei|sono|appartamento|quanto)\b/i],
     ['en', /\b(hello|hi|the|is|how|much|price|want|apartment|thanks|you|can|trust|what|need)\b/i]
   ];
   function detect(t) {
@@ -59,6 +59,9 @@
 
   /* ---------- matndan ma'lumot ajratish (9 tilda) ---------- */
   var nz = function (t) { return String(t).toLowerCase().replace(/[’ʻʼ`´‘]/g, "'"); };
+  /* o'zbek kirill yozuvi → lotin (niyatlar lotin yozuvida tekshiriladi): «қаерда» → «qayerda» */
+  var CL = { а: 'a', б: 'b', в: 'v', г: 'g', ғ: "g'", д: 'd', ё: 'yo', ж: 'j', з: 'z', и: 'i', й: 'y', к: 'k', қ: 'q', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ў: "o'", ф: 'f', х: 'x', ҳ: 'h', ц: 's', ч: 'ch', ш: 'sh', ъ: "'", ь: '', ы: 'i', э: 'e', ю: 'yu', я: 'ya' };
+  function lat(t) { return String(t).toLowerCase().replace(/[а-яёўқғҳ]/g, function (c, i, s) { return c === 'е' ? (i === 0 || /[^а-яёўқғҳ]|[аеёиоуўэюя]/.test(s[i - 1]) ? 'ye' : 'e') : CL[c] != null ? CL[c] : c; }); }
   function money(T) {
     var s = T.replace(/(\d)[ .,](?=\d{3}(?!\d))/g, '$1'), re = /(\d+(?:[.,]\d+)?)\s*(k|к|ming|тыс|mln|млн|million|\$|dollar|долл|usd|у\.е)?/g, r;
     while ((r = re.exec(s))) {
@@ -97,13 +100,13 @@
     return !/^(ha|yo'q|xo'p|mayli|ok|okay|yes|no|da|net|нет|да|ладно|хорошо|evet|hayır|oui|non|sì|si|ja|nein|ekan|bor|yo'q|kerak|emas|balki|albatta|qimmat|arzon|yaxshi|yomon)$/i.test(w[0]) && !/(ekan|emas|kerak|mi|chi|man|siz|miz)$/i.test(w[w.length - 1]);
   }
   var cap = function (x) { return x.charAt(0).toUpperCase() + x.slice(1); };
-  var NAME_RE = /(?:ismim|ismi|mening ismim|men|my name is|i am|i'm|меня зовут|я|adım|benim adım|ich heiße|ich bin|mein name ist|je m'appelle|je suis|mi chiamo|sono|me llamo|soy)\s+([\p{L}']{2,20})/u;
+  var NAME_RE = /(?:^|[^\p{L}'])(?:ismim|ismi|mening ismim|men|my name is|i am|i'm|меня зовут|я|adım|benim adım|ich heiße|ich bin|mein name ist|je m'appelle|je suis|mi chiamo|sono|me llamo|soy)\s+([\p{L}']{2,20})/u;
   var NOT_NAME = /^(1|2|3|4|bir|ikki|uch|xonali|qiziq|interested|looking|ищу|хочу|не|yes|ha|yo'q|no|bu|shu|juda|hozir|sizga|bilan|uchun)/;
 
   /* ---------- niyatni aniqlash ---------- */
   var RX = {
     angry: /yomon|aldov|aldad|firibgar|jahl|g'azab|xafa|nega javob|javob bermay|bekorchi|bema'ni|uyat|shikoyat|kutyapman|qachongacha|плохо|обман|мошенн|развод|ужас|отвратит|злой|бесит|жалоб|сколько можно|почему не отвеч|terrible|awful|scam|fraud|cheat|angry|furious|complain|ridiculous|disgusting|why no one|arnaque|escroc|honteux|furieux|plainte|truffa|imbroglio|vergogna|arrabbiat|reclamo|estafa|timo|vergüenza|enfadad|queja|betrug|abzocke|schrecklich|wütend|beschwerde|dolandır|rezalet|kızgın|şikayet|berbat/,
-    trust: /ishon|ishonchli|kafolat|aldamaysiz|haqiqiy kompaniya|litsenziya|hujjat|rasmiy|qonuniy|xavfsizmi|можно доверять|довер|надёжн|надежн|гарант|лиценз|официальн|законн|не обманете|trust|reliable|legit|guarantee|licen|safe to|scam\?|fiable|confiance|garantie|sérieux|affidabil|fidar|garanzia|serio|confiar|fiable|garantía|seria|vertrau|seriös|zuverlässig|garantie|güven|güvenilir|garanti|resmî/,
+    trust: /ishon|ishonchli|kafolat|aldamaysiz|haqiqiy kompaniya|litsenziya|hujjat|rasmiy|qonuniy|xavfsizmi|можно доверять|довер|надёжн|надежн|гарант|лиценз|официальн|законн|не обманете|trust|reliable|legit|guarantee|licen|safe to|scam\?|fiable|confiance|garantie|sérieux|affidabil|fidar|garanzia|serio|confiar|confianza|confiable|fiable|garantía|seria|vertrau|seriös|zuverlässig|garantie|güven|güvenilir|garanti|resmî/,
     unsure: /bilmayman|nima qilish|qayerdan boshla|tushunmayapman|chalkash|ikkilan|maslahat bering|qaror qila olmay|не знаю|что делать|с чего начать|запутал|сомнева|посоветуйте|i don't know|dont know|not sure|confused|where to start|what should i|advise me|je ne sais pas|hésit|conseill|non so|indeciso|consigli|no sé|no se que|dudo|aconséj|weiß nicht|unsicher|beraten|bilmiyorum|kararsız|tavsiye/,
     human: /siz robotmisiz|botmisiz|sun'iy|odam bilan|jonli|inson bilan|operator|ты бот|вы бот|робот|живой|человек|оператор|are you a bot|are you human|real person|human|robot|opérateur|humain|umano|operatore|humano|operador|mensch|bot\b|insan|temsilci/,
     greet: /salom|assalom|hayrli|qalay|yaxshimisiz|hello|\bhi\b|\bhey\b|good (morning|evening|afternoon)|привет|здравств|добр(ый|ое|ого)|merhaba|selam|günaydın|hallo|guten (tag|morgen|abend)|bonjour|salut|bonsoir|ciao|buongiorno|buonasera|hola|buenos|buenas/,
@@ -141,11 +144,12 @@
     var Tn = nz(t), dg = Tn.replace(/\D/g, ''), cards = [], pre = '', hit = 0, key, o = {};
     CX.turns++;
     var dl = detect(t); if (dl) CX.ml = dl === 'uz' && I18N.lang === 'cy' ? 'cy' : dl;
+    var Ti = dl === 'cy' ? Tn + ' ' + lat(t) : Tn; /* niyat uchun: kirill yozuvidagi o'zbekchaning lotin ko'rinishi ham */
     if (dg.length >= 9 && dg.length <= 12 && !/\$|dollar|usd|долл/.test(Tn)) { CX.phone = '+' + (dg.length === 9 ? '998' + dg : dg); hit = 1; }
-    var nm = Tn.match(NAME_RE);
+    var nm = Ti.match(NAME_RE);
     if (nm && !NOT_NAME.test(nm[1])) { if (!CX.name) pre = T('niceName', { n: esc(cap(nm[1])) }) + ' '; CX.name = cap(nm[1]); }
     else if (CX.ask === 'name' && looksLikeName(Tn)) { CX.name = cap(Tn.trim().split(' ')[0]); pre = T('niceName', { n: esc(CX.name) }) + ' '; }
-    var B = hit ? 0 : money(Tn), R = rooms(Tn), Mo = months(Tn), P = project(Tn);
+    var B = hit ? 0 : money(Tn), R = rooms(Ti), Mo = months(Ti), P = project(Ti);
     if (B) CX.B = B; if (R) CX.R = R; if (Mo) CX.M = Mo; if (P) CX.P = P;
     var M = CX.M || Math.max.apply(null, CFG.MONTHS);
 
@@ -153,11 +157,11 @@
     if (CX.phone && CX.name && !CX.sent) { sendLead(); CX.ask = 0; return { h: pre + T(window.CRM && CRM.api ? 'leadSent' : 'leadManual', { n: esc(CX.name), p: esc(CX.phone), tel: tel() }), cards: cards }; }
     CX.ask = 0;
 
-    var intent = RX.angry.test(Tn) ? 'angry' : RX.human.test(Tn) ? 'human' : RX.trust.test(Tn) ? 'trust' : RX.unsure.test(Tn) ? 'unsure' :
-      RX.renov.test(Tn) ? 'renov' : RX.parking.test(Tn) && !B && !R ? 'parking' : RX.savings.test(Tn) ? 'savings' : RX.expensive.test(Tn) && !B ? 'expensive' :
-      RX.credit.test(Tn) && !B ? 'credit' : (RX.location.test(Tn) && !B && !R) ? 'location' : (RX.contact.test(Tn) && !B && !R) ? 'contact' :
-      (B || R || (RX.want.test(Tn) && (CX.B || CX.R || CX.P === 'musaffo'))) ? 'want' : RX.projects.test(Tn) || (P && P !== 'musaffo') ? 'projects' :
-      RX.thanks.test(Tn) ? 'thanks' : RX.greet.test(Tn) ? 'greet' : RX.want.test(Tn) ? 'want' : 'fallback';
+    var intent = RX.angry.test(Ti) ? 'angry' : RX.human.test(Ti) ? 'human' : RX.trust.test(Ti) ? 'trust' : RX.unsure.test(Ti) ? 'unsure' :
+      RX.renov.test(Ti) ? 'renov' : RX.parking.test(Ti) && !B && !R ? 'parking' : RX.savings.test(Ti) ? 'savings' : RX.expensive.test(Ti) && !B ? 'expensive' :
+      RX.credit.test(Ti) && !B ? 'credit' : (RX.location.test(Ti) && !B && !R) ? 'location' : (RX.contact.test(Ti) && !B && !R) ? 'contact' :
+      (B || R || (RX.want.test(Ti) && (CX.B || CX.R || CX.P === 'musaffo'))) ? 'want' : RX.projects.test(Ti) || (P && P !== 'musaffo') ? 'projects' :
+      RX.thanks.test(Ti) ? 'thanks' : RX.greet.test(Ti) ? 'greet' : RX.want.test(Ti) ? 'want' : 'fallback';
     if (intent === 'angry') CX.angry = (CX.angry || 0) + 1;
     var repeat = CX.hist[CX.hist.length - 1] === intent; CX.hist.push(intent);
     var cat = CAT(), pc = CFG.DOWN_MIN;
@@ -314,5 +318,7 @@
     setTimeout(function () { n.remove(); }, 14000);
   }, 20000);
 
-  window.ArtHouseAI = { open: open, reply: reply };
+  /* bosh sahifadagi sotuv kartasi uchun: tayyor savol bilan ochish va mijoz tanlagan shartlarni suhbatga berish */
+  function setCtx(o) { ['R', 'M', 'B', 'P'].forEach(function (k) { if (o && o[k]) CX[k] = o[k]; }); persist(); }
+  window.ArtHouseAI = { open: open, reply: reply, ask: function (q) { open(); ask(q); }, ctx: setCtx };
 })();

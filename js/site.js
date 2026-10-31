@@ -395,7 +395,9 @@
   }
   window.AH_manualActs = manualActs;
   /* mavzu bo'limlari (js/theme.js) uchun: band qilish, qo'ng'iroq va forma yordamchilari */
-  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember };
+  /* bosh sahifadagi sotuv kartasi (js/funnel.js) tanlovini kalkulyatorga o'tkazish: band qilish oynasi va «Kalkulyator» sahifasi shu shartlarni ko'rsatadi */
+  function calcSet(o) { calc.pct = o.pct; calc.months = o.months; setProject(o.project, o.plan); }
+  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember, calcSet: calcSet };
 
   $('#leadForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -407,6 +409,7 @@
     var lead = { src: 'site', name: n.value.trim(), phone: ph.value.trim(), slot: WHEN_UZ[when], lang: I18N.lang, project: pid,
       unit: plan ? unitLabel(plan) : pj.name + (bookCtx.fromCalc ? ' · ' + String(calc.area).replace('.', ',') + ' m²' : bookCtx.topic ? ' · ' + bookCtx.topic : ''), area: bookCtx.fromCalc ? calc.area : 0 };
     if (bookCtx.fromCalc) Object.assign(lead, { price: calc.total, pct: calc.pct, down: Math.round(calc.down), months: calc.months, monthly: Math.round(calc.monthly) });
+    if (bookCtx.via) lead.via = bookCtx.via;
     remember(lead.name, lead.phone); LS('lastLead', Date.now());
     CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
     var live = !!CRM.api, h3 = $('#bookOk h3'), act = $('#bookAct');

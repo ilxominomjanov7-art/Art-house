@@ -22,7 +22,8 @@ js/theme.js       — saytda mavzuni qo'llaydi: bo'limlarni chizadi, tartiblaydi
 js/kabinet-themes.js — kabinetdagi «Mavzular» sahifasi va tahrirlagich (+ js/kabinet-dict-themes.js lug'ati)
 js/cms-apply.js, cms-text.js, cms-site.js — Sozlamalar (CMS) o'zgarishlarini saytga qo'llash
 js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.js, js/i18n-es-de-tr.js
-js/agent.js       — saytdagi «Art House» AI maslahatchi (o'ng tomonda) + js/agent-dict.js (8 til)
+js/agent.js       — saytdagi «AI maslahatchi» (o'ng tomonda va bosh sahifa kartasida) + js/agent-dict.js (8 til)
+js/funnel.js      — bosh sahifadagi sotuv kartasi: oylik to'lov hisobi, «Shu shart bilan band qilish», AI savollari (+ css/funnel.css)
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
@@ -147,6 +148,22 @@ Saytdagi barcha matnlarda (8 til), AI maslahatchi javoblarida va serverdagi AI f
 
 **Shrift:** standart — Geologica (ICON uslubidagi geometrik shrift, katta harfli sarlavhalar; kirill va o'zbek harflari bor).
 Kabinet → Mavzular → Moslashtirish → Mavzu sozlamalari → Sarlavha shrifti orqali eski Cormorant'ga qaytarish mumkin.
+
+## Bosh sahifa: sotuv kartasi
+
+Saytga kirgan zahoti mijoz kartada 3 ta tanlov qiladi: necha xonali (+ maydon), boshlang'ich to'lov (`DOWN_MIN` dan
+`DOWN_MAX` gacha), muddat (`MONTHS`). Oylik to'lov $ va so'mda darhol chiqadi; narx kalkulyator va AI maslahatchi bilan bir xil
+hisoblanadi (maydon × 1 m² narxi). Bir nechta loyihada xonadon rejalari bo'lsa, kartada loyiha tanlovi ham chiqadi.
+
+- «Shu shart bilan band qilish» → band qilish oynasi shu shartlar bilan ochiladi. Arizada `via: 'hero'`: kabinet → Mijozlar
+  bazasida «Kalkulyator» belgisi, Telegram'da «🎯 Bosh sahifadagi kalkulyatordan» qatori.
+- Yuqori menyudagi va telefondagi pastki «Band qilish» ham mijoz kartada tanlagan shartlarni oladi.
+- AI maslahatchi kartaning yonida: 3 ta tayyor savol; mijoz tanlagan xonalar, byudjet va muddat suhbatga beriladi.
+- Reklama manbasi: saytga `?utm_source=instagram` kabi havola bilan kirilsa, shu tashrifdagi arizalarga `utm` yoziladi
+  (kabinetda va Telegram'da «📣 Manba» bo'lib ko'rinadi).
+- Banner matnidagi `{down}` va `{months}` kabinet → Sozlamalar qiymatlaridan olinadi (`{years}` kabi, barcha tillarda).
+
+Matnlar 8 tilda `js/funnel.js` ichida; kabinet → Sozlamalar → Matnlar orqali o'zgartiriladi.
 
 ## Ishga tushirish
 

@@ -233,6 +233,8 @@ async function crm(req, res, p) {
     if (str(l.name, 80).length < 2 || str(l.phone, 25).replace(/\D/g, '').length < 9) return send(res, 400, { error: 'invalid' });
     const o = { id: /^[\w-]{4,40}$/.test(l.id || '') ? l.id : uid(), name: str(l.name, 80), phone: str(l.phone, 25), unit: str(l.unit, 120), area: +l.area || 0, slot: str(l.slot, 60),
       price: +l.price || 0, down: +l.down || 0, pct: +l.pct || 0, months: +l.months || 0, monthly: +l.monthly || 0, st: 'new', at: Date.now(), src: str(l.src, 12), project: str(l.project, 20), lang: str(l.lang, 4) };
+    if (l.via) o.via = str(l.via, 12); /* 'hero' — bosh sahifadagi kalkulyator kartasidan */
+    if (l.utm) o.utm = str(l.utm, 40); /* reklama manbasi (?utm_source=…) */
     mergeById(C.leads, [o]); C.leads = C.leads.slice(0, 5000);
     const d = C.days[dk(Date.now())] || (C.days[dk(Date.now())] = { v: 0, pv: 0, c: 0, l: 0 }); d.l = (d.l || 0) + 1;
     save(); broadcast({ t: 'change', kind: 'crm', info: { op: 'lead', id: o.id } }); tgSend(b.text || ('Yangi ariza: ' + o.name + ' ' + o.phone));

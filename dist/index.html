@@ -1911,6 +1911,112 @@ html.ty-icon .hi-btn, html.ty-icon .btn { font-family: var(--f-body); font-weigh
 body { overflow-x: clip; } /* hech qaysi element sahifani yon tomonga cho'zmasin */
 
 </style>
+<style>
+/* =====================================================================
+   ART HOUSE — bosh sahifadagi sotuv kartasi (js/funnel.js)
+   · kompyuterda: chapda banner matni va raqamlar, o'ngda karta
+   · telefonda: matn → karta → raqamlar (karta birinchi ekranda ko'rinadi)
+   ===================================================================== */
+.hero .hero-in.hf-on { grid-template-columns: minmax(0, 1fr) !important; grid-template-areas: "copy" "card" "ai" "stats"; row-gap: 22px; }
+.hero-in.hf-on .eyebrow { white-space: normal; overflow-wrap: anywhere; }
+.hero-in.hf-on > .hero-copy { grid-area: copy; }
+.hero-in.hf-on > .hf { grid-area: card; }
+.hero-in.hf-on > .hf-ai { grid-area: ai; }
+.hero-in.hf-on > .stats { grid-area: stats; position: relative; z-index: 1; text-align: center; margin-top: 4px !important; }
+
+.hf { position: relative; z-index: 2; width: 100%; max-width: 460px; justify-self: center; text-align: left; color: #F4EEDF;
+  padding: 22px 22px 18px; border: 1px solid rgba(241, 224, 180, .32); border-radius: 2px; background: rgba(6, 32, 24, .86);
+  backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .8); }
+.hf-k { margin: 0 0 6px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #E8D5A4; }
+html .hero .hf h2 { margin: 0; max-width: none; font-family: var(--f-display, inherit) !important; font-size: 20px !important; font-weight: 500 !important; line-height: 1.2 !important; letter-spacing: .02em !important; text-transform: uppercase; color: #FBF3DC !important; }
+.hf-row { margin-top: 13px; }
+.hf-l { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 7px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(244, 238, 223, .66); }
+.hf-l b { font-size: 13px; font-weight: 600; letter-spacing: 0; text-transform: none; color: #FBF3DC; white-space: nowrap; }
+.hf-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.hf-chips button { flex: 1 1 auto; min-width: 44px; min-height: 40px; padding: 0 10px; border: 1px solid rgba(241, 224, 180, .3); border-radius: 2px; background: rgba(255, 255, 255, .03);
+  color: #F4EEDF; font: inherit; font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+.hf-chips[data-g="i"] button { font-size: 13px; }
+.hf-chips button:hover { border-color: rgba(241, 224, 180, .7); }
+.hf-chips button[aria-pressed="true"] { background: #F1E0B4; border-color: #F1E0B4; color: #0B2B20; }
+.hf-chips button:focus-visible, .hf-q button:focus-visible, .hf-ai-b:focus-visible { outline: 2px solid #F1E0B4; outline-offset: 2px; }
+.hf input[type=range] { height: 4px; margin: 8px 0 2px; background: linear-gradient(90deg, #F1E0B4 var(--p, 0%), rgba(241, 224, 180, .18) var(--p, 0%)); }
+
+.hf-res { display: flex; align-items: center; gap: 14px; margin-top: 16px; padding: 12px; border: 1px solid rgba(241, 224, 180, .16); border-radius: 2px; background: rgba(241, 224, 180, .07); }
+.hf-img { flex: none; width: 64px; height: 80px; overflow: hidden; border-radius: 2px; background: #0F3D2E; }
+.hf-img img { width: 100%; height: 100%; object-fit: cover; }
+.hf-sum { display: grid; gap: 2px; min-width: 0; }
+.hf-sum span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(244, 238, 223, .66); }
+.hf-sum b { font-size: clamp(30px, 3vw, 36px); font-weight: 500; line-height: 1.05; letter-spacing: -.01em; color: #FBF3DC; }
+.hf-sum small { font-size: 12.5px; color: rgba(244, 238, 223, .72); }
+.hf-sum .hf-u { color: #E8D5A4; }
+.hf-book { width: 100%; min-height: 52px; margin-top: 14px; justify-content: center; }
+.hf-note { margin: 8px 0 0; font-size: 12px; line-height: 1.5; text-align: center; color: rgba(244, 238, 223, .62); }
+
+/* AI maslahatchi: telefonda kartaning davomi (bir panel bo'lib ko'rinadi) */
+.hf-ai { position: relative; z-index: 2; width: 100%; max-width: 460px; justify-self: center; margin-top: -23px; padding: 14px 22px 18px; text-align: left; color: #F4EEDF;
+  border: 1px solid rgba(241, 224, 180, .32); border-top-color: rgba(241, 224, 180, .14); border-radius: 0 0 2px 2px; background: rgba(6, 32, 24, .86);
+  backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
+.hf-ai-b { display: flex; align-items: center; gap: 8px; width: 100%; padding: 0; border: 0; background: none; color: #FBF3DC; font: inherit; text-align: left; cursor: pointer; }
+.hf-ai-b .ic { flex: none; width: 30px; height: 30px; padding: 7px; border-radius: 50%; color: #12301F; fill: none; stroke: currentColor; stroke-width: 1.6;
+  background: linear-gradient(150deg, #FFF8E2, #EBD49C 55%, #D2B271); box-shadow: 0 0 0 4px rgba(241, 224, 180, .12); }
+.hf-ai-b b { font-size: 14px; font-weight: 600; }
+.hf-ai-b i { width: 7px; height: 7px; border-radius: 50%; background: #5FD39A; box-shadow: 0 0 0 3px rgba(95, 211, 154, .18); }
+.hf-ai-b small { font-size: 12px; color: rgba(244, 238, 223, .6); }
+.hf-ai-t { margin: 6px 0 8px; font-size: 12px; color: rgba(244, 238, 223, .62); }
+.hf-q { display: flex; flex-wrap: wrap; gap: 6px; }
+.hf-q button { padding: 7px 11px; border: 1px solid rgba(241, 224, 180, .3); border-radius: 99px; background: none; color: #F4EEDF; font: inherit; font-size: 12.5px; text-align: left; cursor: pointer; transition: background .2s, border-color .2s; }
+.hf-q button:hover { border-color: rgba(241, 224, 180, .6); background: rgba(241, 224, 180, .1); }
+
+.hf-glow { animation: hfGlow 1.4s ease; }
+@keyframes hfGlow { 30% { box-shadow: 0 0 0 4px rgba(241, 224, 180, .45), 0 30px 70px -30px rgba(0, 0, 0, .8); } }
+.intro-pre .hero-in.hf-on > .hf, .intro-pre .hero-in.hf-on > .hf-ai, .intro-pre .hero-in.hf-on > .stats { opacity: 0; }
+.intro-go .hero-in.hf-on > .hf, .intro-go .hero-in.hf-on > .hf-ai { animation: hIn 1.1s cubic-bezier(.22, 1, .36, 1) .55s both; }
+.intro-go .hero-in.hf-on > .stats { animation: hIn 1.1s cubic-bezier(.22, 1, .36, 1) .8s both; }
+@media (prefers-reduced-motion: reduce) { .intro-pre .hero-in.hf-on > * { opacity: 1; } .hf-glow { animation: none; } }
+
+/* telefon va planshet: rasm tepada ingichka tasma bo'lib qoladi, karta birinchi ekranda boshlanadi */
+@media (max-width: 1023px) {
+  .hero .hero-in.hf-on { min-height: 0 !important; padding-top: clamp(64px, 18vw, 200px) !important; }
+  .hero-in.hf-on .hero-copy .cta-row { display: none; }
+}
+@media (max-width: 1023px) { .hf-hero .hero-slides { bottom: auto; height: min(100%, 100svh); } }
+@media (max-width: 420px) { .hf { padding: 18px 16px 16px; } .hf-ai { padding: 12px 16px 16px; } html .hero .hf h2 { font-size: 18px !important; } .hf-chips button { min-height: 42px; padding: 0 8px; } }
+
+/* kompyuter: chapda matn, o'ngda karta */
+@media (min-width: 1024px) {
+  .hero .hero-in.hf-on { grid-template-columns: minmax(0, 1fr) minmax(360px, 420px) !important; grid-template-rows: 1fr auto auto; grid-template-areas: "copy card" "ai card" "stats card"; column-gap: clamp(32px, 5vw, 88px); row-gap: 0; align-items: end; padding-top: 44px !important; }
+  .hero-in.hf-on > .hero-copy { max-width: 640px; margin: 0; text-align: left; }
+  .hero-in.hf-on .h-display { font-size: clamp(56px, 6vw, 96px) !important; }
+  .hero-in.hf-on .lead { max-width: 46ch !important; margin: 0 !important; }
+  .hero-in.hf-on .cta-row { justify-content: flex-start !important; }
+  .hero-in.hf-on .cta-row a[href="#calculator"] { display: none; }
+  .hero-in.hf-on .cta-row .btn-gold { background: transparent !important; color: #F1E0B4 !important; border: 1px solid rgba(241, 224, 180, .55) !important; box-shadow: none !important; }
+  .hero-in.hf-on .cta-row .btn-gold:hover { background: rgba(241, 224, 180, .12) !important; }
+  .hero-in.hf-on > .stats { max-width: 640px; text-align: left; margin-top: 22px !important; }
+  .hero-in.hf-on > .hf { justify-self: end; align-self: end; padding: 20px 22px 16px; }
+  .hf-row { margin-top: 11px; }
+  .hf-l { margin-bottom: 6px; }
+  .hf-chips button { min-height: 38px; }
+  .hf-res { margin-top: 14px; padding: 10px; }
+  .hf-img { width: 56px; height: 70px; }
+  .hf-book { margin-top: 12px; min-height: 50px; }
+  .hero-in.hf-on > .hf { grid-row: 1 / 4; }
+  .hero-in.hf-on > .hf-ai { max-width: 640px; justify-self: start; margin: 26px 0 0; padding: 0; border: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .hf-ai-t { margin: 6px 0 10px; font-size: 13px; }
+  .hf-q button { padding: 8px 13px; font-size: 13px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(6, 32, 24, .35); }
+  body.hf-vis #aib { opacity: 0; visibility: hidden; transform: translateY(10px); }
+}
+#aib { transition: opacity .3s, visibility .3s, transform .3s; }
+
+/* yuqori menyu: xodimlar «Kabinet» tugmasi o'rniga mijoz uchun «Band qilish» (kabinet havolasi pastki qismda) */
+.top-book { cursor: pointer; font: inherit; background: #F1E0B4 !important; color: #0B2B20 !important; border-color: #F1E0B4 !important; }
+.top-book:hover { background: #FBF1D4 !important; }
+
+/* pastki panel: AI maslahatchi tugmasida «onlayn» nuqtasi */
+.dock [data-dock-ai] { position: relative; }
+.dock [data-dock-ai]::after { content: ''; position: absolute; top: 8px; left: calc(50% + 7px); width: 7px; height: 7px; border-radius: 50%; background: #5FD39A; box-shadow: 0 0 0 3px rgba(95, 211, 154, .2); }
+
+</style>
 </head>
 <body class="is-loading">
 
@@ -1994,7 +2100,7 @@ body { overflow-x: clip; } /* hech qaysi element sahifani yon tomonga cho'zmasin
   </a>
   <div class="top-act">
    <a class="top-phone" data-phone href="#"><svg class="ic"><use href="#i-phone"/></svg><span data-phone-text></span></a>
-   <a class="top-cab" href="kabinet.html" data-i="nav.cabinet">Kabinet</a>
+   <button type="button" class="top-cab top-book" data-book><span data-i="dock.book">Band qilish</span></button>
   </div>
  </div>
  <nav class="menu" aria-label="Asosiy menyu">
@@ -3198,8 +3304,16 @@ window.ALL_PROJECT_NAMES = ['Musaffo', 'Obod Maskan', "Ko'kcha Oqtepa", 'Art Tow
   }
   var subs = [];
 
-  /* {years} — kompaniya tajribasi (CFG.FOUNDED dan avtomatik), har bir matnda o'z-o'zidan qo'yiladi */
-  function fill(s, vars) { return s == null ? s : String(s).replace(/\{(\w+)\}/g, function (m, k) { return vars && vars[k] != null ? vars[k] : k === 'years' && window.CFG && CFG.EXPERIENCE_YEARS ? CFG.EXPERIENCE_YEARS : m; }); }
+  /* {years} — kompaniya tajribasi (CFG.FOUNDED dan avtomatik), {down} — eng kam boshlang'ich to'lov («30%»), {months} — eng uzun muddat (oy);
+     kabinet → Sozlamalar o'zgarsa, matnlar ham o'zi yangilanadi */
+  function cfgVar(k) {
+    var C = window.CFG; if (!C) return null;
+    if (k === 'years') return C.EXPERIENCE_YEARS || null;
+    if (k === 'down') return C.DOWN_MIN != null ? C.DOWN_MIN + '%' : null;
+    if (k === 'months') return C.MONTHS && C.MONTHS.length ? Math.max.apply(null, C.MONTHS) : null;
+    return null;
+  }
+  function fill(s, vars) { return s == null ? s : String(s).replace(/\{(\w+)\}/g, function (m, k) { var v = vars && vars[k] != null ? vars[k] : cfgVar(k); return v != null ? v : m; }); }
   function base(key) { return uz[key] != null ? uz[key] : CAPT[key] != null ? CAPT[key] : key; }
   function t(key, vars, lng) {
     var s, lang0 = lang; if (lng) lang = lng;
@@ -5085,6 +5199,12 @@ I18N.extend('en', {
   var dk = function (t) { return new Date(t + 5 * 36e5).toISOString().slice(0, 10); }, D0 = function () { return dk(Date.now()); };
   var vid = LS('ah_vid') || (LS('ah_vid', Math.random().toString(36).slice(2)), LS('ah_vid'));
   var nfm = function (x) { return Math.round(x).toLocaleString('en-US') + ' $'; };
+  /* reklama manbasi: saytga ?utm_source=instagram kabi havola bilan kirilsa, shu tashrifdagi har arizaga yoziladi */
+  var UTM = (function () {
+    var m = location.search.match(/[?&]utm_source=([^&#]{1,40})/), u = '';
+    try { u = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')).replace(/[^\p{L}\p{N} ._-]/gu, '').slice(0, 40) : ''; if (u) sessionStorage.setItem('ah_utm', u); else u = sessionStorage.getItem('ah_utm') || ''; } catch (e) {}
+    return u;
+  })();
 
   function local(e) {
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.days = s.days || {}; s.leads = s.leads || [];
@@ -5097,10 +5217,10 @@ I18N.extend('en', {
     if (API) try { navigator.sendBeacon(API + '/track', new Blob([JSON.stringify({ e: e, vid: vid })], { type: 'text/plain' })); } catch (x) {}
   }
   function msgOf(l) {
-    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : '', '',
+    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : l.via === 'hero' ? '🎯 Bosh sahifadagi kalkulyatordan' : '', '',
       '👤 Mijoz: ' + l.name, '📞 Tel: ' + l.phone, '', '🏠 Xonadon: ' + (l.unit || '—'), l.area ? '📐 Maydon: ' + l.area + ' m²' : '',
       l.price ? '💰 Umumiy narxi: ' + nfm(l.price) : '', l.down ? "💵 Boshlang'ich to'lov: " + nfm(l.down) + ' (' + l.pct + '%)' : '',
-      l.months && l.monthly ? '📅 Muddati: ' + l.months + " oy (0%)\n💳 Oylik to'lov: " + nfm(l.monthly) : '', l.slot ? "⏰ Qo'ng'iroq: " + l.slot : '']
+      l.months && l.monthly ? '📅 Muddati: ' + l.months + " oy (0%)\n💳 Oylik to'lov: " + nfm(l.monthly) : '', l.slot ? "⏰ Qo'ng'iroq: " + l.slot : '', l.utm ? '📣 Manba: ' + l.utm : '']
       .filter(function (x, i, a) { return x !== '' || a[i - 1] !== ''; }).join('\n');
   }
   function send(l) {
@@ -5109,7 +5229,7 @@ I18N.extend('en', {
   }
   /* Ariza: kabinet → Mijozlar bazasi (+ server bo'lsa Telegram guruhga) */
   function deliver(l) {
-    l = Object.assign({ id: (l.src === 'ai' ? 'a' : 's') + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), st: 'new', at: Date.now() }, l);
+    l = Object.assign({ id: (l.src === 'ai' ? 'a' : 's') + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), st: 'new', at: Date.now() }, UTM ? { utm: UTM } : null, l);
     var s = LS('ah_stats') || { days: {}, leads: [] }; s.leads = s.leads || []; s.leads.unshift(l); s.leads = s.leads.slice(0, 500); LS('ah_stats', s);
     local('l');
     return send(l).catch(function () { var q = (LS('ah_q') || []).slice(-19); q.push(l); LS('ah_q', q); return false; });
@@ -5773,7 +5893,9 @@ I18N.extend('en', {
   }
   window.AH_manualActs = manualActs;
   /* mavzu bo'limlari (js/theme.js) uchun: band qilish, qo'ng'iroq va forma yordamchilari */
-  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember };
+  /* bosh sahifadagi sotuv kartasi (js/funnel.js) tanlovini kalkulyatorga o'tkazish: band qilish oynasi va «Kalkulyator» sahifasi shu shartlarni ko'rsatadi */
+  function calcSet(o) { calc.pct = o.pct; calc.months = o.months; setProject(o.project, o.plan); }
+  window.AH_SITE = { book: openBook, call: openCall, toast: toast, phoneMask: phoneMask, checkPhone: checkPhone, checkName: checkName, remember: remember, calcSet: calcSet };
 
   $('#leadForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -5785,6 +5907,7 @@ I18N.extend('en', {
     var lead = { src: 'site', name: n.value.trim(), phone: ph.value.trim(), slot: WHEN_UZ[when], lang: I18N.lang, project: pid,
       unit: plan ? unitLabel(plan) : pj.name + (bookCtx.fromCalc ? ' · ' + String(calc.area).replace('.', ',') + ' m²' : bookCtx.topic ? ' · ' + bookCtx.topic : ''), area: bookCtx.fromCalc ? calc.area : 0 };
     if (bookCtx.fromCalc) Object.assign(lead, { price: calc.total, pct: calc.pct, down: Math.round(calc.down), months: calc.months, monthly: Math.round(calc.monthly) });
+    if (bookCtx.via) lead.via = bookCtx.via;
     remember(lead.name, lead.phone); LS('lastLead', Date.now());
     CRM.deliver(lead).then(function (ok) { if (ok === false) toast(t('toast.offline')); });
     var live = !!CRM.api, h3 = $('#bookOk h3'), act = $('#bookAct');
@@ -6061,7 +6184,7 @@ I18N.extend('en', {
 window.AGENT_DICT = {
   uz: {
     title: "Art House · Shaxsiy maslahatchi", online: 'onlayn', typing: 'Art House yozmoqda…', placeholder: 'Savolingizni yozing…',
-    open: 'Art House', nudge: "Savolingiz bormi? Uy tanlash va to'lovni hisoblashda yordam beraman.",
+    open: 'AI maslahatchi', nudge: "Savolingiz bormi? Uy tanlash va to'lovni hisoblashda yordam beraman.",
     chips: "Ishonchli kompaniyami?|2 xonali narxi qancha?|Menda 25 000$ bor|Qayerda joylashgan?",
     voiceOn: 'Ovozli javob', mic: 'Ovozli xabar', send: 'Yuborish', close: 'Yopish',
     recording: "Yozilmoqda… to'xtatish uchun yana bosing", micDenied: 'Mikrofonga ruxsat berilmadi', notHeard: "Eshitilmadi, iltimos qayta urinib ko'ring", voiceMsg: 'Ovozli xabar',
@@ -6100,7 +6223,7 @@ window.AGENT_DICT = {
   },
   ru: {
     title: 'Art House · Личный консультант', online: 'онлайн', typing: 'Art House печатает…', placeholder: 'Напишите ваш вопрос…',
-    open: 'Art House', nudge: 'Есть вопрос? Помогу выбрать квартиру и рассчитать платёж.',
+    open: 'AI-консультант', nudge: 'Есть вопрос? Помогу выбрать квартиру и рассчитать платёж.',
     chips: 'Компании можно доверять?|Сколько стоит 2-комнатная?|У меня есть 25 000$|Где вы находитесь?',
     voiceOn: 'Голосовой ответ', mic: 'Голосовое сообщение', send: 'Отправить', close: 'Закрыть',
     recording: 'Идёт запись… нажмите ещё раз, чтобы остановить', micDenied: 'Доступ к микрофону запрещён', notHeard: 'Не расслышал, попробуйте ещё раз', voiceMsg: 'Голосовое сообщение',
@@ -6139,7 +6262,7 @@ window.AGENT_DICT = {
   },
   en: {
     title: 'Art House · Personal adviser', online: 'online', typing: 'Art House is typing…', placeholder: 'Type your question…',
-    open: 'Art House', nudge: 'Have a question? I can help you choose a home and calculate payments.',
+    open: 'AI adviser', nudge: 'Have a question? I can help you choose a home and calculate payments.',
     chips: 'Is the company trustworthy?|How much is a 2-room flat?|I have $25,000|Where are you located?',
     voiceOn: 'Voice reply', mic: 'Voice message', send: 'Send', close: 'Close',
     recording: 'Recording… tap again to stop', micDenied: 'Microphone access denied', notHeard: "I couldn't hear that, please try again", voiceMsg: 'Voice message',
@@ -6178,7 +6301,7 @@ window.AGENT_DICT = {
   },
   fr: {
     title: 'Art House · Conseiller personnel', online: 'en ligne', typing: 'Art House écrit…', placeholder: 'Écrivez votre question…',
-    open: 'Art House', nudge: 'Une question ? Je vous aide à choisir un logement et à calculer vos mensualités.',
+    open: 'Conseiller IA', nudge: 'Une question ? Je vous aide à choisir un logement et à calculer vos mensualités.',
     chips: 'La société est-elle fiable ?|Quel prix pour un 2 pièces ?|J’ai 25 000 $|Où êtes-vous situés ?',
     voiceOn: 'Réponse vocale', mic: 'Message vocal', send: 'Envoyer', close: 'Fermer',
     recording: 'Enregistrement… touchez à nouveau pour arrêter', micDenied: 'Accès au micro refusé', notHeard: "Je n'ai pas entendu, veuillez réessayer", voiceMsg: 'Message vocal',
@@ -6217,7 +6340,7 @@ window.AGENT_DICT = {
   },
   it: {
     title: 'Art House · Consulente personale', online: 'online', typing: 'Art House sta scrivendo…', placeholder: 'Scrivi la tua domanda…',
-    open: 'Art House', nudge: 'Hai una domanda? Ti aiuto a scegliere casa e a calcolare le rate.',
+    open: 'Consulente IA', nudge: 'Hai una domanda? Ti aiuto a scegliere casa e a calcolare le rate.',
     chips: "L'azienda è affidabile?|Quanto costa un bilocale?|Ho 25.000 $|Dove vi trovate?",
     voiceOn: 'Risposta vocale', mic: 'Messaggio vocale', send: 'Invia', close: 'Chiudi',
     recording: 'Registrazione… tocca di nuovo per fermare', micDenied: 'Accesso al microfono negato', notHeard: 'Non ho sentito, riprova', voiceMsg: 'Messaggio vocale',
@@ -6256,7 +6379,7 @@ window.AGENT_DICT = {
   },
   es: {
     title: 'Art House · Asesor personal', online: 'en línea', typing: 'Art House está escribiendo…', placeholder: 'Escriba su pregunta…',
-    open: 'Art House', nudge: '¿Tiene alguna pregunta? Le ayudo a elegir vivienda y a calcular los pagos.',
+    open: 'Asesor IA', nudge: '¿Tiene alguna pregunta? Le ayudo a elegir vivienda y a calcular los pagos.',
     chips: '¿Es una empresa de confianza?|¿Cuánto cuesta un piso de 2 habitaciones?|Tengo 25.000 $|¿Dónde están ubicados?',
     voiceOn: 'Respuesta por voz', mic: 'Mensaje de voz', send: 'Enviar', close: 'Cerrar',
     recording: 'Grabando… pulse de nuevo para detener', micDenied: 'Acceso al micrófono denegado', notHeard: 'No le he oído, inténtelo de nuevo', voiceMsg: 'Mensaje de voz',
@@ -6295,7 +6418,7 @@ window.AGENT_DICT = {
   },
   de: {
     title: 'Art House · Persönlicher Berater', online: 'online', typing: 'Art House schreibt…', placeholder: 'Ihre Frage…',
-    open: 'Art House', nudge: 'Haben Sie eine Frage? Ich helfe bei der Wohnungswahl und berechne die Raten.',
+    open: 'KI-Berater', nudge: 'Haben Sie eine Frage? Ich helfe bei der Wohnungswahl und berechne die Raten.',
     chips: 'Ist das Unternehmen seriös?|Was kostet eine 2-Zimmer-Wohnung?|Ich habe 25.000 $|Wo befinden Sie sich?',
     voiceOn: 'Sprachantwort', mic: 'Sprachnachricht', send: 'Senden', close: 'Schließen',
     recording: 'Aufnahme… zum Beenden erneut tippen', micDenied: 'Mikrofonzugriff verweigert', notHeard: 'Nicht verstanden, bitte erneut versuchen', voiceMsg: 'Sprachnachricht',
@@ -6334,7 +6457,7 @@ window.AGENT_DICT = {
   },
   tr: {
     title: 'Art House · Kişisel danışman', online: 'çevrimiçi', typing: 'Art House yazıyor…', placeholder: 'Sorunuzu yazın…',
-    open: 'Art House', nudge: 'Bir sorunuz mu var? Ev seçmenize ve ödemeyi hesaplamanıza yardımcı olurum.',
+    open: 'AI danışman', nudge: 'Bir sorunuz mu var? Ev seçmenize ve ödemeyi hesaplamanıza yardımcı olurum.',
     chips: 'Şirket güvenilir mi?|2 odalı daire ne kadar?|25.000 $ param var|Neredesiniz?',
     voiceOn: 'Sesli yanıt', mic: 'Sesli mesaj', send: 'Gönder', close: 'Kapat',
     recording: 'Kaydediliyor… durdurmak için tekrar dokunun', micDenied: 'Mikrofon izni reddedildi', notHeard: 'Duyamadım, lütfen tekrar deneyin', voiceMsg: 'Sesli mesaj',
@@ -6398,8 +6521,8 @@ window.AGENT_DICT = {
     ['tr', /[ğış]|\b(merhaba|nasıl|fiyat\w*|evet|teşekkür\w*|güvenilir|daire|istiyorum|kaç)\b/i],
     ['de', /[äß]|\b(hallo|ich|und|wie|nicht|wohnung|danke|guten|viel|kostet|möchte)\b/i],
     ['es', /[ñ¿¡]|\b(hola|quiero|cu[aá]nto|gracias|precio|buenos|necesito|puedo|piso)\b/i],
+    ['it', /(^|\s)è(\s|$)|\b(ciao|buongiorno|grazie|prezzo|vorrei|sono|appartamento|quanto|azienda|affidabile|mutuo|serve|dove|trova|complesso)\b/i], /* «è» alohida so'z — italyancha (fransuzchadan oldin) */
     ['fr', /[èêœ]|\b(bonjour|je|merci|prix|combien|vous|est-ce|appartement|salut)\b/i],
-    ['it', /\b(ciao|buongiorno|grazie|prezzo|vorrei|sono|appartamento|quanto)\b/i],
     ['en', /\b(hello|hi|the|is|how|much|price|want|apartment|thanks|you|can|trust|what|need)\b/i]
   ];
   function detect(t) {
@@ -6436,6 +6559,9 @@ window.AGENT_DICT = {
 
   /* ---------- matndan ma'lumot ajratish (9 tilda) ---------- */
   var nz = function (t) { return String(t).toLowerCase().replace(/[’ʻʼ`´‘]/g, "'"); };
+  /* o'zbek kirill yozuvi → lotin (niyatlar lotin yozuvida tekshiriladi): «қаерда» → «qayerda» */
+  var CL = { а: 'a', б: 'b', в: 'v', г: 'g', ғ: "g'", д: 'd', ё: 'yo', ж: 'j', з: 'z', и: 'i', й: 'y', к: 'k', қ: 'q', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ў: "o'", ф: 'f', х: 'x', ҳ: 'h', ц: 's', ч: 'ch', ш: 'sh', ъ: "'", ь: '', ы: 'i', э: 'e', ю: 'yu', я: 'ya' };
+  function lat(t) { return String(t).toLowerCase().replace(/[а-яёўқғҳ]/g, function (c, i, s) { return c === 'е' ? (i === 0 || /[^а-яёўқғҳ]|[аеёиоуўэюя]/.test(s[i - 1]) ? 'ye' : 'e') : CL[c] != null ? CL[c] : c; }); }
   function money(T) {
     var s = T.replace(/(\d)[ .,](?=\d{3}(?!\d))/g, '$1'), re = /(\d+(?:[.,]\d+)?)\s*(k|к|ming|тыс|mln|млн|million|\$|dollar|долл|usd|у\.е)?/g, r;
     while ((r = re.exec(s))) {
@@ -6474,13 +6600,13 @@ window.AGENT_DICT = {
     return !/^(ha|yo'q|xo'p|mayli|ok|okay|yes|no|da|net|нет|да|ладно|хорошо|evet|hayır|oui|non|sì|si|ja|nein|ekan|bor|yo'q|kerak|emas|balki|albatta|qimmat|arzon|yaxshi|yomon)$/i.test(w[0]) && !/(ekan|emas|kerak|mi|chi|man|siz|miz)$/i.test(w[w.length - 1]);
   }
   var cap = function (x) { return x.charAt(0).toUpperCase() + x.slice(1); };
-  var NAME_RE = /(?:ismim|ismi|mening ismim|men|my name is|i am|i'm|меня зовут|я|adım|benim adım|ich heiße|ich bin|mein name ist|je m'appelle|je suis|mi chiamo|sono|me llamo|soy)\s+([\p{L}']{2,20})/u;
+  var NAME_RE = /(?:^|[^\p{L}'])(?:ismim|ismi|mening ismim|men|my name is|i am|i'm|меня зовут|я|adım|benim adım|ich heiße|ich bin|mein name ist|je m'appelle|je suis|mi chiamo|sono|me llamo|soy)\s+([\p{L}']{2,20})/u;
   var NOT_NAME = /^(1|2|3|4|bir|ikki|uch|xonali|qiziq|interested|looking|ищу|хочу|не|yes|ha|yo'q|no|bu|shu|juda|hozir|sizga|bilan|uchun)/;
 
   /* ---------- niyatni aniqlash ---------- */
   var RX = {
     angry: /yomon|aldov|aldad|firibgar|jahl|g'azab|xafa|nega javob|javob bermay|bekorchi|bema'ni|uyat|shikoyat|kutyapman|qachongacha|плохо|обман|мошенн|развод|ужас|отвратит|злой|бесит|жалоб|сколько можно|почему не отвеч|terrible|awful|scam|fraud|cheat|angry|furious|complain|ridiculous|disgusting|why no one|arnaque|escroc|honteux|furieux|plainte|truffa|imbroglio|vergogna|arrabbiat|reclamo|estafa|timo|vergüenza|enfadad|queja|betrug|abzocke|schrecklich|wütend|beschwerde|dolandır|rezalet|kızgın|şikayet|berbat/,
-    trust: /ishon|ishonchli|kafolat|aldamaysiz|haqiqiy kompaniya|litsenziya|hujjat|rasmiy|qonuniy|xavfsizmi|можно доверять|довер|надёжн|надежн|гарант|лиценз|официальн|законн|не обманете|trust|reliable|legit|guarantee|licen|safe to|scam\?|fiable|confiance|garantie|sérieux|affidabil|fidar|garanzia|serio|confiar|fiable|garantía|seria|vertrau|seriös|zuverlässig|garantie|güven|güvenilir|garanti|resmî/,
+    trust: /ishon|ishonchli|kafolat|aldamaysiz|haqiqiy kompaniya|litsenziya|hujjat|rasmiy|qonuniy|xavfsizmi|можно доверять|довер|надёжн|надежн|гарант|лиценз|официальн|законн|не обманете|trust|reliable|legit|guarantee|licen|safe to|scam\?|fiable|confiance|garantie|sérieux|affidabil|fidar|garanzia|serio|confiar|confianza|confiable|fiable|garantía|seria|vertrau|seriös|zuverlässig|garantie|güven|güvenilir|garanti|resmî/,
     unsure: /bilmayman|nima qilish|qayerdan boshla|tushunmayapman|chalkash|ikkilan|maslahat bering|qaror qila olmay|не знаю|что делать|с чего начать|запутал|сомнева|посоветуйте|i don't know|dont know|not sure|confused|where to start|what should i|advise me|je ne sais pas|hésit|conseill|non so|indeciso|consigli|no sé|no se que|dudo|aconséj|weiß nicht|unsicher|beraten|bilmiyorum|kararsız|tavsiye/,
     human: /siz robotmisiz|botmisiz|sun'iy|odam bilan|jonli|inson bilan|operator|ты бот|вы бот|робот|живой|человек|оператор|are you a bot|are you human|real person|human|robot|opérateur|humain|umano|operatore|humano|operador|mensch|bot\b|insan|temsilci/,
     greet: /salom|assalom|hayrli|qalay|yaxshimisiz|hello|\bhi\b|\bhey\b|good (morning|evening|afternoon)|привет|здравств|добр(ый|ое|ого)|merhaba|selam|günaydın|hallo|guten (tag|morgen|abend)|bonjour|salut|bonsoir|ciao|buongiorno|buonasera|hola|buenos|buenas/,
@@ -6518,11 +6644,12 @@ window.AGENT_DICT = {
     var Tn = nz(t), dg = Tn.replace(/\D/g, ''), cards = [], pre = '', hit = 0, key, o = {};
     CX.turns++;
     var dl = detect(t); if (dl) CX.ml = dl === 'uz' && I18N.lang === 'cy' ? 'cy' : dl;
+    var Ti = dl === 'cy' ? Tn + ' ' + lat(t) : Tn; /* niyat uchun: kirill yozuvidagi o'zbekchaning lotin ko'rinishi ham */
     if (dg.length >= 9 && dg.length <= 12 && !/\$|dollar|usd|долл/.test(Tn)) { CX.phone = '+' + (dg.length === 9 ? '998' + dg : dg); hit = 1; }
-    var nm = Tn.match(NAME_RE);
+    var nm = Ti.match(NAME_RE);
     if (nm && !NOT_NAME.test(nm[1])) { if (!CX.name) pre = T('niceName', { n: esc(cap(nm[1])) }) + ' '; CX.name = cap(nm[1]); }
     else if (CX.ask === 'name' && looksLikeName(Tn)) { CX.name = cap(Tn.trim().split(' ')[0]); pre = T('niceName', { n: esc(CX.name) }) + ' '; }
-    var B = hit ? 0 : money(Tn), R = rooms(Tn), Mo = months(Tn), P = project(Tn);
+    var B = hit ? 0 : money(Tn), R = rooms(Ti), Mo = months(Ti), P = project(Ti);
     if (B) CX.B = B; if (R) CX.R = R; if (Mo) CX.M = Mo; if (P) CX.P = P;
     var M = CX.M || Math.max.apply(null, CFG.MONTHS);
 
@@ -6530,11 +6657,11 @@ window.AGENT_DICT = {
     if (CX.phone && CX.name && !CX.sent) { sendLead(); CX.ask = 0; return { h: pre + T(window.CRM && CRM.api ? 'leadSent' : 'leadManual', { n: esc(CX.name), p: esc(CX.phone), tel: tel() }), cards: cards }; }
     CX.ask = 0;
 
-    var intent = RX.angry.test(Tn) ? 'angry' : RX.human.test(Tn) ? 'human' : RX.trust.test(Tn) ? 'trust' : RX.unsure.test(Tn) ? 'unsure' :
-      RX.renov.test(Tn) ? 'renov' : RX.parking.test(Tn) && !B && !R ? 'parking' : RX.savings.test(Tn) ? 'savings' : RX.expensive.test(Tn) && !B ? 'expensive' :
-      RX.credit.test(Tn) && !B ? 'credit' : (RX.location.test(Tn) && !B && !R) ? 'location' : (RX.contact.test(Tn) && !B && !R) ? 'contact' :
-      (B || R || (RX.want.test(Tn) && (CX.B || CX.R || CX.P === 'musaffo'))) ? 'want' : RX.projects.test(Tn) || (P && P !== 'musaffo') ? 'projects' :
-      RX.thanks.test(Tn) ? 'thanks' : RX.greet.test(Tn) ? 'greet' : RX.want.test(Tn) ? 'want' : 'fallback';
+    var intent = RX.angry.test(Ti) ? 'angry' : RX.human.test(Ti) ? 'human' : RX.trust.test(Ti) ? 'trust' : RX.unsure.test(Ti) ? 'unsure' :
+      RX.renov.test(Ti) ? 'renov' : RX.parking.test(Ti) && !B && !R ? 'parking' : RX.savings.test(Ti) ? 'savings' : RX.expensive.test(Ti) && !B ? 'expensive' :
+      RX.credit.test(Ti) && !B ? 'credit' : (RX.location.test(Ti) && !B && !R) ? 'location' : (RX.contact.test(Ti) && !B && !R) ? 'contact' :
+      (B || R || (RX.want.test(Ti) && (CX.B || CX.R || CX.P === 'musaffo'))) ? 'want' : RX.projects.test(Ti) || (P && P !== 'musaffo') ? 'projects' :
+      RX.thanks.test(Ti) ? 'thanks' : RX.greet.test(Ti) ? 'greet' : RX.want.test(Ti) ? 'want' : 'fallback';
     if (intent === 'angry') CX.angry = (CX.angry || 0) + 1;
     var repeat = CX.hist[CX.hist.length - 1] === intent; CX.hist.push(intent);
     var cat = CAT(), pc = CFG.DOWN_MIN;
@@ -6691,7 +6818,9 @@ window.AGENT_DICT = {
     setTimeout(function () { n.remove(); }, 14000);
   }, 20000);
 
-  window.ArtHouseAI = { open: open, reply: reply };
+  /* bosh sahifadagi sotuv kartasi uchun: tayyor savol bilan ochish va mijoz tanlagan shartlarni suhbatga berish */
+  function setCtx(o) { ['R', 'M', 'B', 'P'].forEach(function (k) { if (o && o[k]) CX[k] = o[k]; }); persist(); }
+  window.ArtHouseAI = { open: open, reply: reply, ask: function (q) { open(); ask(q); }, ctx: setCtx };
 })();
 
 </script>
@@ -7944,6 +8073,171 @@ window.AH_IG_REELS = [
   function all() { apts(); art(); tiles(); build(); office(); bar(); foot(); searchBtn(); }
   all();
   I18N.on(function () { setTimeout(function () { all(); var b = $('.hi-sbtn'); if (b) b.setAttribute('aria-label', t('hi.search')); }, 0); });
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — bosh sahifadagi sotuv kartasi (saytga kirgan zahoti ko'rinadi)
+   · 3 ta tanlov: necha xonali (+ maydon), boshlang'ich to'lov, muddat → oylik to'lov darhol
+   · «Shu shart bilan band qilish» → band qilish oynasi shu shartlar bilan ochiladi; arizada xonadon,
+     narx, boshlang'ich to'lov, muddat va oylik to'lov menejerga boradi (Telegram: «Bosh sahifadagi kalkulyatordan»)
+   · AI maslahatchi shu yerda: tayyor savollar; mijoz tanlagan shartlar suhbatga ham beriladi
+   · bosh banner matni: aniq taklif ({down}, {months}, {years} — kabinet → Sozlamalar qiymatlari)
+   Narx hisobi kalkulyator va AI maslahatchi bilan bir xil: maydon × 1 m² narxi, 100 $ gacha yaxlitlanadi.
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (!window.I18N || !window.CFG || !window.PROJECTS || !window.AH_SITE) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var t = I18N.t, pick = I18N.pick;
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var D = {
+    uz: { 'hf.p': 'Loyiha', 'home.eyebrow': "Quruvchidan to'g'ridan-to'g'ri · {years} yil tajriba", 'home.lead': "Musaffo, Obod Maskan va Ko'kcha Oqtepa majmualarida xonadonlar. {down} boshlang'ich to'lov, qolganini {months} oygacha teng bo'lib to'laysiz. Bank krediti yo'q, ustama 0%.",
+      'hf.t': "Oylik to'lovni hisoblang", 'hf.r': 'Necha xonali?', 'hf.dup': 'Dupleks', 'hf.a': 'Maydon', 'hf.d': "Boshlang'ich to'lov", 'hf.m': 'Muddat', 'hf.res': 'Oyiga', 'hf.price': 'Narxi {v}',
+      'hf.book': 'Shu shart bilan band qilish', 'hf.note': "Ariza bepul va hech narsaga majbur qilmaydi. Menejer qo'ng'iroq qilib, shartlarni tasdiqlaydi.",
+      'hf.ai': 'AI maslahatchi', 'hf.aiT': "Savolingiz bo'lsa, hozir javob beradi", 'hf.q': "Kompaniya ishonchlimi?|Bank krediti kerakmi?|Obyekt qayerda joylashgan?", 'hf.on': 'onlayn' },
+    ru: { 'hf.p': 'Проект', 'home.eyebrow': 'Напрямую от застройщика · {years} лет опыта', 'home.lead': 'Квартиры в комплексах Musaffo, Obod Maskan и Ko‘kcha Oqtepa. Первый взнос {down}, остаток равными частями до {months} месяцев. Без банковского кредита, наценка 0%.',
+      'hf.t': 'Рассчитайте ежемесячный платёж', 'hf.r': 'Сколько комнат?', 'hf.dup': 'Дуплекс', 'hf.a': 'Площадь', 'hf.d': 'Первый взнос', 'hf.m': 'Срок', 'hf.res': 'В месяц', 'hf.price': 'Цена {v}',
+      'hf.book': 'Забронировать на этих условиях', 'hf.note': 'Заявка бесплатная и ни к чему не обязывает. Менеджер перезвонит и подтвердит условия.',
+      'hf.ai': 'AI-консультант', 'hf.aiT': 'Есть вопрос? Ответит прямо сейчас', 'hf.q': 'Компании можно доверять?|Нужен ли банковский кредит?|Где находится объект?', 'hf.on': 'онлайн' },
+    en: { 'hf.p': 'Project', 'home.eyebrow': 'Direct from the developer · {years} years of experience', 'home.lead': "Apartments in the Musaffo, Obod Maskan and Ko'kcha Oqtepa complexes. Pay {down} up front and the rest in equal instalments over up to {months} months. No bank loan, 0% markup.",
+      'hf.t': 'Work out your monthly payment', 'hf.r': 'How many rooms?', 'hf.dup': 'Duplex', 'hf.a': 'Area', 'hf.d': 'Down payment', 'hf.m': 'Term', 'hf.res': 'Per month', 'hf.price': 'Price {v}',
+      'hf.book': 'Reserve on these terms', 'hf.note': 'The request is free and commits you to nothing. A manager will call and confirm the terms.',
+      'hf.ai': 'AI adviser', 'hf.aiT': 'Have a question? It answers right now', 'hf.q': 'Can I trust the company?|Do I need a bank loan?|Where is the complex?', 'hf.on': 'online' },
+    fr: { 'hf.p': 'Projet', 'home.eyebrow': "En direct du promoteur · {years} ans d'expérience", 'home.lead': "Appartements dans les résidences Musaffo, Obod Maskan et Ko'kcha Oqtepa. Apport de {down}, puis le reste en mensualités égales sur {months} mois maximum. Sans crédit bancaire, 0 % de majoration.",
+      'hf.t': 'Calculez votre mensualité', 'hf.r': 'Combien de pièces ?', 'hf.dup': 'Duplex', 'hf.a': 'Surface', 'hf.d': 'Apport initial', 'hf.m': 'Durée', 'hf.res': 'Par mois', 'hf.price': 'Prix {v}',
+      'hf.book': 'Réserver à ces conditions', 'hf.note': 'La demande est gratuite et sans engagement. Un conseiller vous rappelle pour confirmer les conditions.',
+      'hf.ai': 'Conseiller IA', 'hf.aiT': 'Une question ? Réponse immédiate', 'hf.q': 'La société est-elle fiable ?|Faut-il un crédit bancaire ?|Où se trouve la résidence ?', 'hf.on': 'en ligne' },
+    it: { 'hf.p': 'Progetto', 'home.eyebrow': 'Direttamente dal costruttore · {years} anni di esperienza', 'home.lead': "Appartamenti nei complessi Musaffo, Obod Maskan e Ko'kcha Oqtepa. Anticipo del {down}, il resto in rate uguali fino a {months} mesi. Nessun mutuo, 0% di maggiorazione.",
+      'hf.t': 'Calcola la rata mensile', 'hf.r': 'Quante stanze?', 'hf.dup': 'Duplex', 'hf.a': 'Superficie', 'hf.d': 'Anticipo', 'hf.m': 'Durata', 'hf.res': 'Al mese', 'hf.price': 'Prezzo {v}',
+      'hf.book': 'Prenota a queste condizioni', 'hf.note': 'La richiesta è gratuita e non ti impegna. Un consulente ti richiama e conferma le condizioni.',
+      'hf.ai': 'Consulente IA', 'hf.aiT': 'Hai una domanda? Risponde subito', 'hf.q': "L'azienda è affidabile?|Serve un mutuo bancario?|Dove si trova il complesso?", 'hf.on': 'online' },
+    es: { 'hf.p': 'Proyecto', 'home.eyebrow': 'Directo del promotor · {years} años de experiencia', 'home.lead': "Apartamentos en los complejos Musaffo, Obod Maskan y Ko'kcha Oqtepa. Entrada del {down} y el resto en cuotas iguales de hasta {months} meses. Sin préstamo bancario, 0 % de recargo.",
+      'hf.t': 'Calcule su cuota mensual', 'hf.r': '¿Cuántas habitaciones?', 'hf.dup': 'Dúplex', 'hf.a': 'Superficie', 'hf.d': 'Entrada', 'hf.m': 'Plazo', 'hf.res': 'Al mes', 'hf.price': 'Precio {v}',
+      'hf.book': 'Reservar con estas condiciones', 'hf.note': 'La solicitud es gratuita y no le compromete. Un asesor le llamará para confirmar las condiciones.',
+      'hf.ai': 'Asesor IA', 'hf.aiT': '¿Tiene una pregunta? Responde ahora', 'hf.q': '¿Es una empresa de confianza?|¿Necesito un préstamo bancario?|¿Dónde está el complejo?', 'hf.on': 'en línea' },
+    de: { 'hf.p': 'Projekt', 'home.eyebrow': 'Direkt vom Bauträger · {years} Jahre Erfahrung', 'home.lead': "Wohnungen in den Anlagen Musaffo, Obod Maskan und Ko'kcha Oqtepa. {down} Anzahlung, der Rest in gleichen Raten über bis zu {months} Monate. Ohne Bankkredit, 0 % Aufschlag.",
+      'hf.t': 'Monatsrate berechnen', 'hf.r': 'Wie viele Zimmer?', 'hf.dup': 'Maisonette', 'hf.a': 'Fläche', 'hf.d': 'Anzahlung', 'hf.m': 'Laufzeit', 'hf.res': 'Pro Monat', 'hf.price': 'Preis {v}',
+      'hf.book': 'Zu diesen Konditionen reservieren', 'hf.note': 'Die Anfrage ist kostenlos und unverbindlich. Ein Berater ruft Sie an und bestätigt die Konditionen.',
+      'hf.ai': 'KI-Berater', 'hf.aiT': 'Eine Frage? Antwort sofort', 'hf.q': 'Ist die Firma vertrauenswürdig?|Brauche ich einen Bankkredit?|Wo liegt die Anlage?', 'hf.on': 'online' },
+    tr: { 'hf.p': 'Proje', 'home.eyebrow': 'Doğrudan müteahhitten · {years} yıllık deneyim', 'home.lead': "Musaffo, Obod Maskan ve Ko'kcha Oqtepa projelerinde daireler. {down} peşinat, kalanı {months} aya kadar eşit taksitlerle. Banka kredisi yok, %0 ek ücret.",
+      'hf.t': 'Aylık ödemenizi hesaplayın', 'hf.r': 'Kaç oda?', 'hf.dup': 'Dubleks', 'hf.a': 'Alan', 'hf.d': 'Peşinat', 'hf.m': 'Vade', 'hf.res': 'Aylık', 'hf.price': 'Fiyat {v}',
+      'hf.book': 'Bu koşullarla rezerve et', 'hf.note': 'Talep ücretsizdir ve sizi hiçbir şeye bağlamaz. Danışman arayıp koşulları onaylar.',
+      'hf.ai': 'AI danışman', 'hf.aiT': 'Sorunuz mu var? Hemen yanıtlar', 'hf.q': 'Şirket güvenilir mi?|Banka kredisi gerekir mi?|Proje nerede?', 'hf.on': 'çevrimiçi' }
+  };
+  Object.keys(D).forEach(function (l) { I18N.extend(l, D[l]); });
+
+  /* xonadon rejalari kiritilgan loyihalar (kabinet → Loyihalar); bir nechta bo'lsa, kartada loyiha tanlovi chiqadi */
+  function list() { return PROJECTS.filter(function (p) { return p.plans && p.plans.length; }); }
+  function proj() { var L = list(); return L.filter(function (p) { return p.id === S.p; })[0] || L[0]; }
+  var hin = $('#p-home .hero-in'), copy = hin && $('.hero-copy', hin);
+  if (!list().length || !copy) return;
+
+  /* holat: loyiha (p), xonalar (r), reja (i), boshlang'ich to'lov % (pct), muddat (m); sahifa yangilansa ham saqlanadi */
+  var S = { p: '', r: '', i: -1, pct: CFG.DOWN_MIN, m: Math.max.apply(null, CFG.MONTHS), touched: 0 };
+  try { var sv = JSON.parse(sessionStorage.getItem('ah_hf')); if (sv) Object.assign(S, sv); } catch (e) {}
+  function save() { try { sessionStorage.setItem('ah_hf', JSON.stringify(S)); } catch (e) {} }
+  function units() {
+    var P = proj();
+    return P.plans.map(function (pl, i) { return { i: i, pl: pl, r: pl.duplex ? 'd' : String(pl.rooms), price: Math.min(500000, Math.max(20000, Math.round(pl.area * (P.priceM2 || CFG.PRICE_M2) / 100) * 100)) }; });
+  }
+  function kinds() { var k = []; units().forEach(function (u) { if (k.indexOf(u.r) < 0) k.push(u.r); }); return k.sort(function (a, b) { return a === 'd' ? 1 : b === 'd' ? -1 : a - b; }); }
+  function sane() {
+    S.p = proj().id;
+    var U = units(), K = kinds();
+    if (K.indexOf(S.r) < 0) S.r = K[0];
+    var mine = U.filter(function (u) { return u.r === S.r; });
+    if (!mine.some(function (u) { return u.i === S.i; })) S.i = mine.slice().sort(function (a, b) { return a.price - b.price; })[0].i;
+    S.pct = Math.min(CFG.DOWN_MAX, Math.max(CFG.DOWN_MIN, +S.pct || CFG.DOWN_MIN));
+    if (CFG.MONTHS.indexOf(+S.m) < 0) S.m = Math.max.apply(null, CFG.MONTHS);
+    return U;
+  }
+  function calc() {
+    var u = sane()[S.i], dn = Math.round(u.price * S.pct / 100);
+    return { u: u, down: dn, monthly: (u.price - dn) / S.m };
+  }
+  var area = function (pl) { return (pl.areaTxt || String(pl.area).replace('.', ',')) + ' m²'; };
+
+  /* karta: sarlavha, 3 ta tanlov, natija, band qilish tugmasi; AI maslahatchi — alohida blok
+     (kompyuterda banner matni ostida, telefonda kartaning davomi) */
+  var card = document.createElement('aside'), ai = document.createElement('div');
+  card.className = 'hf'; card.id = 'hfCard'; card.setAttribute('aria-labelledby', 'hfT');
+  ai.className = 'hf-ai'; ai.id = 'hfAiBox';
+  var stats = $('.stats', copy);
+  hin.classList.add('hf-on'); hin.parentNode.classList.add('hf-hero');
+  I18N.apply(copy); /* banner matni yangi taklif bilan (sahifa allaqachon tarjima qilingan bo'lishi mumkin) */
+  hin.insertBefore(card, copy.nextSibling); hin.insertBefore(ai, card.nextSibling);
+  if (stats) hin.insertBefore(stats, ai.nextSibling); /* telefonda raqamlar kartadan keyin, kompyuterda matn ostida */
+
+  function chips(g, list, on) { return '<div class="hf-chips" role="group" data-g="' + g + '">' + list.map(function (x) { return '<button type="button" data-v="' + esc(x[0]) + '" aria-pressed="' + (String(x[0]) === String(on)) + '">' + esc(x[1]) + '</button>'; }).join('') + '</div>'; }
+  function draw() {
+    var U = sane(), P = proj(), L = list(), K = kinds(), mine = U.filter(function (u) { return u.r === S.r; }).sort(function (a, b) { return a.pl.area - b.pl.area; });
+    var q = t('hf.q').split('|');
+    card.innerHTML =
+      '<div class="hf-head"><p class="hf-k">' + esc(pick(P.name)) + ' · ' + esc(pick(P.district)) + '</p><h2 id="hfT">' + esc(t('hf.t')) + '</h2></div>' +
+      (L.length > 1 ? '<div class="hf-row"><span class="hf-l">' + esc(t('hf.p')) + '</span>' + chips('p', L.map(function (p) { return [p.id, pick(p.name)]; }), P.id) + '</div>' : '') +
+      '<div class="hf-row"><span class="hf-l">' + esc(t('hf.r')) + '</span>' + chips('r', K.map(function (k) { return [k, k === 'd' ? t('hf.dup') : k]; }), S.r) + '</div>' +
+      (mine.length > 1 ? '<div class="hf-row"><span class="hf-l">' + esc(t('hf.a')) + '</span>' + chips('i', mine.map(function (u) { return [u.i, area(u.pl)]; }), S.i) + '</div>' : '') +
+      '<div class="hf-row"><label class="hf-l" for="hfDown">' + esc(t('hf.d')) + ' <b id="hfDownV"></b></label><input type="range" id="hfDown" min="' + CFG.DOWN_MIN + '" max="' + CFG.DOWN_MAX + '" step="5" value="' + S.pct + '"></div>' +
+      '<div class="hf-row"><span class="hf-l">' + esc(t('hf.m')) + '</span>' + chips('m', CFG.MONTHS.map(function (m) { return [m, m + ' ' + t('unit.month')]; }), S.m) + '</div>' +
+      '<div class="hf-res"><a class="hf-img" href="#projects/' + esc(P.id) + '"><img alt="" decoding="async" id="hfImg"></a><div class="hf-sum"><span>' + esc(t('hf.res')) + '</span><b id="hfM"></b><small id="hfUzs"></small><small class="hf-u" id="hfU"></small></div></div>' +
+      '<button type="button" class="btn btn-gold hf-book" id="hfBook"><span>' + esc(t('hf.book')) + '</span><svg class="ic"><use href="#i-arrow"/></svg></button>' +
+      '<p class="hf-note">' + esc(t('hf.note')) + '</p>';
+    ai.innerHTML = '<button type="button" class="hf-ai-b" id="hfAi"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><b>' + esc(t('hf.ai')) + '</b><i></i><small>' + esc(t('hf.on')) + '</small></button>' +
+      '<p class="hf-ai-t">' + esc(t('hf.aiT')) + '</p><div class="hf-q">' + q.map(function (x) { return '<button type="button">' + esc(x) + '</button>'; }).join('') + '</div>';
+    out();
+  }
+  /* faqat raqamlar yangilanadi (slayder surilganda karta qayta chizilmaydi) */
+  function out() {
+    var r = calc(), u = r.u, inp = $('#hfDown', card);
+    inp.style.setProperty('--p', ((S.pct - CFG.DOWN_MIN) / Math.max(1, CFG.DOWN_MAX - CFG.DOWN_MIN) * 100) + '%');
+    $('#hfDownV', card).textContent = S.pct + '% · ' + I18N.usd(r.down);
+    $('#hfM', card).textContent = I18N.usd(r.monthly);
+    $('#hfUzs', card).textContent = t('calc.uzs', { v: I18N.num(Math.round(r.monthly * CFG.USD_UZS / 1000) * 1000) });
+    $('#hfU', card).textContent = t('plan.label', { rooms: u.pl.rooms, duplex: u.pl.duplex ? t('plan.duplex') : '', area: String(u.pl.area).replace('.', ',') }) + ' · ' + t('hf.price', { v: I18N.usd(u.price) });
+    var img = $('#hfImg', card); if (img.getAttribute('src') !== u.pl.img) img.src = u.pl.img;
+  }
+  function touch() { if (!S.touched) { S.touched = 1; if (window.CRM) CRM.track('c'); } save(); }
+  function aiCtx() { var r = calc(); if (window.ArtHouseAI && ArtHouseAI.ctx) ArtHouseAI.ctx({ R: S.r, M: +S.m, B: r.down, P: proj().id }); }
+  function book() {
+    var r = calc(); touch();
+    AH_SITE.calcSet({ project: proj().id, plan: r.u.i, pct: S.pct, months: +S.m });
+    AH_SITE.book({ fromCalc: true, via: 'hero' });
+  }
+
+  card.addEventListener('click', function (e) {
+    var b = e.target.closest('.hf-chips button');
+    if (b) { var g = b.parentNode.dataset.g, v = b.dataset.v; if (g === 'r') { S.r = v; S.i = -1; } else if (g === 'p') { S.p = v; S.r = ''; S.i = -1; } else if (g === 'i') S.i = +v; else S.m = +v; touch(); draw(); var f = $('.hf-chips[data-g="' + g + '"] [aria-pressed="true"]', card); if (f) f.focus(); return; }
+    if (e.target.closest('#hfBook')) book();
+  });
+  ai.addEventListener('click', function (e) {
+    if (e.target.closest('#hfAi')) { aiCtx(); if (window.ArtHouseAI) ArtHouseAI.open(); return; }
+    var q = e.target.closest('.hf-q button');
+    if (q && window.ArtHouseAI && ArtHouseAI.ask) { aiCtx(); ArtHouseAI.ask(q.textContent); }
+  });
+  card.addEventListener('input', function (e) { if (e.target.id === 'hfDown') { S.pct = +e.target.value; touch(); out(); } });
+
+  /* bosh sahifada «Band qilish» (yuqori menyu, pastki panel): mijoz kartada tanlagan bo'lsa — shu shartlar bilan */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-book]');
+    if (!b || !S.touched || card.contains(b) || !$('#p-home').offsetParent) return;
+    e.stopPropagation(); e.preventDefault(); book();
+  }, true);
+  /* bannerdagi «To'lovni hisoblash» — kartaga olib boradi */
+  var cta = $('.cta-row a[href="#calculator"]', copy);
+  if (cta) cta.addEventListener('click', function (e) {
+    e.preventDefault(); card.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    card.classList.remove('hf-glow'); void card.offsetWidth; card.classList.add('hf-glow');
+  });
+
+  /* kompyuterda: karta ko'rinib turganda suzuvchi AI tugmasi yashirinadi (AI maslahatchi kartaning o'zida) */
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { document.body.classList.toggle('hf-vis', es[0].isIntersecting); }, { threshold: .25 }).observe(card);
+
+  draw();
+  I18N.on(function () { setTimeout(draw, 0); });
+  if (window.Store && Store.on) Store.on('settings', function () { setTimeout(draw, 0); });
+  window.AH_HF = { draw: draw, state: function () { var r = calc(); return { rooms: S.r, plan: r.u.i, price: r.u.price, pct: S.pct, down: r.down, months: +S.m, monthly: Math.round(r.monthly) }; } };
 })();
 
 </script>
