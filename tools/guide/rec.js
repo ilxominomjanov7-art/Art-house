@@ -42,6 +42,7 @@ const OVERLAY = () => {
   const loc = async sel => { const l = p.locator(sel).filter({ visible: true }).first(); return (await l.count()) ? l : null; };
   const center = async l => { const bb = await l.boundingBox(); return bb && [bb.x + bb.width / 2, bb.y + bb.height / 2, bb]; };
   const h = {
+    page: p,
     wait: w,
     async click(sel, after) { const l = await loc(sel); if (!l) { console.warn('yo\'q:', sel); return; } await l.scrollIntoViewIfNeeded(); await w(200); const c = await center(l); if (c) await p.evaluate(([x, y]) => window.__tap(x, y), c); await w(420); await l.click(); await w(after == null ? 700 : after); },
     async point(sel, ms) { const l = await loc(sel); if (!l) { console.warn('yo\'q:', sel); return; } await l.evaluate(e => e.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); await w(450); const c = await center(l); if (!c) return; await p.evaluate(r => window.__hl(r), c[2]); await w(ms || 1500); await p.evaluate(() => window.__hl(null)); await w(200); },
