@@ -342,21 +342,22 @@
   }, true);
 
   /* ---------- 3) afzalliklar lentasi ---------- */
-  var uspTimer = 0;
+  var uspTimers = {};
   function uspItems() { var L = (FN().usp || {}).items; return (Array.isArray(L) ? L : FD.usp).filter(function (x) { return x.on !== false; }); }
-  function usp() {
-    var hero = $('#p-home > .hero'), old = $('#ahUsp'); if (!hero) return;
-    var L = uspItems(); clearInterval(uspTimer);
+  /* pastki lenta (bosh sahifa oxirida) — tepadagisi bilan bir xil ko'rinish: och fon, ikonka, surish */
+  var BOTTOM = [{ icon: 'clock', k: 'hi.b1' }, { icon: 'percent', k: 'hi.b2' }, { icon: 'doc', k: 'hi.b3' }, { icon: 'car', k: 'hi.b4' }];
+  function slider(id, L, place) {
+    var old = $('#' + id); clearInterval(uspTimers[id]);
     if (!L.length) { if (old) old.remove(); return; }
-    var s = document.createElement('section'); s.id = 'ahUsp'; s.className = 'usp' + (old && old.classList.contains('ths-off') ? ' ths-off' : ''); s.setAttribute('aria-roledescription', 'carousel'); s.setAttribute('aria-label', t('usp.aria'));
+    var s = document.createElement('section'); s.id = id; s.className = 'usp' + (old && old.classList.contains('ths-off') ? ' ths-off' : ''); s.setAttribute('aria-roledescription', 'carousel'); s.setAttribute('aria-label', t('usp.aria'));
     if (old && old.getAttribute('data-ths')) s.setAttribute('data-ths', old.getAttribute('data-ths'));
     s.style.setProperty('--usp-n', Math.min(L.length, 6));
     s.innerHTML = '<div class="usp-track">' + L.map(function (u, i) { return '<div class="usp-it" role="group" aria-label="' + (i + 1) + ' / ' + L.length + '">' + ICO(u, 'usp-ic') + '<div><b>' + esc(ML(u.t, u.k && u.k + 't')) + '</b><p>' + esc(ML(u.d, u.k && u.k + 'd')) + '</p></div></div>'; }).join('') +
       '</div>' + (L.length > 1 ? '<div class="usp-dots">' + L.map(function (u, i) { return '<button type="button" aria-label="' + (i + 1) + ' / ' + L.length + '" data-k="' + i + '"></button>'; }).join('') + '</div>' : '');
-    if (old) old.replaceWith(s); else hero.parentNode.insertBefore(s, hero.nextSibling);
+    if (old) old.replaceWith(s); else place(s);
     var tr = $('.usp-track', s), k = 0, wide = matchMedia('(min-width: 1100px)'), RM = matchMedia('(prefers-reduced-motion: reduce)').matches, vis = true;
     function go(i) { k = (i + L.length) % L.length; tr.style.transform = wide.matches ? '' : 'translateX(' + (-k * 100) + '%)'; $$('.usp-dots button', s).forEach(function (b, j) { b.setAttribute('aria-current', String(j === k)); }); }
-    function play() { clearInterval(uspTimer); var sp = Math.max(2, +RU().speed || 4.5) * 1000; if (!wide.matches && !RM && L.length > 1) uspTimer = setInterval(function () { if (!document.hidden && vis && document.body.contains(s)) go(k + 1); }, sp); }
+    function play() { clearInterval(uspTimers[id]); var sp = Math.max(2, +RU().speed || 4.5) * 1000; if (!wide.matches && !RM && L.length > 1) uspTimers[id] = setInterval(function () { if (!document.hidden && vis && document.body.contains(s)) go(k + 1); }, sp); }
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(s);
     s.addEventListener('click', function (e) { var b = e.target.closest('.usp-dots button'); if (b) { go(+b.getAttribute('data-k')); play(); } });
     var x0 = null;
@@ -364,6 +365,12 @@
     s.addEventListener('pointerup', function (e) { if (x0 == null || wide.matches) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) { go(k + (dx < 0 ? 1 : -1)); play(); } });
     (wide.addEventListener ? wide.addEventListener.bind(wide, 'change') : wide.addListener.bind(wide))(function () { go(k); play(); });
     go(0); play();
+  }
+  function usp() {
+    var hero = $('#p-home > .hero'); if (!hero) return;
+    slider('ahUsp', uspItems(), function (s) { hero.parentNode.insertBefore(s, hero.nextSibling); });
+    var host = $('#p-home');
+    slider('hiBar', BOTTOM, function (s) { var ig = $('#igStrip'); if (ig) ig.after(s); else host.appendChild(s); });
   }
   usp();
 

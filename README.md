@@ -27,6 +27,9 @@ js/funnel.js      — sotuv oynalari (taklif kalit-kartasi, bo'lib to'lash kalku
 js/kabinet-funnel.js — kabinetdagi «Sotuv oynalari» sahifasi: qoidalar, matnlar, rasmlar, ikonkalar, «Asliga qaytarish»
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
+js/kabinet-publish.js — «Saytga chiqarish»: o'zgarishlarni index.html ichiga joylaydi
+js/menu-schema.js, kabinet-menu.js — saytdagi ☰ menyu sxemasi va kabinetdagi «Menyu» bo'limi
+css/site-final.css — oxirgi qatlam: ixcham menyu, pastki ikonkali lenta, footer va raqam bilan obuna
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
 js/kabinet-stars.js — «Yulduzlar» sahifasi: taniqli insonlar kartalari (+ css/kabinet-stars.css)
 js/kabinet-instagram.js — «Instagram» sahifasi: Reels videolari, havolalar, gapirilgan matn 8 tilda
@@ -41,6 +44,26 @@ server/server.js  — Node.js server: API, CRM, /api/cms (sozlamalar va mavzular
 tools/build-single.py — bitta faylli dist/ versiyasini yig'adi; tools/check-i18n.js — tarjimalarni tekshiradi
 assets/           — rasmlar, rejalar, dron videosi, kabinet emoji-ikonkalari
 ```
+
+## Kabinet o'zgarishlari saytga qanday yetadi («Saytga chiqarish»)
+
+Kabinet o'zgarishlarni **shu brauzer xotirasiga** yozadi. Sayt boshqa telefonda, boshqa brauzerda yoki
+fayl sifatida (telefon «Yuklanmalar», Telegram — `content://…`) ochilsa, bu xotirani ko'rmaydi — shuning uchun
+kabinetda almashgan rasm saytda eskicha qolardi. Endi:
+
+1. Kabinetda biror narsani saqlasangiz, pastda oltin **«Saytga chiqarish»** tugmasi chiqadi.
+2. Tugma → **«index.html ni tanlash»** → hozirgi sayt faylini tanlang.
+3. Kabinet barcha o'zgarishlarni (yuklangan rasm va videolar bilan) shu fayl ichiga joylaydi
+   (`<script id="ahBaked">window.AH_BAKED=…`) va yangi `index.html` ni yuklab beradi.
+4. Yangi faylni hostingga eskisining o'rniga qo'ying yoki mijozlarga yuboring — hamma yangi ko'rinishni ko'radi.
+
+Eski `index.html` tanlansa ham ishlaydi. Server ulangan bo'lsa (`API_URL`) — «Serverga nashr qilish» hammaga darhol tarqatadi.
+
+## Menyu (☰) — kabinet → Sayt → Menyu
+
+Saytdagi to'liq ekranli menyu to'liq kabinetdan boshqariladi (`js/menu-schema.js`, `js/kabinet-menu.js`, `'ah_cms'.menu`):
+rasm yoki video kartalar, katta havolalar («ajratilgan» — oltin rangda), guruhlar (sarlavha + bandlar),
+har bir yozuv 8 tilda, tartiblash, yashirish, qo'shish, o'chirish va «Asliga qaytarish».
 
 ## Mavzular va bo'limlar (Shopify uslubida)
 

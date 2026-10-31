@@ -77,6 +77,15 @@
   I18N.extend('es', { 'hi.bldE': "Musaffo · imágenes de dron", 'hi.bldT': "Avance de obra", 'hi.bldD': "Vea con sus propios ojos cómo se construye su hogar: imágenes de dron tomadas directamente en la obra.", 'hi.bldB': "Ver el proyecto" });
   I18N.extend('de', { 'hi.bldE': "Musaffo · Drohnenaufnahmen", 'hi.bldT': "Baufortschritt", 'hi.bldD': "Sehen Sie selbst, wie Ihr Zuhause entsteht – Drohnenaufnahmen direkt von der Baustelle.", 'hi.bldB': "Projekt ansehen" });
   I18N.extend('tr', { 'hi.bldE': "Musaffo · drone çekimi", 'hi.bldT': "İnşaat süreci", 'hi.bldD': "Evinizin nasıl inşa edildiğini kendi gözlerinizle görün — doğrudan şantiyeden drone çekimleri.", 'hi.bldB': "Projeyi görüntüle" });
+  /* pastki lentaning 4-bandi, yopiq takliflarga obuna (raqam), footer yozuvlari */
+  I18N.extend('uz', {"hi.b4t": "Bepul ko'rik", "hi.b4d": "Obyektga bepul olib boramiz va shaxsiy maslahat beramiz.", "hi.newsT": "Yopiq takliflar — birinchi sizga", "hi.newsD": "Yangi xonadonlar savdoga chiqishidan oldin eng yaxshi qavat va narxlarni sizga birinchi bo'lib yuboramiz.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Faqat muhim xabarlar, ortiqcha reklama yo'q", "hi.newsP2": "Menejer qulay vaqtda o'zi bog'lanadi", "hi.newsOk": "Rahmat! Siz yopiq takliflar ro'yxatidasiz — menejerimiz tez orada bog'lanadi.", "hi.newsBad": "Raqamni to'liq kiriting (9 ta raqam).", "foot.tg": "Telegram kanalimiz", "foot.ig": "Instagram sahifamiz", "foot.addr": "Manzil"});
+  I18N.extend('ru', {"hi.b4t": "Бесплатный показ", "hi.b4d": "Бесплатно отвезём на объект и проконсультируем лично.", "hi.newsT": "Закрытые предложения — вам первым", "hi.newsD": "Лучшие этажи и цены на новые квартиры отправим вам раньше, чем они поступят в продажу.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Только важное, без лишней рекламы", "hi.newsP2": "Менеджер свяжется в удобное время", "hi.newsOk": "Спасибо! Вы в списке закрытых предложений — менеджер скоро свяжется.", "hi.newsBad": "Введите номер полностью (9 цифр).", "foot.tg": "Наш Telegram-канал", "foot.ig": "Наш Instagram", "foot.addr": "Адрес"});
+  I18N.extend('en', {"hi.b4t": "Free viewing", "hi.b4d": "We'll take you to the site free of charge and advise you in person.", "hi.newsT": "Private offers — you hear first", "hi.newsD": "We'll send you the best floors and prices on new apartments before they go on sale.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Only what matters, no spam", "hi.newsP2": "A manager reaches out at a convenient time", "hi.newsOk": "Thank you! You're on the private offers list — a manager will be in touch soon.", "hi.newsBad": "Please enter the full number (9 digits).", "foot.tg": "Our Telegram channel", "foot.ig": "Our Instagram", "foot.addr": "Address"});
+  I18N.extend('fr', {"hi.b4t": "Visite gratuite", "hi.b4d": "Nous vous emmenons gratuitement sur le site et vous conseillons en personne.", "hi.newsT": "Offres privées — vous en premier", "hi.newsD": "Nous vous envoyons les meilleurs étages et prix des nouveaux appartements avant leur mise en vente.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "L'essentiel, sans publicité inutile", "hi.newsP2": "Un conseiller vous contacte au moment opportun", "hi.newsOk": "Merci ! Vous êtes sur la liste des offres privées — un conseiller vous contactera bientôt.", "hi.newsBad": "Saisissez le numéro complet (9 chiffres).", "foot.tg": "Notre chaîne Telegram", "foot.ig": "Notre Instagram", "foot.addr": "Adresse"});
+  I18N.extend('it', {"hi.b4t": "Visita gratuita", "hi.b4d": "Ti accompagniamo gratuitamente in cantiere e ti consigliamo di persona.", "hi.newsT": "Offerte riservate — a te per primo", "hi.newsD": "Ti inviamo i piani e i prezzi migliori dei nuovi appartamenti prima che vadano in vendita.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Solo ciò che conta, niente spam", "hi.newsP2": "Un consulente ti contatta quando preferisci", "hi.newsOk": "Grazie! Sei nella lista delle offerte riservate — un consulente ti contatterà presto.", "hi.newsBad": "Inserisci il numero completo (9 cifre).", "foot.tg": "Il nostro canale Telegram", "foot.ig": "Il nostro Instagram", "foot.addr": "Indirizzo"});
+  I18N.extend('es', {"hi.b4t": "Visita gratuita", "hi.b4d": "Le llevamos gratis a la obra y le asesoramos en persona.", "hi.newsT": "Ofertas privadas — usted primero", "hi.newsD": "Le enviamos las mejores plantas y precios de los nuevos pisos antes de que salgan a la venta.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Solo lo importante, sin spam", "hi.newsP2": "Un asesor le contacta cuando le venga bien", "hi.newsOk": "¡Gracias! Está en la lista de ofertas privadas — un asesor le contactará pronto.", "hi.newsBad": "Introduzca el número completo (9 dígitos).", "foot.tg": "Nuestro canal de Telegram", "foot.ig": "Nuestro Instagram", "foot.addr": "Dirección"});
+  I18N.extend('de', {"hi.b4t": "Kostenlose Besichtigung", "hi.b4d": "Wir bringen Sie kostenlos zum Objekt und beraten Sie persönlich.", "hi.newsT": "Exklusive Angebote — Sie zuerst", "hi.newsD": "Die besten Etagen und Preise neuer Wohnungen senden wir Ihnen, bevor sie in den Verkauf gehen.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Nur Wichtiges, kein Spam", "hi.newsP2": "Ein Berater meldet sich zu einer passenden Zeit", "hi.newsOk": "Danke! Sie stehen auf der Liste für exklusive Angebote — ein Berater meldet sich bald.", "hi.newsBad": "Bitte vollständige Nummer eingeben (9 Ziffern).", "foot.tg": "Unser Telegram-Kanal", "foot.ig": "Unser Instagram", "foot.addr": "Adresse"});
+  I18N.extend('tr', {"hi.b4t": "Ücretsiz gezi", "hi.b4d": "Sizi ücretsiz olarak projeye götürür, birebir danışmanlık veririz.", "hi.newsT": "Özel teklifler — önce size", "hi.newsD": "Yeni dairelerin en iyi katlarını ve fiyatlarını satışa çıkmadan önce size göndeririz.", "hi.newsPh": "90 123 45 67", "hi.newsP1": "Sadece önemli haberler, gereksiz reklam yok", "hi.newsP2": "Danışman uygun bir zamanda size ulaşır", "hi.newsOk": "Teşekkürler! Özel teklif listesindesiniz — danışmanımız yakında ulaşacak.", "hi.newsBad": "Lütfen numaranın tamamını girin (9 hane).", "foot.tg": "Telegram kanalımız", "foot.ig": "Instagram sayfamız", "foot.addr": "Adres"});
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var t = function (k, v) { return I18N.t(k, v); };
@@ -164,7 +173,7 @@
   /* --- 5) pastki afzalliklar qatori --- */
   function bar() {
     var host = $('#p-home'); if (!host) return;
-    var old = $('#hiBar'); if (old) old.remove();
+    var old = $('#hiBar'); if (old && old.classList.contains('usp')) return; /* js/funnel.js uni ikonkali lentaga aylantiradi */ if (old) old.remove();
     var s = document.createElement('section'); s.id = 'hiBar'; s.className = 'hi-bar';
     s.innerHTML = [['clock', 'b1'], ['pct', 'b2'], ['doc', 'b3']].map(function (x) { return '<div>' + IC[x[0]] + '<p><b>' + esc(t('hi.' + x[1] + 't')) + '</b><span>' + esc(t('hi.' + x[1] + 'd')) + '</span></p></div>'; }).join('');
     var ig = $('#igStrip'); ig ? ig.after(s) : host.appendChild(s);
@@ -174,15 +183,24 @@
     var fi = $('.foot-in'); if (!fi) return;
     var old = $('#hiNews'); if (old) old.remove();
     var n = document.createElement('div'); n.id = 'hiNews'; n.className = 'hi-news';
-    n.innerHTML = '<h4>' + esc(t('hi.newsT')) + '</h4><p>' + esc(t('hi.newsD')) + '</p><form><input type="tel" inputmode="tel" autocomplete="tel" placeholder="' + esc(t('hi.newsPh')) + '" aria-label="' + esc(t('hi.newsPh')) + '"><button type="submit" aria-label="OK">' + IC.arrow + '</button></form><small hidden></small>';
+    /* icon-amsterdam.com'dagi «email qoldiring» kabi — lekin raqam: «+998» tayyor turadi, mijoz faqat raqamini yozadi */
+    n.innerHTML = '<h4>' + esc(t('hi.newsT')) + '</h4><p>' + esc(t('hi.newsD')) + '</p>' +
+      '<form class="nl-form" novalidate><span class="nl-cc" aria-hidden="true">🇺🇿 +998</span><input type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="' + esc(t('hi.newsPh')) + '" aria-label="' + esc(t('hi.newsT')) + '"><button type="submit" aria-label="OK">' + IC.arrow + '</button></form>' +
+      '<ul class="nl-perks"><li>' + esc(t('hi.newsP1')) + '</li><li>' + esc(t('hi.newsP2')) + '</li></ul><small hidden></small>';
     fi.appendChild(n);
+    var inp = $('input', n);
+    inp.addEventListener('input', function () {
+      var d = inp.value.replace(/\D/g, ''); if (d.indexOf('998') === 0 && d.length > 9) d = d.slice(3); d = d.slice(0, 9);
+      inp.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean).join(' ');
+    });
     $('form', n).addEventListener('submit', function (e) {
-      e.preventDefault(); var v = $('input', n).value.replace(/[^\d+]/g, ''), m = $('small', n);
-      if (v.replace(/\D/g, '').length < 9) { m.textContent = t('hi.newsBad'); m.hidden = false; return; }
-      if (window.CRM && CRM.deliver) CRM.deliver({ name: 'Obuna (sayt)', phone: v, src: 'subscribe', unit: '—' });
+      e.preventDefault(); var d = inp.value.replace(/\D/g, ''), m = $('small', n); m.classList.remove('ok');
+      if (d.length !== 9) { m.textContent = t('hi.newsBad'); m.hidden = false; inp.focus(); return; }
+      var v = '+998' + d;
+      if (window.CRM && CRM.deliver) CRM.deliver({ name: 'Yopiq takliflar (sayt)', phone: v, src: 'subscribe', unit: '—' });
       if (window.CRM && CRM.api) m.textContent = t('hi.newsOk');
-      else m.innerHTML = esc(t('hi.newsManual')) + (CFG.TELEGRAM_CHANNEL ? ' <a href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">Telegram →</a>' : '');
-      m.hidden = false; $('input', n).value = '';
+      else m.innerHTML = esc(t('hi.newsOk')) + (CFG.TELEGRAM_CHANNEL ? ' <a href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">Telegram →</a>' : '');
+      m.classList.add('ok'); m.hidden = false; inp.value = '';
     });
     $$('.foot-in > div').forEach(function (c) { var h = $('h4', c); if (!h || c.id === 'hiNews') return; c.classList.add('hi-acc'); if (!h.dataset.acc) { h.dataset.acc = 1; h.setAttribute('role', 'button'); h.tabIndex = 0; h.addEventListener('click', function () { c.classList.toggle('open'); }); } });
   }

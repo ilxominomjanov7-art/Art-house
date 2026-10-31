@@ -10,6 +10,14 @@
   'use strict';
   var C = null;
   try { C = JSON.parse(localStorage.getItem('ah_cms') || 'null'); } catch (e) {}
+  /* kabinet → «Saytga chiqarish»: o'zgarishlar index.html ichiga joylangan (window.AH_BAKED).
+     Sayt qaysi telefonda yoki qaysi manzildan ochilmasin — shu nusxa ishlatiladi (brauzer xotirasidagi
+     nusxa undan yangiroq bo'lsagina — o'sha). */
+  var BK = window.AH_BAKED;
+  if (BK && typeof BK === 'object' && BK.v && !(C && C.v >= BK.v)) {
+    C = BK;
+    try { localStorage.setItem('ah_cms', JSON.stringify(BK)); } catch (e) {}
+  }
   window.AH_CMS = C || {};
   window.AH_BUILD = '2026-10-26.1';
   var P = window.PROJECTS || [];
@@ -46,6 +54,7 @@
     CFG[k] = v;
   });
   CFG.EXPERIENCE_YEARS = new Date().getFullYear() - (+CFG.FOUNDED || 2012);
+  if (!/^https?:\/\/\S+/.test(CFG.TELEGRAM_CHANNEL || '')) CFG.TELEGRAM_CHANNEL = 'https://t.me/arthouse_toshkent';
   if (cfg.TELEGRAM_CHANNEL) CFG.TG_CHANNEL = cfg.TELEGRAM_CHANNEL;
   if (cfg.TELEGRAM_MANAGER) CFG.TG_MANAGER = cfg.TELEGRAM_MANAGER;
   if (cfg.PHONES && cfg.PHONES.length) CFG.PHONE = cfg.PHONES[0];

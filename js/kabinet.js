@@ -533,8 +533,9 @@ const CMS=()=>{const c=LS('ah_cms')||{};c.text=c.text||{};c.cfg=c.cfg||{};c.colo
  c.langs=c.langs||{};c.langs.added=c.langs.added||[];c.langs.off=c.langs.off||[];c.media=c.media||{};c.media.items=c.media.items||[];c.media.fest=c.media.fest||{};c.media.place=c.media.place||'home';return c};
 function cmAud(a,d){if(!tok)return;const m=ME(),L=LS('ah_audit')||[];L.unshift({at:Date.now(),who:tag(m),id:m.id,r:m.r,a,d:d==null?'':String(d).slice(0,160)});LS('ah_audit',L.slice(0,1000))}
 function cmsSave(c,act,det){c.v=Date.now();try{localStorage.setItem('ah_cms',JSON.stringify(c))}catch(e){kToast(TX("Xotira to'ldi: rasmlarni kichikroq qiling yoki havola bilan qo'ying."));return false}
+ try{dispatchEvent(new Event('ah-cms-saved'))}catch(e){} /* js/kabinet-publish.js: «Saytga chiqarish» tugmasi */
  cmAud(act,det);/* keepalive ishlatilmaydi: brauzer ~64 KB dan katta keepalive so'rovlarni jim rad etadi */
- if(API)fetch(API+'/api/cms',{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hd()),body:JSON.stringify(c)}).then(r=>{if(!r.ok)throw r.status}).catch(e=>kToast(TX(e===401?"Sessiya tugagan — qaytadan kiring.":"Serverga saqlanmadi — internet aloqasini tekshiring.")));kToast(TX("Saqlandi — saytda darhol ko'rinadi"));return true}
+ if(API)fetch(API+'/api/cms',{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hd()),body:JSON.stringify(c)}).then(r=>{if(!r.ok)throw r.status}).catch(e=>kToast(TX(e===401?"Sessiya tugagan — qaytadan kiring.":"Serverga saqlanmadi — internet aloqasini tekshiring.")));kToast(TX(API?"Saqlandi — saytda darhol ko'rinadi":"Saqlandi. Mijozlar ko'rishi uchun «Saytga chiqarish» tugmasini bosing."));return true}
 const PERM=()=>LS('ah_perm')||{};
 const cmCan=p=>own()||!!((PERM()[ME().id]||{})[p]);
 const BL=['uz','ru','en','fr','it','es','de','tr'],LNAME={uz:"O'zbekcha",cy:'Ўзбекча',ru:'Русский',en:'English',fr:'Français',it:'Italiano',es:'Español',de:'Deutsch',tr:'Türkçe'};
@@ -787,8 +788,8 @@ log(B){const A=LS('ah_audit')||[],who=[...new Set(A.map(x=>x.who))],q=JQ.trim().
 
 /* ---- Nashr va zaxira ---- */
 pub(B){const c=CMS(),n=JSON.stringify(c).length;
- B.innerHTML='<div class="card"><h3 class="cm-h">O\'zgarishlar barcha mijozlarga qanday yetadi</h3><ol class="cm-ol"><li>'+esc(TX("Kabinetda saqlangan o'zgarishlar shu brauzerdagi saytda darhol ko'rinadi."))+'</li><li>'+esc(TX("Barcha tashrif buyuruvchilar ko'rishi uchun «site-content.json» faylini yuklab oling va uni hostingga index.html yoniga joylang — sayt uni avtomatik o'qiydi."))+'</li><li>'+esc(TX("Server ulangan bo'lsa (API_URL), «Serverga nashr qilish» tugmasi o'zgarishlarni darhol hammaga tarqatadi."))+'</li></ol>'+
- '<p class="note cm-l nt9">'+(c.v?fd(c.v):'—')+' · '+Math.round(n/1024)+' KB</p><div class="xa"><button type="button" class="btn gold" id="pbJ">'+I('download')+'site-content.json yuklab olish</button>'+(API?'<button type="button" class="btn gold" id="pbS">'+I('send')+'Serverga nashr qilish</button>':'')+'<button type="button" class="btn ghost" id="pbI">'+I('upload')+'Zaxiradan tiklash (JSON)</button></div><p class="note cm-l" id="pbO"></p></div>'+
+ B.innerHTML='<div class="card"><h3 class="cm-h">O\'zgarishlar barcha mijozlarga qanday yetadi</h3><ol class="cm-ol"><li>'+esc(TX("Kabinetda saqlangan o'zgarishlar shu brauzerdagi saytda darhol ko'rinadi."))+'</li><li>'+esc(TX("Sayt fayldan ochilsa (telefon «Yuklanmalar», Telegram): «Saytga chiqarish» tugmasi o'zgarishlarni index.html ichiga joylaydi — yangi faylni yuboring yoki hostingga qo'ying."))+'</li><li>'+esc(TX("Barcha tashrif buyuruvchilar ko'rishi uchun «site-content.json» faylini yuklab oling va uni hostingga index.html yoniga joylang — sayt uni avtomatik o'qiydi."))+'</li><li>'+esc(TX("Server ulangan bo'lsa (API_URL), «Serverga nashr qilish» tugmasi o'zgarishlarni darhol hammaga tarqatadi."))+'</li></ol>'+
+ '<p class="note cm-l nt9">'+(c.v?fd(c.v):'—')+' · '+Math.round(n/1024)+' KB</p><div class="xa"><button type="button" class="btn gold" id="pbH" onclick="window.AH_PUBLISH&&AH_PUBLISH()">'+I('upload')+TX('Saytga chiqarish')+' (index.html)</button><button type="button" class="btn ghost" id="pbJ">'+I('download')+'site-content.json yuklab olish</button>'+(API?'<button type="button" class="btn gold" id="pbS">'+I('send')+'Serverga nashr qilish</button>':'')+'<button type="button" class="btn ghost" id="pbI">'+I('upload')+'Zaxiradan tiklash (JSON)</button></div><p class="note cm-l" id="pbO"></p></div>'+
  (own()?'<div class="card"><h3 class="cm-h">Tozalash</h3><p class="note cm-l">'+esc(TX("Saytdagi barcha CMS o'zgarishlari o'chadi va sayt asl holatiga qaytadi. Avval zaxira nusxa yuklab oling."))+'</p><button type="button" class="btn ghost dl" id="pbR">'+I('trash')+'Barcha o\'zgarishlarni bekor qilish</button></div>':'');
  const exp=async()=>{const c=CMS(),s=JSON.stringify(c),refs=[...new Set(s.match(/idb:[a-z0-9]+/g)||[])];let o=s;for(const r of refs){const u=await Store.mediaURL(r);if(!u)continue;const b=await(await fetch(u)).blob();if(b.size>12e6){kToast(TX('Juda katta video havola bilan qo\'yilishi kerak.'));continue}const d=await new Promise(res=>{const f=new FileReader();f.onload=()=>res(f.result);f.readAsDataURL(b)});o=o.split(r).join(d)}return o};
  $('pbJ').onclick=async()=>{$('pbO').textContent=TX('Tayyorlanmoqda…');const o=await exp();cmDL('site-content.json',o,'application/json');$('pbO').textContent=TX("Tayyor. Faylni hostingga index.html yoniga joylang.");cmAud('Nashr fayli yuklab olindi',Math.round(o.length/1024)+' KB')};
@@ -840,7 +841,7 @@ function revAdd(){const c0=CMS(),P=(window.PROJECTS||[]).map(p=>({id:p.id,name:p
   kToast(TX("Izoh saytga qo'shildi"));vR();nav()})}
 
 /* kengaytmalar uchun ochiq API (js/kabinet-themes.js): kabinetning ichki yordamchilari */
-window.AHK={CMS,cmsSave,cmCan,own,LANGS_ON,refURL,cmUp,askDel,kToast,esc,I,I2,ICN,TX,TT,IDF,API,AD,NG,ZV,cmSnap,hd,
+window.AHK={CMS,cmsSave,cmAud,cmCan,own,LANGS_ON,refURL,cmUp,askDel,kToast,esc,I,I2,ICN,TX,TT,IDF,API,AD,NG,ZV,cmSnap,hd,
  tok:()=>tok,VW:()=>VW,nav:()=>nav(),view:v=>view(v),addView:(k,f)=>{XV[k]=f}};
 
 /* ---- kabinet tillari: qo'shilgan tillar va o'chirilganlar ---- */

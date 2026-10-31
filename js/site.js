@@ -81,7 +81,7 @@
   var PHONE = CFG.PHONES[0];
   $$('[data-phone]').forEach(function (a) { a.href = 'tel:' + PHONE; });
   $$('[data-phone-text]').forEach(function (s) { s.textContent = fmtPhone(PHONE); });
-  $('#tgManager').href = CFG.TELEGRAM_MANAGER || CFG.TELEGRAM_CHANNEL;
+  $('#tgManager').href = CFG.TELEGRAM_MANAGER || CFG.TELEGRAM_CHANNEL || 'https://t.me/arthouse_toshkent';
   $$('[data-ig]').forEach(function (a) { a.href = CFG.INSTAGRAM; });
   $('#projChips').innerHTML = (window.ALL_PROJECT_NAMES || []).map(function (n) { var p = P.filter(function (x) { return x.name === n; })[0]; return p ? '<a class="chip" href="#projects/' + p.id + '">' + esc(n) + '</a>' : '<span class="chip">' + esc(n) + '</span>'; }).join('');
   $('#phoneList').innerHTML = CFG.PHONES.map(function (p) { return '<li><a href="tel:' + p + '">' + icon('i-phone') + fmtPhone(p) + '</a></li>'; }).join('');
@@ -329,7 +329,14 @@
     }).join('');
     var fl = ROUTES.map(function (r) { var a = $('.menu a[data-route="' + r + '"] span'); return '<li><a href="#' + r + '">' + esc(a.textContent) + '</a></li>'; });
     $('#footLinks').innerHTML = fl.join('');
-    $('#footContact').innerHTML = CFG.PHONES.map(function (p) { return '<li><a href="tel:' + p + '">' + fmtPhone(p) + '</a></li>'; }).join('') +
+    /* «Aloqa»: ikonkali, aniq qatorlar (Telegram havolasi bo'sh qolmaydi) */
+    var tgU = CFG.TELEGRAM_CHANNEL || 'https://t.me/arthouse_toshkent', tgH = '@' + (tgU.match(/t\.me\/([\w]+)/) || [0, 'arthouse_toshkent'])[1];
+    var fi = function (id) { return '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#' + id + '"/></svg>'; };
+    var tt = function (k, d) { var v = t(k); return v && v !== k ? v : d; };
+    $('#footContact').innerHTML = CFG.PHONES.map(function (p) { return '<li><a class="fc-ic" href="tel:' + p + '">' + fi('i-phone') + fmtPhone(p) + '</a></li>'; }).join('') +
+      '<li><a class="fc-ic" href="' + esc(tgU) + '" target="_blank" rel="noopener">' + fi('i-tg') + '<span>' + esc(tt('foot.tg', 'Telegram')) + ' <small>' + esc(tgH) + '</small></span></a></li>' +
+      '<li><a class="fc-ic" href="' + esc(CFG.INSTAGRAM) + '" target="_blank" rel="noopener">' + fi('i-ig') + '<span>' + esc(tt('foot.ig', 'Instagram')) + ' <small>' + esc(CFG.INSTAGRAM_HANDLE) + '</small></span></a></li>' +
+      '<li><span class="fc-ic">' + fi('i-pin') + '<span>' + esc(t('contact.officeAddr')) + '</span></span></li>';
       '<li><a href="' + CFG.TELEGRAM_CHANNEL + '" target="_blank" rel="noopener">Telegram</a></li><li><a href="' + CFG.INSTAGRAM + '" target="_blank" rel="noopener">Instagram ' + esc(CFG.INSTAGRAM_HANDLE) + '</a></li><li>' + esc(t('contact.officeAddr')) + '</li>';
   }
 
@@ -387,7 +394,7 @@
   function manualActs(lead) {
     var msg = encodeURIComponent(t('book.msg', { unit: lead.unit || '—', name: lead.name, phone: lead.phone })), h = '';
     h += '<a class="btn btn-gold" href="tel:' + esc(CFG.PHONES[0]) + '"><svg class="ic"><use href="#i-phone"/></svg><span>' + esc(t('call.phone')) + '</span></a>';
-    var tg = CFG.TELEGRAM_MANAGER || CFG.TG_MANAGER;
+    var tg = CFG.TELEGRAM_MANAGER || CFG.TG_MANAGER || CFG.TELEGRAM_CHANNEL;
     if (tg && /^https:\/\/t\.me\/[A-Za-z0-9_]{4,}\/?$/.test(tg)) h += '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + esc(tg.replace(/\/$/, '')) + '?text=' + msg + '"><svg class="ic"><use href="#i-tg"/></svg><span>' + esc(t('book.tg')) + '</span></a>';
     var wa = String(CFG.WHATSAPP || '').replace(/\D/g, '');
     if (wa.length >= 9) h += '<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/' + wa + '?text=' + msg + '"><span>' + esc(t('book.wa')) + '</span></a>';

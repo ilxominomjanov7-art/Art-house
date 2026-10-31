@@ -71,3 +71,19 @@
 .ig-tm input { width: 76px !important; min-height: 34px !important; padding: 0 8px !important; }
 .ig-tm .dl { margin-left: auto; }
 .ig-cap textarea { width: 100%; resize: vertical; }
+/* ---- «Menyu» sahifasi (js/kabinet-menu.js) ---- */
+.mn-ph { aspect-ratio: 4 / 3 !important; }
+.mn-ph video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mn-flat { grid-template-columns: minmax(0, 1fr) !important; }
+.mn-one { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.mn-row .st-in small { display: inline-flex; gap: 5px; align-items: center; }
+.mn-row .st-in small .ic { width: 13px; height: 13px; opacity: .7; }
+.mn-hl { font-style: normal; color: var(--ch-300, #DCC48F); }
+.mn-gh { margin: 22px 0 10px; }
+.mn-g { margin-bottom: 14px; }
+.mn-g.off > .tt-h h3 { opacity: .6; }
+.mn-g > .tt-h { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: flex-start; }
+.mn-g > .tt-h .st-act { grid-column: auto; }
+.mn-g > .tt-h .st-act .btn { margin-left: 0; }
+.mn-g .st-hid { font-size: 12px; margin-left: 6px; }
+.hh h2 .ic { width: 22px; height: 22px; vertical-align: -3px; margin-right: 8px; }

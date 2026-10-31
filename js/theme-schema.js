@@ -70,7 +70,7 @@
     { id: 'contact', name: "Menejer bilan bog'lanish", icon: 'phone', has: '.cta-band' },
     { id: 'office', name: 'Savdo ofisi', icon: 'pin', find: '#hiOffice', keys: ['hi.offT', 'hi.offD', 'hi.map', 'hi.call'] },
     { id: 'ig', name: 'Instagram lentasi', icon: 'ig', find: '#igStrip', keys: ['ig.follow'] },
-    { id: 'bar', name: 'Afzalliklar qatori', icon: 'list', find: '#hiBar', keys: ['hi.b1t', 'hi.b1d', 'hi.b2t', 'hi.b2d', 'hi.b3t', 'hi.b3d'] },
+    { id: 'bar', name: 'Afzalliklar qatori', icon: 'list', find: '#hiBar', keys: ['hi.b1t', 'hi.b1d', 'hi.b2t', 'hi.b2d', 'hi.b3t', 'hi.b3d', 'hi.b4t', 'hi.b4d'] },
     { id: 'gallery', name: 'Foto va video galereya', icon: 'image', find: '#cmsGal' }
   ];
 
