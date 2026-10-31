@@ -10,8 +10,15 @@
 .mnav .mnav-x { width: 40px; height: 40px; margin-bottom: 4px; }
 .mnav-cards { gap: 8px !important; margin: 0 0 16px !important; }
 .mnav-cards.one { grid-template-columns: 1fr !important; }
-.mnav-card { aspect-ratio: 4 / 3 !important; }
-.mnav-cards.one .mnav-card { aspect-ratio: 16 / 9 !important; }
+.mnav-card { aspect-ratio: 4 / 5 !important; box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .8); }
+.mnav-card::before { content: ''; position: absolute; inset: 6px; z-index: 1; border: 1px solid rgba(241, 224, 180, .38); pointer-events: none; }
+.mnav-card::after { inset: 35% 0 0 !important; background: linear-gradient(180deg, transparent, rgba(3, 24, 17, .55) 45%, rgba(3, 24, 17, .92)) !important; }
+.mnav-card span { z-index: 2 !important; text-align: center; font-family: var(--f-logo, 'Cinzel', serif) !important; font-weight: 500 !important; font-size: 13px !important; letter-spacing: .2em !important; color: #F6E7B8 !important; bottom: 16px !important; }
+.mnav-card span::after { content: ''; display: block; width: 26px; height: 1px; margin: 7px auto 0; background: linear-gradient(90deg, transparent, #D8BC7E, transparent); }
+.mnav-card img, .mnav-card video { transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+.mnav.open .mnav-card img, .mnav.open .mnav-card video { animation: mnavKen 9s ease-out both; }
+@keyframes mnavKen { from { transform: scale(1.12); } to { transform: scale(1); } }
+.mnav-cards.one .mnav-card { aspect-ratio: 16 / 10 !important; }
 .mnav-card img, .mnav-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mnav-card span { font-size: 12.5px !important; letter-spacing: .1em !important; bottom: 9px !important; left: 10px !important; right: 10px; }
 .mnav-main { gap: 0 !important; margin-bottom: 16px !important; }
@@ -47,3 +54,4 @@
 .hi-news .nl-perks li { display: flex; gap: 8px; align-items: baseline; }
 .hi-news .nl-perks li::before { content: '—'; color: #F1E0B4; }
 .hi-news small.ok { color: #BFE6CF; }
+.hi-news .nl-flag { width: 24px; height: 16px; flex: none; border-radius: 3px; box-shadow: 0 1px 3px rgba(0, 0, 0, .35); }

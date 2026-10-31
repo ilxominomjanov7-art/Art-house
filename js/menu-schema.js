@@ -35,7 +35,7 @@
     return {
       cards: [
         { id: 'c_musaffo', on: true, img: 'assets/img/musaffo/majmua-kechki.webp', video: '', link: 'proj:musaffo' },
-        { id: 'c_obod', on: true, img: 'assets/img/obod/obod-joylashuv.webp', video: '', link: 'proj:obod' }
+        { id: 'c_obod', on: true, img: 'assets/img/obod/obodmaskan-card.webp', video: '', link: 'proj:obod' }
       ],
       main: [
         { id: 'm_promo', on: true, hl: true, k: 'mn.promo', link: 'route:calculator' },

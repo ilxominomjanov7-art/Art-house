@@ -370,7 +370,7 @@
     var hero = $('#p-home > .hero'); if (!hero) return;
     slider('ahUsp', uspItems(), function (s) { hero.parentNode.insertBefore(s, hero.nextSibling); });
     var host = $('#p-home');
-    slider('hiBar', BOTTOM, function (s) { var ig = $('#igStrip'); if (ig) ig.after(s); else host.appendChild(s); });
+    slider('hiBar', BOTTOM, function (s) { var ig = $('#tgStrip') || $('#igStrip'); if (ig) ig.after(s); else host.appendChild(s); });
   }
   usp();
 

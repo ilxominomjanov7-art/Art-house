@@ -186,7 +186,7 @@ window.PROJECTS = [
     address: { uz: "Ko'kcha Darvoza ko'chasi, 487D", ru: 'ул. Кукча Дарвоза, 487D', en: '487D Kukcha Darvoza Street', fr: '487D, rue Kukcha Darvoza', it: 'Via Kukcha Darvoza 487D', es: 'Calle Kukcha Darvoza, 487D', de: 'Kukcha-Darvoza-Straße 487D', tr: 'Kukcha Darvoza Caddesi, 487D' }, // TEKSHIRING
     geo: { lat: 41.3109, lng: 69.1852 },   // TEKSHIRING: taxminiy nuqta
     priceM2: null,
-    cover: 'assets/img/obod/obod-joylashuv.webp', poster: true, video: null, presentation: '',
+    cover: 'assets/img/obod/obodmaskan-tanlov.webp', poster: true, video: null, presentation: '',
     lead: {
       uz: "Shahar markazi yaqinida yorqin hayot! Obod Maskan — Ko'kcha Oqtepa hududidagi yangi turar-joy majmuasi: maktab, bog'cha, shifoxona va savdo markazlari yaqin atrofda. Boshlang'ich to'lov 30% dan, qolgani quruvchining o'zi bilan foizsiz bo'lib to'lanadi.",
       ru: 'Яркая жизнь рядом с центром города! Obod Maskan — новый жилой комплекс в районе Кукча-Октепа: школа, детский сад, больница и торговые центры рядом. Первоначальный взнос от 30%, остаток — беспроцентная рассрочка напрямую от застройщика.',
@@ -203,6 +203,7 @@ window.PROJECTS = [
     ],
     amenities: [],
     gallery: [
+      { src: 'assets/img/obod/obodmaskan-tanlov.webp', t: { uz: 'Obodmaskan — siz izlagan tanlov', ru: 'Obodmaskan — выбор, который вы искали', en: 'Obodmaskan — the choice you were looking for', fr: 'Obodmaskan — le choix que vous cherchiez', it: 'Obodmaskan — la scelta che cercavi', es: 'Obodmaskan — la elección que buscaba', de: 'Obodmaskan — die Wahl, die Sie gesucht haben', tr: 'Obodmaskan — aradığınız seçim' } },
       { src: 'assets/img/obod/obod-joylashuv.webp', t: { uz: "Ko'kcha Oqtepa hududidagi infratuzilma xaritasi", ru: 'Карта инфраструктуры района Кукча-Октепа', en: 'Infrastructure map of the Kukcha Oqtepa area', fr: 'Carte des équipements du quartier de Kukcha Oqtepa', it: 'Mappa dei servizi della zona di Kukcha Oqtepa', es: 'Mapa de servicios de la zona de Kukcha Oqtepa', de: 'Infrastrukturkarte des Gebiets Kukcha Oqtepa', tr: 'Kukcha Oqtepa bölgesi altyapı haritası' }, ov: { h: { uz: "Uyingiz joylashuvini to'g'ri tanlang", ru: 'Выберите правильное расположение дома', en: 'Choose the right location for your home', fr: 'Choisissez le bon emplacement pour votre maison', it: 'Scegli la posizione giusta per la tua casa', es: 'Elija la ubicación adecuada para su hogar', de: 'Wählen Sie die richtige Lage für Ihr Zuhause', tr: 'Evinizin konumunu doğru seçin' }, s: { uz: 'ObodMaskan — shahar markazi yaqinida yorqin hayot!', ru: 'ObodMaskan — яркая жизнь рядом с центром города!', en: 'ObodMaskan — a vibrant life near the city centre!', fr: 'ObodMaskan — une vie lumineuse près du centre-ville !', it: 'ObodMaskan — una vita vivace vicino al centro!', es: 'ObodMaskan: una vida vibrante cerca del centro.', de: 'ObodMaskan – lebendiges Wohnen nahe der Innenstadt!', tr: 'ObodMaskan — şehir merkezine yakın parlak bir yaşam!' } } },
       // obod-toshkent.webp olib tashlandi: bu yuklanayotgan videodan olingan skrinshot (aylanuvchi belgi bilan)
     ],
@@ -216,7 +217,7 @@ window.PROJECTS = [
     address: { uz: "Ko'kcha-Oqtepa mahallasi", ru: 'махалля Кукча-Октепа', en: 'Kukcha-Oqtepa neighbourhood', fr: 'Quartier Kukcha-Oqtepa', it: 'Quartiere Kukcha-Oqtepa', es: 'Barrio Kukcha-Oqtepa', de: 'Viertel Kukcha-Oqtepa', tr: 'Kukcha-Oqtepa mahallesi' }, // TEKSHIRING
     geo: { lat: 41.3145, lng: 69.1905 },   // TEKSHIRING: taxminiy nuqta
     priceM2: null,
-    cover: '', video: null, presentation: '',
+    cover: 'assets/img/kokcha/kokcha-joylashuv.webp', video: null, presentation: '',
     lead: {
       uz: "Ko'kcha dahasidagi g'ishtli turar-joy majmuasi: keng hovli, oilaviy rejalar va shaharning tarixiy qismiga yaqinlik. Rasmlar va rejalarni @arthouse.tashkent sahifasidagi «Ko'kcha Oqtepa» bo'limida ko'rishingiz mumkin.",
       ru: 'Кирпичный жилой комплекс в районе Кукча: просторный двор, семейные планировки и близость к исторической части города. Фото и планировки — в разделе «Ko\'kcha Oqtepa» на странице @arthouse.tashkent.',
@@ -232,7 +233,11 @@ window.PROJECTS = [
       { v: '11', k: { uz: 'qavatli', ru: 'этажей', en: 'floors', fr: 'étages', it: 'piani', es: 'plantas', de: 'Etagen', tr: 'kat' } },
       { v: '1000+', k: { uz: 'xonadon', ru: 'квартир', en: 'apartments', fr: 'appartements', it: 'appartamenti', es: 'viviendas', de: 'Wohnungen', tr: 'daire' } }
     ],
-    amenities: [], gallery: [], plans: []
+    amenities: [],
+    gallery: [
+      { src: 'assets/img/kokcha/kokcha-joylashuv.webp', t: { uz: "Ko'kcha Oqtepa hududidagi yangi uyingiz — maktab, bozor, poliklinika yonginangizda", ru: 'Ваш новый дом в районе Кукча-Октепа — школы, рынок и поликлиника рядом', en: 'Your new home in the Kukcha Oqtepa area — schools, market and clinic close by', fr: 'Votre nouveau logement à Kukcha Oqtepa — écoles, marché et polyclinique à proximité', it: 'La tua nuova casa a Kukcha Oqtepa — scuole, mercato e poliambulatorio vicini', es: 'Su nuevo hogar en Kukcha Oqtepa — colegios, mercado y policlínica cerca', de: 'Ihr neues Zuhause in Kukcha Oqtepa — Schulen, Markt und Poliklinik in der Nähe', tr: "Kukcha Oqtepa'daki yeni eviniz — okullar, pazar ve poliklinik yakında" } }
+    ],
+    plans: []
   }
 ];
 

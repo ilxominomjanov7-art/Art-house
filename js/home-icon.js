@@ -176,7 +176,7 @@
     var old = $('#hiBar'); if (old && old.classList.contains('usp')) return; /* js/funnel.js uni ikonkali lentaga aylantiradi */ if (old) old.remove();
     var s = document.createElement('section'); s.id = 'hiBar'; s.className = 'hi-bar';
     s.innerHTML = [['clock', 'b1'], ['pct', 'b2'], ['doc', 'b3']].map(function (x) { return '<div>' + IC[x[0]] + '<p><b>' + esc(t('hi.' + x[1] + 't')) + '</b><span>' + esc(t('hi.' + x[1] + 'd')) + '</span></p></div>'; }).join('');
-    var ig = $('#igStrip'); ig ? ig.after(s) : host.appendChild(s);
+    var ig = $('#tgStrip') || $('#igStrip'); ig ? ig.after(s) : host.appendChild(s);
   }
   /* --- 6) footer: «Biz haqimizda», obuna, telefonda ochiladigan ro'yxatlar --- */
   function foot() {
@@ -185,7 +185,7 @@
     var n = document.createElement('div'); n.id = 'hiNews'; n.className = 'hi-news';
     /* icon-amsterdam.com'dagi «email qoldiring» kabi — lekin raqam: «+998» tayyor turadi, mijoz faqat raqamini yozadi */
     n.innerHTML = '<h4>' + esc(t('hi.newsT')) + '</h4><p>' + esc(t('hi.newsD')) + '</p>' +
-      '<form class="nl-form" novalidate><span class="nl-cc" aria-hidden="true">🇺🇿 +998</span><input type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="' + esc(t('hi.newsPh')) + '" aria-label="' + esc(t('hi.newsT')) + '"><button type="submit" aria-label="OK">' + IC.arrow + '</button></form>' +
+      '<form class="nl-form" novalidate><span class="nl-cc" aria-hidden="true"><svg class="nl-flag" viewBox="0 0 30 20"><defs><clipPath id="uzC"><rect width="30" height="20" rx="3"/></clipPath><linearGradient id="uzS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient></defs><g clip-path="url(#uzC)"><rect width="30" height="6.4" fill="#1EB5E5"/><rect y="6.4" width="30" height="7.2" fill="#fff"/><rect y="13.6" width="30" height="6.4" fill="#1EB53A"/><rect y="6.1" width="30" height=".55" fill="#CE1126"/><rect y="13.35" width="30" height=".55" fill="#CE1126"/><circle cx="5.6" cy="3.2" r="2.2" fill="#fff"/><circle cx="6.4" cy="3.2" r="2.2" fill="#1EB5E5"/><g fill="#fff"><circle cx="13.2" cy="1.4" r=".42"/><circle cx="14.8" cy="1.4" r=".42"/><circle cx="16.4" cy="1.4" r=".42"/><circle cx="11.6" cy="3.0" r=".42"/><circle cx="13.2" cy="3.0" r=".42"/><circle cx="14.8" cy="3.0" r=".42"/><circle cx="16.4" cy="3.0" r=".42"/><circle cx="10.0" cy="4.6" r=".42"/><circle cx="11.6" cy="4.6" r=".42"/><circle cx="13.2" cy="4.6" r=".42"/><circle cx="14.8" cy="4.6" r=".42"/><circle cx="16.4" cy="4.6" r=".42"/></g><rect width="30" height="20" fill="url(#uzS)"/></g><rect x=".25" y=".25" width="29.5" height="19.5" rx="2.8" fill="none" stroke="#000" stroke-opacity=".15" stroke-width=".5"/></svg>+998</span><input type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="' + esc(t('hi.newsPh')) + '" aria-label="' + esc(t('hi.newsT')) + '"><button type="submit" aria-label="OK">' + IC.arrow + '</button></form>' +
       '<ul class="nl-perks"><li>' + esc(t('hi.newsP1')) + '</li><li>' + esc(t('hi.newsP2')) + '</li></ul><small hidden></small>';
     fi.appendChild(n);
     var inp = $('input', n);

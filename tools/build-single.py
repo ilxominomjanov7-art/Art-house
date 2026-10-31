@@ -6,7 +6,7 @@ import base64, mimetypes, os, re, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'dist')
 MIME = {'.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp4': 'video/mp4', '.png': 'image/png'}
-SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js', 'js/ig-reels.js', 'js/kabinet-instagram.js', 'js/menu-schema.js'}  # kabinet: bu fayllardagi rasm/videolar internetdan (link_assets)
+SKIP_ASSETS = {'js/config.js', 'js/kabinet-stars.js', 'js/ig-reels.js', 'js/kabinet-instagram.js', 'js/menu-schema.js', 'js/tg-posts.js'}  # kabinet: bu fayllardagi rasm/videolar internetdan (link_assets)
 
 def read(p):
     with open(os.path.join(ROOT, p), encoding='utf-8') as f:

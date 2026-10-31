@@ -70,6 +70,7 @@
     { id: 'contact', name: "Menejer bilan bog'lanish", icon: 'phone', has: '.cta-band' },
     { id: 'office', name: 'Savdo ofisi', icon: 'pin', find: '#hiOffice', keys: ['hi.offT', 'hi.offD', 'hi.map', 'hi.call'] },
     { id: 'ig', name: 'Instagram lentasi', icon: 'ig', find: '#igStrip', keys: ['ig.follow'] },
+    { id: 'tg', name: 'Telegram kanali', icon: 'send', find: '#tgStrip', keys: ['tg.eyebrow', 'tg.lead', 'tg.btn', 'tg.join'] },
     { id: 'bar', name: 'Afzalliklar qatori', icon: 'list', find: '#hiBar', keys: ['hi.b1t', 'hi.b1d', 'hi.b2t', 'hi.b2d', 'hi.b3t', 'hi.b3d', 'hi.b4t', 'hi.b4d'] },
     { id: 'gallery', name: 'Foto va video galereya', icon: 'image', find: '#cmsGal' }
   ];
@@ -322,7 +323,7 @@
   };
 
   /* bosh sahifadagi standart tartib: yangi bo'limlar mos joylarda */
-  var ORDER = ['hero', 'usp', 'marquee', 'apts', 'amb', 'art', 'tiles', 'projects', 'about', 'stars', 'build', 'cta', 'calc', 'teaser', 'contact', 'office', 'ig', 'bar', 'gallery'];
+  var ORDER = ['hero', 'usp', 'marquee', 'apts', 'amb', 'art', 'tiles', 'projects', 'about', 'stars', 'build', 'cta', 'calc', 'teaser', 'contact', 'office', 'ig', 'tg', 'bar', 'gallery'];
 
   function newTheme(name, palette) {
     var sec = {};
