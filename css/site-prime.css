@@ -37,18 +37,31 @@
 .sp-rule i { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; transform: rotate(45deg) scale(0); background: #E8D5A4; }
 .sp-sub { font: 500 10.5px/1 var(--f-body); letter-spacing: .38em; margin-right: -.38em; text-transform: uppercase; color: rgba(232, 213, 164, .85); white-space: nowrap; }
 
-/* to'liq variant: ramka pastdan yuqoriga, minoralar markazdan chetga ko'tariladi */
-.sp-full .sp-fo { animation: spDraw 1.15s cubic-bezier(.55, 0, .25, 1) .15s both; }
-.sp-full .sp-fi { animation: spDraw 1.15s cubic-bezier(.55, 0, .25, 1) .3s both; }
-.sp-full .sp-t1 { animation: spDraw .9s cubic-bezier(.45, 0, .2, 1) .6s both; }
-.sp-full .sp-t2 { animation: spDraw .85s cubic-bezier(.45, 0, .2, 1) .78s both; }
-.sp-full .sp-t3 { animation: spDraw .8s cubic-bezier(.45, 0, .2, 1) .94s both; }
-.sp-full .sp-sp { animation: spDraw .4s ease-out 1.45s both; }
-.sp-full .sp-word { animation: spWord 1.1s var(--pr-ease) 1.25s both; }
-.sp-full .sp-rule::before { animation: spRule 1s var(--pr-ease) 1.75s both; }
-.sp-full .sp-rule i { animation: spGem .5s var(--pr-ease) 2.2s both; }
-.sp-full .sp-sub { animation: spFade .9s ease 2s both; }
+/* to'liq variant (~2,5 s): minoralar yerdan ko'tariladi → harflar ketma-ket chiqadi → chiziq va olmos → eshiklar ochiladi.
+   Faqat transform va opacity (GPU): sahifa yuklanayotgan paytda ham animatsiya qotmaydi */
+.sp-mk { position: relative; display: block; width: clamp(78px, 13vmin, 108px); aspect-ratio: 1; overflow: hidden; }
+.sp-mk .sp-mark { display: block; width: 100%; height: 100%; }
+.sp-glow { position: absolute; left: 50%; top: 50%; width: 260%; aspect-ratio: 1; margin: -130% 0 0 -130%; border-radius: 50%; background: radial-gradient(circle, rgba(232, 213, 164, .22), rgba(232, 213, 164, 0) 62%); opacity: 0; pointer-events: none; }
+.sp-logo { overflow: visible; }
+.sp-logo .sp-mk { overflow: visible; }
+.sp-logo .sp-mk::after { content: ''; position: absolute; left: -8%; right: -8%; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(232, 213, 164, .8), transparent); transform: scaleX(0); }
+.sp-word { display: flex; overflow: hidden; padding: .08em 0; }
+.sp-word span { display: inline-block; }
+.sp-full .sp-mark { animation: spRise .85s cubic-bezier(.16, 1, .3, 1) .1s both; will-change: transform, opacity; }
+.sp-full .sp-glow { animation: spGlow 2.2s ease .2s both; will-change: opacity, transform; }
+.sp-full .sp-mk::after { animation: spRule .7s cubic-bezier(.16, 1, .3, 1) .05s both; }
+.sp-full .sp-word span { animation: spLetter .7s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(.5s + var(--i) * 45ms); will-change: transform, opacity; }
+.sp-full .sp-rule::before { animation: spRule .7s cubic-bezier(.16, 1, .3, 1) 1.05s both; }
+.sp-full .sp-rule i { animation: spGem .45s cubic-bezier(.16, 1, .3, 1) 1.4s both; }
+.sp-full .sp-sub { animation: spSub .7s ease 1.2s both; }
 .sp-full .sp-seam { transition-delay: 0s; }
+.sp-full .sp-fo, .sp-full .sp-fi, .sp-full .sp-t { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
+.splash .sp-door { transition-duration: .85s; }
+.splash.out .sp-logo { transform: scale(1.04); transition: opacity .4s ease, transform .6s var(--pr-ease); }
+@keyframes spRise { from { opacity: 0; transform: translateY(42%) scale(.92); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes spGlow { 0% { opacity: 0; transform: scale(.6); } 45% { opacity: 1; transform: scale(1); } 100% { opacity: .55; transform: scale(1.08); } }
+@keyframes spLetter { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: none; } }
+@keyframes spSub { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 /* qisqa variant (shu oynada qayta yuklanganda) */
 .sp-quick .sp-logo { animation: spFade .35s ease both; }
 .sp-quick .sp-rule::before { transform: none; } .sp-quick .sp-rule i { transform: rotate(45deg); }

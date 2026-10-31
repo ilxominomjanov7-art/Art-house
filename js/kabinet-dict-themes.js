@@ -220,6 +220,8 @@
 ["Video-qo'ng'iroq","Video call","Видеозвонок","Appel vidéo","Videochiamata","Videollamada","Videoanruf","Görüntülü arama"],
 ["Loyihalar sahifasi","Projects page","Страница проектов","Page des projets","Pagina progetti","Página de proyectos","Projektseite","Projeler sayfası"],
 ["Kalkulyator","Calculator","Калькулятор","Calculateur","Calcolatore","Calculadora","Rechner","Hesaplayıcı"],
+["Taklif oynasi","Offer pop-up","Окно предложения","Fenêtre d’offre","Finestra offerta","Ventana de oferta","Angebotsfenster","Teklif penceresi"],
+["Afzalliklar lentasi (aylanadi)","Benefits strip (rotating)","Лента преимуществ (вращается)","Bandeau d’atouts (défilant)","Striscia vantaggi (a rotazione)","Franja de ventajas (giratoria)","Vorteilsleiste (rotierend)","Avantaj şeridi (dönen)"],
 ["Bino","Building","Здание","Bâtiment","Edificio","Edificio","Gebäude","Bina"],
 ["Foiz","Percent","Процент","Pourcentage","Percentuale","Porcentaje","Prozent","Yüzde"],
 ["Hujjat","Document","Документ","Document","Documento","Documento","Dokument","Belge"],

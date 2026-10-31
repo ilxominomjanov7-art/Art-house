@@ -36,10 +36,10 @@
       if (el.classList.contains('out')) return;
       clearTimeout(t); el.classList.add('out'); document.body.classList.remove('is-loading');
       setTimeout(hero, mode === 'calm' ? 100 : 450);
-      setTimeout(function () { el.remove(); }, mode === 'calm' ? 750 : 1500);
+      setTimeout(function () { el.remove(); }, mode === 'calm' ? 750 : 1100);
     }
     el.addEventListener('click', done);
-    var T = { full: 3500, quick: 900, calm: 1500 }[mode], spent = Date.now() - (+el.getAttribute('data-t0') || Date.now());
+    var T = { full: 1900, quick: 650, calm: 1000 }[mode], spent = Date.now() - (+el.getAttribute('data-t0') || Date.now());
     t = setTimeout(done, Math.max(250, T - spent));
   })();
 

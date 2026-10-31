@@ -70,15 +70,15 @@
 <div id="splash" class="splash" aria-hidden="true">
  <i class="sp-door sp-l"></i><i class="sp-door sp-r"></i><i class="sp-seam"></i>
  <div class="sp-logo">
-  <svg class="sp-mark" viewBox="0 0 100 100">
+  <span class="sp-mk"><span class="sp-glow"></span><svg class="sp-mark" viewBox="0 0 100 100">
    <path class="sp-f sp-fo" d="M50 97.5H2.5V2.5H50"/><path class="sp-f sp-fo" d="M50 97.5H97.5V2.5H50"/>
    <path class="sp-f sp-fi" d="M50 92H8V8H50"/><path class="sp-f sp-fi" d="M50 92H92V8H50"/>
    <path class="sp-t sp-t1" d="M44 92V34q0-7 6-10"/><path class="sp-t sp-t1" d="M56 92V34q0-7-6-10"/>
    <path class="sp-t sp-t2" d="M33 92V48q0-6 6-8"/><path class="sp-t sp-t2" d="M67 92V48q0-6-6-8"/>
    <path class="sp-t sp-t3" d="M22 92V62q0-6 6-8"/><path class="sp-t sp-t3" d="M78 92V62q0-6-6-8"/>
    <path class="sp-t sp-sp" d="M50 24V11"/>
-  </svg>
-  <div class="sp-word">ART HOUSE</div>
+  </svg></span>
+  <div class="sp-word"><span style="--i:0">A</span><span style="--i:1">R</span><span style="--i:2">T</span><span style="--i:3">&nbsp;</span><span style="--i:4">H</span><span style="--i:5">O</span><span style="--i:6">U</span><span style="--i:7">S</span><span style="--i:8">E</span></div>
   <div class="sp-rule"><i></i></div>
   <div class="sp-sub" data-i="brand.sub">Luxury Residence · Toshkent</div>
  </div>
@@ -88,7 +88,6 @@
  if (/[?&](cmsnap|edit)=1|[?&]intro=0/.test(location.search) || window.top !== window.self) { el.className = 'splash sp-skip'; return; }
  try { seen = sessionStorage.getItem('ah3_intro') === '1'; sessionStorage.setItem('ah3_intro', '1'); } catch (e) {}
  var m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'calm' : seen ? 'quick' : 'full';
- if (m === 'full') [].forEach.call(el.querySelectorAll('.sp-mark path'), function (p) { var L = Math.ceil(p.getTotalLength ? p.getTotalLength() : 160) + 1; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
  el.setAttribute('data-mode', m); el.setAttribute('data-t0', Date.now()); el.classList.add('sp-' + m);
 })();</script>
 
@@ -139,8 +138,8 @@
     <h1 class="h-display"><span class="gold-text">ART HOUSE</span><em data-i="home.h1em">Luxury Residence</em></h1>
     <p class="lead" data-i="home.lead">San'at va qulaylik uyg'unlashgan premium turar-joylar. Bank kreditisiz, ustamasiz — halol va shaffof bo'lib to'lash.</p>
     <div class="cta-row">
-     <a class="btn btn-gold" href="#projects"><span data-i="home.cta1">Loyihalar bilan tanishish</span><svg class="ic"><use href="#i-arrow"/></svg></a>
-     <a class="btn btn-ghost" href="#calculator" data-i="home.cta2">To'lovni hisoblash</a>
+     <a class="btn btn-gold" href="#calculator" data-pp="calc"><span data-i="home.cta2">To'lovni hisoblash</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+     <a class="btn btn-ghost" href="#projects" data-i="home.cta1">Loyihalar bilan tanishish</a>
     </div>
     <div class="stats">
      <div><b data-count="years">15</b><span data-i="home.stat1">yillik tajriba</span></div>

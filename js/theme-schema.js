@@ -57,6 +57,7 @@
   var NATIVE = [
     { id: 'ann', name: "E'lon qatori", icon: 'megaphone', group: 'header', find: '.top > .ann', keys: ['ann.1', 'ann.2', 'ann.3'] },
     { id: 'hero', name: 'Bosh banner', icon: 'image', find: '#p-home > .hero' },
+    { id: 'usp', name: 'Afzalliklar lentasi (aylanadi)', icon: 'list', find: '#ahUsp', keys: ['usp.1t', 'usp.1d', 'usp.2t', 'usp.2d', 'usp.3t', 'usp.3d', 'usp.4t', 'usp.4d', 'usp.5t', 'usp.5d'] },
     { id: 'marquee', name: 'Yuguruvchi qator', icon: 'text', find: '#p-home > .marquee', keys: ['marquee'] },
     { id: 'apts', name: 'Xonadonlar karuseli', icon: 'grid', find: '#hiApts', keys: ['hi.apts', 'hi.from', 'hi.view'] },
     { id: 'art', name: "Yashash san'ati", icon: 'list', find: '#hiArt', keys: ['hi.artT', 'hi.artS', 'hi.u1t', 'hi.u1d', 'hi.u2t', 'hi.u2d', 'hi.u3t', 'hi.u3d', 'hi.u4t', 'hi.u4d'] },
@@ -321,7 +322,7 @@
   };
 
   /* bosh sahifadagi standart tartib: yangi bo'limlar mos joylarda */
-  var ORDER = ['hero', 'marquee', 'apts', 'amb', 'art', 'tiles', 'projects', 'about', 'stars', 'build', 'cta', 'calc', 'teaser', 'contact', 'office', 'ig', 'bar', 'gallery'];
+  var ORDER = ['hero', 'usp', 'marquee', 'apts', 'amb', 'art', 'tiles', 'projects', 'about', 'stars', 'build', 'cta', 'calc', 'teaser', 'contact', 'office', 'ig', 'bar', 'gallery'];
 
   function newTheme(name, palette) {
     var sec = {};

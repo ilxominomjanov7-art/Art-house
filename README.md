@@ -23,7 +23,7 @@ js/kabinet-themes.js — kabinetdagi «Mavzular» sahifasi va tahrirlagich (+ js
 js/cms-apply.js, cms-text.js, cms-site.js — Sozlamalar (CMS) o'zgarishlarini saytga qo'llash
 js/i18n.js        — sayt tarjimalari (uz, uz-kirill, ru, en) + js/i18n-fr-it.js, js/i18n-es-de-tr.js
 js/agent.js       — saytdagi «AI maslahatchi» (o'ng tomonda va bosh sahifa kartasida) + js/agent-dict.js (8 til)
-js/funnel.js      — bosh sahifadagi sotuv kartasi: oylik to'lov hisobi, «Shu shart bilan band qilish», AI savollari (+ css/funnel.css)
+js/funnel.js      — sotuv oynalari (taklif kalit-kartasi, bo'lib to'lash kalkulyatori) va afzalliklar lentasi (+ css/funnel.css)
 js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tashriflar statistikasi
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
@@ -149,21 +149,26 @@ Saytdagi barcha matnlarda (8 til), AI maslahatchi javoblarida va serverdagi AI f
 **Shrift:** standart — Geologica (ICON uslubidagi geometrik shrift, katta harfli sarlavhalar; kirill va o'zbek harflari bor).
 Kabinet → Mavzular → Moslashtirish → Mavzu sozlamalari → Sarlavha shrifti orqali eski Cormorant'ga qaytarish mumkin.
 
-## Bosh sahifa: sotuv kartasi
+## Sotuv oynalari va afzalliklar lentasi
 
-Saytga kirgan zahoti mijoz kartada 3 ta tanlov qiladi: necha xonali (+ maydon), boshlang'ich to'lov (`DOWN_MIN` dan
-`DOWN_MAX` gacha), muddat (`MONTHS`). Oylik to'lov $ va so'mda darhol chiqadi; narx kalkulyator va AI maslahatchi bilan bir xil
-hisoblanadi (maydon × 1 m² narxi). Bir nechta loyihada xonadon rejalari bo'lsa, kartada loyiha tanlovi ham chiqadi.
+Dizayn Figma faylida: «Art House · Sotuv oynalari va afzalliklar» (telefon va kompyuter, komponentlar va ranglar bilan).
+Kod: `js/funnel.js` + `css/funnel.css`. Matnlar 8 tilda; kabinet → Sozlamalar → Matnlar orqali o'zgartiriladi.
 
-- «Shu shart bilan band qilish» → band qilish oynasi shu shartlar bilan ochiladi. Arizada `via: 'hero'`: kabinet → Mijozlar
-  bazasida «Kalkulyator» belgisi, Telegram'da «🎯 Bosh sahifadagi kalkulyatordan» qatori.
-- Yuqori menyudagi va telefondagi pastki «Band qilish» ham mijoz kartada tanlagan shartlarni oladi.
-- AI maslahatchi kartaning yonida: 3 ta tayyor savol; mijoz tanlagan xonalar, byudjet va muddat suhbatga beriladi.
-- Reklama manbasi: saytga `?utm_source=instagram` kabi havola bilan kirilsa, shu tashrifdagi arizalarga `utm` yoziladi
-  (kabinetda va Telegram'da «📣 Manba» bo'lib ko'rinadi).
-- Banner matnidagi `{down}` va `{months}` kabinet → Sozlamalar qiymatlaridan olinadi (`{years}` kabi, barcha tillarda).
-
-Matnlar 8 tilda `js/funnel.js` ichida; kabinet → Sozlamalar → Matnlar orqali o'zgartiriladi.
+- **Taklif oynasi.** Mijoz kalit-kartani barmog'i bilan suradi (yoki «kartani ochish»ni bosadi): eng arzon xonadonning
+  boshlang'ich to'lovi ochiladi (hozir $15 060 = 45,6 m² × 1 100 $ × 30%; narx yoki foiz Sozlamalar'da o'zgarsa, raqam ham o'zgaradi).
+  Keyin ism va telefon: ariza `via: 'popup'` bilan kabinet → Mijozlar bazasiga («Taklif oynasi» belgisi) va Telegram guruhga
+  («🎁 Saytdagi taklif oynasidan») boradi.
+- **Bo'lib to'lash kalkulyatori oynasi.** Necha xonali, maydon, boshlang'ich to'lov, muddat → oylik to'lov → «Shu shart bilan
+  band qilish» → ism va telefon. Ariza `via: 'popup-calc'`, xonadon, narx, muddat va oylik to'lov bilan. Bosh bannerdagi
+  «To'lovni hisoblash» tugmasi shu oynani ochadi.
+- **Qachon chiqadi.** Kirgan zahoti emas: mijoz kamida 12 soniya saytda bo'lib, bir ekrandan ko'proq pastga surgandan keyin
+  (kompyuterda sichqoncha sahifadan chiqayotganda biroz erta). Ikkinchi oyna birinchisi yopilgandan 45 soniya va yana
+  1,5 ekran surishdan keyin. Bir tashrifda ko'pi bilan 2 ta; yopilgan oyna 3 kun o'zi chiqmaydi; ariza qoldirgan mijozga
+  umuman chiqmaydi. Yopilgan taklif chap pastda kichik yorliq bo'lib qoladi. Sinov uchun: `?pp=offer`, `?pp=calc`; o'chirish: `?pp=0`.
+- **Afzalliklar lentasi** bosh banner ostida: quruvchidan to'g'ridan-to'g'ri, ta'mirli uylar, 0%, tajriba, tez javob.
+  Telefonda bittadan aylanadi (barmoq bilan ham suriladi), kompyuterda 5 ustun. Kabinet → Mavzular'da yoqiladi/o'chiriladi.
+- Reklama manbasi: saytga `?utm_source=instagram` kabi havola bilan kirilsa, arizalarga `utm` yoziladi («📣 Manba»).
+- Kirish animatsiyasi ~2,5 soniya (shu oynada qayta yuklanganda ~1,3 s): faqat transform/opacity, sahifa yuklanayotganda qotmaydi.
 
 ## Ishga tushirish
 

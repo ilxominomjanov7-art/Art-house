@@ -30,7 +30,7 @@
     if (API) try { navigator.sendBeacon(API + '/track', new Blob([JSON.stringify({ e: e, vid: vid })], { type: 'text/plain' })); } catch (x) {}
   }
   function msgOf(l) {
-    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : l.via === 'hero' ? '🎯 Bosh sahifadagi kalkulyatordan' : '', '',
+    return ['🏢 Yangi ariza: Art House', l.src === 'ai' ? '🤖 Art House.ai orqali' : l.src === 'callback' ? "📞 Qayta qo'ng'iroq so'rovi" : l.via === 'popup' ? '🎁 Saytdagi taklif oynasidan' : l.via === 'popup-calc' ? "🧮 Bo'lib to'lash kalkulyatoridan" : l.via === 'hero' ? '🎯 Bosh sahifadagi kalkulyatordan' : '', '',
       '👤 Mijoz: ' + l.name, '📞 Tel: ' + l.phone, '', '🏠 Xonadon: ' + (l.unit || '—'), l.area ? '📐 Maydon: ' + l.area + ' m²' : '',
       l.price ? '💰 Umumiy narxi: ' + nfm(l.price) : '', l.down ? "💵 Boshlang'ich to'lov: " + nfm(l.down) + ' (' + l.pct + '%)' : '',
       l.months && l.monthly ? '📅 Muddati: ' + l.months + " oy (0%)\n💳 Oylik to'lov: " + nfm(l.monthly) : '', l.slot ? "⏰ Qo'ng'iroq: " + l.slot : '', l.utm ? '📣 Manba: ' + l.utm : '']
