@@ -191,6 +191,14 @@
     }).join('') + '</div>';
     if (MD.place === 'about') host.appendChild(box);
     else { var cta = $('#p-home .cta-band'); cta ? cta.closest('.wrap').before(box) : host.appendChild(box); }
+    /* topilmagan rasm yoki video (boshqa qurilmada yuklangan va bu faylga tushmagan) — bo'sh oyna ko'rsatilmaydi */
+    var prune = function () { var left = $$('.cms-gi', box).filter(function (f) { return !f.hidden; }); if (!left.length) box.hidden = true; };
+    $$('.cms-gi img, .cms-gi video', box).forEach(function (m) {
+      var bad = function () { var f = m.closest('.cms-gi'); if (f) f.hidden = true; prune(); };
+      m.addEventListener('error', bad);
+      if (m.tagName === 'IMG' && (!m.getAttribute('src') || (m.complete && !m.naturalWidth && m.getAttribute('src').indexOf('idb:') !== 0))) setTimeout(function () { if (!m.naturalWidth) bad(); }, 2500);
+      if (m.getAttribute('src') && m.getAttribute('src').indexOf('idb:') === 0) setTimeout(function () { if (m.tagName === 'IMG' ? !m.naturalWidth : !m.currentSrc) bad(); }, 3000);
+    });
     I18N.apply(box); mediaFix(box);
   }
   document.addEventListener('click', function (e) {

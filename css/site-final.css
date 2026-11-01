@@ -55,3 +55,6 @@
 .hi-news .nl-perks li::before { content: '—'; color: #F1E0B4; }
 .hi-news small.ok { color: #BFE6CF; }
 .hi-news .nl-flag { width: 24px; height: 16px; flex: none; border-radius: 3px; box-shadow: 0 1px 3px rgba(0, 0, 0, .35); }
+
+/* footer: telefonda ochiladigan ro'yxatlar — yopilganda yashirinadi (yuqoridagi .foot-links grid qoidasi buni buzgan edi) */
+@media (max-width: 760px) { .foot .hi-acc:not(.open) > ul { display: none !important; } }
