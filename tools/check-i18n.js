@@ -4,6 +4,9 @@ global.window = {}; global.navigator = { language: 'uz' }; global.localStorage =
 global.document = { documentElement: {}, querySelectorAll: () => [] };
 require(R('js/i18n.js')); global.I18N = window.I18N;
 require(R('js/i18n-fr-it.js')); require(R('js/i18n-es-de-tr.js'));
+/* boshqa fayllardagi qo'shimcha tarjimalar (I18N.extend) ham hisobga olinadi */
+for (const f of ['js/site.js', 'js/cms-text.js']) { const t = fs.readFileSync(R(f), 'utf8'); for (const m of t.matchAll(/I18N\.extend\('(\w+)', (\{[^\n]*\})\);/g)) { try { I18N.extend(m[1], eval('(' + m[2] + ')')); } catch (e) {} } }
+{ const t = fs.readFileSync(R('js/cms-text.js'), 'utf8'), m = t.match(/\n\s*var (\w+) = \{\n(\s*uz: \{[\s\S]*?\n\s*\});/); if (m) { try { const o = eval('({' + m[2].replace(/^\s*\{?/, '') + ')'); Object.keys(o).forEach(l => I18N.extend(l, o[l])); } catch (e) { console.log('cms-text o\'qilmadi:', e.message); } } }
 const html = fs.readFileSync(R('index.html'), 'utf8');
 const keys = new Set([...html.matchAll(/data-i(?:-ph|-al)?="([^"]+)"/g)].map(m => m[1]));
 const src = fs.readFileSync(R('js/i18n.js'), 'utf8'), uz = src.slice(src.indexOf('var uz = {'), src.indexOf('var ru = {'));
