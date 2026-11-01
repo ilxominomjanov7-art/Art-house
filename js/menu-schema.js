@@ -67,8 +67,8 @@
       if (window.I18N && I18N.t) { var v = I18N.t(it.k); if (v && v !== it.k) s = v; }
       if (!s && FB[it.k]) s = FB[it.k][base] || FB[it.k].uz;
     }
-    if (!s && tt && typeof tt === 'object') s = tt.uz || tt.en || '';
-    if (!s && it && /^proj:/.test(it.link || '')) { var p = (P || window.PROJECTS || []).filter(function (x) { return x.id === it.link.slice(5); })[0]; if (p) s = typeof p.name === 'string' ? p.name : (p.name[base] || p.name.uz || ''); }
+    if (!s && tt && typeof tt === 'object') { s = tt.uz || tt.en || ''; if (s && window.I18N && I18N.name && (lang === 'ru' || lang === 'cy')) return I18N.name(s); }
+    if (!s && it && /^proj:/.test(it.link || '')) { var p = (P || window.PROJECTS || []).filter(function (x) { return x.id === it.link.slice(5); })[0]; if (p) s = window.I18N && I18N.name ? I18N.name(typeof p.name === 'string' ? p.name : (p.name[base] || p.name.uz || '')) : (typeof p.name === 'string' ? p.name : (p.name[base] || p.name.uz || '')); }
     if (lang === 'cy' && window.I18N && I18N.toCyr && tt && !tt.cy) s = I18N.toCyr(s);
     return s;
   }

@@ -567,7 +567,7 @@ function refURL(ref,pid){if(!ref)return Promise.resolve('');ref=String(ref);
 function fillRefs(R,pid){R.querySelectorAll('[data-ref]').forEach(el=>{refURL(el.dataset.ref,el.dataset.pid||pid).then(u=>{if(!u){if(el.tagName==='IMG')el.classList.add('cm-noimg');return}if(el.tagName==='VIDEO'){el.src=u}else el.src=u})})}
 /* fayl tanlash: rasm → siqiladi (1600px, JPEG), video → o'zi */
 function cmPick(accept,multi){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.accept=accept;i.multiple=!!multi;i.onchange=()=>res([...i.files]);i.click()})}
-function cmShrink(f){return new Promise(res=>{if(!/^image\/(jpeg|png|webp)/.test(f.type)||f.size<350e3)return res(f);const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);res(b&&b.size<f.size?b:f)},'image/jpeg',.86)};im.onerror=()=>res(f);im.src=u})}
+function cmShrink(f){return new Promise(res=>{if(!/^image\/(jpeg|png|webp)/.test(f.type)||f.size<350e3)return res(f);const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);res(b&&b.size<f.size?b:f)},'image/jpeg',.86)};im.onerror=()=>res(f);im.src=u})}
 /* drag & drop: fayl [data-up] tugmasi bor blokka tashlansa — o'sha tugma bosilgandek ishlaydi */
 let CM_DROP=null;
 const CM_UPB='[data-up],[data-ga=image],[data-ga=video],[data-pa=image],[data-pa=video]';
@@ -580,7 +580,7 @@ document.addEventListener('drop',e=>{const z=cmDropZone(e.target);if(!z)return;e
  const mt=k=>k==='video'?'video/':'image/',btns=[...z.querySelectorAll(CM_UPB)],b=btns.find(x=>fs.some(f=>f.type.indexOf(mt(cmKind(x)))===0))||btns[0],k=cmKind(b);
  const ok=fs.filter(f=>f.type.indexOf(mt(k))===0);if(!ok.length){kToast(TX(k==='video'?'Faqat video fayl yuklang.':'Faqat rasm fayl yuklang.'));return}
  CM_DROP=(b.dataset.multi!=null||k==='image'&&!b.dataset.up)?ok:ok.slice(0,1);b.click()});
-async function cmUp(kind,multi){const fs=CM_DROP||await cmPick(kind==='video'?'video/*':'image/*',multi);CM_DROP=null;const out=[];for(const f of fs){if(kind==='video'&&f.size>120e6){kToast(TX('Video hajmi 120 MB dan oshmasin.'));continue}try{out.push(await Store.putBlob(kind==='video'?f:await cmShrink(f)))}catch(e){kToast(TX("Faylni saqlab bo'lmadi."))}}return out}
+async function cmUp(kind,multi){const fs=CM_DROP||await cmPick(kind==='video'?'video/*':'image/*',multi);CM_DROP=null;const out=[];for(const f of fs){if(kind==='video'&&f.size>120e6){kToast(TX('Video hajmi 120 MB dan oshmasin.'));continue}try{out.push(await Store.putBlob(kind==='video'?f:await cmShrink(f)))}catch(e){kToast(TX(e&&e.message==='too-big'?(kind==='video'?"Video juda katta: bu rejimda 2,5 MB gacha. Kattaroq videoni YouTube yoki Instagram havolasi bilan qo'ying.":"Rasm juda katta (4 MB gacha)."):"Faylni saqlab bo'lmadi."))}}return out}
 
 /* ---------- umumiy dialog (tahrirlagich) ---------- */
 const cmGet=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);

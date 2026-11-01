@@ -57,7 +57,7 @@
         var u = igURL(a.ig), ph = String(a.photo), img = '<img ' + (ph.indexOf('idb:') === 0 ? 'data-src' : 'src') + '="' + esc(ph) + '" alt="' + esc(a.name) + '" loading="' + (i < 3 ? 'eager' : 'lazy') + '" decoding="async">';
         return '<' + (u ? 'a href="' + esc(u) + '" target="_blank" rel="noopener"' : 'div') + ' class="amb2-card" style="--d:' + (i * 90) + 'ms">' +
           '<div class="amb2-ph">' + img + (pick(a.badge) ? '<span class="amb2-badge">' + esc(pick(a.badge)) + '</span>' : '') + (u ? '<span class="amb2-ig" aria-hidden="true">' + gt('ig') + '</span>' : '') + '</div>' +
-          '<div class="amb2-cap"><b><span>' + esc(a.name) + '</span>' + (a.verified ? VER : '') + '</b>' + (pick(a.role) ? '<span>' + esc(pick(a.role)) + '</span>' : '') + (u ? '<em>' + gt('ig') + esc(igName(a.ig)) + '</em>' : '') + '</div></' + (u ? 'a' : 'div') + '>';
+          '<div class="amb2-cap"><b><span>' + esc(I18N.name(a.name)) + '</span>' + (a.verified ? VER : '') + '</b>' + (pick(a.role) ? '<span>' + esc(pick(a.role)) + '</span>' : '') + (u ? '<em>' + gt('ig') + esc(igName(a.ig)) + '</em>' : '') + '</div></' + (u ? 'a' : 'div') + '>';
       }).join('') + '</div><button type="button" class="amb2-nav next" data-amb="1" aria-label="›">' + gt('right') + '</button></div>' +
       (L.length > 1 ? '<div class="amb2-dots" aria-hidden="true">' + L.map(function (_, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join('') + '</div>' : '');
     if (old) old.replaceWith(s); else { var ap = $('#hiApts'); ap ? ap.after(s) : host.appendChild(s); }

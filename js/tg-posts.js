@@ -31,7 +31,7 @@ window.AH_TG_POSTS = [
     }
   },
   {
-    id: 'tg_obod', on: true, video: '', poster: '', img: 'assets/img/obod/obodmaskan-tanlov.webp', time: '12:25',
+    id: 'tg_obod', on: true, video: '', poster: '', img: 'assets/img/obod/obod-fasad.webp', time: '12:25',
     t: {
       uz: "Obodmaskan — siz izlagan tanlov!\n\nKo'kcha Oqtepa hududidagi yangi uyingiz: maktab, bozor, poliklinika va savdo markazlari yonginangizda.\n\nBoshlang'ich to'lov 30% dan, qolgani — foizsiz bo'lib to'lash.",
       ru: 'Obodmaskan — выбор, который вы искали!\n\nВаш новый дом в районе Кукча-Октепа: школа, рынок, поликлиника и торговые центры рядом.\n\nПервый взнос от 30%, остальное — беспроцентная рассрочка.',

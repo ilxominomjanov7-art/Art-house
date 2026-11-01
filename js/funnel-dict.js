@@ -143,7 +143,7 @@
     dict: D, icons: ICONS,
     /* ikonka nomlari (kabinetdagi tanlash oynasi uchun) */
     iconNames: { building: 'Bino', key: 'Kalit', percent: 'Foiz', shield: 'Kafolat', phone: "Qo'ng'iroq", home: 'Uy', wallet: 'Hamyon', calendar: 'Kalendar', handshake: 'Kelishuv', award: 'Mukofot', star: 'Yulduz', pin: 'Manzil', car: 'Avtoturargoh', tree: "Bog'", sofa: "Ta'mir", clock: 'Vaqt', doc: 'Shartnoma', users: 'Oila', sparkle: 'AI', lock: 'Maxfiylik', check: 'Belgi' },
-    rules: { offer: true, calc: true, delay: 12, screens: 0.9, gap: 45, days: 3, max: 2, exit: true, speed: 4.5 },
+    rules: { offer: true, calc: true, delay: 15, screens: 0, gap: 20, days: 0, max: 2, exit: true, speed: 4.5 }, /* har tashrifda: 15 s dan keyin taklif, yopilgach 20 s dan keyin kalkulyator */
     trust: [{ id: 't1', icon: 'shield', k: 'pop.tr1' }, { id: 't2', icon: 'percent', k: 'pop.tr2' }, { id: 't3', icon: 'key', k: 'pop.tr3' }],
     usp: [{ id: 'u1', icon: 'building', k: 'usp.1' }, { id: 'u2', icon: 'key', k: 'usp.2' }, { id: 'u3', icon: 'percent', k: 'usp.3' }, { id: 'u4', icon: 'shield', k: 'usp.4' }, { id: 'u5', icon: 'phone', k: 'usp.5' }],
     /* kabinetda tahrirlanadigan matnlar: [kalit, nomi] */

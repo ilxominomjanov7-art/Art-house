@@ -391,9 +391,16 @@
     return fill(s, vars);
   }
   /* {uz, ru, en} ko'rinishidagi kontent */
+  /* ismlar va nomlar (yulduzlar, loyihalar): ruscha — kirill yozuvida, o'zbekcha kirill — o'zbek kirillida */
+  var NAME_RU = { 'Auto Doctor': 'Авто Доктор', 'Art House': 'Art House', 'ART HOUSE': 'ART HOUSE', 'Instagram': 'Instagram', 'Telegram': 'Telegram' };
+  function nameRu(s) {
+    s = String(s || ''); if (NAME_RU[s]) return NAME_RU[s];
+    return toCyr(s).replace(/ў/g, 'у').replace(/Ў/g, 'У').replace(/қ/g, 'к').replace(/Қ/g, 'К').replace(/ғ/g, 'г').replace(/Ғ/g, 'Г').replace(/ҳ/g, 'х').replace(/Ҳ/g, 'Х');
+  }
+  function name(s) { if (s == null) return ''; if (typeof s !== 'string') return pick(s); if (/^[@#]|https?:/.test(s)) return s; return lang === 'cy' ? (NAME_RU[s] || toCyr(s)) : lang === 'ru' ? nameRu(s) : s; }
   function pick(o) {
     if (o == null) return '';
-    if (typeof o === 'string') return lang === 'cy' ? toCyr(o) : o;
+    if (typeof o === 'string') return name(o);
     if (lang === 'cy') return toCyr(o.uz || '');
     return o[lang] || o.uz || o.en || '';
   }
@@ -458,7 +465,7 @@
   function extend(code, dict) { DICT[code] = Object.assign(DICT[code] || {}, dict); }
 
   window.I18N = {
-    t: t, pick: pick, extend: extend, dict: DICT, apply: apply, set: set, info: info, langs: LANGS, toCyr: toCyr,
+    t: t, pick: pick, name: name, extend: extend, dict: DICT, apply: apply, set: set, info: info, langs: LANGS, toCyr: toCyr,
     get lang() { return lang; },
     on: function (cb) { subs.push(cb); },
     num: num, usd: usd, date: date, ago: ago, mountSwitcher: mountSwitcher

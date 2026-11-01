@@ -89,14 +89,16 @@
   try { revealed = sessionStorage.getItem('ah_pp_rev') === '1'; } catch (e) {}
   function st(v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('ah_pp')) || {}; localStorage.setItem('ah_pp', JSON.stringify(v)); } catch (e) { return {}; } }
   function ses(v) { try { if (v === undefined) return JSON.parse(sessionStorage.getItem('ah_pp_s')) || {}; sessionStorage.setItem('ah_pp_s', JSON.stringify(v)); } catch (e) { return {}; } }
-  function leadDone() { var s = st(); if (s.done) return true; try { return !!localStorage.getItem('ah3_lastLead'); } catch (e) { return false; } }
+  /* mijoz shu tashrifda raqam qoldirgan bo'lsa — oyna qayta chiqmaydi; keyingi tashrifda (yangi sessiya) yana chiqadi.
+     Avval: bir marta ariza qoldirgan telefonda oyna umuman chiqmay qolardi. */
+  function leadDone() { if (ses().done) return true; try { var t = +JSON.parse(localStorage.getItem('ah3_lastLead') || '0') || 0; return Date.now() - t < 30 * 6e4; } catch (e) { return false; } }
   var X = function () { return '<button class="pp-x" type="button" data-ppx aria-label="' + esc(T('pop.close')) + '">' + SV(IC.close) + '</button>'; };
   function proof() {
     if ((FN().offer || {}).proof === false) return '';
     var C = window.AH_CMS || {}, A = (C.stars && Array.isArray(C.stars.list) ? C.stars.list : (CFG.AMBASSADORS || [])).map(function (a) { var d = (CFG.AMBASSADORS || []).filter(function (x) { return x.id && x.id === a.id; })[0] || {}; return { name: a.name, photo: a.photo || d.photo, on: a.on }; })
       .filter(function (a) { return a.on !== false && a.photo && a.name; });
     if (A.length < 2) return '';
-    return '<div class="pp-proof"><span class="pp-faces">' + A.slice(0, 4).map(function (a) { return IMG(a.photo); }).join('') + '</span><span>' + esc(T('pop.proof', { a: A[0].name, b: A[1].name })) + '</span></div>';
+    return '<div class="pp-proof"><span class="pp-faces">' + A.slice(0, 4).map(function (a) { return IMG(a.photo); }).join('') + '</span><span>' + esc(T('pop.proof', { a: I18N.name(A[0].name), b: I18N.name(A[1].name) })) + '</span></div>';
   }
   function fields(btn) {
     var me = {}; try { me = JSON.parse(localStorage.getItem('ah3_me')) || {}; } catch (e) {}
@@ -234,7 +236,7 @@
     AH_SITE.remember(lead.name, lead.phone);
     try { localStorage.setItem('ah3_lastLead', JSON.stringify(Date.now())); } catch (e) {}
     CRM.deliver(lead).then(function (r2) { if (r2 === false) AH_SITE.toast(t('toast.offline')); });
-    var s = st(); s.done = Date.now(); st(s); pill(false);
+    var s = st(); s.done = Date.now(); st(s); var ss = ses(); ss.done = 1; ses(ss); pill(false);
     var live = !!CRM.api;
     box.className = 'pp-box pp-okbox';
     box.innerHTML = X() + '<div class="pp-main pp-ok"><span class="pp-tick">' + SV(IC.check) + '</span><h2 class="pp-h" id="ppT">' + esc(T('pop.okT', { name: lead.name })) + '</h2>' +

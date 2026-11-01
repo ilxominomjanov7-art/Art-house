@@ -110,12 +110,22 @@
         .then(function (r) { if (!r.ok) throw new Error('upload'); return r.json(); }).then(function (j) { return j.url; });
     }
     var key = 'idb:' + uid();
-    return idb().then(function (db) {
+    /* telefon «Yuklanmalar» / Telegram'dan (content://, file://) ochilgan faylda IndexedDB ko'pincha ishlamaydi
+       yoki osilib qoladi — 4 soniyada javob bo'lmasa, fayl data: manzil sifatida to'g'ridan-to'g'ri saqlanadi */
+    function asData() {
+      return new Promise(function (res, rej) {
+        if (blob.size > (/^video/.test(blob.type) ? 2.5e6 : 4e6)) return rej(new Error('too-big')); /* brauzer xotirasi ~5 MB */
+        var f = new FileReader(); f.onload = function () { res(f.result); }; f.onerror = function () { rej(f.error); }; f.readAsDataURL(blob);
+      });
+    }
+    var viaIdb = idb().then(function (db) {
       return new Promise(function (res, rej) {
         var tx = db.transaction('blobs', 'readwrite'); tx.objectStore('blobs').put(blob, key);
-        tx.oncomplete = function () { res(key); }; tx.onerror = function () { rej(tx.error); };
+        tx.oncomplete = function () { res(key); }; tx.onerror = function () { rej(tx.error); }; tx.onabort = function () { rej(tx.error); };
       });
     });
+    var timeout = new Promise(function (res, rej) { setTimeout(function () { rej(new Error('idb-timeout')); }, 4000); });
+    return Promise.race([viaIdb, timeout]).catch(asData);
   }
   /* "idb:..." kalitini yoki oddiy URLni <video> uchun manzilga aylantiradi */
   function mediaURL(ref) {
