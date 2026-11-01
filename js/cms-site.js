@@ -265,10 +265,9 @@
     location.reload();
   }
   window.AH_ADOPT = adopt;
-  if (location.protocol.indexOf('http') === 0) {
-    fetch('site-content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
-    if (API) fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
-  }
+  if (location.protocol.indexOf('http') === 0) fetch('site-content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
+  /* server (Worker) bo'lsa — sayt qayerdan ochilmasin (domen, telefon fayli), eng yangi sozlamalar serverdan olinadi */
+  if (API) fetch(API + '/api/cms', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(adopt).catch(function () {});
   /* kabinetda saqlansa — shu brauzerdagi sayt avtomatik yangilanadi */
   window.addEventListener('storage', function (e) { if (e.key === 'ah_cms' && !EDIT && !(window.AH_THEME && AH_THEME.live(e.newValue))) location.reload(); });
 
