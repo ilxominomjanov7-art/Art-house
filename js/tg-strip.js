@@ -35,7 +35,7 @@
   /* matn: qatorlar, havolalar va qalin yozuvsiz — Telegram ko'rinishida */
   function body(s) { return esc(s).replace(/\n/g, '<br>'); }
 
-  var timer = 0, io = null;
+  var timer = 0, io = null, SND = false; /* ovoz: mijoz bossa yoqiladi (brauzerlar ovozli avtoijroni taqiqlaydi) */
   function draw() {
     var old = $('#tgStrip'); clearTimeout(timer); if (io) io.disconnect();
     var host = $('#p-home'), L = posts(), U = CFG.TELEGRAM_CHANNEL || 'https://t.me/arthouse_toshkent';
@@ -71,9 +71,16 @@
       k = (i + L.length) % L.length; feed.style.transform = 'translateX(' + (-k * 100) + '%)';
       Array.prototype.forEach.call(slides, function (sl, j) { sl.classList.toggle('on', j === k); sl.setAttribute('aria-hidden', String(j !== k)); });
       Array.prototype.forEach.call(dots, function (b, j) { b.setAttribute('aria-current', String(j === k)); });
-      var v = cur(); if (v && vis) { v.currentTime = 0; v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      var v = cur(); if (v && vis) { v.currentTime = 0; v.muted = !SND; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
       sched();
     }
+    Array.prototype.forEach.call(s.querySelectorAll('.tgs-media'), function (m) {
+      var v = m.querySelector('video'); if (!v) return;
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tgs-snd'; b.setAttribute('aria-label', 'Ovoz');
+      var paint = function () { b.innerHTML = v.muted ? '<svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>'; };
+      b.addEventListener('click', function (ev) { ev.stopPropagation(); SND = v.muted; s.querySelectorAll('video.tgs-v').forEach(function (x) { x.muted = !SND; }); if (v.paused) v.play().catch(function () {}); s.querySelectorAll('.tgs-snd').forEach(function (x) { x._p && x._p(); }); });
+      b._p = paint; v.addEventListener('volumechange', paint); paint(); m.appendChild(b);
+    });
     Array.prototype.forEach.call(s.querySelectorAll('video.tgs-v'), function (v) { v.addEventListener('ended', function () { if (L.length > 1) go(k + 1); else { v.currentTime = 0; v.play().catch(function () {}); } }); });
     s.addEventListener('click', function (e) { var b = e.target.closest('.tgs-dots button'); if (b) go(+b.getAttribute('data-k')); });
     var x0 = null, y0 = 0, dx = 0;

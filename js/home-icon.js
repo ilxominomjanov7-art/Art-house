@@ -202,7 +202,7 @@
       else m.innerHTML = esc(t('hi.newsOk')) + (CFG.TELEGRAM_CHANNEL ? ' <a href="' + esc(CFG.TELEGRAM_CHANNEL) + '" target="_blank" rel="noopener">Telegram →</a>' : '');
       m.classList.add('ok'); m.hidden = false; inp.value = '';
     });
-    $$('.foot-in > div').forEach(function (c) { var h = $('h4', c); if (!h || c.id === 'hiNews') return; c.classList.add('hi-acc'); if (!h.dataset.acc) { h.dataset.acc = 1; h.setAttribute('role', 'button'); h.tabIndex = 0; h.addEventListener('click', function () { c.classList.toggle('open'); }); } });
+    $$('.foot-in > div').forEach(function (c) { var h = $('h4', c); if (!h || c.id === 'hiNews') return; c.classList.add('hi-acc'); if (!h.dataset.acc) { h.dataset.acc = 1; h.setAttribute('role', 'button'); h.tabIndex = 0; var ul = $('ul', c), sync = function () { var mob = matchMedia('(max-width: 760px)').matches, o = c.classList.contains('open'); if (ul) ul.style.setProperty('display', mob && !o ? 'none' : '', 'important'); h.setAttribute('aria-expanded', String(o)); }; h.addEventListener('click', function () { c.classList.toggle('open'); sync(); }); h.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); h.click(); } }); matchMedia('(max-width: 760px)').addEventListener('change', sync); sync(); } });
   }
   /* --- 7) qidiruv --- */
   var sd = null;

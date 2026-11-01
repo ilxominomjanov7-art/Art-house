@@ -44,7 +44,7 @@ def link_assets(text):
     Yulduzlar rasmlari (assets/img/amb/) — kichik, fayl ichiga joylanadi."""
     def one(m):
         p = m.group(0)
-        if p.startswith('assets/img/amb/'): return data_uri(p)
+        if p.startswith(('assets/img/amb/', 'assets/img/plans/', 'assets/img/obod/plan-')): return data_uri(p)  # kichik — internetsiz ham ko'rinadi
         return cdn(p) or p
     return re.sub(r'assets/[\w./-]+\.(?:webp|jpg|svg|mp4|png)', one, text)
 
