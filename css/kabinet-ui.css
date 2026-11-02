@@ -432,3 +432,5 @@ html,body{background:var(--em-900)}
 .vcm .zo{margin:0;writing-mode:horizontal-tb;word-break:normal}
 .vcm .vbt{display:flex;gap:10px;flex-wrap:wrap}.vcm .vbt .btn{flex:1;min-width:130px}
 .vcm .vman label{display:grid;gap:6px;margin-top:8px}.vcm textarea{width:100%}
+.adm-sw span b{color:#ff8a80}.adm-warn{margin:2px 0 6px;padding:8px 10px;border-radius:10px;background:rgba(255,82,82,.12);border:1px solid rgba(255,107,107,.45);color:#ff8a80;font-weight:600;font-size:13px}
+.cm-deny{margin-top:6px}.cm-deny summary{cursor:pointer;font-weight:600;padding:6px 0}.cm-dg{display:grid;gap:4px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
