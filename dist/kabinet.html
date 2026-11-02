@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; connect-src 'self' blob: data: https://api.telegram.org https://cdn.jsdelivr.net http://localhost:* wss: https:; frame-src 'self' https:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; connect-src 'self' blob: data: https://api.telegram.org https://cdn.jsdelivr.net http://localhost:* wss: https:; frame-src 'self' blob: https:; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1414,6 +1414,18 @@ html,body{background:var(--em-900)}
 /* server ulanmagan — ogohlantirish (saytdagi arizalar yetib kelmaydi) */
 .srv-warn{border-color:rgba(232,180,90,.55)!important;background:rgba(232,180,90,.08)!important;margin-bottom:14px}
 .srv-warn .note{text-align:left;margin:6px 0 0;line-height:1.55}
+/* ---- Art House chati: video-chat oynasi ---- */
+.vcm{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:14px;background:rgba(2,18,13,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.vcm .vb{width:min(560px,100%);max-height:calc(100vh - 28px);overflow:auto;display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--em-850,#0C3328);border:1px solid var(--bd-2,rgba(234,219,176,.2));border-radius:16px}
+.vcm .vh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.vcm .vh b{display:flex;align-items:center;gap:8px;font-size:17px}
+.vcm .vh button{width:40px;height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.06);color:inherit;font-size:22px;cursor:pointer}
+.vcm .vv{position:relative;aspect-ratio:3/4;max-height:56vh;border-radius:12px;overflow:hidden;background:#000}
+.vcm #vrm{width:100%;height:100%;object-fit:cover}
+.vcm #vlo{position:absolute;right:10px;bottom:10px;width:30%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;border:2px solid rgba(241,224,180,.6)}
+.vcm .zo{margin:0;writing-mode:horizontal-tb;word-break:normal}
+.vcm .vbt{display:flex;gap:10px;flex-wrap:wrap}.vcm .vbt .btn{flex:1;min-width:130px}
+.vcm .vman label{display:grid;gap:6px;margin-top:8px}.vcm textarea{width:100%}
 
 </style>
 <style>
@@ -4477,9 +4489,9 @@ async function vmedia(){if(!navigator.mediaDevices||!navigator.mediaDevices.getU
 function vpc(){PC=new RTCPeerConnection(ICE);LSM.getTracks().forEach(t=>PC.addTrack(t,LSM));PC.ontrack=e=>{$('vrm').srcObject=e.streams[0]};PC.onconnectionstatechange=()=>{const s=PC&&PC.connectionState;vs(s==='connected'?'Ulandi — gaplashishingiz mumkin':s==='failed'?"Ulanib bo'lmadi (tarmoq to'sig'i). Qayta urinib ko'ring.":s==='disconnected'?'Aloqa uzildi.':'Ulanmoqda…')}}
 function openCall(){if($('vcm'))return;const d=document.createElement('div');d.id='vcm';d.className='vcm';d.innerHTML='<div class="vb"><div class="vh"><b>'+I('video')+' Video-chat</b><button type="button" id="vx" aria-label="Yopish">×</button></div><div class="vv"><video id="vrm" autoplay playsinline></video><video id="vlo" autoplay playsinline muted></video></div><p class="zo" id="vs">Tayyor.</p><div class="vbt"><button class="btn gold sm" id="vst" type="button">Qo\'ng\'iroq boshlash</button><button class="btn ghost sm" id="vend" type="button">Tugatish</button></div><details class="vman"><summary>Boshqa qurilma bilan (kod orqali)</summary><label>Sizning kodingiz (ikkinchi tomonga yuboring)<textarea id="vmy" rows="3" readonly></textarea></label><label>Ikkinchi tomondan kelgan kod<textarea id="vin" rows="3"></textarea></label><button class="btn ghost sm" id="vgo" type="button">Kodni qabul qilish</button></details></div>';document.body.appendChild(d);
 $('vx').onclick=$('vend').onclick=endCall;
-$('vst').onclick=async()=>{if(PC)return;try{await vmedia();vpc();await PC.setLocalDescription(await PC.createOffer());vs('Qo\'ng\'iroq tayyorlanmoqda…');await icew(PC);CALL=Date.now().toString(36);const c=enc({t:'offer',id:CALL,from:ME().id,fn:tag(ME()),sdp:PC.localDescription});$('vmy').value=c;ping({t:'offer',c});vs("Chaqirilmoqda… Boshqa qurilmada bo'lsa — pastdagi kodni unga yuboring.")}catch(e){vs('Kamera/mikrofonga ruxsat berilmadi yoki topilmadi.')}};
+$('vst').onclick=async()=>{if(PC)return;try{await vmedia();vpc();await PC.setLocalDescription(await PC.createOffer());vs('Qo\'ng\'iroq tayyorlanmoqda…');await icew(PC);CALL=Date.now().toString(36);const c=enc({t:'offer',id:CALL,from:ME().id,fn:tag(ME()),sdp:PC.localDescription});$('vmy').value=c;ping({t:'offer',c});vs("Chaqirilmoqda… Boshqa qurilmada bo'lsa — pastdagi kodni unga yuboring.")}catch(e){vs((window.isSecureContext?'Kamera/mikrofonga ruxsat berilmadi yoki topilmadi.':"Telefon kamera va mikrofonni faqat https:// manzilda beradi. Kabinet fayldan (Yuklanmalar) ochilgan — Cloudflare'dagi domen orqali oching."))}};
 $('vgo').onclick=async()=>{try{const o=dec($('vin').value);if(o.t==='offer')await takeOffer(o);else await takeAnswer(o)}catch(e){vs("Kod noto'g'ri.")}}}
-async function takeOffer(o){openCall();if(PC)return;try{await vmedia();vpc();CALL=o.id;await PC.setRemoteDescription(o.sdp);await PC.setLocalDescription(await PC.createAnswer());vs('Javob tayyorlanmoqda…');await icew(PC);const c=enc({t:'answer',id:o.id,sdp:PC.localDescription});$('vmy').value=c;ping({t:'answer',c});vs("Ulanmoqda… (boshqa qurilma bo'lsa — javob kodini chaqiruvchiga yuboring)")}catch(e){vs('Kamera/mikrofonga ruxsat berilmadi yoki topilmadi.')}}
+async function takeOffer(o){openCall();if(PC)return;try{await vmedia();vpc();CALL=o.id;await PC.setRemoteDescription(o.sdp);await PC.setLocalDescription(await PC.createAnswer());vs('Javob tayyorlanmoqda…');await icew(PC);const c=enc({t:'answer',id:o.id,sdp:PC.localDescription});$('vmy').value=c;ping({t:'answer',c});vs("Ulanmoqda… (boshqa qurilma bo'lsa — javob kodini chaqiruvchiga yuboring)")}catch(e){vs((window.isSecureContext?'Kamera/mikrofonga ruxsat berilmadi yoki topilmadi.':"Telefon kamera va mikrofonni faqat https:// manzilda beradi. Kabinet fayldan (Yuklanmalar) ochilgan — Cloudflare'dagi domen orqali oching."))}}
 async function takeAnswer(a){if(PC&&a.id===CALL&&!PC.currentRemoteDescription)await PC.setRemoteDescription(a.sdp)}
 function incoming(o){if($('inc'))return;const m=document.createElement('div');m.className='dlg';m.id='inc';m.innerHTML='<div class="box"><i><svg viewBox="0 0 24 24" aria-hidden="true">'+ICN.video+'</svg></i><h3>'+esc(o.fn)+'</h3><p>video-qo\'ng\'iroq qilmoqda</p><div class="act"><button class="btn ghost" data-r="0" type="button">Rad etish</button><button class="btn gold" data-r="1" type="button">Qabul qilish</button></div></div>';document.body.appendChild(m);const tm=setTimeout(()=>m.remove(),30000);m.addEventListener('click',e=>{const r=e.target.closest('[data-r]');if(!r)return;clearTimeout(tm);m.remove();if(r.dataset.r==='1')takeOffer(o)})}
 if(RC)RC.onmessage=e=>{const d=e.data||{};if(!tok||AD.hidden)return;if(d.t==='msg'){if(VW==='r'&&window._rp)window._rp()}else if(d.t==='offer'){if(!PC)try{incoming(dec(d.c))}catch(x){}}else if(d.t==='answer'){try{takeAnswer(dec(d.c))}catch(x){}}};
@@ -5525,7 +5537,16 @@ function openEd(id){const c=TS(),th=c.themes.list.find(x=>x.id===id);if(!th)retu
  AD.appendChild(el);document.body.classList.add('te-on');
  el.addEventListener('click',onClick);el.addEventListener('input',onInput);el.addEventListener('change',onInput);
  el.querySelector('[data-te-lang]').addEventListener('change',e=>{E.lang=e.target.value;E.keys={};pane();push(1);if(E.sel&&TH.native(E.sel))post({op:'keys',id:E.sel})});
- dnd(el);bar();pane()}
+ dnd(el);bar();pane();siteFallback()}
+/* telefon «Yuklanmalar»dan ochilgan kabinet yonida index.html yo'q — 5 soniyada sayt yuklanmasa, sayt faylini tanlash taklif qilinadi.
+   Tanlangan fayl shu brauzerda eslab qolinadi (keyingi safar so'ralmaydi). */
+const SITE_DB=()=>new Promise((res,rej)=>{const r=indexedDB.open('arthouse-site',1);r.onupgradeneeded=()=>r.result.createObjectStore('f');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const siteGet=()=>SITE_DB().then(db=>new Promise(res=>{const g=db.transaction('f').objectStore('f').get('index');g.onsuccess=()=>res(g.result||null);g.onerror=()=>res(null)})).catch(()=>null);
+const sitePut=t=>SITE_DB().then(db=>db.transaction('f','readwrite').objectStore('f').put(t,'index')).catch(()=>{});
+function useSite(html){const f=$('teIf');if(!f||!E)return;const b=new Blob([html],{type:'text/html'});if(window._teBlob)URL.revokeObjectURL(window._teBlob);window._teBlob=URL.createObjectURL(b);f.src=window._teBlob+'#home'}
+function siteFallback(){const t0=E;setTimeout(async()=>{if(!E||E!==t0||E.ready)return;const cached=await siteGet();if(cached&&E&&!E.ready){useSite(cached);setTimeout(()=>{if(E&&!E.ready)ask()},6000);return}ask()},location.protocol.indexOf('http')===0?8000:2500);
+ function ask(){const l=document.querySelector('#te .te-load');if(!l)return;l.innerHTML='<p style="max-width:300px;text-align:center;line-height:1.5">'+TX("Ko'rinish uchun saytning index.html faylini bir marta tanlang (telefonda kabinet yonida sayt fayli topilmadi).")+'</p><button type="button" class="btn gold" data-pick-site>'+TX('index.html ni tanlash')+'</button>';
+  l.querySelector('[data-pick-site]').onclick=()=>{const i=document.createElement('input');i.type='file';i.accept='.html,.htm,text/html';i.onchange=async()=>{const f=i.files[0];if(!f)return;const h=await f.text();if(!/ART HOUSE/.test(h)||/id="ab"/.test(h)){kToast(TX("Bu sayt fayli emas. Saytning index.html faylini tanlang."));return}await sitePut(h);l.innerHTML='<span class="cm-spin"></span><span>'+TX('Sayt yuklanmoqda…')+'</span>';useSite(h)};i.click()}}}
 
 function closeEd(){const el=$('te');if(el)el.remove();document.body.classList.remove('te-on');E=null;if(K.VW()==='T')vT()}
 addEventListener('message',e=>{if(!E)return;const f=$('teIf');if(!f||e.source!==f.contentWindow)return;const d=e.data||{};if(d.ah!=='te')return;

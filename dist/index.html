@@ -4875,7 +4875,7 @@ I18N.extend('en', {
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var t = function (k, v) { return I18N.t(k, v); };
   var API = (CFG.API_URL === 'auto' ? (location.protocol.indexOf('http') === 0 ? location.origin : '') : (CFG.API_URL || '')).replace(/\/$/, '');
-  var PREVIEW = /[?&]preview=1/.test(location.search) && window.parent !== window;
+  var PREVIEW = (/[?&]preview=1/.test(location.search) || location.protocol === 'blob:') && window.parent !== window; /* blob: — telefondagi kabinet tanlangan sayt faylini shu yo'l bilan ochadi */
   var NUMK = ['FOUNDED', 'PROJECTS_DONE'];
   var CUR = TH.liveOf(window.AH_CMS);
   var DRAFT = false;

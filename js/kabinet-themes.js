@@ -103,7 +103,16 @@ function openEd(id){const c=TS(),th=c.themes.list.find(x=>x.id===id);if(!th)retu
  AD.appendChild(el);document.body.classList.add('te-on');
  el.addEventListener('click',onClick);el.addEventListener('input',onInput);el.addEventListener('change',onInput);
  el.querySelector('[data-te-lang]').addEventListener('change',e=>{E.lang=e.target.value;E.keys={};pane();push(1);if(E.sel&&TH.native(E.sel))post({op:'keys',id:E.sel})});
- dnd(el);bar();pane()}
+ dnd(el);bar();pane();siteFallback()}
+/* telefon «Yuklanmalar»dan ochilgan kabinet yonida index.html yo'q — 5 soniyada sayt yuklanmasa, sayt faylini tanlash taklif qilinadi.
+   Tanlangan fayl shu brauzerda eslab qolinadi (keyingi safar so'ralmaydi). */
+const SITE_DB=()=>new Promise((res,rej)=>{const r=indexedDB.open('arthouse-site',1);r.onupgradeneeded=()=>r.result.createObjectStore('f');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const siteGet=()=>SITE_DB().then(db=>new Promise(res=>{const g=db.transaction('f').objectStore('f').get('index');g.onsuccess=()=>res(g.result||null);g.onerror=()=>res(null)})).catch(()=>null);
+const sitePut=t=>SITE_DB().then(db=>db.transaction('f','readwrite').objectStore('f').put(t,'index')).catch(()=>{});
+function useSite(html){const f=$('teIf');if(!f||!E)return;const b=new Blob([html],{type:'text/html'});if(window._teBlob)URL.revokeObjectURL(window._teBlob);window._teBlob=URL.createObjectURL(b);f.src=window._teBlob+'#home'}
+function siteFallback(){const t0=E;setTimeout(async()=>{if(!E||E!==t0||E.ready)return;const cached=await siteGet();if(cached&&E&&!E.ready){useSite(cached);setTimeout(()=>{if(E&&!E.ready)ask()},6000);return}ask()},location.protocol.indexOf('http')===0?8000:2500);
+ function ask(){const l=document.querySelector('#te .te-load');if(!l)return;l.innerHTML='<p style="max-width:300px;text-align:center;line-height:1.5">'+TX("Ko'rinish uchun saytning index.html faylini bir marta tanlang (telefonda kabinet yonida sayt fayli topilmadi).")+'</p><button type="button" class="btn gold" data-pick-site>'+TX('index.html ni tanlash')+'</button>';
+  l.querySelector('[data-pick-site]').onclick=()=>{const i=document.createElement('input');i.type='file';i.accept='.html,.htm,text/html';i.onchange=async()=>{const f=i.files[0];if(!f)return;const h=await f.text();if(!/ART HOUSE/.test(h)||/id="ab"/.test(h)){kToast(TX("Bu sayt fayli emas. Saytning index.html faylini tanlang."));return}await sitePut(h);l.innerHTML='<span class="cm-spin"></span><span>'+TX('Sayt yuklanmoqda…')+'</span>';useSite(h)};i.click()}}}
 
 function closeEd(){const el=$('te');if(el)el.remove();document.body.classList.remove('te-on');E=null;if(K.VW()==='T')vT()}
 addEventListener('message',e=>{if(!E)return;const f=$('teIf');if(!f||e.source!==f.contentWindow)return;const d=e.data||{};if(d.ah!=='te')return;

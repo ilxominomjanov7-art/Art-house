@@ -420,3 +420,15 @@ html,body{background:var(--em-900)}
 /* server ulanmagan — ogohlantirish (saytdagi arizalar yetib kelmaydi) */
 .srv-warn{border-color:rgba(232,180,90,.55)!important;background:rgba(232,180,90,.08)!important;margin-bottom:14px}
 .srv-warn .note{text-align:left;margin:6px 0 0;line-height:1.55}
+/* ---- Art House chati: video-chat oynasi ---- */
+.vcm{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:14px;background:rgba(2,18,13,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.vcm .vb{width:min(560px,100%);max-height:calc(100vh - 28px);overflow:auto;display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--em-850,#0C3328);border:1px solid var(--bd-2,rgba(234,219,176,.2));border-radius:16px}
+.vcm .vh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.vcm .vh b{display:flex;align-items:center;gap:8px;font-size:17px}
+.vcm .vh button{width:40px;height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.06);color:inherit;font-size:22px;cursor:pointer}
+.vcm .vv{position:relative;aspect-ratio:3/4;max-height:56vh;border-radius:12px;overflow:hidden;background:#000}
+.vcm #vrm{width:100%;height:100%;object-fit:cover}
+.vcm #vlo{position:absolute;right:10px;bottom:10px;width:30%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;border:2px solid rgba(241,224,180,.6)}
+.vcm .zo{margin:0;writing-mode:horizontal-tb;word-break:normal}
+.vcm .vbt{display:flex;gap:10px;flex-wrap:wrap}.vcm .vbt .btn{flex:1;min-width:130px}
+.vcm .vman label{display:grid;gap:6px;margin-top:8px}.vcm textarea{width:100%}
