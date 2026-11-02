@@ -17,7 +17,7 @@
 /* --- telefon: «Menyu» tugmasi va to'liq ekranli menyu --- */
 .mnav-btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px 0 12px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--gold-hi); font-size: 13px; font-weight: 600; letter-spacing: .06em; background: rgba(230, 203, 139, .06); }
 .mnav-ico { display: grid; gap: 3px; width: 16px; }
-.mnav-ico i { display: block; height: 1.5px; border-radius: 2px; background: var(--gold); }
+.mnav-ico i { display: block; height: 1.5px; border-radius: 2px; background: currentColor; }
 .mnav-ico i:nth-child(2) { width: 70%; justify-self: end; }
 @media (max-width: 860px) {
   .menu { display: none; }

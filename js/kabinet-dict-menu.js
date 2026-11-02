@@ -77,7 +77,15 @@
 ["Bo'limga ruxsat berildi", "Section access granted", "Доступ к разделу открыт", "Accès à la rubrique accordé", "Accesso alla sezione concesso", "Acceso a la sección concedido", "Bereichszugriff erteilt", "Bölüme erişim verildi"],
 ["Bo'lim yopildi", "Section access closed", "Доступ к разделу закрыт", "Accès à la rubrique retiré", "Accesso alla sezione chiuso", "Acceso a la sección cerrado", "Bereichszugriff entzogen", "Bölüm erişimi kapatıldı"],
 ["Kabinet menyusi", "Office menu", "Меню кабинета", "Menu de l'espace", "Menu dell'area", "Menú del panel", "Dashboard-Menü", "Panel menüsü"],
-["Guruh nomi", "Group name", "Название группы", "Nom du groupe", "Nome del gruppo", "Nombre del grupo", "Gruppenname", "Grup adı"]
+["Guruh nomi", "Group name", "Название группы", "Nom du groupe", "Nome del gruppo", "Nombre del grupo", "Gruppenname", "Grup adı"],
+["Kabinet ranglari", "Office colours", "Цвета кабинета", "Couleurs de l'espace", "Colori dell'area", "Colores del panel", "Dashboard-Farben", "Panel renkleri"],
+["Fon rangi", "Background colour", "Цвет фона", "Couleur de fond", "Colore di sfondo", "Color de fondo", "Hintergrundfarbe", "Arka plan rengi"],
+["Oltin (aksent) rang", "Accent (gold) colour", "Акцентный (золотой) цвет", "Couleur d'accent (or)", "Colore d'accento (oro)", "Color de acento (oro)", "Akzentfarbe (Gold)", "Vurgu (altın) rengi"],
+["Zumrad (asl)", "Emerald (default)", "Изумруд (исходный)", "Émeraude (par défaut)", "Smeraldo (predefinito)", "Esmeralda (original)", "Smaragd (Standard)", "Zümrüt (varsayılan)"],
+["Tungi ko'k", "Night blue", "Ночной синий", "Bleu nuit", "Blu notte", "Azul noche", "Nachtblau", "Gece mavisi"],
+["Grafit", "Graphite", "Графит", "Graphite", "Grafite", "Grafito", "Graphit", "Grafit"],
+["Bordo", "Burgundy", "Бордо", "Bordeaux", "Bordeaux", "Burdeos", "Bordeaux", "Bordo"],
+["O'rmon", "Forest", "Лес", "Forêt", "Foresta", "Bosque", "Wald", "Orman"]
   ];
   var D = window.AHDICT || (window.AHDICT = {});
   L.forEach(function (l, i) { D[l] = D[l] || {}; R.forEach(function (r) { if (!D[l][r[0]]) D[l][r[0]] = r[i + 1]; }); });
