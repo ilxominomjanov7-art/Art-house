@@ -38,12 +38,17 @@ const sessions = new Map(); // token → { role, user, exp }
 /* ---------- ma'lumotlar bazasi (JSON fayl) ---------- */
 let db = { reviews: [], leads: [], calls: [], settings: {}, cms: {}, crm: { days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} } };
 try { db = Object.assign(db, JSON.parse(fs.readFileSync(DB_FILE, 'utf8'))); } catch (e) { /* birinchi ishga tushirish */ }
-db.crm = Object.assign({ days: {}, leads: [], exp: [], chats: [], calls: [], inv: {} }, db.crm || {});
+db.crm = Object.assign({ days: {}, leads: [], exp: [], chats: [], calls: [], inv: {}, arch: [] }, db.crm || {});
+/* Mijozlar arxivi: kabinetda o'chirilgan mijozlar 30 kun saqlanadi, keyin avtomatik tozalanadi */
+const ARCH_MS = 30 * 864e5;
+function archPurge() { const n = Date.now(), a = Array.isArray(db.crm.arch) ? db.crm.arch : []; db.crm.arch = a.filter(x => x && n - (+x.delAt || 0) < ARCH_MS); return a.length !== db.crm.arch.length; }
 let saveT = null;
 function save() {
   clearTimeout(saveT);
   saveT = setTimeout(() => { const tmp = DB_FILE + '.tmp'; fs.writeFileSync(tmp, JSON.stringify(db)); fs.renameSync(tmp, DB_FILE); }, 200);
 }
+if (archPurge()) save();
+setInterval(() => { if (archPurge()) save(); }, 6 * 36e5).unref();
 
 /* ---------- SSE ---------- */
 const clients = new Set();
@@ -247,12 +252,18 @@ async function crm(req, res, p) {
     const i = C.chats.findIndex(x => x.id === c.id); if (i > -1) C.chats[i] = c; else C.chats.unshift(c); C.chats = C.chats.slice(0, 2000);
     save(); broadcast({ t: 'change', kind: 'crm', info: { op: 'chat', id: c.id } }); return send(res, 204);
   }
-  if (p === '/stats' && req.method === 'GET') { if (!me) return send(res, 401, { error: 'auth' }); return send(res, 200, C); }
+  if (p === '/stats' && req.method === 'GET') { if (!me) return send(res, 401, { error: 'auth' }); if (archPurge()) save(); return send(res, 200, me.role === 'owner' ? C : Object.assign({}, C, { arch: [] })); } /* arxiv — faqat direktor uchun */
   if (p === '/save' && req.method === 'POST') {
     if (!me) return send(res, 401, { error: 'auth' });
     const b = await json(req), owner = me.role === 'owner';
     if (b.leads) mergeById(C.leads, b.leads);
     if (b.delLeads && owner) C.leads = C.leads.filter(x => !b.delLeads.includes(x.id));
+    /* arxivga ko'chirish / tiklash / butunlay o'chirish (faqat direktor) */
+    const ids = v => (Array.isArray(v) ? v : []).slice(0, 2000).map(String);
+    if (b.archLeads && owner) { const I = ids(b.archLeads), mv = C.leads.filter(x => I.includes(x.id)), at = Date.now(); C.leads = C.leads.filter(x => !I.includes(x.id)); C.arch = mv.map(x => Object.assign({}, x, { delAt: at, delBy: str(b.by, 60) })).concat(C.arch || []).slice(0, 5000); }
+    if (b.restoreLeads && owner) { const I = ids(b.restoreLeads), mv = (C.arch || []).filter(x => I.includes(x.id)); C.arch = (C.arch || []).filter(x => !I.includes(x.id)); mergeById(C.leads, mv.map(x => { const y = Object.assign({}, x); delete y.delAt; delete y.delBy; return y; })); C.leads.sort((a, c) => (+c.at || 0) - (+a.at || 0)); }
+    if (b.purgeArch && owner) { const I = ids(b.purgeArch); C.arch = (C.arch || []).filter(x => !I.includes(x.id)); }
+    archPurge();
     if (b.exp && owner) mergeById(C.exp, b.exp);
     if (b.delExp && owner) C.exp = C.exp.filter(x => !b.delExp.includes(x.id));
     if (b.inv && owner) C.inv = b.inv;

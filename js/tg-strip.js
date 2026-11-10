@@ -40,7 +40,7 @@
     var old = $('#tgStrip'); clearTimeout(timer); if (io) io.disconnect();
     var host = $('#p-home'), L = posts(), U = CFG.TELEGRAM_CHANNEL || 'https://t.me/arthouse_toshkent';
     if (!host) return;
-    var H = '@' + ((U.match(/t\.me\/([\w]+)/) || [0, 'arthouse_toshkent'])[1]), name = 'Art house | Toshkent';
+    var H = '@' + ((U.match(/t\.me\/([\w]+)/) || [0, 'arthouse_toshkent'])[1]), name = CFG.TG_NAME || 'Art house | Toshkent';
     var s = document.createElement('section'); s.id = 'tgStrip'; s.className = 'igs2 tgs';
     s.innerHTML = '<div class="igs2-in"><div class="igs2-copy"><a class="tgs-logo" href="' + esc(U) + '" target="_blank" rel="noopener" aria-label="Telegram">' + TG() + '</a>' +
       '<p class="eyebrow">' + esc(t('tg.eyebrow')) + '</p><h2>' + esc(H) + '</h2><p class="igs2-lead">' + esc(t('tg.lead')) + '</p>' +

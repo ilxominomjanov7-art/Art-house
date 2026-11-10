@@ -64,7 +64,6 @@ calc(.*var(--vw,1vw)) video{position:absolute;inset:0;width:100%;height:100%;obj
 calc(.*var(--vw,1vw)) .cap{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;background:linear-gradient(0deg,rgba(6,31,24,.92),transparent);font-size:13px;color:var(--gold2)}
 calc(.*var(--vw,1vw)) .fg{z-index:1}
 calc(.*var(--vw,1vw)) .cap{z-index:2}
-body:not(.go) .a{animation-play-state:paused!important}
 .a1{animation:lift .9s .1s both}.a2{animation:en-wipe 1.3s .3s cubic-bezier(.7,0,.2,1) both}.a3{animation:en-wipe 1.3s .65s cubic-bezier(.7,0,.2,1) both,sheen 6s 2.2s linear infinite}.a4{animation:lift 1s 1.2s both}.a5{animation:lift 1s 1.45s both}.a6{animation:fade-in 1.2s 1.8s both}.a7{animation:pop 1.4s .4s both cubic-bezier(.2,.8,.2,1)}
 @media all{
  .hero{align-items:flex-end;padding-bottom:40px}.hero .wrap{grid-template-columns:1fr}

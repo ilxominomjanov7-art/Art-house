@@ -29,8 +29,14 @@ js/crm.js         — saytdan kabinetga: arizalar, AI suhbatlar (Xabarlar), tash
 js/kabinet*.js    — kabinet mantiqi, tillari va lug'ati; js/kabinet-emoji.js — menyu ikonkalari
 js/kabinet-publish.js — «Saytga chiqarish»: o'zgarishlarni index.html ichiga joylaydi
 js/menu-schema.js, kabinet-menu.js — saytdagi ☰ menyu sxemasi va kabinetdagi «Menyu» bo'limi
-css/site-final.css — oxirgi qatlam: ixcham menyu, pastki ikonkali lenta, footer va raqam bilan obuna
-js/kabinet-guide.js — «Video yo'riqnoma» bo'limi va kirish oynasidagi tugma (+ js/guide-chapters.js boblari)
+css/site-final.css — ixcham menyu, pastki ikonkali lenta, footer va raqam bilan obuna
+css/site-v2.css, js/site-v2.js — Reels ikonkalari, «Biz haqimizda» wow effekti, pastki qism
+css/site-v3.css, js/site-v3.js — Instagram profil rasmi, ark-portal, mavzu CSS'i (AH_CSS): shriftlar, header, fonlar
+css/site-v4.css — oxirgi qatlam: header va logotip (#061F18), sahifa/bo'lim foni rasmi va videosi
+js/fonts.js — shriftlar kutubxonasi (20 ta Google shrifti; sayt va kabinet uchun umumiy)
+js/auto-tr.js — lug'atda yo'q matnlarni tanlangan tilga avtomatik tarjima qilish
+css/kabinet-v4.css — kirish sahifasi, «Xush kelibsiz» animatsiyasi, mijozlar arxivi, AI Agent
+js/kabinet-guide.js — «Video yo'riqnoma» bo'limi (+ js/guide-chapters.js boblari)
 js/kabinet-stars.js — «Yulduzlar» sahifasi: taniqli insonlar kartalari (+ css/kabinet-stars.css)
 js/kabinet-instagram.js — «Instagram» sahifasi: Reels videolari, havolalar, gapirilgan matn 8 tilda
 js/kabinet-translate.js — yangi til uchun AI tarjima (server → /api/translate)
@@ -84,8 +90,18 @@ Tahrirlagich (chapda sozlamalar, o'ngda saytning jonli ko'rinishi — kompyuter 
   fikrlar (surat, matn, baho), raqamlar, afzalliklar — qo'shish, nusxalash, o'chirish, sudrab tartiblash.
   «Namuna» bloklar saytda ko'rinmaydi; video yoki matn kiritilganda haqiqiy blokka aylanadi.
 - **Asl bo'limlar** (bosh banner, xonadonlar, ofis va h.k.) — matnlarini shu yerning o'zida tahrirlash mumkin.
-- **Mavzu sozlamalari**: rang uslubi, o'z ranglaringiz, sarlavha shrifti, tugmalar shakli, yangi bo'limlar foni
-  (och shampan yoki zumrad) va saytdagi umumiy **raqamlar** (tajriba yili, loyihalar soni, Instagram).
+- **Mavzu sozlamalari**: rang uslubi, o'z ranglaringiz, tugmalar shakli, yangi bo'limlar foni va saytdagi umumiy
+  **raqamlar** (tajriba yili, loyihalar soni), hamda:
+  - **Shriftlar** — sarlavhalar, asosiy matn va logotip uchun 20 ta shriftdan tanlash (Google Fonts, kirill harflari bilan).
+    Tanlangan shrift butun sayt bo'ylab barcha sarlavha va matnlarga qo'llanadi.
+  - **Header va logotip** — header foni va matn rangi, logotip rasmi, yozuvi, o'lchami va joylashuvi, yopishib turishi.
+  - **E'lon qatori** — fon va matn rangi.
+  - **Sahifa foni** — butun sayt uchun fon **rasmi yoki videosi** (video rasmdan ustun turadi), qoramtirlik foizi,
+    och bo'limlar, kartalar va pastki qism foni.
+  - **Custom CSS** — butun sayt uchun.
+- **Har bir bo'lim uchun fon va ko'rinish** (asl bo'limlarga ham): fon turi — bitta rang, gradient, rasm yoki **video**
+  (muqova rasmi bilan), qoramtirlik, matn rangi, **bo'lim shrifti** va shu bo'lim uchun Custom CSS.
+  O'zgarish tahrirlagichda darhol ko'rinadi va saqlangach saytda ham shunday bo'ladi (js/site-v3.js → `AH_CSS`).
 - Til tanlagichi — har bir matnni 8 tilda kiritish; bo'sh qolgan tillarda o'zbekcha matn ko'rsatiladi.
 - Bekor qilish/qaytarish (Ctrl+Z / Ctrl+Shift+Z), saqlash (Ctrl+S).
 
@@ -98,7 +114,7 @@ foydalaning.
 
 ## Video yo'riqnoma (8 til, ovozli)
 
-Kabinet → **Yordam → Video yo'riqnoma** (barcha xodimlar uchun) va kirish oynasidagi **«Video yo'riqnoma»** tugmasi.
+Kabinet → **Yordam → Video yo'riqnoma** (barcha xodimlar uchun). Kirish oynasidagi tugma olib tashlandi — yo'riqnoma faqat kabinet ichida.
 Taxminan 7–8 daqiqalik video: telefondan va kompyuterdan kirish, kabinetning barcha bo'limlari va
 Sozlamalarning har bir yorlig'i. Ovozli izoh va subtitrlar 8 tilda: o'zbek, rus, ingliz, fransuz, italyan,
 ispan, nemis, turk.
@@ -125,6 +141,32 @@ ularning foydalanish shartlarini tekshiring yoki diktor ovozi bilan almashtiring
 Har bir qatorni alohida yozib (`phone-00.mp3`, `desktop-07.mp3` …) `tools/guide/voice/uz/` ga qo'ying va `run.sh` ni
 ishga tushiring — o'sha qatorlar sun'iy ovoz o'rniga diktor ovozi bilan chiqadi, video tempi o'zi moslanadi.
 O'zbekcha sun'iy ovoz sozlamasi (`tools/guide/tts.py` → `OPTS`): tezroq va balandroq — reklama roligidagi boshlovchi tempiga moslangan.
+
+## Mijozlar bazasi, belgilash va «Mijozlar arxivi»
+
+Kabinet → **Savdo → Mijozlar bazasi**:
+
+- Mijoz ikonkalari (avatar) va amal tugmalari kattalashtirilgan — telefonda ham qulay.
+- **Bir nechta mijozni belgilash** (Telegram'dagidek): qatorni bosib turing yoki «Tanlash» tugmasini bosing →
+  tepada amallar paneli: «Hammasini tanlash», bir bosishda **o'chirish**.
+- O'chirilgan mijoz yo'qolmaydi — **Savdo → Mijozlar arxivi** ga tushadi va **30 kun** saqlanadi, keyin
+  avtomatik tozalanadi (kabinet ochilganda; server rejimida serverda ham). Istalgan payt **tiklash** yoki
+  **butunlay o'chirish** mumkin; o'chirilgandan keyin pastda 7 soniya «Qaytarish» tugmasi chiqadi.
+- Arxiv tepasida **qidiruv**: ism yoki telefon raqami bo'yicha.
+- Arxiv faqat direktor (va Admin huquqli menejer) uchun ko'rinadi.
+
+## AI Agent (kabinet)
+
+Kabinet → **Tahlil → AI Agent**: kirishda «Xush kelibsiz, Art House» animatsiyasi, o'ng tomonda
+**30 ta yirik mavzu** 6 guruhda (Sotuv va mijozlar, Moliya, Xonadonlar va narxlar, Huquq va shartnoma,
+Jamoa va marketing, Tizim va reja) — qidiruv bilan. Har bir mavzu kabinetdagi jonli ma'lumotdan javob tuzadi:
+bugungi arizalar, javobsiz qolganlar, issiq mijozlar, voronka, tushum va prognoz, yaqin to'lovlar,
+xonadonlar holati, ipoteka bilan solishtirish, qo'ng'iroq ssenariysi, e'tirozlarga javob, bugungi ish rejasi va boshqalar.
+
+**Xotira:** suhbat tarixi va «eslab qol: …» eslatmalari har bir xodim uchun alohida saqlanadi
+(localStorage `ah_agent_mem`). Oxirgi tilga olingan mijoz ham eslab qolinadi — «unga SMS yoz» deb yozsangiz,
+o'sha mijozga tayyorlanadi. «Xotira» tugmasi: eslatmalar ro'yxati, suhbat tarixini tozalash.
+Server ulangan bo'lsa, oxirgi xabarlar va eslatmalar Claude'ga ham yuboriladi — u suhbat davomini biladi.
 
 ## Yulduzlar
 

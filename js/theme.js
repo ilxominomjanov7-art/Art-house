@@ -93,7 +93,7 @@
     if (el.textContent !== css) el.textContent = css;
     var m = $('meta[name="theme-color"]'); if (m && c.bg) m.content = c.bg;
   }
-  style(CUR);
+  style(CUR); if (window.AH_CSS) AH_CSS(CUR);
 
   /* ---------- 1) «Yulduzlar va mijozlar tanlovi» ---------- */
   var MEDIA = {}; /* data-play → { video, link, name, role } */
@@ -295,7 +295,7 @@
     var txt = JSON.stringify(th.text || {}) !== JSON.stringify(CUR.text || {});
     CUR = th; window.AH_TTEXT = th.text || {};
     var nums = cfg ? applyCfg(cfg) : false;
-    style(CUR);
+    style(CUR); if (window.AH_CSS) AH_CSS(CUR);
     if (txt || nums) I18N.set(I18N.lang); /* barcha matnlar qayta chiziladi → place() */
     else place();
   }

@@ -2306,6 +2306,309 @@ html.ty-icon #tgStrip .igs2-copy h2 { text-transform: none; }
 #igStrip .igs2-prog i { background: linear-gradient(90deg, #B8913F, #F6E7B8) !important; }
 
 </style>
+<style>
+/* =====================================================================
+   ART HOUSE v2 — 2026-11 yangilanishi (sayt)
+   1) Instagram Reels: tabiiy ikonkalar  4) «Biz haqimizda» wow effekt
+   3/5) sotuv oynalari: bank bilan solishtirish, to'lov yo'li
+   9) ICON uslubidagi pastki qism + «Davra»  10) tezkor ikonkalar va tugmalar
+   ===================================================================== */
+
+/* ---------- 10) tezlik: bosilganda darhol javob ---------- */
+html { -webkit-tap-highlight-color: transparent; }
+a, button, [role="button"], label, summary, input, select, .dock > *, .menu a { touch-action: manipulation; }
+.dock > a, .dock > button, .top button, .top a, .hi-sbtn, .usp-dots button, .pp-chips button, .te-ib { transition-duration: .12s !important; transition-delay: 0s !important; }
+.dock > a:active, .dock > button:active, .top button:active, .hi-sbtn:active, .btn:active, .hi-btn:active, .pp-btn:active, .pp-chips button:active { transform: scale(.94); transition: transform .06s !important; }
+.dock .ic, .top .ic, .hi-sbtn svg { transition: transform .12s ease, color .12s ease, opacity .12s ease !important; will-change: transform; }
+@media (hover: hover) { .dock > a:hover .ic, .dock > button:hover .ic { transform: translateY(-2px); } }
+
+/* ---------- 1) Instagram Reels — xuddi ilovadagidek ---------- */
+#igStrip .igs2-side { right: 8px; bottom: 84px; gap: 15px; justify-items: center; pointer-events: auto; }
+#igStrip .igs2-side i { display: grid; justify-items: center; gap: 4px; width: auto; height: auto; padding: 0; border-radius: 0; background: none !important; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none !important; font-style: normal; cursor: pointer; }
+#igStrip .igs2-side svg { width: 27px; height: 27px; fill: none; stroke: #fff; stroke-width: 1.85; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .55)); animation: none; transition: transform .15s; }
+#igStrip .igs2-side i:first-child svg { fill: none; stroke: #fff; animation: none; }
+#igStrip .igs2-side i:active svg { transform: scale(.86); }
+#igStrip .igs2-side i.liked svg { fill: #FF3040; stroke: #FF3040; animation: ahLike .42s cubic-bezier(.2, 1.6, .4, 1); }
+#igStrip .igs2-side b { font: 600 12.5px/1 -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .55); letter-spacing: 0; }
+#igStrip .igs2-side b:empty { display: none; }
+#igStrip .igs2-side .igx-more svg { width: 22px; height: 22px; stroke-width: 2.2; }
+@keyframes ahLike { 0% { transform: scale(.6); } 55% { transform: scale(1.22); } 100% { transform: scale(1); } }
+#igStrip .igs2-bot { right: 62px; bottom: 16px; gap: 8px; font-family: -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif; }
+#igStrip .igs2-who { gap: 9px; }
+#igStrip .igs2-av { width: 32px; height: 32px; padding: 5px; background: #0A3B2C; box-shadow: 0 0 0 1px rgba(255, 255, 255, .9); }
+#igStrip .igs2-who b { font-size: 13.5px; font-weight: 600; letter-spacing: 0; }
+#igStrip .igs2-who em { padding: 4px 11px; border: 1px solid rgba(255, 255, 255, .85); border-radius: 8px; background: transparent; color: #fff; font: 600 12.5px/1.2 -apple-system, system-ui, sans-serif; }
+#igStrip .igs2-cap { font-size: 12.5px; opacity: .95; }
+#igStrip .igs2-fby { display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: .85; }
+#igStrip .igs2-fby:empty { display: none; }
+#igStrip .igs2-cc { border: 0; border-left: 0; border-radius: 8px; background: rgba(0, 0, 0, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: none; right: 62px; }
+#igStrip .igs2-screen::after { content: ''; position: absolute; inset: auto 0 0 0; height: 46%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .55)); }
+
+/* ---------- 4) «Biz haqimizda» rasmi — wow effekt ---------- */
+.ths-about-media.ahw { perspective: 1100px; }
+.ths-about-media.ahw .ahw-in { position: relative; display: block; overflow: hidden; border-radius: 4px; box-shadow: var(--t-shadow, 0 40px 80px -40px rgba(0, 0, 0, .6)); transform-style: preserve-3d; transition: transform .5s cubic-bezier(.2, .8, .2, 1); will-change: transform; }
+.ths-about-media.ahw .ahw-in img { box-shadow: none; border-radius: 0; clip-path: inset(100% 0 0 0); transform: scale(1.25); transition: clip-path 1.4s cubic-bezier(.77, 0, .18, 1), transform 2.6s cubic-bezier(.16, 1, .3, 1); }
+.ths-about-media.ahw.in .ahw-in img { clip-path: inset(0 0 0 0); transform: scale(1.06); }
+.ths-about-media.ahw.live .ahw-in img { animation: ahKen 16s ease-in-out infinite alternate; }
+@keyframes ahKen { from { transform: scale(1.06) translate3d(0, 0, 0); } to { transform: scale(1.16) translate3d(-2.5%, -2%, 0); } }
+.ths-about-media.ahw .ahw-in::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(255, 236, 185, .55) 48%, rgba(255, 255, 255, .15) 52%, transparent 65%); transform: translateX(-120%); }
+.ths-about-media.ahw.in .ahw-in::after { animation: ahSweep 1.6s .9s cubic-bezier(.4, 0, .2, 1) forwards, ahSweep 1.6s 7s cubic-bezier(.4, 0, .2, 1) infinite; }
+@keyframes ahSweep { to { transform: translateX(120%); } }
+.ths-about-media.ahw .ahw-in::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(4, 22, 16, 0) 55%, rgba(4, 22, 16, .55)); }
+.ths-about-media.ahw::before { transform: scale(.86); opacity: 0; transition: transform 1.6s .4s cubic-bezier(.16, 1, .3, 1), opacity 1.2s .4s; }
+.ths-about-media.ahw.in::before { transform: none; opacity: 1; }
+.ths-about-media.ahw .ahw-cap { position: absolute; z-index: 3; left: 18px; bottom: 18px; right: 120px; display: grid; gap: 4px; color: #FBF5E6; opacity: 0; transform: translateY(14px); transition: opacity .9s 1.5s, transform .9s 1.5s cubic-bezier(.16, 1, .3, 1); }
+.ths-about-media.ahw.in .ahw-cap { opacity: 1; transform: none; }
+.ths-about-media.ahw .ahw-cap small { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #E8D5A4; }
+.ths-about-media.ahw .ahw-cap b { font: 500 clamp(17px, 2vw, 22px)/1.2 var(--f-display); }
+.ths-about-media.ahw .ths-about-badge { z-index: 4; transform: scale(.4) rotate(-40deg); opacity: 0; transition: transform 1.1s 1.1s cubic-bezier(.2, 1.5, .35, 1), opacity .6s 1.1s; }
+.ths-about-media.ahw.in .ths-about-badge { transform: none; opacity: 1; }
+.ths-about-media.ahw .ths-about-badge::before { content: ''; position: absolute; inset: -9px; border-radius: 50%; border: 1px dashed rgba(232, 213, 164, .75); animation: ahSpin 28s linear infinite; }
+.ths-about-media.ahw .ths-about-badge::after { content: ''; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 0 rgba(232, 213, 164, .55); animation: ahPulse 3.2s 2.4s ease-out infinite; }
+@keyframes ahSpin { to { transform: rotate(360deg); } }
+@keyframes ahPulse { 0% { box-shadow: 0 0 0 0 rgba(232, 213, 164, .5); } 80%, 100% { box-shadow: 0 0 0 22px rgba(232, 213, 164, 0); } }
+.ahw-dust { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.ahw-dust i { position: absolute; bottom: -6px; width: 3px; height: 3px; border-radius: 50%; background: #F3E3B6; box-shadow: 0 0 8px 2px rgba(243, 227, 182, .7); opacity: 0; animation: ahDust var(--d, 7s) var(--w, 0s) linear infinite; }
+@keyframes ahDust { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 15% { opacity: .9; } 100% { transform: translate3d(var(--x, 20px), -460px, 0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ths-about-media.ahw * , .ths-about-media.ahw::before { animation: none !important; transition: none !important; clip-path: none !important; opacity: 1 !important; transform: none !important; } }
+
+/* ---------- 3/5) sotuv oynalari: hissiy qatlam ---------- */
+.pp-x2 { display: grid; gap: 14px; margin: 4px 0 18px; }
+.x2-save { position: relative; overflow: hidden; padding: 16px 16px 14px; border-radius: 14px; background: linear-gradient(150deg, #0B3B2D, #072A20); color: #F4EEDF; box-shadow: inset 0 0 0 1px rgba(232, 213, 164, .25); }
+.x2-save > span { font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: #E8D5A4; }
+.x2-cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0 8px; }
+.x2-cmp > div { display: grid; gap: 4px; padding: 10px 12px; border-radius: 10px; background: rgba(255, 255, 255, .05); }
+.x2-cmp small { font-size: 11.5px; opacity: .75; }
+.x2-cmp s { font: 600 18px/1.1 var(--f-display, inherit); color: #F08C7E; text-decoration-thickness: 1.5px; }
+.x2-cmp .on { background: linear-gradient(145deg, rgba(246, 231, 184, .18), rgba(201, 164, 92, .12)); box-shadow: inset 0 0 0 1px rgba(232, 213, 164, .5); }
+.x2-cmp .on b { font: 600 22px/1 var(--f-display, inherit); color: #F3E0A6; }
+.x2-big { margin: 2px 0 4px; font-size: 14px; }
+.x2-big strong { font: 600 26px/1 var(--f-display, inherit); background: linear-gradient(100deg, #F8EBC4, #D4AF37 60%, #F3E08D); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.x2-save em { display: block; font-style: normal; font-size: 10.5px; opacity: .55; line-height: 1.4; }
+.x2-save::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; left: -50%; background: linear-gradient(100deg, transparent, rgba(255, 240, 200, .14), transparent); animation: x2Shine 4.5s 1s ease-in-out infinite; }
+@keyframes x2Shine { 0% { left: -50%; } 45%, 100% { left: 120%; } }
+.x2-path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.x2-path::before { content: ''; position: absolute; top: 15px; left: 16%; right: 16%; height: 1px; background: linear-gradient(90deg, #C9A45C, #E8D5A4, #C9A45C); }
+.x2-path li { position: relative; display: grid; justify-items: center; gap: 4px; text-align: center; }
+.x2-path li > i { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 50%; background: #0B3B2D; color: #F3E0A6; font: 600 13px/1 inherit; font-style: normal; box-shadow: 0 0 0 1px #C9A45C, 0 0 0 4px var(--pp-bg, #F4EFE4); }
+.x2-path li > i svg { width: 15px; height: 15px; }
+.x2-path b { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.x2-path span { font-size: 13px; font-weight: 600; line-height: 1.25; }
+.pp-x2c { display: grid; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(232, 213, 164, .18); }
+.x2c-save { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.x2c-save span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #E8D5A4; }
+.x2c-save strong { font: 600 24px/1 var(--f-display, inherit); background: linear-gradient(100deg, #F8EBC4, #D4AF37 60%, #F3E08D); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.x2c-save small { flex-basis: 100%; font-size: 10.5px; opacity: .55; }
+.x2c-bar { position: relative; display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: rgba(255, 255, 255, .08); }
+.x2c-bar > i { flex: none; background: linear-gradient(90deg, #C9A45C, #F3E0A6); transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.x2c-bar > span { flex: 1; display: flex; gap: 2px; padding-left: 2px; }
+.x2c-bar > span > u { flex: 1; text-decoration: none; background: rgba(232, 213, 164, .35); opacity: 0; animation: x2Tick .3s forwards; }
+@keyframes x2Tick { to { opacity: 1; } }
+.x2c-leg { display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; opacity: .8; }
+.x2c-own { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; color: #F3E0A6; }
+.x2c-own svg { width: 18px; height: 18px; flex: none; }
+
+/* ---------- 9) pastki qism — ICON Amsterdam darajasidagi minimal lyuks ---------- */
+html body .foot { position: relative; overflow: hidden; background: #F3EEE3 !important; color: #0B3B2D; border-top: 0 !important; }
+html body .foot .muted, html body .foot p { color: rgba(11, 59, 45, .72) !important; }
+html body .foot .foot-in h4 { color: #0B3B2D !important; font-weight: 600 !important; letter-spacing: .18em !important; }
+html body .foot .foot-links, html body .foot .foot-links a, html body .foot .foot-links li > span { color: rgba(11, 59, 45, .82) !important; }
+html body .foot .foot-links a:hover { color: #9C7A33 !important; }
+html body .foot .brand, html body .foot .brand b { color: #0B3B2D !important; }
+html body .foot .brand small { color: rgba(11, 59, 45, .6) !important; }
+html body .foot .brand-mark { color: #0B3B2D; stroke: #0B3B2D; }
+html body .foot .foot-soc a { color: #0B3B2D !important; opacity: .8; }
+html body .foot .foot-copy { border-top: 1px solid rgba(11, 59, 45, .14) !important; color: rgba(11, 59, 45, .6) !important; position: relative; z-index: 1; }
+html body .foot .foot-in { position: relative; z-index: 1; }
+html body .foot .foot-in > div:first-child > .brand { display: none !important; }
+html body .foot #hiNews .nl-form input::placeholder { color: rgba(11, 59, 45, .38) !important; }
+html body .foot .nl-cc { color: rgba(11, 59, 45, .7) !important; }
+.ft-trust span[aria-hidden] { display: none; } .ft-trust { gap: 6px 26px; }
+.ft-art { position: absolute; left: 0; right: 0; bottom: 0; height: min(52vw, 420px); pointer-events: none; color: #0B3B2D; opacity: .07; display: flex; justify-content: space-between; z-index: 0; }
+.ft-art svg { height: 100%; width: auto; }
+.ft-art svg + svg { transform: scaleX(-1); }
+.ft-mark { position: relative; z-index: 1; display: grid; justify-items: center; gap: 10px; padding: clamp(46px, 7vw, 80px) 0 10px; text-align: center; }
+.ft-mark svg { width: 46px; height: 46px; color: #0B3B2D; }
+.ft-mark b { font: 400 clamp(26px, 4vw, 40px)/1 var(--f-display, serif); letter-spacing: .32em; color: #0B3B2D; padding-left: .32em; }
+.ft-mark span { font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #9C7A33; }
+.ft-trust { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px; padding: 0 0 8px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(11, 59, 45, .7); }
+html body .foot #hiNews { color: #0B3B2D; }
+html body .foot #hiNews h4 { color: #0B3B2D !important; font-size: 13px !important; letter-spacing: .2em !important; }
+html body .foot #hiNews .nl-form { background: #fff !important; border: 1px solid rgba(11, 59, 45, .25) !important; color: #0B3B2D; }
+html body .foot #hiNews .nl-form input { color: #0B3B2D !important; background: transparent !important; }
+html body .foot #hiNews .nl-form button { background: #0B3B2D !important; color: #F3E0A6 !important; }
+html body .foot #hiNews .nl-perks li { color: rgba(11, 59, 45, .78) !important; }
+@media (max-width: 760px) {
+  html body .foot .hi-acc { border-bottom: 1px solid rgba(11, 59, 45, .14); }
+  html body .foot .hi-acc h4 { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 !important; margin: 0 !important; cursor: pointer; }
+  html body .foot .hi-acc h4::after { content: ''; width: 8px; height: 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-3px); transition: transform .2s; }
+  html body .foot .hi-acc.open h4::after { transform: rotate(-135deg) translateY(-2px); }
+  .ft-art { height: 230px; opacity: .06; }
+}
+
+</style>
+<style>
+/* =====================================================================
+   ART HOUSE v3 — 2026-11-08
+   1) Reels: Instagram'dagi haqiqiy profil rasmi   3) «Biz haqimizda» — ark-portal, zumrad fon, ariza tugmasi
+   4) 1-2-3 raqamlar o'rniga ICON uslubidagi chiziqli ikonkalar   5) pastki qism: header logotipining aynan o'zi
+   7) sotuv oynalari: ipoteka bilan solishtirish
+   ===================================================================== */
+
+/* ---------- 1) Instagram profil rasmi ---------- */
+#igStrip img.igs2-av { width: 32px; height: 32px; padding: 0; border-radius: 50%; object-fit: cover; background: #0A3B2C; box-shadow: 0 0 0 1px rgba(255, 255, 255, .9); flex: none; }
+
+/* ---------- 3) «Biz haqimizda» — ark-portal ---------- */
+.ths.ths-about {
+  --t-bg: #082C22; --t-bg2: rgba(255, 255, 255, .04); --t-card: rgba(255, 255, 255, .04); --t-ink: #F4EEDF; --t-mut: rgba(244, 238, 223, .7); --t-gold: #E8D5A4; --t-gold2: rgba(232, 213, 164, .55);
+  --t-line: rgba(232, 213, 164, .16); --t-em: #E8D5A4; --t-em-ink: #0B2E23; --t-shadow: 0 40px 80px -40px rgba(0, 0, 0, .75);
+  background: radial-gradient(60% 55% at 22% 45%, rgba(232, 213, 164, .13), transparent 70%), radial-gradient(50% 60% at 100% 0, rgba(19, 86, 67, .5), transparent 70%), linear-gradient(180deg, #0B3A2D 0%, #072820 100%) !important;
+  color: var(--t-ink);
+}
+.ths.ths-about::before, .ths.ths-about::after { background: linear-gradient(90deg, transparent, rgba(232, 213, 164, .45), transparent) !important; }
+.ths-about .ths-about-media { margin: 0 auto !important; max-width: 470px; width: calc(100% - 28px); }
+.ths-about .ths-about-media::before { inset: -14px !important; border: 1px solid rgba(232, 213, 164, .42) !important; border-radius: 999px 999px 14px 14px !important; }
+.ths-about .ths-about-media::after { content: ''; position: absolute; left: 8%; right: 8%; bottom: -34px; height: 40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), transparent); filter: blur(6px); z-index: -1; }
+.ths-about .ths-about-media .ahw-in { border-radius: 999px 999px 8px 8px !important; aspect-ratio: 3 / 4.15; box-shadow: 0 50px 90px -40px rgba(0, 0, 0, .8), 0 0 0 1px rgba(232, 213, 164, .3) !important; }
+.ths-about .ths-about-media .ahw-in img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 22%; }
+.ths-about .ths-about-media .ahw-in::before { background: linear-gradient(180deg, rgba(4, 22, 16, 0) 52%, rgba(4, 22, 16, .7)) !important; }
+.ths-about .ths-about-badge { right: auto !important; left: -6px; bottom: 22% !important; width: 128px !important; height: 128px !important; background: linear-gradient(150deg, #E8D5A4, #C9A45C) !important; color: #0B2E23 !important; outline: 0 !important; box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .7), 0 0 0 6px rgba(8, 44, 34, .9) !important; }
+.ths-about .ths-about-badge b { color: #0B2E23 !important; font-size: 46px !important; }
+.ths-about .ths-about-badge span { color: #0B2E23; font-weight: 600; }
+.ths-about .ths-about-badge::before { border-color: rgba(232, 213, 164, .6) !important; }
+.ths-about .ahw-cap { left: 22px !important; right: 22px !important; bottom: 26px !important; text-align: center; justify-items: center; }
+.ths-about .ths-about-copy h2 { color: #F7F0DE; }
+.ths-about .ths-text p { color: rgba(244, 238, 223, .78); }
+.ab-lead { display: grid; grid-template-columns: auto 1fr; gap: 14px 16px; align-items: center; margin-top: 30px; padding: 18px; border: 1px solid rgba(232, 213, 164, .3); background: rgba(255, 255, 255, .035); }
+.ab-lead > i { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(232, 213, 164, .5); color: #E8D5A4; }
+.ab-lead > i svg { width: 22px; height: 22px; }
+.ab-lead b { display: block; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #F4EEDF; }
+.ab-lead small { display: block; margin-top: 4px; font-size: 13.5px; line-height: 1.45; color: rgba(244, 238, 223, .7); }
+.ab-lead .ab-btn { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border: 0; background: linear-gradient(100deg, #F3E3B6, #D9BD7E); color: #0B2E23; font: 600 12.5px/1 var(--f-body); letter-spacing: .2em; text-transform: uppercase; cursor: pointer; }
+.ab-lead .ab-btn svg { width: 16px; height: 16px; }
+@media (min-width: 900px) { .ab-lead { grid-template-columns: auto 1fr auto; } .ab-lead .ab-btn { grid-column: auto; padding: 0 26px; } }
+
+/* ---------- 4) ICON uslubi: raqamlar emas — chiziqli ikonkalar ---------- */
+.icx { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 16px; align-items: start; }
+.icx > svg { grid-row: span 2; width: 26px; height: 26px; margin-top: 1px; fill: none; stroke: var(--gold, #E8D5A4); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.steps { grid-template-columns: minmax(0, 1fr) !important; gap: 8px !important; }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+.steps .step { padding: 20px 20px !important; border-radius: 0 !important; background: rgba(255, 255, 255, .045) !important; border: 0 !important; box-shadow: none !important; }
+.steps .step > i { display: none !important; }
+.steps .step h4 { margin: 0 !important; font: 500 13.5px/1.35 var(--f-body) !important; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
+.steps .step p { margin: 0 !important; font-size: 14px !important; line-height: 1.5; }
+.hi-list { gap: 8px !important; border-top: 0 !important; counter-reset: none !important; }
+.hi-list > div { display: grid !important; grid-template-columns: 26px minmax(0, 1fr); gap: 16px !important; padding: 20px 20px !important; background: rgba(255, 255, 255, .045) !important; border: 0 !important; }
+.hi-list > div::before { content: none !important; display: none !important; }
+.hi-list > div > svg, .hi-list > div > .hi-ic { display: block !important; width: 26px !important; height: 26px !important; margin: 1px 0 0 !important; padding: 0 !important; background: none !important; border: 0 !important; fill: none !important; stroke: var(--gold) !important; stroke-width: 1.4 !important; }
+.hi-list b { font: 500 13.5px/1.35 var(--f-body) !important; letter-spacing: .07em !important; text-transform: uppercase !important; }
+@media (min-width: 900px) { .hi-list { column-gap: 8px !important; } .hi-list > div:nth-child(2) { border-top: 0 !important; } }
+.menu a > i.mi { display: inline-grid; place-items: center; font-style: normal; }
+.menu a > i.mi svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
+
+/* ---------- 5) pastki qism: logotip — header'dagi bilan bir xil ---------- */
+.ft-art { display: none !important; }
+html body .foot .ft-mark { position: relative; z-index: 1; display: block; padding: clamp(40px, 6vw, 64px) 0; margin: 0 0 clamp(18px, 3vw, 36px); text-align: center; background: radial-gradient(60% 120% at 50% 0, rgba(232, 213, 164, .12), transparent 70%), var(--bg, #0B392C); border-bottom: 1px solid rgba(232, 213, 164, .25); }
+html body .foot .ft-mark .wrap { display: flex; justify-content: center; }
+html body .foot .ft-mark .brand { display: inline-flex !important; gap: 16px; }
+html body .foot .ft-mark .brand-mark, html body .foot .ft-mark .brand-img { width: 58px !important; height: 58px !important; }
+html body .foot .ft-mark .brand-txt b { font-size: clamp(24px, 4vw, 30px) !important; letter-spacing: .26em !important; background: var(--gold-grad) !important; background-size: 220% 100% !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; }
+html body .foot .ft-mark .brand-txt small { color: rgba(244, 238, 223, .62) !important; font-size: 10px !important; letter-spacing: .38em !important; }
+.brand-img { display: block; width: 40px; height: 40px; object-fit: contain; }
+.ft-trust { justify-content: center; text-align: center; padding: 6px 0 14px !important; }
+
+/* ---------- 7) ipoteka bilan solishtirish ---------- */
+.x2-hl { margin: 8px 0 2px; font-size: 14px; line-height: 1.45; color: #F4EEDF; }
+.x2-cmp > div { gap: 3px !important; }
+.x2-cmp em { font-style: normal; font-size: 11px; opacity: .6; }
+.x2-cmp .x2-x { font-style: normal; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; color: #F08C7E; }
+.x2-cmp .on .x2-x { color: #9FE0B9; }
+.x2-cmp s { text-decoration: none !important; }
+.pp-x2c .x2-save { background: rgba(255, 255, 255, .04); box-shadow: inset 0 0 0 1px rgba(232, 213, 164, .2); }
+.x2-path li > i { background: #0B3B2D !important; }
+
+</style>
+<style>
+/* =====================================================================
+   ART HOUSE — SAYT v4 (2026-11) — oxirgi qatlam
+   1) Header va logotip: fon saytning asosiy to'q yashil rangiga to'liq mos
+      (--bg = #061F18), logotip toza vektorda (sifatli chiziqlar, aniq burchaklar)
+   3) Mavzu o'zgaruvchilari: fon rasmi va videosi, ranglar — barcha asosiy bloklarga
+      real vaqtda ta'sir qiladi (js/site-v3.js → AH_CSS, --ah-* o'zgaruvchilari)
+   5) Shrift boshqaruvi: --f-display / --f-body / --f-logo butun sayt bo'ylab
+   ===================================================================== */
+:root {
+  /* saytning asosiy to'q yashil rangi */
+  --bg: #061F18;
+  --bg-2: #08281F;
+  --bg-3: #0B3328;
+  --deep: #04150F;
+  /* header va e'lon qatori shu rangdan kelib chiqadi (mavzudan o'zgartiriladi) */
+  --hdr-bg: var(--bg);
+  --hdr-ink: var(--ink);
+}
+html, body { background-color: var(--bg); }
+
+/* ---------- 1) HEADER: bir xil to'q yashil, shaffoflik yo'q ---------- */
+html body .top {
+  background: var(--hdr-bg) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(232, 213, 164, .14) !important;
+  color: var(--hdr-ink);
+}
+html body .top::after { display: none !important; }
+html body .top .top-row { background: transparent !important; }
+/* menyu qatori ham bir xil fonda (ikki xil yashil ko'rinmaydi) */
+html body .top .mrow, html body .top .nav, html body .top .top-nav { background: transparent !important; }
+/* sahifa aylantirilganda ham rang o'zgarmaydi */
+html body .top.is-stuck, html body .top.scrolled { background: var(--hdr-bg) !important; }
+
+/* ---------- 1) LOGOTIP: toza vektor ---------- */
+.brand { align-items: center; }
+.brand-mark, .lgc .sbm svg, .sbh .sbm svg {
+  shape-rendering: geometricPrecision;
+  vector-effect: non-scaling-stroke;
+}
+html body .top .brand-mark {
+  width: 42px; height: 42px;
+  stroke: url(#gGold);
+  stroke-width: 3.2;
+  stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .35));
+  overflow: visible;
+}
+/* ramka chizig'i ham asosiy chiziqlar bilan bir xil qalinlikda ko'rinadi */
+html body .brand-mark rect { stroke-width: 2.6; }
+html body .top .brand-txt b {
+  font-family: var(--f-logo);
+  letter-spacing: .2em; margin-right: -.2em;
+}
+html body .top .brand-txt small { color: rgba(251, 245, 228, .62); }
+@media (max-width: 640px) { html body .top .brand-mark { width: 34px; height: 34px; } }
+
+/* ---------- 3) mavzu: sahifa foni rasmi yoki videosi ---------- */
+#ahBgMedia {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
+  background: var(--bg);
+}
+#ahBgMedia video, #ahBgMedia img { width: 100%; height: 100%; object-fit: cover; }
+#ahBgMedia::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(4, 22, 16, calc(var(--ah-bg-ov, 55) / 100));
+}
+/* fon ko'rinishi uchun asosiy qatlamlar shaffof bo'ladi */
+html.ah-bgmedia, html.ah-bgmedia body { background: transparent !important; }
+html.ah-bgmedia .ths-light { background: transparent !important; }
+
+/* bo'lim foni videosi: faqat video qo'yilgan bo'limga ta'sir qiladi (boshqa bloklar joyida qoladi) */
+.ths-bgv { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.ths-bgv video { width: 100%; height: 100%; object-fit: cover; }
+.ths-bgv::after { content: ''; position: absolute; inset: 0; background: rgba(4, 22, 16, calc(var(--ov, 45) / 100)); }
+[data-ths]:has(> .ths-bgv) { position: relative; isolation: isolate; }
+
+</style>
 </head>
 <body class="is-loading">
 
@@ -4535,6 +4838,56 @@ I18N.extend('en', {
     manrope: { name: 'Manrope', css: "'Manrope', system-ui, sans-serif" }
   };
 
+  /* ---------------- shriftlar, mavzu sozlamalari va bo'lim foni ----------------
+     Bu maydonlar kabinetdagi tahrirlagichda (Mavzu sozlamalari / har bir bo'lim) ko'rinadi va
+     saytda js/site-v3.js → AH_CSS() orqali CSS o'zgaruvchilariga aylanadi — sahifa qayta
+     yuklanmasdan, barcha asosiy bloklarga darhol ta'sir qiladi. */
+  function fontOpts(kind) {
+    var F = (typeof window !== 'undefined' && window.AH_FONTS) || {};
+    var out = [['', kind === 'h' ? 'Standart (mavzu shrifti)' : 'Standart']];
+    Object.keys(F).forEach(function (k) { if (kind === 'b' && !F[k].b) return; out.push([k, F[k].n]); });
+    return out;
+  }
+  var TSET = [
+    { gr: 'Shriftlar', k: 'fontH', t: 'select', l: 'Sarlavhalar shrifti', o: fontOpts('h'), note: "Butun sayt bo'ylab barcha sarlavhalarga qo'llanadi" },
+    { k: 'fontB', t: 'select', l: 'Asosiy matn shrifti', o: fontOpts('b') },
+    { k: 'fontLogo', t: 'select', l: 'Logotip shrifti', o: fontOpts('h') },
+    { gr: 'Header va logotip', k: 'hdrBg', t: 'color', l: 'Header foni', d: '#061F18' },
+    { k: 'hdrInk', t: 'color', l: 'Header matni va ikonkalari', d: '#FBF5E4' },
+    { k: 'logoImg', t: 'image', l: 'Logotip rasmi (bo\'sh bo\'lsa — vektor belgi)' },
+    { k: 'logoText', t: 'plain', l: 'Logotip yozuvi' },
+    { k: 'logoSub', t: 'plain', l: 'Logotip ostidagi yozuv' },
+    { k: 'logoSize', t: 'num', l: 'Logotip o\'lchami (px)', ph: '42' },
+    { k: 'logoPos', t: 'select', l: 'Logotip joylashuvi', o: [['', "O'rtada (standart)"], ['left', 'Chapda']] },
+    { k: 'logoTextOff', t: 'check', l: 'Faqat belgi (yozuvsiz)' },
+    { k: 'sticky', t: 'check', l: 'Header yuqorida yopishib turadi', dflt: true },
+    { gr: "E'lon qatori", k: 'annBg', t: 'color', l: 'Fon', d: '#E2C98E' },
+    { k: 'annInk', t: 'color', l: 'Matn', d: '#0B2E23' },
+    { gr: 'Sahifa foni', k: 'pageImg', t: 'image', l: 'Fon rasmi (butun sayt)' },
+    { k: 'pageVid', t: 'video', l: 'Fon videosi (rasmdan ustun turadi)' },
+    { k: 'pageOv', t: 'num', l: 'Fon qoramtirligi (%)', ph: '55' },
+    { k: 'lightBg', t: 'color', l: "Och bo'limlar foni", d: '#FBF8F1' },
+    { k: 'cardBg', t: 'color', l: 'Kartalar foni' },
+    { k: 'footBg', t: 'color', l: 'Pastki qism foni' },
+    { gr: 'Qo\'shimcha', k: 'css', t: 'code', l: 'Custom CSS (butun sayt uchun)' }
+  ];
+  /* har bir bo'lim uchun: fon turi, ranglar, rasm, video, matn rangi va Custom CSS */
+  var SECBG = [
+    { k: 'bgT', t: 'select', l: 'Fon turi', o: [['', 'Standart'], ['color', 'Bitta rang'], ['grad', 'Gradient'], ['img', 'Rasm'], ['vid', 'Video']] },
+    { k: 'bgC1', t: 'color', l: 'Rang', when: 'bgT=color' },
+    { k: 'bgC1', t: 'color', l: '1-rang', when: 'bgT=grad' },
+    { k: 'bgC2', t: 'color', l: '2-rang', when: 'bgT=grad' },
+    { k: 'bgA', t: 'num', l: 'Gradient burchagi', ph: '180', when: 'bgT=grad' },
+    { k: 'bgImg', t: 'image', l: 'Fon rasmi', when: 'bgT=img' },
+    { k: 'bgVid', t: 'video', l: 'Fon videosi', when: 'bgT=vid' },
+    { k: 'bgPoster', t: 'image', l: 'Video muqovasi', when: 'bgT=vid' },
+    { k: 'bgOv', t: 'num', l: 'Qoramtirlik (%)', ph: '45' },
+    { k: 'bgInk', t: 'color', l: 'Matn rangi' },
+    { k: 'font', t: 'select', l: "Bo'lim sarlavhalari shrifti", o: function () { return fontOpts('h'); } },
+    { k: 'fontB', t: 'select', l: "Bo'lim matni shrifti", o: function () { return fontOpts('b'); } },
+    { k: 'css', t: 'code', l: "Shu bo'lim uchun Custom CSS" }
+  ];
+
   /* ---------------- maydon turlari ----------------
      text/area — ko'p tilli matn; plain — bitta qiymat; num; check; select (o: [[qiymat, nom]]);
      image/video — fayl yuklash yoki havola; url; date */
@@ -4847,6 +5200,7 @@ I18N.extend('en', {
 
   window.AH_THEMES = {
     LANGS: LANGS, PALETTES: PALETTES, FONTS: FONTS, NATIVE: NATIVE, TYPES: TYPES, ORDER: ORDER, ACT: ACT, ICONS: ICONS, KIND: KIND,
+    TSET: TSET, SECBG: SECBG, fontOpts: fontOpts,
     defaults: DEF, newTheme: newTheme, normalize: normalize, liveOf: liveOf, uid: uid, clone: clone, ml: ml,
     native: function (id) { return NATIVE.filter(function (n) { return n.id === id; })[0] || null; }
   };
@@ -4949,7 +5303,7 @@ I18N.extend('en', {
     if (el.textContent !== css) el.textContent = css;
     var m = $('meta[name="theme-color"]'); if (m && c.bg) m.content = c.bg;
   }
-  style(CUR);
+  style(CUR); if (window.AH_CSS) AH_CSS(CUR);
 
   /* ---------- 1) «Yulduzlar va mijozlar tanlovi» ---------- */
   var MEDIA = {}; /* data-play → { video, link, name, role } */
@@ -5151,7 +5505,7 @@ I18N.extend('en', {
     var txt = JSON.stringify(th.text || {}) !== JSON.stringify(CUR.text || {});
     CUR = th; window.AH_TTEXT = th.text || {};
     var nums = cfg ? applyCfg(cfg) : false;
-    style(CUR);
+    style(CUR); if (window.AH_CSS) AH_CSS(CUR);
     if (txt || nums) I18N.set(I18N.lang); /* barcha matnlar qayta chiziladi → place() */
     else place();
   }
@@ -8189,6 +8543,8 @@ window.AH_IG_REELS = [
     msg: SV('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'), send: SV('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'), save: SV('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>'),
     cam: SV('<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'),
     off: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/>'), on: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>') };
+  UI.rep = SV('<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>');
+  UI.more = SV('<circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/>');
   /* Reels ro'yxati: kabinet → Sayt → Instagram (AH_CMS.ig.reels), bo'lmasa js/ig-reels.js (standart 3 ta video) */
   function reels() {
     var D = window.AH_IG_REELS || CFG.IG_REELS || [], R = ((window.AH_CMS || {}).ig || {}).reels;
@@ -8215,9 +8571,9 @@ window.AH_IG_REELS = [
       '<div class="igs2-feed">' + R.map(function (r, i) {
         return '<div class="igs2-slide' + (i ? ' next' : ' on') + '" data-i="' + i + '"><video class="igs2-v" muted playsinline loop preload="' + (i ? 'none' : 'metadata') + '"' + vAttr('src', r.src) + vAttr('poster', r.poster) + '></video></div>';
       }).join('') + '</div>' +
-      '<span class="igs2-side"><i>' + UI.heart + '</i><i>' + UI.msg + '</i><i>' + UI.send + '</i><i>' + UI.save + '</i></span>' +
+      '<span class="igs2-side"><i class="igx-like" data-k="like">' + UI.heart + '<b data-c="l"></b></i><i data-k="msg">' + UI.msg + '<b data-c="c"></b></i><i data-k="rep">' + UI.rep + '<b data-c="r"></b></i><i data-k="send">' + UI.send + '<b data-c="s"></b></i><i data-k="save">' + UI.save + '<b data-c="v"></b></i><i class="igx-more" data-k="more">' + UI.more + '</i></span>' +
       '<span class="igs2-cc" aria-live="polite"></span>' +
-      '<span class="igs2-bot"><span class="igs2-who"><svg class="igs2-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span></span>' +
+      '<span class="igs2-bot"><span class="igs2-who"><img class="igs2-av igs2-avi" alt="" decoding="async" src="' + (window.AH_IG_AV ? AH_IG_AV() : '') + '"><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span><span class="igs2-fby"></span></span>' +
       '<span class="igs2-hearts" aria-hidden="true"></span><span class="igs2-prog"><i></i></span></div>' +
       '<button type="button" class="igs2-snd" aria-label="' + esc(t('ig.sound')) + '" aria-pressed="false">' + UI.off + '<span>' + esc(t('ig.sound')) + '</span></button></div>' +
       '</div>' : '') + '</div>';
@@ -8229,7 +8585,7 @@ window.AH_IG_REELS = [
     var wantSound = function () { return SOUND === true; };
     var play = function () { var v = cur(); if (!v || !vis) return; v.muted = !wantSound(); var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; v.play().catch(function () {}); sync(); }); sync(); };
     var sync = function () { var on = !cur().muted; snd.innerHTML = (on ? UI.on : UI.off) + (on ? '' : '<span>' + esc(t('ig.sound')) + '</span>'); snd.classList.toggle('on', on); snd.setAttribute('aria-pressed', String(on)); };
-    var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; };
+    var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; if (window.AH_IG_STATS) AH_IG_STATS(s, k); };
     var caption = function () { var v = cur(), c = R[k].cap || [], tm = v.currentTime, x = ''; for (var i = 0; i < c.length; i++) if (tm >= c[i].s && tm < c[i].e) { x = capText(c[i].t); break; } if (cc.textContent !== x) { cc.textContent = x; cc.classList.toggle('on', !!x); } };
     /* yon tomonga almashish: d = 1 — o'ngdagi (keyingi), -1 — chapdagi; oxirgisidan keyin birinchisi keladi */
     var go = function (d) {
@@ -8382,7 +8738,7 @@ window.AH_TG_POSTS = [
     var old = $('#tgStrip'); clearTimeout(timer); if (io) io.disconnect();
     var host = $('#p-home'), L = posts(), U = CFG.TELEGRAM_CHANNEL || 'https://t.me/arthouse_toshkent';
     if (!host) return;
-    var H = '@' + ((U.match(/t\.me\/([\w]+)/) || [0, 'arthouse_toshkent'])[1]), name = 'Art house | Toshkent';
+    var H = '@' + ((U.match(/t\.me\/([\w]+)/) || [0, 'arthouse_toshkent'])[1]), name = CFG.TG_NAME || 'Art house | Toshkent';
     var s = document.createElement('section'); s.id = 'tgStrip'; s.className = 'igs2 tgs';
     s.innerHTML = '<div class="igs2-in"><div class="igs2-copy"><a class="tgs-logo" href="' + esc(U) + '" target="_blank" rel="noopener" aria-label="Telegram">' + TG() + '</a>' +
       '<p class="eyebrow">' + esc(t('tg.eyebrow')) + '</p><h2>' + esc(H) + '</h2><p class="igs2-lead">' + esc(t('tg.lead')) + '</p>' +
@@ -8776,105 +9132,105 @@ window.AH_TG_POSTS = [
   var D = {
     uz: { 'pc.price': "Xonadon narxi", 'pc.downL': "Boshlang'ich to'lov ({p}%)", 'pc.rest': "Qolgan summa", 'pc.mon': "Oylik to'lov", 'pc.today': "Bugun {d} to'laysiz, keyin {n} oy davomida har oy {m}. Bank ham, foiz ham yo'q.", 'pc.res': "Sizning hisobingiz",
       'home.eyebrow': "Quruvchidan to'g'ridan-to'g'ri · {years} yil tajriba", 'home.lead': "Musaffo, Obod Maskan va Ko'kcha Oqtepa majmualarida xonadonlar. {down} boshlang'ich to'lov, qolganini {months} oygacha teng bo'lib to'laysiz. Bank krediti yo'q, ustama 0%.",
-      'pop.k1': 'Art House taklifi', 'pop.t1': 'Uyingiz qanchadan boshlanadi?', 'pop.s1': "Kartani barmog'ingiz bilan suring: boshlang'ich to'lov ochiladi.", 'pop.scratch': 'Shu yerni suring', 'pop.open': 'Yoki bosing: kartani ochish',
-      'pop.tr1': "{years} yillik quruvchi, rasmiy shartnoma", 'pop.tr2': "Bank krediti yo'q, ustama 0%", 'pop.tr3': "Musaffo'da ta'mirli, tayyor uylar bor",
-      'pop.k2': 'Sizning shartingiz', 'pop.down': "Boshlang'ich to'lov", 'pop.rest': "Qolgani {months} oyga teng bo'lib · ustama 0%", 'pop.t2': 'Shu shart bilan uy olishni xohlaysizmi?',
-      'pop.s2': "Ismingiz va raqamingizni qoldiring. Menejer qo'ng'iroq qilib, sizga mos xonadonni va aniq hisobni aytadi.", 'pop.name': 'Ismingiz', 'pop.namePh': 'Masalan, Aziz', 'pop.phone': 'Telefon raqamingiz',
-      'pop.cta': "Menga qo'ng'iroq qiling", 'pop.priv': 'Raqamingiz faqat Art House menejeriga boradi', 'pop.proof': "{a}, {b} va boshqalar Art House'ni tanladi",
+      'pop.k1': 'Art House taklifi', 'pop.t1': "Bankka ortiqcha to'lamang — uyingiz shu summadan boshlanadi", 'pop.s1': "Oltin qatlamni barmog'ingiz bilan suring: boshlang'ich to'lovingiz ochiladi. Ipotekasiz, ustama 0%.", 'pop.scratch': 'Shu yerni suring', 'pop.open': "Yoki bosing — kartani ochish",
+      'pop.tr1': "Ipoteka: uy narxidan 2 baravar ko'p. Bizda: aynan narxi", 'pop.tr2': "0% ustama, foizsiz va halol — rasmiy shartnoma bilan", 'pop.tr3': "Bank, garov va kafil kerak emas — {years} yillik quruvchidan",
+      'pop.k2': 'Sizning shartingiz', 'pop.down': "Boshlang'ich to'lov", 'pop.rest': "Qolgani {months} oyga teng bo'lib · ustama 0%", 'pop.t2': "Bank 15 yil qarz taklif qiladi. Biz — {months} oyda o'z uyingizni",
+      'pop.s2': "Ismingiz va raqamingizni qoldiring: menejer 0% shartini, aniq oylik to'lovni va bo'sh xonadonlarni aytadi.", 'pop.name': 'Ismingiz', 'pop.namePh': 'Masalan, Aziz', 'pop.phone': 'Telefon raqamingiz',
+      'pop.cta': "0% shartini olish", 'pop.priv': 'Raqamingiz faqat Art House menejeriga boradi', 'pop.proof': "{a}, {b} va boshqalar Art House'ni tanladi",
       'pop.okT': 'Rahmat, {name}!', 'pop.okD': "Menejer {phone} raqamiga qo'ng'iroq qilib, sizga mos xonadonni aytadi.", 'pop.pill': '{v} dan', 'pop.close': 'Yopish',
-      'pc.k': "Bo'lib to'lash · 0%", 'pc.t': "Oylik to'lovni hisoblab ko'ring", 'pc.s': "Xonadon va shartni tanlang: oylik to'lov darhol chiqadi. Bank yo'q, ustama yo'q.", 'pc.formT': 'Shu shartni band qilamiz',
-      'pc.formS': "Ismingiz va raqamingizni qoldiring: menejer qo'ng'iroq qilib, shartni tasdiqlaydi va xonadonni ko'rishga taklif qiladi.", 'pc.send': "So'rovni yuborish", 'pc.back': 'Orqaga', 'pc.ai': 'Savolingiz bormi? AI maslahatchi javob beradi',
+      'pc.k': "Bo'lib to'lash · 0%", 'pc.t': "Ipotekasiz oylik to'lovingizni ko'ring", 'pc.s': "Xonadon va muddatni tanlang: oylik to'lov darhol chiqadi. Foiz yo'q, ustama yo'q, bank yo'q.", 'pc.formT': "Shu shartni biriktiramiz",
+      'pc.formS': "Ismingiz va raqamingizni qoldiring: menejer qo'ng'iroq qilib, shartni tasdiqlaydi va xonadonni ko'rishga taklif qiladi.", 'pc.send': "0% shartini band qilish", 'pc.back': 'Orqaga', 'pc.ai': 'Savolingiz bormi? AI maslahatchi javob beradi',
       'hf.p': 'Loyiha', 'hf.r': 'Necha xonali?', 'hf.dup': 'Dupleks', 'hf.a': 'Maydon', 'hf.d': "Boshlang'ich to'lov", 'hf.m': 'Muddat', 'hf.res': 'Oyiga', 'hf.price': 'narxi {v}', 'hf.book': 'Shu shart bilan band qilish',
       'usp.aria': 'Art House afzalliklari', 'usp.1t': "Quruvchidan to'g'ridan-to'g'ri", 'usp.1d': "Vositachi va ustama yo'q. Shartnoma Art House bilan tuziladi.", 'usp.2t': "Tayyor ta'mirli uylar", 'usp.2d': "Musaffo'da ta'mirlangan xonadonlar bor: kalitni olasiz va ko'chib o'tasiz.",
       'usp.3t': "0% bo'lib to'lash", 'usp.3d': "{down} boshlang'ich, qolgani {months} oygacha teng to'lov. Bank ham, foiz ham yo'q.", 'usp.4t': '{years} yillik tajriba', 'usp.4d': "2012 yildan beri quramiz: 30+ loyiha amalga oshirilgan.", 'usp.5t': 'Tez javob', 'usp.5d': "Ariza qoldiring: menejer ish vaqtida bir necha daqiqada qo'ng'iroq qiladi." },
     ru: { 'pc.price': "Цена квартиры", 'pc.downL': "Первый взнос ({p}%)", 'pc.rest': "Остаток", 'pc.mon': "Ежемесячный платёж", 'pc.today': "Сегодня вы платите {d}, затем {n} мес. по {m}. Без банка и процентов.", 'pc.res': "Ваш расчёт",
       'home.eyebrow': 'Напрямую от застройщика · {years} лет опыта', 'home.lead': 'Квартиры в комплексах Musaffo, Obod Maskan и Ko‘kcha Oqtepa. Первый взнос {down}, остаток равными частями до {months} месяцев. Без банковского кредита, наценка 0%.',
-      'pop.k1': 'Предложение Art House', 'pop.t1': 'С какой суммы начинается ваш дом?', 'pop.s1': 'Сотрите карту пальцем: откроется первый взнос.', 'pop.scratch': 'Сотрите здесь', 'pop.open': 'Или нажмите: открыть карту',
-      'pop.tr1': 'Застройщик с опытом {years} лет, официальный договор', 'pop.tr2': 'Без банковского кредита, наценка 0%', 'pop.tr3': 'В Musaffo есть квартиры с готовым ремонтом',
-      'pop.k2': 'Ваши условия', 'pop.down': 'Первый взнос', 'pop.rest': 'Остаток на {months} мес. равными частями · наценка 0%', 'pop.t2': 'Хотите купить квартиру на этих условиях?',
-      'pop.s2': 'Оставьте имя и номер. Менеджер перезвонит, подберёт квартиру и назовёт точный расчёт.', 'pop.name': 'Ваше имя', 'pop.namePh': 'Например, Азиз', 'pop.phone': 'Ваш номер телефона',
-      'pop.cta': 'Перезвоните мне', 'pop.priv': 'Ваш номер получит только менеджер Art House', 'pop.proof': '{a}, {b} и другие выбрали Art House',
+      'pop.k1': 'Предложение Art House', 'pop.t1': "Не переплачивайте банку — ваш дом начинается с этой суммы", 'pop.s1': "Сотрите золотой слой пальцем: откроется ваш первый взнос. Без ипотеки, наценка 0%.", 'pop.scratch': 'Сотрите здесь', 'pop.open': "Или нажмите — открыть карту",
+      'pop.tr1': "Ипотека: вдвое больше цены квартиры. У нас: ровно цена", 'pop.tr2': "0% наценки, без процентов и честно — по официальному договору", 'pop.tr3': "Без банка, залога и поручителей — от застройщика с опытом {years} лет",
+      'pop.k2': 'Ваши условия', 'pop.down': 'Первый взнос', 'pop.rest': 'Остаток на {months} мес. равными частями · наценка 0%', 'pop.t2': "Банк предлагает 15 лет долга. Мы — ваш дом за {months} месяцев",
+      'pop.s2': "Оставьте имя и номер: менеджер назовёт условия 0%, точный ежемесячный платёж и свободные квартиры.", 'pop.name': 'Ваше имя', 'pop.namePh': 'Например, Азиз', 'pop.phone': 'Ваш номер телефона',
+      'pop.cta': "Получить условия 0%", 'pop.priv': 'Ваш номер получит только менеджер Art House', 'pop.proof': '{a}, {b} и другие выбрали Art House',
       'pop.okT': 'Спасибо, {name}!', 'pop.okD': 'Менеджер позвонит на номер {phone} и подберёт вам квартиру.', 'pop.pill': 'от {v}', 'pop.close': 'Закрыть',
-      'pc.k': 'Рассрочка · 0%', 'pc.t': 'Рассчитайте ежемесячный платёж', 'pc.s': "Выберите квартиру и условия: платёж появится сразу. Без банка и без наценки.", 'pc.formT': 'Забронируем на этих условиях',
-      'pc.formS': 'Оставьте имя и номер: менеджер перезвонит, подтвердит условия и пригласит посмотреть квартиру.', 'pc.send': 'Отправить заявку', 'pc.back': 'Назад', 'pc.ai': 'Есть вопрос? Ответит AI-консультант',
+      'pc.k': 'Рассрочка · 0%', 'pc.t': "Посмотрите платёж без ипотеки", 'pc.s': "Выберите квартиру и срок: платёж появится сразу. Без процентов, без наценки, без банка.", 'pc.formT': "Закрепим эти условия",
+      'pc.formS': 'Оставьте имя и номер: менеджер перезвонит, подтвердит условия и пригласит посмотреть квартиру.', 'pc.send': "Забронировать условия 0%", 'pc.back': 'Назад', 'pc.ai': 'Есть вопрос? Ответит AI-консультант',
       'hf.p': 'Проект', 'hf.r': 'Сколько комнат?', 'hf.dup': 'Дуплекс', 'hf.a': 'Площадь', 'hf.d': 'Первый взнос', 'hf.m': 'Срок', 'hf.res': 'В месяц', 'hf.price': 'цена {v}', 'hf.book': 'Забронировать на этих условиях',
       'usp.aria': 'Преимущества Art House', 'usp.1t': 'Напрямую от застройщика', 'usp.1d': 'Без посредников и наценки. Договор заключается с Art House.', 'usp.2t': 'Квартиры с ремонтом', 'usp.2d': 'В Musaffo есть квартиры с готовым ремонтом: получаете ключи и переезжаете.',
       'usp.3t': 'Рассрочка 0%', 'usp.3d': 'Первый взнос {down}, остаток равными частями до {months} мес. Без банка и процентов.', 'usp.4t': '{years} лет опыта', 'usp.4d': 'Строим с 2012 года: реализовано 30+ проектов.', 'usp.5t': 'Быстрый ответ', 'usp.5d': 'Оставьте заявку: менеджер перезвонит за несколько минут в рабочее время.' },
     en: { 'pc.price': "Home price", 'pc.downL': "Down payment ({p}%)", 'pc.rest': "Remaining", 'pc.mon': "Monthly payment", 'pc.today': "You pay {d} today, then {m} a month for {n} months. No bank, no interest.", 'pc.res': "Your calculation",
       'home.eyebrow': 'Direct from the developer · {years} years of experience', 'home.lead': "Apartments in the Musaffo, Obod Maskan and Ko'kcha Oqtepa complexes. Pay {down} up front and the rest in equal instalments over up to {months} months. No bank loan, 0% markup.",
-      'pop.k1': 'Art House offer', 'pop.t1': 'Where does your home start?', 'pop.s1': 'Scratch the card with your finger to reveal the down payment.', 'pop.scratch': 'Scratch here', 'pop.open': 'Or tap to open the card',
-      'pop.tr1': 'Developer with {years} years of experience, official contract', 'pop.tr2': 'No bank loan, 0% markup', 'pop.tr3': 'Move-in-ready renovated homes in Musaffo',
-      'pop.k2': 'Your terms', 'pop.down': 'Down payment', 'pop.rest': 'The rest in equal payments over {months} months · 0% markup', 'pop.t2': 'Would you like a home on these terms?',
-      'pop.s2': 'Leave your name and number. A manager will call, suggest a suitable home and give you an exact calculation.', 'pop.name': 'Your name', 'pop.namePh': 'e.g. Aziz', 'pop.phone': 'Your phone number',
-      'pop.cta': 'Call me back', 'pop.priv': 'Only an Art House manager will see your number', 'pop.proof': '{a}, {b} and others chose Art House',
+      'pop.k1': 'Art House offer', 'pop.t1': "Stop overpaying the bank — your home starts at this amount", 'pop.s1': "Scratch the gold layer with your finger to reveal your down payment. No mortgage, 0% markup.", 'pop.scratch': 'Scratch here', 'pop.open': "Or tap to open the card",
+      'pop.tr1': "A mortgage costs about twice the price. With us: exactly the price", 'pop.tr2': "0% markup, interest-free and honest — under an official contract", 'pop.tr3': "No bank, no collateral, no guarantors — from a developer of {years} years",
+      'pop.k2': 'Your terms', 'pop.down': 'Down payment', 'pop.rest': 'The rest in equal payments over {months} months · 0% markup', 'pop.t2': "A bank offers 15 years of debt. We offer your own home in {months} months",
+      'pop.s2': "Leave your name and number: a manager will confirm the 0% terms, your exact monthly payment and the available homes.", 'pop.name': 'Your name', 'pop.namePh': 'e.g. Aziz', 'pop.phone': 'Your phone number',
+      'pop.cta': "Get the 0% terms", 'pop.priv': 'Only an Art House manager will see your number', 'pop.proof': '{a}, {b} and others chose Art House',
       'pop.okT': 'Thank you, {name}!', 'pop.okD': 'A manager will call {phone} and suggest a home that suits you.', 'pop.pill': 'from {v}', 'pop.close': 'Close',
-      'pc.k': 'Instalments · 0%', 'pc.t': 'Work out your monthly payment', 'pc.s': "Choose the home and terms: the monthly payment appears at once. No bank, no markup.", 'pc.formT': "Let's reserve it on these terms",
-      'pc.formS': 'Leave your name and number: a manager will call, confirm the terms and invite you to view the home.', 'pc.send': 'Send request', 'pc.back': 'Back', 'pc.ai': 'Have a question? The AI adviser will answer',
+      'pc.k': 'Instalments · 0%', 'pc.t': "See your payment without a mortgage", 'pc.s': "Pick a home and a term: the monthly payment appears instantly. No interest, no markup, no bank.", 'pc.formT': "Let's lock in these terms",
+      'pc.formS': 'Leave your name and number: a manager will call, confirm the terms and invite you to view the home.', 'pc.send': "Reserve the 0% terms", 'pc.back': 'Back', 'pc.ai': 'Have a question? The AI adviser will answer',
       'hf.p': 'Project', 'hf.r': 'How many rooms?', 'hf.dup': 'Duplex', 'hf.a': 'Area', 'hf.d': 'Down payment', 'hf.m': 'Term', 'hf.res': 'Per month', 'hf.price': 'price {v}', 'hf.book': 'Reserve on these terms',
       'usp.aria': 'Why Art House', 'usp.1t': 'Direct from the developer', 'usp.1d': 'No middlemen, no markup. You sign the contract with Art House.', 'usp.2t': 'Renovated homes', 'usp.2d': 'Musaffo has renovated apartments: get the keys and move in.',
       'usp.3t': '0% instalments', 'usp.3d': '{down} down, the rest in equal payments over up to {months} months. No bank, no interest.', 'usp.4t': '{years} years of experience', 'usp.4d': 'Building since 2012: 30+ projects completed.', 'usp.5t': 'Fast response', 'usp.5d': 'Leave a request: a manager calls back within minutes during working hours.' },
     fr: { 'pc.price': "Prix du logement", 'pc.downL': "Apport initial ({p} %)", 'pc.rest': "Reste à payer", 'pc.mon': "Mensualité", 'pc.today': "Vous payez {d} aujourd’hui, puis {m} par mois pendant {n} mois. Sans banque ni intérêts.", 'pc.res': "Votre calcul",
       'home.eyebrow': "En direct du promoteur · {years} ans d'expérience", 'home.lead': "Appartements dans les résidences Musaffo, Obod Maskan et Ko'kcha Oqtepa. Apport de {down}, puis le reste en mensualités égales sur {months} mois maximum. Sans crédit bancaire, 0 % de majoration.",
-      'pop.k1': 'Offre Art House', 'pop.t1': 'À partir de combien votre logement ?', 'pop.s1': 'Grattez la carte du doigt pour découvrir l’apport initial.', 'pop.scratch': 'Grattez ici', 'pop.open': 'Ou touchez pour ouvrir la carte',
-      'pop.tr1': 'Promoteur depuis {years} ans, contrat officiel', 'pop.tr2': 'Sans crédit bancaire, 0 % de majoration', 'pop.tr3': 'Appartements rénovés prêts à habiter à Musaffo',
-      'pop.k2': 'Vos conditions', 'pop.down': 'Apport initial', 'pop.rest': 'Le reste en mensualités égales sur {months} mois · 0 % de majoration', 'pop.t2': 'Un logement à ces conditions vous intéresse ?',
-      'pop.s2': 'Laissez votre nom et votre numéro. Un conseiller vous rappelle, vous propose un logement adapté et un calcul précis.', 'pop.name': 'Votre nom', 'pop.namePh': 'Par ex. Aziz', 'pop.phone': 'Votre numéro',
-      'pop.cta': 'Rappelez-moi', 'pop.priv': 'Seul un conseiller Art House verra votre numéro', 'pop.proof': '{a}, {b} et d’autres ont choisi Art House',
+      'pop.k1': 'Offre Art House', 'pop.t1': "Ne payez plus trop à la banque — votre logement commence à ce montant", 'pop.s1': "Grattez la couche dorée du doigt : votre apport apparaît. Sans crédit, 0 % de majoration.", 'pop.scratch': 'Grattez ici', 'pop.open': "Ou appuyez pour ouvrir la carte",
+      'pop.tr1': "Un crédit coûte environ le double du prix. Chez nous : exactement le prix", 'pop.tr2': "0 % de majoration, sans intérêts et en toute transparence — contrat officiel", 'pop.tr3': "Sans banque, sans garantie ni caution — promoteur fort de {years} ans",
+      'pop.k2': 'Vos conditions', 'pop.down': 'Apport initial', 'pop.rest': 'Le reste en mensualités égales sur {months} mois · 0 % de majoration', 'pop.t2': "La banque propose 15 ans de dette. Nous : votre logement en {months} mois",
+      'pop.s2': "Laissez votre nom et votre numéro : un conseiller confirmera les conditions 0 %, votre mensualité exacte et les logements disponibles.", 'pop.name': 'Votre nom', 'pop.namePh': 'Par ex. Aziz', 'pop.phone': 'Votre numéro',
+      'pop.cta': "Obtenir les conditions 0 %", 'pop.priv': 'Seul un conseiller Art House verra votre numéro', 'pop.proof': '{a}, {b} et d’autres ont choisi Art House',
       'pop.okT': 'Merci, {name} !', 'pop.okD': 'Un conseiller appellera le {phone} et vous proposera un logement adapté.', 'pop.pill': 'dès {v}', 'pop.close': 'Fermer',
-      'pc.k': 'Paiement échelonné · 0 %', 'pc.t': 'Calculez votre mensualité', 'pc.s': "Choisissez le logement et les conditions : la mensualité s’affiche aussitôt. Sans banque ni majoration.", 'pc.formT': 'Réservons à ces conditions',
-      'pc.formS': 'Laissez votre nom et votre numéro : un conseiller vous rappelle, confirme les conditions et vous invite à visiter.', 'pc.send': 'Envoyer la demande', 'pc.back': 'Retour', 'pc.ai': 'Une question ? Le conseiller IA vous répond',
+      'pc.k': 'Paiement échelonné · 0 %', 'pc.t': "Voyez votre mensualité sans crédit", 'pc.s': "Choisissez le logement et la durée : la mensualité s'affiche aussitôt. Sans intérêts, sans majoration, sans banque.", 'pc.formT': "Fixons ces conditions",
+      'pc.formS': 'Laissez votre nom et votre numéro : un conseiller vous rappelle, confirme les conditions et vous invite à visiter.', 'pc.send': "Réserver les conditions 0 %", 'pc.back': 'Retour', 'pc.ai': 'Une question ? Le conseiller IA vous répond',
       'hf.p': 'Projet', 'hf.r': 'Combien de pièces ?', 'hf.dup': 'Duplex', 'hf.a': 'Surface', 'hf.d': 'Apport initial', 'hf.m': 'Durée', 'hf.res': 'Par mois', 'hf.price': 'prix {v}', 'hf.book': 'Réserver à ces conditions',
       'usp.aria': 'Les atouts Art House', 'usp.1t': 'En direct du promoteur', 'usp.1d': 'Sans intermédiaire ni majoration. Le contrat est signé avec Art House.', 'usp.2t': 'Logements rénovés', 'usp.2d': 'À Musaffo, des appartements rénovés : vous recevez les clés et emménagez.',
       'usp.3t': 'Paiement 0 %', 'usp.3d': 'Apport de {down}, le reste en mensualités égales jusqu’à {months} mois. Sans banque ni intérêts.', 'usp.4t': '{years} ans d’expérience', 'usp.4d': 'Nous construisons depuis 2012 : plus de 30 projets réalisés.', 'usp.5t': 'Réponse rapide', 'usp.5d': 'Laissez une demande : un conseiller rappelle en quelques minutes pendant les heures d’ouverture.' },
     it: { 'pc.price': "Prezzo della casa", 'pc.downL': "Anticipo ({p}%)", 'pc.rest': "Importo restante", 'pc.mon': "Rata mensile", 'pc.today': "Oggi paghi {d}, poi {m} al mese per {n} mesi. Niente banca, niente interessi.", 'pc.res': "Il tuo calcolo",
       'home.eyebrow': 'Direttamente dal costruttore · {years} anni di esperienza', 'home.lead': "Appartamenti nei complessi Musaffo, Obod Maskan e Ko'kcha Oqtepa. Anticipo del {down}, il resto in rate uguali fino a {months} mesi. Nessun mutuo, 0% di maggiorazione.",
-      'pop.k1': 'Offerta Art House', 'pop.t1': 'Da quanto parte la tua casa?', 'pop.s1': 'Gratta la carta con il dito per scoprire l’anticipo.', 'pop.scratch': 'Gratta qui', 'pop.open': 'Oppure tocca per aprire la carta',
-      'pop.tr1': 'Costruttore con {years} anni di esperienza, contratto ufficiale', 'pop.tr2': 'Nessun mutuo, 0% di maggiorazione', 'pop.tr3': 'A Musaffo appartamenti ristrutturati, pronti da abitare',
-      'pop.k2': 'Le tue condizioni', 'pop.down': 'Anticipo', 'pop.rest': 'Il resto in rate uguali per {months} mesi · 0% di maggiorazione', 'pop.t2': 'Vuoi una casa a queste condizioni?',
-      'pop.s2': 'Lascia nome e numero. Un consulente ti richiama, ti propone la casa giusta e un calcolo preciso.', 'pop.name': 'Il tuo nome', 'pop.namePh': 'Ad es. Aziz', 'pop.phone': 'Il tuo numero',
-      'pop.cta': 'Richiamatemi', 'pop.priv': 'Il tuo numero lo vedrà solo un consulente Art House', 'pop.proof': '{a}, {b} e altri hanno scelto Art House',
+      'pop.k1': 'Offerta Art House', 'pop.t1': "Non pagare di più alla banca: la tua casa parte da questa cifra", 'pop.s1': "Gratta lo strato dorato con il dito: comparirà il tuo anticipo. Senza mutuo, 0% di maggiorazione.", 'pop.scratch': 'Gratta qui', 'pop.open': "Oppure tocca per aprire la carta",
+      'pop.tr1': "Un mutuo costa circa il doppio del prezzo. Da noi: esattamente il prezzo", 'pop.tr2': "0% di maggiorazione, senza interessi e in modo onesto — con contratto ufficiale", 'pop.tr3': "Senza banca, garanzie o garanti — da un costruttore con {years} anni",
+      'pop.k2': 'Le tue condizioni', 'pop.down': 'Anticipo', 'pop.rest': 'Il resto in rate uguali per {months} mesi · 0% di maggiorazione', 'pop.t2': "La banca offre 15 anni di debito. Noi: la tua casa in {months} mesi",
+      'pop.s2': "Lascia nome e numero: un consulente confermerà le condizioni 0%, la rata esatta e le case disponibili.", 'pop.name': 'Il tuo nome', 'pop.namePh': 'Ad es. Aziz', 'pop.phone': 'Il tuo numero',
+      'pop.cta': "Ricevere le condizioni 0%", 'pop.priv': 'Il tuo numero lo vedrà solo un consulente Art House', 'pop.proof': '{a}, {b} e altri hanno scelto Art House',
       'pop.okT': 'Grazie, {name}!', 'pop.okD': 'Un consulente chiamerà il {phone} e ti proporrà la casa giusta.', 'pop.pill': 'da {v}', 'pop.close': 'Chiudi',
-      'pc.k': 'Rate · 0%', 'pc.t': 'Calcola la rata mensile', 'pc.s': "Scegli la casa e le condizioni: la rata compare subito. Niente banca, niente maggiorazione.", 'pc.formT': 'Prenotiamo a queste condizioni',
-      'pc.formS': 'Lascia nome e numero: un consulente ti richiama, conferma le condizioni e ti invita a vedere la casa.', 'pc.send': 'Invia richiesta', 'pc.back': 'Indietro', 'pc.ai': 'Hai una domanda? Risponde il consulente IA',
+      'pc.k': 'Rate · 0%', 'pc.t': "Guarda la rata senza mutuo", 'pc.s': "Scegli casa e durata: la rata compare subito. Senza interessi, senza maggiorazioni, senza banca.", 'pc.formT': "Blocchiamo queste condizioni",
+      'pc.formS': 'Lascia nome e numero: un consulente ti richiama, conferma le condizioni e ti invita a vedere la casa.', 'pc.send': "Prenotare le condizioni 0%", 'pc.back': 'Indietro', 'pc.ai': 'Hai una domanda? Risponde il consulente IA',
       'hf.p': 'Progetto', 'hf.r': 'Quante stanze?', 'hf.dup': 'Duplex', 'hf.a': 'Superficie', 'hf.d': 'Anticipo', 'hf.m': 'Durata', 'hf.res': 'Al mese', 'hf.price': 'prezzo {v}', 'hf.book': 'Prenota a queste condizioni',
       'usp.aria': 'I vantaggi di Art House', 'usp.1t': 'Direttamente dal costruttore', 'usp.1d': 'Niente intermediari né maggiorazioni. Il contratto si firma con Art House.', 'usp.2t': 'Case ristrutturate', 'usp.2d': 'A Musaffo ci sono appartamenti ristrutturati: ritiri le chiavi e ti trasferisci.',
       'usp.3t': 'Rate allo 0%', 'usp.3d': 'Anticipo del {down}, il resto in rate uguali fino a {months} mesi. Niente banca, niente interessi.', 'usp.4t': '{years} anni di esperienza', 'usp.4d': 'Costruiamo dal 2012: oltre 30 progetti realizzati.', 'usp.5t': 'Risposta rapida', 'usp.5d': 'Lascia una richiesta: un consulente ti richiama in pochi minuti in orario di lavoro.' },
     es: { 'pc.price': "Precio de la vivienda", 'pc.downL': "Entrada ({p} %)", 'pc.rest': "Importe restante", 'pc.mon': "Cuota mensual", 'pc.today': "Hoy paga {d} y luego {m} al mes durante {n} meses. Sin banco ni intereses.", 'pc.res': "Su cálculo",
       'home.eyebrow': 'Directo del promotor · {years} años de experiencia', 'home.lead': "Apartamentos en los complejos Musaffo, Obod Maskan y Ko'kcha Oqtepa. Entrada del {down} y el resto en cuotas iguales de hasta {months} meses. Sin préstamo bancario, 0 % de recargo.",
-      'pop.k1': 'Oferta Art House', 'pop.t1': '¿Desde cuánto empieza su vivienda?', 'pop.s1': 'Rasque la tarjeta con el dedo para ver la entrada.', 'pop.scratch': 'Rasque aquí', 'pop.open': 'O toque para abrir la tarjeta',
-      'pop.tr1': 'Promotor con {years} años de experiencia, contrato oficial', 'pop.tr2': 'Sin préstamo bancario, 0 % de recargo', 'pop.tr3': 'En Musaffo hay pisos reformados listos para entrar',
-      'pop.k2': 'Sus condiciones', 'pop.down': 'Entrada', 'pop.rest': 'El resto en cuotas iguales durante {months} meses · 0 % de recargo', 'pop.t2': '¿Quiere una vivienda con estas condiciones?',
-      'pop.s2': 'Deje su nombre y número. Un asesor le llamará, le propondrá una vivienda adecuada y un cálculo exacto.', 'pop.name': 'Su nombre', 'pop.namePh': 'Por ejemplo, Aziz', 'pop.phone': 'Su número de teléfono',
-      'pop.cta': 'Llámenme', 'pop.priv': 'Su número solo lo verá un asesor de Art House', 'pop.proof': '{a}, {b} y otros eligieron Art House',
+      'pop.k1': 'Oferta Art House', 'pop.t1': "Deje de pagar de más al banco: su vivienda empieza en esta cantidad", 'pop.s1': "Rasque la capa dorada con el dedo: aparecerá su entrada. Sin hipoteca, 0 % de recargo.", 'pop.scratch': 'Rasque aquí', 'pop.open': "O pulse para abrir la tarjeta",
+      'pop.tr1': "Una hipoteca cuesta casi el doble del precio. Con nosotros: exactamente el precio", 'pop.tr2': "0 % de recargo, sin intereses y con honestidad — con contrato oficial", 'pop.tr3': "Sin banco, sin aval ni garantías — de una promotora con {years} años",
+      'pop.k2': 'Sus condiciones', 'pop.down': 'Entrada', 'pop.rest': 'El resto en cuotas iguales durante {months} meses · 0 % de recargo', 'pop.t2': "El banco ofrece 15 años de deuda. Nosotros: su vivienda en {months} meses",
+      'pop.s2': "Deje su nombre y número: un asesor le confirmará las condiciones 0 %, su cuota exacta y las viviendas disponibles.", 'pop.name': 'Su nombre', 'pop.namePh': 'Por ejemplo, Aziz', 'pop.phone': 'Su número de teléfono',
+      'pop.cta': "Obtener las condiciones 0 %", 'pop.priv': 'Su número solo lo verá un asesor de Art House', 'pop.proof': '{a}, {b} y otros eligieron Art House',
       'pop.okT': '¡Gracias, {name}!', 'pop.okD': 'Un asesor llamará al {phone} y le propondrá una vivienda adecuada.', 'pop.pill': 'desde {v}', 'pop.close': 'Cerrar',
-      'pc.k': 'Plazos · 0 %', 'pc.t': 'Calcule su cuota mensual', 'pc.s': "Elija la vivienda y las condiciones: la cuota aparece al instante. Sin banco ni recargo.", 'pc.formT': 'Reservemos con estas condiciones',
-      'pc.formS': 'Deje su nombre y número: un asesor le llamará, confirmará las condiciones y le invitará a ver la vivienda.', 'pc.send': 'Enviar solicitud', 'pc.back': 'Atrás', 'pc.ai': '¿Tiene una pregunta? Responde el asesor IA',
+      'pc.k': 'Plazos · 0 %', 'pc.t': "Vea su cuota sin hipoteca", 'pc.s': "Elija vivienda y plazo: la cuota aparece al instante. Sin intereses, sin recargo, sin banco.", 'pc.formT': "Fijemos estas condiciones",
+      'pc.formS': 'Deje su nombre y número: un asesor le llamará, confirmará las condiciones y le invitará a ver la vivienda.', 'pc.send': "Reservar las condiciones 0 %", 'pc.back': 'Atrás', 'pc.ai': '¿Tiene una pregunta? Responde el asesor IA',
       'hf.p': 'Proyecto', 'hf.r': '¿Cuántas habitaciones?', 'hf.dup': 'Dúplex', 'hf.a': 'Superficie', 'hf.d': 'Entrada', 'hf.m': 'Plazo', 'hf.res': 'Al mes', 'hf.price': 'precio {v}', 'hf.book': 'Reservar con estas condiciones',
       'usp.aria': 'Ventajas de Art House', 'usp.1t': 'Directo del promotor', 'usp.1d': 'Sin intermediarios ni recargos. El contrato se firma con Art House.', 'usp.2t': 'Viviendas reformadas', 'usp.2d': 'En Musaffo hay pisos reformados: recoge las llaves y se muda.',
       'usp.3t': 'Plazos al 0 %', 'usp.3d': 'Entrada del {down}, el resto en cuotas iguales hasta {months} meses. Sin banco ni intereses.', 'usp.4t': '{years} años de experiencia', 'usp.4d': 'Construimos desde 2012: más de 30 proyectos realizados.', 'usp.5t': 'Respuesta rápida', 'usp.5d': 'Deje una solicitud: un asesor le llama en minutos en horario laboral.' },
     de: { 'pc.price': "Wohnungspreis", 'pc.downL': "Anzahlung ({p} %)", 'pc.rest': "Restbetrag", 'pc.mon': "Monatsrate", 'pc.today': "Heute zahlen Sie {d}, dann {n} Monate lang {m} pro Monat. Ohne Bank und Zinsen.", 'pc.res': "Ihre Berechnung",
       'home.eyebrow': 'Direkt vom Bauträger · {years} Jahre Erfahrung', 'home.lead': "Wohnungen in den Anlagen Musaffo, Obod Maskan und Ko'kcha Oqtepa. {down} Anzahlung, der Rest in gleichen Raten über bis zu {months} Monate. Ohne Bankkredit, 0 % Aufschlag.",
-      'pop.k1': 'Art House Angebot', 'pop.t1': 'Ab welchem Betrag beginnt Ihr Zuhause?', 'pop.s1': 'Rubbeln Sie die Karte mit dem Finger frei: die Anzahlung erscheint.', 'pop.scratch': 'Hier rubbeln', 'pop.open': 'Oder tippen: Karte öffnen',
-      'pop.tr1': 'Bauträger mit {years} Jahren Erfahrung, offizieller Vertrag', 'pop.tr2': 'Ohne Bankkredit, 0 % Aufschlag', 'pop.tr3': 'In Musaffo bezugsfertig renovierte Wohnungen',
-      'pop.k2': 'Ihre Konditionen', 'pop.down': 'Anzahlung', 'pop.rest': 'Der Rest in gleichen Raten über {months} Monate · 0 % Aufschlag', 'pop.t2': 'Möchten Sie eine Wohnung zu diesen Konditionen?',
-      'pop.s2': 'Hinterlassen Sie Name und Nummer. Ein Berater ruft an, schlägt eine passende Wohnung vor und nennt die genaue Rechnung.', 'pop.name': 'Ihr Name', 'pop.namePh': 'z. B. Aziz', 'pop.phone': 'Ihre Telefonnummer',
-      'pop.cta': 'Rufen Sie mich an', 'pop.priv': 'Ihre Nummer sieht nur ein Art House Berater', 'pop.proof': '{a}, {b} und andere haben Art House gewählt',
+      'pop.k1': 'Art House Angebot', 'pop.t1': "Zahlen Sie der Bank nicht zu viel — Ihr Zuhause beginnt bei diesem Betrag", 'pop.s1': "Rubbeln Sie die goldene Schicht mit dem Finger frei: Ihre Anzahlung erscheint. Ohne Hypothek, 0 % Aufschlag.", 'pop.scratch': 'Hier rubbeln', 'pop.open': "Oder tippen, um die Karte zu öffnen",
+      'pop.tr1': "Eine Hypothek kostet rund das Doppelte des Preises. Bei uns: genau der Preis", 'pop.tr2': "0 % Aufschlag, zinsfrei und ehrlich — mit offiziellem Vertrag", 'pop.tr3': "Ohne Bank, Sicherheiten und Bürgen — von einem Bauträger mit {years} Jahren",
+      'pop.k2': 'Ihre Konditionen', 'pop.down': 'Anzahlung', 'pop.rest': 'Der Rest in gleichen Raten über {months} Monate · 0 % Aufschlag', 'pop.t2': "Die Bank bietet 15 Jahre Schulden. Wir: Ihr eigenes Zuhause in {months} Monaten",
+      'pop.s2': "Hinterlassen Sie Name und Nummer: Ein Berater bestätigt die 0 %-Konditionen, Ihre genaue Rate und die freien Wohnungen.", 'pop.name': 'Ihr Name', 'pop.namePh': 'z. B. Aziz', 'pop.phone': 'Ihre Telefonnummer',
+      'pop.cta': "0 %-Konditionen erhalten", 'pop.priv': 'Ihre Nummer sieht nur ein Art House Berater', 'pop.proof': '{a}, {b} und andere haben Art House gewählt',
       'pop.okT': 'Danke, {name}!', 'pop.okD': 'Ein Berater ruft unter {phone} an und schlägt Ihnen eine passende Wohnung vor.', 'pop.pill': 'ab {v}', 'pop.close': 'Schließen',
-      'pc.k': 'Ratenzahlung · 0 %', 'pc.t': 'Monatsrate berechnen', 'pc.s': "Wählen Sie Wohnung und Konditionen: die Monatsrate erscheint sofort. Ohne Bank, ohne Aufschlag.", 'pc.formT': 'Wir reservieren zu diesen Konditionen',
-      'pc.formS': 'Hinterlassen Sie Name und Nummer: ein Berater ruft an, bestätigt die Konditionen und lädt Sie zur Besichtigung ein.', 'pc.send': 'Anfrage senden', 'pc.back': 'Zurück', 'pc.ai': 'Eine Frage? Der KI-Berater antwortet',
+      'pc.k': 'Ratenzahlung · 0 %', 'pc.t': "Sehen Sie Ihre Rate ohne Hypothek", 'pc.s': "Wählen Sie Wohnung und Laufzeit: Die Rate erscheint sofort. Ohne Zinsen, ohne Aufschlag, ohne Bank.", 'pc.formT': "Halten wir diese Konditionen fest",
+      'pc.formS': 'Hinterlassen Sie Name und Nummer: ein Berater ruft an, bestätigt die Konditionen und lädt Sie zur Besichtigung ein.', 'pc.send': "0 %-Konditionen reservieren", 'pc.back': 'Zurück', 'pc.ai': 'Eine Frage? Der KI-Berater antwortet',
       'hf.p': 'Projekt', 'hf.r': 'Wie viele Zimmer?', 'hf.dup': 'Maisonette', 'hf.a': 'Fläche', 'hf.d': 'Anzahlung', 'hf.m': 'Laufzeit', 'hf.res': 'Pro Monat', 'hf.price': 'Preis {v}', 'hf.book': 'Zu diesen Konditionen reservieren',
       'usp.aria': 'Vorteile von Art House', 'usp.1t': 'Direkt vom Bauträger', 'usp.1d': 'Ohne Vermittler und Aufschlag. Der Vertrag wird mit Art House geschlossen.', 'usp.2t': 'Renovierte Wohnungen', 'usp.2d': 'In Musaffo gibt es renovierte Wohnungen: Schlüssel holen und einziehen.',
       'usp.3t': '0 % Ratenzahlung', 'usp.3d': '{down} Anzahlung, der Rest in gleichen Raten bis {months} Monate. Ohne Bank und Zinsen.', 'usp.4t': '{years} Jahre Erfahrung', 'usp.4d': 'Wir bauen seit 2012: über 30 Projekte umgesetzt.', 'usp.5t': 'Schnelle Antwort', 'usp.5d': 'Anfrage senden: ein Berater ruft während der Geschäftszeiten in wenigen Minuten zurück.' },
     tr: { 'pc.price': "Daire fiyatı", 'pc.downL': "Peşinat (%{p})", 'pc.rest': "Kalan tutar", 'pc.mon': "Aylık ödeme", 'pc.today': "Bugün {d} ödersiniz, ardından {n} ay boyunca ayda {m}. Banka ve faiz yok.", 'pc.res': "Hesabınız",
       'home.eyebrow': 'Doğrudan müteahhitten · {years} yıllık deneyim', 'home.lead': "Musaffo, Obod Maskan ve Ko'kcha Oqtepa projelerinde daireler. {down} peşinat, kalanı {months} aya kadar eşit taksitlerle. Banka kredisi yok, %0 ek ücret.",
-      'pop.k1': 'Art House teklifi', 'pop.t1': 'Eviniz kaçtan başlıyor?', 'pop.s1': 'Kartı parmağınızla kazıyın: peşinat ortaya çıksın.', 'pop.scratch': 'Burayı kazıyın', 'pop.open': 'Ya da dokunun: kartı aç',
-      'pop.tr1': '{years} yıllık müteahhit, resmi sözleşme', 'pop.tr2': 'Banka kredisi yok, %0 ek ücret', 'pop.tr3': "Musaffo'da tadilatı yapılmış, taşınmaya hazır daireler",
-      'pop.k2': 'Koşullarınız', 'pop.down': 'Peşinat', 'pop.rest': 'Kalanı {months} ay eşit taksitle · %0 ek ücret', 'pop.t2': 'Bu koşullarla ev sahibi olmak ister misiniz?',
-      'pop.s2': 'Adınızı ve numaranızı bırakın. Danışman arayıp size uygun daireyi ve net hesabı söylesin.', 'pop.name': 'Adınız', 'pop.namePh': 'Örneğin Aziz', 'pop.phone': 'Telefon numaranız',
-      'pop.cta': 'Beni arayın', 'pop.priv': 'Numaranızı yalnızca Art House danışmanı görür', 'pop.proof': "{a}, {b} ve diğerleri Art House'u seçti",
+      'pop.k1': 'Art House teklifi', 'pop.t1': "Bankaya fazla ödemeyin — eviniz bu tutardan başlıyor", 'pop.s1': "Altın katmanı parmağınızla kazıyın: peşinatınız görünür. Konut kredisi yok, %0 ek ücret.", 'pop.scratch': 'Burayı kazıyın', 'pop.open': "Ya da dokunun — kartı açın",
+      'pop.tr1': "Konut kredisi fiyatın yaklaşık iki katı. Bizde: tam olarak fiyatı", 'pop.tr2': "%0 ek ücret, faizsiz ve dürüst — resmi sözleşmeyle", 'pop.tr3': "Banka, teminat ve kefil yok — {years} yıllık müteahhitten",
+      'pop.k2': 'Koşullarınız', 'pop.down': 'Peşinat', 'pop.rest': 'Kalanı {months} ay eşit taksitle · %0 ek ücret', 'pop.t2': "Banka 15 yıl borç öneriyor. Biz — {months} ayda kendi eviniz",
+      'pop.s2': "Adınızı ve numaranızı bırakın: danışmanımız %0 koşullarını, net aylık ödemenizi ve boş daireleri söylesin.", 'pop.name': 'Adınız', 'pop.namePh': 'Örneğin Aziz', 'pop.phone': 'Telefon numaranız',
+      'pop.cta': "%0 koşullarını al", 'pop.priv': 'Numaranızı yalnızca Art House danışmanı görür', 'pop.proof': "{a}, {b} ve diğerleri Art House'u seçti",
       'pop.okT': 'Teşekkürler, {name}!', 'pop.okD': 'Danışman {phone} numarasını arayıp size uygun daireyi önerecek.', 'pop.pill': 'başlangıç {v}', 'pop.close': 'Kapat',
-      'pc.k': 'Taksit · %0', 'pc.t': 'Aylık ödemenizi hesaplayın', 'pc.s': "Daireyi ve koşulları seçin: aylık ödeme hemen çıkar. Banka yok, ek ücret yok.", 'pc.formT': 'Bu koşullarla rezerve edelim',
-      'pc.formS': 'Adınızı ve numaranızı bırakın: danışman arayıp koşulları onaylar ve daireyi görmeye davet eder.', 'pc.send': 'Talebi gönder', 'pc.back': 'Geri', 'pc.ai': 'Sorunuz mu var? AI danışman yanıtlar',
+      'pc.k': 'Taksit · %0', 'pc.t': "Kredisiz aylık ödemenizi görün", 'pc.s': "Daire ve vadeyi seçin: aylık ödeme hemen çıkar. Faiz yok, ek ücret yok, banka yok.", 'pc.formT': "Bu koşulları sabitleyelim",
+      'pc.formS': 'Adınızı ve numaranızı bırakın: danışman arayıp koşulları onaylar ve daireyi görmeye davet eder.', 'pc.send': "%0 koşullarını ayırt", 'pc.back': 'Geri', 'pc.ai': 'Sorunuz mu var? AI danışman yanıtlar',
       'hf.p': 'Proje', 'hf.r': 'Kaç oda?', 'hf.dup': 'Dubleks', 'hf.a': 'Alan', 'hf.d': 'Peşinat', 'hf.m': 'Vade', 'hf.res': 'Aylık', 'hf.price': 'fiyat {v}', 'hf.book': 'Bu koşullarla rezerve et',
       'usp.aria': "Art House'un avantajları", 'usp.1t': 'Doğrudan müteahhitten', 'usp.1d': 'Aracı ve ek ücret yok. Sözleşme Art House ile yapılır.', 'usp.2t': 'Tadilatlı daireler', 'usp.2d': "Musaffo'da tadilatı yapılmış daireler var: anahtarı alın, taşının.",
       'usp.3t': '%0 taksit', 'usp.3d': '{down} peşinat, kalanı {months} aya kadar eşit taksitle. Banka ve faiz yok.', 'usp.4t': '{years} yıllık deneyim', 'usp.4d': "2012'den beri inşa ediyoruz: 30'dan fazla proje tamamlandı.", 'usp.5t': 'Hızlı yanıt', 'usp.5d': 'Talep bırakın: danışman mesai saatlerinde dakikalar içinde arar.' }
@@ -9040,6 +9396,53 @@ window.AH_TG_POSTS = [
   function armForm(f) { $$('.js-pp-phone', f).forEach(AH_SITE.phoneMask); }
   function trust() { var L = (FN().offer || {}).trust; L = Array.isArray(L) ? L : FD.trust; return L.filter(function (x) { return x.on !== false; }); }
 
+  /* ---------- v2: hissiy qatlam — bank bilan solishtirish, to'lov yo'li (8 til; kirill — avtomatik) ---------- */
+  var XD = {
+    uz: { k: 'Ipoteka bilan solishtiring', hl: "Bank ipotekasi — uyga {x} baravar pul to'lash degani. Art House'da esa foizsiz, mutlaqo halol.", bank: 'Bank ipotekasida', bankd: 'yillik {r}%, {y} yil', ah: "Art House'da", ahd: '0% · halol', save: 'Siz tejaysiz', note: "Taxminiy hisob: boshlang'ich to'lov bir xil, ipoteka yillik {r}%, {y} yil.", times: '{x} baravar', s1: 'Bugun', s2: 'Har oy, 0%', s3: 'Kalitlar', s3d: 'Rasmiy shartnoma bilan', end: "Oxirgi to'lov: {d}", free: "Shu kundan boshlab uy to'liq sizniki — bank ham, qarz ham yo'q." },
+    ru: { k: 'Сравните с ипотекой', hl: 'Банковская ипотека — это заплатить за квартиру в {x} раза больше. В Art House — без процентов, абсолютно халяль.', bank: 'Ипотека в банке', bankd: '{r}% годовых, {y} лет', ah: 'В Art House', ahd: '0% · халяль', save: 'Вы экономите', note: 'Примерный расчёт: одинаковый первый взнос, ипотека {r}% годовых на {y} лет.', times: 'в {x} раза', s1: 'Сегодня', s2: 'Каждый месяц, 0%', s3: 'Ключи', s3d: 'По официальному договору', end: 'Последний платёж: {d}', free: 'С этого дня квартира полностью ваша — ни банка, ни долга.' },
+    en: { k: 'Compare with a mortgage', hl: 'A bank mortgage means paying {x}× the price of your home. At Art House — interest-free, fully halal.', bank: 'Bank mortgage', bankd: '{r}% a year, {y} years', ah: 'At Art House', ahd: '0% · halal', save: 'You save', note: 'Estimate: same down payment, mortgage at {r}% a year over {y} years.', times: '{x}×', s1: 'Today', s2: 'Monthly, 0%', s3: 'Keys', s3d: 'Under an official contract', end: 'Final payment: {d}', free: 'From that day the home is fully yours — no bank, no debt.' },
+    fr: { k: 'Comparez avec un crédit immobilier', hl: "Un crédit bancaire, c'est payer votre logement {x} fois son prix. Chez Art House — sans intérêts, entièrement halal.", bank: 'Crédit immobilier', bankd: '{r} % par an, {y} ans', ah: 'Chez Art House', ahd: '0 % · halal', save: 'Vous économisez', note: 'Estimation : même apport, crédit à {r} % par an sur {y} ans.', times: '×{x}', s1: "Aujourd'hui", s2: 'Chaque mois, 0 %', s3: 'Les clés', s3d: 'Avec un contrat officiel', end: 'Dernier paiement : {d}', free: 'Dès ce jour, le logement est entièrement à vous — sans banque ni dette.' },
+    it: { k: 'Confronta con il mutuo', hl: 'Un mutuo bancario significa pagare la casa {x} volte il suo prezzo. Con Art House — senza interessi, completamente halal.', bank: 'Mutuo bancario', bankd: '{r}% annuo, {y} anni', ah: 'Con Art House', ahd: '0% · halal', save: 'Risparmi', note: 'Stima: stesso anticipo, mutuo al {r}% annuo per {y} anni.', times: '×{x}', s1: 'Oggi', s2: 'Ogni mese, 0%', s3: 'Le chiavi', s3d: 'Con contratto ufficiale', end: 'Ultima rata: {d}', free: 'Da quel giorno la casa è interamente tua — niente banca, niente debiti.' },
+    es: { k: 'Compare con una hipoteca', hl: 'Una hipoteca bancaria significa pagar su vivienda {x} veces su precio. En Art House — sin intereses, totalmente halal.', bank: 'Hipoteca bancaria', bankd: '{r} % anual, {y} años', ah: 'En Art House', ahd: '0 % · halal', save: 'Usted ahorra', note: 'Estimación: misma entrada, hipoteca al {r} % anual a {y} años.', times: '×{x}', s1: 'Hoy', s2: 'Cada mes, 0 %', s3: 'Las llaves', s3d: 'Con contrato oficial', end: 'Último pago: {d}', free: 'Desde ese día la vivienda es totalmente suya — sin banco ni deudas.' },
+    de: { k: 'Mit einer Hypothek vergleichen', hl: 'Eine Bankhypothek heißt: Sie zahlen für Ihre Wohnung das {x}-Fache. Bei Art House — zinsfrei, vollständig halal.', bank: 'Bankhypothek', bankd: '{r} % p. a., {y} Jahre', ah: 'Bei Art House', ahd: '0 % · halal', save: 'Sie sparen', note: 'Schätzung: gleiche Anzahlung, Hypothek {r} % p. a. über {y} Jahre.', times: '{x}×', s1: 'Heute', s2: 'Monatlich, 0 %', s3: 'Schlüssel', s3d: 'Mit offiziellem Vertrag', end: 'Letzte Rate: {d}', free: 'Ab diesem Tag gehört die Wohnung ganz Ihnen — ohne Bank, ohne Schulden.' },
+    tr: { k: 'Konut kredisiyle karşılaştırın', hl: "Banka konut kredisi, evinize {x} katı para ödemek demek. Art House'ta — faizsiz, tamamen helal.", bank: 'Banka konut kredisinde', bankd: 'yıllık %{r}, {y} yıl', ah: "Art House'ta", ahd: '%0 · helal', save: 'Tasarrufunuz', note: 'Tahmini hesap: aynı peşinat, yıllık %{r} konut kredisi, {y} yıl.', times: '{x} kat', s1: 'Bugün', s2: 'Her ay, %0', s3: 'Anahtarlar', s3d: 'Resmi sözleşmeyle', end: 'Son ödeme: {d}', free: 'O günden itibaren ev tamamen sizin — banka yok, borç yok.' }
+  };
+  function XT(k, o) { var l = lng(), d = XD[l], v = l === 'cy' ? I18N.toCyr(XD.uz[k]) : (d ? d[k] : XD.en[k]); return fill(v == null ? XD.uz[k] : v, o); }
+  /* Ipoteka: yillik foiz va muddat — kabinet → Sozlamalar → Aloqa (BANK_RATE, BANK_YEARS); bo'lmasa bozor o'rtachasi 17% / 15 yil */
+  var BR = function () { return +CFG.BANK_RATE > 0 ? +CFG.BANK_RATE : 17; };
+  var BY = function () { return +CFG.BANK_YEARS > 0 ? +CFG.BANK_YEARS : 15; };
+  function mort(P, dn) { /* → { over: foiz uchun ortiqcha pul, total: ipoteka bilan jami, x: uy narxiga nisbatan necha baravar } */
+    var L = Math.max(0, P - dn), n = BY() * 12, i = BR() / 1200; if (!(L > 0)) return { over: 0, total: P, x: 1 };
+    var A = L * i / (1 - Math.pow(1 + i, -n)), over = Math.round((A * n - L) / 10) * 10, total = P + over;
+    return { over: over, total: total, x: total / P };
+  }
+  function xs(x) { var loc = { uz: 'uz-Latn', cy: 'uz-Cyrl' }[lng()] || lng(); try { return x.toLocaleString(loc, { maximumFractionDigits: 1, minimumFractionDigits: 1 }); } catch (e) { return x.toFixed(1); } }
+  var KEY = '<path d="M2.6 18.4l6.5-6.5"/><path d="M5 16l2 2"/><circle cx="15" cy="9" r="5.5"/><circle cx="16.5" cy="7.5" r="1.4"/>';
+  var WAL = '<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><path d="M21 12v4h-5a2 2 0 0 1 0-4z"/>';
+  var CAL = '<rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9 15.5 2 2 4-4"/>';
+  function minUnit() { var b = null; list().forEach(function (p) { p.plans.forEach(function (pl) { var pr = price(p, pl); if (!b || pr < b) b = pr; }); }); return b || 0; }
+  function cmp(P, dn) {
+    var m = mort(P, dn), U = I18N.usd, o = { r: BR(), y: BY(), x: xs(m.x) };
+    return '<div class="x2-save"><span>' + esc(XT('k')) + '</span><p class="x2-hl">' + esc(XT('hl', o)) + '</p>' +
+      '<div class="x2-cmp"><div><small>' + esc(XT('bank')) + '</small><em>' + esc(XT('bankd', o)) + '</em><s>' + esc(U(m.total)) + '</s><i class="x2-x">' + esc(XT('times', o)) + '</i></div>' +
+      '<div class="on"><small>' + esc(XT('ah')) + '</small><em>' + esc(XT('ahd')) + '</em><b>' + esc(U(P)) + '</b><i class="x2-x">' + esc(XT('times', { x: xs(1) })) + '</i></div></div>' +
+      '<p class="x2-big">' + esc(XT('save')) + ' <strong>' + esc(U(m.over)) + '</strong></p><em>' + esc(XT('note', o)) + '</em></div>';
+  }
+  function xOffer() {
+    var P = minUnit(), dn = minDown(), n = maxM(), L = Math.max(0, P - dn), U = I18N.usd;
+    return '<div class="pp-x2 pp-b">' + cmp(P, dn) +
+      '<ol class="x2-path"><li><i>' + SV(WAL) + '</i><b>' + esc(XT('s1')) + '</b><span>' + esc(U(dn)) + '</span></li><li><i>' + SV(CAL) + '</i><b>' + esc(XT('s2')) + '</b><span>' + esc(U(L / n)) + ' × ' + n + '</span></li><li><i>' + SV(KEY) + '</i><b>' + esc(XT('s3')) + '</b><span>' + esc(XT('s3d')) + '</span></li></ol></div>';
+  }
+  function xCalc(r) {
+    var n = +S.m, d = new Date(); d.setMonth(d.getMonth() + n);
+    var loc = { uz: 'uz-Latn', cy: 'uz-Cyrl' }[lng()] || lng(), ds; try { ds = d.toLocaleDateString(loc, { month: 'long', year: 'numeric' }); } catch (e) { ds = (d.getMonth() + 1) + '.' + d.getFullYear(); }
+    var ticks = ''; for (var i = 0; i < Math.min(n, 36); i++) ticks += '<u style="animation-delay:' + (i * 18) + 'ms"></u>';
+    return cmp(r.u.price, r.down) +
+      '<div class="x2c-bar" aria-hidden="true"><i style="width:' + S.pct + '%"></i><span>' + ticks + '</span></div>' +
+      '<div class="x2c-leg"><span>' + esc(XT('s1')) + ' · ' + S.pct + '%</span><span>' + esc(XT('end', { d: ds })) + '</span></div>' +
+      '<p class="x2c-own">' + SV(KEY) + '<span>' + esc(XT('free')) + '</span></p>';
+  }
+
   /* 1) taklif: kalit-karta (oltin folga barmoq bilan suriladi) */
   function renderOffer() {
     var O = FN().offer || {}, P0 = PROJECTS[0], fct = P0.facts || [], cap = fct.slice(0, 2).map(function (x) { return x.v + ' ' + pick(x.k); }).join(' · ');
@@ -9048,13 +9451,13 @@ window.AH_TG_POSTS = [
       '<div class="pp-main"><i class="pp-handle"></i>' +
       '<p class="pp-k pp-a">' + esc(T('pop.k1')) + '</p><p class="pp-k pp-b">' + esc(T('pop.k2')) + '</p>' +
       '<h2 class="pp-h pp-a" id="ppT">' + esc(T('pop.t1')) + '</h2><p class="pp-s pp-a">' + esc(T('pop.s1')) + '</p>' +
-      '<div class="pp-card"><span class="pp-guil" aria-hidden="true"></span><span class="pp-shine"></span>' + LOGO + '<b class="pp-brand">' + esc(O.brand || 'ART HOUSE') + '</b><small class="pp-no">' + esc(O.no || ('No ' + (CFG.FOUNDED || 2012))) + '</small>' +
+      '<div class="pp-card"><span class="pp-guil" aria-hidden="true"></span><span class="pp-shine"></span>' + LOGO + '<b class="pp-brand">' + esc(O.brand || 'ART HOUSE') + '</b>' + (O.no ? '<small class="pp-no">' + esc(O.no) + '</small>' : '') +
         '<div class="pp-rev"><span>' + esc(T('pop.down')) + '</span><strong id="ppNum">' + esc(I18N.usd(minDown())) + '</strong><em>' + esc(T('pop.rest')) + '</em></div>' +
         '<canvas class="pp-foil" aria-hidden="true"></canvas><span class="pp-gleam" aria-hidden="true"></span></div>' +
       '<h2 class="pp-h pp-b pp-h2">' + esc(T('pop.t2')) + '</h2><p class="pp-s pp-b">' + esc(T('pop.s2')) + '</p>' +
       '<button class="pp-link pp-a" type="button" data-reveal>' + esc(T('pop.open')) + '</button>' +
       '<ul class="pp-trust pp-a">' + trust().map(function (x) { return '<li>' + ICO(x, 'pp-ic') + '<span>' + esc(ML(x.t, x.k)) + '</span></li>'; }).join('') + '</ul>' +
-      '<form class="pp-form pp-b" novalidate data-form="offer">' + fields(T('pop.cta')) + '</form>' + proof() + '</div></div>';
+      xOffer() + '<form class="pp-form pp-b" novalidate data-form="offer">' + fields(T('pop.cta')) + '</form>' + proof() + '</div></div>';
     armForm(box);
     if (revealed) { var a = $('.pp-a#ppT', box); if (a) a.removeAttribute('id'); $('.pp-h2', box).id = 'ppT'; }
   }
@@ -9089,16 +9492,40 @@ window.AH_TG_POSTS = [
     x.restore();
     x.globalCompositeOperation = 'destination-out'; x.lineCap = x.lineJoin = 'round'; x.lineWidth = 44;
     box.classList.add('is-foil');
-    var down = false, last = null, n = 0;
-    var pt = function (e) { var b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
-    var check = function () {
-      var d = x.getImageData(0, 0, cv.width, cv.height).data, c = 0, all = 0;
-      for (var q = 3; q < d.length; q += 80) { all++; if (d[q] < 40) c++; }
+    /* Silliq surish: chiziq har bir hodisada emas, kadr bo'yicha (requestAnimationFrame) chiziladi;
+       oraliq nuqtalar getCoalescedEvents orqali olinadi — telefonda chiziq uzilmaydi va sakramaydi.
+       Ochilganlik darajasi kam-kam tekshiriladi: getImageData qimmat amal, uni har harakatda chaqirish
+       barmoq ortidan «kechikish» hosil qilardi. */
+    var down = false, last = null, pend = [], raf = 0, moved = 0, lastChk = 0;
+    var pt = function (e) { var b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * W / b.width, (e.clientY - b.top) * H / b.height]; };
+    function check(force) {
+      var now = (window.performance || Date).now(); if (!force && now - lastChk < 260) return; lastChk = now;
+      var d = x.getImageData(0, 0, cv.width, cv.height).data, c = 0, all = 0, step = Math.max(1, Math.round(d.length / 4 / 2500)) * 4;
+      for (var q = 3; q < d.length; q += step) { all++; if (d[q] < 40) c++; }
       if (all && c / all > 0.4) reveal();
-    };
-    cv.addEventListener('pointerdown', function (e) { down = true; last = pt(e); try { cv.setPointerCapture(e.pointerId); } catch (er) {} box.classList.add('is-scratching'); x.beginPath(); x.arc(last[0], last[1], 22, 0, 7); x.fill(); });
-    cv.addEventListener('pointermove', function (e) { if (!down) return; var p = pt(e); x.beginPath(); x.moveTo(last[0], last[1]); x.lineTo(p[0], p[1]); x.stroke(); last = p; if (++n % 5 === 0) check(); });
-    ['pointerup', 'pointercancel'].forEach(function (ev) { cv.addEventListener(ev, function () { if (down) { down = false; check(); } }); });
+    }
+    function draw() {
+      raf = 0; if (!pend.length || !last) { pend = []; return; }
+      x.beginPath(); x.moveTo(last[0], last[1]);
+      for (var i = 0; i < pend.length; i++) { x.lineTo(pend[i][0], pend[i][1]); moved += Math.abs(pend[i][0] - last[0]) + Math.abs(pend[i][1] - last[1]); last = pend[i]; }
+      x.stroke(); pend = [];
+      if (moved > 180) { moved = 0; check(); }
+    }
+    cv.addEventListener('pointerdown', function (e) {
+      e.preventDefault(); down = true; last = pt(e); moved = 0; pend = [];
+      try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+      box.classList.add('is-scratching');
+      x.beginPath(); x.arc(last[0], last[1], 22, 0, 7); x.fill();
+    });
+    cv.addEventListener('pointermove', function (e) {
+      if (!down) return; e.preventDefault();
+      var ev = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+      for (var i = 0; i < ev.length; i++) pend.push(pt(ev[i]));
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, { passive: false });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) {
+      cv.addEventListener(ev, function () { if (!down) return; down = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } draw(); check(true); });
+    });
   }
   function reveal() {
     if (revealed) return; revealed = true; track('pr');
@@ -9128,7 +9555,7 @@ window.AH_TG_POSTS = [
       row(T('hf.m'), chips('m', CFG.MONTHS.map(function (m) { return [m, m + ' ' + t('unit.month')]; }), S.m)) +
       '<div class="pp-res" aria-live="polite"><div class="pp-res-top"><a class="pp-plan" href="#projects/' + esc(P.id) + '" data-ppx><img id="ppImg" alt="" decoding="async"></a><div><span>' + esc(T('pc.res')) + ' · ' + esc(T('hf.res')) + '</span><strong id="ppM"></strong><small id="ppUzs"></small></div></div>' +
         '<dl class="pp-break"><div><dt>' + esc(T('pc.price')) + '</dt><dd id="ppPr"></dd></div><div><dt id="ppDnL"></dt><dd id="ppDn"></dd></div><div><dt>' + esc(T('pc.rest')) + '</dt><dd id="ppRs"></dd></div><div class="pp-mo"><dt>' + esc(T('pc.mon')) + '</dt><dd id="ppMo"></dd></div></dl>' +
-        '<p class="pp-today" id="ppToday"></p><em class="pp-unit" id="ppU"></em></div>' +
+        '<p class="pp-today" id="ppToday"></p><div class="pp-x2c" id="ppX2"></div><em class="pp-unit" id="ppU"></em></div>' +
       '<button class="pp-btn" type="button" data-cstep><span>' + esc(T('hf.book')) + '</span>' + SV(IC.arrow) + '</button></div>' +
       '<form class="pp-form pp-cform" novalidate data-form="calc" hidden><p class="pp-sum" id="ppSum"></p><p class="pp-s">' + esc(T('pc.formS')) + '</p>' + fields(T('pc.send')) +
       '<button class="pp-link" type="button" data-cback>' + esc(T('pc.back')) + '</button></form>' +
@@ -9149,6 +9576,7 @@ window.AH_TG_POSTS = [
     $('#ppToday', box).textContent = T('pc.today', { d: U(r.down), m: U(r.monthly), n: S.m });
     $('#ppU', box).textContent = pick(proj().name) + ' · ' + planName(u.pl);
     var img = $('#ppImg', box); if (img && img.getAttribute('src') !== u.pl.img) img.src = u.pl.img;
+    var x2 = $('#ppX2', box); if (x2) x2.innerHTML = xCalc(r);
   }
   function touch() { if (!S.touched) { S.touched = 1; track('c'); } save(); }
 
@@ -9312,6 +9740,457 @@ window.AH_TG_POSTS = [
   /* kabinet → Sozlamalar: 1 m² narxi, boshlang'ich foiz, muddatlar o'zgarsa — summa, kalkulyator va banner matni yangilanadi */
   if (window.Store && Store.on) Store.on('settings', function () { setTimeout(function () { if (copy) I18N.apply(copy); redraw(); }, 0); });
   window.AH_POP = { open: open, close: close, reveal: reveal, state: function () { var r = calc(); return { rooms: S.r, plan: r.u.i, price: r.u.price, pct: S.pct, down: r.down, months: +S.m, monthly: Math.round(r.monthly), minDown: minDown() }; } };
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE v2 — sayt mantig'i (Reels, wow, pastki qism, 100% tarjima)
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (!window.I18N || !window.CFG) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var L8 = ['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'];
+  /* 8 tilda matnlar; kirill — avtomatik; yangi qo'shilgan til — avtomatik tarjimon (pastda) */
+  var D = {
+    'f.buy': ["Xaridorlarga", "Покупателям", "For buyers", "Acheteurs", "Acquirenti", "Compradores", "Für Käufer", "Alıcılar için"],
+    'f.calc': ["To'lov kalkulyatori", "Калькулятор платежей", "Payment calculator", "Calculateur de paiement", "Calcolatore rate", "Calculadora de pagos", "Ratenrechner", "Ödeme hesaplayıcı"],
+    'f.terms': ["0% bo'lib to'lash shartlari", "Условия рассрочки 0%", "0% instalment terms", "Conditions du paiement 0 %", "Condizioni rate 0%", "Condiciones de plazos 0 %", "0 %-Ratenbedingungen", "%0 taksit koşulları"],
+    'f.rev': ["Mijozlar sharhlari", "Отзывы клиентов", "Client reviews", "Avis clients", "Recensioni clienti", "Opiniones de clientes", "Kundenbewertungen", "Müşteri yorumları"],
+    'f.ai': ["AI maslahatchi", "AI-консультант", "AI advisor", "Conseiller IA", "Consulente IA", "Asesor IA", "KI-Berater", "AI danışman"],
+    'f.video': ["Video qo'ng'iroq", "Видеозвонок", "Video call", "Appel vidéo", "Videochiamata", "Videollamada", "Videoanruf", "Görüntülü arama"],
+    'f.trust': ["Rasmiy shartnoma · 0% · Quruvchidan", "Официальный договор · 0% · От застройщика", "Official contract · 0% · Direct from developer", "Contrat officiel · 0 % · Direct promoteur", "Contratto ufficiale · 0% · Dal costruttore", "Contrato oficial · 0 % · Directo del promotor", "Offizieller Vertrag · 0 % · Direkt vom Bauträger", "Resmi sözleşme · %0 · Doğrudan müteahhitten"],
+    'f.slog': ["Luxury Residence · Toshkent", "Luxury Residence · Ташкент", "Luxury Residence · Tashkent", "Luxury Residence · Tachkent", "Luxury Residence · Tashkent", "Luxury Residence · Taskent", "Luxury Residence · Taschkent", "Luxury Residence · Taşkent"],
+    'hi.newsT': ["ART HOUSE DAVRASI", "КРУГ ART HOUSE", "THE ART HOUSE CIRCLE", "LE CERCLE ART HOUSE", "IL CIRCOLO ART HOUSE", "EL CÍRCULO ART HOUSE", "DER ART HOUSE KREIS", "ART HOUSE ÇEVRESİ"],
+    'hi.newsD': ["Eng yaxshi qavatlar va narxlar — avval sizga. Yangi bloklar sotuvga chiqishidan oldin bilib oling.", "Лучшие этажи и цены — сначала вам. Узнавайте о новых блоках до старта продаж.", "The best floors and prices — first to you. Hear about new blocks before sales open.", "Les meilleurs étages et prix — d'abord pour vous. Découvrez les nouveaux blocs avant l'ouverture des ventes.", "I piani e i prezzi migliori — prima a te. Scopri i nuovi blocchi prima dell'apertura delle vendite.", "Las mejores plantas y precios — primero para usted. Conozca los nuevos bloques antes de la apertura de ventas.", "Die besten Etagen und Preise — zuerst für Sie. Erfahren Sie von neuen Blöcken vor Verkaufsstart.", "En iyi katlar ve fiyatlar — önce size. Yeni blokları satış başlamadan öğrenin."],
+    'ab.cap': ["Har bir uy — qo'lda yaratilgan asar", "Каждый дом — произведение, созданное вручную", "Every home — a handcrafted work", "Chaque maison — une œuvre façonnée à la main", "Ogni casa — un'opera fatta a mano", "Cada casa — una obra hecha a mano", "Jedes Haus — ein handgefertigtes Werk", "Her ev — el emeğiyle yaratılmış bir eser"],
+    'ab.k': ["Art House · Toshkent", "Art House · Ташкент", "Art House · Tashkent", "Art House · Tachkent", "Art House · Tashkent", "Art House · Taskent", "Art House · Taschkent", "Art House · Taşkent"],
+    'fby': ["Siz bilan birga {n} oila", "С нами уже {n} семей", "{n} families with us", "{n} familles avec nous", "{n} famiglie con noi", "{n} familias con nosotros", "{n} Familien mit uns", "{n} aile bizimle"]
+  };
+  var ext = {}; L8.forEach(function (l, i) { ext[l] = {}; Object.keys(D).forEach(function (k) { ext[l][k] = D[k][i]; }); I18N.extend(l, ext[l]); });
+  var t = function (k, o) { return I18N.t(k, o); };
+
+  /* ---------- 1) Instagram Reels: raqamlar, like, «followed by» ---------- */
+  function fmt(n) { n = +n || 0; if (!n) return ''; if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'; if (n >= 1e4) return Math.round(n / 1e3) + 'K'; if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'; return String(n); }
+  function stats(i) {
+    var R = ((window.AH_CMS || {}).ig || {}).reels, D0 = window.AH_IG_REELS || CFG.IG_REELS || [], r = (Array.isArray(R) ? R : D0)[i] || {};
+    return r.st || {};
+  }
+  window.AH_IG_STATS = function (s, k) { /* igStrip() har safar video almashganda chaqiradi */
+    if (!s) return; var st = stats(k), side = $('.igs2-side', s); if (!side) return;
+    ['l', 'c', 'r', 's', 'v'].forEach(function (c) { var b = $('[data-c="' + c + '"]', side); if (b) b.textContent = fmt(st[c]); });
+    var lk = $('.igx-like', side); if (lk) lk.classList.remove('liked');
+    var fb = $('.igs2-fby', s); if (fb) fb.textContent = CFG.IG_FAMILIES ? t('fby', { n: CFG.IG_FAMILIES }) : '';
+  };
+  document.addEventListener('click', function (e) {
+    var i = e.target.closest && e.target.closest('#igStrip .igs2-side i'); if (!i) return;
+    e.stopPropagation();
+    if (i.classList.contains('igx-like')) { var b = $('b', i), on = i.classList.toggle('liked'), n = +(b.dataset.n || 0); b.dataset.n = on ? n + 1 : n; var base = b.dataset.base != null ? b.dataset.base : (b.dataset.base = b.textContent); b.textContent = on ? (base && /^\d+$/.test(base) ? String(+base + 1) : base) : base; return; }
+    var U = (CFG.INSTAGRAM || 'https://www.instagram.com/arthouse.tashkent/');
+    if (i.dataset.k === 'send' && navigator.share) { navigator.share({ title: 'ART HOUSE', url: U }).catch(function () {}); return; }
+    window.open(U, '_blank', 'noopener');
+  }, true);
+  ['pointerdown', 'pointerup'].forEach(function (ev) { document.addEventListener(ev, function (e) { if (e.target.closest && e.target.closest('#igStrip .igs2-side i')) e.stopPropagation(); }, true); });
+
+  /* ---------- 4) «Biz haqimizda» rasmi — wow ---------- */
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function wow() {
+    $$('.ths-about-media:not(.ahw)').forEach(function (f) {
+      var img = $('img', f); if (!img) return;
+      f.classList.add('ahw');
+      var w = document.createElement('span'); w.className = 'ahw-in'; img.parentNode.insertBefore(w, img); w.appendChild(img);
+      var dust = '<span class="ahw-dust" aria-hidden="true">'; for (var i = 0; i < 14; i++) dust += '<i style="left:' + (5 + Math.random() * 90).toFixed(1) + '%;--d:' + (6 + Math.random() * 6).toFixed(1) + 's;--w:' + (Math.random() * 6).toFixed(1) + 's;--x:' + (Math.random() * 60 - 30).toFixed(0) + 'px"></i>'; dust += '</span>';
+      w.insertAdjacentHTML('beforeend', dust + '<span class="ahw-cap"><small>' + esc(t('ab.k')) + '</small><b>' + esc(t('ab.cap')) + '</b></span>');
+      var badge = $('.ths-about-badge b', f), to = +(badge && badge.textContent) || 0;
+      var go = function () {
+        f.classList.add('in'); setTimeout(function () { f.classList.add('live'); }, 2700);
+        if (badge && to && !RM) { var t0 = performance.now() + 1100; badge.textContent = '0'; (function s(now) { var k = Math.max(0, Math.min(1, (now - t0) / 1400)); badge.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(s); })(performance.now()); }
+      };
+      if ('IntersectionObserver' in window && !RM) { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); go(); } }, { threshold: .3 }); io.observe(f); } else go();
+      /* 3D qiyalik: kompyuterda sichqoncha, telefonda — aylantirish (parallaks) */
+      if (RM) return;
+      f.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; var r = f.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; w.style.transform = 'rotateY(' + (x * 9).toFixed(2) + 'deg) rotateX(' + (-y * 9).toFixed(2) + 'deg)'; });
+      f.addEventListener('pointerleave', function () { w.style.transform = ''; });
+      var tick = false; addEventListener('scroll', function () { if (tick || matchMedia('(hover: hover)').matches) return; tick = true; requestAnimationFrame(function () { tick = false; var r = f.getBoundingClientRect(), p = (r.top + r.height / 2) / innerHeight - .5; if (Math.abs(p) < 1) w.style.transform = 'rotateX(' + (p * 7).toFixed(2) + 'deg) translateY(' + (p * -14).toFixed(1) + 'px)'; }); }, { passive: true });
+    });
+  }
+
+  /* ---------- 9) pastki qism ---------- */
+  function foot() {
+    var f = $('.foot'); if (!f) return;
+    var art = $('.ft-art', f); if (art) art.remove();
+    var fi = $('.foot-in', f); if (!fi) return;
+    var mk = $('.ft-mark', f); if (mk) mk.remove();
+    /* header'dagi logotipning aynan nusxasi — kabinetda logo almashsa, bu yerda ham almashadi */
+    var hb = $('.top .brand'), band = document.createElement('div'); band.className = 'ft-mark';
+    band.innerHTML = '<div class="wrap"></div>'; var cl = hb ? hb.cloneNode(true) : document.createElement('span'); cl.removeAttribute('aria-label'); cl.classList.add('ft-brand'); band.firstChild.appendChild(cl);
+    f.insertBefore(band, f.firstChild);
+    var tr = $('.ft-trust', f); if (tr) tr.remove();
+    fi.insertAdjacentHTML('afterend', '<div class="wrap ft-trust">' + t('f.trust').split('·').map(function (x) { return '<span>' + esc(x.trim()) + '</span>'; }).join('<span aria-hidden="true">·</span>') + '</div>');
+    var old = $('#ftBuy', f); if (old) old.remove();
+    var col = document.createElement('div'); col.id = 'ftBuy';
+    col.innerHTML = '<h4>' + esc(t('f.buy')) + '</h4><ul class="foot-links">' +
+      '<li><a href="#calculator">' + esc(t('f.calc')) + '</a></li><li><a href="#" data-pp="calc">' + esc(t('f.terms')) + '</a></li>' +
+      '<li><a href="#reviews">' + esc(t('f.rev')) + '</a></li><li><a href="#" data-ft-ai>' + esc(t('f.ai')) + '</a></li><li><a href="#" data-ft-video>' + esc(t('f.video')) + '</a></li></ul>';
+    var news = $('#hiNews', fi); fi.insertBefore(col, news || null);
+    if (news) { var nh = $('h4', news), np = $('p', news); if (nh) nh.textContent = t('hi.newsT'); if (np) np.textContent = t('hi.newsD'); }
+    /* telefonda — ochiladigan ro'yxat (boshqalari bilan bir xil) */
+    var h = $('h4', col), ul = $('ul', col); col.classList.add('hi-acc'); h.setAttribute('role', 'button'); h.tabIndex = 0;
+    var sync = function () { var mob = matchMedia('(max-width: 760px)').matches; ul.style.display = mob && !col.classList.contains('open') ? 'none' : ''; };
+    h.addEventListener('click', function () { col.classList.toggle('open'); sync(); }); sync();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-ft-ai]')) { e.preventDefault(); var a = $('#aib'); if (a) a.click(); }
+    else if (e.target.closest('[data-ft-video]')) { e.preventDefault(); var v = $('[data-call="video"]'); if (v) v.click(); }
+  });
+
+  function all() { wow(); foot(); }
+  all();
+  I18N.on(function () { setTimeout(all, 30); });
+  /* bo'limlar kabinetdan qayta chizilsa — wow yana ulanadi */
+  if ('MutationObserver' in window) { var mt = 0; new MutationObserver(function () { clearTimeout(mt); mt = setTimeout(wow, 120); }).observe(document.getElementById('app') || document.body, { childList: true, subtree: true }); }
+
+  /* ---------- 8) mavzu: Custom CSS (umumiy va har bir bo'lim uchun) ---------- */
+  window.AH_CSS = function (th) {
+    th = th || {}; var css = '', s = th.s || {};
+    if (s.css) css += '/* mavzu */\n' + s.css + '\n';
+    Object.keys(th.sec || {}).forEach(function (id) { var c = (th.sec[id] || {}).css; if (c && String(c).trim()) css += (id === 'ann' ? '.top > .ann' : '#p-home > [data-ths="' + id + '"]') + ' {\n' + c + '\n}\n'; });
+    var el = document.getElementById('ahCustomCss'); if (!el) { el = document.createElement('style'); el.id = 'ahCustomCss'; document.head.appendChild(el); }
+    if (el.textContent !== css) el.textContent = css;
+  };
+  try { if (window.AH_THEMES) AH_CSS(AH_THEMES.liveOf(window.AH_CMS)); } catch (e) {}
+})();
+
+</script>
+<script>
+/* =====================================================================
+   ART HOUSE — 100% TARJIMA (sayt va kabinet uchun umumiy)
+   • Lug'atda yo'q, o'zbekcha qolib ketgan har bir gap (kabinetda yozilgan sarlavhalar,
+     menyu, tugmalar, placeholder) tanlangan tilga avtomatik tarjima qilinadi.
+   • Kirill — o'zbekchadan transliteratsiya. Kabinetda yangi til qo'shilsa — o'sha til kodi bilan
+     avtomatik ishlaydi (alohida sozlash shart emas).
+   • Tarjimalar shu brauzerda saqlanadi (localStorage 'ah_tr_<til>') — ikkinchi marta tarmoqsiz, darhol.
+   • Internet bo'lmasa — matn o'zgarmaydi, hech narsa buzilmaydi.
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (window.AH_AUTOTR) return; window.AH_AUTOTR = 1;
+  var lang = function () { return (window.I18N && I18N.lang) || window.LANG || 'uz'; };
+  var toCyr = function (s) { return window.I18N && I18N.toCyr ? I18N.toCyr(s) : s; };
+  var UZW = /\b(va|uchun|bilan|bu|emas|biz|siz|sizning|bizning|bizga|sizga|uy|uyingiz|uylar|xonadon\w*|to'lov\w*|qilish|qiling|bo'lim\w*|ham|yoki|balki|shunchaki|san'at\w*|kabi|qo'ng'iroq|band|loyiha\w*|haqida|haqimizda|aloqa|bosh|sahifa|mijoz\w*|yangi|barcha|hozir|kerak|yo'q|bor|oy|oyga|oylik|narx\w*|maydon|xona\w*|kanal\w*|obuna|bo'ling|sharh\w*|manzil\w*|ochish|yopish|saqlash|tahrirlash|o'chirish|qo'shish|tanlang|yuklash|ko'rish|ko'rinadi|sozlamalar|bo'yicha|tez|javob|ariza|menejer|quruvchi\w*|ishonch\w*|quramiz|yillik|tajriba|foizsiz|bo'lib|to'lash|kunduzi|kechqurun|bugun|keyin|oldin|eng|yaxshi|qavat\w*|taklif\w*|ko'proq|batafsil|yozing|yuboring|rahmat)\b/i;
+  var OQ = /[a-z](['‘’ʻ`])[a-z]/i;
+  var LNAMES = /^(O['‘’ʻ]zbekcha|Ўзбекча|Русский|English|Français|Italiano|Español|Deutsch|Türkçe)$/;
+  function isUz(s) {
+    if (!/[a-z]/i.test(s) || /[а-яё]/i.test(s) || LNAMES.test(String(s).trim())) return false;
+    var x = s.replace(/[‘’ʻ`]/g, "'");
+    if (/\b(o|g)'[a-z]/i.test(x)) return true;
+    return UZW.test(x) && (x.match(/[a-z]+/gi) || []).length >= 1;
+  }
+  var SKIP = 'SCRIPT,STYLE,NOSCRIPT,TEXTAREA,CODE,PRE,SVG,INPUT,SELECT,OPTION,CANVAS,VIDEO,AUDIO,IFRAME';
+  var SKIPSEL = '[class*="lang"],[id*="lang"],[id*="Lang"],.nt9,[translate="no"],[contenteditable],#am,#ach,.igs2-cc,[class*="chat"],[id*="chat"],[class*="-msg"],.cm-msg,[data-no-tr]';
+  function skip(el) { for (; el && el.nodeType === 1; el = el.parentElement) { if (SKIP.indexOf(el.tagName) > -1) return true; } return false; }
+  var BRAND = { ru: { Instagram: 'Инстаграм', Telegram: 'Телеграм', YouTube: 'Ютуб', WhatsApp: 'Ватсап', Facebook: 'Фейсбук' } };
+  BRAND.cy = { Instagram: 'Инстаграм', Telegram: 'Телеграм', YouTube: 'Ютуб', WhatsApp: 'Ватсап', Facebook: 'Фейсбук' };
+  var ORIG = new WeakMap(), ATTR = new WeakMap();
+  var cache = {}, pend = {}, Q = [], busy = 0;
+  function C(l) { if (!cache[l]) { try { cache[l] = JSON.parse(localStorage.getItem('ah_tr_' + l)) || {}; } catch (e) { cache[l] = {}; } } return cache[l]; }
+  var sv = {}; function save(l) { clearTimeout(sv[l]); sv[l] = setTimeout(function () { try { localStorage.setItem('ah_tr_' + l, JSON.stringify(C(l))); } catch (e) {} }, 800); }
+  var GL = { cy: 'uz', zh: 'zh-CN', tw: 'zh-TW', he: 'iw', kk: 'kk', tg: 'tg', kz: 'kk', ua: 'uk', jp: 'ja', kr: 'ko' };
+  function fetchTr(l, s) {
+    var tl = GL[l] || l;
+    return fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=uz&tl=' + encodeURIComponent(tl) + '&dt=t&q=' + encodeURIComponent(s))
+      .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      .then(function (j) { return (j && j[0] || []).map(function (x) { return x[0]; }).join(''); })
+      .catch(function () { /* zaxira tarjimon (Google bloklasa) */
+        return fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(s) + '&langpair=uz|' + encodeURIComponent((tl || 'en').split('-')[0]))
+          .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+          .then(function (j) { var o = j && j.responseData && j.responseData.translatedText; if (!o || /MYMEMORY WARNING|INVALID/i.test(o)) throw 0; return String(o).replace(/&#(\d+);/g, function (m, c) { return String.fromCharCode(+c); }).replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'); });
+      });
+  }
+  function caseLike(src, out) { return src === src.toUpperCase() && /[A-Z]/.test(src) ? out.toUpperCase() : out; }
+  function pump() {
+    while (busy < 4 && Q.length) {
+      var it = Q.shift(); busy++;
+      (function (l, s) {
+        fetchTr(l, s).then(function (o) { if (o) { C(l)[s] = caseLike(s, o); save(l); } })
+          .catch(function () { C(l)[s] = C(l)[s] || null; })
+          .then(function () { busy--; delete pend[l + '|' + s]; sched(); pump(); });
+      })(it[0], it[1]);
+    }
+  }
+  /* kabinet saqlagan tarjimalar (AH_CMS.tr) — internetsiz ham ishlaydi */
+  var dC = null, dT = 0;
+  function dictOf(l) {
+    if (window.AHK && AHK.CMS) { if (!dC || Date.now() - dT > 2000) { try { dC = AHK.CMS().tr || {}; } catch (e) { dC = {}; } dT = Date.now(); } return dC[l]; }
+    return ((window.AH_CMS || {}).tr || {})[l];
+  }
+  function tr(l, s) {
+    var core = s.trim(); if (!core) return null;
+    if (l === 'cy') return core === core.toUpperCase() && /[A-Z]/.test(core) ? toCyr(core.toLowerCase()).toUpperCase() : toCyr(core);
+    var DD = dictOf(l); if (DD && DD[core]) return DD[core];
+    var c = C(l); if (c[core]) return c[core];
+    if (c[core] === null) return null;
+    var k = l + '|' + core; if (!pend[k] && navigator.onLine !== false && core.length < 1500) { pend[k] = 1; Q.push([l, core]); pump(); }
+    return null;
+  }
+  function brand(l, s) { var B = BRAND[l]; if (!B) return null; var c = s.trim(); return B[c] || null; }
+  function wrap(src, core) { var m = src.match(/^(\s*)[\s\S]*?(\s*)$/); return (m ? m[1] : '') + core + (m ? m[2] : ''); }
+  function pass(root) {
+    var l = lang(); root = root || document.body; if (!root) return;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
+    while ((n = w.nextNode())) list.push(n);
+    list.forEach(function (n) {
+      var p = n.parentElement; if (!p || skip(p) || (p.closest && p.closest(SKIPSEL))) return;
+      var rec = ORIG.get(n), cur = n.nodeValue;
+      if (rec && cur !== rec.out) { ORIG.delete(n); rec = null; } /* sayt o'zi qayta yozdi — yangi matn */
+      var src = rec ? rec.src : cur;
+      if (l === 'uz') { if (rec) { n.nodeValue = src; ORIG.delete(n); } return; }
+      var b = brand(l, src);
+      if (!b) { if (!isUz(src)) return; b = tr(l, src); }
+      if (b) { var out = wrap(src, b); if (n.nodeValue !== out) n.nodeValue = out; ORIG.set(n, { src: src, out: out }); }
+    });
+    var els = root.querySelectorAll ? root.querySelectorAll('[placeholder],[title],[aria-label]') : [];
+    [].forEach.call(els, function (el) {
+      if (el.closest(SKIPSEL)) return;
+      ['placeholder', 'title', 'aria-label'].forEach(function (a) {
+        var v = el.getAttribute(a); if (!v) return; var m = ATTR.get(el) || {}; var r = m[a];
+        if (r && v !== r.out) r = null; var src = r ? r.src : v;
+        if (l === 'uz') { if (r) { el.setAttribute(a, src); delete m[a]; } return; }
+        if (!isUz(src)) return; var o = tr(l, src); if (o) { el.setAttribute(a, o); m[a] = { src: src, out: o }; ATTR.set(el, m); }
+      });
+    });
+  }
+  var st = 0, lastL = lang();
+  function sched() { clearTimeout(st); st = setTimeout(function () { obs && obs.disconnect(); try { pass(); } finally { obs && obs.observe(document.body, { childList: true, subtree: true, characterData: true }); } }, 140); }
+  var obs = 'MutationObserver' in window ? new MutationObserver(sched) : null;
+  function start() { if (!document.body) return setTimeout(start, 50); sched(); if (obs) obs.observe(document.body, { childList: true, subtree: true, characterData: true }); }
+  start();
+  if (window.I18N && I18N.on) I18N.on(function () { setTimeout(sched, 60); });
+  setInterval(function () { var l = lang(); if (l !== lastL) { lastL = l; sched(); } }, 600);
+  window.AH_TR = { pass: sched, isUz: isUz, clear: function (l) { try { localStorage.removeItem('ah_tr_' + l); } catch (e) {} cache[l] = {}; } };
+})();
+
+</script>
+<script>
+/* ART HOUSE — shriftlar kutubxonasi (sayt va kabinet uchun umumiy). Google Fonts; cyr — kirill harflari bor */
+window.AH_FONTS = window.AH_FONTS || {
+  playfair: { n: 'Playfair Display', g: 'Playfair+Display:wght@400;500;600;700', css: "'Playfair Display', Georgia, serif", cyr: 1, h: 1 },
+  cormorant: { n: 'Cormorant Garamond', g: 'Cormorant+Garamond:wght@400;500;600;700', css: "'Cormorant Garamond', Georgia, serif", cyr: 1, h: 1 },
+  prata: { n: 'Prata', g: 'Prata', css: "'Prata', Georgia, serif", cyr: 1, h: 1 },
+  forum: { n: 'Forum', g: 'Forum', css: "'Forum', Georgia, serif", cyr: 1, h: 1 },
+  ebgaramond: { n: 'EB Garamond', g: 'EB+Garamond:wght@400;500;600', css: "'EB Garamond', Georgia, serif", cyr: 1, h: 1, b: 1 },
+  lora: { n: 'Lora', g: 'Lora:wght@400;500;600;700', css: "'Lora', Georgia, serif", cyr: 1, h: 1, b: 1 },
+  cinzel: { n: 'Cinzel', g: 'Cinzel:wght@400;500;600;700', css: "'Cinzel', Georgia, serif", h: 1 },
+  marcellus: { n: 'Marcellus', g: 'Marcellus', css: "'Marcellus', Georgia, serif", h: 1 },
+  tenor: { n: 'Tenor Sans', g: 'Tenor+Sans', css: "'Tenor Sans', system-ui, sans-serif", cyr: 1, h: 1 },
+  unbounded: { n: 'Unbounded', g: 'Unbounded:wght@300;400;500;600', css: "'Unbounded', system-ui, sans-serif", cyr: 1, h: 1 },
+  oswald: { n: 'Oswald', g: 'Oswald:wght@300;400;500;600', css: "'Oswald', system-ui, sans-serif", cyr: 1, h: 1 },
+  montserrat: { n: 'Montserrat', g: 'Montserrat:wght@300;400;500;600;700', css: "'Montserrat', system-ui, sans-serif", cyr: 1, h: 1, b: 1 },
+  raleway: { n: 'Raleway', g: 'Raleway:wght@300;400;500;600;700', css: "'Raleway', system-ui, sans-serif", cyr: 1, h: 1, b: 1 },
+  geologica: { n: 'Geologica', g: 'Geologica:wght@300;400;500;600;700', css: "'Geologica', system-ui, sans-serif", cyr: 1, h: 1, b: 1 },
+  manrope: { n: 'Manrope', g: 'Manrope:wght@300;400;500;600;700', css: "'Manrope', system-ui, sans-serif", cyr: 1, h: 1, b: 1 },
+  jost: { n: 'Jost', g: 'Jost:wght@300;400;500;600;700', css: "'Jost', system-ui, sans-serif", cyr: 1, h: 1, b: 1 },
+  inter: { n: 'Inter', g: 'Inter:wght@300;400;500;600;700', css: "'Inter', system-ui, sans-serif", cyr: 1, b: 1 },
+  roboto: { n: 'Roboto', g: 'Roboto:wght@300;400;500;700', css: "'Roboto', system-ui, sans-serif", cyr: 1, b: 1 },
+  opensans: { n: 'Open Sans', g: 'Open+Sans:wght@300;400;500;600;700', css: "'Open Sans', system-ui, sans-serif", cyr: 1, b: 1 },
+  nunito: { n: 'Nunito Sans', g: 'Nunito+Sans:wght@300;400;600;700', css: "'Nunito Sans', system-ui, sans-serif", cyr: 1, b: 1 },
+  ptsans: { n: 'PT Sans', g: 'PT+Sans:wght@400;700', css: "'PT Sans', system-ui, sans-serif", cyr: 1, b: 1 },
+  commissioner: { n: 'Commissioner', g: 'Commissioner:wght@300;400;500;600', css: "'Commissioner', system-ui, sans-serif", cyr: 1, b: 1 }
+};
+window.AH_FONT_LOAD = function (ids, id) {
+  var F = window.AH_FONTS, q = (ids || []).filter(function (k, i, a) { return F[k] && a.indexOf(k) === i; }).map(function (k) { return 'family=' + F[k].g; });
+  id = id || 'ahFontLink'; var l = document.getElementById(id);
+  if (!q.length) { if (l) l.remove(); return; }
+  var href = 'https://fonts.googleapis.com/css2?' + q.join('&') + '&display=swap';
+  if (!l) { l = document.createElement('link'); l.id = id; l.rel = 'stylesheet'; document.head.appendChild(l); }
+  if (l.href !== href) l.href = href;
+};
+
+</script>
+<script>
+(function () {
+  'use strict';
+  if (!window.I18N || !window.CFG) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var SV = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>'; };
+  var L8 = ['uz', 'ru', 'en', 'fr', 'it', 'es', 'de', 'tr'];
+  var D = {
+    'ab.lt': ["Obyektni o'z ko'zingiz bilan ko'ring", 'Увидьте объект своими глазами', 'See the residence with your own eyes', 'Découvrez la résidence de vos propres yeux', 'Visita la residenza di persona', 'Vea la residencia con sus propios ojos', 'Erleben Sie die Residenz vor Ort', 'Projeyi kendi gözlerinizle görün'],
+    'ab.ld': ["Bepul sayohat: menejer sizni obyekt va namuna xonadonga olib boradi.", 'Бесплатная экскурсия: менеджер покажет объект и шоу-рум квартиру.', 'Free tour: a manager will show you the site and the show apartment.', "Visite gratuite : un conseiller vous montre le chantier et l'appartement témoin.", "Visita gratuita: un consulente ti mostra il cantiere e l'appartamento campione.", 'Visita gratuita: un asesor le muestra la obra y el piso piloto.', 'Kostenlose Besichtigung: Ein Berater zeigt Ihnen Baustelle und Musterwohnung.', 'Ücretsiz tur: danışmanımız size projeyi ve örnek daireyi gösterir.'],
+    'ab.lb': ['Sayohatga yozilish', 'Записаться на экскурсию', 'Book a tour', 'Réserver une visite', 'Prenota una visita', 'Reservar una visita', 'Besichtigung buchen', 'Tura kaydol']
+  };
+  L8.forEach(function (l, i) { var o = {}; Object.keys(D).forEach(function (k) { o[k] = D[k][i]; }); I18N.extend(l, o); });
+  var t = function (k, o) { return I18N.t(k, o); };
+  var ref = function (u) { if (!u) return Promise.resolve(''); return String(u).indexOf('idb:') === 0 && window.Store && Store.mediaURL ? Store.mediaURL(u) : Promise.resolve(u); };
+
+  /* ---------- 1) Instagram profil rasmi: Instagram'dagi rasm almashsa — saytda ham o'zi almashadi ----------
+     Tartib: Instagram'dan olingan oxirgi rasm (6 soatda bir yangilanadi) → kabinetda yuklangan rasm → standart rasm (hozirgi IG logotipi) */
+  var AVD = 'data:image/jpeg;base64,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';
+  var lsg = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  window.AH_IG_AV = function () { return lsg('ah_ig_av') || CFG.IG_AVATAR || AVD; };
+  function avSet(u) { $$('img.igs2-avi').forEach(function (i) { if (i.src !== u) i.src = u; }); }
+  function avRefresh(force) {
+    var h = String(CFG.INSTAGRAM_HANDLE || '@arthouse.tashkent').replace(/^@/, '').trim(); if (!h || navigator.onLine === false) return;
+    var last = +lsg('ah_ig_av_t') || 0, same = lsg('ah_ig_av_h') === h;
+    if (!force && same && lsg('ah_ig_av') && Date.now() - last < 6 * 3600e3) return;
+    var U = 'https://unavatar.io/instagram/' + encodeURIComponent(h) + '?fallback=false';
+    fetch(U).then(function (r) { if (!r.ok) throw r.status; return r.blob(); })
+      .then(function (b) { if (!/^image\//.test(b.type) || b.size < 600) throw 0; return new Promise(function (res) { var fr = new FileReader(); fr.onload = function () { res(fr.result); }; fr.readAsDataURL(b); }); })
+      .then(function (d) { try { localStorage.setItem('ah_ig_av', d); localStorage.setItem('ah_ig_av_t', String(Date.now())); localStorage.setItem('ah_ig_av_h', h); } catch (e) {} avSet(d); })
+      .catch(function () { /* CORS yoki tarmoq: rasmni to'g'ridan-to'g'ri qo'yib ko'ramiz, xato bo'lsa — eski rasm qoladi */
+        var im = new Image(); im.onload = function () { if (im.naturalWidth > 20) avSet(U); }; im.src = U; });
+  }
+  window.AH_IG_AV_REFRESH = avRefresh;
+  setTimeout(function () { avSet(AH_IG_AV()); avRefresh(); }, 1200);
+
+  /* ---------- 3) «Biz haqimizda»: ariza tugmasi ---------- */
+  var EYE = '<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>';
+  var ARR = '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>';
+  function about() {
+    $$('.ths-about .ths-about-copy').forEach(function (c) {
+      var old = $('.ab-lead', c); if (old) old.remove();
+      c.insertAdjacentHTML('beforeend', '<div class="ab-lead"><i>' + SV(EYE) + '</i><div><b>' + esc(t('ab.lt')) + '</b><small>' + esc(t('ab.ld')) + '</small></div><button type="button" class="ab-btn" data-ab-tour>' + esc(t('ab.lb')) + SV(ARR) + '</button></div>');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-ab-tour]'); if (!b) return;
+    if (window.AH_SITE && AH_SITE.book) AH_SITE.book({ topic: t('ab.lb') }); else if (window.AH_POP) AH_POP.open('offer');
+  });
+
+  /* ---------- 4) 1-2-3 o'rniga ikonkalar ---------- */
+  var IC = {
+    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+    visit: '<path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M10 21v-5h4v5"/><path d="M9 11h.01M15 11h.01"/>',
+    sign: '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><path d="M14 2v6h6"/><path d="M8 17c1.5-2 2.5-2 3.5 0s2 2 4.5-1"/>',
+    pct: '<circle cx="12" cy="12" r="9.5"/><path d="m15 9-6 6"/><path d="M9.2 9.2h.01M14.8 14.8h.01"/>',
+    home: '<path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9"/>', calc: '<rect x="4.5" y="2.5" width="15" height="19" rx="2"/><path d="M8 6.5h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v3M8 18h4"/>',
+    build: '<path d="M4 21V5l7-3v19"/><path d="M11 21V9l9 3v9"/><path d="M2 21h20M7 8v.01M7 12v.01M7 16v.01M15 14v.01M15 17v.01"/>', pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    info: '<circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5h.01"/>', social: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>'
+  };
+  function steps() {
+    var K = ['phone', 'visit', 'sign', 'pct'];
+    $$('.steps .step').forEach(function (s, i) {
+      if (s.classList.contains('icx')) return; var h = $('h4', s), p = $('p', s); if (!h) return;
+      s.classList.add('icx'); var n = $('i', s); if (n) n.remove(); s.insertAdjacentHTML('afterbegin', SV(IC[K[i % K.length]]));
+    });
+    var MK = { home: 'home', calculator: 'calc', projects: 'build', location: 'pin', about: 'info', social: 'social', contact: 'phone' };
+    $$('.menu a[data-route] > i').forEach(function (i) { var k = MK[i.parentNode.dataset.route]; if (!k || i.classList.contains('mi')) return; i.className = 'mi'; i.innerHTML = SV(IC[k]); });
+  }
+
+  /* ---------- 8) mavzu: header va logo, shriftlar, fonlar, bo'lim fonlari, Custom CSS ---------- */
+  function hdr(s) {
+    $$('.brand').forEach(function (b) {
+      var mark = $('.brand-mark', b), txt = $('.brand-txt b', b), sub = $('.brand-txt small', b), img = $('.brand-img', b);
+      if (txt && txt.dataset.o == null) txt.dataset.o = txt.textContent;
+      if (sub && sub.dataset.oi == null) sub.dataset.oi = sub.getAttribute('data-i') || '';
+      if (s.logoImg) ref(s.logoImg).then(function (u) { if (!u) return; if (!img) { img = document.createElement('img'); img.className = 'brand-img'; img.alt = 'ART HOUSE'; (mark || b.firstChild) ? b.insertBefore(img, mark || b.firstChild) : b.appendChild(img); } if (img.src !== u) img.src = u; if (mark && mark.style.display !== 'none') mark.style.display = 'none'; });
+      else { if (img) img.remove(); if (mark && mark.style.display) mark.style.display = ''; }
+      var want = s.logoText || txt && txt.dataset.o; if (txt && txt.textContent !== want) txt.textContent = want;
+      if (sub) { if (s.logoSub) { sub.removeAttribute('data-i'); if (sub.textContent !== s.logoSub) sub.textContent = s.logoSub; } else if (sub.dataset.oi && !sub.getAttribute('data-i')) { sub.setAttribute('data-i', sub.dataset.oi); sub.textContent = t(sub.dataset.oi); } }
+      var tw = $('.brand-txt', b), dsp = s.logoTextOff ? 'none' : ''; if (tw && tw.style.display !== dsp) tw.style.display = dsp;
+    });
+  }
+  function selOf(id) { var n = window.AH_THEMES && AH_THEMES.native ? AH_THEMES.native(id) : null; return id === 'ann' ? '.top > .ann' : (n && n.find ? n.find + ', [data-ths="' + id + '"]' : '[data-ths="' + id + '"]'); }
+  var hex = function (v) { return /^#[0-9a-f]{3,8}$/i.test(String(v || '')) ? v : ''; };
+  /* ---------- sahifa foni: video yoki rasm (alohida qatlam, matn ustida qolmaydi) ---------- */
+  function bgMedia(s) {
+    var want = s.pageVid || s.pageImg, host = document.getElementById('ahBgMedia');
+    document.documentElement.classList.toggle('ah-bgmedia', !!want);
+    if (!want) { if (host && host.parentNode) host.parentNode.removeChild(host); return; }
+    if (!host) { host = document.createElement('div'); host.id = 'ahBgMedia'; host.setAttribute('aria-hidden', 'true'); document.body.insertBefore(host, document.body.firstChild); }
+    host.style.setProperty('--ah-bg-ov', +s.pageOv || 55);
+    var key = (s.pageVid || '') + '|' + (s.pageImg || '');
+    if (host.dataset.k === key) return;
+    host.dataset.k = key; host.textContent = '';
+    if (s.pageVid) ref(s.pageVid).then(function (u) {
+      if (!u || host.dataset.k !== key) return;
+      var v = document.createElement('video');
+      v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
+      if (s.pageImg) ref(s.pageImg).then(function (pi) { if (pi) v.poster = pi; });
+      v.src = u; host.appendChild(v);
+      var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+    });
+    else ref(s.pageImg).then(function (u) {
+      if (!u || host.dataset.k !== key) return;
+      var i = new Image(); i.decoding = 'async'; i.alt = ''; i.src = u; host.appendChild(i);
+    });
+  }
+  /* ---------- bo'lim foni: video ---------- */
+  function secVideo(sel, c) {
+    $$(sel).forEach(function (el) {
+      var old = $('.ths-bgv', el), want = c.bgT === 'vid' && c.bgVid;
+      if (!want) { if (old && old.parentNode) old.parentNode.removeChild(old); return; }
+      var key = c.bgVid + '|' + (c.bgPoster || '');
+      if (old && old.dataset.k === key) { old.style.setProperty('--ov', +c.bgOv || 45); return; }
+      if (old && old.parentNode) old.parentNode.removeChild(old);
+      var box = document.createElement('div');
+      box.className = 'ths-bgv'; box.dataset.k = key; box.setAttribute('aria-hidden', 'true');
+      box.style.setProperty('--ov', +c.bgOv || 45);
+      el.insertBefore(box, el.firstChild);
+      ref(c.bgVid).then(function (u) {
+        if (!u || !box.parentNode) return;
+        var v = document.createElement('video');
+        v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'metadata';
+        if (c.bgPoster) ref(c.bgPoster).then(function (pi) { if (pi) v.poster = pi; });
+        v.src = u; box.appendChild(v);
+        var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+      });
+    });
+  }
+  window.AH_CSS = function (th) {
+    th = th || {}; var s = th.s || {}, css = '', jobs = [], F = window.AH_FONTS || {};
+    /* shriftlar */
+    var fh = F[s.fontH], fb = F[s.fontB];
+    if (window.AH_FONT_LOAD) AH_FONT_LOAD([s.fontH, s.fontB]);
+    if (fh) css += ':root{--f-display:' + fh.css + ' !important}h1,h2,.h-page,.sec-head h2,.ths h2,.hero h1{font-family:' + fh.css + ' !important}';
+    if (fb) css += ':root{--f-body:' + fb.css + ' !important}body,button,input,select,textarea{font-family:' + fb.css + '}';
+    if (s.fontLogo && F[s.fontLogo]) css += ':root{--f-logo:' + F[s.fontLogo].css + ' !important}';
+    /* header va e'lon qatori */
+    if (hex(s.hdrBg)) css += ':root{--hdr-bg:' + s.hdrBg + '}.top{background:' + s.hdrBg + ' !important}';
+    if (hex(s.hdrInk)) css += ':root{--hdr-ink:' + s.hdrInk + '}.top .top-row,.top .top-row a,.top .top-row button,.top .ic,.top .lang-btn b{color:' + s.hdrInk + ' !important}.top .brand-txt b{background:none !important;-webkit-text-fill-color:' + s.hdrInk + ';color:' + s.hdrInk + ' !important;animation:none !important}.top .brand-mark{stroke:' + s.hdrInk + ' !important}';
+    if (hex(s.annBg)) css += '.top > .ann{background:' + s.annBg + ' !important}';
+    if (hex(s.annInk)) css += '.top > .ann,.top > .ann *{color:' + s.annInk + ' !important}';
+    if (+s.logoSize) css += '.top .brand-mark,.top .brand-img{width:' + (+s.logoSize) + 'px !important;height:' + (+s.logoSize) + 'px !important}';
+    if (s.logoPos === 'left') css += '.top .brand{justify-self:start !important}';
+    if (s.sticky === false) css += '.top{position:relative !important}';
+    /* umumiy fonlar */
+    if (hex(s.lightBg)) css += '.ths-light{--t-bg:' + s.lightBg + ' !important;background:' + s.lightBg + ' !important}';
+    if (hex(s.footBg)) css += 'html body .foot{background:' + s.footBg + ' !important}';
+    if (hex(s.cardBg)) css += '.card,.ths-card{background:' + s.cardBg + ' !important}';
+    bgMedia(s);
+    if (s.pageImg && !s.pageVid) jobs.push(ref(s.pageImg).then(function (u) { if (!u) return ''; var o = (+s.pageOv || 55) / 100; return 'html,body{background:linear-gradient(rgba(4,22,16,' + o + '),rgba(4,22,16,' + o + ')),url("' + u + '") center/cover fixed no-repeat !important}'; }));
+    if (s.css) css += '\n/* mavzu: Custom CSS */\n' + s.css + '\n';
+    /* bo'limlar */
+    Object.keys(th.sec || {}).forEach(function (id) {
+      var c0 = th.sec[id] || {}, c = Object.assign({}, c0, c0.s || {}), S = selOf(id), q = S.split(',').map(function (x) { return x.trim(); });
+      var all = function (r) { return q.map(function (x) { return x + r; }).join(','); };
+      if (c.bgT === 'color') css += all('') + '{background:' + (hex(c.bgC1) || '#0B392C') + ' !important}' + all('::before') + ',' + all('::after') + '{display:none !important}';
+      if (c.bgT === 'grad') css += all('') + '{background:linear-gradient(' + (+c.bgA || 180) + 'deg,' + (hex(c.bgC1) || '#0B392C') + ',' + (hex(c.bgC2) || '#072A20') + ') !important}';
+      if (c.bgT === 'img' && c.bgImg) jobs.push(ref(c.bgImg).then(function (u) { if (!u) return ''; var o = (+c.bgOv || 45) / 100; return all('') + '{background:linear-gradient(rgba(4,22,16,' + o + '),rgba(4,22,16,' + o + ')),url("' + u + '") center/cover no-repeat !important}'; }));
+      secVideo(q[0], c);
+      if (hex(c.bgInk)) css += all('') + '{color:' + c.bgInk + ' !important;--ink:' + c.bgInk + ';--t-ink:' + c.bgInk + '}' + all(' h2') + ',' + all(' h3') + ',' + all(' p') + '{color:' + c.bgInk + ' !important}';
+      var sf = F[c.font], sb = F[c.fontB];
+      if (sf || sb) { if (window.AH_FONT_LOAD) AH_FONT_LOAD([s.fontH, s.fontB, s.fontLogo, c.font, c.fontB]); }
+      if (sf) css += all('') + '{--f-display:' + sf.css + '}' + all(' h1') + ',' + all(' h2') + ',' + all(' h3') + ',' + all(' h4') + '{font-family:' + sf.css + ' !important}';
+      if (sb) css += all('') + '{--f-body:' + sb.css + ';font-family:' + sb.css + '}' + all(' p') + ',' + all(' li') + ',' + all(' span') + ',' + all(' a') + ',' + all(' button') + '{font-family:' + sb.css + '}';
+      if (c.css && String(c.css).trim()) css += q[0] + ' {\n' + c.css + '\n}\n';
+    });
+    var el = document.getElementById('ahCustomCss'); if (!el) { el = document.createElement('style'); el.id = 'ahCustomCss'; }
+    document.head.appendChild(el); if (el.textContent !== css) el.textContent = css;
+    Promise.all(jobs).then(function (a) { var x = a.join(''); if (!x) return; var e2 = document.getElementById('ahCustomCss2'); if (!e2) { e2 = document.createElement('style'); e2.id = 'ahCustomCss2'; } document.head.appendChild(e2); e2.textContent = x; });
+    if (!jobs.length) { var e3 = document.getElementById('ahCustomCss2'); if (e3) e3.textContent = ''; }
+    hdr(s);
+    window.AH_CUR_TH = th;
+  };
+  function all() { steps(); about(); try { AH_CSS(window.AH_CUR_TH || (window.AH_THEMES ? AH_THEMES.liveOf(window.AH_CMS) : {})); } catch (e) {} }
+  all();
+  I18N.on(function () { setTimeout(all, 60); });
+  if ('MutationObserver' in window) { var mt = 0; new MutationObserver(function () { clearTimeout(mt); mt = setTimeout(function () { steps(); if (!$('.ths-about .ab-lead')) about(); if (window.AH_CUR_TH) hdr(AH_CUR_TH.s || {}); }, 150); }).observe(document.getElementById('app') || document.body, { childList: true, subtree: true }); }
 })();
 
 </script>

@@ -14,7 +14,7 @@ const KC='ah_kcolors',PAL={emerald:['Zumrad (asl)','',''],night:['Tungi ko\'k','
 function kcolor(){let c={};try{c=JSON.parse(localStorage.getItem(KC))||{}}catch(e){}let st=document.getElementById('kColors');if(!st){st=document.createElement('style');st.id='kColors';document.head.appendChild(st)}
  const bg=/^#[0-9a-f]{6}$/i.test(c.bg||'')?c.bg:'',gd=/^#[0-9a-f]{6}$/i.test(c.gold||'')?c.gold:'';
  const mix=(h,a)=>{const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,f=x=>Math.round(Math.min(255,Math.max(0,x+(a>0?(255-x)*a:x*a)))).toString(16).padStart(2,'0');return '#'+f(r)+f(g)+f(b)};
- st.textContent=(bg?':root{--em-950:'+mix(bg,-.35)+';--em-900:'+mix(bg,-.2)+';--em-850:'+bg+';--em-800:'+mix(bg,.06)+';--em-700:'+mix(bg,.14)+';--em-600:'+mix(bg,.24)+';--bg:'+mix(bg,-.2)+'}body,.adm{background:'+mix(bg,-.2)+'!important}':'')+
+ st.textContent=(bg?':root{--em-950:'+mix(bg,-.35)+';--em-900:'+mix(bg,-.2)+';--em-850:'+bg+';--em-800:'+mix(bg,.06)+';--em-700:'+mix(bg,.14)+';--em-600:'+mix(bg,.24)+';--bg:'+mix(bg,-.2)+';--lg-a:'+mix(bg,.34)+';--lg-b:'+mix(bg,.2)+';--lg-c:'+mix(bg,.08)+'}body,.adm{background:'+mix(bg,-.2)+'!important}':'')+
   (gd?':root{--ch-300:'+gd+';--ch-200:'+mix(gd,.25)+';--ch-400:'+mix(gd,-.12)+';--gold:'+gd+';--gold-fill:linear-gradient(180deg,'+mix(gd,.35)+' 0%,'+gd+' 100%)}':'')}
 kcolor();
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||null}catch(e){return null}};

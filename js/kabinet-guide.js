@@ -3,8 +3,6 @@
    • Menyuda «Yordam → Video yo'riqnoma»: kabinet qaysi tilda bo'lsa, video
      ham o'sha tilda ochiladi (o'zbek kirill → o'zbekcha). Boshqa tilni ham tanlash mumkin.
    • Boblar ro'yxati (js/guide-chapters.js) — bosilganda video o'sha joyga o'tadi.
-   • Kirish oynasida «Video yo'riqnoma» tugmasi: telefonda — telefondan kirish,
-     kompyuterda — kompyuterdan kirish bobidan boshlanadi.
    Videolar: guide/kabinet-<til>.mp4 (kabinet.html bilan bir papkada); topilmasa — ../guide/ va internetdagi nusxa (CFG.GUIDE_CDN).
    =================================================================== */
 (function(){
@@ -20,7 +18,7 @@ if(!ICN.play2)ICN.play2='<circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z
 if(!ICN.x)ICN.x='<path d="M18 6 6 18"/><path d="m6 6 12 12"/>';
 let VL=null; /* foydalanuvchi tanlagan video tili (bo'lmasa — kabinet tili) */
 
-/* video + boblar: bo'lim sahifasida ham, kirish oynasidagi oynada ham ishlatiladi */
+/* video + boblar */
 function player(box,l,startCh){const C=(G()[l]||{}).ch||[];
  box.innerHTML='<div class="gd"><div class="gd-v"><video controls playsinline preload="metadata" src="'+SRCS(l)[0]+'"></video><p class="gd-miss" hidden>'+I('alert')+'<span>Video ochilmadi. Internetga ulanganingizni tekshiring yoki «guide» papkasini kabinet.html yoniga qo\'ying.</span></p></div>'+
   '<aside class="gd-side"><div class="gd-langs" role="group" aria-label="Video tili">'+L8.map(x=>'<button type="button" data-gl="'+x+'" aria-pressed="'+(x===l)+'"><b>'+x.toUpperCase()+'</b><span class="nt9">'+LN[x]+'</span></button>').join('')+'</div>'+
@@ -42,15 +40,6 @@ function vY(){const mn=document.getElementById('mn'),l=VL||kl(),d=(G()[l]||{}).d
  player(document.getElementById('gdBox'),l)}
 addEventListener('langchange',()=>{VL=null;if(K.VW()==='Y'&&K.tok())vY()});
 
-/* ---------- kirish oynasida: «Video yo'riqnoma» ---------- */
-function modal(){const l=kl(),m=document.createElement('div');m.className='dlg gd-dlg';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
- m.innerHTML='<div class="gd-box"><button type="button" class="gd-x" aria-label="Yopish">'+I('x')+'</button><div class="gd-mb"></div></div>';
- document.body.appendChild(m);const v=player(m.querySelector('.gd-mb'),l,matchMedia('(max-width:820px)').matches?'login-phone':'login-desktop');
- const close=()=>{m.remove();document.removeEventListener('keydown',esc1)},esc1=e=>{if(e.key==='Escape')close()};
- m.addEventListener('click',e=>{if(e.target===m||e.target.closest('.gd-x'))close()});document.addEventListener('keydown',esc1);
- const p=v.play();if(p&&p.catch)p.catch(()=>{})}
-const lgc=document.querySelector('#al .lgc');
-if(lgc&&!document.getElementById('gdOpen')){const ax=document.getElementById('ax'),b=document.createElement('button');b.type='button';b.id='gdOpen';b.className='btn ghost sm gd-open';b.innerHTML=I('play2')+"<span>Video yo'riqnoma</span>";(ax||lgc.lastChild).after(b);b.addEventListener('click',modal)}
-
+/* kirish oynasidagi «Video yo'riqnoma» tugmasi olib tashlandi (2026-11): video faqat kabinet ichida — Yordam → Video yo'riqnoma */
 if(K.tok())K.nav();
 })();

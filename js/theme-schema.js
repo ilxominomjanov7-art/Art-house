@@ -44,6 +44,56 @@
     manrope: { name: 'Manrope', css: "'Manrope', system-ui, sans-serif" }
   };
 
+  /* ---------------- shriftlar, mavzu sozlamalari va bo'lim foni ----------------
+     Bu maydonlar kabinetdagi tahrirlagichda (Mavzu sozlamalari / har bir bo'lim) ko'rinadi va
+     saytda js/site-v3.js → AH_CSS() orqali CSS o'zgaruvchilariga aylanadi — sahifa qayta
+     yuklanmasdan, barcha asosiy bloklarga darhol ta'sir qiladi. */
+  function fontOpts(kind) {
+    var F = (typeof window !== 'undefined' && window.AH_FONTS) || {};
+    var out = [['', kind === 'h' ? 'Standart (mavzu shrifti)' : 'Standart']];
+    Object.keys(F).forEach(function (k) { if (kind === 'b' && !F[k].b) return; out.push([k, F[k].n]); });
+    return out;
+  }
+  var TSET = [
+    { gr: 'Shriftlar', k: 'fontH', t: 'select', l: 'Sarlavhalar shrifti', o: fontOpts('h'), note: "Butun sayt bo'ylab barcha sarlavhalarga qo'llanadi" },
+    { k: 'fontB', t: 'select', l: 'Asosiy matn shrifti', o: fontOpts('b') },
+    { k: 'fontLogo', t: 'select', l: 'Logotip shrifti', o: fontOpts('h') },
+    { gr: 'Header va logotip', k: 'hdrBg', t: 'color', l: 'Header foni', d: '#061F18' },
+    { k: 'hdrInk', t: 'color', l: 'Header matni va ikonkalari', d: '#FBF5E4' },
+    { k: 'logoImg', t: 'image', l: 'Logotip rasmi (bo\'sh bo\'lsa — vektor belgi)' },
+    { k: 'logoText', t: 'plain', l: 'Logotip yozuvi' },
+    { k: 'logoSub', t: 'plain', l: 'Logotip ostidagi yozuv' },
+    { k: 'logoSize', t: 'num', l: 'Logotip o\'lchami (px)', ph: '42' },
+    { k: 'logoPos', t: 'select', l: 'Logotip joylashuvi', o: [['', "O'rtada (standart)"], ['left', 'Chapda']] },
+    { k: 'logoTextOff', t: 'check', l: 'Faqat belgi (yozuvsiz)' },
+    { k: 'sticky', t: 'check', l: 'Header yuqorida yopishib turadi', dflt: true },
+    { gr: "E'lon qatori", k: 'annBg', t: 'color', l: 'Fon', d: '#E2C98E' },
+    { k: 'annInk', t: 'color', l: 'Matn', d: '#0B2E23' },
+    { gr: 'Sahifa foni', k: 'pageImg', t: 'image', l: 'Fon rasmi (butun sayt)' },
+    { k: 'pageVid', t: 'video', l: 'Fon videosi (rasmdan ustun turadi)' },
+    { k: 'pageOv', t: 'num', l: 'Fon qoramtirligi (%)', ph: '55' },
+    { k: 'lightBg', t: 'color', l: "Och bo'limlar foni", d: '#FBF8F1' },
+    { k: 'cardBg', t: 'color', l: 'Kartalar foni' },
+    { k: 'footBg', t: 'color', l: 'Pastki qism foni' },
+    { gr: 'Qo\'shimcha', k: 'css', t: 'code', l: 'Custom CSS (butun sayt uchun)' }
+  ];
+  /* har bir bo'lim uchun: fon turi, ranglar, rasm, video, matn rangi va Custom CSS */
+  var SECBG = [
+    { k: 'bgT', t: 'select', l: 'Fon turi', o: [['', 'Standart'], ['color', 'Bitta rang'], ['grad', 'Gradient'], ['img', 'Rasm'], ['vid', 'Video']] },
+    { k: 'bgC1', t: 'color', l: 'Rang', when: 'bgT=color' },
+    { k: 'bgC1', t: 'color', l: '1-rang', when: 'bgT=grad' },
+    { k: 'bgC2', t: 'color', l: '2-rang', when: 'bgT=grad' },
+    { k: 'bgA', t: 'num', l: 'Gradient burchagi', ph: '180', when: 'bgT=grad' },
+    { k: 'bgImg', t: 'image', l: 'Fon rasmi', when: 'bgT=img' },
+    { k: 'bgVid', t: 'video', l: 'Fon videosi', when: 'bgT=vid' },
+    { k: 'bgPoster', t: 'image', l: 'Video muqovasi', when: 'bgT=vid' },
+    { k: 'bgOv', t: 'num', l: 'Qoramtirlik (%)', ph: '45' },
+    { k: 'bgInk', t: 'color', l: 'Matn rangi' },
+    { k: 'font', t: 'select', l: "Bo'lim sarlavhalari shrifti", o: function () { return fontOpts('h'); } },
+    { k: 'fontB', t: 'select', l: "Bo'lim matni shrifti", o: function () { return fontOpts('b'); } },
+    { k: 'css', t: 'code', l: "Shu bo'lim uchun Custom CSS" }
+  ];
+
   /* ---------------- maydon turlari ----------------
      text/area — ko'p tilli matn; plain — bitta qiymat; num; check; select (o: [[qiymat, nom]]);
      image/video — fayl yuklash yoki havola; url; date */
@@ -356,6 +406,7 @@
 
   window.AH_THEMES = {
     LANGS: LANGS, PALETTES: PALETTES, FONTS: FONTS, NATIVE: NATIVE, TYPES: TYPES, ORDER: ORDER, ACT: ACT, ICONS: ICONS, KIND: KIND,
+    TSET: TSET, SECBG: SECBG, fontOpts: fontOpts,
     defaults: DEF, newTheme: newTheme, normalize: normalize, liveOf: liveOf, uid: uid, clone: clone, ml: ml,
     native: function (id) { return NATIVE.filter(function (n) { return n.id === id; })[0] || null; }
   };

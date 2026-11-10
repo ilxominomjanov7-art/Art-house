@@ -162,14 +162,17 @@ function fld(f,obj,path,opt){opt=opt||{};const v=val(obj,f.k),id='tf'+Math.rando
   return '<div class="te-f">'+lb+'<div class="te-ml nt9"><em>'+E.lang.toUpperCase()+'</em>'+inp+'</div></div>'}
  if(f.t==='plain'||f.t==='url')return '<div class="te-f">'+lb+'<input class="nt9" id="'+id+'" data-f="'+path+'"'+(f.t==='url'?' type="url" inputmode="url" placeholder="https://"':'')+' value="'+esc(v==null?'':v)+'"></div>';
  if(f.t==='date')return '<div class="te-f">'+lb+'<input id="'+id+'" type="date" data-f="'+path+'" value="'+esc(v||'')+'"></div>';
- if(f.t==='check')return '<label class="cm-sw1 te-sw"><input type="checkbox" data-f="'+path+'"'+(v?' checked':'')+'><i></i><span>'+f.l+'</span></label>';
+ if(f.t==='check')return '<label class="cm-sw1 te-sw"><input type="checkbox" data-f="'+path+'"'+((v==null?f.dflt:v)?' checked':'')+'><i></i><span>'+f.l+'</span></label>';
+ if(f.t==='color')return '<label class="te-col"><input type="color" data-f="'+path+'" value="'+esc(/^#[0-9a-f]{6}$/i.test(v||'')?v:(f.d||'#0B392C'))+'"><span>'+f.l+'</span>'+(v?'<button type="button" class="te-rs" data-clr="'+path+'">Asli</button>':'')+'</label>';
+ if(f.t==='num')return '<div class="te-f">'+lb+'<input class="nt9" id="'+id+'" type="number" inputmode="numeric" data-f="'+path+'" value="'+esc(v==null?'':v)+'" placeholder="'+esc(f.ph||'')+'"></div>';
+ if(f.t==='code')return '<div class="te-f te-code">'+lb+'<textarea id="'+id+'" rows="4" spellcheck="false" class="nt9" data-f="'+path+'" placeholder="color: #fff;">'+esc(v==null?'':v)+'</textarea></div>';
  if(f.t==='select')return '<div class="te-f">'+lb+'<select id="'+id+'" data-f="'+path+'">'+f.o.map(o=>'<option value="'+o[0]+'"'+(String(v)===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></div>';
  if(f.t==='image'||f.t==='video'){const vd=f.t==='video';return '<div class="te-f"><span class="te-lb">'+f.l+'</span><div class="te-media cm-media">'+(v?(vd?'<video data-ref="'+esc(v)+'" muted playsinline preload="metadata"></video>':'<img data-ref="'+esc(v)+'" alt="">'):'<div class="te-ph">'+I(vd?'video':'image')+'<span>'+(vd?'Videoni shu yerga tashlang':'Rasmni shu yerga tashlang')+'</span></div>')+
   '<div class="te-ma"><button type="button" class="btn ghost sm" data-up="'+path+'" data-kind="'+f.t+'">'+I('upload')+(vd?'Video yuklash':'Rasm yuklash')+'</button><button type="button" class="btn ghost sm" data-url="'+path+'">'+I('link')+'Havola</button>'+(v?'<button type="button" class="btn ghost sm dl" data-clr="'+path+'">'+I('trash')+'</button>':'')+'</div>'+
   (v?'<small class="te-src nt9">'+esc(/^idb:/.test(v)?TX('Shu brauzerda saqlangan fayl'):/^base:/.test(v)?TX('Loyihaning asl rasmi'):String(v).slice(0,80))+'</small>':'')+'</div></div>'}
  return ''}
 function shown(f,obj){if(!f.when)return true;const m=f.when.split('=');return m.length>1?String(val(obj,m[0])||'')===m[1]:!!val(obj,m[0])}
-function fields(list,obj,base){return list.filter(f=>shown(f,obj)).map(f=>fld(f,obj,base+f.k)).join('')}
+function fields(list,obj,base){return list.filter(f=>shown(f,obj)).map(f=>fld(typeof f.o==='function'?Object.assign({},f,{o:f.o()}):f,obj,base+f.k)).join('')}
 
 function paneSec(){const id=E.sel,sc=E.th.sec[id],nat=TH.native(id),ty=TH.TYPES[sc.type],i=E.th.order.indexOf(id);
  let h='<div class="te-ph-h"><button type="button" class="te-ib" data-back aria-label="Orqaga">'+I('back')+'</button><b>'+(ty&&ty.multi?'<span class="nt9">'+esc(nameOf(E.th,id))+'</span>':esc(nameOf(E.th,id)))+'</b>'+
@@ -180,8 +183,8 @@ function paneSec(){const id=E.sel,sc=E.th.sec[id],nat=TH.native(id),ty=TH.TYPES[
   if(!E.ready||!ks)h+='<p class="note">'+TX('Yuklanmoqda…')+'</p>';
   else if(!ks.length)h+='<p class="note">'+TX("Bu bo'limda tahrirlanadigan matn yo'q.")+'</p>';
   else{const ov=(E.th.text[E.lang]||{});h+=ks.map((k,j)=>{const cur=ov[k.k]!=null?ov[k.k]:k.v,long=k.v.length>60||k.k==='marquee';return '<div class="te-f"><label for="tx'+j+'"><code>'+esc(k.k)+'</code>'+(ov[k.k]!=null?'<button type="button" class="te-rs" data-rs="'+esc(k.k)+'">Asliga qaytarish</button>':'')+'</label>'+(long?'<textarea class="nt9" id="tx'+j+'" rows="3" data-f="tx:'+esc(k.k)+'" data-base="'+esc(k.v)+'">'+esc(cur)+'</textarea>':'<input class="nt9" id="tx'+j+'" data-f="tx:'+esc(k.k)+'" data-base="'+esc(k.v)+'" value="'+esc(cur)+'">')+(k.k==='marquee'?'<small class="te-hint">Iboralarni | belgisi bilan ajrating</small>':'')+'</div>'}).join('')}
-  return h}
- h+='<div class="te-fs">'+fields(ty.settings,sc.s,'s.')+'</div>';
+  return h+secbg(sc)}
+ h+='<div class="te-fs">'+fields(ty.settings,sc.s,'s.')+'</div>'+secbg(sc);
  if(ty.blocks){const BT=ty.blocks,B=sc.b||[];h+='<div class="te-gt">'+I('layers')+'<b>Bloklar</b><em>'+B.length+'/'+(ty.max||20)+'</em></div><div class="te-list" data-list="blk">'+B.map(b=>{const bt=BT[b.type]||{},op=E.open===b.id,tl=pk(b[bt.title],E.lang)||pk(b[bt.title])||bt.name;
    return '<div class="te-blk'+(op?' open':'')+'" data-drag="'+b.id+'" draggable="true"><div class="te-row" data-bo="'+b.id+'"><span class="te-grip" aria-hidden="true">'+I('grip')+'</span><i class="te-ic">'+ic(bt.icon)+'</i><span class="te-nm"><b class="nt9">'+esc(String(tl).replace(/\{(\w+)\}/g,'{$1}'))+'</b><small>'+bt.name+(b.sample?' · <span class="te-smp">Namuna</span>':'')+(b.kind?' · '+(TH.KIND.find(k=>k[0]===b.kind)||['',''])[1]:'')+'</small></span>'+
     '<button type="button" class="te-eye" data-bdup="'+b.id+'" aria-label="Nusxa">'+I('copy')+'</button><button type="button" class="te-eye dl" data-bdel="'+b.id+'" aria-label="O\'chirish">'+I('trash')+'</button></div>'+(op?'<div class="te-bf">'+(b.sample?'<p class="note te-n">'+TX("Namuna: saytda ko'rinmaydi. Video yoki matn kiritsangiz — haqiqiy blokka aylanadi.")+'</p>':'')+fields(bt.fields,b,'b.'+b.id+'.')+'</div>':'')+'</div>'}).join('')+'</div>';
@@ -197,15 +200,32 @@ function paneSet(){const s=E.th.s,C=s.colors||{},P=TH.PALETTES,cur=Object.assign
   '<div class="te-gt">'+I('text')+'<b>Sarlavha shrifti</b></div><div class="te-seg2">'+Object.keys(TH.FONTS).map(k=>'<button type="button" data-font="'+k+'" aria-pressed="'+(s.font===k)+'"><b style="font-family:'+esc(TH.FONTS[k].css)+'">Aa</b><small>'+TH.FONTS[k].name+'</small></button>').join('')+'</div>'+
   '<div class="te-gt">'+I('diamond')+'<b>Tugmalar shakli</b></div><div class="te-seg2">'+[['square',"To'g'ri burchak"],['round','Yumaloq'],['pill','Kapsula']].map(x=>'<button type="button" data-btn="'+x[0]+'" aria-pressed="'+(s.btn===x[0])+'"><i class="te-bs '+x[0]+'"></i><small>'+x[1]+'</small></button>').join('')+'</div>'+
   '<div class="te-gt">'+I('layers')+'<b>Yangi bo\'limlar foni</b></div><div class="te-seg2">'+[['light','Och shampan','Ochroq, tillarang va yashil'],['dark','Zumrad','Sayt foni bilan bir xil']].map(x=>'<button type="button" data-surf="'+x[0]+'" aria-pressed="'+(s.surface===x[0])+'"><i class="te-bs sf '+x[0]+'"></i><small>'+x[1]+'</small></button>').join('')+'</div>'+
+  tset()+
   '<div class="te-gt">'+I('hash')+'<b>Raqamlar</b></div><p class="note te-n">'+TX("Butun sayt uchun umumiy: bosh sahifa, «Biz haqimizda» va boshqa bloklarda {years}, {projects} o'rnida ko'rinadi.")+'</p>'+
   [['FOUNDED','Tashkil topgan yil'],['PROJECTS_DONE','Amalga oshirilgan loyihalar']].map(x=>'<div class="te-f"><label for="n'+x[0]+'">'+x[1]+'</label><input class="nt9" id="n'+x[0]+'" data-f="cfg.'+x[0]+'" value="'+esc(E.cfg[x[0]])+'" placeholder="'+esc(String(window.CFG&&CFG[x[0]]!=null?CFG[x[0]]:''))+'"></div>').join('')+
   '<p class="note te-n">'+TX("Tajriba har yili o'zi oshadi")+': '+new Date().getFullYear()+' − '+(E.cfg.FOUNDED||CFG.FOUNDED)+' = <b>'+(new Date().getFullYear()-(+E.cfg.FOUNDED||CFG.FOUNDED))+'</b></p>'+
   '<p class="note te-n">'+TX("Boshlang'ich to'lov foizi, oylar va 1 m² narxi — Sozlamalar → Narxlar va tizim.")+'</p>'}
 
+/* Mavzu sozlamalari: shriftlar, header va logotip, e'lon qatori, sahifa foni (rasm yoki video),
+   ranglar va Custom CSS. Har bir o'zgarish saytga darhol tushadi (js/site-v3.js → AH_CSS). */
+/* Har bir bo'lim uchun fon (rang, gradient, rasm yoki video), matn rangi va Custom CSS.
+   Asl bo'limlarga ham qo'llanadi — saytda [data-ths="<id>"] selektori orqali. */
+function secbg(sc){
+ return '<div class="te-gt">'+I('image')+'<b>Fon va ko\'rinish</b></div>'+fields(TH.SECBG,sc.s||{},'s.')+
+  '<p class="te-hint te-n">'+TX("Fon rasmi, videosi va ranglar o'ng tomonda darhol ko'rinadi; saqlangach saytda ham shunday bo'ladi.")+'</p>'}
+function tset(){const s=E.th.s||{};let h='',gr='';
+ const GI={'Shriftlar':'text','Sahifa foni':'image',"E'lon qatori":'megaphone','Header va logotip':'grid'};
+ TH.TSET.forEach(f0=>{let f=f0;
+  if(f.gr&&f.gr!==gr){gr=f.gr;h+='<div class="te-gt">'+I(GI[gr]||'edit')+'<b>'+TX(gr)+'</b></div>'}
+  if(!shown(f,s))return;
+  if(f.t==='select'&&typeof f.o==='function')f=Object.assign({},f,{o:f.o()});
+  h+=fld(f,s,'ts.'+f.k)+(f.note?'<p class="te-hint te-n">'+TX(f.note)+'</p>':'')});
+ return h}
 function fillThumbs(R){R.querySelectorAll('[data-ref]').forEach(el=>{refURL(el.dataset.ref).then(u=>{if(!u){el.replaceWith(Object.assign(document.createElement('div'),{className:'te-ph',innerHTML:I('image')}));return}el.src=u})})}
 
 /* ---------- qiymatlarni yozish ---------- */
-function target(path){if(path.indexOf('s.')===0)return [sec().s,path.slice(2)];
+function target(path){if(path.indexOf('ts.')===0){E.th.s=E.th.s||{};return [E.th.s,path.slice(3)]}
+ if(path.indexOf('s.')===0){const c=sec();c.s=c.s||{};return [c.s,path.slice(2)]}
  if(path.indexOf('b.')===0){const p=path.split('.'),b=(sec().b||[]).find(x=>x.id===p[1]);if(b)delete b.sample;return [b,p.slice(2).join('.')]}
  if(path.indexOf('col.')===0){E.th.s.colors=E.th.s.colors||{};return [E.th.s.colors,path.slice(4)]}
  if(path.indexOf('cfg.')===0)return [E.cfg,path.slice(4)];

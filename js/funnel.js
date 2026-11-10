@@ -111,6 +111,53 @@
   function armForm(f) { $$('.js-pp-phone', f).forEach(AH_SITE.phoneMask); }
   function trust() { var L = (FN().offer || {}).trust; L = Array.isArray(L) ? L : FD.trust; return L.filter(function (x) { return x.on !== false; }); }
 
+  /* ---------- v2: hissiy qatlam — bank bilan solishtirish, to'lov yo'li (8 til; kirill — avtomatik) ---------- */
+  var XD = {
+    uz: { k: 'Ipoteka bilan solishtiring', hl: "Bank ipotekasi — uyga {x} baravar pul to'lash degani. Art House'da esa foizsiz, mutlaqo halol.", bank: 'Bank ipotekasida', bankd: 'yillik {r}%, {y} yil', ah: "Art House'da", ahd: '0% · halol', save: 'Siz tejaysiz', note: "Taxminiy hisob: boshlang'ich to'lov bir xil, ipoteka yillik {r}%, {y} yil.", times: '{x} baravar', s1: 'Bugun', s2: 'Har oy, 0%', s3: 'Kalitlar', s3d: 'Rasmiy shartnoma bilan', end: "Oxirgi to'lov: {d}", free: "Shu kundan boshlab uy to'liq sizniki — bank ham, qarz ham yo'q." },
+    ru: { k: 'Сравните с ипотекой', hl: 'Банковская ипотека — это заплатить за квартиру в {x} раза больше. В Art House — без процентов, абсолютно халяль.', bank: 'Ипотека в банке', bankd: '{r}% годовых, {y} лет', ah: 'В Art House', ahd: '0% · халяль', save: 'Вы экономите', note: 'Примерный расчёт: одинаковый первый взнос, ипотека {r}% годовых на {y} лет.', times: 'в {x} раза', s1: 'Сегодня', s2: 'Каждый месяц, 0%', s3: 'Ключи', s3d: 'По официальному договору', end: 'Последний платёж: {d}', free: 'С этого дня квартира полностью ваша — ни банка, ни долга.' },
+    en: { k: 'Compare with a mortgage', hl: 'A bank mortgage means paying {x}× the price of your home. At Art House — interest-free, fully halal.', bank: 'Bank mortgage', bankd: '{r}% a year, {y} years', ah: 'At Art House', ahd: '0% · halal', save: 'You save', note: 'Estimate: same down payment, mortgage at {r}% a year over {y} years.', times: '{x}×', s1: 'Today', s2: 'Monthly, 0%', s3: 'Keys', s3d: 'Under an official contract', end: 'Final payment: {d}', free: 'From that day the home is fully yours — no bank, no debt.' },
+    fr: { k: 'Comparez avec un crédit immobilier', hl: "Un crédit bancaire, c'est payer votre logement {x} fois son prix. Chez Art House — sans intérêts, entièrement halal.", bank: 'Crédit immobilier', bankd: '{r} % par an, {y} ans', ah: 'Chez Art House', ahd: '0 % · halal', save: 'Vous économisez', note: 'Estimation : même apport, crédit à {r} % par an sur {y} ans.', times: '×{x}', s1: "Aujourd'hui", s2: 'Chaque mois, 0 %', s3: 'Les clés', s3d: 'Avec un contrat officiel', end: 'Dernier paiement : {d}', free: 'Dès ce jour, le logement est entièrement à vous — sans banque ni dette.' },
+    it: { k: 'Confronta con il mutuo', hl: 'Un mutuo bancario significa pagare la casa {x} volte il suo prezzo. Con Art House — senza interessi, completamente halal.', bank: 'Mutuo bancario', bankd: '{r}% annuo, {y} anni', ah: 'Con Art House', ahd: '0% · halal', save: 'Risparmi', note: 'Stima: stesso anticipo, mutuo al {r}% annuo per {y} anni.', times: '×{x}', s1: 'Oggi', s2: 'Ogni mese, 0%', s3: 'Le chiavi', s3d: 'Con contratto ufficiale', end: 'Ultima rata: {d}', free: 'Da quel giorno la casa è interamente tua — niente banca, niente debiti.' },
+    es: { k: 'Compare con una hipoteca', hl: 'Una hipoteca bancaria significa pagar su vivienda {x} veces su precio. En Art House — sin intereses, totalmente halal.', bank: 'Hipoteca bancaria', bankd: '{r} % anual, {y} años', ah: 'En Art House', ahd: '0 % · halal', save: 'Usted ahorra', note: 'Estimación: misma entrada, hipoteca al {r} % anual a {y} años.', times: '×{x}', s1: 'Hoy', s2: 'Cada mes, 0 %', s3: 'Las llaves', s3d: 'Con contrato oficial', end: 'Último pago: {d}', free: 'Desde ese día la vivienda es totalmente suya — sin banco ni deudas.' },
+    de: { k: 'Mit einer Hypothek vergleichen', hl: 'Eine Bankhypothek heißt: Sie zahlen für Ihre Wohnung das {x}-Fache. Bei Art House — zinsfrei, vollständig halal.', bank: 'Bankhypothek', bankd: '{r} % p. a., {y} Jahre', ah: 'Bei Art House', ahd: '0 % · halal', save: 'Sie sparen', note: 'Schätzung: gleiche Anzahlung, Hypothek {r} % p. a. über {y} Jahre.', times: '{x}×', s1: 'Heute', s2: 'Monatlich, 0 %', s3: 'Schlüssel', s3d: 'Mit offiziellem Vertrag', end: 'Letzte Rate: {d}', free: 'Ab diesem Tag gehört die Wohnung ganz Ihnen — ohne Bank, ohne Schulden.' },
+    tr: { k: 'Konut kredisiyle karşılaştırın', hl: "Banka konut kredisi, evinize {x} katı para ödemek demek. Art House'ta — faizsiz, tamamen helal.", bank: 'Banka konut kredisinde', bankd: 'yıllık %{r}, {y} yıl', ah: "Art House'ta", ahd: '%0 · helal', save: 'Tasarrufunuz', note: 'Tahmini hesap: aynı peşinat, yıllık %{r} konut kredisi, {y} yıl.', times: '{x} kat', s1: 'Bugün', s2: 'Her ay, %0', s3: 'Anahtarlar', s3d: 'Resmi sözleşmeyle', end: 'Son ödeme: {d}', free: 'O günden itibaren ev tamamen sizin — banka yok, borç yok.' }
+  };
+  function XT(k, o) { var l = lng(), d = XD[l], v = l === 'cy' ? I18N.toCyr(XD.uz[k]) : (d ? d[k] : XD.en[k]); return fill(v == null ? XD.uz[k] : v, o); }
+  /* Ipoteka: yillik foiz va muddat — kabinet → Sozlamalar → Aloqa (BANK_RATE, BANK_YEARS); bo'lmasa bozor o'rtachasi 17% / 15 yil */
+  var BR = function () { return +CFG.BANK_RATE > 0 ? +CFG.BANK_RATE : 17; };
+  var BY = function () { return +CFG.BANK_YEARS > 0 ? +CFG.BANK_YEARS : 15; };
+  function mort(P, dn) { /* → { over: foiz uchun ortiqcha pul, total: ipoteka bilan jami, x: uy narxiga nisbatan necha baravar } */
+    var L = Math.max(0, P - dn), n = BY() * 12, i = BR() / 1200; if (!(L > 0)) return { over: 0, total: P, x: 1 };
+    var A = L * i / (1 - Math.pow(1 + i, -n)), over = Math.round((A * n - L) / 10) * 10, total = P + over;
+    return { over: over, total: total, x: total / P };
+  }
+  function xs(x) { var loc = { uz: 'uz-Latn', cy: 'uz-Cyrl' }[lng()] || lng(); try { return x.toLocaleString(loc, { maximumFractionDigits: 1, minimumFractionDigits: 1 }); } catch (e) { return x.toFixed(1); } }
+  var KEY = '<path d="M2.6 18.4l6.5-6.5"/><path d="M5 16l2 2"/><circle cx="15" cy="9" r="5.5"/><circle cx="16.5" cy="7.5" r="1.4"/>';
+  var WAL = '<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><path d="M21 12v4h-5a2 2 0 0 1 0-4z"/>';
+  var CAL = '<rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9 15.5 2 2 4-4"/>';
+  function minUnit() { var b = null; list().forEach(function (p) { p.plans.forEach(function (pl) { var pr = price(p, pl); if (!b || pr < b) b = pr; }); }); return b || 0; }
+  function cmp(P, dn) {
+    var m = mort(P, dn), U = I18N.usd, o = { r: BR(), y: BY(), x: xs(m.x) };
+    return '<div class="x2-save"><span>' + esc(XT('k')) + '</span><p class="x2-hl">' + esc(XT('hl', o)) + '</p>' +
+      '<div class="x2-cmp"><div><small>' + esc(XT('bank')) + '</small><em>' + esc(XT('bankd', o)) + '</em><s>' + esc(U(m.total)) + '</s><i class="x2-x">' + esc(XT('times', o)) + '</i></div>' +
+      '<div class="on"><small>' + esc(XT('ah')) + '</small><em>' + esc(XT('ahd')) + '</em><b>' + esc(U(P)) + '</b><i class="x2-x">' + esc(XT('times', { x: xs(1) })) + '</i></div></div>' +
+      '<p class="x2-big">' + esc(XT('save')) + ' <strong>' + esc(U(m.over)) + '</strong></p><em>' + esc(XT('note', o)) + '</em></div>';
+  }
+  function xOffer() {
+    var P = minUnit(), dn = minDown(), n = maxM(), L = Math.max(0, P - dn), U = I18N.usd;
+    return '<div class="pp-x2 pp-b">' + cmp(P, dn) +
+      '<ol class="x2-path"><li><i>' + SV(WAL) + '</i><b>' + esc(XT('s1')) + '</b><span>' + esc(U(dn)) + '</span></li><li><i>' + SV(CAL) + '</i><b>' + esc(XT('s2')) + '</b><span>' + esc(U(L / n)) + ' × ' + n + '</span></li><li><i>' + SV(KEY) + '</i><b>' + esc(XT('s3')) + '</b><span>' + esc(XT('s3d')) + '</span></li></ol></div>';
+  }
+  function xCalc(r) {
+    var n = +S.m, d = new Date(); d.setMonth(d.getMonth() + n);
+    var loc = { uz: 'uz-Latn', cy: 'uz-Cyrl' }[lng()] || lng(), ds; try { ds = d.toLocaleDateString(loc, { month: 'long', year: 'numeric' }); } catch (e) { ds = (d.getMonth() + 1) + '.' + d.getFullYear(); }
+    var ticks = ''; for (var i = 0; i < Math.min(n, 36); i++) ticks += '<u style="animation-delay:' + (i * 18) + 'ms"></u>';
+    return cmp(r.u.price, r.down) +
+      '<div class="x2c-bar" aria-hidden="true"><i style="width:' + S.pct + '%"></i><span>' + ticks + '</span></div>' +
+      '<div class="x2c-leg"><span>' + esc(XT('s1')) + ' · ' + S.pct + '%</span><span>' + esc(XT('end', { d: ds })) + '</span></div>' +
+      '<p class="x2c-own">' + SV(KEY) + '<span>' + esc(XT('free')) + '</span></p>';
+  }
+
   /* 1) taklif: kalit-karta (oltin folga barmoq bilan suriladi) */
   function renderOffer() {
     var O = FN().offer || {}, P0 = PROJECTS[0], fct = P0.facts || [], cap = fct.slice(0, 2).map(function (x) { return x.v + ' ' + pick(x.k); }).join(' · ');
@@ -119,13 +166,13 @@
       '<div class="pp-main"><i class="pp-handle"></i>' +
       '<p class="pp-k pp-a">' + esc(T('pop.k1')) + '</p><p class="pp-k pp-b">' + esc(T('pop.k2')) + '</p>' +
       '<h2 class="pp-h pp-a" id="ppT">' + esc(T('pop.t1')) + '</h2><p class="pp-s pp-a">' + esc(T('pop.s1')) + '</p>' +
-      '<div class="pp-card"><span class="pp-guil" aria-hidden="true"></span><span class="pp-shine"></span>' + LOGO + '<b class="pp-brand">' + esc(O.brand || 'ART HOUSE') + '</b><small class="pp-no">' + esc(O.no || ('No ' + (CFG.FOUNDED || 2012))) + '</small>' +
+      '<div class="pp-card"><span class="pp-guil" aria-hidden="true"></span><span class="pp-shine"></span>' + LOGO + '<b class="pp-brand">' + esc(O.brand || 'ART HOUSE') + '</b>' + (O.no ? '<small class="pp-no">' + esc(O.no) + '</small>' : '') +
         '<div class="pp-rev"><span>' + esc(T('pop.down')) + '</span><strong id="ppNum">' + esc(I18N.usd(minDown())) + '</strong><em>' + esc(T('pop.rest')) + '</em></div>' +
         '<canvas class="pp-foil" aria-hidden="true"></canvas><span class="pp-gleam" aria-hidden="true"></span></div>' +
       '<h2 class="pp-h pp-b pp-h2">' + esc(T('pop.t2')) + '</h2><p class="pp-s pp-b">' + esc(T('pop.s2')) + '</p>' +
       '<button class="pp-link pp-a" type="button" data-reveal>' + esc(T('pop.open')) + '</button>' +
       '<ul class="pp-trust pp-a">' + trust().map(function (x) { return '<li>' + ICO(x, 'pp-ic') + '<span>' + esc(ML(x.t, x.k)) + '</span></li>'; }).join('') + '</ul>' +
-      '<form class="pp-form pp-b" novalidate data-form="offer">' + fields(T('pop.cta')) + '</form>' + proof() + '</div></div>';
+      xOffer() + '<form class="pp-form pp-b" novalidate data-form="offer">' + fields(T('pop.cta')) + '</form>' + proof() + '</div></div>';
     armForm(box);
     if (revealed) { var a = $('.pp-a#ppT', box); if (a) a.removeAttribute('id'); $('.pp-h2', box).id = 'ppT'; }
   }
@@ -160,16 +207,40 @@
     x.restore();
     x.globalCompositeOperation = 'destination-out'; x.lineCap = x.lineJoin = 'round'; x.lineWidth = 44;
     box.classList.add('is-foil');
-    var down = false, last = null, n = 0;
-    var pt = function (e) { var b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
-    var check = function () {
-      var d = x.getImageData(0, 0, cv.width, cv.height).data, c = 0, all = 0;
-      for (var q = 3; q < d.length; q += 80) { all++; if (d[q] < 40) c++; }
+    /* Silliq surish: chiziq har bir hodisada emas, kadr bo'yicha (requestAnimationFrame) chiziladi;
+       oraliq nuqtalar getCoalescedEvents orqali olinadi — telefonda chiziq uzilmaydi va sakramaydi.
+       Ochilganlik darajasi kam-kam tekshiriladi: getImageData qimmat amal, uni har harakatda chaqirish
+       barmoq ortidan «kechikish» hosil qilardi. */
+    var down = false, last = null, pend = [], raf = 0, moved = 0, lastChk = 0;
+    var pt = function (e) { var b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * W / b.width, (e.clientY - b.top) * H / b.height]; };
+    function check(force) {
+      var now = (window.performance || Date).now(); if (!force && now - lastChk < 260) return; lastChk = now;
+      var d = x.getImageData(0, 0, cv.width, cv.height).data, c = 0, all = 0, step = Math.max(1, Math.round(d.length / 4 / 2500)) * 4;
+      for (var q = 3; q < d.length; q += step) { all++; if (d[q] < 40) c++; }
       if (all && c / all > 0.4) reveal();
-    };
-    cv.addEventListener('pointerdown', function (e) { down = true; last = pt(e); try { cv.setPointerCapture(e.pointerId); } catch (er) {} box.classList.add('is-scratching'); x.beginPath(); x.arc(last[0], last[1], 22, 0, 7); x.fill(); });
-    cv.addEventListener('pointermove', function (e) { if (!down) return; var p = pt(e); x.beginPath(); x.moveTo(last[0], last[1]); x.lineTo(p[0], p[1]); x.stroke(); last = p; if (++n % 5 === 0) check(); });
-    ['pointerup', 'pointercancel'].forEach(function (ev) { cv.addEventListener(ev, function () { if (down) { down = false; check(); } }); });
+    }
+    function draw() {
+      raf = 0; if (!pend.length || !last) { pend = []; return; }
+      x.beginPath(); x.moveTo(last[0], last[1]);
+      for (var i = 0; i < pend.length; i++) { x.lineTo(pend[i][0], pend[i][1]); moved += Math.abs(pend[i][0] - last[0]) + Math.abs(pend[i][1] - last[1]); last = pend[i]; }
+      x.stroke(); pend = [];
+      if (moved > 180) { moved = 0; check(); }
+    }
+    cv.addEventListener('pointerdown', function (e) {
+      e.preventDefault(); down = true; last = pt(e); moved = 0; pend = [];
+      try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+      box.classList.add('is-scratching');
+      x.beginPath(); x.arc(last[0], last[1], 22, 0, 7); x.fill();
+    });
+    cv.addEventListener('pointermove', function (e) {
+      if (!down) return; e.preventDefault();
+      var ev = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+      for (var i = 0; i < ev.length; i++) pend.push(pt(ev[i]));
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, { passive: false });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) {
+      cv.addEventListener(ev, function () { if (!down) return; down = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } draw(); check(true); });
+    });
   }
   function reveal() {
     if (revealed) return; revealed = true; track('pr');
@@ -199,7 +270,7 @@
       row(T('hf.m'), chips('m', CFG.MONTHS.map(function (m) { return [m, m + ' ' + t('unit.month')]; }), S.m)) +
       '<div class="pp-res" aria-live="polite"><div class="pp-res-top"><a class="pp-plan" href="#projects/' + esc(P.id) + '" data-ppx><img id="ppImg" alt="" decoding="async"></a><div><span>' + esc(T('pc.res')) + ' · ' + esc(T('hf.res')) + '</span><strong id="ppM"></strong><small id="ppUzs"></small></div></div>' +
         '<dl class="pp-break"><div><dt>' + esc(T('pc.price')) + '</dt><dd id="ppPr"></dd></div><div><dt id="ppDnL"></dt><dd id="ppDn"></dd></div><div><dt>' + esc(T('pc.rest')) + '</dt><dd id="ppRs"></dd></div><div class="pp-mo"><dt>' + esc(T('pc.mon')) + '</dt><dd id="ppMo"></dd></div></dl>' +
-        '<p class="pp-today" id="ppToday"></p><em class="pp-unit" id="ppU"></em></div>' +
+        '<p class="pp-today" id="ppToday"></p><div class="pp-x2c" id="ppX2"></div><em class="pp-unit" id="ppU"></em></div>' +
       '<button class="pp-btn" type="button" data-cstep><span>' + esc(T('hf.book')) + '</span>' + SV(IC.arrow) + '</button></div>' +
       '<form class="pp-form pp-cform" novalidate data-form="calc" hidden><p class="pp-sum" id="ppSum"></p><p class="pp-s">' + esc(T('pc.formS')) + '</p>' + fields(T('pc.send')) +
       '<button class="pp-link" type="button" data-cback>' + esc(T('pc.back')) + '</button></form>' +
@@ -220,6 +291,7 @@
     $('#ppToday', box).textContent = T('pc.today', { d: U(r.down), m: U(r.monthly), n: S.m });
     $('#ppU', box).textContent = pick(proj().name) + ' · ' + planName(u.pl);
     var img = $('#ppImg', box); if (img && img.getAttribute('src') !== u.pl.img) img.src = u.pl.img;
+    var x2 = $('#ppX2', box); if (x2) x2.innerHTML = xCalc(r);
   }
   function touch() { if (!S.touched) { S.touched = 1; track('c'); } save(); }
 

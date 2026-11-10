@@ -23,6 +23,9 @@ const rnd = (n = 24) => [...crypto.getRandomValues(new Uint8Array(n))].map(x => 
 const uid = () => Date.now().toString(36) + rnd(4);
 const rd = async (e, k, d) => { const v = await KV(e).get(k, 'json'); return v == null ? d : v; };
 const wr = (e, k, v) => KV(e).put(k, JSON.stringify(v));
+/* Mijozlar arxivi: o'chirilgan mijozlar 30 kun saqlanadi */
+const ARCH_MS = 30 * 864e5;
+const archLive = a => { const n = Date.now(); return (Array.isArray(a) ? a : []).filter(x => x && n - (+x.delAt || 0) < ARCH_MS); };
 const ip = req => req.headers.get('CF-Connecting-IP') || 'x';
 const PROJECT_IDS = ['musaffo', 'kokcha', 'obod'];
 
@@ -275,8 +278,10 @@ export default {
       /* ---------------- kabinet (faqat kirganlar) ---------------- */
       if (!me) return J({ error: 'auth' }, 401, C);
       if (p === '/stats' && M === 'GET') {
-        const [days, leads, exp, inv, chats, calls] = await Promise.all([rd(e, 'days', {}), rd(e, 'leads', []), own ? rd(e, 'exp', []) : [], rd(e, 'inv', {}), rd(e, 'chats', []), rd(e, 'crm_calls', [])]);
-        return J({ days, leads, exp, inv, chats, calls }, 200, C);
+        const [days, leads, exp, inv, chats, calls, arch0] = await Promise.all([rd(e, 'days', {}), rd(e, 'leads', []), own ? rd(e, 'exp', []) : [], rd(e, 'inv', {}), rd(e, 'chats', []), rd(e, 'crm_calls', []), own ? rd(e, 'arch', []) : []]);
+        /* Mijozlar arxivi (faqat direktor): 30 kundan eski yozuvlar avtomatik tozalanadi */
+        const arch = archLive(arch0); if (arch.length !== arch0.length) await wr(e, 'arch', arch);
+        return J({ days, leads, exp, inv, chats, calls, arch }, 200, C);
       }
       if (p === '/voice' && M === 'GET') {
         const k = u.searchParams.get('k') || ''; if (!/^v:[\w]{6,40}$/.test(k)) return J({ error: 'bad' }, 400, C);
@@ -288,6 +293,16 @@ export default {
         if (Array.isArray(b.leads)) { const safe = b.leads.slice(0, 100).map(x => { const s = Object.assign({}, x, { name: cut(x.name, 80), phone: cut(x.phone, 25), unit: cut(x.unit, 120) }); if (!own) { delete s.amt; delete s.disc; } return s; }); await wr(e, 'leads', mergeById(await rd(e, 'leads', []), safe).slice(0, 5000)); }
         if (own) {
           if (Array.isArray(b.delLeads)) await wr(e, 'leads', (await rd(e, 'leads', [])).filter(x => !b.delLeads.includes(x.id)));
+          /* arxivga ko'chirish / tiklash / butunlay o'chirish */
+          if (Array.isArray(b.archLeads) || Array.isArray(b.restoreLeads) || Array.isArray(b.purgeArch)) {
+            const ids = v => (Array.isArray(v) ? v : []).slice(0, 2000).map(String);
+            let L = await rd(e, 'leads', []), A = archLive(await rd(e, 'arch', []));
+            const a = ids(b.archLeads), r = ids(b.restoreLeads), x = ids(b.purgeArch), at = Date.now();
+            if (a.length) { const mv = L.filter(l => a.includes(l.id)); L = L.filter(l => !a.includes(l.id)); A = mv.map(l => Object.assign({}, l, { delAt: at, delBy: cut(b.by, 60) })).concat(A).slice(0, 5000); }
+            if (r.length) { const mv = A.filter(l => r.includes(l.id)); A = A.filter(l => !r.includes(l.id)); L = mv.map(l => { const y = Object.assign({}, l); delete y.delAt; delete y.delBy; return y; }).concat(L.filter(l => !r.includes(l.id))).sort((p1, p2) => (+p2.at || 0) - (+p1.at || 0)).slice(0, 5000); }
+            if (x.length) A = A.filter(l => !x.includes(l.id));
+            await wr(e, 'leads', L); await wr(e, 'arch', A);
+          }
           if (Array.isArray(b.delChats)) await wr(e, 'chats', (await rd(e, 'chats', [])).filter(x => !b.delChats.includes(x.id)));
           if (Array.isArray(b.exp)) await wr(e, 'exp', mergeById(await rd(e, 'exp', []), b.exp.map(x => ({ id: cut(x.id, 40), at: +x.at || Date.now(), amt: Math.max(0, +x.amt || 0), note: cut(x.note, 80) }))).slice(0, 5000));
           if (Array.isArray(b.delExp)) await wr(e, 'exp', (await rd(e, 'exp', [])).filter(x => !b.delExp.includes(x.id)));

@@ -84,6 +84,8 @@
     msg: SV('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'), send: SV('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'), save: SV('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>'),
     cam: SV('<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'),
     off: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/>'), on: SV('<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>') };
+  UI.rep = SV('<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>');
+  UI.more = SV('<circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/>');
   /* Reels ro'yxati: kabinet → Sayt → Instagram (AH_CMS.ig.reels), bo'lmasa js/ig-reels.js (standart 3 ta video) */
   function reels() {
     var D = window.AH_IG_REELS || CFG.IG_REELS || [], R = ((window.AH_CMS || {}).ig || {}).reels;
@@ -110,9 +112,9 @@
       '<div class="igs2-feed">' + R.map(function (r, i) {
         return '<div class="igs2-slide' + (i ? ' next' : ' on') + '" data-i="' + i + '"><video class="igs2-v" muted playsinline loop preload="' + (i ? 'none' : 'metadata') + '"' + vAttr('src', r.src) + vAttr('poster', r.poster) + '></video></div>';
       }).join('') + '</div>' +
-      '<span class="igs2-side"><i>' + UI.heart + '</i><i>' + UI.msg + '</i><i>' + UI.send + '</i><i>' + UI.save + '</i></span>' +
+      '<span class="igs2-side"><i class="igx-like" data-k="like">' + UI.heart + '<b data-c="l"></b></i><i data-k="msg">' + UI.msg + '<b data-c="c"></b></i><i data-k="rep">' + UI.rep + '<b data-c="r"></b></i><i data-k="send">' + UI.send + '<b data-c="s"></b></i><i data-k="save">' + UI.save + '<b data-c="v"></b></i><i class="igx-more" data-k="more">' + UI.more + '</i></span>' +
       '<span class="igs2-cc" aria-live="polite"></span>' +
-      '<span class="igs2-bot"><span class="igs2-who"><svg class="igs2-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span></span>' +
+      '<span class="igs2-bot"><span class="igs2-who"><img class="igs2-av igs2-avi" alt="" decoding="async" src="' + (window.AH_IG_AV ? AH_IG_AV() : '') + '"><b>' + nm + '</b><em>Follow</em></span><span class="igs2-cap"></span><span class="igs2-fby"></span></span>' +
       '<span class="igs2-hearts" aria-hidden="true"></span><span class="igs2-prog"><i></i></span></div>' +
       '<button type="button" class="igs2-snd" aria-label="' + esc(t('ig.sound')) + '" aria-pressed="false">' + UI.off + '<span>' + esc(t('ig.sound')) + '</span></button></div>' +
       '</div>' : '') + '</div>';
@@ -124,7 +126,7 @@
     var wantSound = function () { return SOUND === true; };
     var play = function () { var v = cur(); if (!v || !vis) return; v.muted = !wantSound(); var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; v.play().catch(function () {}); sync(); }); sync(); };
     var sync = function () { var on = !cur().muted; snd.innerHTML = (on ? UI.on : UI.off) + (on ? '' : '<span>' + esc(t('ig.sound')) + '</span>'); snd.classList.toggle('on', on); snd.setAttribute('aria-pressed', String(on)); };
-    var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; };
+    var meta = function () { var r = R[k]; capEl.textContent = '♫ ' + (r.by || nm) + ' · Original audio'; if (window.AH_IG_STATS) AH_IG_STATS(s, k); };
     var caption = function () { var v = cur(), c = R[k].cap || [], tm = v.currentTime, x = ''; for (var i = 0; i < c.length; i++) if (tm >= c[i].s && tm < c[i].e) { x = capText(c[i].t); break; } if (cc.textContent !== x) { cc.textContent = x; cc.classList.toggle('on', !!x); } };
     /* yon tomonga almashish: d = 1 — o'ngdagi (keyingi), -1 — chapdagi; oxirgisidan keyin birinchisi keladi */
     var go = function (d) {

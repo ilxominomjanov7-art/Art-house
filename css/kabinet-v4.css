@@ -1,0 +1,351 @@
+/* =====================================================================
+   ART HOUSE — KABINET v4 (2026-11) — oxirgi qatlam
+   1) Kirish sahifasi va kirish animatsiyasi: ochroq, zamonaviy yashil fon;
+      «Xush kelibsiz» wow-animatsiyasi
+   2) Mijozlar bazasi: katta ikonkalar, bir nechtasini belgilash (Telegram
+      uslubida), «Mijozlar arxivi»
+   3) AI Agent: kutib olish animatsiyasi, mavzular, xotira
+   Ranglar o'zgaruvchilar orqali: kabinet → Kabinet menyusi → «Kabinet
+   ranglari» o'zgarsa, kirish sahifasi ham moslashadi (js/kabinet-layout.js).
+   ===================================================================== */
+:root {
+  /* kirish sahifasi va animatsiya foni: markaz → o'rta → chet */
+  --lg-a: #23896C;
+  --lg-b: #166953;
+  --lg-c: #0F4E3D;
+  --lg-card: rgba(255, 255, 255, .075);
+  --lg-line: rgba(244, 234, 203, .3);
+}
+
+/* ---------- 1) kirish sahifasi ---------- */
+#adm #al {
+  background:
+    radial-gradient(60% 46% at 50% 0%, rgba(244, 234, 203, .16), transparent 70%),
+    radial-gradient(120% 90% at 50% 8%, var(--lg-a) 0%, var(--lg-b) 48%, var(--lg-c) 100%);
+}
+#adm #al .lgc {
+  background: var(--lg-card);
+  border: 1px solid var(--lg-line);
+  box-shadow: 0 40px 90px -46px rgba(3, 33, 26, .75), inset 0 1px 0 rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+#adm #al .lgc::before { display: none; }
+#adm #al .lgs { color: rgba(243, 239, 228, .72); }
+#adm #al .lgc label { color: rgba(243, 239, 228, .82); }
+#adm #al .lgc .iw svg { stroke: rgba(243, 239, 228, .62); }
+#adm #al .lgc .iw input {
+  background: rgba(3, 33, 26, .34);
+  border-color: rgba(244, 234, 203, .26);
+  color: #FBF6E9;
+}
+#adm #al .lgc .iw input:focus { border-color: var(--ch-200); box-shadow: 0 0 0 3px rgba(234, 219, 176, .2); outline: 0; }
+#adm #al .lgc .btn.ghost { background: rgba(255, 255, 255, .07); border-color: rgba(244, 234, 203, .3); color: #FBF6E9; }
+#adm #al .lgc .btn.ghost:hover { background: rgba(255, 255, 255, .13); }
+#adm #al .lgc .lgf, #adm #al .lgc .note { color: rgba(243, 239, 228, .78); }
+#adm #al .lgc .err { color: #FFD9D2; }
+/* til tugmasi kirish sahifasida ham o'qiladi */
+#adm:has(#al:not([hidden])) #cg > button { background: rgba(3, 33, 26, .36); border-color: var(--lg-line); }
+
+/* ---------- 1) kirish animatsiyasi: ochroq fon + «Xush kelibsiz» ---------- */
+.splash {
+  background:
+    radial-gradient(46% 40% at 50% 44%, rgba(244, 234, 203, .2), transparent 72%),
+    radial-gradient(90% 80% at 50% 46%, var(--lg-a) 0%, var(--lg-b) 52%, var(--lg-c) 100%) !important;
+  overflow: hidden;
+}
+.splash .splash-glow {
+  background: radial-gradient(circle, rgba(251, 246, 233, .3), rgba(234, 219, 176, .1) 45%, transparent 68%) !important;
+}
+.lux-logo { z-index: 2; }
+.lux-mark { filter: drop-shadow(0 6px 22px rgba(3, 33, 26, .35)) !important; }
+/* yorug'lik nurlari sekin aylanadi */
+.lux-rays {
+  position: absolute; left: 50%; top: 46%; width: 150vmax; height: 150vmax; margin: -75vmax 0 0 -75vmax; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, rgba(251, 246, 233, .075) 0deg 5deg, transparent 5deg 20deg);
+  -webkit-mask: radial-gradient(circle, #000 0, rgba(0, 0, 0, .5) 22%, transparent 52%);
+  mask: radial-gradient(circle, #000 0, rgba(0, 0, 0, .5) 22%, transparent 52%);
+  opacity: 0; animation: lxRays 3.4s cubic-bezier(.33, 0, .2, 1) .15s forwards;
+}
+@keyframes lxRays { 0% { opacity: 0; transform: rotate(-14deg) scale(.86); } 35% { opacity: 1; } 100% { opacity: .65; transform: rotate(10deg) scale(1.04); } }
+/* logotip atrofida kengayuvchi oltin halqa */
+.lux-ring {
+  position: absolute; left: 50%; top: 0; width: clamp(72px, 12vmin, 104px); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(251, 246, 233, .75), 0 0 34px rgba(234, 219, 176, .5);
+  opacity: 0; animation: lxRing 1.9s cubic-bezier(.2, .7, .2, 1) .55s 2;
+}
+@keyframes lxRing { 0% { opacity: .9; transform: translateX(-50%) scale(.7); } 100% { opacity: 0; transform: translateX(-50%) scale(3.4); } }
+/* «Xush kelibsiz» — harflar oralig'i yig'ilib, tiniqlashib chiqadi */
+.lux-hello {
+  margin: 2px 0 -8px; font: 500 clamp(13px, 2.3vmin, 18px)/1.2 var(--ui, 'Inter', sans-serif); letter-spacing: .5em; margin-right: -.5em; text-transform: uppercase; white-space: nowrap;
+  color: #FBF6E9; text-shadow: 0 2px 18px rgba(3, 33, 26, .45);
+  opacity: 0; filter: blur(10px); transform: translateY(12px) scale(1.06);
+  animation: lxHello 1.25s cubic-bezier(.2, .8, .2, 1) .45s forwards;
+}
+@keyframes lxHello { 0% { opacity: 0; filter: blur(10px); letter-spacing: .95em; transform: translateY(12px) scale(1.06); } 100% { opacity: 1; filter: blur(0); letter-spacing: .5em; transform: none; } }
+.lux-word span { text-shadow: none; animation-delay: .95s, 1.55s !important; background: linear-gradient(100deg, #E3CB8F 0%, #F4EACB 38%, #FFFDF4 50%, #F4EACB 62%, #E3CB8F 100%) !important; background-size: 240% 100% !important; -webkit-background-clip: text !important; background-clip: text !important; }
+.lux-line { animation-delay: 1.45s !important; }
+.lux-sub { color: rgba(251, 246, 233, .82) !important; animation-delay: 1.9s !important; }
+/* oltin zarralar yuqoriga ko'tariladi */
+.lux-dust { position: absolute; inset: 0; pointer-events: none; }
+.lux-dust i {
+  position: absolute; bottom: -10px; width: 4px; height: 4px; border-radius: 50%; background: #FBF1CF; box-shadow: 0 0 10px 2px rgba(251, 241, 207, .65);
+  opacity: 0; animation: lxDust var(--d, 3.2s) cubic-bezier(.3, .2, .3, 1) var(--w, 0s) forwards;
+}
+@keyframes lxDust { 0% { opacity: 0; transform: translate3d(0, 0, 0) scale(.6); } 18% { opacity: .95; } 100% { opacity: 0; transform: translate3d(var(--x, 0), -78vh, 0) scale(1.1); } }
+.lux-dust i:nth-child(1) { left: 8%; --d: 3.1s; --w: .2s; --x: 26px; }
+.lux-dust i:nth-child(2) { left: 16%; --d: 3.5s; --w: .7s; --x: -18px; width: 3px; height: 3px; }
+.lux-dust i:nth-child(3) { left: 24%; --d: 2.9s; --w: .35s; --x: 12px; }
+.lux-dust i:nth-child(4) { left: 31%; --d: 3.3s; --w: 1s; --x: -30px; width: 5px; height: 5px; }
+.lux-dust i:nth-child(5) { left: 39%; --d: 3s; --w: .1s; --x: 20px; width: 3px; height: 3px; }
+.lux-dust i:nth-child(6) { left: 46%; --d: 3.6s; --w: .55s; --x: -10px; }
+.lux-dust i:nth-child(7) { left: 53%; --d: 2.8s; --w: .9s; --x: 16px; width: 3px; height: 3px; }
+.lux-dust i:nth-child(8) { left: 60%; --d: 3.4s; --w: .25s; --x: -24px; }
+.lux-dust i:nth-child(9) { left: 67%; --d: 3.1s; --w: .8s; --x: 30px; width: 5px; height: 5px; }
+.lux-dust i:nth-child(10) { left: 74%; --d: 3.5s; --w: .45s; --x: -14px; width: 3px; height: 3px; }
+.lux-dust i:nth-child(11) { left: 81%; --d: 2.9s; --w: 1.1s; --x: 10px; }
+.lux-dust i:nth-child(12) { left: 88%; --d: 3.3s; --w: .15s; --x: -22px; width: 3px; height: 3px; }
+.lux-dust i:nth-child(13) { left: 94%; --d: 3s; --w: .65s; --x: -8px; }
+.lux-dust i:nth-child(14) { left: 3%; --d: 3.6s; --w: .95s; --x: 14px; width: 3px; height: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .lux-rays, .lux-ring, .lux-dust { display: none !important; }
+  .lux-hello { opacity: 1 !important; filter: none !important; transform: none !important; animation: none !important; }
+}
+
+/* =====================================================================
+   2) MIJOZLAR BAZASI: katta ikonkalar, belgilash, arxiv
+   ===================================================================== */
+/* mijoz ikonkalari (avatar) va amal tugmalari kattalashtirildi */
+#adm #cl2 .cr2 { position: relative; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr) auto; gap: 16px; padding: 16px 18px; border-radius: 16px; transition: background .2s, border-color .2s, box-shadow .2s, padding-left .22s var(--ease); animation: none; }
+#adm #cl2 .cr2:hover { transform: none; }
+#adm #cl2 .cm { gap: 16px; flex-wrap: nowrap; }
+#adm #cl2 .avt { width: 60px; height: 60px; font: 600 25px/1 var(--ui); border-radius: 50%; color: #0A3326; background: var(--gold-fill); box-shadow: 0 0 0 3px var(--em-900), 0 0 0 4px rgba(220, 196, 143, .5), 0 10px 22px -12px rgba(0, 0, 0, .7); }
+#adm #cl2 .ci { gap: 2px; }
+#adm #cl2 .ci b { font-size: 15.5px; line-height: 1.3; }
+#adm #cl2 .ci a { font-size: 14px; }
+#adm #cl2 .ra { gap: 10px; flex: none; flex-wrap: nowrap; align-items: center; }
+#adm #cl2 .ci { flex: 1 1 0; min-width: 0; }
+#adm #cl2 .ra .ib { width: 46px; height: 46px; border-radius: 13px; }
+#adm #cl2 .ra .ib .ic { width: 22px; height: 22px; }
+#adm #cl2 .cd span { font-weight: 500; }
+
+/* doiracha — belgilash (Telegram'dagidek) */
+#adm #cl2 .ck {
+  position: absolute; left: 14px; top: 50%; width: 26px; height: 26px; margin-top: -13px; display: grid; place-items: center; padding: 0;
+  border-radius: 50%; border: 1.5px solid var(--bd-3); background: var(--sf-in); color: transparent; cursor: pointer;
+  opacity: 0; transform: scale(.6); pointer-events: none; transition: opacity .18s, transform .22s var(--ease), background .18s, border-color .18s;
+}
+#adm #cl2 .ck .ic { width: 15px; height: 15px; margin: 0; stroke: currentColor; stroke-width: 2.6; color: transparent; }
+#adm #cl2 .cr2.sel .ck .ic { color: #0A3326; }
+#adm #cl2:not(.selm) .cr2:hover .ck .ic { color: var(--tx-3); }
+#adm #cl2.selm .cr2 { padding-left: 54px; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+#adm #cl2.selm .ck { opacity: 1; transform: none; pointer-events: auto; }
+#adm #cl2 .cr2.sel { border-color: var(--ch-300); background: linear-gradient(90deg, rgba(220, 196, 143, .16), rgba(220, 196, 143, .05)); box-shadow: inset 0 0 0 1px rgba(220, 196, 143, .35); }
+#adm #cl2 .cr2.sel .ck { background: var(--gold-fill); border-color: transparent; color: #0A3326; animation: ckPop .28s var(--ease); }
+@keyframes ckPop { 0% { transform: scale(.7); } 60% { transform: scale(1.14); } 100% { transform: none; } }
+@media (hover: hover) {
+  /* kompyuterda: qator ustiga kelganda doiracha ko'rinadi */
+  #adm #cl2:not(.selm) .cr2:hover { padding-left: 54px; }
+  #adm #cl2:not(.selm) .cr2:hover .ck { opacity: .85; transform: none; pointer-events: auto; }
+}
+
+/* belgilash paneli */
+#adm .cbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; min-height: 0; margin: 12px 0; }
+#adm .cbar:empty { display: none; }
+#adm .cbar .cbh { color: var(--tx-3); font-size: 12.5px; }
+#adm .cbar .cbs { flex: 1; }
+#adm .cbar.on {
+  position: sticky; top: 10px; z-index: 30; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--bd-3);
+  background: color-mix(in srgb, var(--em-800) 92%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .75); animation: cbIn .26s var(--ease);
+}
+@keyframes cbIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+#adm .cbar .cbn { font: 600 15px/1 var(--ui); color: var(--ch-100); }
+#adm .cbar .btn[disabled] { opacity: .45; pointer-events: none; }
+#adm .cbar .btn .ic { margin-right: 6px; }
+
+/* arxiv */
+#adm .st .st-arch { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; border-style: dashed; }
+#adm .st .st-arch .ic { width: 15px; height: 15px; }
+#adm .st .st-arch.on { border-style: solid; }
+#adm .arch-lead { display: flex; align-items: flex-start; gap: 8px; margin: -4px 0 14px; color: var(--tx-2); }
+#adm .arch-lead .ic { flex: none; margin-top: 2px; color: var(--ch-300); }
+#adm .sqw { position: relative; }
+#adm .sqw > .ic { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; margin-top: -9px; color: var(--tx-3); pointer-events: none; }
+#adm .sqw .sq { width: 100%; padding-left: 42px !important; }
+#adm #cl2 .cr2.arc { border-style: dashed; }
+#adm #cl2 .cr2.arc .avt { filter: grayscale(.55); opacity: .85; }
+#adm #cl2 .arl { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; color: var(--ch-200); border-color: var(--bd-3); }
+#adm #cl2 .arl .ic { width: 14px; height: 14px; }
+
+/* pastki xabar: «Qaytarish» tugmasi */
+.toast.act { display: flex; align-items: center; gap: 14px; pointer-events: auto; }
+.toast .tu { flex: none; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--bd-3, rgba(234, 219, 176, .38)); background: rgba(220, 196, 143, .14); color: var(--ch-100, #F4EACB); font: 600 12.5px/1 var(--ui, sans-serif); cursor: pointer; }
+.toast .tu:hover { background: rgba(220, 196, 143, .26); }
+
+@media (max-width: 820px) {
+  #adm #cl2 .cr2 { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 14px; }
+  #adm #cl2 .cm { flex-wrap: wrap; gap: 12px 14px; }
+  #adm #cl2 .avt { width: 54px; height: 54px; font-size: 22px; }
+  #adm #cl2 .ra { flex: 1 0 100%; margin-left: 0; padding-left: 68px; }
+  #adm #cl2 .ra .ib { width: 44px; height: 44px; }
+  #adm #cl2.selm .cr2 { padding-left: 50px; }
+  #adm #cl2 .ck { top: 41px; margin-top: -13px; }
+  #adm .st .st-arch { margin-left: 0; }
+  #adm .cbar .cbh { flex-basis: 100%; }
+  #adm .cbar.on { top: 62px; }
+}
+
+/* tuzatish: eski `.dl` (teglar ro'yxati) uslubi «O'chirish» tugmalariga ham tegib, ularni qatordan 22px pastga surardi */
+#adm .btn.dl, #adm .ib.dl, #adm .te-ib.dl, #adm .te-eye.dl, .dlg .btn.dl, #te .btn.dl { margin-top: 0; }
+
+/* =====================================================================
+   3) AI AGENT: kutib olish animatsiyasi, mavzular ro'yxati, xotira
+   ===================================================================== */
+/* --- «Xush kelibsiz, Art House» --- */
+.agw {
+  position: relative; overflow: hidden; display: grid; gap: 18px; align-content: center;
+  margin: 0 0 18px; padding: clamp(26px, 4vw, 42px) clamp(20px, 3vw, 36px); min-height: 210px;
+  border-radius: 20px; border: 1px solid var(--bd-2); isolation: isolate;
+  background: radial-gradient(90% 140% at 12% 0%, rgba(220, 196, 143, .16), transparent 62%), linear-gradient(135deg, var(--em-800), var(--em-950));
+}
+.agw-bg { position: absolute; inset: -40%; z-index: -2; pointer-events: none; background: conic-gradient(from 180deg at 30% 40%, rgba(23, 112, 90, .55), rgba(220, 196, 143, .18), rgba(5, 42, 32, .1), rgba(23, 112, 90, .55)); filter: blur(60px); opacity: .5; animation: agwSpin 26s linear infinite; }
+@keyframes agwSpin { to { transform: rotate(360deg); } }
+.agw-sw { position: absolute; inset: 0 auto 0 -60%; z-index: -1; width: 45%; pointer-events: none; background: linear-gradient(100deg, transparent, rgba(255, 246, 220, .14), transparent); transform: skewX(-16deg); }
+.agw.play .agw-sw { animation: agwSheen 1.5s .5s cubic-bezier(.4, 0, .2, 1) 1; }
+@keyframes agwSheen { to { left: 115%; } }
+.agw-sp { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.agw.play .agw-sp i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #F7EDCB; box-shadow: 0 0 10px 2px rgba(247, 237, 203, .6); opacity: 0; animation: agwSp 1.7s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes agwSp { 0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(.4); } 25% { opacity: .95; } 100% { opacity: 0; transform: translate3d(var(--sx, 30px), -60px, 0) scale(1); } }
+.agw-sp i:nth-child(1) { left: 6%; top: 70%; --sx: 24px; animation-delay: .15s; }
+.agw-sp i:nth-child(2) { left: 14%; top: 86%; --sx: -18px; animation-delay: .5s; }
+.agw-sp i:nth-child(3) { left: 23%; top: 62%; --sx: 14px; animation-delay: .8s; }
+.agw-sp i:nth-child(4) { left: 32%; top: 90%; --sx: -26px; animation-delay: .3s; }
+.agw-sp i:nth-child(5) { left: 41%; top: 72%; --sx: 20px; animation-delay: .95s; }
+.agw-sp i:nth-child(6) { left: 50%; top: 88%; --sx: -12px; animation-delay: .6s; }
+.agw-sp i:nth-child(7) { left: 59%; top: 66%; --sx: 28px; animation-delay: .2s; }
+.agw-sp i:nth-child(8) { left: 68%; top: 84%; --sx: -22px; animation-delay: 1s; }
+.agw-sp i:nth-child(9) { left: 77%; top: 74%; --sx: 16px; animation-delay: .45s; }
+.agw-sp i:nth-child(10) { left: 85%; top: 90%; --sx: -14px; animation-delay: .75s; }
+.agw-sp i:nth-child(11) { left: 92%; top: 68%; --sx: 22px; animation-delay: .35s; }
+.agw-sp i:nth-child(12) { left: 97%; top: 82%; --sx: -20px; animation-delay: .9s; }
+.agw-orb { position: absolute; right: clamp(-30px, -2vw, 10px); top: 50%; width: clamp(150px, 20vw, 230px); aspect-ratio: 1; margin-top: calc(clamp(150px, 20vw, 230px) / -2); display: grid; place-items: center; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(220, 196, 143, .2), transparent 68%); }
+.agw-orb svg { width: 52%; height: 52%; fill: none; stroke: url(#gGold); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: .55; animation: agwFloat 7s ease-in-out infinite alternate; }
+@keyframes agwFloat { from { transform: translateY(-7px) rotate(-1.4deg); } to { transform: translateY(7px) rotate(1.4deg); } }
+.agw-tx { position: relative; z-index: 1; display: grid; gap: 8px; max-width: 46ch; }
+.agw-k { display: inline-flex; align-items: center; gap: 7px; margin: 0; font: 600 10.5px/1 var(--ui); letter-spacing: .2em; text-transform: uppercase; color: var(--ch-300); }
+.agw-k .ic { width: 15px; height: 15px; }
+.agw-h { margin: 0; font: 600 clamp(25px, 3.6vw, 40px)/1.12 var(--ui); letter-spacing: -.015em; color: var(--tx); }
+.agw-h .w { display: inline-block; white-space: nowrap; }
+.agw-h .w.g i { background: linear-gradient(100deg, #E3CB8F, #F7EDCB 45%, #C9A96A); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.agw-h i { display: inline-block; font-style: normal; }
+.agw.play .agw-h i { opacity: 0; transform: translateY(16px) rotate(6deg); filter: blur(5px); animation: agwCh .62s cubic-bezier(.2, .8, .25, 1) forwards; animation-delay: calc(var(--i) * 42ms + .12s); }
+@keyframes agwCh { to { opacity: 1; transform: none; filter: blur(0); } }
+.agw-s { margin: 0; color: var(--tx-2); font-size: 13.5px; }
+.agw.play .agw-s { opacity: 0; animation: agwUp .7s cubic-bezier(.2, .8, .25, 1) 1.05s forwards; }
+@keyframes agwUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.agw-kp { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; }
+.agw-kp button { display: grid; gap: 2px; justify-items: start; min-width: 124px; padding: 11px 15px; border-radius: 13px; border: 1px solid var(--bd-2); background: var(--sf-in); color: var(--tx); cursor: pointer; transition: border-color .2s, background .2s, transform .2s var(--ease); }
+.agw-kp button:hover { border-color: var(--ch-300); background: rgba(220, 196, 143, .1); transform: translateY(-2px); }
+.agw-kp button b { font: 600 21px/1.1 var(--ui); color: var(--ch-100); }
+.agw-kp button .ic { width: 20px; height: 20px; color: var(--ch-300); }
+.agw-kp button span { font-size: 11.5px; color: var(--tx-3); }
+.agw.play .agw-kp button { opacity: 0; animation: agwUp .6s cubic-bezier(.2, .8, .25, 1) forwards; }
+.agw.play .agw-kp button:nth-child(1) { animation-delay: 1.15s; }
+.agw.play .agw-kp button:nth-child(2) { animation-delay: 1.25s; }
+.agw.play .agw-kp button:nth-child(3) { animation-delay: 1.35s; }
+.agw.done .agw-bg { animation-duration: 60s; opacity: .34; }
+@media (prefers-reduced-motion: reduce) { .agw-bg, .agw-orb svg, .agw-sp { animation: none !important; } .agw.play * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+
+/* --- sahifa tuzilishi: chat + mavzular --- */
+#adm .ag { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
+#adm .ag-chat { display: grid; gap: 12px; margin: 0; }
+#adm .ag-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+#adm .ag-on { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--tx-2); }
+#adm .ag-on em { font-style: normal; color: var(--tx-3); }
+#adm .ag-acts { display: flex; gap: 8px; }
+#adm .ag-chat .chat { min-height: 320px; max-height: min(56vh, 540px); }
+#adm .ag-day { margin: 10px auto 6px; padding: 3px 12px; border-radius: 999px; background: var(--sf-in); color: var(--tx-3); font-size: 11px; width: fit-content; }
+#adm .ag-rest { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 0 0 6px; color: var(--tx-3); font-size: 11.5px; }
+#adm .ag-rest .ic { width: 14px; height: 14px; color: var(--ch-400); }
+#adm .chat .m.a { animation: agIn .3s var(--ease) both; }
+@keyframes agIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+#adm .ag-h { display: block; margin: 0 0 8px; color: var(--ch-200); font-size: 14.5px; }
+#adm .ag-ul, #adm .ag-ol { margin: 6px 0; padding-left: 18px; display: grid; gap: 6px; }
+#adm .ag-ol.ag-plan { gap: 12px; }
+#adm .ag-ul li::marker { color: var(--ch-400); }
+#adm .ag-tip { display: flex; gap: 8px; margin: 10px 0 0; padding: 9px 11px; border-radius: 10px; background: rgba(220, 196, 143, .08); border: 1px solid var(--bd); color: var(--tx-2); font-size: 12.5px; }
+#adm .ag-tip .ic { flex: none; width: 15px; height: 15px; margin-top: 1px; color: var(--ch-300); }
+#adm .ag-no { margin: 6px 0 0; color: var(--tx-3); }
+#adm .ag-mem { display: flex; gap: 7px; margin: 0 0 8px; color: var(--ch-400); font-size: 12px; }
+#adm .ag-mem .ic { width: 14px; height: 14px; flex: none; }
+#adm .ag-sug { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+#adm .ag-sug button, #adm .ag-chat .chips button { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--bd-2); background: var(--sf); color: var(--tx-2); font-size: 12.5px; cursor: pointer; }
+#adm .ag-sug button:hover, #adm .ag-chat .chips button:hover { border-color: var(--ch-300); color: var(--tx); }
+#adm .ag-dots { display: inline-flex; gap: 4px; }
+#adm .ag-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--ch-300); animation: agDot 1.1s ease-in-out infinite; }
+#adm .ag-dots i:nth-child(2) { animation-delay: .15s; } #adm .ag-dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes agDot { 0%, 60%, 100% { opacity: .3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+#adm .br { display: grid; grid-template-columns: minmax(80px, 30%) 1fr auto; gap: 8px; align-items: center; margin: 5px 0; font-size: 12.5px; }
+#adm .br i { height: 7px; border-radius: 4px; background: var(--gold-fill); }
+
+/* --- mavzular paneli --- */
+#adm .ag-side { position: sticky; top: 12px; display: grid; gap: 10px; margin: 0; max-height: calc(100vh - 24px); overflow: auto; }
+#adm .ag-sh { display: flex; align-items: center; gap: 8px; }
+#adm .ag-sh .ch2 { margin: 0; flex: 1; }
+#adm .ag-sh em { font-style: normal; font-size: 11.5px; color: var(--tx-3); }
+#adm .ag-sx { display: none; }
+#adm .ag-gf { display: flex; flex-wrap: wrap; gap: 5px; }
+#adm .ag-gf button { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--bd); background: none; color: var(--tx-3); font-size: 11.5px; cursor: pointer; }
+#adm .ag-gf button[aria-pressed="true"] { border-color: var(--ch-300); color: var(--ch-100); background: rgba(220, 196, 143, .1); }
+#adm .ag-tl { display: grid; gap: 3px; }
+#adm .ag-gh { display: flex; align-items: center; gap: 7px; margin: 10px 2px 3px; font: 600 10.5px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--tx-3); }
+#adm .ag-gh .ic { width: 14px; height: 14px; color: var(--ch-400); }
+#adm .ag-t { display: flex; align-items: flex-start; gap: 10px; width: 100%; padding: 9px 10px; border: 0; border-radius: var(--r-sm); background: none; color: var(--tx); text-align: left; cursor: pointer; transition: background .16s; }
+#adm .ag-t:hover { background: var(--sf-2); }
+#adm .ag-t > i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--sf-in); color: var(--ch-300); }
+#adm .ag-t > i .ic { width: 15px; height: 15px; }
+#adm .ag-t span { display: grid; gap: 1px; min-width: 0; }
+#adm .ag-t b { font: 500 13px/1.3 var(--ui); }
+#adm .ag-t small { font-size: 11.5px; color: var(--tx-3); line-height: 1.35; }
+#adm .ag-t.lk { opacity: .45; cursor: not-allowed; }
+#adm .ag-t.lk .ic { width: 13px; height: 13px; }
+
+/* --- «Xotira» oynasi --- */
+.ag-dlg .box { max-width: 520px; text-align: left; }
+.ag-dlg .box > i { margin: 0 0 12px; color: var(--ch-300); border-color: var(--bd-2); background: var(--sf-in); }
+.ag-dlg .ag-dx { position: absolute; top: 12px; right: 12px; }
+.ag-dlg .ag-ms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+.ag-dlg .ag-ms span { display: grid; gap: 2px; padding: 10px; border-radius: 10px; background: var(--sf-in); }
+.ag-dlg .ag-ms b { font: 600 17px/1 var(--ui); color: var(--ch-100); }
+.ag-dlg .ag-ms small { font-size: 11px; color: var(--tx-3); }
+.ag-dlg .ag-mc { display: flex; align-items: center; gap: 7px; margin: 0 0 10px; font-size: 12.5px; color: var(--tx-2); }
+.ag-dlg .ag-mf { display: flex; gap: 8px; margin-bottom: 10px; }
+.ag-dlg .ag-mf input { flex: 1; margin: 0; }
+.ag-dlg .ag-ml { display: grid; gap: 6px; max-height: 210px; overflow: auto; }
+.ag-dlg .ag-ml > div { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: var(--sf-in); }
+.ag-dlg .ag-ml span { flex: 1; font-size: 13px; }
+.ag-dlg .ag-ml small { color: var(--tx-3); font-size: 11px; }
+.ag-dlg .act { margin-top: 14px; }
+
+@media (max-width: 1100px) {
+  #adm .ag { grid-template-columns: minmax(0, 1fr); }
+  #adm .ag-side { position: fixed; inset: 0 0 0 auto; z-index: 140; width: min(360px, 92vw); max-height: none; border-radius: 0; transform: translateX(102%); transition: transform .3s var(--ease); }
+  #adm .ag-side.open { transform: none; box-shadow: -24px 0 60px -30px rgba(0, 0, 0, .9); }
+  #adm .ag-sx { display: grid; }
+}
+@media (max-width: 820px) {
+  .agw { min-height: 0; padding: 22px 18px; }
+  .agw-orb { display: none; }
+  .agw-kp button { flex: 1 1 calc(50% - 10px); min-width: 0; }
+}
+
+/* javobdagi jadvallar: AI Agent javoblari kengroq, jadval qatorlari siqilmaydi */
+#adm .ag-chat .m.a { max-width: 97%; }
+#adm .ag-chat .m .tb { font-size: 13px; }
+#adm .ag-chat .m .tb th, #adm .ag-chat .m .tb td { padding: 7px 10px; }
+#adm .ag-chat .m .tw { margin: 2px -4px; }
+#adm .ag-chat .m .tw table, #adm .ag-chat .m .tb { width: 100%; min-width: 0; }
+#adm .ag-chat .m .tb th { white-space: normal; letter-spacing: .06em; }
+#adm .ag-chat .m .tb td { white-space: nowrap; }
+#adm .ag-chat .m .xp { margin-top: 10px; }
