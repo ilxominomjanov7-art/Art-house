@@ -1,0 +1,43 @@
+/* =====================================================================
+   ART HOUSE — Instagram/Telegram: uchta telefon (js/phone-deck.js) va lyuks Reels ko'rinishi
+   ===================================================================== */
+.pd-on .igs2-peek { display: none !important; }
+.pd-on { perspective: 1400px; }
+.pd-ghost { position: absolute; top: 50%; z-index: 0; width: 210px; aspect-ratio: 9 / 19.3; padding: 8px; border: 0; border-radius: 36px; cursor: pointer;
+  background: linear-gradient(145deg, #2C2C2E, #0D0D0F 55%, #2A2A2C); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .1), 0 0 0 1px rgba(230, 203, 139, .28), 0 40px 80px -36px rgba(0, 0, 0, .8);
+  opacity: .62; filter: saturate(.85) brightness(.8); transition: opacity .4s, filter .4s, transform .6s cubic-bezier(.22, 1, .36, 1); }
+.pd-ghost.l { left: calc(50% - 300px); transform: translateY(-50%) rotateY(18deg) scale(.86); }
+.pd-ghost.r { right: calc(50% - 300px); transform: translateY(-50%) rotateY(-18deg) scale(.86); }
+.pd-ghost:hover { opacity: .85; filter: none; }
+.pd-scr { display: block; position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 28px; background: #0b1f18; }
+.pd-scr img, .pd-scr video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-scr .pd-tg { position: absolute; inset: 0; overflow: hidden; background: #8FB98A; }
+.pd-scr .pd-tg .tgs-slide { position: absolute; inset: 0; padding: 8px 6px; display: flex; align-items: flex-end; font-size: 10px; }
+.pd-scr .pd-tg .tgs-post { opacity: 1 !important; transform: none !important; }
+.pd-scr .pd-tg .tgs-media img, .pd-scr .pd-tg .tgs-media video { height: 130px; }
+.pd-scr .pd-tg .tgs-bub p { -webkit-line-clamp: 3; }
+.pd-bump { animation: pdBump .6s cubic-bezier(.22, 1, .36, 1); }
+@keyframes pdBump { 40% { opacity: .3; } }
+.pd-on .igs2-phone, .pd-on .tgs-phone { z-index: 2; }
+.pd-in-r { animation: pdInR .7s cubic-bezier(.22, 1, .36, 1); }
+.pd-in-l { animation: pdInL .7s cubic-bezier(.22, 1, .36, 1); }
+@keyframes pdInR { 0% { transform: translateX(46%) rotateY(-22deg) scale(.86); opacity: .4; } 100% { transform: none; opacity: 1; } }
+@keyframes pdInL { 0% { transform: translateX(-46%) rotateY(22deg) scale(.86); opacity: .4; } 100% { transform: none; opacity: 1; } }
+@media (max-width: 899px) {
+  .pd-ghost { width: 150px; border-radius: 28px; padding: 6px; }
+  .pd-scr { border-radius: 22px; }
+  .pd-ghost.l { left: -92px; } .pd-ghost.r { right: -92px; }
+}
+@media (prefers-reduced-motion: reduce) { .pd-in-r, .pd-in-l, .pd-bump { animation: none; } }
+
+/* ---- lyuks Reels: oyna-shisha tugmalar, oltin chiziqlar ---- */
+#igStrip .igs2-side { gap: 14px; right: 10px; }
+#igStrip .igs2-side i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(8, 36, 27, .38); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(241, 224, 180, .5), 0 6px 18px -8px rgba(0, 0, 0, .6); }
+#igStrip .igs2-side svg { width: 19px; height: 19px; stroke: #F6E7B8; filter: none; }
+#igStrip .igs2-side i:first-child { background: linear-gradient(145deg, rgba(246, 231, 184, .95), rgba(184, 145, 63, .95)); box-shadow: 0 8px 22px -8px rgba(216, 188, 126, .9); }
+#igStrip .igs2-side i:first-child svg { fill: #fff; stroke: #fff; }
+#igStrip .igs2-cc { border-radius: 12px; background: rgba(8, 36, 27, .55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(241, 224, 180, .35); border-left: 3px solid #D8BC7E; }
+#igStrip .igs2-who em { border: 0; background: linear-gradient(145deg, #F6E7B8, #C9A45C); color: #0B3B2D; border-radius: 999px; padding: 4px 12px; }
+#igStrip .igs2-av { box-shadow: 0 0 0 2px #D8BC7E; }
+#igStrip .igs2-hearts svg { fill: #E9CF93 !important; stroke: #E9CF93 !important; }
+#igStrip .igs2-prog i { background: linear-gradient(90deg, #B8913F, #F6E7B8) !important; }

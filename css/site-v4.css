@@ -1,0 +1,78 @@
+/* =====================================================================
+   ART HOUSE — SAYT v4 (2026-11) — oxirgi qatlam
+   1) Header va logotip: fon saytning asosiy to'q yashil rangiga to'liq mos
+      (--bg = #061F18), logotip toza vektorda (sifatli chiziqlar, aniq burchaklar)
+   3) Mavzu o'zgaruvchilari: fon rasmi va videosi, ranglar — barcha asosiy bloklarga
+      real vaqtda ta'sir qiladi (js/site-v3.js → AH_CSS, --ah-* o'zgaruvchilari)
+   5) Shrift boshqaruvi: --f-display / --f-body / --f-logo butun sayt bo'ylab
+   ===================================================================== */
+:root {
+  /* saytning asosiy to'q yashil rangi */
+  --bg: #061F18;
+  --bg-2: #08281F;
+  --bg-3: #0B3328;
+  --deep: #04150F;
+  /* header va e'lon qatori shu rangdan kelib chiqadi (mavzudan o'zgartiriladi) */
+  --hdr-bg: var(--bg);
+  --hdr-ink: var(--ink);
+}
+html, body { background-color: var(--bg); }
+
+/* ---------- 1) HEADER: bir xil to'q yashil, shaffoflik yo'q ---------- */
+html body .top {
+  background: var(--hdr-bg) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(232, 213, 164, .14) !important;
+  color: var(--hdr-ink);
+}
+html body .top::after { display: none !important; }
+html body .top .top-row { background: transparent !important; }
+/* menyu qatori ham bir xil fonda (ikki xil yashil ko'rinmaydi) */
+html body .top .mrow, html body .top .nav, html body .top .top-nav { background: transparent !important; }
+/* sahifa aylantirilganda ham rang o'zgarmaydi */
+html body .top.is-stuck, html body .top.scrolled { background: var(--hdr-bg) !important; }
+
+/* ---------- 1) LOGOTIP: toza vektor ---------- */
+.brand { align-items: center; }
+.brand-mark, .lgc .sbm svg, .sbh .sbm svg {
+  shape-rendering: geometricPrecision;
+  vector-effect: non-scaling-stroke;
+}
+html body .top .brand-mark {
+  width: 42px; height: 42px;
+  stroke: url(#gGold);
+  stroke-width: 3.2;
+  stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .35));
+  overflow: visible;
+}
+/* ramka chizig'i ham asosiy chiziqlar bilan bir xil qalinlikda ko'rinadi */
+html body .brand-mark rect { stroke-width: 2.6; }
+html body .top .brand-txt b {
+  font-family: var(--f-logo);
+  letter-spacing: .2em; margin-right: -.2em;
+}
+html body .top .brand-txt small { color: rgba(251, 245, 228, .62); }
+@media (max-width: 640px) { html body .top .brand-mark { width: 34px; height: 34px; } }
+
+/* ---------- 3) mavzu: sahifa foni rasmi yoki videosi ---------- */
+#ahBgMedia {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
+  background: var(--bg);
+}
+#ahBgMedia video, #ahBgMedia img { width: 100%; height: 100%; object-fit: cover; }
+#ahBgMedia::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(4, 22, 16, calc(var(--ah-bg-ov, 55) / 100));
+}
+/* fon ko'rinishi uchun asosiy qatlamlar shaffof bo'ladi */
+html.ah-bgmedia, html.ah-bgmedia body { background: transparent !important; }
+html.ah-bgmedia .ths-light { background: transparent !important; }
+
+/* bo'lim foni videosi: faqat video qo'yilgan bo'limga ta'sir qiladi (boshqa bloklar joyida qoladi) */
+.ths-bgv { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.ths-bgv video { width: 100%; height: 100%; object-fit: cover; }
+.ths-bgv::after { content: ''; position: absolute; inset: 0; background: rgba(4, 22, 16, calc(var(--ov, 45) / 100)); }
+[data-ths]:has(> .ths-bgv) { position: relative; isolation: isolate; }

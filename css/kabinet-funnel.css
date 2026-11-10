@@ -1,0 +1,80 @@
+/* =====================================================================
+   ART HOUSE — KABINET: «Sotuv oynalari» sahifasi (js/kabinet-funnel.js) va statistika manbalari
+   ===================================================================== */
+.fn-seg { display: flex; gap: 6px; margin: 4px 0 14px; padding: 4px; overflow-x: auto; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: rgba(255, 255, 255, .025); scrollbar-width: none; }
+.fn-seg::-webkit-scrollbar { display: none; }
+.fn-seg button { flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 14px; border: 0; border-radius: 10px; background: transparent; color: var(--tx-2, #B9C9C0); font: 600 13px/1 var(--f, inherit); cursor: pointer; white-space: nowrap; }
+.fn-seg button .ic { width: 17px; height: 17px; }
+.fn-seg button[aria-selected="true"] { background: var(--ch-300, #DCC48F); color: #0B2B20; }
+.fn-sw { display: grid; gap: 8px; margin-bottom: 14px; }
+.fn-g3, .fn-g2 { display: grid; gap: 4px 14px; }
+@media (min-width: 720px) { .fn-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .fn-g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.fn-g2 .cm-sw1 { align-self: end; margin-bottom: 12px; }
+.fn-texts { display: grid; gap: 0 14px; }
+@media (min-width: 900px) { .fn-texts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fn-chg { margin-left: 8px; padding: 2px 7px; border-radius: 99px; background: rgba(127, 211, 164, .14); color: var(--ok, #7fd3a4); font-size: 10.5px; font-style: normal; font-weight: 600; }
+.fn-items { display: grid; gap: 8px; margin-top: 6px; }
+.fn-it { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: rgba(255, 255, 255, .025); }
+.fn-it.off { opacity: .55; }
+.fn-ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #F5EFE2; color: #0E3A2D; }
+.fn-ico .ic { width: 24px; height: 24px; }
+.fn-ico img { width: 30px; height: 30px; object-fit: contain; }
+.fn-tx { display: grid; gap: 3px; min-width: 0; }
+.fn-tx b { font-size: 14.5px; color: var(--tx, #F4EEDF); }
+.fn-tx small { font-size: 12.5px; color: var(--tx-2, #B9C9C0); }
+.fn-tx em { display: inline-flex; align-items: center; gap: 5px; font-style: normal; font-size: 11.5px; color: var(--tx-3, #86A296); }
+.fn-tx em .ic { width: 14px; height: 14px; }
+.fn-it .st-act { grid-column: 1 / -1; }
+@media (min-width: 900px) { .fn-it { grid-template-columns: 44px minmax(0, 1fr) auto; } .fn-it .st-act { grid-column: auto; } .fn-it .st-act .btn { margin-left: 0; } }
+.fn-pic { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: center; margin: 4px 0 14px; padding: 12px; border: 1px dashed var(--bd, rgba(234, 219, 176, .18)); border-radius: 14px; }
+.fn-pic.sm { grid-template-columns: 56px minmax(0, 1fr); margin-top: 12px; }
+.fn-ph { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 10px; background: rgba(255, 255, 255, .05); }
+.fn-pic.sm .fn-ph { aspect-ratio: 1; background: #F5EFE2; display: grid; place-items: center; }
+.fn-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fn-pic.sm .fn-ph img { width: 70%; height: 70%; object-fit: contain; }
+.fn-ph img.cm-noimg { opacity: 0; }
+.fn-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 6px; margin: 8px 0 4px; }
+.fn-icons button { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid transparent; border-radius: 10px; background: #F5EFE2; color: #0E3A2D; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.fn-icons button .ic { width: 22px; height: 22px; }
+.fn-icons button:hover { transform: translateY(-1px); }
+.fn-icons button[aria-checked="true"] { box-shadow: 0 0 0 2px var(--ch-300, #DCC48F), 0 0 0 4px rgba(220, 196, 143, .25); }
+.fn-box { max-width: 560px; }
+.fn-ai { display: flex; gap: 8px; align-items: center; margin-top: 14px !important; }
+.fn-ai .ic { width: 16px; height: 16px; flex: none; }
+
+/* ---------- statistika: mijozlar qayerdan keldi ---------- */
+.src-grid { display: grid; gap: 10px; margin-top: 12px; }
+@media (min-width: 760px) { .src-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.src-c { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 14px; overflow: hidden; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01)); }
+.src-c::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; width: var(--w, 0%); background: var(--c, #DCC48F); border-radius: 0 3px 3px 0; transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+.src-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: color-mix(in srgb, var(--c, #DCC48F) 18%, transparent); color: var(--c, #DCC48F); }
+.src-ic .ic { width: 20px; height: 20px; }
+.src-t { display: grid; gap: 3px; min-width: 0; }
+.src-t b { font-size: 14px; color: var(--tx, #F4EEDF); }
+.src-t small { font-size: 12px; color: var(--tx-2, #B9C9C0); }
+.src-n { text-align: right; }
+.src-n b { display: block; font-size: 24px; font-weight: 600; line-height: 1; color: var(--tx, #F4EEDF); font-variant-numeric: tabular-nums; }
+.src-n small { font-size: 11px; color: var(--tx-3, #86A296); }
+.src-pf { display: grid; gap: 10px; margin-top: 14px; }
+@media (min-width: 760px) { .src-pf { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.src-step { padding: 14px; border: 1px solid var(--bd, rgba(234, 219, 176, .12)); border-radius: 14px; background: rgba(255, 255, 255, .02); }
+.src-step h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 13.5px; color: var(--ch-300, #DCC48F); }
+.src-step h4 .ic { width: 17px; height: 17px; }
+.src-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; margin-top: 8px; font-size: 12.5px; color: var(--tx-2, #B9C9C0); }
+.src-row b { color: var(--tx, #F4EEDF); font-variant-numeric: tabular-nums; }
+.src-row i { grid-column: 1 / -1; display: block; height: 6px; border-radius: 99px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+.src-row i::before { content: ''; display: block; height: 100%; width: var(--w, 0%); border-radius: inherit; background: linear-gradient(90deg, #8FB9A4, #DCC48F); }
+/* mijozlar ro'yxatidagi manba belgisi va filtri */
+.src-tag { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; padding: 2px 8px 2px 6px; border-radius: 99px; background: color-mix(in srgb, var(--c, #DCC48F) 16%, transparent); color: var(--c, #DCC48F); font-size: 11px; font-weight: 600; white-space: nowrap; vertical-align: 1px; }
+.src-tag .ic { width: 12px; height: 12px; }
+.src-flt { display: flex; gap: 6px; flex-wrap: wrap; margin: -4px 0 12px; }
+.src-flt button { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 11px; border: 1px solid var(--bd, rgba(234, 219, 176, .14)); border-radius: 99px; background: transparent; color: var(--tx-2, #B9C9C0); font: 600 12px/1 var(--f, inherit); cursor: pointer; }
+.src-flt button .ic { width: 14px; height: 14px; color: var(--c, currentColor); }
+.src-flt button i { font-style: normal; color: var(--tx-3, #86A296); }
+.src-flt button[aria-pressed="true"] { border-color: var(--c, #DCC48F); color: var(--tx, #F4EEDF); background: color-mix(in srgb, var(--c, #DCC48F) 12%, transparent); }
+/* ikonkalar rangi va dialog ichidagi til belgisi (kabinetning umumiy .ic va .dlg i qoidalari ustidan) */
+.fn-icons button .ic, .fn-ico .ic { color: #0E3A2D !important; margin: 0 !important; vertical-align: 0; }
+.src-ic .ic, .src-step h4 .ic { color: inherit !important; margin: 0 !important; }
+.src-tag .ic, .src-flt button .ic { margin: 0 !important; color: var(--c, currentColor) !important; }
+.fn-seg button .ic { margin: 0 !important; color: inherit !important; }
+.st-dlg .st-lg { display: inline-block; width: auto; height: auto; margin: 0 0 0 4px; padding: 1px 6px; border: 0; border-radius: 5px; place-items: initial; }

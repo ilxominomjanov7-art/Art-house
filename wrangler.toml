@@ -1,0 +1,18 @@
+# Cloudflare Worker v4 — joylash:  npx wrangler deploy
+# Sirlar (bir marta):  npx wrangler secret put BOT_TOKEN | CHAT_ID | ANTHROPIC_API_KEY | ADMINS
+name = "arthouse-ai"
+main = "server/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "AH"
+id = "8e166ad3fc454a1fa89760169e340828"   # mavjud «art-house-data» — eski ma'lumotlar saqlanib qoladi
+
+[ai]
+binding = "AI"
+
+[vars]
+ALLOWED_ORIGIN = "https://arthouse.uz,https://www.arthouse.uz"   # O'Z DOMENINGIZNI yozing
+ALLOW_FILE = "1"                                                  # sayt telefon faylidan ochilganda ham ishlasin
+MODEL = "claude-sonnet-5-5"
