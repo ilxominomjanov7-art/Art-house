@@ -79,4 +79,17 @@ Ko'kcha va Obod Maskan uchun rasm va rejalarni `assets/img/...` papkasiga qo'yib
 ## Bitta faylli versiya
 
 `dist/index.html` va `dist/kabinet.html` — hamma narsa (CSS, JS, rasmlar, video) ichiga joylangan nusxalar. Ikkala faylni bitta papkada saqlang va brauzerda oching.
-Kodni o'zgartirgandan keyin qayta yig'ish: `python3 tools/build-single.py`
+
+> ⚠️ **Diqqat:** `dist/` ichidagi fayllar hozir ildizdagi `index.html` / `js/` / `css/` dan **yangiroq** (v6: mavzular tahrirlagichi, sayt menyusi sxemasi, «Menyu» sahifasidagi jonli ko'rinish, AI Agent suhbatlar arxivi). Shu sababli ularni `python3 tools/build-single.py` bilan **qayta yig'mang** — aks holda yangi imkoniyatlar yo'qoladi. O'zgarishlarni to'g'ridan-to'g'ri `dist/*.html` ichida qiling.
+
+## «Menyu» sahifasi: yangi bo'lim va jonli ko'rinish
+
+Kabinet → **Sayt → Menyu**:
+
+* **«+ Yangi bo'lim qo'shish»** — saytga yangi sahifa (sarlavha va matn 8 tilda, rasm yoki video) qo'shadi va unga menyudan havola yaratadi. Ma'lumot `'ah_cms'.sections.custom` va `'ah_cms'.menu` da saqlanadi.
+* **Jonli ko'rinish (Live preview)** — o'ng tarafdagi oynada sayt `index.html?preview=1&menu=1` ko'rinishida ochiladi va ☰ menyu doim ochiq turadi. Matn, rang yoki yangi bo'lim kiritilayotgan paytda o'zgarish darhol ko'rinadi (hali saqlanmagan qoralama `postMessage` orqali yuboriladi, saytda saqlanmaydi). Ko'rinishdagi bandni bosish — kabinetda shu bandning sozlamalarini ochadi. Kompyuter / telefon ko'rinishini almashtirish mumkin.
+* **«Menyu ranglari»** — fon, yozuv va aksent rangi (`'ah_cms'.menu.style`). Saytda faqat `#rrggbb` ko'rinishidagi qiymat qabul qilinadi.
+
+## AI Agent: suhbatlar arxivi
+
+Kabinet → **AI Agent**: chap tomonda och rangli panel (Claude va Telegram uslubida) — yuqorida «Yangi chat» tugmasi va qidiruv, so'ng sana bo'yicha guruhlangan eski yozishmalar (nomini o'zgartirish va o'chirish bilan), «Mavzular» varag'i ham shu panelda. Har bir suhbat alohida saqlanadi (`localStorage`: `ah_agent_mem` → `{chats:[…], cur}`), eski bitta suhbatli xotira birinchi ochilishda avtomatik ko'chiriladi.

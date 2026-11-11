@@ -2162,6 +2162,126 @@ body.te-on { overflow: hidden; }
 #adm .ag-chat .m .xp { margin-top: 10px; }
 
 </style>
+<style>
+/* =====================================================================
+   ART HOUSE — KABINET v6.1 (2026-11)
+   1) «Menyu» sahifasi: tahrirlagich + Shopify uslubidagi jonli ko'rinish
+   2) AI Agent: chapdan ochiladigan och rangli suhbatlar arxivi
+      (Claude va Telegram uslubi) — o'ng tarafdagi eski panel olib tashlandi
+   ===================================================================== */
+
+/* ---------------- 1) «Menyu»: tahrirlagich + jonli ko'rinish ---------------- */
+#adm .mnp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 40%); gap: 16px; align-items: start; }
+#adm .mnp-ed { display: grid; gap: 14px; min-width: 0; }
+#adm .mnp-pv { position: sticky; top: 12px; display: grid; gap: 10px; padding: 12px; border-radius: var(--r-lg); border: 1px solid var(--bd); background: var(--sf-in); }
+#adm .mnp-pvh { display: flex; align-items: center; gap: 8px; }
+#adm .mnp-pvh b { display: inline-flex; align-items: center; gap: 8px; flex: 1; min-width: 0; font: 600 13px/1 var(--ui); color: var(--ch-100); }
+#adm .mnp-pvh b .ic { width: 16px; height: 16px; flex: none; color: var(--ch-300); }
+#adm .mnp-note { margin: 0; font-size: 11.5px; line-height: 1.45; color: var(--tx-3); }
+#adm .mnp-frame { position: relative; height: min(70vh, 620px); width: 100%; margin: 0 auto; }
+#adm .mnp-frame[data-dev="mob"] { width: 330px; max-width: 100%; }
+#adm .mnp-frame .te-load { border-radius: inherit; gap: 10px; padding: 16px; }
+#adm .mnp-ask { max-width: 290px; margin: 0; text-align: center; line-height: 1.5; font-size: 12.5px; color: var(--tx-2); }
+/* «+ Yangi bo'lim qo'shish» — aniq ko'rinadigan asosiy tugma */
+#adm .mn-addbig { padding: 0 16px; min-height: 40px; font-size: 13.5px; white-space: nowrap; }
+#adm .mn-addbig .ic { width: 17px; height: 17px; }
+#adm .mn-new .tt-h { align-items: center; }
+#adm .mn-secs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+#adm .mn-sec { display: inline-flex; align-items: center; gap: 7px; max-width: 100%; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--bd-2); background: var(--sf); color: var(--tx); font: 500 12.5px/1 var(--ui); cursor: pointer; transition: border-color .2s, background .2s; }
+#adm .mn-sec:hover { border-color: var(--ch-300); background: rgba(220, 196, 143, .1); }
+#adm .mn-sec .ic { width: 14px; height: 14px; color: var(--ch-300); }
+#adm .mn-sec span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#adm .mn-sec.off { opacity: .55; }
+#adm .mn-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+#adm .mn-col .cm-col code { font-size: 11px; }
+#adm .mn-row.mn-hit { border-color: var(--ch-300) !important; box-shadow: 0 0 0 1px var(--ch-300); }
+#adm .st-box textarea { width: 100%; }
+@media (max-width: 1180px) {
+  #adm .mnp { grid-template-columns: minmax(0, 1fr); }
+  #adm .mnp-pv { position: static; order: -1; }
+  #adm .mnp-frame { height: min(58vh, 520px); }
+}
+
+/* ---------------- 2) AI Agent: chap panel (suhbatlar arxivi) ---------------- */
+/* animatsiya tugagach transform qolmaydi: aks holda chapdagi panel (position:fixed)
+   telefonda butun ekranga emas, shu blokka nisbatan joylashardi */
+#adm .ag { position: relative; display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 16px; align-items: start; }
+#adm #mn > .ag { animation-fill-mode: backwards; }
+#adm .ag-main { min-width: 0; }
+#adm .ag-sb {
+  --sb: #F7F3E8; --sb-2: #EFE9D8; --sb-3: #E6DEC7; --sb-ink: #16342A; --sb-mut: #5F7468; --sb-acc: #8C6D28; --sb-line: rgba(22, 52, 42, .12);
+  position: sticky; top: 12px; z-index: 2; display: flex; flex-direction: column; gap: 10px; min-height: min(560px, calc(100vh - 24px)); max-height: calc(100vh - 24px); padding: 12px;
+  border-radius: var(--r-lg); border: 1px solid var(--sb-line); background: var(--sb); color: var(--sb-ink);
+  box-shadow: 0 24px 50px -34px rgba(0, 0, 0, .75);
+}
+#adm .ag-sbh { display: flex; align-items: center; gap: 8px; padding: 0 2px 10px; border-bottom: 1px solid var(--sb-line); }
+#adm .ag-sbh b { display: inline-flex; align-items: center; gap: 8px; flex: 1; font: 600 13.5px/1 var(--ui); color: var(--sb-ink); }
+#adm .ag-sbh b .ic { width: 17px; height: 17px; color: var(--sb-acc); }
+#adm .ag-sbh em { font-style: normal; font-size: 11.5px; color: var(--sb-mut); }
+#adm .ag-sbx { display: none; width: 30px; height: 30px; place-items: center; border: 0; border-radius: 8px; background: none; color: var(--sb-mut); cursor: pointer; }
+#adm .ag-sbx:hover { background: var(--sb-2); color: var(--sb-ink); }
+#adm .ag-sbx .ic { width: 16px; height: 16px; }
+#adm .ag-new { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 40px; padding: 0 12px; border: 1px solid var(--sb-line); border-radius: 12px; background: #FFFDF6; color: var(--sb-ink); font: 600 13.5px/1 var(--ui); cursor: pointer; transition: background .18s, border-color .18s, transform .18s var(--ease); }
+#adm .ag-new:hover { background: #fff; border-color: var(--sb-acc); transform: translateY(-1px); }
+#adm .ag-new .ic { width: 17px; height: 17px; color: var(--sb-acc); }
+#adm .ag-sq { position: relative; display: flex; align-items: center; }
+#adm .ag-sq .ic { position: absolute; left: 10px; width: 15px; height: 15px; color: var(--sb-mut); pointer-events: none; }
+#adm .ag-sq input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]) { width: 100%; height: 36px; margin: 0; padding: 0 12px 0 32px; border-radius: 10px; border: 1px solid var(--sb-line); background: #FFFDF6; color: var(--sb-ink); font: 400 13px var(--ui); box-shadow: none; }
+#adm .ag-sq input::placeholder { color: var(--sb-mut); }
+#adm .ag-sq input:focus:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]) { outline: 0; border-color: var(--sb-acc) !important; background: #fff; box-shadow: 0 0 0 3px rgba(140, 109, 40, .14); }
+#adm .ag-sq input::-webkit-search-cancel-button { filter: invert(.45); }
+#adm .ag-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; border-radius: 10px; background: var(--sb-2); }
+#adm .ag-tabs button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; border: 0; border-radius: 8px; background: none; color: var(--sb-mut); font: 600 12px/1 var(--ui); cursor: pointer; }
+#adm .ag-tabs button .ic { width: 14px; height: 14px; }
+#adm .ag-tabs button[aria-selected="true"] { background: #FFFDF6; color: var(--sb-ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+#adm .ag-sbl { flex: 1; min-height: 0; overflow: auto; margin: 0 -4px -4px; padding: 0 4px 4px; display: grid; gap: 2px; align-content: start; scrollbar-width: thin; }
+#adm .ag-gh2 { display: flex; align-items: center; gap: 7px; margin: 12px 4px 4px; font: 600 10px/1 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--sb-mut); }
+#adm .ag-gh2 .ic { width: 13px; height: 13px; color: var(--sb-acc); }
+#adm .ag-ci { display: flex; align-items: center; gap: 4px; border-radius: 10px; transition: background .16s; }
+#adm .ag-ci:hover { background: var(--sb-2); }
+#adm .ag-ci.on { background: var(--sb-3); }
+#adm .ag-cio { flex: 1; min-width: 0; display: grid; gap: 2px; padding: 9px 10px; border: 0; border-radius: 10px; background: none; text-align: left; cursor: pointer; color: inherit; }
+#adm .ag-cio b { font: 500 13px/1.3 var(--ui); color: var(--sb-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#adm .ag-cio small { font-size: 11.5px; line-height: 1.35; color: var(--sb-mut); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#adm .ag-ci.on .ag-cio b { color: #0C2A21; }
+#adm .ag-cim { display: flex; align-items: center; gap: 2px; padding-right: 6px; }
+#adm .ag-cim em { font-style: normal; font-size: 10.5px; color: var(--sb-mut); white-space: nowrap; }
+#adm .ag-cib { display: none; width: 26px; height: 26px; place-items: center; border: 0; border-radius: 7px; background: none; color: var(--sb-mut); cursor: pointer; }
+#adm .ag-cib .ic { width: 14px; height: 14px; }
+#adm .ag-cib:hover { background: #fff; color: var(--sb-ink); }
+#adm .ag-cib.dl:hover { color: #B3402F; }
+#adm .ag-ci:hover .ag-cib, #adm .ag-ci.on .ag-cib { display: grid; }
+#adm .ag-ci:hover .ag-cim em, #adm .ag-ci.on .ag-cim em { display: none; }
+#adm .ag-empty { margin: 14px 6px; font-size: 12.5px; line-height: 1.5; color: var(--sb-mut); }
+/* chap paneldagi mavzular varag'i — och fonda */
+#adm .ag-sb .ag-gf { display: flex; flex-wrap: wrap; gap: 5px; margin: 2px 2px 6px; }
+#adm .ag-sb .ag-gf button { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--sb-line); background: #FFFDF6; color: var(--sb-mut); font: 500 11.5px/1 var(--ui); cursor: pointer; }
+#adm .ag-sb .ag-gf button[aria-pressed="true"] { border-color: var(--sb-acc); background: var(--sb-3); color: var(--sb-ink); }
+#adm .ag-sb .ag-t { color: var(--sb-ink); }
+#adm .ag-sb .ag-t:hover { background: var(--sb-2); }
+#adm .ag-sb .ag-t > i { background: var(--sb-3); color: var(--sb-acc); }
+#adm .ag-sb .ag-t small { color: var(--sb-mut); }
+/* suhbat ustidagi qator */
+#adm .ag-top { display: flex; align-items: center; gap: 10px; }
+#adm .ag-mb { display: none; width: 34px; height: 34px; flex: none; place-items: center; border: 1px solid var(--bd); border-radius: var(--r-sm); background: var(--sf); color: var(--tx-2); cursor: pointer; }
+#adm .ag-mb .ic { width: 17px; height: 17px; }
+#adm .ag-ttl { display: grid; gap: 2px; flex: 1; min-width: 0; }
+#adm .ag-ttl b { font: 600 14px/1.25 var(--ui); color: var(--tx); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#adm .ag-ttl small { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--tx-3); }
+#adm .ag-ttl em { font-style: normal; }
+#adm .ag-scrim { display: none; }
+@media (max-width: 1100px) {
+  #adm .ag { grid-template-columns: minmax(0, 1fr); }
+  #adm .ag-sb { position: fixed; inset: 0 auto 0 0; z-index: 190; width: min(324px, 88vw); max-height: none; border-radius: 0; border-left: 0; transform: translateX(-102%); transition: transform .32s var(--ease); }
+  #adm .ag-sb.open { transform: none; box-shadow: 26px 0 60px -30px rgba(0, 0, 0, .9); }
+  #adm .ag-sbx, #adm .ag-mb { display: grid; }
+  #adm .ag-cib { display: grid; }
+  #adm .ag-ci .ag-cim em { display: none; }
+  #adm .ag-scrim { display: block; position: fixed; inset: 0; z-index: 189; background: rgba(2, 18, 13, .55); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  #adm .ag-scrim.on { opacity: 1; pointer-events: auto; }
+}
+@media (prefers-reduced-motion: reduce) { #adm .ag-sb { transition: none; } }
+</style>
 </head>
 <body class="lock">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -4034,6 +4154,70 @@ window.AHDICT=D;
 
 </script>
 <script>
+/* ART HOUSE — kabinet: «Menyu» jonli ko'rinishi, «Yangi bo'lim» va AI Agent arxivi lug'ati: uz → en, ru, fr, it, es, de, tr */
+(function () {
+  var L = ["en", "ru", "fr", "it", "es", "de", "tr"];
+  var R = [
+["Jonli ko'rinish", "Live preview", "Живой просмотр", "Aperçu en direct", "Anteprima live", "Vista previa en vivo", "Live-Vorschau", "Canlı önizleme"],
+["Yangi bo'lim qo'shish", "Add a new section", "Добавить новый раздел", "Ajouter une rubrique", "Aggiungi una sezione", "Añadir una sección", "Neuen Bereich hinzufügen", "Yeni bölüm ekle"],
+["Yangi bo'lim", "New section", "Новый раздел", "Nouvelle rubrique", "Nuova sezione", "Nueva sección", "Neuer Bereich", "Yeni bölüm"],
+["Bo'limni tahrirlash", "Edit the section", "Редактировать раздел", "Modifier la rubrique", "Modifica la sezione", "Editar la sección", "Bereich bearbeiten", "Bölümü düzenle"],
+["Saytning yangi bo'limlari", "New website sections", "Новые разделы сайта", "Nouvelles rubriques du site", "Nuove sezioni del sito", "Nuevas secciones del sitio", "Neue Website-Bereiche", "Sitenin yeni bölümleri"],
+["Yangi bo'lim — saytdagi yangi sahifa (sarlavha, matn, rasm yoki video). U menyuga darhol qo'shiladi va o'ng tarafdagi jonli ko'rinishda ko'rinadi.", "A new section is a new page on the website (title, text, image or video). It is added to the menu at once and appears in the live preview on the right.", "Новый раздел — это новая страница сайта (заголовок, текст, фото или видео). Он сразу попадает в меню и виден в живом просмотре справа.", "Une nouvelle rubrique est une nouvelle page du site (titre, texte, image ou vidéo). Elle est ajoutée au menu aussitôt et apparaît dans l'aperçu à droite.", "Una nuova sezione è una nuova pagina del sito (titolo, testo, immagine o video). Viene aggiunta subito al menu e appare nell'anteprima a destra.", "Una sección nueva es una página nueva del sitio (título, texto, imagen o vídeo). Se añade al menú de inmediato y aparece en la vista previa de la derecha.", "Ein neuer Bereich ist eine neue Seite der Website (Titel, Text, Bild oder Video). Er kommt sofort ins Menü und erscheint in der Live-Vorschau rechts.", "Yeni bölüm, sitede yeni bir sayfadır (başlık, metin, görsel veya video). Menüye hemen eklenir ve sağdaki canlı önizlemede görünür."],
+["Hozircha yangi bo'lim yo'q. Masalan: «Aksiyalar», «Qurilish jarayoni» yoki «Telegram kanal».", "No new sections yet. For example: «Offers», «Construction progress» or «Telegram channel».", "Пока нет новых разделов. Например: «Акции», «Ход строительства» или «Telegram-канал».", "Aucune nouvelle rubrique. Par exemple : « Offres », « Avancement des travaux » ou « Canal Telegram ».", "Nessuna nuova sezione. Per esempio: «Offerte», «Avanzamento lavori» o «Canale Telegram».", "Aún no hay secciones nuevas. Por ejemplo: «Ofertas», «Avance de obra» o «Canal de Telegram».", "Noch keine neuen Bereiche. Zum Beispiel: «Aktionen», «Baufortschritt» oder «Telegram-Kanal».", "Henüz yeni bölüm yok. Örneğin: «Kampanyalar», «İnşaat süreci» veya «Telegram kanalı»."],
+["Bo'lim saytda alohida sahifa bo'lib ochiladi va menyudan havola oladi. Yozuvni 8 tilda kiritish mumkin.", "The section opens as its own page on the website and gets a link in the menu. The text can be entered in 8 languages.", "Раздел открывается отдельной страницей сайта и получает ссылку в меню. Текст можно ввести на 8 языках.", "La rubrique s'ouvre comme une page du site et reçoit un lien dans le menu. Le texte peut être saisi en 8 langues.", "La sezione si apre come pagina del sito e riceve un link nel menu. Il testo può essere inserito in 8 lingue.", "La sección se abre como una página del sitio y recibe un enlace en el menú. El texto puede introducirse en 8 idiomas.", "Der Bereich öffnet sich als eigene Seite der Website und erhält einen Link im Menü. Der Text kann in 8 Sprachen eingegeben werden.", "Bölüm sitede ayrı bir sayfa olarak açılır ve menüde bağlantı alır. Metin 8 dilde girilebilir."],
+["Sarlavha (menyuda ham shu nom)", "Title (also the name in the menu)", "Заголовок (это же название в меню)", "Titre (aussi le nom dans le menu)", "Titolo (anche il nome nel menu)", "Título (también el nombre en el menú)", "Titel (auch der Name im Menü)", "Başlık (menüde de bu ad)"],
+["Masalan: Aksiyalar", "For example: Offers", "Например: Акции", "Par exemple : Offres", "Per esempio: Offerte", "Por ejemplo: Ofertas", "Zum Beispiel: Aktionen", "Örneğin: Kampanyalar"],
+["Bo'lim matni (ixtiyoriy)", "Section text (optional)", "Текст раздела (необязательно)", "Texte de la rubrique (facultatif)", "Testo della sezione (facoltativo)", "Texto de la sección (opcional)", "Text des Bereichs (optional)", "Bölüm metni (isteğe bağlı)"],
+["Ixtiyoriy: gorizontal rasm yoki qisqa video.", "Optional: a horizontal image or a short video.", "Необязательно: горизонтальное фото или короткое видео.", "Facultatif : une image horizontale ou une courte vidéo.", "Facoltativo: un'immagine orizzontale o un video breve.", "Opcional: una imagen horizontal o un vídeo corto.", "Optional: ein horizontales Bild oder ein kurzes Video.", "İsteğe bağlı: yatay bir görsel veya kısa video."],
+["Rasmni olib tashlash", "Remove the image", "Убрать фото", "Retirer l'image", "Rimuovi l'immagine", "Quitar la imagen", "Bild entfernen", "Görseli kaldır"],
+["Menyuda qayerda chiqsin", "Where it appears in the menu", "Где показать в меню", "Où l'afficher dans le menu", "Dove mostrarlo nel menu", "Dónde aparece en el menú", "Wo es im Menü erscheint", "Menüde nerede görünsün"],
+["Asosiy havolalar", "Main links", "Основные ссылки", "Liens principaux", "Link principali", "Enlaces principales", "Hauptlinks", "Ana bağlantılar"],
+["Guruh", "Group", "Группа", "Groupe", "Gruppo", "Grupo", "Gruppe", "Grup"],
+["O'chirilsa — bo'lim ham, menyudagi havola ham yashiriladi.", "When switched off, both the section and its menu link are hidden.", "Если выключить — скрывается и раздел, и ссылка в меню.", "Si désactivé, la rubrique et son lien dans le menu sont masqués.", "Se disattivato, la sezione e il link nel menu vengono nascosti.", "Si se desactiva, se ocultan la sección y su enlace en el menú.", "Ausgeschaltet werden der Bereich und der Menülink verborgen.", "Kapatılırsa bölüm de menüdeki bağlantı da gizlenir."],
+["Bo'lim qo'shildi va menyuga chiqdi.", "The section has been added and is now in the menu.", "Раздел добавлен и появился в меню.", "La rubrique a été ajoutée et figure dans le menu.", "La sezione è stata aggiunta e ora è nel menu.", "La sección se ha añadido y ya está en el menú.", "Der Bereich wurde hinzugefügt und steht im Menü.", "Bölüm eklendi ve menüye çıktı."],
+["Menyu ranglari", "Menu colours", "Цвета меню", "Couleurs du menu", "Colori del menu", "Colores del menú", "Menüfarben", "Menü renkleri"],
+["Rangni tanlang — o'ng tarafdagi jonli ko'rinish darhol o'zgaradi. Barmoqni qo'yib yuborganingizda saqlanadi.", "Pick a colour — the live preview on the right changes at once. It is saved when you release.", "Выберите цвет — живой просмотр справа меняется сразу. Сохраняется, когда отпустите.", "Choisissez une couleur — l'aperçu à droite change aussitôt. C'est enregistré au relâchement.", "Scegli un colore — l'anteprima a destra cambia subito. Si salva quando rilasci.", "Elija un color — la vista previa de la derecha cambia al instante. Se guarda al soltar.", "Wählen Sie eine Farbe — die Vorschau rechts ändert sich sofort. Gespeichert wird beim Loslassen.", "Bir renk seçin — sağdaki canlı önizleme hemen değişir. Bıraktığınızda kaydedilir."],
+["Asl ranglar", "Original colours", "Исходные цвета", "Couleurs d'origine", "Colori originali", "Colores originales", "Originalfarben", "Orijinal renkler"],
+["Yozuv rangi", "Text colour", "Цвет текста", "Couleur du texte", "Colore del testo", "Color del texto", "Textfarbe", "Metin rengi"],
+["Asl", "Default", "Исходный", "Par défaut", "Predefinito", "Original", "Standard", "Varsayılan"],
+["O'zgarishlar shu zahoti ko'rinadi. Ko'rinishdagi bandni bossangiz, uning sozlamalari ochiladi.", "Changes appear instantly. Click an item in the preview to open its settings.", "Изменения видны сразу. Нажмите на пункт в просмотре — откроются его настройки.", "Les modifications sont visibles aussitôt. Cliquez sur un élément de l'aperçu pour ouvrir ses réglages.", "Le modifiche si vedono subito. Clicca una voce nell'anteprima per aprire le sue impostazioni.", "Los cambios se ven al instante. Pulse un elemento de la vista previa para abrir sus ajustes.", "Änderungen sind sofort sichtbar. Klicken Sie im Vorschaufenster auf einen Punkt, um seine Einstellungen zu öffnen.", "Değişiklikler anında görünür. Önizlemedeki bir öğeye dokunun, ayarları açılır."],
+["Qurilma", "Device", "Устройство", "Appareil", "Dispositivo", "Dispositivo", "Gerät", "Cihaz"],
+["Kompyuter", "Computer", "Компьютер", "Ordinateur", "Computer", "Ordenador", "Computer", "Bilgisayar"],
+["Telefon", "Phone", "Телефон", "Téléphone", "Telefono", "Teléfono", "Telefon", "Telefon"],
+["Yangilash", "Refresh", "Обновить", "Actualiser", "Aggiorna", "Actualizar", "Aktualisieren", "Yenile"],
+["Suhbatlar", "Chats", "Чаты", "Discussions", "Chat", "Chats", "Chats", "Sohbetler"],
+["Suhbatlar arxivi", "Chat archive", "Архив чатов", "Archive des discussions", "Archivio chat", "Archivo de chats", "Chat-Archiv", "Sohbet arşivi"],
+["Yangi chat", "New chat", "Новый чат", "Nouvelle discussion", "Nuova chat", "Nuevo chat", "Neuer Chat", "Yeni sohbet"],
+["Yangi chat ochildi", "A new chat is open", "Открыт новый чат", "Nouvelle discussion ouverte", "Nuova chat aperta", "Se ha abierto un chat nuevo", "Neuer Chat geöffnet", "Yeni sohbet açıldı"],
+["Yangi suhbat", "New conversation", "Новая беседа", "Nouvelle conversation", "Nuova conversazione", "Nueva conversación", "Neues Gespräch", "Yeni görüşme"],
+["Bo'sh suhbat", "Empty conversation", "Пустая беседа", "Conversation vide", "Conversazione vuota", "Conversación vacía", "Leeres Gespräch", "Boş görüşme"],
+["Suhbat nomi", "Conversation name", "Название беседы", "Nom de la conversation", "Nome della conversazione", "Nombre de la conversación", "Name des Gesprächs", "Görüşme adı"],
+["Bu suhbat o'chirilsinmi?", "Delete this conversation?", "Удалить эту беседу?", "Supprimer cette conversation ?", "Eliminare questa conversazione?", "¿Eliminar esta conversación?", "Dieses Gespräch löschen?", "Bu görüşme silinsin mi?"],
+["Suhbat o'chirildi", "Conversation deleted", "Беседа удалена", "Conversation supprimée", "Conversazione eliminata", "Conversación eliminada", "Gespräch gelöscht", "Görüşme silindi"],
+["Suhbatlardan qidirish", "Search the chats", "Поиск по чатам", "Rechercher dans les discussions", "Cerca nelle chat", "Buscar en los chats", "Chats durchsuchen", "Sohbetlerde ara"],
+["Qidirish", "Search", "Поиск", "Rechercher", "Cerca", "Buscar", "Suchen", "Ara"],
+["Arxiv", "Archive", "Архив", "Archive", "Archivio", "Archivo", "Archiv", "Arşiv"],
+["Oxirgi 7 kun", "Last 7 days", "Последние 7 дней", "7 derniers jours", "Ultimi 7 giorni", "Últimos 7 días", "Letzte 7 Tage", "Son 7 gün"],
+["Oldingi", "Earlier", "Ранее", "Avant", "Precedenti", "Anteriores", "Früher", "Daha önce"],
+["Kecha", "Yesterday", "Вчера", "Hier", "Ieri", "Ayer", "Gestern", "Dün"],
+["Hali suhbat yo'q — «Yangi chat» tugmasini bosing.", "No conversations yet — tap «New chat».", "Беседы ещё нет — нажмите «Новый чат».", "Aucune conversation — touchez « Nouvelle discussion ».", "Nessuna conversazione — tocca «Nuova chat».", "Aún no hay conversaciones — pulse «Nuevo chat».", "Noch keine Gespräche — tippen Sie auf «Neuer Chat».", "Henüz görüşme yok — «Yeni sohbet»e dokunun."],
+["Hech narsa topilmadi.", "Nothing was found.", "Ничего не найдено.", "Rien n'a été trouvé.", "Nessun risultato.", "No se ha encontrado nada.", "Nichts gefunden.", "Hiçbir şey bulunamadı."],
+["Barcha suhbatlarni tozalash", "Clear all conversations", "Очистить все беседы", "Effacer toutes les conversations", "Cancella tutte le conversazioni", "Borrar todas las conversaciones", "Alle Gespräche löschen", "Tüm görüşmeleri temizle"],
+["Nomini o'zgartirish", "Rename", "Переименовать", "Renommer", "Rinomina", "Cambiar el nombre", "Umbenennen", "Adını değiştir"],
+["Faqat direktor uchun", "For the director only", "Только для директора", "Réservé au directeur", "Solo per il direttore", "Solo para el director", "Nur für den Direktor", "Yalnızca direktör için"],
+["Hammasi", "All", "Все", "Tout", "Tutti", "Todos", "Alle", "Tümü"],
+["Mavzu topilmadi.", "No topic was found.", "Тема не найдена.", "Aucun sujet trouvé.", "Nessun argomento trovato.", "No se ha encontrado el tema.", "Kein Thema gefunden.", "Konu bulunamadı."],
+["Savol yozing yoki mavzu tanlang…", "Type a question or pick a topic…", "Напишите вопрос или выберите тему…", "Écrivez une question ou choisissez un sujet…", "Scrivi una domanda o scegli un argomento…", "Escriba una pregunta o elija un tema…", "Schreiben Sie eine Frage oder wählen Sie ein Thema…", "Bir soru yazın veya konu seçin…"],
+["Yuborish", "Send", "Отправить", "Envoyer", "Invia", "Enviar", "Senden", "Gönder"],
+["Xotira yoqilgan", "Memory is on", "Память включена", "Mémoire activée", "Memoria attiva", "Memoria activada", "Gedächtnis aktiv", "Hafıza açık"]
+  ];
+  var D = window.AHDICT || (window.AHDICT = {});
+  L.forEach(function (l, i) { D[l] = D[l] || {}; R.forEach(function (r) { if (!D[l][r[0]]) D[l][r[0]] = r[i + 1]; }); });
+})();
+
+</script>
+<script>
 /* =====================================================================
    ART HOUSE — MA'LUMOTLAR QATLAMI (sayt ↔ kabinet)
    • Server bo'lmasa: localStorage + BroadcastChannel — sayt va kabinet bitta
@@ -4656,13 +4840,64 @@ function agentLocal(q,rl){const T=nz(q);if(rl==='auto')rl=/tushum|qoldiq|prognoz
      eslatmalar Claude'ga ham yuboriladi — u suhbat davomini biladi.
    • Kirishda «Xush kelibsiz, Art House» animatsiyasi: sessiyada birinchi marta to'liq, keyin sokin holatda.
    =================================================================== */
-const AGK='ah_agent_mem';let AGW=0,AGF='all',AGQ='',AGB=0;
+const AGK='ah_agent_mem';let AGW=0,AGF='all',AGQ='',AGB=0,AGS='chats'; /* AGS — chap paneldagi varaq: suhbatlar yoki mavzular */
 Object.assign(ICN,{percent:'<line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',brain:'<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/>',funnel:'<path d="M22 3H2l8 9.46V19l4 2v-8.54z"/>',cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',eyeA:'<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>',gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',plusA:'<path d="M5 12h14"/><path d="M12 5v14"/>',lockA:'<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'});
 /* matnni solishtirishga tayyorlash (o'zbekcha apostroflar bir xil ko'rinishga keltiriladi) */
 const nz=t=>String(t==null?'':t).toLowerCase().replace(/[\u2019\u02bb\u02bc`\u00b4\u2018]/g,"'");
 /* --- xotira --- */
-function agLoad(){const a=LS(AGK)||{},m=a[ME().id]||{};m.msgs=Array.isArray(m.msgs)?m.msgs:[];m.notes=Array.isArray(m.notes)?m.notes:[];m.use=m.use||{};m.ctx=m.ctx||null;return m}
-function agSave(m){const a=LS(AGK)||{};m.msgs=m.msgs.slice(-200);m.notes=m.notes.slice(-60);a[ME().id]=m;let s=JSON.stringify(a);while(s.length>45e4&&m.msgs.length>10){m.msgs.splice(0,10);s=JSON.stringify(a)}LS(AGK,a)}
+/* Xotira tuzilishi (har bir xodim uchun alohida):
+   { chats:[{id, t:nom, at, up, msgs:[{r,h,t,k}], use:{}}], cur:'<chat id>', notes:[], ctx }
+   m.msgs va m.use — joriy suhbatning aynan o'sha massivlari (eski kod o'zgarishsiz ishlaydi). */
+const agCid=()=>'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const agChat=()=>({id:agCid(),t:'',at:Date.now(),up:Date.now(),msgs:[],use:{}});
+function agLoad(){const a=LS(AGK)||{},m=a[ME().id]||{};
+ m.notes=Array.isArray(m.notes)?m.notes:[];m.ctx=m.ctx||null;
+ m.chats=Array.isArray(m.chats)?m.chats:[];
+ if(!m.chats.length){ /* eski bitta suhbat — arxivdagi birinchi chatga ko'chiriladi */
+  const old=Array.isArray(m.msgs)?m.msgs:[],c=agChat();
+  c.msgs=old;c.use=m.use&&typeof m.use==='object'?m.use:{};
+  if(old.length){c.at=old[0].t||c.at;c.up=old[old.length-1].t||c.up}
+  m.chats=[c];m.cur=c.id}
+ m.chats.forEach(c=>{c.id=c.id||agCid();c.msgs=Array.isArray(c.msgs)?c.msgs:[];c.use=c.use&&typeof c.use==='object'?c.use:{};c.at=c.at||Date.now();c.up=c.up||c.at});
+ if(!m.chats.some(c=>c.id===m.cur))m.cur=m.chats[0].id;
+ const cur=m.chats.find(c=>c.id===m.cur);
+ m.msgs=cur.msgs;m.use=cur.use;m.cur0=m.cur; /* cur0 — m.msgs qaysi suhbatdan olingani */
+ return m}
+function agSave(m){const a=LS(AGK)||{};
+ m.notes=(m.notes||[]).slice(-60);
+ m.chats=Array.isArray(m.chats)&&m.chats.length?m.chats:[agChat()];
+ /* yangi xabarlar m.cur0 suhbatiga tegishli (m.cur boshqa suhbatga o'tgan bo'lishi mumkin) */
+ const src=m.chats.find(c=>c.id===m.cur0)||m.chats.find(c=>c.id===m.cur)||m.chats[0];
+ if(src){
+  if(m.msgs&&m.msgs!==src.msgs)src.msgs=m.msgs;
+  if(m.use&&m.use!==src.use)src.use=m.use;
+  src.msgs=src.msgs.slice(-200);
+  if(src.msgs.length)src.up=src.msgs[src.msgs.length-1].t||Date.now();
+  if(!src.t){const n=agName(src);src.t=n===TX('Yangi suhbat')?'':n}}
+ /* bo'sh suhbatlar saqlanmaydi (joriysidan boshqa), oxirgi 40 ta qoladi */
+ if(!m.chats.some(c=>c.id===m.cur))m.cur=m.chats[0].id;
+ m.chats=m.chats.filter(c=>c.msgs.length||c.id===m.cur).slice(-40);
+ if(!m.chats.length)m.chats=[agChat()];
+ if(!m.chats.some(c=>c.id===m.cur))m.cur=m.chats[0].id;
+ const cur=m.chats.find(c=>c.id===m.cur);
+ m.msgs=cur.msgs;m.use=cur.use;m.cur0=m.cur;
+ a[ME().id]={chats:m.chats,cur:m.cur,notes:m.notes,ctx:m.ctx};
+ let s=JSON.stringify(a);
+ while(s.length>45e4){const L=a[ME().id].chats;
+  if(L.length>1&&L[0].id!==m.cur)L.shift();
+  else if(L[0].msgs.length>10)L[0].msgs.splice(0,10);
+  else break;
+  s=JSON.stringify(a)}
+ LS(AGK,a)}
+/* yangi chat: bo'sh suhbat bo'lsa — shunga o'tiladi */
+function agNewChat(){const m=agLoad(),e=m.chats.find(c=>!c.msgs.length),c=e||agChat();
+ if(!e)m.chats.push(c);
+ m.cur=c.id;m.msgs=c.msgs;m.use=c.use;m.cur0=c.id;
+ agSave(m);return m.cur}
+/* suhbat nomi, oxirgi xabar va vaqti (chap paneldagi ro'yxat uchun) */
+function agName(c){if(c&&c.t)return c.t;const f=((c&&c.msgs)||[]).find(x=>x.r==='u'),s=f?agTxt(f.h).replace(/\s+/g,' ').trim():'';return s?s.slice(0,46):TX('Yangi suhbat')}
+function agSnip(c){const L=(c&&c.msgs)||[];if(!L.length)return TX("Bo'sh suhbat");const x=L[L.length-1];return(x.r==='u'?'':'AI · ')+agTxt(x.h).replace(/\s+/g,' ').trim().slice(0,64)}
+function agWhen(t){return dk(t)===D0()?IDF(t,{hour:'2-digit',minute:'2-digit'}):fds(t)}
 const agTxt=h=>String(h).replace(/<br\s*\/?>/gi,'\n').replace(/<\/(tr|p|li|div|h\d)>/gi,'\n').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/[ \t]+/g,' ').replace(/\n\s+/g,'\n').trim();
 /* --- javob qismlari --- */
 const agH=t=>'<b class="ag-h">'+t+'</b>',agKV=r=>'<table class="tb">'+r.map(x=>'<tr><th>'+x[0]+'</th><td>'+x[1]+'</td></tr>').join('')+'</table>';
@@ -4770,13 +5005,38 @@ function agHero(M,full){const n=Date.now(),td=DATA.leads.filter(l=>dk(l.at)===D0
   +'<p class="agw-s">'+esc(TT("{n} ta mavzu · suhbat xotirasi · jonli ma'lumotlar",{n:AGT.length}))+'</p></div>'
   +'<div class="agw-kp"><button type="button" data-t="today"><b>'+td+'</b><span>Bugungi arizalar</span></button><button type="button" data-t="stale"><b>'+st+'</b><span>Javobsiz</span></button><button type="button" data-t="plan">'+I('cal')+'<span>Bugungi ish rejasi</span></button></div></section>'}
 function vG(){const mn=$('mn'),o=own();let M=agLoad();const full=!AGW&&!matchMedia('(prefers-reduced-motion:reduce)').matches;AGW=1;
+ const cur=()=>M.chats.find(c=>c.id===M.cur)||M.chats[0];
+ /* ---- mavzular ro'yxati (chap paneldagi «Mavzular» varag'i) ---- */
  const tops=()=>{const q=AGQ.trim().toLowerCase(),L=AGT.filter(t=>(AGF==='all'||t.g===AGF)&&(!q||TX(t.t).toLowerCase().includes(q)||t.t.toLowerCase().includes(q)||TX(t.d).toLowerCase().includes(q)));
-  return L.length?AGG.filter(g=>L.some(t=>t.g===g[0])).map(g=>'<p class="ag-gh">'+I(g[2])+'<span>'+g[1]+'</span></p>'+L.filter(t=>t.g===g[0]).map(t=>{const lk=t.o&&!o;return '<button type="button" class="ag-t'+(lk?' lk':'')+'" data-t="'+t.id+'"'+(lk?' disabled title="Faqat direktor uchun"':'')+'><i>'+I(t.ic)+'</i><span><b>'+t.t+'</b><small>'+t.d+'</small></span>'+(lk?I('lockA'):'')+'</button>'}).join('')).join(''):'<p class="note" style="text-align:left">Mavzu topilmadi.</p>'};
- mn.innerHTML=agHero(M,full)
-  +'<div class="ag"><div class="card ag-chat"><div class="ag-top"><span class="ag-on"><i class="pl g"></i><span>Xotira yoqilgan</span><em id="agn"></em></span><span class="ag-acts"><button type="button" class="btn ghost sm" data-ag="mem">'+I('brain')+'Xotira</button><button type="button" class="btn ghost sm" data-ag="tl">'+I('grid')+'Mavzular</button></span></div>'
-  +'<div class="chat" id="ac" aria-live="polite"></div><div class="chips" id="agc"></div><form class="cf" id="acf"><input id="aq" placeholder="Savol yozing yoki mavzu tanlang…" autocomplete="off" maxlength="600"><button class="btn gold sm" type="submit" aria-label="Yuborish">'+I('send')+'</button></form></div>'
-  +'<aside class="card ag-side" id="ags"><div class="ag-sh"><b class="ch2">'+I('grid')+'Mavzular</b><em>'+AGT.length+'</em><button type="button" class="ib ag-sx" data-ag="tl" aria-label="Yopish">'+I('x')+'</button></div><div class="sqw">'+I('search')+'<input id="agq" class="sq" type="search" placeholder="Mavzu qidirish" value="'+esc(AGQ)+'" autocomplete="off" aria-label="Mavzu qidirish"></div>'
-  +'<div class="ag-gf" id="agf"><button type="button" data-g="all" aria-pressed="'+(AGF==='all')+'">Hammasi</button>'+AGG.map(g=>'<button type="button" data-g="'+g[0]+'" aria-pressed="'+(AGF===g[0])+'">'+g[1]+'</button>').join('')+'</div><div class="ag-tl" id="agt">'+tops()+'</div></aside></div>';
+  return '<div class="ag-gf" id="agf"><button type="button" data-g="all" aria-pressed="'+(AGF==='all')+'">'+TX('Hammasi')+'</button>'+AGG.map(g=>'<button type="button" data-g="'+g[0]+'" aria-pressed="'+(AGF===g[0])+'">'+TX(g[1])+'</button>').join('')+'</div>'+
+   (L.length?AGG.filter(g=>L.some(t=>t.g===g[0])).map(g=>'<p class="ag-gh2">'+I(g[2])+'<span>'+TX(g[1])+'</span></p>'+L.filter(t=>t.g===g[0]).map(t=>{const lk=t.o&&!o;return '<button type="button" class="ag-t'+(lk?' lk':'')+'" data-t="'+t.id+'"'+(lk?' disabled title="'+TX('Faqat direktor uchun')+'"':'')+'><i>'+I(t.ic)+'</i><span><b>'+TX(t.t)+'</b><small>'+TX(t.d)+'</small></span>'+(lk?I('lockA'):'')+'</button>'}).join('')).join(''):'<p class="ag-empty">'+TX('Mavzu topilmadi.')+'</p>')};
+ /* ---- suhbatlar arxivi (Claude va Telegram uslubidagi ro'yxat) ---- */
+ const chRow=c=>'<div class="ag-ci'+(c.id===M.cur?' on':'')+'"><button type="button" class="ag-cio" data-ch="'+c.id+'"><b class="nt9">'+esc(agName(c))+'</b><small class="nt9">'+esc(agSnip(c))+'</small></button>'+
+  '<span class="ag-cim"><em>'+esc(agWhen(c.up||c.at))+'</em><button type="button" class="ag-cib" data-chr="'+c.id+'" aria-label="'+TX("Nomini o'zgartirish")+'">'+I('edit')+'</button><button type="button" class="ag-cib dl" data-chd="'+c.id+'" aria-label="'+TX("O'chirish")+'">'+I('trash')+'</button></span></div>';
+ const chatList=()=>{const q=AGQ.trim().toLowerCase(),now=Date.now();
+  let L=M.chats.slice().sort((a,b)=>(b.up||b.at)-(a.up||a.at));
+  if(q)L=L.filter(c=>(agName(c)+' '+c.msgs.map(x=>agTxt(x.h)).join(' ')).toLowerCase().indexOf(q)>-1);
+  if(!L.length)return '<p class="ag-empty">'+TX(q?'Hech narsa topilmadi.':"Hali suhbat yo'q — «Yangi chat» tugmasini bosing.")+'</p>';
+  const G=[[TX('Bugun'),[]],[TX('Kecha'),[]],[TX('Oxirgi 7 kun'),[]],[TX('Oldingi'),[]]],yd=dk(now-864e5);
+  L.forEach(c=>{const t=c.up||c.at,d=dk(t);G[d===D0()?0:d===yd?1:(now-t<6048e5?2:3)][1].push(c)});
+  return G.filter(g=>g[1].length).map(g=>'<p class="ag-gh2"><span>'+g[0]+'</span></p>'+g[1].map(chRow).join('')).join('')};
+ const sbList=()=>AGS==='chats'?chatList():tops();
+ const nchats=M.chats.filter(c=>c.msgs.length).length;
+ /* ---- chapdagi och rangli panel ---- */
+ const side='<aside class="ag-sb" id="ags" aria-label="'+TX('Suhbatlar arxivi')+'">'+
+  '<div class="ag-sbh"><b>'+I('chat2')+'<span>'+TX('Suhbatlar')+'</span></b><em>'+nchats+'</em><button type="button" class="ag-sbx" data-ag="close" aria-label="'+TX('Yopish')+'">'+I('x')+'</button></div>'+
+  '<button type="button" class="ag-new" data-ag="new">'+I('plusA')+'<span>'+TX('Yangi chat')+'</span></button>'+
+  '<div class="ag-sq">'+I('search')+'<input id="agq" type="search" value="'+esc(AGQ)+'" placeholder="'+TX(AGS==='chats'?'Suhbatlardan qidirish':'Mavzu qidirish')+'" autocomplete="off" aria-label="'+TX('Qidirish')+'"></div>'+
+  '<div class="ag-tabs" role="tablist"><button type="button" role="tab" data-sbt="chats" aria-selected="'+(AGS==='chats')+'">'+I('clock')+'<span>'+TX('Arxiv')+'</span></button><button type="button" role="tab" data-sbt="tops" aria-selected="'+(AGS==='tops')+'">'+I('grid')+'<span>'+TX('Mavzular')+'</span></button></div>'+
+  '<div class="ag-sbl" id="agsl">'+sbList()+'</div></aside>';
+ /* ---- o'ng tarafda faqat suhbat: eski tartibsiz panel olib tashlandi ---- */
+ const main='<div class="card ag-chat ag-main">'+
+  '<div class="ag-top"><button type="button" class="ag-mb" data-ag="open" aria-label="'+TX('Suhbatlar')+'">'+I('menu')+'</button>'+
+  '<span class="ag-ttl"><b class="nt9">'+esc(agName(cur()))+'</b><small><i class="pl g"></i>'+TX('Xotira yoqilgan')+'<em id="agn"></em></small></span>'+
+  '<span class="ag-acts"><button type="button" class="btn ghost sm" data-ag="new">'+I('plusA')+TX('Yangi chat')+'</button><button type="button" class="btn ghost sm" data-ag="mem">'+I('brain')+TX('Xotira')+'</button></span></div>'+
+  '<div class="chat" id="ac" aria-live="polite"></div><div class="chips" id="agc"></div>'+
+  '<form class="cf" id="acf"><input id="aq" placeholder="'+TX('Savol yozing yoki mavzu tanlang…')+'" autocomplete="off" maxlength="600"><button class="btn gold sm" type="submit" aria-label="'+TX('Yuborish')+'">'+I('send')+'</button></form></div>';
+ mn.innerHTML=agHero(M,full)+'<div class="ag">'+side+main+'<div class="ag-scrim" id="agsc" aria-hidden="true"></div></div>';
  const c=$('ac');let lastDay='';
  const day=t=>{const d=dk(t);if(d===lastDay)return;lastDay=d;const e=document.createElement('div');e.className='ag-day';e.textContent=d===D0()?TX('Bugun'):fdD(t);c.appendChild(e)};
  const add=(h,w,t)=>{day(t||Date.now());const d=document.createElement('div');d.className='m '+w;d.innerHTML=h;c.appendChild(d);c.scrollTop=c.scrollHeight;return d};
@@ -4785,6 +5045,10 @@ function vG(){const mn=$('mn'),o=own();let M=agLoad();const full=!AGW&&!matchMed
  if(M.msgs.length){const e=document.createElement('div');e.className='ag-rest';e.innerHTML=I('brain')+'<span>'+esc(TT("Xotiradan tiklandi: {n} ta xabar",{n:M.msgs.length}))+'</span>';c.appendChild(e);M.msgs.forEach(m=>add(m.h,m.r,m.t))}
  else{const td=DATA.leads.filter(l=>dk(l.at)===D0()),f=fin();add(o?TT("Assalomu alaykum, Direktor! Bugungi savdo dinamikasi va tushumlar tahlili tayyor: bugun <b>{n}</b> ta yangi ariza, shartnomalar jami <b>{tot}</b>, qoldiq <b>{rem}</b>. Qaysi yo'nalishdan boshlaymiz?",{n:td.length,tot:nfm(f.tot),rem:nfm(f.rem)}):TT("Assalomu alaykum, hamkasb! Bugungi savdo dinamikasi tahlili tayyor: bugun <b>{n}</b> ta yangi ariza. Qaysi yo'nalishdan boshlaymiz?",{n:td.length}),'a')}
  cnt();chips();c.scrollTop=c.scrollHeight;
+ /* chap panel: ochish/yopish (telefon va planshet) */
+ const sb=v=>{const e1=$('ags'),e2=$('agsc');if(e1)e1.classList.toggle('open',v);if(e2)e2.classList.toggle('on',v)};
+ const relist=()=>{const e1=$('agsl');if(e1)e1.innerHTML=sbList()};
+ const title=()=>{const e1=mn.querySelector('.ag-ttl b');if(e1)e1.textContent=agName(cur())};
  const put=(h,r,k)=>{const t=Date.now();M.msgs.push(k?{r,h,t,k}:{r,h,t});add(h,r,t)};
  const ask=async(q,tid)=>{q=String(q||'').trim();if(!q||AGB)return;M=agLoad();put(esc(q),'u');let h=tid?null:agCmd(q,M),tp=null;
   if(h==null){tp=tid?agTop(tid):agMatch(q);
@@ -4793,31 +5057,43 @@ function vG(){const mn=$('mn'),o=own();let M=agLoad();const full=!AGW&&!matchMed
    else{const r=agentLocal(q,'auto');h=r.h;if(r.ok){const m=findC(q);if(m){const x=m.l||m.c;M.ctx={id:m.l?m.l.id:'',cid:m.c?m.c.id:'',p:x.phone||'',n:x.name||'',at:Date.now()}}}
     else{AGB=1;const w=add('<span class="ag-dots"><i></i><i></i><i></i></span>','a wait');const s=await agServer(q,M);w.remove();AGB=0;
      h=s||agNo("Bu savol bo'yicha bazadan aniq javob topilmadi. Mavzulardan birini tanlang yoki mijoz ismi/telefonini yozing.")+'<span class="ag-sug">'+['plan','client','calc','mortgage'].map(agTop).map(t=>'<button type="button" data-t="'+t.id+'">'+t.t+'</button>').join('')+'</span>'}}}
-  put(h,'a',tp?tp.id:'');agSave(M);cnt();chips()};
+  put(h,'a',tp?tp.id:'');agSave(M);cnt();chips();title();relist()};
  $('acf').addEventListener('submit',e=>{e.preventDefault();const v=$('aq').value;$('aq').value='';ask(v)});
- const pick=b=>{const t=agTop(b.dataset.t);if(!t)return;$('ags').classList.remove('open');ask(TX(t.t),t.id);const i=$('aq');if(i&&matchMedia('(min-width:821px)').matches)i.focus({preventScroll:true})};
- mn.onclick=e=>{const b=e.target.closest('button');if(!b)return;
-  if(b.dataset.t&&!b.disabled){pick(b);return}
-  if(b.dataset.g){AGF=b.dataset.g;$('agf').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('agt').innerHTML=tops();return}
-  if(b.dataset.ag==='tl'){$('ags').classList.toggle('open');return}
-  if(b.dataset.ag==='mem')agMemDlg(()=>vG())};
- $('agq').addEventListener('input',e=>{AGQ=e.target.value;$('agt').innerHTML=tops()});
+ const pick=b=>{const t=agTop(b.dataset.t);if(!t)return;sb(false);ask(TX(t.t),t.id);const i=$('aq');if(i&&matchMedia('(min-width:821px)').matches)i.focus({preventScroll:true})};
+ const sc=$('agsc');if(sc)sc.onclick=()=>sb(false);
+ mn.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.t&&!b.disabled){pick(b);return}
+  if(d.g){AGF=d.g;relist();return}
+  if(d.sbt){AGS=d.sbt;mn.querySelectorAll('[data-sbt]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.sbt===AGS)));const q=$('agq');if(q)q.placeholder=TX(AGS==='chats'?'Suhbatlardan qidirish':'Mavzu qidirish');relist();return}
+  if(d.ag==='new'){agNewChat();AGQ='';AGS='chats';vG();kToast(TX('Yangi chat ochildi'));return}
+  if(d.ch){const m2=agLoad();if(m2.cur!==d.ch){m2.cur=d.ch;agSave(m2)}AGQ='';vG();return}
+  if(d.chr){const c0=agLoad().chats.find(x=>x.id===d.chr);if(!c0)return;const n=prompt(TX('Suhbat nomi'),agName(c0));if(n==null)return;
+   const m2=agLoad(),c2=m2.chats.find(x=>x.id===d.chr);if(c2)c2.t=n.trim().slice(0,60);agSave(m2);vG();return}
+  if(d.chd){const c0=agLoad().chats.find(x=>x.id===d.chd);if(!c0)return;
+   askDel(TX("Bu suhbat o'chirilsinmi?"),'<b class="nt9">'+esc(agName(c0))+'</b>',()=>{const m2=agLoad();m2.chats=m2.chats.filter(x=>x.id!==d.chd);
+    if(!m2.chats.length)m2.chats=[agChat()];if(!m2.chats.some(x=>x.id===m2.cur))m2.cur=m2.chats[0].id;
+    agSave(m2);vG();kToast(TX("Suhbat o'chirildi"))});return}
+  if(d.ag==='open'){sb(true);return}
+  if(d.ag==='close'){sb(false);return}
+  if(d.ag==='tl'){AGS='tops';mn.querySelectorAll('[data-sbt]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.sbt===AGS)));relist();sb(true);return}
+  if(d.ag==='mem'){agMemDlg(()=>vG());return}};
+ $('agq').addEventListener('input',e=>{AGQ=e.target.value;relist()});
  if(full)setTimeout(()=>{const w=$('agw');if(w)w.classList.add('done')},2600)}
 /* «Xotira» oynasi: eslatmalar, suhbat tarixi, tozalash */
 function agMemDlg(done){const M=agLoad(),m=document.createElement('div');m.className='dlg ag-dlg';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
  const draw=()=>{m.innerHTML='<div class="box"><button type="button" class="ib ag-dx" data-a="x" aria-label="Yopish">'+I('x')+'</button><i>'+I2('brain')+'</i><h3>Xotira</h3><p>AI Agent suhbat tarixini va eslatmalaringizni eslab qoladi. Ma\'lumot faqat shu brauzerda, har bir xodim uchun alohida saqlanadi.</p>'
-  +'<div class="ag-ms"><span><b>'+M.msgs.length+'</b><small>Xabarlar</small></span><span><b>'+M.notes.length+'</b><small>Eslatmalar</small></span><span><b>'+(M.msgs.length?fds(M.msgs[0].t):'—')+'</b><small>Birinchi xabar</small></span></div>'
+  +'<div class="ag-ms"><span><b>'+M.chats.filter(c=>c.msgs.length).length+'</b><small>Suhbatlar</small></span><span><b>'+M.chats.reduce((a,c)=>a+c.msgs.length,0)+'</b><small>Xabarlar</small></span><span><b>'+M.notes.length+'</b><small>Eslatmalar</small></span></div>'
   +(M.ctx&&M.ctx.n?'<p class="ag-mc">'+I('user')+'<span>'+esc(TT('Oxirgi mijoz: {n}',{n:M.ctx.n}))+'</span></p>':'')
   +'<form class="ag-mf"><input maxlength="300" placeholder="Yangi eslatma — masalan: dushanba kuni Azizga qo\'ng\'iroq" aria-label="Yangi eslatma"><button class="btn gold sm" type="submit">'+I('plusA')+'Qo\'shish</button></form>'
   +'<div class="ag-ml">'+(M.notes.length?M.notes.map((n,i)=>'<div><span class="nt9">'+esc(n.t)+'</span><small>'+fds(n.at)+'</small><button type="button" class="ib dl" data-n="'+i+'" aria-label="O\'chirish">'+I('trash')+'</button></div>').join(''):'<p class="note">Hali eslatma yo\'q.</p>')+'</div>'
-  +'<div class="act"><button class="btn ghost" type="button" data-a="hist"'+(M.msgs.length?'':' disabled')+'>'+I('trash')+'Suhbat tarixini tozalash</button><button class="btn ghost" type="button" data-a="all"'+(M.msgs.length+M.notes.length?'':' disabled')+'>Hammasini unutish</button></div></div>'};
+  +'<div class="act"><button class="btn ghost" type="button" data-a="hist"'+(M.chats.some(c=>c.msgs.length)?'':' disabled')+'>'+I('trash')+'Barcha suhbatlarni tozalash</button><button class="btn ghost" type="button" data-a="all"'+(M.chats.some(c=>c.msgs.length)+M.notes.length?'':' disabled')+'>Hammasini unutish</button></div></div>'};
  draw();document.body.appendChild(m);
  const close=()=>{m.remove();document.removeEventListener('keydown',key);done&&done()},key=e=>{if(e.key==='Escape')close()};document.addEventListener('keydown',key);
  m.addEventListener('submit',e=>{e.preventDefault();const i=m.querySelector('.ag-mf input'),t=i.value.trim();if(t.length<2)return;M.notes.push({t:t.slice(0,300),at:Date.now()});agSave(M);draw()});
  m.addEventListener('click',e=>{if(e.target===m)return close();const b=e.target.closest('button');if(!b||b.type==='submit')return;const a=b.dataset.a;
   if(a==='x')return close();if(b.dataset.n!=null){M.notes.splice(+b.dataset.n,1);agSave(M);draw();return}
-  if(a==='hist'){M.msgs=[];M.use={};agSave(M);kToast(TX('Suhbat tarixi tozalandi'));draw();return}
-  if(a==='all'){M.msgs=[];M.notes=[];M.use={};M.ctx=null;agSave(M);kToast(TX('Xotira tozalandi'));draw()}})}
+  if(a==='hist'){M.chats=[agChat()];M.cur=M.chats[0].id;M.msgs=M.chats[0].msgs;M.use=M.chats[0].use;agSave(M);kToast(TX('Suhbat tarixi tozalandi'));draw();return}
+  if(a==='all'){M.chats=[agChat()];M.cur=M.chats[0].id;M.msgs=M.chats[0].msgs;M.use=M.chats[0].use;M.notes=[];M.ctx=null;agSave(M);kToast(TX('Xotira tozalandi'));draw()}})}
 
 const I2=n=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+ICN[n]+'</svg>',kc=(ic,lb,v)=>'<div class="kc"><i>'+I2(ic)+'</i><span>'+lb+'</span><b>'+v+'</b></div>';
 const tel=p=>esc(String(p||'').replace(/[^\d+]/g,''));
@@ -7653,14 +7929,21 @@ Object.assign(ICN,{
  globe:ICN.globe||'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/>'});
 
 /* ---------- ma'lumot ---------- */
-function MN(){const c=CMS();if(c.menu&&Array.isArray(c.menu.main))return clone(c.menu);const d=M.def();d.cards.forEach(x=>x.img='');return d} /* rasm bo'sh — standart rasm */
-function put(m,act,det){const c=CMS();c.menu=m;return cmsSave(c,act,det||'')}
+let PVD='desk',PVOK=0,PVT=0; /* jonli ko'rinish: qurilma, sayt tayyormi, kutish taymeri */
+function MN(){const c=CMS();let m;if(c.menu&&Array.isArray(c.menu.main))m=clone(c.menu);else{m=M.def();m.cards.forEach(x=>x.img='')} /* rasm bo'sh — standart rasm */
+ m.style=Object.assign({bg:'',ink:'',acc:''},m.style||{});return m}
+/* saytdagi menyuning standart ranglari (jonli ko'rinish va rang tanlagich uchun) */
+const MCOL=[['bg','Fon rangi','#0C3E2F'],['ink','Yozuv rangi','#F8F0D8'],['acc','Oltin (aksent) rang','#DCC48F']];
+function put(m,act,det){const c=CMS();c.menu=m;const ok=cmsSave(c,act,det||'');mnPush(m);return ok}
 const lab=(it,l)=>M.label(it,l||(LANG==='cy'?'uz':LANG))||'—';
 /* havolalar ro'yxati */
 function LINKS(){const P=window.PROJECTS||[],o=[];
  M.ROUTES.forEach(r=>o.push(['route:'+r[0],TX("Bo'lim")+': '+M.label({k:r[1]},'uz')]));
  P.forEach(p=>o.push(['proj:'+p.id,TX('Loyiha')+': '+(typeof p.name==='string'?p.name:p.name.uz)]));
+ SECS().forEach(x=>o.push(['route:cms-'+x.id,TX("Yangi bo'lim")+': '+((x.title||{}).uz||x.id)]));
  o.push(['phone',TX("Qo'ng'iroq (asosiy raqam)")],['telegram','Telegram'],['instagram','Instagram'],['url',TX('Boshqa havola (URL)')]);return o}
+/* saytdagi yangi bo'limlar ('ah_cms'.sections.custom) */
+function SECS(){const c=CMS();return(c.sections&&Array.isArray(c.sections.custom)?c.sections.custom:[])}
 const linkName=lk=>{const f=LINKS().find(x=>x[0]===lk);return f?f[1]:String(lk||'').replace(/^url:/,'')};
 
 /* ---------- menyu: Sayt → Menyu ---------- */
@@ -7670,7 +7953,7 @@ K.addView('N',()=>vN());
 
 function row(it,path,i,n,o){o=o||{};const off=it.on===false;
  const th=o.card?'<div class="st-ph mn-ph">'+(it.video?'<video data-mref="'+esc(it.video)+'" muted playsinline></video>':'<img data-mref="'+esc(M.img(it))+'" alt="">')+'</div>':'';
- return '<div class="st-card mn-row'+(off?' off':'')+(o.card?'':' mn-flat')+'">'+th+'<div class="st-in"><b class="nt9">'+esc(lab(it))+(it.hl?' <i class="mn-hl">★</i>':'')+'</b><small class="nt9">'+I('link')+esc(linkName(it.link))+'</small>'+
+ return '<div class="st-card mn-row'+(off?' off':'')+(o.card?'':' mn-flat')+'" data-mrow="'+esc(it.id||'')+'">'+th+'<div class="st-in"><b class="nt9">'+esc(lab(it))+(it.hl?' <i class="mn-hl">★</i>':'')+'</b><small class="nt9">'+I('link')+esc(linkName(it.link))+'</small>'+
   (off?'<span class="st-hid">'+I('eyeoff')+TX('Saytda yashirilgan')+'</span>':'')+'</div>'+
   '<div class="st-act"><button type="button" class="te-ib" data-mup="'+path+'" data-i="'+i+'"'+(i?'':' disabled')+' aria-label="'+TX('Yuqoriga')+'">'+I('up')+'</button><button type="button" class="te-ib" data-mdn="'+path+'" data-i="'+i+'"'+(i<n-1?'':' disabled')+' aria-label="'+TX('Pastga')+'">'+I('down')+'</button>'+
   '<button type="button" class="te-ib" data-meye="'+path+'" data-i="'+i+'" aria-label="'+TX(off?"Saytda ko'rsatish":'Saytda yashirish')+'">'+I(off?'eyeoff':'eye')+'</button>'+
@@ -7689,15 +7972,42 @@ function vN(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Menyu</h2><div class
    '<button type="button" class="te-ib" data-geye="'+gi+'" aria-label="'+TX(off?"Saytda ko'rsatish":'Saytda yashirish')+'">'+I(off?'eyeoff':'eye')+'</button><button type="button" class="btn ghost sm" data-ged="'+gi+'">'+I('edit')+TX('Sarlavha')+'</button>'+
    (auto?'':'<button type="button" class="btn gold sm" data-madd="g:'+gi+'">'+I('plus')+TX("Band qo'shish")+'</button>')+'<button type="button" class="te-ib dl" data-gdel="'+gi+'" aria-label="'+TX("O'chirish")+'">'+I('trash')+'</button></div></div>'+
    (auto?'':(g.items.length?'<div class="st-grid mn-grid mn-one">'+g.items.map((it,i)=>row(it,'g:'+gi,i,g.items.length)).join('')+'</div>':'<p class="note tt-empty">'+TX("Hozircha bo'sh.")+'</p>'))+'</div>'});
+ /* ---- «Yangi bo'lim» kartasi: saytga yangi sahifa + menyuga havola ---- */
+ const SC=SECS();
+ const secCard='<div class="card mn-new"><div class="tt-h"><div><h3>'+TX("Saytning yangi bo'limlari")+'</h3><p class="note">'+TX("Yangi bo'lim — saytdagi yangi sahifa (sarlavha, matn, rasm yoki video). U menyuga darhol qo'shiladi va o'ng tarafdagi jonli ko'rinishda ko'rinadi.")+'</p></div>'+
+  '<button type="button" class="btn gold mn-addbig" data-newsec>'+I('plus')+TX("Yangi bo'lim qo'shish")+'</button></div>'+
+  (SC.length?'<div class="mn-secs">'+SC.map((x,i)=>'<button type="button" class="mn-sec'+(x.on===false?' off':'')+'" data-secs="'+i+'">'+I('text')+'<span class="nt9">'+esc((x.title||{}).uz||'—')+'</span>'+(x.on===false?I('eyeoff'):'')+'</button>').join('')+'</div>':'<p class="note tt-empty">'+TX("Hozircha yangi bo'lim yo'q. Masalan: «Aksiyalar», «Qurilish jarayoni» yoki «Telegram kanal».")+'</p>')+'</div>';
+ /* ---- menyu ranglari: jonli ko'rinishda darhol ko'rinadi ---- */
+ const stCard='<div class="card mn-col"><div class="tt-h"><div><h3>'+TX('Menyu ranglari')+'</h3><p class="note">'+TX("Rangni tanlang — o'ng tarafdagi jonli ko'rinish darhol o'zgaradi. Barmoqni qo'yib yuborganingizda saqlanadi.")+'</p></div><button type="button" class="btn ghost sm" data-mcolr>'+I('undo')+TX('Asl ranglar')+'</button></div>'+
+  '<div class="mn-cols">'+MCOL.map(x=>'<label class="cm-f cm-col"><b>'+TX(x[1])+'</b><span><input type="color" data-mcol="'+x[0]+'" value="'+(m.style[x[0]]||x[2])+'"><code class="nt9" data-mcode="'+x[0]+'">'+(m.style[x[0]]||TX('Asl'))+'</code></span></label>').join('')+'</div></div>';
+ /* ---- jonli ko'rinish (Shopify uslubida) ---- */
+ const pv='<aside class="mnp-pv"><div class="mnp-pvh"><b>'+I('eye')+'<span>'+TX("Jonli ko'rinish")+'</span></b>'+
+  '<div class="te-seg" role="group" aria-label="'+TX('Qurilma')+'"><button type="button" data-pvd="desk" aria-pressed="'+(PVD==='desk')+'" aria-label="'+TX('Kompyuter')+'">'+I('monitor')+'</button><button type="button" data-pvd="mob" aria-pressed="'+(PVD==='mob')+'" aria-label="'+TX('Telefon')+'">'+I('mobile')+'</button></div>'+
+  '<button type="button" class="te-ib" data-pvr aria-label="'+TX('Yangilash')+'">'+I('undo')+'</button></div>'+
+  '<p class="mnp-note">'+TX("O'zgarishlar shu zahoti ko'rinadi. Ko'rinishdagi bandni bossangiz, uning sozlamalari ochiladi.")+'</p>'+
+  '<div class="mnp-frame te-frame" data-dev="'+PVD+'"><iframe id="mnIf" title="'+TX("Sayt ko'rinishi")+'" src="index.html?preview=1&menu=1#home"></iframe><div class="te-load" id="mnLd"><span class="cm-spin" aria-hidden="true"></span><span>'+TX('Sayt yuklanmoqda…')+'</span></div></div></aside>';
  mn.innerHTML='<div class="hh"><div><h2>'+I('menu')+'Menyu</h2><p class="lead">'+TX("Saytdagi ☰ menyu: rasm va video kartalar, havolalar va guruhlar. Har bir yozuv 8 tilda. O'zgarish saytda darhol ko'rinadi.")+'</p></div>'+
-  '<div class="qa"><a class="btn ghost sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+TX('Saytni ochish')+'</a><button type="button" class="btn ghost sm" data-mreset>'+I('undo')+TX('Asliga qaytarish')+'</button></div></div>'+
+  '<div class="qa"><button type="button" class="btn gold mn-addbig" data-newsec>'+I('plus')+TX("Yangi bo'lim qo'shish")+'</button><a class="btn ghost sm" href="index.html" target="_blank" rel="noopener">'+I('globe')+TX('Saytni ochish')+'</a><button type="button" class="btn ghost sm" data-mreset>'+I('undo')+TX('Asliga qaytarish')+'</button></div></div>'+
+  '<div class="mnp"><div class="mnp-ed">'+
+  secCard+
   sec(TX('Rasmli kartalar'),TX("Menyuning eng tepasida. Rasm yoki qisqa video (ovozsiz, aylanib turadi). 1 ta karta — keng, 2 ta — yonma-yon."),'cards',m.cards,{card:1})+
   sec(TX('Asosiy havolalar'),TX('Katta yozuvlar. «Ajratilgan» band oltin rangda chiqadi.'),'main',m.main)+
   '<h3 class="mn-gh">'+TX('Guruhlar')+'</h3>'+groups.join('')+
-  '<div class="xa"><button type="button" class="btn gold" data-gadd>'+I('plus')+TX("Guruh qo'shish")+'</button></div>';
+  '<div class="xa"><button type="button" class="btn gold" data-gadd>'+I('plus')+TX("Guruh qo'shish")+'</button></div>'+
+  stCard+'</div>'+pv+'</div>';
  mn.querySelectorAll('[data-mref]').forEach(el=>{const r=el.dataset.mref;if(!r){el.classList.add('cm-noimg');return}refURL(r).then(u=>{if(u)el.src=u;else el.classList.add('cm-noimg')})});
+ mnWire();
+ /* rang tanlagich: input — jonli ko'rinish, change — saqlash */
+ mn.oninput=e=>{const c0=e.target.closest('[data-mcol]');if(!c0)return;const k=c0.dataset.mcol,v=String(c0.value).toUpperCase(),m2=MN();m2.style[k]=v;
+  const cd=mn.querySelector('[data-mcode="'+k+'"]');if(cd)cd.textContent=v;mnPush(m2)};
+ mn.onchange=e=>{const c0=e.target.closest('[data-mcol]');if(!c0)return;const m2=MN();m2.style[c0.dataset.mcol]=String(c0.value).toUpperCase();put(m2,"Menyu ranglari o'zgartirildi",TX(((MCOL.find(x=>x[0]===c0.dataset.mcol)||[])[1])||''))};
  mn.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset,m2=MN(),i=+d.i;
   if(d.mreset!=null){askDel(TX('Menyu asl holiga qaytarilsinmi?'),esc(TX("Kabinetdagi menyu o'zgarishlari o'chadi.")),()=>{const c=CMS();delete c.menu;cmsSave(c,'Menyu asliga qaytarildi','');vN()});return}
+  if(d.newsec!=null){secDlg(-1);return}
+  if(d.secs!=null){secDlg(+d.secs);return}
+  if(d.pvd){PVD=d.pvd;const fr=mn.querySelector('.mnp-frame');if(fr)fr.dataset.dev=PVD;mn.querySelectorAll('[data-pvd]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.pvd===PVD)));return}
+  if(d.pvr!=null){mnReload();return}
+  if(d.mcolr!=null){const m3=MN();m3.style={bg:'',ink:'',acc:''};put(m3,'Menyu ranglari asliga qaytarildi','');vN();return}
   if(d.madd){edit(d.madd,-1);return}
   if(d.med){edit(d.med,i);return}
   if(d.mup||d.mdn){const p=d.mup||d.mdn,a=arr(m2,p),j=d.mup?i-1:i+1;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];put(m2,'Menyu tartibi o\'zgartirildi',lab(a[j]));vN();return}
@@ -7708,6 +8018,108 @@ function vN(){const mn=$('mn');if(!can()){mn.innerHTML='<h2>Menyu</h2><div class
   if(d.gdel!=null){const g=m2.groups[+d.gdel];askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc(lab(g))+'</b>',()=>{const m3=MN();m3.groups.splice(+d.gdel,1);put(m3,"Menyu guruhi o'chirildi",lab(g));vN()});return}
   if(d.ged!=null){edit('group',+d.ged);return}
   if(d.gadd!=null){edit('group',-1);return}}}
+
+/* ===================================================================
+   JONLI KO'RINISH (Shopify uslubi): kabinet → iframe (index.html?preview=1)
+   • mnPush(menu, sections) — hali saqlanmagan qoralamani saytga yuboradi;
+     sayt uni darhol chizadi (ma'lumot saqlanmaydi).
+   • Sayt «mpick» yuborsa — shu band tahrirlash uchun ochiladi.
+   =================================================================== */
+function mnFrame(){return document.getElementById('mnIf')}
+function mnPush(m,sec){const f=mnFrame();if(!f||!f.contentWindow||!PVOK)return;const c=CMS();
+ try{f.contentWindow.postMessage({ah:'te',op:'menu',menu:m||MN(),sections:sec||c.sections||{},lang:(LANG==='cy'?'uz':LANG)},'*')}catch(e){}}
+function mnPost(o){const f=mnFrame();if(!f||!f.contentWindow||!PVOK)return;o.ah='te';try{f.contentWindow.postMessage(o,'*')}catch(e){}}
+function mnReload(){const f=mnFrame();if(!f)return;PVOK=0;const box=f.parentNode;
+ if(!document.getElementById('mnLd')){const l=document.createElement('div');l.className='te-load';l.id='mnLd';l.innerHTML='<span class="cm-spin" aria-hidden="true"></span><span>'+TX('Sayt yuklanmoqda…')+'</span>';box.appendChild(l)}
+ f.src='index.html?preview=1&menu=1&t='+Date.now()+'#home';mnWait()}
+function mnWire(){const f=mnFrame();if(!f)return;PVOK=0;
+ /* oyna yuklanishi bilan qoralama yuboriladi (blob orqali ochilganda ham ishlaydi) */
+ f.addEventListener('load',()=>{PVOK=1;setTimeout(()=>mnPush(),80)});
+ mnWait()}
+/* sayt yuklanmasa (telefonda kabinet yonida index.html yo'q) — faylni bir marta tanlash */
+const mnDB=()=>new Promise((res,rej)=>{const r=indexedDB.open('arthouse-site',1);r.onupgradeneeded=()=>r.result.createObjectStore('f');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const mnSiteGet=()=>mnDB().then(db=>new Promise(res=>{const g=db.transaction('f').objectStore('f').get('index');g.onsuccess=()=>res(g.result||null);g.onerror=()=>res(null)})).catch(()=>null);
+const mnSitePut=t=>mnDB().then(db=>db.transaction('f','readwrite').objectStore('f').put(t,'index')).catch(()=>{});
+function mnUse(html){const f=mnFrame();if(!f)return;const b=new Blob([html],{type:'text/html'});if(window._mnBlob)URL.revokeObjectURL(window._mnBlob);window._mnBlob=URL.createObjectURL(b);f.src=window._mnBlob+'#home'}
+function mnWait(){clearTimeout(PVT);PVT=setTimeout(async()=>{if(PVOK||!mnFrame())return;const h=await mnSiteGet();if(h&&!PVOK){mnUse(h);clearTimeout(PVT);PVT=setTimeout(()=>{if(!PVOK)mnAsk()},6000);return}mnAsk()},location.protocol.indexOf('http')===0?8000:2500)}
+function mnAsk(){const l=document.getElementById('mnLd');if(!l||PVOK)return;
+ l.innerHTML='<p class="mnp-ask">'+TX("Ko'rinish uchun saytning index.html faylini bir marta tanlang (telefonda kabinet yonida sayt fayli topilmadi).")+'</p><button type="button" class="btn gold sm" data-pick>'+TX('index.html ni tanlash')+'</button>';
+ l.querySelector('[data-pick]').onclick=()=>{const i=document.createElement('input');i.type='file';i.accept='.html,.htm,text/html';
+  i.onchange=async()=>{const f=i.files[0];if(!f)return;const h=await f.text();if(!/ART HOUSE/.test(h)||/id="ab"/.test(h)){kToast(TX("Bu sayt fayli emas. Saytning index.html faylini tanlang."));return}
+   await mnSitePut(h);l.innerHTML='<span class="cm-spin" aria-hidden="true"></span><span>'+TX('Sayt yuklanmoqda…')+'</span>';mnUse(h)};i.click()}}
+addEventListener('message',e=>{const f=mnFrame();if(!f||e.source!==f.contentWindow)return;const d=e.data||{};if(d.ah!=='te')return;
+ if(d.op==='ready'||d.op==='menuReady'){PVOK=1;clearTimeout(PVT);const l=document.getElementById('mnLd');if(l&&d.op==='menuReady')l.remove();if(d.op==='ready')mnPush()}
+ if(d.op==='mpick'&&d.id)mnEditById(d.id)});
+/* ko'rinishdagi bandni bosish → kabinetda shu band ochiladi */
+function mnEditById(id){const m=MN();let path=null,idx=-1;
+ ['cards','main'].forEach(p=>{const j=arr(m,p).findIndex(x=>x.id===id);if(j>-1&&path===null){path=p;idx=j}});
+ if(path===null)m.groups.forEach((g,gi)=>{const j=(g.items||[]).findIndex(x=>x.id===id);if(j>-1&&path===null){path='g:'+gi;idx=j}});
+ if(path===null)return;
+ const r=document.querySelector('[data-mrow="'+String(id).replace(/"/g,'')+'"]');
+ if(r){r.scrollIntoView({block:'center',behavior:'smooth'});r.classList.add('mn-hit');setTimeout(()=>r.classList.remove('mn-hit'),1400)}
+ edit(path,idx)}
+
+/* ===================================================================
+   «YANGI BO'LIM»: saytga yangi sahifa + menyuga havola
+   Saqlash: 'ah_cms'.sections.custom (sayt js/cms-site.js orqali chizadi)
+   =================================================================== */
+function secDlg(idx){const isNew=idx<0,C0=CMS(),SC=SECS();
+ const S=isNew?{id:'s'+Date.now().toString(36),on:true,title:{},eyebrow:{},text:{},btn:{t:{},url:''},img:'',video:'',embed:''}:clone(SC[idx]);
+ S.title=S.title&&typeof S.title==='object'?S.title:{};S.text=S.text&&typeof S.text==='object'?S.text:{};
+ let l=L8.includes(LANG)?LANG:'uz',place='main';
+ const m0=MN(),PL=[['main',TX('Asosiy havolalar')]].concat(m0.groups.map((g,gi)=>['g:'+gi,TX('Guruh')+': '+(lab(g)||TX('Sarlavhasiz guruh'))]).filter((x,gi)=>m0.groups[gi].auto!=='projects'));
+ const dl=document.createElement('div');dl.className='dlg st-dlg';dl.setAttribute('role','dialog');dl.setAttribute('aria-modal','true');
+ /* qoralama: hali saqlanmagan bo'lim ham jonli ko'rinishda ko'rinadi */
+ const draft=()=>{const sec=clone(C0.sections||{});sec.custom=Array.isArray(sec.custom)?clone(sec.custom):[];
+  if(isNew)sec.custom.push(S);else sec.custom[idx]=S;
+  const m2=MN();
+  if(isNew){const it={id:'pv_'+S.id,on:true,t:Object.assign({},S.title),link:'route:cms-'+S.id};
+   (place==='main'?m2.main:m2.groups[+place.slice(2)].items).push(it)}
+  mnPush(m2,sec)};
+ const keep=()=>{const f=dl.querySelector('form');if(!f)return;
+  const t=f.querySelector('[data-stx]').value.trim(),x=f.querySelector('[data-sbd]').value.trim();
+  if(t)S.title[l]=t.slice(0,70);else delete S.title[l];
+  if(x)S.text[l]=x.slice(0,4000);else delete S.text[l];
+  if(f.place)place=f.place.value;if(f.on)S.on=f.on.checked};
+ const draw=()=>{dl.innerHTML='<form class="st-box" novalidate><div class="tt-h"><h3>'+TX(isNew?"Yangi bo'lim qo'shish":"Bo'limni tahrirlash")+'</h3><button type="button" class="te-ib" data-x aria-label="'+TX('Yopish')+'">'+I('x')+'</button></div>'+
+  '<p class="note">'+TX("Bo'lim saytda alohida sahifa bo'lib ochiladi va menyudan havola oladi. Yozuvni 8 tilda kiritish mumkin.")+'</p>'+
+  '<div class="st-tabs" role="tablist">'+L8.map(x=>'<button type="button" role="tab" data-sl="'+x+'" aria-selected="'+(x===l)+'" title="'+LN[x]+'">'+x.toUpperCase()+(S.title[x]?'<i></i>':'')+'</button>').join('')+'</div>'+
+  '<label class="cm-f"><b><span>'+TX('Sarlavha (menyuda ham shu nom)')+'</span> <i class="st-lg">'+l.toUpperCase()+'</i></b><input class="nt9" data-stx value="'+esc(S.title[l]||'')+'" maxlength="70" placeholder="'+TX('Masalan: Aksiyalar')+'"></label>'+
+  '<label class="cm-f"><b>'+TX('Matn')+'</b><textarea class="nt9" data-sbd rows="4" maxlength="4000" placeholder="'+TX("Bo'lim matni (ixtiyoriy)")+'">'+esc(S.text[l]||'')+'</textarea></label>'+
+  '<div class="st-fph"><div class="st-ph mn-ph">'+(S.video?'<video id="scV" muted playsinline autoplay loop></video>':'<img id="scI" alt="">')+'</div><div class="st-fbtn"><button type="button" class="btn gold sm" data-sup="image">'+I('image')+TX('Rasm yuklash')+'</button><button type="button" class="btn ghost sm" data-sup="video">'+I('video')+TX('Video yuklash')+'</button>'+
+   (S.img?'<button type="button" class="btn ghost sm" data-snoimg>'+I('x')+TX('Rasmni olib tashlash')+'</button>':'')+(S.video?'<button type="button" class="btn ghost sm" data-snovid>'+I('x')+TX("Videoni olib tashlash")+'</button>':'')+'<small class="note">'+TX('Ixtiyoriy: gorizontal rasm yoki qisqa video.')+'</small></div></div>'+
+  (isNew?'<label class="cm-f"><b>'+TX('Menyuda qayerda chiqsin')+'</b><select name="place">'+PL.map(x=>'<option value="'+x[0]+'"'+(x[0]===place?' selected':'')+'>'+esc(x[1])+'</option>').join('')+'</select></label>':'')+
+  '<label class="cm-sw1"><input type="checkbox" name="on"'+(S.on!==false?' checked':'')+'><i></i><span><b>'+TX("Saytda ko'rsatish")+'</b><small>'+TX("O'chirilsa — bo'lim ham, menyudagi havola ham yashiriladi.")+'</small></span></label>'+
+  '<p class="note st-err" hidden></p><div class="xa"><button type="submit" class="btn gold">'+I('check')+TX('Saqlash')+'</button>'+(isNew?'':'<button type="button" class="btn ghost dl" data-sdel>'+I('trash')+TX("O'chirish")+'</button>')+'<button type="button" class="btn ghost" data-x>'+TX('Bekor qilish')+'</button></div></form>';
+  const v=dl.querySelector('#scV'),im=dl.querySelector('#scI');
+  if(v&&S.video)refURL(S.video).then(u=>{if(u)v.src=u});
+  if(im){if(S.img)refURL(S.img).then(u=>{if(u)im.src=u;else im.classList.add('cm-noimg')});else im.classList.add('cm-noimg')}};
+ const close=()=>{dl.remove();document.removeEventListener('keydown',k1);mnPush()},k1=e=>{if(e.key==='Escape')close()};
+ draw();document.body.appendChild(dl);document.addEventListener('keydown',k1);setTimeout(()=>{const i=dl.querySelector('[data-stx]');if(i)i.focus()},40);
+ dl.addEventListener('input',()=>{keep();draft()});
+ dl.addEventListener('change',e=>{keep();draft();if(e.target.name==='place')return});
+ dl.addEventListener('click',async e=>{if(e.target===dl){close();return}const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.x!=null){close();return}
+  if(d.sl){keep();l=d.sl;draw();return}
+  if(d.sup){keep();const r=await cmUp(d.sup);if(r[0]){if(d.sup==='video')S.video=r[0];else S.img=r[0];draw();draft()}return}
+  if(d.snoimg!=null){keep();S.img='';draw();draft();return}
+  if(d.snovid!=null){keep();S.video='';draw();draft();return}
+  if(d.sdel!=null){askDel("Bu narsa o'chirilsinmi?",'<b class="nt9">'+esc((S.title||{}).uz||'')+'</b>',()=>{const c=CMS();c.sections.custom=(c.sections.custom||[]).filter(x=>x.id!==S.id);
+   const m2=MN();m2.main=m2.main.filter(x=>x.link!=='route:cms-'+S.id);m2.groups.forEach(g=>{g.items=(g.items||[]).filter(x=>x.link!=='route:cms-'+S.id)});c.menu=m2;
+   cmsSave(c,"Bo'lim o'chirildi",(S.title||{}).uz||'');close();vN()});return}});
+ dl.addEventListener('submit',e=>{e.preventDefault();keep();const er=dl.querySelector('.st-err');
+  if(!(S.title.uz||'').trim()){er.hidden=false;er.textContent=TX("Sarlavhani o'zbekcha yozing.");const t=dl.querySelector('[data-sl="uz"]');if(t)t.click();return}
+  const c=CMS();c.sections=c.sections||{};c.sections.custom=Array.isArray(c.sections.custom)?c.sections.custom:[];
+  const m2=MN();
+  if(isNew){c.sections.custom.push(S);
+   const it={id:M.uid('i'),on:S.on!==false,t:Object.assign({},S.title),link:'route:cms-'+S.id};
+   (place==='main'?m2.main:m2.groups[+place.slice(2)].items).push(it)}
+  else{c.sections.custom[idx]=S;
+   const upd=x=>{if(x.link==='route:cms-'+S.id){x.t=Object.assign({},S.title);x.on=S.on!==false}};
+   m2.main.forEach(upd);m2.groups.forEach(g=>(g.items||[]).forEach(upd))}
+  c.menu=m2;
+  if(cmsSave(c,isNew?"Yangi bo'lim qo'shildi":"Bo'lim tahrirlandi",(S.title.uz||'').slice(0,60))){close();vN();kToast(TX(isNew?"Bo'lim qo'shildi va menyuga chiqdi.":'Saqlandi.'))}});
+}
 
 /* ---------- tahrirlash oynasi ---------- */
 function edit(path,idx){const m=MN(),isG=path==='group',isCard=path==='cards',isMain=path==='main',isNew=idx<0;
@@ -7735,9 +8147,12 @@ function edit(path,idx){const m=MN(),isG=path==='group',isCard=path==='cards',is
   if(f.style)it.style=f.style.value;
   if(f.link){const v=f.link.value;it.link=v==='url'?'url:'+(f.url?f.url.value.trim():''):v}
   if(f.hl)it.hl=f.hl.checked};
- const close=()=>{dl.remove();document.removeEventListener('keydown',k1)},k1=e=>{if(e.key==='Escape')close()};
+ const close=()=>{dl.remove();document.removeEventListener('keydown',k1);mnPush()},k1=e=>{if(e.key==='Escape')close()};
  draw();document.body.appendChild(dl);document.addEventListener('keydown',k1);
- dl.addEventListener('change',e=>{if(e.target.name==='link'){keep();draw()}});
+ /* Shopify uslubi: yozayotganda saytdagi menyu darhol o'zgaradi (saqlanmaydi) */
+ const livePV=()=>{keep();const m2=MN(),L2=isG?m2.groups:arr(m2,path);if(isNew)L2.push(it);else L2[idx]=it;mnPush(m2)};
+ dl.addEventListener('input',livePV);
+ dl.addEventListener('change',e=>{if(e.target.name==='link'){keep();draw();mnPush();livePV();return}livePV()});
  dl.addEventListener('click',async e=>{if(e.target===dl){close();return}const b=e.target.closest('button');if(!b)return;const d=b.dataset;
   if(d.x!=null){close();return}
   if(d.tl){keep();l=d.tl;draw();return}

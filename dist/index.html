@@ -851,6 +851,24 @@ body { font-variant-numeric: lining-nums; }
 .mnav-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .mnav-mini { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; border: 1px solid rgba(235, 212, 156, .22); color: var(--ink); font-size: 14px; font-weight: 500; }
 
+
+/* =====================================================================
+   MENYU — kabinetdan boshqariladigan ranglar ('ah_cms'.menu.style) va
+   kabinetdagi «Jonli ko'rinish» (index.html?preview=1) uchun belgilar
+   ===================================================================== */
+.mnav .mnav-in.mn-custom { background: var(--mn-bg, linear-gradient(180deg, #0C3E2F 0%, #082F23 100%)) !important; border-right-color: color-mix(in srgb, var(--mn-acc, #DCC48F) 24%, transparent) !important; }
+.mnav .mnav-in.mn-custom .mnav-list a, .mnav .mnav-in.mn-custom .mnav-serv a, .mnav .mnav-in.mn-custom .mnav-main a, .mnav .mnav-in.mn-custom .mnav-big { color: var(--mn-ink, rgba(248, 240, 216, .9)) !important; }
+.mnav .mnav-in.mn-custom .mnav-sub, .mnav .mnav-in.mn-custom .mnav-x, .mnav .mnav-in.mn-custom .mnav-list a .ic, .mnav .mnav-in.mn-custom .mnav-serv a .ic { color: var(--mn-acc, #DCC48F) !important; }
+.mnav .mnav-in.mn-custom .mnav-hl { color: var(--mn-acc, #DCC48F) !important; border-color: color-mix(in srgb, var(--mn-acc, #DCC48F) 40%, transparent) !important; }
+.mnav .mnav-in.mn-custom .mnav-list a.active { background: color-mix(in srgb, var(--mn-acc, #DCC48F) 14%, transparent) !important; color: var(--mn-acc, #DCC48F) !important; }
+.mnav .mnav-in.mn-custom .mnav-list a.active::before { background: var(--mn-acc, #DCC48F) !important; }
+.mnav .mnav-in.mn-custom .mnav-card span { color: var(--mn-ink, #F8F0D8) !important; }
+/* jonli ko'rinish: kabinetda tanlangan band miltillaydi */
+.mnav [data-mid].mn-flash { outline: 2px solid var(--gold-hi, #F6E7B8); outline-offset: 2px; border-radius: 12px; animation: mnFlash 1.2s ease-out 1; }
+@keyframes mnFlash { 0% { box-shadow: 0 0 0 0 rgba(246, 231, 184, .6); } 100% { box-shadow: 0 0 0 16px rgba(246, 231, 184, 0); } }
+body.mn-preview .mnav { pointer-events: auto; }
+body.mn-preview .mnav-scrim { background: rgba(2, 18, 13, .35); }
+
 /* =====================================================================
    RASM USTIDAGI YOZUV — har bir tilda (asl rasmdagi o'zbekcha matn o'rniga)
    ===================================================================== */
@@ -7745,13 +7763,22 @@ window.AGENT_DICT = {
     /* ICON uslubidagi menyu: tepada rasm/video kartalar, keyin guruhlangan ro'yxat.
        Hammasi kabinet → Sayt → «Menyu» dan boshqariladi (js/menu-schema.js, 'ah_cms'.menu). */
     var M = window.AH_MENU, MD = M.get(window.AH_CMS || C), L = I18N.lang, d = 0;
+    var MPV = /[?&]preview=1/.test(location.search);
     var on = function (x) { return x && x.on !== false; };
     var hiddenRoute = function (lk) { if (String(lk).indexOf('route:') !== 0) return false; var a = $('.menu-track > a[data-route="' + lk.slice(6) + '"]'); return !!(a && a.hidden); };
     var cur = (location.hash || '#home').slice(1).split('/')[0];
     var A = function (it, cls, inner) {
       var h = M.href(it.link, CFG), act = it.link === 'route:' + cur;
-      return '<a class="' + (cls || '') + (act ? ' active' : '') + '" href="' + esc(h.href) + '"' + h.attrs + (h.ext ? ' target="_blank" rel="noopener"' : '') + ' style="--d:' + (d++) + '">' + inner + '</a>';
+      return '<a class="' + (cls || '') + (act ? ' active' : '') + '" href="' + esc(h.href) + '"' + h.attrs + (h.ext ? ' target="_blank" rel="noopener"' : '') +
+        (it.id ? ' data-mid="' + esc(it.id) + '"' : '') + ' style="--d:' + (d++) + '">' + inner + '</a>';
     };
+    /* kabinet → Sayt → «Menyu» dagi ranglar: faqat #rrggbb qabul qilinadi */
+    var col = function (v) { return /^#[0-9a-fA-F]{6}$/.test(String(v || '')) ? String(v) : ''; };
+    var ST = MD.style || {}, sv = '';
+    if (col(ST.bg)) sv += '--mn-bg:' + col(ST.bg) + ';';
+    if (col(ST.ink)) sv += '--mn-ink:' + col(ST.ink) + ';';
+    if (col(ST.acc)) sv += '--mn-acc:' + col(ST.acc) + ';';
+    var inAttr = sv ? ' class="mnav-in mn-custom" style="' + sv + '"' : ' class="mnav-in"';
     var cards = (MD.cards || []).filter(on).map(function (c) {
       var nm = M.label(c, L, P), im = M.img(c); if (!im && !c.video) return '';
       var media = c.video ? '<video src="' + esc(c.video) + '"' + (im ? ' poster="' + esc(im) + '"' : '') + ' muted loop playsinline autoplay preload="metadata"></video>' : '<img src="' + esc(im) + '" alt="" loading="lazy">';
@@ -7766,7 +7793,7 @@ window.AGENT_DICT = {
       var tt = M.label(g, L, P);
       return (tt ? '<p class="mnav-sub">' + esc(tt) + '</p>' : '') + '<nav class="' + (serv ? 'mnav-serv' : 'mnav-list') + '">' + body + '</nav>';
     }).join('');
-    mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside class="mnav-in"><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button>' +
+    mnav.innerHTML = '<div class="mnav-scrim" data-mclose></div><aside' + inAttr + '><button type="button" class="mnav-x" data-mclose aria-label="' + esc(t('aria.close')) + '"><svg class="ic"><use href="#i-x"/></svg></button>' +
       (cards ? '<div class="mnav-cards' + ((MD.cards || []).filter(on).length === 1 ? ' one' : '') + '">' + cards + '</div>' : '') +
       (main ? '<nav class="mnav-main">' + main + '</nav>' : '') + groups + '</aside>';
   }
@@ -7836,7 +7863,71 @@ window.AGENT_DICT = {
   Store.on('settings', nums);
   window.addEventListener('hashchange', route);
   route();
-  window.addEventListener('resize', function () { if (innerWidth > 860) closeMnav(); }, { passive: true });
+  window.addEventListener('resize', function () { if (innerWidth > 860 && !/[?&]preview=1/.test(location.search)) closeMnav(); }, { passive: true });
+
+  /* ---------- kabinet → «Menyu» sahifasidagi jonli ko'rinish (?preview=1) ----------
+     Kabinet (js/kabinet-menu.js) hali saqlanmagan menyuni va yangi bo'limlarni
+     postMessage orqali yuboradi: {ah:'te', op:'menu', menu, sections, lang}.
+     Sayt uni darhol chizadi va ☰ panelni ochib qo'yadi — Shopify uslubidagi
+     «Live preview». Ma'lumot saqlanmaydi: faqat shu oynada ko'rinadi. */
+  var MPREV = /[?&]preview=1/.test(location.search), MMENU = /[?&]menu=1/.test(location.search);
+  function menuDraft(d) {
+    var c = window.AH_CMS || C;
+    if (d.menu && typeof d.menu === 'object') {
+      var cc = {};
+      Object.keys(c).forEach(function (k) { cc[k] = c[k]; });
+      cc.menu = d.menu;
+      if (d.sections && typeof d.sections === 'object') cc.sections = d.sections;
+      window.AH_CMS = cc;
+    }
+    if (d.sections && typeof d.sections === 'object') {
+      SEC = d.sections;
+      OFF = (SEC.off || []).filter(function (r) { return r !== 'home'; });
+      CUSTOM = (SEC.custom || []).filter(function (x) { return x && x.id && x.on !== false; });
+      renderCustom(); hideOff(); footer();
+    }
+    buildMnav();
+    openMnav();
+    if (d.focus) flash(d.focus);
+  }
+  function flash(id) {
+    if (!mnav) return;
+    var el = mnav.querySelector('[data-mid="' + String(id).replace(/"/g, '') + '"]');
+    if (!el) return;
+    mnav.querySelectorAll('.mn-flash').forEach(function (x) { x.classList.remove('mn-flash'); });
+    el.classList.add('mn-flash');
+    try { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+    setTimeout(function () { el.classList.remove('mn-flash'); }, 1400);
+  }
+  function menuMode() { if (MMENU) return; MMENU = true; document.body.classList.add('mn-preview'); }
+  if (window.parent !== window) { /* kabinet ichidagi oyna */
+    var mSend = function (m) { m.ah = 'te'; try { window.parent.postMessage(m, '*'); } catch (e) {} };
+    window.addEventListener('message', function (e) {
+      if (e.source !== window.parent) return;
+      var d = e.data || {}; if (d.ah !== 'te') return;
+      if (d.op === 'menu') {
+        menuMode();
+        if (d.lang && I18N.lang !== d.lang) { var keep = null; try { keep = localStorage.getItem('ah_lang'); } catch (x) {} I18N.set(d.lang); try { if (keep) localStorage.setItem('ah_lang', keep); } catch (x) {} }
+        menuDraft(d);
+        mSend({ op: 'menuReady' });
+      }
+      if (d.op === 'mfocus') { menuMode(); buildMnav(); openMnav(); flash(d.id); }
+      if (d.op === 'mopen') { menuMode(); buildMnav(); openMnav(); }
+    });
+    /* ko'rinishdagi bandni bosish — kabinetda shu band tahrirlash uchun ochiladi */
+    document.addEventListener('click', function (e) {
+      if (!MMENU) return;
+      var a = e.target.closest('.mnav [data-mid]'); if (!a) return;
+      e.preventDefault(); e.stopPropagation();
+      mSend({ op: 'mpick', id: a.getAttribute('data-mid') });
+      flash(a.getAttribute('data-mid'));
+    }, true);
+    /* panel yopilmasin: menyu ko'rinishida ☰ doim ochiq turadi */
+    document.addEventListener('click', function (e) { if (MMENU && e.target.closest('[data-mclose]')) setTimeout(function () { buildMnav(); openMnav(); }, 420); }, true);
+    if (MMENU) { document.body.classList.add('mn-preview'); mSend({ op: 'ready', menu: 1 }); setTimeout(function () { buildMnav(); openMnav(); }, 60); }
+  }
+  window.AH_SITE_MENU = { build: buildMnav, open: openMnav, close: closeMnav, draft: menuDraft };
+
 
   /* ---------- kabinet uchun: matnlar katalogi va asl rasmlar (IndexedDB) ---------- */
   function kv() {
