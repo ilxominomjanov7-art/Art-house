@@ -842,3 +842,66 @@ h1 .sm{color:#E2C992;letter-spacing:.32em;font-weight:500;font-size:clamp(14px,c
 .manual-out{padding:14px 18px;border-top:1px solid var(--line);display:grid;gap:8px}.manual-out textarea{font:12px/1.4 ui-monospace,monospace;min-height:64px;word-break:break-all}
 #kCall{z-index:420}.call-head{padding-right:18px}
 #splash{z-index:500}
+
+/* =====================================================================
+   LUXURY UNIFIED EMERALD — yagona fon tizimi
+   Splash (kirish animatsiyasi) · Login · Kabinet · Sayt — hammasi bir xil
+   Asos rang: #061F18 (chuqur zumrad) + yengil premium radial glow
+   ===================================================================== */
+:root {
+  --lux-deep: #061F18;
+  --lux-deep-2: #08271E;
+  --lux-deep-3: #0A2E23;
+  --lux-gold-rgb: 216, 188, 126;
+  /* Bir xil "qimmatbaho brend" foni: tekis emas, chuqurlik beruvchi silliq glow */
+  --lux-bg:
+    radial-gradient(1400px 900px at 50% -18%, rgba(18, 74, 56, .55), transparent 68%),
+    radial-gradient(1100px 760px at 102% 6%, rgba(var(--lux-gold-rgb), .07), transparent 62%),
+    radial-gradient(1000px 820px at -8% 94%, rgba(12, 56, 43, .5), transparent 66%),
+    radial-gradient(900px 700px at 50% 112%, rgba(var(--lux-gold-rgb), .05), transparent 64%),
+    #061F18;
+}
+
+html { background: #061F18; }
+
+body,
+body.lock,
+body.is-loading {
+  background: var(--lux-bg) !important;
+  background-attachment: fixed !important;
+  background-color: #061F18 !important;
+}
+
+/* ---- Kirish animatsiyasi (splash): login/kabinet bilan aynan bir xil fon ---- */
+.splash {
+  background:
+    radial-gradient(60vmax 60vmax at 50% 46%, rgba(20, 82, 62, .55), transparent 70%),
+    radial-gradient(90vmax 70vmax at 50% 120%, rgba(var(--lux-gold-rgb), .06), transparent 65%),
+    #061F18 !important;
+}
+.splash-glow {
+  background: radial-gradient(circle, rgba(var(--lux-gold-rgb), .20), rgba(var(--lux-gold-rgb), .05) 45%, transparent 68%) !important;
+}
+
+/* ---- Login ekrani: fon splash davomi, faqat yumshoq nur ---- */
+#adm,
+#adm #al {
+  background: var(--lux-bg) !important;
+  background-attachment: fixed !important;
+}
+.lga i:nth-child(1) { background: radial-gradient(circle, rgba(var(--lux-gold-rgb), .22), transparent 66%) !important; }
+.lga i:nth-child(2) { background: radial-gradient(circle, rgba(17, 78, 59, .62), transparent 66%) !important; }
+.lga i:nth-child(3) { background: radial-gradient(circle, rgba(var(--lux-gold-rgb), .12), transparent 66%) !important; }
+.lga i { opacity: .5 !important; }
+
+/* ---- Kabinet: panellar va kartalar bir xil chuqur zumradda ---- */
+#ab, #mn, #sd, #tb { background-color: transparent; }
+#adm { --bg: #061F18; --bg2: #0A2E23; --bg3: #0D3B2E; }
+
+/* ---- Modal / toast / qo'ng'iroq oynasi — bir xil chuqurlik ---- */
+.modal { background: rgba(4, 19, 14, .80); }
+.modal-box { background: linear-gradient(170deg, #0A2E23, #061F18); }
+.toast { background: #0A2E23; }
+.call-box { background: #061F18; }
+.call-stage, .call-pre { background: radial-gradient(circle at 50% 40%, #0F4433, #061F18) !important; }
+.call-self { background: #061F18; }
