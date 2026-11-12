@@ -918,6 +918,83 @@ body.is-loading {
 .call-stage, .call-pre { background: radial-gradient(circle at 50% 40%, #0F4433, #061F18) !important; }
 .call-self { background: #061F18; }
 
+/* =====================================================================
+   OCH OLTIN (LIGHT CHAMPAGNE GOLD) — kabinetdagi barcha oltin tonlar
+   ===================================================================== */
+:root,
+#adm {
+  --gold:  #EFDFB2;
+  --gold2: #F6EACB;
+  --gold3: #FBF4E2;
+  --g4:    #E0C98F;
+  --gold-hi: #FDF8EC;
+  --line:  rgba(239, 223, 178, .34);
+  --hair:  rgba(239, 223, 178, .18);
+  --line-2: rgba(239, 223, 178, .46);
+  --gg: linear-gradient(135deg, #FDF7E6 0%, #F3E6C1 38%, #E6D2A0 72%, #D9C089 100%);
+  --gold-grad: linear-gradient(115deg, #E6D2A0 0%, #FBF2DC 28%, #F1E2B8 50%, #DCC693 72%, #FDF8EC 100%);
+}
+
+/* tugmalar */
+.btn.gold,
+#adm .btn.gold,
+.btn-gold {
+  background: linear-gradient(135deg, #FDF8EC 0%, #F6EACB 38%, #EBD9A8 72%, #E0C98F 100%) !important;
+  color: #06231A !important;
+  box-shadow: 0 12px 32px -14px rgba(239, 223, 178, .55), inset 0 1px 0 rgba(255, 255, 255, .7) !important;
+}
+.seg button[aria-pressed="true"],
+.rt button.on,
+.m.u,
+.ht.hot,
+.st i { background: linear-gradient(135deg, #FBF2DC, #EFDFB2) !important; color: #06231A !important; }
+
+/* matn va ikonkalar */
+#adm .ic,
+#nv button .ic,
+.gs .ic,
+.gs kbd,
+#gr i,
+.zo,
+.mod b,
+.ht,
+.chips button,
+.card summary,
+.lgc .lgs,
+.tbb b,
+.dlg h3,
+.dlg i,
+.kp b,
+.ring b,
+.donut:after { color: var(--gold2); }
+.lgc .lgs { color: rgba(246, 234, 203, .85); }
+
+/* oltin gradientli sarlavha va logotip matnlari */
+.lgc .lgb,
+h1 .big,
+#adm h1 .big {
+  background: linear-gradient(100deg, #FDF8EC, #F3E6C1 40%, #E3CE9A 70%, #FDF8EC) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important;
+}
+h1 .sm, #adm h1 .sm { color: #F3E6C1; }
+
+/* ramka, nur va chiziqlar */
+.lgc:before { background: conic-gradient(from var(--ang), transparent 0 62%, rgba(251, 244, 226, .95) 80%, transparent 92%) !important; }
+.lgc .sbm, .sbm, .tbb .sbm { border-color: rgba(239, 223, 178, .38); }
+.lga i:nth-child(1) { background: radial-gradient(circle, rgba(246, 234, 203, .26), transparent 66%) !important; }
+.lga i:nth-child(3) { background: radial-gradient(circle, rgba(246, 234, 203, .14), transparent 66%) !important; }
+.splash-glow { background: radial-gradient(circle, rgba(246, 234, 203, .24), rgba(246, 234, 203, .06) 45%, transparent 68%) !important; }
+.lux-word span { background: linear-gradient(100deg, #C9AC72 0%, #F1E2B8 20%, #FFFBF0 32%, #F3E6C1 44%, #DCC693 60%, #FDF8EC 78%, #E6D2A0 100%) !important; background-size: 250% 100% !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }
+.lux-mark { filter: drop-shadow(0 0 16px rgba(246, 234, 203, .55)); }
+.lux-sub, .call-timer, .call-manual summary, .ring-txt small { color: var(--gold2); }
+.gs > div.bx { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(251, 244, 226, .2), 0 0 28px rgba(239, 223, 178, .3), inset 0 0 18px rgba(239, 223, 178, .1); }
+.xs { border-left-color: var(--gold); background: rgba(239, 223, 178, .09); }
+.br i { background: linear-gradient(90deg, #EFDFB2, #FBF4E2); }
+.call-avatar, .ring-av { background: linear-gradient(135deg, #FDF8EC 0%, #F6EACB 40%, #E6D2A0 100%); color: #06231A; }
+.pl { background: var(--gold2); }
+.mic-meter i { background: linear-gradient(135deg, #FDF8EC, #EFDFB2); }
+
 </style>
 </head>
 <body class="lock">
